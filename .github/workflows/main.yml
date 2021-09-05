@@ -18,10 +18,8 @@ jobs:
           ref: ${{ env.VERSION }}
       - name: Set env
         run: echo "LATEST_COMMIT_ID=$(git ls-remote https://github.com/python/CPython.git $VERSION) | head -c 8" >> $GITHUB_ENV
-      - name: test
-        run: make all
       - name: pull-from-cpython
-        run: make merge
+        run: make clone && make merge
       - name: Create Pull Request
         id: cpr
         uses: peter-evans/create-pull-request@v3
