@@ -18,6 +18,8 @@ jobs:
           ref: ${{ env.VERSION }}
       - name: Set env
         run: echo "LATEST_COMMIT_ID=$(git ls-remote https://github.com/python/CPython.git $VERSION) | head -c 8" >> $GITHUB_ENV
+      - name: Install Dependencies
+        run: apt-get install gettext
       - name: pull-from-cpython
         run: make clone && make merge
       - name: Create Pull Request
