@@ -19,7 +19,7 @@ jobs:
       - name: Set env
         run: echo "LATEST_COMMIT_ID=$(git ls-remote https://github.com/python/CPython.git $VERSION) | head -c 8" >> $GITHUB_ENV
       - name: test
-        run: make upgrade_venv
+        run: make all
       - name: pull-from-cpython
         run: make merge
       - name: Create Pull Request
