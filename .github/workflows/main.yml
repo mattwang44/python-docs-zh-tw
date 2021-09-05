@@ -1,0 +1,44 @@
+name: python-3.9-sync-with-cpython
+
+on:
+  push:
+    branches:
+      - "3.9"
+  schedule:
+    - cron: "0 * * * *"
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    env:
+      VERSION: "3.9"
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set env
+        run: echo "LATEST_COMMIT_ID=$(git ls-remote https://github.com/python/CPython.git $VERSION) | head -c 8" >> $GITHUB_ENV
+      - name: pull-from-cpython
+        run: make merge
+      - name: Create Pull Request
+        id: cpr
+        uses: peter-evans/create-pull-request@v3
+        with:
+          # token: ${{ secrets.PAT }}
+          commit-message: sync with cpython ${{ env.LATEST_COMMIT_ID }}
+          committer: GitHub <noreply@github.com>
+          author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
+          branch: 3.9
+          delete-branch: true
+          title: 'Sync with CPython ${{ env.VERSION }}'
+          body: |
+            test ${{ env.VERSION }}
+          labels: |
+            sync-cpython
+            automation
+          # team-reviewers: |
+          #   owners
+          #   maintainers
+          
+      - name: Check outputs
+        run: |
+          echo "Pull Request Number - ${{ steps.cpr.outputs.pull-request-number }}"
+          echo "Pull Request URL - ${{ steps.cpr.outputs.pull-request-url }}"
