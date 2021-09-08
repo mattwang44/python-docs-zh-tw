@@ -1335,7 +1335,9 @@ not being read from.</p>
 <dd><p>Run command with arguments.  Wait for command to complete. If the return
 code was zero then return, otherwise raise <a class="reference internal" href="#subprocess.CalledProcessError" title="subprocess.CalledProcessError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">CalledProcessError</span></code></a>. The
 <a class="reference internal" href="#subprocess.CalledProcessError" title="subprocess.CalledProcessError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">CalledProcessError</span></code></a> object will have the return code in the
-<a class="reference internal" href="#subprocess.CalledProcessError.returncode" title="subprocess.CalledProcessError.returncode"><code class="xref py py-attr docutils literal notranslate"><span class="pre">returncode</span></code></a> attribute.</p>
+<a class="reference internal" href="#subprocess.CalledProcessError.returncode" title="subprocess.CalledProcessError.returncode"><code class="xref py py-attr docutils literal notranslate"><span class="pre">returncode</span></code></a> attribute.
+If <a class="reference internal" href="#subprocess.check_call" title="subprocess.check_call"><code class="xref py py-func docutils literal notranslate"><span class="pre">check_call()</span></code></a> was unable to start the process it will propagate the exception
+that was raised.</p>
 <p>Code needing to capture stdout or stderr should use <a class="reference internal" href="#subprocess.run" title="subprocess.run"><code class="xref py py-func docutils literal notranslate"><span class="pre">run()</span></code></a> instead:</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">run</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">check</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
@@ -1801,7 +1803,7 @@ described in rule 3.</p></li>
 <br />
     <br />
 
-    最後更新於 9月 07, 2021。
+    最後更新於 9月 08, 2021。
     <a href="https://docs.python.org/3/bugs.html">Found a bug</a>?
     <br />
 
