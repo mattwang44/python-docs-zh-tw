@@ -247,7 +247,7 @@ the following functions: <code class="xref c c-func docutils literal notranslate
 and <code class="xref c c-func docutils literal notranslate"><span class="pre">free()</span></code>; call <code class="docutils literal notranslate"><span class="pre">malloc(1)</span></code> (or <code class="docutils literal notranslate"><span class="pre">calloc(1,</span> <span class="pre">1)</span></code>) when requesting
 zero bytes.</p>
 <div class="versionadded">
-<p><span class="versionmodified added">3.4 版新加入.</span></p>
+<p><span class="versionmodified added">在 3.4 版本新加入.</span></p>
 </div>
 <dl class="c function">
 <dt class="sig sig-object c" id="c.PyMem_RawMalloc">
@@ -269,7 +269,7 @@ request fails. The memory is initialized to zeros.</p>
 non-<code class="docutils literal notranslate"><span class="pre">NULL</span></code> pointer if possible, as if <code class="docutils literal notranslate"><span class="pre">PyMem_RawCalloc(1,</span> <span class="pre">1)</span></code> had been
 called instead.</p>
 <div class="versionadded">
-<p><span class="versionmodified added">3.5 版新加入.</span></p>
+<p><span class="versionmodified added">在 3.5 版本新加入.</span></p>
 </div>
 </dd></dl>
 
@@ -312,7 +312,7 @@ memory from the Python heap.</p>
 functions.</p>
 </div>
 <div class="versionchanged">
-<p><span class="versionmodified changed">3.6 版更變: </span>The default allocator is now pymalloc instead of system <code class="xref c c-func docutils literal notranslate"><span class="pre">malloc()</span></code>.</p>
+<p><span class="versionmodified changed">在 3.6 版本變更: </span>The default allocator is now pymalloc instead of system <code class="xref c c-func docutils literal notranslate"><span class="pre">malloc()</span></code>.</p>
 </div>
 <dl class="c function">
 <dt class="sig sig-object c" id="c.PyMem_Malloc">
@@ -334,7 +334,7 @@ request fails. The memory is initialized to zeros.</p>
 non-<code class="docutils literal notranslate"><span class="pre">NULL</span></code> pointer if possible, as if <code class="docutils literal notranslate"><span class="pre">PyMem_Calloc(1,</span> <span class="pre">1)</span></code> had been called
 instead.</p>
 <div class="versionadded">
-<p><span class="versionmodified added">3.5 版新加入.</span></p>
+<p><span class="versionmodified added">在 3.5 版本新加入.</span></p>
 </div>
 </dd></dl>
 
@@ -434,7 +434,7 @@ request fails. The memory is initialized to zeros.</p>
 non-<code class="docutils literal notranslate"><span class="pre">NULL</span></code> pointer if possible, as if <code class="docutils literal notranslate"><span class="pre">PyObject_Calloc(1,</span> <span class="pre">1)</span></code> had been called
 instead.</p>
 <div class="versionadded">
-<p><span class="versionmodified added">3.5 版新加入.</span></p>
+<p><span class="versionmodified added">在 3.5 版本新加入.</span></p>
 </div>
 </dd></dl>
 
@@ -521,7 +521,7 @@ before, undefined behavior occurs.</p>
 <section id="customize-memory-allocators">
 <h2>Customize Memory Allocators<a class="headerlink" href="#customize-memory-allocators" title="本標題的永久連結">¶</a></h2>
 <div class="versionadded">
-<p><span class="versionmodified added">3.4 版新加入.</span></p>
+<p><span class="versionmodified added">在 3.4 版本新加入.</span></p>
 </div>
 <dl class="c type">
 <dt class="sig sig-object c" id="c.PyMemAllocatorEx">
@@ -558,7 +558,7 @@ with zeros</p></td>
 </tbody>
 </table>
 <div class="versionchanged">
-<p><span class="versionmodified changed">3.5 版更變: </span>The <code class="xref c c-type docutils literal notranslate"><span class="pre">PyMemAllocator</span></code> structure was renamed to
+<p><span class="versionmodified changed">在 3.5 版本變更: </span>The <code class="xref c c-type docutils literal notranslate"><span class="pre">PyMemAllocator</span></code> structure was renamed to
 <a class="reference internal" href="#c.PyMemAllocatorEx" title="PyMemAllocatorEx"><code class="xref c c-type docutils literal notranslate"><span class="pre">PyMemAllocatorEx</span></code></a> and a new <code class="docutils literal notranslate"><span class="pre">calloc</span></code> field was added.</p>
 </div>
 </dd></dl>
@@ -652,14 +652,14 @@ Python is compiled in debug
 mode. The <span class="target" id="index-4"></span><a class="reference internal" href="../using/cmdline.html#envvar-PYTHONMALLOC"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PYTHONMALLOC</span></code></a> environment variable can be used to install
 debug hooks on a Python compiled in release mode.</p>
 <div class="versionchanged">
-<p><span class="versionmodified changed">3.6 版更變: </span>This function now also works on Python compiled in release mode.
+<p><span class="versionmodified changed">在 3.6 版本變更: </span>This function now also works on Python compiled in release mode.
 On error, the debug hooks now use <a class="reference internal" href="../library/tracemalloc.html#module-tracemalloc" title="tracemalloc: Trace memory allocations."><code class="xref py py-mod docutils literal notranslate"><span class="pre">tracemalloc</span></code></a> to get the traceback
 where a memory block was allocated. The debug hooks now also check
 if the GIL is held when functions of <code class="xref c c-data docutils literal notranslate"><span class="pre">PYMEM_DOMAIN_OBJ</span></code> and
 <code class="xref c c-data docutils literal notranslate"><span class="pre">PYMEM_DOMAIN_MEM</span></code> domains are called.</p>
 </div>
 <div class="versionchanged">
-<p><span class="versionmodified changed">3.8 版更變: </span>Byte patterns <code class="docutils literal notranslate"><span class="pre">0xCB</span></code> (<code class="docutils literal notranslate"><span class="pre">CLEANBYTE</span></code>), <code class="docutils literal notranslate"><span class="pre">0xDB</span></code> (<code class="docutils literal notranslate"><span class="pre">DEADBYTE</span></code>) and
+<p><span class="versionmodified changed">在 3.8 版本變更: </span>Byte patterns <code class="docutils literal notranslate"><span class="pre">0xCB</span></code> (<code class="docutils literal notranslate"><span class="pre">CLEANBYTE</span></code>), <code class="docutils literal notranslate"><span class="pre">0xDB</span></code> (<code class="docutils literal notranslate"><span class="pre">DEADBYTE</span></code>) and
 <code class="docutils literal notranslate"><span class="pre">0xFB</span></code> (<code class="docutils literal notranslate"><span class="pre">FORBIDDENBYTE</span></code>) have been replaced with <code class="docutils literal notranslate"><span class="pre">0xCD</span></code>, <code class="docutils literal notranslate"><span class="pre">0xDD</span></code>
 and <code class="docutils literal notranslate"><span class="pre">0xFD</span></code> to use the same values than Windows CRT debug <code class="docutils literal notranslate"><span class="pre">malloc()</span></code>
 and <code class="docutils literal notranslate"><span class="pre">free()</span></code>.</p>
@@ -685,7 +685,7 @@ with a fixed size of 256 KiB. It falls back to <a class="reference internal" hre
 <section id="customize-pymalloc-arena-allocator">
 <h3>Customize pymalloc Arena Allocator<a class="headerlink" href="#customize-pymalloc-arena-allocator" title="本標題的永久連結">¶</a></h3>
 <div class="versionadded">
-<p><span class="versionmodified added">3.4 版新加入.</span></p>
+<p><span class="versionmodified added">在 3.4 版本新加入.</span></p>
 </div>
 <dl class="c type">
 <dt class="sig sig-object c" id="c.PyObjectArenaAllocator">
@@ -733,11 +733,11 @@ three fields:</p>
 <section id="tracemalloc-c-api">
 <h2>tracemalloc C API<a class="headerlink" href="#tracemalloc-c-api" title="本標題的永久連結">¶</a></h2>
 <div class="versionadded">
-<p><span class="versionmodified added">3.7 版新加入.</span></p>
+<p><span class="versionmodified added">在 3.7 版本新加入.</span></p>
 </div>
 <dl class="c function">
 <dt class="sig sig-object c" id="c.PyTraceMalloc_Track">
-<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PyTraceMalloc_Track</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">unsigned</span> <span class="pre">int</span></span><span class="w"> </span><span class="n"><span class="pre">domain</span></span>, <span class="n"><span class="pre">uintptr_t</span></span><span class="w"> </span><span class="n"><span class="pre">ptr</span></span>, <span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="n"><span class="pre">size</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.PyTraceMalloc_Track" title="本定義的永久連結">¶</a><br /></dt>
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PyTraceMalloc_Track</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n"><span class="pre">domain</span></span>, <span class="n"><span class="pre">uintptr_t</span></span><span class="w"> </span><span class="n"><span class="pre">ptr</span></span>, <span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="n"><span class="pre">size</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.PyTraceMalloc_Track" title="本定義的永久連結">¶</a><br /></dt>
 <dd><p>Track an allocated memory block in the <a class="reference internal" href="../library/tracemalloc.html#module-tracemalloc" title="tracemalloc: Trace memory allocations."><code class="xref py py-mod docutils literal notranslate"><span class="pre">tracemalloc</span></code></a> module.</p>
 <p>Return <code class="docutils literal notranslate"><span class="pre">0</span></code> on success, return <code class="docutils literal notranslate"><span class="pre">-1</span></code> on error (failed to allocate memory to
 store the trace). Return <code class="docutils literal notranslate"><span class="pre">-2</span></code> if tracemalloc is disabled.</p>
@@ -746,7 +746,7 @@ store the trace). Return <code class="docutils literal notranslate"><span class=
 
 <dl class="c function">
 <dt class="sig sig-object c" id="c.PyTraceMalloc_Untrack">
-<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PyTraceMalloc_Untrack</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">unsigned</span> <span class="pre">int</span></span><span class="w"> </span><span class="n"><span class="pre">domain</span></span>, <span class="n"><span class="pre">uintptr_t</span></span><span class="w"> </span><span class="n"><span class="pre">ptr</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.PyTraceMalloc_Untrack" title="本定義的永久連結">¶</a><br /></dt>
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PyTraceMalloc_Untrack</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n"><span class="pre">domain</span></span>, <span class="n"><span class="pre">uintptr_t</span></span><span class="w"> </span><span class="n"><span class="pre">ptr</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.PyTraceMalloc_Untrack" title="本定義的永久連結">¶</a><br /></dt>
 <dd><p>Untrack an allocated memory block in the <a class="reference internal" href="../library/tracemalloc.html#module-tracemalloc" title="tracemalloc: Trace memory allocations."><code class="xref py py-mod docutils literal notranslate"><span class="pre">tracemalloc</span></code></a> module.
 Do nothing if the block was not tracked.</p>
 <p>Return <code class="docutils literal notranslate"><span class="pre">-2</span></code> if tracemalloc is disabled, otherwise return <code class="docutils literal notranslate"><span class="pre">0</span></code>.</p>
@@ -914,11 +914,11 @@ object types in C.</p>
 <br />
     <br />
 
-    最後更新於 9月 10, 2021。
+    最後更新於 9月 13, 2021。
     <a href="https://docs.python.org/3/bugs.html">Found a bug</a>?
     <br />
 
-    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.1.2 建立。
+    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.2.0 建立。
     </div>
 
   </body>
