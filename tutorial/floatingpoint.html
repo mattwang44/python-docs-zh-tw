@@ -75,7 +75,7 @@
   <h3><a href="../contents.html">目錄</a></h3>
   <ul>
 <li><a class="reference internal" href="#">15. 浮點數運算：問題與限制</a><ul>
-<li><a class="reference internal" href="#representation-error">15.1. Representation Error</a></li>
+<li><a class="reference internal" href="#representation-error">15.1. 表示法誤差 (Representation Error)</a></li>
 </ul>
 </li>
 </ul>
@@ -159,17 +159,17 @@
             
   <section id="floating-point-arithmetic-issues-and-limitations">
 <span id="tut-fp-issues"></span><h1><span class="section-number">15. </span>浮點數運算：問題與限制<a class="headerlink" href="#floating-point-arithmetic-issues-and-limitations" title="本標題的永久連結">¶</a></h1>
-<p>在計算機架構中，浮點數透過二進位小數表示。例如說，在十進位小數中：</p>
+<p>在計算機架構中，浮點數 (floating-point number) 是以基數為 2（二進位）的小數表示。例如說，在十進位小數中：</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="mf">0.125</span>
 </pre></div>
 </div>
-<p>可被分為 1/10 + 2/100 + 5/1000，同樣的道理，二進位小數 ：</p>
+<p>可被分為 1/10 + 2/100 + 5/1000，同樣的道理，二進位小數：</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="mf">0.001</span>
 </pre></div>
 </div>
 <p>可被分為 0/2 + 0/4 + 1/8。這兩個小數有相同的數值，而唯一真正的不同在於前者以十進位表示，後者以二進位表示。</p>
-<p>不幸的是，大多數十進位小數無法精準地以二進位小數表示。一般的結果為，您輸入的十進位浮點數由實際存在計算機中的二進位浮點數近似。</p>
-<p>在十進位中，這個問題更容易被理解。以分數 1/3 為例，您可以將其近似為十進位小數：</p>
+<p>不幸的是，大多數十進位小數無法精準地以二進位小數表示。一般的結果為，你輸入的十進位浮點數只能由實際儲存在計算機中的二進位浮點數近似。</p>
+<p>在十進位中，這個問題更容易被理解。以分數 1/3 為例，你可以將其近似為十進位小數：</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="mf">0.3</span>
 </pre></div>
 </div>
@@ -182,12 +182,12 @@
 </pre></div>
 </div>
 <p>依此類推，不論你使用多少位數表示小數，最後的結果都無法精準地表示 1/3，但你還是能越來越精準地表示 1/3。</p>
-<p>同樣的道理，不論你願意以多少位數表示二進位小數，十進位小數 0.1 都無法被二進位小數精準地表達。在二進位小數中， 1/10 會是一個無限循環小數：</p>
+<p>同樣的道理，不論你願意以多少位數表示二進位小數，十進位小數 0.1 都無法被二進位小數精準地表達。在二進位小數中，1/10 會是一個無限循環小數：</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="mf">0.0001100110011001100110011001100110011001100110011</span><span class="o">...</span>
 </pre></div>
 </div>
-<p>只要您停在任何有限的位數，您就只會得到近似值。而現在大多數的計算機中，浮點數是透過二進位分數近似的，其中分子從最高有效位元使開始用 53 個位元表示，分母則是以二為底的指數。在 1/10 的例子中，二進位分數為 <code class="docutils literal notranslate"><span class="pre">3602879701896397</span> <span class="pre">/</span> <span class="pre">2</span> <span class="pre">**</span> <span class="pre">55</span></code>，而這樣的表示十分地接近，但不完全等同於 1/10 的真正數值。</p>
-<p>由於數值顯示的方式，很多使用者並沒有發現數值是個近似值。Python 只會印出一個十進位近似值，其近似了儲存在計算機中的二進位近似值的十進位數值。在大多數的計算機中，如果 Python 真的會印出完整的十進位數值，其表示儲存在計算機中的 0.1 的二進位近似值，它將顯示為：</p>
+<p>只要你停在任何有限的位數，你就只會得到近似值。而現在大多數的計算機中，浮點數是透過二進位分數近似的，其中分子是從最高有效位元開始，用 53 個位元表示，分母則是以二為底的指數。在 1/10 的例子中，二進位分數為 <code class="docutils literal notranslate"><span class="pre">3602879701896397</span> <span class="pre">/</span> <span class="pre">2</span> <span class="pre">**</span> <span class="pre">55</span></code>，而這樣的表示十分地接近，但不完全等同於 1/10 的真正數值。</p>
+<p>由於數值顯示的方式，很多使用者並沒有發現數值是個近似值。Python 只會印出一個十進位近似值，其近似了儲存在計算機中的二進位近似值的真正十進位數值。在大多數的計算機中，如果 Python 真的會印出完整的十進位數值，其表示儲存在計算機中的 0.1 的二進位近似值，它將顯示為：</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="mf">0.1</span>
 <span class="go">0.1000000000000000055511151231257827021181583404541015625</span>
 </pre></div>
@@ -198,10 +198,10 @@
 </pre></div>
 </div>
 <p>一定要記住，雖然印出的數字看起來是精準的 1/10，但真正儲存的數值是能表示的二進位分數中，最接近精準數值的數。</p>
-<p>有趣的是，有許多不同的十進位數，共用同一個最接近的二進位近似小數。例如說：數字 <code class="docutils literal notranslate"><span class="pre">0.1</span></code> 和 <code class="docutils literal notranslate"><span class="pre">0.10000000000000001</span></code> 和 <code class="docutils literal notranslate"><span class="pre">0.1000000000000000055511151231257827021181583404541015625</span></code>，都由 <code class="docutils literal notranslate"><span class="pre">3602879701896397</span> <span class="pre">/</span> <span class="pre">2</span> <span class="pre">**</span> <span class="pre">55</span></code> 近似。由於這三個數值共用同一個近似值，任何一個數值都可以被顯示，同時保持 <code class="docutils literal notranslate"><span class="pre">eval(repr(x))</span> <span class="pre">==</span> <span class="pre">x</span></code>。</p>
-<p>歷史上，Python 的提示字元 (prompt) 與內建的 <a class="reference internal" href="../library/functions.html#repr" title="repr"><code class="xref py py-func docutils literal notranslate"><span class="pre">repr()</span></code></a> 函式會選擇上段說明中有 17 個有效位元的數：<code class="docutils literal notranslate"><span class="pre">0.10000000000000001</span></code>。從 Python 3.1 版開始，Python（在大部分的系統上）可以選擇其中最短的數並簡單地顯示為 <code class="docutils literal notranslate"><span class="pre">0.1</span></code>。</p>
-<p>注意，這是二進位浮點數理所當然的特性，並不是 Python 的錯誤 (bug)，更不是您程式碼的錯誤。只要有程式語言支持硬體的浮點數運算，您將會看到同樣的事情出現在其中（雖然某些程式語言預設不<em>顯示</em>差異，或者預設全部輸出）。</p>
-<p>為求更優雅的輸出，您可能想要使用字串的格式化 (string formatting) 產生限定的有效位數：</p>
+<p>有趣的是，有許多不同的十進位數，共用同一個最接近的二進位近似分數。例如說：數字 <code class="docutils literal notranslate"><span class="pre">0.1</span></code> 和 <code class="docutils literal notranslate"><span class="pre">0.10000000000000001</span></code> 和 <code class="docutils literal notranslate"><span class="pre">0.1000000000000000055511151231257827021181583404541015625</span></code>，都由 <code class="docutils literal notranslate"><span class="pre">3602879701896397</span> <span class="pre">/</span> <span class="pre">2</span> <span class="pre">**</span> <span class="pre">55</span></code> 近似。由於這三個十進位數值共用同一個近似值，任何一個數值都可以被顯示，同時保持 <code class="docutils literal notranslate"><span class="pre">eval(repr(x))</span> <span class="pre">==</span> <span class="pre">x</span></code>。</p>
+<p>歷史上，Python 的提示字元 (prompt) 與內建的 <a class="reference internal" href="../library/functions.html#repr" title="repr"><code class="xref py py-func docutils literal notranslate"><span class="pre">repr()</span></code></a> 函式會選擇上段說明中有 17 個有效位元的數：<code class="docutils literal notranslate"><span class="pre">0.10000000000000001</span></code>。從 Python 3.1 版開始，Python（在大部分的系統上）現在能選擇其中最短的數並簡單地顯示為 <code class="docutils literal notranslate"><span class="pre">0.1</span></code>。</p>
+<p>注意，這是二進位浮點數理所當然的特性，並不是 Python 的錯誤 (bug)，更不是你程式碼的錯誤。只要程式語言有支援硬體的浮點數運算，你將會看到同樣的事情出現在其中（雖然有些程式語言預設不會<em>顯示</em>該差異，有些甚至是在所有的輸出模式中都不會顯示。）</p>
+<p>為求更優雅的輸出，你可能想要使用字串的格式化 (string formatting) 產生限定的有效位數：</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">format</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="s1">&#39;.12g&#39;</span><span class="p">)</span>  <span class="c1"># give 12 significant digits</span>
 <span class="go">&#39;3.14159265359&#39;</span>
 
@@ -228,62 +228,35 @@
 <span class="go">True</span>
 </pre></div>
 </div>
-<p>二進位浮點數架構擁有很多這樣的驚喜。底下的「表示法錯誤」章節，詳細的解釋了「0.1」的問題。如果想要其他常見驚喜更完整的描述，可以參考 <a class="reference external" href="http://www.lahey.com/float.htm">The Perils of Floating Point（浮點數的風險）</a>。</p>
-<p>As that says near the end, &quot;there are no easy answers.&quot;  Still, don't be unduly
-wary of floating-point!  The errors in Python float operations are inherited
-from the floating-point hardware, and on most machines are on the order of no
-more than 1 part in 2**53 per operation.  That's more than adequate for most
-tasks, but you do need to keep in mind that it's not decimal arithmetic and
-that every float operation can suffer a new rounding error.</p>
-<p>While pathological cases do exist, for most casual use of floating-point
-arithmetic you'll see the result you expect in the end if you simply round the
-display of your final results to the number of decimal digits you expect.
-<a class="reference internal" href="../library/stdtypes.html#str" title="str"><code class="xref py py-func docutils literal notranslate"><span class="pre">str()</span></code></a> usually suffices, and for finer control see the <a class="reference internal" href="../library/stdtypes.html#str.format" title="str.format"><code class="xref py py-meth docutils literal notranslate"><span class="pre">str.format()</span></code></a>
-method's format specifiers in <a class="reference internal" href="../library/string.html#formatstrings"><span class="std std-ref">Format String Syntax</span></a>.</p>
-<p>For use cases which require exact decimal representation, try using the
-<a class="reference internal" href="../library/decimal.html#module-decimal" title="decimal: Implementation of the General Decimal Arithmetic  Specification."><code class="xref py py-mod docutils literal notranslate"><span class="pre">decimal</span></code></a> module which implements decimal arithmetic suitable for
-accounting applications and high-precision applications.</p>
-<p>Another form of exact arithmetic is supported by the <a class="reference internal" href="../library/fractions.html#module-fractions" title="fractions: Rational numbers."><code class="xref py py-mod docutils literal notranslate"><span class="pre">fractions</span></code></a> module
-which implements arithmetic based on rational numbers (so the numbers like
-1/3 can be represented exactly).</p>
-<p>If you are a heavy user of floating point operations you should take a look
-at the Numerical Python package and many other packages for mathematical and
-statistical operations supplied by the SciPy project. See &lt;<a class="reference external" href="https://scipy.org">https://scipy.org</a>&gt;.</p>
-<p>Python provides tools that may help on those rare occasions when you really
-<em>do</em> want to know the exact value of a float.  The
-<a class="reference internal" href="../library/stdtypes.html#float.as_integer_ratio" title="float.as_integer_ratio"><code class="xref py py-meth docutils literal notranslate"><span class="pre">float.as_integer_ratio()</span></code></a> method expresses the value of a float as a
-fraction:</p>
+<p>二進位浮點數架構擁有很多這樣的驚喜。底下的「表示法誤差」章節，詳細地解釋了「0.1」的問題。如果想要其他常見驚喜的更完整描述，可以參考 <a class="reference external" href="http://www.lahey.com/float.htm">The Perils of Floating Point（浮點數的風險）</a>。</p>
+<p>如同上文的末段所述，「這個問題並沒有簡單的答案。」不過，也不必對浮點過度擔心！Python 的 float（浮點數）運算中的誤差，是從浮點硬體繼承而來，而在大多數的計算機上，每次運算的誤差範圍不會大於 2**53 分之 1。這對大多數的任務來說已經相當足夠，但你需要記住，它並非十進位運算，且每一次 float 運算都可能會承受新的捨入誤差。</p>
+<p>雖然浮點運算確實存在一些問題，但在一般情況下，如果你只是把最終結果的顯示值，以十進位方式捨入至預期的位數，那麼仍會得到你預期的結果。<a class="reference internal" href="../library/stdtypes.html#str" title="str"><code class="xref py py-func docutils literal notranslate"><span class="pre">str()</span></code></a> 通常就能滿足要求，而若想要更細緻的控制，可參閱<a class="reference internal" href="../library/string.html#formatstrings"><span class="std std-ref">Format String Syntax</span></a>中關於 <a class="reference internal" href="../library/stdtypes.html#str.format" title="str.format"><code class="xref py py-meth docutils literal notranslate"><span class="pre">str.format()</span></code></a> method（方法）的格式規範。</p>
+<p>對於需要精準十進位表示法的用例，可以試著用 <a class="reference internal" href="../library/decimal.html#module-decimal" title="decimal: Implementation of the General Decimal Arithmetic  Specification."><code class="xref py py-mod docutils literal notranslate"><span class="pre">decimal</span></code></a> 模組，它可實作適用於會計應用程式與高精確度應用程式的十進位運算。</p>
+<p>另一種支援精準運算的格式為 <a class="reference internal" href="../library/fractions.html#module-fractions" title="fractions: Rational numbers."><code class="xref py py-mod docutils literal notranslate"><span class="pre">fractions</span></code></a> 模組，該模組基於有理數來實作運算（因此可以精確表示像 1/3 這樣的數字）。</p>
+<p>如果你是浮點運算的重度使用者，你應該看一下 Numerical Python (NumPy) 套件，以及由 SciPy 專案提供的許多用於數學和統計學運算的其他套件。請參閱 &lt;<a class="reference external" href="https://scipy.org">https://scipy.org</a>&gt;。</p>
+<p>在罕見情況下，當你<em>真的</em>想知道一個 float 的精準值，Python 提供的工具可協助達成。<a class="reference internal" href="../library/stdtypes.html#float.as_integer_ratio" title="float.as_integer_ratio"><code class="xref py py-meth docutils literal notranslate"><span class="pre">float.as_integer_ratio()</span></code></a> method 可將一個 float 的值表示為分數：</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="mf">3.14159</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">x</span><span class="o">.</span><span class="n">as_integer_ratio</span><span class="p">()</span>
 <span class="go">(3537115888337719, 1125899906842624)</span>
 </pre></div>
 </div>
-<p>Since the ratio is exact, it can be used to losslessly recreate the
-original value:</p>
+<p>由於該比率是精準的，它可無損地再現該原始值：</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">==</span> <span class="mi">3537115888337719</span> <span class="o">/</span> <span class="mi">1125899906842624</span>
 <span class="go">True</span>
 </pre></div>
 </div>
-<p>The <a class="reference internal" href="../library/stdtypes.html#float.hex" title="float.hex"><code class="xref py py-meth docutils literal notranslate"><span class="pre">float.hex()</span></code></a> method expresses a float in hexadecimal (base
-16), again giving the exact value stored by your computer:</p>
+<p><a class="reference internal" href="../library/stdtypes.html#float.hex" title="float.hex"><code class="xref py py-meth docutils literal notranslate"><span class="pre">float.hex()</span></code></a> method 以十六進位（基數為 16）表示 float，一樣可以給出你的電腦所儲存的精準值：</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span><span class="o">.</span><span class="n">hex</span><span class="p">()</span>
 <span class="go">&#39;0x1.921f9f01b866ep+1&#39;</span>
 </pre></div>
 </div>
-<p>This precise hexadecimal representation can be used to reconstruct
-the float value exactly:</p>
+<p>這種精確的十六進位表示法可用於精準地重建 float 值：</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">==</span> <span class="nb">float</span><span class="o">.</span><span class="n">fromhex</span><span class="p">(</span><span class="s1">&#39;0x1.921f9f01b866ep+1&#39;</span><span class="p">)</span>
 <span class="go">True</span>
 </pre></div>
 </div>
-<p>Since the representation is exact, it is useful for reliably porting values
-across different versions of Python (platform independence) and exchanging
-data with other languages that support the same format (such as Java and C99).</p>
-<p>Another helpful tool is the <a class="reference internal" href="../library/math.html#math.fsum" title="math.fsum"><code class="xref py py-func docutils literal notranslate"><span class="pre">math.fsum()</span></code></a> function which helps mitigate
-loss-of-precision during summation.  It tracks &quot;lost digits&quot; as values are
-added onto a running total.  That can make a difference in overall accuracy
-so that the errors do not accumulate to the point where they affect the
-final total:</p>
+<p>由於該表示法是精準的，因此適用於在不同版本的 Python 之間可靠地傳送數值（獨立於系統平台），並與支援相同格式的其他語言（如 JAVA 和 C99）交換資料。</p>
+<p>另一個有用的工具是 <a class="reference internal" href="../library/math.html#math.fsum" title="math.fsum"><code class="xref py py-func docutils literal notranslate"><span class="pre">math.fsum()</span></code></a> 函式，能在計算總和時幫忙減少精確度的損失。當數值被加到運行中的總計值時，它會追蹤「失去的位數 (lost digits)」。這可以明顯改善總體準確度 (overall accuracy)，使得誤差不至於累積到影響最終總計值的程度：</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">sum</span><span class="p">([</span><span class="mf">0.1</span><span class="p">]</span> <span class="o">*</span> <span class="mi">10</span><span class="p">)</span> <span class="o">==</span> <span class="mf">1.0</span>
 <span class="go">False</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">math</span><span class="o">.</span><span class="n">fsum</span><span class="p">([</span><span class="mf">0.1</span><span class="p">]</span> <span class="o">*</span> <span class="mi">10</span><span class="p">)</span> <span class="o">==</span> <span class="mf">1.0</span>
@@ -291,79 +264,58 @@ final total:</p>
 </pre></div>
 </div>
 <section id="representation-error">
-<span id="tut-fp-error"></span><h2><span class="section-number">15.1. </span>Representation Error<a class="headerlink" href="#representation-error" title="本標題的永久連結">¶</a></h2>
-<p>This section explains the &quot;0.1&quot; example in detail, and shows how you can perform
-an exact analysis of cases like this yourself.  Basic familiarity with binary
-floating-point representation is assumed.</p>
-<p><em class="dfn">Representation error</em> refers to the fact that some (most, actually)
-decimal fractions cannot be represented exactly as binary (base 2) fractions.
-This is the chief reason why Python (or Perl, C, C++, Java, Fortran, and many
-others) often won't display the exact decimal number you expect.</p>
-<p>Why is that?  1/10 is not exactly representable as a binary fraction. Almost all
-machines today (November 2000) use IEEE-754 floating point arithmetic, and
-almost all platforms map Python floats to IEEE-754 &quot;double precision&quot;.  754
-doubles contain 53 bits of precision, so on input the computer strives to
-convert 0.1 to the closest fraction it can of the form <em>J</em>/2**<em>N</em> where <em>J</em> is
-an integer containing exactly 53 bits.  Rewriting</p>
+<span id="tut-fp-error"></span><h2><span class="section-number">15.1. </span>表示法誤差 (Representation Error)<a class="headerlink" href="#representation-error" title="本標題的永久連結">¶</a></h2>
+<p>本節將會詳細解釋「0.1」的例子，並說明你自己要如何對類似案例執行精準的分析。 以下假設你對二進位浮點表示法已有基本程度的熟悉。</p>
+<p><em class="dfn">Representation error</em>（表示法誤差）是指在真實情況中，有些（實際上是大多數）十進位小數並不能精準地以二進位（基數為 2）小數表示。這是 Python（或 Perl、C、C++、JAVA、Fortran 和其他許多）通常不會顯示你期望的精準十進位數字的主要原因。</p>
+<p>為什麼呢？因為 1/10 無法精準地以一個二進位小數來表示。至今（2000 年 11 月）幾乎所有的計算機皆使用 IEEE-754 浮點數運算標準，並且幾乎所有的平台都以 IEEE-754 標準中的「雙精度 (double precision)」來繪製 Python 的 float。754 double 包含 53 位元的精度，所以在輸入時，電腦會努力把 0.1 轉換到最接近的分數，以 <em>J</em>/2**<em>N</em> 的形式表示，此處 <em>J</em> 是一個正好包含 53 位元的整數。可以將：</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="mi">1</span> <span class="o">/</span> <span class="mi">10</span> <span class="o">~=</span> <span class="n">J</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span><span class="o">**</span><span class="n">N</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>as</p>
+<p>重寫為：</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">J</span> <span class="o">~=</span> <span class="mi">2</span><span class="o">**</span><span class="n">N</span> <span class="o">/</span> <span class="mi">10</span>
 </pre></div>
 </div>
-<p>and recalling that <em>J</em> has exactly 53 bits (is <code class="docutils literal notranslate"><span class="pre">&gt;=</span> <span class="pre">2**52</span></code> but <code class="docutils literal notranslate"><span class="pre">&lt;</span> <span class="pre">2**53</span></code>),
-the best value for <em>N</em> is 56:</p>
+<p>而前面提到 <em>J</em> 有精準的 53 位元（即 <code class="docutils literal notranslate"><span class="pre">&gt;=</span> <span class="pre">2**52</span></code> 但 <code class="docutils literal notranslate"><span class="pre">&lt;</span> <span class="pre">2**53</span></code>），所以 <em>N</em> 的最佳數值是 56：</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="mi">2</span><span class="o">**</span><span class="mi">52</span> <span class="o">&lt;=</span>  <span class="mi">2</span><span class="o">**</span><span class="mi">56</span> <span class="o">//</span> <span class="mi">10</span>  <span class="o">&lt;</span> <span class="mi">2</span><span class="o">**</span><span class="mi">53</span>
 <span class="go">True</span>
 </pre></div>
 </div>
-<p>That is, 56 is the only value for <em>N</em> that leaves <em>J</em> with exactly 53 bits.  The
-best possible value for <em>J</em> is then that quotient rounded:</p>
+<p>意即，要使 <em>J</em> 正好有 53 位元，則 56 會是 <em>N</em> 的唯一值。而 <em>J</em> 最有可能的數值就是經過捨入後的該商數：</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">q</span><span class="p">,</span> <span class="n">r</span> <span class="o">=</span> <span class="nb">divmod</span><span class="p">(</span><span class="mi">2</span><span class="o">**</span><span class="mi">56</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">r</span>
 <span class="go">6</span>
 </pre></div>
 </div>
-<p>Since the remainder is more than half of 10, the best approximation is obtained
-by rounding up:</p>
+<p>由於餘數超過 10 的一半，所以最佳的近似值是透過進位而得：</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">q</span><span class="o">+</span><span class="mi">1</span>
 <span class="go">7205759403792794</span>
 </pre></div>
 </div>
-<p>Therefore the best possible approximation to 1/10 in 754 double precision is:</p>
+<p>所以，在 754 雙精度下，1/10 的最佳近似值是：</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="mi">7205759403792794</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">**</span> <span class="mi">56</span>
 </pre></div>
 </div>
-<p>Dividing both the numerator and denominator by two reduces the fraction to:</p>
+<p>將分子和分母同除以二，會約分為：</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="mi">3602879701896397</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">**</span> <span class="mi">55</span>
 </pre></div>
 </div>
-<p>Note that since we rounded up, this is actually a little bit larger than 1/10;
-if we had not rounded up, the quotient would have been a little bit smaller than
-1/10.  But in no case can it be <em>exactly</em> 1/10!</p>
-<p>So the computer never &quot;sees&quot; 1/10:  what it sees is the exact fraction given
-above, the best 754 double approximation it can get:</p>
+<p>請注意，由於我們有進位，所以這實際上比 1/10 大了一點；如果我們沒有進位，商數將會有點小於 1/10。但在任何情況下都不可能是<em>精準的</em> 1/10！</p>
+<p>所以電腦從來沒有「看到」1/10：它看到的是上述的精準分數，也就是它能得到的 754 double 最佳近似值：</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="mf">0.1</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">**</span> <span class="mi">55</span>
 <span class="go">3602879701896397.0</span>
 </pre></div>
 </div>
-<p>If we multiply that fraction by 10**55, we can see the value out to
-55 decimal digits:</p>
+<p>如果將該分數乘以 10**55，則可以看到該值以 55 個十進位數字顯示：</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="mi">3602879701896397</span> <span class="o">*</span> <span class="mi">10</span> <span class="o">**</span> <span class="mi">55</span> <span class="o">//</span> <span class="mi">2</span> <span class="o">**</span> <span class="mi">55</span>
 <span class="go">1000000000000000055511151231257827021181583404541015625</span>
 </pre></div>
 </div>
-<p>meaning that the exact number stored in the computer is equal to
-the decimal value 0.1000000000000000055511151231257827021181583404541015625.
-Instead of displaying the full decimal value, many languages (including
-older versions of Python), round the result to 17 significant digits:</p>
+<p>這表示儲存在電腦中的精準數值等於十進位值 0.1000000000000000055511151231257827021181583404541015625。與其顯示完整的十進位數值，許多語言（包括 Python 的舊版本）選擇將結果捨入至 17 個有效位數：</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">format</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="s1">&#39;.17f&#39;</span><span class="p">)</span>
 <span class="go">&#39;0.10000000000000001&#39;</span>
 </pre></div>
 </div>
-<p>The <a class="reference internal" href="../library/fractions.html#module-fractions" title="fractions: Rational numbers."><code class="xref py py-mod docutils literal notranslate"><span class="pre">fractions</span></code></a> and <a class="reference internal" href="../library/decimal.html#module-decimal" title="decimal: Implementation of the General Decimal Arithmetic  Specification."><code class="xref py py-mod docutils literal notranslate"><span class="pre">decimal</span></code></a> modules make these calculations
-easy:</p>
+<p><a class="reference internal" href="../library/fractions.html#module-fractions" title="fractions: Rational numbers."><code class="xref py py-mod docutils literal notranslate"><span class="pre">fractions</span></code></a> 與 <a class="reference internal" href="../library/decimal.html#module-decimal" title="decimal: Implementation of the General Decimal Arithmetic  Specification."><code class="xref py py-mod docutils literal notranslate"><span class="pre">decimal</span></code></a> 模組能使這些計算變得容易：</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">decimal</span> <span class="kn">import</span> <span class="n">Decimal</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">fractions</span> <span class="kn">import</span> <span class="n">Fraction</span>
 
@@ -393,7 +345,7 @@ easy:</p>
   <h3><a href="../contents.html">目錄</a></h3>
   <ul>
 <li><a class="reference internal" href="#">15. 浮點數運算：問題與限制</a><ul>
-<li><a class="reference internal" href="#representation-error">15.1. Representation Error</a></li>
+<li><a class="reference internal" href="#representation-error">15.1. 表示法誤差 (Representation Error)</a></li>
 </ul>
 </li>
 </ul>
@@ -483,7 +435,7 @@ easy:</p>
 <br />
     <br />
 
-    最後更新於 9月 13, 2021。
+    最後更新於 9月 17, 2021。
     <a href="https://docs.python.org/3/bugs.html">Found a bug</a>?
     <br />
 

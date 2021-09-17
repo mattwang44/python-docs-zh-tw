@@ -721,12 +721,21 @@ exception.</p>
 <span class="sig-name descname"><span class="pre">set_trace_callback</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">trace_callback</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sqlite3.Connection.set_trace_callback" title="本定義的永久連結">¶</a></dt>
 <dd><p>Registers <em>trace_callback</em> to be called for each SQL statement that is
 actually executed by the SQLite backend.</p>
-<p>The only argument passed to the callback is the statement (as string) that
-is being executed. The return value of the callback is ignored. Note that
-the backend does not only run statements passed to the <a class="reference internal" href="#sqlite3.Cursor.execute" title="sqlite3.Cursor.execute"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Cursor.execute()</span></code></a>
-methods.  Other sources include the transaction management of the Python
-module and the execution of triggers defined in the current database.</p>
+<p>The only argument passed to the callback is the statement (as
+<a class="reference internal" href="stdtypes.html#str" title="str"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>) that is being executed. The return value of the callback is
+ignored. Note that the backend does not only run statements passed to the
+<a class="reference internal" href="#sqlite3.Cursor.execute" title="sqlite3.Cursor.execute"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Cursor.execute()</span></code></a> methods.  Other sources include the
+<a class="reference internal" href="#sqlite3-controlling-transactions"><span class="std std-ref">transaction management</span></a> of the
+sqlite3 module and the execution of triggers defined in the current
+database.</p>
 <p>Passing <a class="reference internal" href="constants.html#None" title="None"><code class="xref py py-const docutils literal notranslate"><span class="pre">None</span></code></a> as <em>trace_callback</em> will disable the trace callback.</p>
+<div class="admonition note">
+<p class="admonition-title">備註</p>
+<p>Exceptions raised in the trace callback are not propagated. As a
+development and debugging aid, use
+<a class="reference internal" href="#sqlite3.enable_callback_tracebacks" title="sqlite3.enable_callback_tracebacks"><code class="xref py py-meth docutils literal notranslate"><span class="pre">enable_callback_tracebacks()</span></code></a> to enable printing
+tracebacks from exceptions raised in the trace callback.</p>
+</div>
 <div class="versionadded">
 <p><span class="versionmodified added">在 3.3 版本新加入.</span></p>
 </div>
@@ -1816,7 +1825,7 @@ configure.</p>
 <br />
     <br />
 
-    最後更新於 9月 13, 2021。
+    最後更新於 9月 17, 2021。
     <a href="https://docs.python.org/3/bugs.html">Found a bug</a>?
     <br />
 

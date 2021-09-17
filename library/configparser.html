@@ -268,8 +268,8 @@ back and explore the data it holds.</p>
 </div>
 <p>As we can see above, the API is pretty straightforward.  The only bit of magic
 involves the <code class="docutils literal notranslate"><span class="pre">DEFAULT</span></code> section which provides default values for all other
-sections <a class="footnote-reference brackets" href="#id14" id="id1">1</a>.  Note also that keys in sections are
-case-insensitive and stored in lowercase <a class="footnote-reference brackets" href="#id14" id="id2">1</a>.</p>
+sections <a class="footnote-reference brackets" href="#id15" id="id1">1</a>.  Note also that keys in sections are
+case-insensitive and stored in lowercase <a class="footnote-reference brackets" href="#id15" id="id2">1</a>.</p>
 </section>
 <section id="supported-datatypes">
 <h2>Supported Datatypes<a class="headerlink" href="#supported-datatypes" title="本標題的永久連結">¶</a></h2>
@@ -288,7 +288,7 @@ interesting because simply passing the value to <code class="docutils literal no
 since <code class="docutils literal notranslate"><span class="pre">bool('False')</span></code> is still <code class="docutils literal notranslate"><span class="pre">True</span></code>.  This is why config parsers also
 provide <a class="reference internal" href="#configparser.ConfigParser.getboolean" title="configparser.ConfigParser.getboolean"><code class="xref py py-meth docutils literal notranslate"><span class="pre">getboolean()</span></code></a>.  This method is case-insensitive and
 recognizes Boolean values from <code class="docutils literal notranslate"><span class="pre">'yes'</span></code>/<code class="docutils literal notranslate"><span class="pre">'no'</span></code>, <code class="docutils literal notranslate"><span class="pre">'on'</span></code>/<code class="docutils literal notranslate"><span class="pre">'off'</span></code>,
-<code class="docutils literal notranslate"><span class="pre">'true'</span></code>/<code class="docutils literal notranslate"><span class="pre">'false'</span></code> and <code class="docutils literal notranslate"><span class="pre">'1'</span></code>/<code class="docutils literal notranslate"><span class="pre">'0'</span></code> <a class="footnote-reference brackets" href="#id14" id="id3">1</a>.  For example:</p>
+<code class="docutils literal notranslate"><span class="pre">'true'</span></code>/<code class="docutils literal notranslate"><span class="pre">'false'</span></code> and <code class="docutils literal notranslate"><span class="pre">'1'</span></code>/<code class="docutils literal notranslate"><span class="pre">'0'</span></code> <a class="footnote-reference brackets" href="#id15" id="id3">1</a>.  For example:</p>
 <div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">topsecret</span><span class="o">.</span><span class="n">getboolean</span><span class="p">(</span><span class="s1">&#39;ForwardX11&#39;</span><span class="p">)</span>
 <span class="go">False</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;bitbucket.org&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">getboolean</span><span class="p">(</span><span class="s1">&#39;ForwardX11&#39;</span><span class="p">)</span>
@@ -300,7 +300,7 @@ recognizes Boolean values from <code class="docutils literal notranslate"><span 
 <p>Apart from <a class="reference internal" href="#configparser.ConfigParser.getboolean" title="configparser.ConfigParser.getboolean"><code class="xref py py-meth docutils literal notranslate"><span class="pre">getboolean()</span></code></a>, config parsers also
 provide equivalent <a class="reference internal" href="#configparser.ConfigParser.getint" title="configparser.ConfigParser.getint"><code class="xref py py-meth docutils literal notranslate"><span class="pre">getint()</span></code></a> and
 <a class="reference internal" href="#configparser.ConfigParser.getfloat" title="configparser.ConfigParser.getfloat"><code class="xref py py-meth docutils literal notranslate"><span class="pre">getfloat()</span></code></a> methods.  You can register your own
-converters and customize the provided ones. <a class="footnote-reference brackets" href="#id14" id="id4">1</a></p>
+converters and customize the provided ones. <a class="footnote-reference brackets" href="#id15" id="id4">1</a></p>
 </section>
 <section id="fallback-values">
 <h2>Fallback Values<a class="headerlink" href="#fallback-values" title="本標題的永久連結">¶</a></h2>
@@ -350,15 +350,16 @@ the <code class="docutils literal notranslate"><span class="pre">fallback</span>
 <h2>Supported INI File Structure<a class="headerlink" href="#supported-ini-file-structure" title="本標題的永久連結">¶</a></h2>
 <p>A configuration file consists of sections, each led by a <code class="docutils literal notranslate"><span class="pre">[section]</span></code> header,
 followed by key/value entries separated by a specific string (<code class="docutils literal notranslate"><span class="pre">=</span></code> or <code class="docutils literal notranslate"><span class="pre">:</span></code> by
-default <a class="footnote-reference brackets" href="#id14" id="id5">1</a>).  By default, section names are case sensitive but keys are not
-<a class="footnote-reference brackets" href="#id14" id="id6">1</a>.  Leading and trailing whitespace is removed from keys and values.
-Values can be omitted, in which case the key/value delimiter may also be left
+default <a class="footnote-reference brackets" href="#id15" id="id5">1</a>).  By default, section names are case sensitive but keys are not
+<a class="footnote-reference brackets" href="#id15" id="id6">1</a>.  Leading and trailing whitespace is removed from keys and values.
+Values can be omitted if the parser is configured to allow it <a class="footnote-reference brackets" href="#id15" id="id7">1</a>,
+in which case the key/value delimiter may also be left
 out.  Values can also span multiple lines, as long as they are indented deeper
 than the first line of the value.  Depending on the parser's mode, blank lines
 may be treated as parts of multiline values or ignored.</p>
 <p>Configuration files may include comments, prefixed by specific
-characters (<code class="docutils literal notranslate"><span class="pre">#</span></code> and <code class="docutils literal notranslate"><span class="pre">;</span></code> by default <a class="footnote-reference brackets" href="#id14" id="id7">1</a>).  Comments may appear on
-their own on an otherwise empty line, possibly indented. <a class="footnote-reference brackets" href="#id14" id="id8">1</a></p>
+characters (<code class="docutils literal notranslate"><span class="pre">#</span></code> and <code class="docutils literal notranslate"><span class="pre">;</span></code> by default <a class="footnote-reference brackets" href="#id15" id="id8">1</a>).  Comments may appear on
+their own on an otherwise empty line, possibly indented. <a class="footnote-reference brackets" href="#id15" id="id9">1</a></p>
 <p>For example:</p>
 <div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[Simple Values]</span>
 <span class="na">key</span><span class="o">=</span><span class="s">value</span>
@@ -414,7 +415,7 @@ from <code class="docutils literal notranslate"><span class="pre">get()</span></
 <em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">configparser.</span></span><span class="sig-name descname"><span class="pre">BasicInterpolation</span></span><a class="headerlink" href="#configparser.BasicInterpolation" title="本定義的永久連結">¶</a></dt>
 <dd><p>The default implementation used by <a class="reference internal" href="#configparser.ConfigParser" title="configparser.ConfigParser"><code class="xref py py-class docutils literal notranslate"><span class="pre">ConfigParser</span></code></a>.  It enables
 values to contain format strings which refer to other values in the same
-section, or values in the special default section <a class="footnote-reference brackets" href="#id14" id="id9">1</a>.  Additional default
+section, or values in the special default section <a class="footnote-reference brackets" href="#id15" id="id10">1</a>.  Additional default
 values can be provided on initialization.</p>
 <p>For example:</p>
 <div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[Paths]</span>
@@ -499,7 +500,7 @@ The mapping interface is complete and adheres to the
 However, there are a few differences that should be taken into account:</p>
 <ul>
 <li><p>By default, all keys in sections are accessible in a case-insensitive manner
-<a class="footnote-reference brackets" href="#id14" id="id10">1</a>.  E.g. <code class="docutils literal notranslate"><span class="pre">for</span> <span class="pre">option</span> <span class="pre">in</span> <span class="pre">parser[&quot;section&quot;]</span></code> yields only <code class="docutils literal notranslate"><span class="pre">optionxform</span></code>'ed
+<a class="footnote-reference brackets" href="#id15" id="id11">1</a>.  E.g. <code class="docutils literal notranslate"><span class="pre">for</span> <span class="pre">option</span> <span class="pre">in</span> <span class="pre">parser[&quot;section&quot;]</span></code> yields only <code class="docutils literal notranslate"><span class="pre">optionxform</span></code>'ed
 option key names.  This means lowercased keys by default.  At the same time,
 for a section that holds the key <code class="docutils literal notranslate"><span class="pre">'a'</span></code>, both expressions return <code class="docutils literal notranslate"><span class="pre">True</span></code>:</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;a&quot;</span> <span class="ow">in</span> <span class="n">parser</span><span class="p">[</span><span class="s2">&quot;section&quot;</span><span class="p">]</span>
@@ -946,7 +947,7 @@ interpolation if an option used is not defined elsewhere.</p>
 </div>
 </section>
 <section id="configparser-objects">
-<span id="id11"></span><h2>ConfigParser Objects<a class="headerlink" href="#configparser-objects" title="本標題的永久連結">¶</a></h2>
+<span id="id12"></span><h2>ConfigParser Objects<a class="headerlink" href="#configparser-objects" title="本標題的永久連結">¶</a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="configparser.ConfigParser">
 <em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">configparser.</span></span><span class="sig-name descname"><span class="pre">ConfigParser</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">defaults</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dict_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">allow_no_value</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delimiters</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">('=',</span> <span class="pre">':')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comment_prefixes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">('#',</span> <span class="pre">';')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inline_comment_prefixes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">strict</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">empty_lines_in_values</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default_section</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">configparser.DEFAULTSECT</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">interpolation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">BasicInterpolation()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">converters</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#configparser.ConfigParser" title="本定義的永久連結">¶</a></dt>
@@ -1292,7 +1293,7 @@ is used.</p>
 
 </section>
 <section id="rawconfigparser-objects">
-<span id="id13"></span><h2>RawConfigParser Objects<a class="headerlink" href="#rawconfigparser-objects" title="本標題的永久連結">¶</a></h2>
+<span id="id14"></span><h2>RawConfigParser Objects<a class="headerlink" href="#rawconfigparser-objects" title="本標題的永久連結">¶</a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="configparser.RawConfigParser">
 <em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">configparser.</span></span><span class="sig-name descname"><span class="pre">RawConfigParser</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">defaults=None</span></em>, <em class="sig-param"><span class="pre">dict_type=dict</span></em>, <em class="sig-param"><span class="pre">allow_no_value=False</span></em>, <em class="sig-param"><span class="pre">*</span></em>, <em class="sig-param"><span class="pre">delimiters=('='</span></em>, <em class="sig-param"><span class="pre">':')</span></em>, <em class="sig-param"><span class="pre">comment_prefixes=('#'</span></em>, <em class="sig-param"><span class="pre">';')</span></em>, <em class="sig-param"><span class="pre">inline_comment_prefixes=None</span></em>, <em class="sig-param"><span class="pre">strict=True</span></em>, <em class="sig-param"><span class="pre">empty_lines_in_values=True</span></em>, <em class="sig-param"><span class="pre">default_section=configparser.DEFAULTSECT</span></em><span class="optional">[</span>, <em class="sig-param"><span class="pre">interpolation</span></em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#configparser.RawConfigParser" title="本定義的永久連結">¶</a></dt>
@@ -1428,7 +1429,7 @@ headers.</p>
 
 <p class="rubric">註解</p>
 <dl class="footnote brackets">
-<dt class="label" id="id14"><span class="brackets">1</span><span class="fn-backref">(<a href="#id1">1</a>,<a href="#id2">2</a>,<a href="#id3">3</a>,<a href="#id4">4</a>,<a href="#id5">5</a>,<a href="#id6">6</a>,<a href="#id7">7</a>,<a href="#id8">8</a>,<a href="#id9">9</a>,<a href="#id10">10</a>)</span></dt>
+<dt class="label" id="id15"><span class="brackets">1</span><span class="fn-backref">(<a href="#id1">1</a>,<a href="#id2">2</a>,<a href="#id3">3</a>,<a href="#id4">4</a>,<a href="#id5">5</a>,<a href="#id6">6</a>,<a href="#id7">7</a>,<a href="#id8">8</a>,<a href="#id9">9</a>,<a href="#id10">10</a>,<a href="#id11">11</a>)</span></dt>
 <dd><p>Config parsers allow for heavy customization.  If you are interested in
 changing the behaviour outlined by the footnote reference, consult the
 <a class="reference internal" href="#customizing-parser-behaviour">Customizing Parser Behaviour</a> section.</p>
@@ -1548,7 +1549,7 @@ changing the behaviour outlined by the footnote reference, consult the
 <br />
     <br />
 
-    最後更新於 9月 13, 2021。
+    最後更新於 9月 17, 2021。
     <a href="https://docs.python.org/3/bugs.html">Found a bug</a>?
     <br />
 
