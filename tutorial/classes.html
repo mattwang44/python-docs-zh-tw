@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>9. Classes &#8212; Python 3.9.7 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>9. Class（類別） &#8212; Python 3.9.7 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2021.8" />
@@ -74,30 +74,30 @@
             <div class="language_switcher_placeholder"></div>
   <h3><a href="../contents.html">目錄</a></h3>
   <ul>
-<li><a class="reference internal" href="#">9. Classes</a><ul>
-<li><a class="reference internal" href="#a-word-about-names-and-objects">9.1. A Word About Names and Objects</a></li>
-<li><a class="reference internal" href="#python-scopes-and-namespaces">9.2. Python Scopes and Namespaces</a><ul>
-<li><a class="reference internal" href="#scopes-and-namespaces-example">9.2.1. Scopes and Namespaces Example</a></li>
+<li><a class="reference internal" href="#">9. Class（類別）</a><ul>
+<li><a class="reference internal" href="#a-word-about-names-and-objects">9.1. 關於名稱與物件的一段話</a></li>
+<li><a class="reference internal" href="#python-scopes-and-namespaces">9.2. Python 作用域 (Scope) 及命名空間 (Namespace)</a><ul>
+<li><a class="reference internal" href="#scopes-and-namespaces-example">9.2.1. 作用域和命名空間的範例</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#a-first-look-at-classes">9.3. A First Look at Classes</a><ul>
-<li><a class="reference internal" href="#class-definition-syntax">9.3.1. Class Definition Syntax</a></li>
-<li><a class="reference internal" href="#class-objects">9.3.2. Class Objects</a></li>
-<li><a class="reference internal" href="#instance-objects">9.3.3. Instance Objects</a></li>
-<li><a class="reference internal" href="#method-objects">9.3.4. Method Objects</a></li>
-<li><a class="reference internal" href="#class-and-instance-variables">9.3.5. Class and Instance Variables</a></li>
+<li><a class="reference internal" href="#a-first-look-at-classes">9.3. 初見 class</a><ul>
+<li><a class="reference internal" href="#class-definition-syntax">9.3.1. Class definition（類別定義）語法</a></li>
+<li><a class="reference internal" href="#class-objects">9.3.2. Class 物件</a></li>
+<li><a class="reference internal" href="#instance-objects">9.3.3. 實例物件</a></li>
+<li><a class="reference internal" href="#method-objects">9.3.4. Method 物件</a></li>
+<li><a class="reference internal" href="#class-and-instance-variables">9.3.5. Class 及實例變數</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#random-remarks">9.4. Random Remarks</a></li>
-<li><a class="reference internal" href="#inheritance">9.5. Inheritance</a><ul>
-<li><a class="reference internal" href="#multiple-inheritance">9.5.1. Multiple Inheritance</a></li>
+<li><a class="reference internal" href="#random-remarks">9.4. 隨意的備註</a></li>
+<li><a class="reference internal" href="#inheritance">9.5. 繼承 (Inheritance)</a><ul>
+<li><a class="reference internal" href="#multiple-inheritance">9.5.1. 多重繼承</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#private-variables">9.6. Private Variables</a></li>
-<li><a class="reference internal" href="#odds-and-ends">9.7. Odds and Ends</a></li>
-<li><a class="reference internal" href="#iterators">9.8. Iterators</a></li>
-<li><a class="reference internal" href="#generators">9.9. Generators</a></li>
-<li><a class="reference internal" href="#generator-expressions">9.10. Generator Expressions</a></li>
+<li><a class="reference internal" href="#private-variables">9.6. 私有變數</a></li>
+<li><a class="reference internal" href="#odds-and-ends">9.7. 補充說明</a></li>
+<li><a class="reference internal" href="#iterators">9.8. 疊代器 (Iterator)</a></li>
+<li><a class="reference internal" href="#generators">9.9. 產生器 (Generator)</a></li>
+<li><a class="reference internal" href="#generator-expressions">9.10. 產生器運算式</a></li>
 </ul>
 </li>
 </ul>
@@ -156,7 +156,7 @@
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Python 教學</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href=""><span class="section-number">9. </span>Classes</a></li>
+        <li class="nav-item nav-item-this"><a href=""><span class="section-number">9. </span>Class（類別）</a></li>
                 <li class="right">
                     
 
@@ -180,139 +180,40 @@
           <div class="body" role="main">
             
   <section id="classes">
-<span id="tut-classes"></span><h1><span class="section-number">9. </span>Classes<a class="headerlink" href="#classes" title="本標題的永久連結">¶</a></h1>
-<p>Classes provide a means of bundling data and functionality together.  Creating
-a new class creates a new <em>type</em> of object, allowing new <em>instances</em> of that
-type to be made.  Each class instance can have attributes attached to it for
-maintaining its state.  Class instances can also have methods (defined by its
-class) for modifying its state.</p>
-<p>Compared with other programming languages, Python's class mechanism adds classes
-with a minimum of new syntax and semantics.  It is a mixture of the class
-mechanisms found in C++ and Modula-3.  Python classes provide all the standard
-features of Object Oriented Programming: the class inheritance mechanism allows
-multiple base classes, a derived class can override any methods of its base
-class or classes, and a method can call the method of a base class with the same
-name.  Objects can contain arbitrary amounts and kinds of data.  As is true for
-modules, classes partake of the dynamic nature of Python: they are created at
-runtime, and can be modified further after creation.</p>
-<p>In C++ terminology, normally class members (including the data members) are
-<em>public</em> (except see below <a class="reference internal" href="#tut-private"><span class="std std-ref">Private Variables</span></a>), and all member functions are
-<em>virtual</em>.  As in Modula-3, there are no shorthands for referencing the object's
-members from its methods: the method function is declared with an explicit first
-argument representing the object, which is provided implicitly by the call.  As
-in Smalltalk, classes themselves are objects.  This provides semantics for
-importing and renaming.  Unlike C++ and Modula-3, built-in types can be used as
-base classes for extension by the user.  Also, like in C++, most built-in
-operators with special syntax (arithmetic operators, subscripting etc.) can be
-redefined for class instances.</p>
-<p>(Lacking universally accepted terminology to talk about classes, I will make
-occasional use of Smalltalk and C++ terms.  I would use Modula-3 terms, since
-its object-oriented semantics are closer to those of Python than C++, but I
-expect that few readers have heard of it.)</p>
+<span id="tut-classes"></span><h1><span class="section-number">9. </span>Class（類別）<a class="headerlink" href="#classes" title="本標題的永久連結">¶</a></h1>
+<p>Class 提供了一種結合資料與功能的手段。建立一個 class 將會新增一個物件的<em>型別 (type)</em>，並且允許建立該型別的新<em>實例 (instance)</em>。每一個 class 實例可以擁有一些維持該實例狀態的屬性 (attribute)。Class 實例也可以有一些（由其 class 所定義的）method（方法），用於修改該實例的狀態。</p>
+<p>與其他程式語言相比，Python 的 class 機制為 class 增加了最少的新語法跟語意。他混合了 C++ 和 Modula-3 的 class 機制。Python 的 class 提供了所有物件導向程式設計 (Object Oriented Programming) 的標準特色：class 繼承機制允許多個 base class（基底類別），一個 derived class（衍生類別）可以覆寫 (override) 其 base class 的任何 method，且一個 method 可以用相同的名稱呼叫其 base class 的 method。物件可以包含任意數量及任意種類的資料。如同模組一樣，class 也具有 Python 的動態特性：他們在執行期 (runtime) 被建立，且可以在建立之後被修改。</p>
+<p>在 C++ 的術語中，class 成員（包含資料成員）通常都是<em>公開</em>的（除了以下內容：<a class="reference internal" href="#tut-private"><span class="std std-ref">私有變數</span></a>），而所有的成員函式都是<em>虛擬</em>的。如同在 Modula-3 中一樣，Python 並沒有提供簡寫可以從物件的 method 裡參照其成員：method 函式與一個外顯的 (explicit)、第一個代表物件的引數被宣告，而此引數是在呼叫時隱性地 (implicitly) 被提供。如同在 Smalltak 中，class 都是物件，這為 import 及重新命名提供了語意。不像 C++ 和 Modula-3，Pyhon 內建的型別可以被使用者以 base class 用於其他擴充 (extension)。另外，如同在 C++ 中，大多數有著特別語法的內建運算子（算術運算子、下標等）都可以為了 class 實例而被重新定義。</p>
+<p>（由於缺乏普遍能接受的術語來討論 class，我偶爾會使用 Smalltalk 和 C++ 的術語。我會使用 Modula-3 的術語，因為它比 C++ 更接近 Python 的物件導向語意，但我預期比較少的讀者會聽過它。）</p>
 <section id="a-word-about-names-and-objects">
-<span id="tut-object"></span><h2><span class="section-number">9.1. </span>A Word About Names and Objects<a class="headerlink" href="#a-word-about-names-and-objects" title="本標題的永久連結">¶</a></h2>
-<p>Objects have individuality, and multiple names (in multiple scopes) can be bound
-to the same object.  This is known as aliasing in other languages.  This is
-usually not appreciated on a first glance at Python, and can be safely ignored
-when dealing with immutable basic types (numbers, strings, tuples).  However,
-aliasing has a possibly surprising effect on the semantics of Python code
-involving mutable objects such as lists, dictionaries, and most other types.
-This is usually used to the benefit of the program, since aliases behave like
-pointers in some respects.  For example, passing an object is cheap since only a
-pointer is passed by the implementation; and if a function modifies an object
-passed as an argument, the caller will see the change --- this eliminates the
-need for two different argument passing mechanisms as in Pascal.</p>
+<span id="tut-object"></span><h2><span class="section-number">9.1. </span>關於名稱與物件的一段話<a class="headerlink" href="#a-word-about-names-and-objects" title="本標題的永久連結">¶</a></h2>
+<p>物件有個體性 (individuality)，且多個名稱（在多個作用域 (scope) ）可以被連結到相同的物件。這在其他語言中被稱為別名 (aliasing)。初次接觸 Python 時通常不會注意這件事，而在處理不可變的基本型別（數值、字串、tuple）時，它也可以安全地被忽略。然而，別名在含有可變物件（如 list（串列）、dictionary（字典）、和大多數其他的型別）的 Python 程式碼語意中，可能會有意外的效果。這通常有利於程式，因為別名在某些方面表現得像指標 (pointer)。舉例來說，在實作時傳遞一個物件是便宜的，因為只有指標被傳遞；假如函式修改了一個作為引數傳遞的物件，呼叫函式者 (caller) 能夠見到這些改變——這消除了在 Pascal 中兩個相異引數傳遞機制的需求。</p>
 </section>
 <section id="python-scopes-and-namespaces">
-<span id="tut-scopes"></span><h2><span class="section-number">9.2. </span>Python Scopes and Namespaces<a class="headerlink" href="#python-scopes-and-namespaces" title="本標題的永久連結">¶</a></h2>
-<p>Before introducing classes, I first have to tell you something about Python's
-scope rules.  Class definitions play some neat tricks with namespaces, and you
-need to know how scopes and namespaces work to fully understand what's going on.
-Incidentally, knowledge about this subject is useful for any advanced Python
-programmer.</p>
-<p>Let's begin with some definitions.</p>
-<p>A <em>namespace</em> is a mapping from names to objects.  Most namespaces are currently
-implemented as Python dictionaries, but that's normally not noticeable in any
-way (except for performance), and it may change in the future.  Examples of
-namespaces are: the set of built-in names (containing functions such as <a class="reference internal" href="../library/functions.html#abs" title="abs"><code class="xref py py-func docutils literal notranslate"><span class="pre">abs()</span></code></a>, and
-built-in exception names); the global names in a module; and the local names in
-a function invocation.  In a sense the set of attributes of an object also form
-a namespace.  The important thing to know about namespaces is that there is
-absolutely no relation between names in different namespaces; for instance, two
-different modules may both define a function <code class="docutils literal notranslate"><span class="pre">maximize</span></code> without confusion ---
-users of the modules must prefix it with the module name.</p>
-<p>By the way, I use the word <em>attribute</em> for any name following a dot --- for
-example, in the expression <code class="docutils literal notranslate"><span class="pre">z.real</span></code>, <code class="docutils literal notranslate"><span class="pre">real</span></code> is an attribute of the object
-<code class="docutils literal notranslate"><span class="pre">z</span></code>.  Strictly speaking, references to names in modules are attribute
-references: in the expression <code class="docutils literal notranslate"><span class="pre">modname.funcname</span></code>, <code class="docutils literal notranslate"><span class="pre">modname</span></code> is a module
-object and <code class="docutils literal notranslate"><span class="pre">funcname</span></code> is an attribute of it.  In this case there happens to be
-a straightforward mapping between the module's attributes and the global names
-defined in the module: they share the same namespace!  <a class="footnote-reference brackets" href="#id2" id="id1">1</a></p>
-<p>Attributes may be read-only or writable.  In the latter case, assignment to
-attributes is possible.  Module attributes are writable: you can write
-<code class="docutils literal notranslate"><span class="pre">modname.the_answer</span> <span class="pre">=</span> <span class="pre">42</span></code>.  Writable attributes may also be deleted with the
-<a class="reference internal" href="../reference/simple_stmts.html#del"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">del</span></code></a> statement.  For example, <code class="docutils literal notranslate"><span class="pre">del</span> <span class="pre">modname.the_answer</span></code> will remove
-the attribute <code class="xref py py-attr docutils literal notranslate"><span class="pre">the_answer</span></code> from the object named by <code class="docutils literal notranslate"><span class="pre">modname</span></code>.</p>
-<p>Namespaces are created at different moments and have different lifetimes.  The
-namespace containing the built-in names is created when the Python interpreter
-starts up, and is never deleted.  The global namespace for a module is created
-when the module definition is read in; normally, module namespaces also last
-until the interpreter quits.  The statements executed by the top-level
-invocation of the interpreter, either read from a script file or interactively,
-are considered part of a module called <a class="reference internal" href="../library/__main__.html#module-__main__" title="__main__: The environment where the top-level script is run."><code class="xref py py-mod docutils literal notranslate"><span class="pre">__main__</span></code></a>, so they have their own
-global namespace.  (The built-in names actually also live in a module; this is
-called <a class="reference internal" href="../library/builtins.html#module-builtins" title="builtins: The module that provides the built-in namespace."><code class="xref py py-mod docutils literal notranslate"><span class="pre">builtins</span></code></a>.)</p>
-<p>The local namespace for a function is created when the function is called, and
-deleted when the function returns or raises an exception that is not handled
-within the function.  (Actually, forgetting would be a better way to describe
-what actually happens.)  Of course, recursive invocations each have their own
-local namespace.</p>
-<p>A <em>scope</em> is a textual region of a Python program where a namespace is directly
-accessible.  &quot;Directly accessible&quot; here means that an unqualified reference to a
-name attempts to find the name in the namespace.</p>
-<p>Although scopes are determined statically, they are used dynamically. At any
-time during execution, there are 3 or 4 nested scopes whose namespaces are
-directly accessible:</p>
+<span id="tut-scopes"></span><h2><span class="section-number">9.2. </span>Python 作用域 (Scope) 及命名空間 (Namespace)<a class="headerlink" href="#python-scopes-and-namespaces" title="本標題的永久連結">¶</a></h2>
+<p>在介紹 class 之前，我必須先告訴你一些關於 Python 作用域的規則。Class definition（類別定義）以命名空間展現了一些俐落的技巧，而你需要了解作用域和命名空間的運作才能完整理解正在發生的事情。順帶一提，關於這個主題的知識對任何進階的 Python 程式設計師都是很有用的。</p>
+<p>讓我們從一些定義開始。</p>
+<p><em>命名空間</em>是從名稱到物件的映射。大部分的命名空間現在都是以 Python 的 dictionary 被實作，但通常不會以任何方式被察覺（除了性能），且它可能會在未來改變。命名空間的例子有：內建名稱的集合（包含如 <a class="reference internal" href="../library/functions.html#abs" title="abs"><code class="xref py py-func docutils literal notranslate"><span class="pre">abs()</span></code></a> 的函式，和內建的例外名稱）；模組中的全域 (global) 名稱；和在函式調用中的區域 (local) 名稱。某種意義上，物件中的屬性集合也會形成一個命名空間。關於命名空間的重要一點是，不同命名空間中的名稱之間絕對沒有關係；舉例來說，兩個不一樣的模組都可以定義一個 <code class="docutils literal notranslate"><span class="pre">maximize</span></code> 函式而不會混淆——模組的使用者必須為它加上前綴 (prefix) 模組名稱。</p>
+<p>順帶一提，我使用<em>屬性 (attribute)</em> 這個字，統稱句號 (dot) 後面的任何名稱——例如，運算式中的 <code class="docutils literal notranslate"><span class="pre">z.real</span></code>，<code class="docutils literal notranslate"><span class="pre">real</span></code> 是物件 <code class="docutils literal notranslate"><span class="pre">z</span></code> 的一個屬性。嚴格來說，模組中名稱的參照都是屬性參照：在運算式 <code class="docutils literal notranslate"><span class="pre">modname.funcname</span></code> 中，<code class="docutils literal notranslate"><span class="pre">modname</span></code> 是模組物件而 <code class="docutils literal notranslate"><span class="pre">funcname</span></code> 是它的屬性。在這種情況下，模組的屬性和模組中定義的全域名稱碰巧有一個直接的對映：他們共享了相同的命名空間！<a class="footnote-reference brackets" href="#id2" id="id1">1</a></p>
+<p>屬性可以是唯讀的或可寫的。在後者的情況下，對屬性的賦值是可能的。模組屬性是可寫的：你可以寫 <code class="docutils literal notranslate"><span class="pre">modname.the_answer</span> <span class="pre">=</span> <span class="pre">42</span></code>。可寫屬性也可以用 <a class="reference internal" href="../reference/simple_stmts.html#del"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">del</span></code></a> 陳述式刪除。例如，<code class="docutils literal notranslate"><span class="pre">del</span> <span class="pre">modname.the_answer</span></code> 將從名為 <code class="docutils literal notranslate"><span class="pre">modname</span></code> 的物件中刪除屬性 <code class="xref py py-attr docutils literal notranslate"><span class="pre">the_answer</span></code>。</p>
+<p>命名空間在不同的時刻被建立，並且有不同的壽命。當 Python 直譯器啟動時，含有內建名稱的命名空間會被建立，並且永遠不會被刪除。當模組定義被讀入時，模組的全域命名空間會被建立；一般情況下，模組的命名空間也會持續到直譯器結束。被直譯器的頂層調用 (top-level invocation) 執行的陳述式，不論是從腳本檔案讀取的或是互動模式中的，會被視為一個稱為 <a class="reference internal" href="../library/__main__.html#module-__main__" title="__main__: The environment where the top-level script is run."><code class="xref py py-mod docutils literal notranslate"><span class="pre">__main__</span></code></a> 的模組的一部分，因此它們具有自己的全域命名空間。（內建名稱實際上也存在一個模組中，它被稱為 <a class="reference internal" href="../library/builtins.html#module-builtins" title="builtins: The module that provides the built-in namespace."><code class="xref py py-mod docutils literal notranslate"><span class="pre">builtins</span></code></a>。）</p>
+<p>函式的區域命名空間是在呼叫函式時建立的，而當函式返回，或引發了未在函式中處理的例外時，此命名空間將會被刪除。（實際上，忘記是描述實際發生的事情的更好方法。） 當然，每個遞迴調用 (recursive invocation) 都有自己的區域命名空間。</p>
+<p><em>作用域</em>是 Python 程式中的一個文本區域 (textual region)，在此區域，命名空間是可直接存取的。這裡的「可直接存取的」意思是，對一個名稱的非限定參照 (unqualified reference) 可以在命名空間內嘗試尋找該名稱。</p>
+<p>儘管作用域是靜態地被決定，但它們是動態地被使用的。在執行期間內的任何時間點，都會有 3 或 4 個巢狀的作用域，其命名空間是可以被直接存取的：</p>
 <ul class="simple">
-<li><p>the innermost scope, which is searched first, contains the local names</p></li>
-<li><p>the scopes of any enclosing functions, which are searched starting with the
-nearest enclosing scope, contains non-local, but also non-global names</p></li>
-<li><p>the next-to-last scope contains the current module's global names</p></li>
-<li><p>the outermost scope (searched last) is the namespace containing built-in names</p></li>
+<li><p>最內層作用域，會最先被搜尋，而它包含了區域名稱</p></li>
+<li><p>任何外圍函式 (enclosing function) 的作用域，會從最近的外圍作用域開始搜尋，它包含了非區域 (non-local) 和非全域 (non-global) 的名稱</p></li>
+<li><p>倒數第二個作用域，包含當前模組的全域名稱</p></li>
+<li><p>最外面的作用域（最後搜尋），是包含內建名稱的命名空間</p></li>
 </ul>
-<p>If a name is declared global, then all references and assignments go directly to
-the middle scope containing the module's global names.  To rebind variables
-found outside of the innermost scope, the <a class="reference internal" href="../reference/simple_stmts.html#nonlocal"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">nonlocal</span></code></a> statement can be
-used; if not declared nonlocal, those variables are read-only (an attempt to
-write to such a variable will simply create a <em>new</em> local variable in the
-innermost scope, leaving the identically named outer variable unchanged).</p>
-<p>Usually, the local scope references the local names of the (textually) current
-function.  Outside functions, the local scope references the same namespace as
-the global scope: the module's namespace. Class definitions place yet another
-namespace in the local scope.</p>
-<p>It is important to realize that scopes are determined textually: the global
-scope of a function defined in a module is that module's namespace, no matter
-from where or by what alias the function is called.  On the other hand, the
-actual search for names is done dynamically, at run time --- however, the
-language definition is evolving towards static name resolution, at &quot;compile&quot;
-time, so don't rely on dynamic name resolution!  (In fact, local variables are
-already determined statically.)</p>
-<p>A special quirk of Python is that -- if no <a class="reference internal" href="../reference/simple_stmts.html#global"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">global</span></code></a> or <a class="reference internal" href="../reference/simple_stmts.html#nonlocal"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">nonlocal</span></code></a>
-statement is in effect -- assignments to names always go into the innermost scope.
-Assignments do not copy data --- they just bind names to objects.  The same is true
-for deletions: the statement <code class="docutils literal notranslate"><span class="pre">del</span> <span class="pre">x</span></code> removes the binding of <code class="docutils literal notranslate"><span class="pre">x</span></code> from the
-namespace referenced by the local scope.  In fact, all operations that introduce
-new names use the local scope: in particular, <a class="reference internal" href="../reference/simple_stmts.html#import"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">import</span></code></a> statements and
-function definitions bind the module or function name in the local scope.</p>
-<p>The <a class="reference internal" href="../reference/simple_stmts.html#global"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">global</span></code></a> statement can be used to indicate that particular
-variables live in the global scope and should be rebound there; the
-<a class="reference internal" href="../reference/simple_stmts.html#nonlocal"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">nonlocal</span></code></a> statement indicates that particular variables live in
-an enclosing scope and should be rebound there.</p>
+<p>如果一個名稱被宣告為全域，則所有的參照和賦值將直接轉到包含模組全域名稱的中間作用域。要重新連結最內層作用域以外找到的變數，可以使用 <a class="reference internal" href="../reference/simple_stmts.html#nonlocal"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">nonlocal</span></code></a> 陳述式；如果那些變數沒有被宣告為 nonlocal，則它們會是唯讀的（嘗試寫入這樣的變數只會在最內層的作用域內建立一個<em>新的</em>區域變數，同名的外部變數則維持不變）。</p>
+<p>通常，區域作用域會參照（文本的）當前函式的區域名稱。在函式外部，區域作用域與全域作用域參照相同的命名空間：模組的命名空間。然而，Class definition 會在區域作用域中放置另一個命名空間。</p>
+<p>務必要了解，作用域是按文本被決定的：在模組中定義的函式，其全域作用域便是該模組的命名空間，無論函式是從何處或以什麼別名被呼叫。另一方面，對名稱的實際搜尋是在執行時期 (run time) 動態完成的——但是，語言定義的發展，正朝向在「編譯」時期 (compile time) 的靜態名稱解析 (static name resolution)，所以不要太依賴動態名稱解析 (dynamic name resolution)！ （事實上，局部變數已經是靜態地被決定。）</p>
+<p>一個 Python 的特殊癖好是——假如沒有 <a class="reference internal" href="../reference/simple_stmts.html#global"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">global</span></code></a> 或 <a class="reference internal" href="../reference/simple_stmts.html#nonlocal"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">nonlocal</span></code></a> 陳述式的效果——名稱的賦值 (assignment) 都會指向最內層作用域。賦值不會複製資料——它們只會把名稱連結至物件。刪除也是一樣：陳述式 <code class="docutils literal notranslate"><span class="pre">del</span> <span class="pre">x</span></code> 會從區域作用域參照的命名空間移除 <code class="docutils literal notranslate"><span class="pre">x</span></code> 的連結。事實上，引入新名稱的所有運算都使用區域作用域：特別是 <a class="reference internal" href="../reference/simple_stmts.html#import"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">import</span></code></a> 陳述式和函式定義，會連結區域作用域內的模組或函式名稱。</p>
+<p><a class="reference internal" href="../reference/simple_stmts.html#global"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">global</span></code></a> 陳述式可以用來表示特定變數存活在全域作用域，應該被重新綁定到那裡；<a class="reference internal" href="../reference/simple_stmts.html#nonlocal"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">nonlocal</span></code></a> 陳述式表示特定變數存活在外圍作用域內，應該被重新綁定到那裡。</p>
 <section id="scopes-and-namespaces-example">
-<span id="tut-scopeexample"></span><h3><span class="section-number">9.2.1. </span>Scopes and Namespaces Example<a class="headerlink" href="#scopes-and-namespaces-example" title="本標題的永久連結">¶</a></h3>
-<p>This is an example demonstrating how to reference the different scopes and
-namespaces, and how <a class="reference internal" href="../reference/simple_stmts.html#global"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">global</span></code></a> and <a class="reference internal" href="../reference/simple_stmts.html#nonlocal"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">nonlocal</span></code></a> affect variable
-binding:</p>
+<span id="tut-scopeexample"></span><h3><span class="section-number">9.2.1. </span>作用域和命名空間的範例<a class="headerlink" href="#scopes-and-namespaces-example" title="本標題的永久連結">¶</a></h3>
+<p>這是一個範例，演示如何參照不同的作用域和命名空間，以及 <a class="reference internal" href="../reference/simple_stmts.html#global"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">global</span></code></a> 和 <a class="reference internal" href="../reference/simple_stmts.html#nonlocal"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">nonlocal</span></code></a> 如何影響變數的綁定：</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">scope_test</span><span class="p">():</span>
     <span class="k">def</span> <span class="nf">do_local</span><span class="p">():</span>
         <span class="n">spam</span> <span class="o">=</span> <span class="s2">&quot;local spam&quot;</span>
@@ -337,28 +238,23 @@ binding:</p>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;In global scope:&quot;</span><span class="p">,</span> <span class="n">spam</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>The output of the example code is:</p>
+<p>範例程式碼的輸出是：</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>After local assignment: test spam
 After nonlocal assignment: nonlocal spam
 After global assignment: nonlocal spam
 In global scope: global spam
 </pre></div>
 </div>
-<p>Note how the <em>local</em> assignment (which is default) didn't change <em>scope_test</em>'s
-binding of <em>spam</em>.  The <a class="reference internal" href="../reference/simple_stmts.html#nonlocal"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">nonlocal</span></code></a> assignment changed <em>scope_test</em>'s
-binding of <em>spam</em>, and the <a class="reference internal" href="../reference/simple_stmts.html#global"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">global</span></code></a> assignment changed the module-level
-binding.</p>
-<p>You can also see that there was no previous binding for <em>spam</em> before the
-<a class="reference internal" href="../reference/simple_stmts.html#global"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">global</span></code></a> assignment.</p>
+<p>請注意，<em>區域</em>賦值（預設情況）不會改變 <em>scope_test</em> 對 <em>spam</em> 的連結。<a class="reference internal" href="../reference/simple_stmts.html#nonlocal"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">nonlocal</span></code></a> 賦值改變了 <em>scope_test</em> 對 <em>spam</em> 的連結，而 <a class="reference internal" href="../reference/simple_stmts.html#global"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">global</span></code></a> 賦值改變了模組層次的連結。</p>
+<p>你還可以發現，在 <a class="reference internal" href="../reference/simple_stmts.html#global"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">global</span></code></a> 賦值之前，沒有對 <em>spam</em> 的連結。</p>
 </section>
 </section>
 <section id="a-first-look-at-classes">
-<span id="tut-firstclasses"></span><h2><span class="section-number">9.3. </span>A First Look at Classes<a class="headerlink" href="#a-first-look-at-classes" title="本標題的永久連結">¶</a></h2>
-<p>Classes introduce a little bit of new syntax, three new object types, and some
-new semantics.</p>
+<span id="tut-firstclasses"></span><h2><span class="section-number">9.3. </span>初見 class<a class="headerlink" href="#a-first-look-at-classes" title="本標題的永久連結">¶</a></h2>
+<p>Class 採用一些新的語法，三個新的物件型別，以及一些新的語意。</p>
 <section id="class-definition-syntax">
-<span id="tut-classdefinition"></span><h3><span class="section-number">9.3.1. </span>Class Definition Syntax<a class="headerlink" href="#class-definition-syntax" title="本標題的永久連結">¶</a></h3>
-<p>The simplest form of class definition looks like this:</p>
+<span id="tut-classdefinition"></span><h3><span class="section-number">9.3.1. </span>Class definition（類別定義）語法<a class="headerlink" href="#class-definition-syntax" title="本標題的永久連結">¶</a></h3>
+<p>Class definition 最簡單的形式如下：</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">ClassName</span><span class="p">:</span>
     <span class="o">&lt;</span><span class="n">statement</span><span class="o">-</span><span class="mi">1</span><span class="o">&gt;</span>
     <span class="o">.</span>
@@ -367,34 +263,15 @@ new semantics.</p>
     <span class="o">&lt;</span><span class="n">statement</span><span class="o">-</span><span class="n">N</span><span class="o">&gt;</span>
 </pre></div>
 </div>
-<p>Class definitions, like function definitions (<a class="reference internal" href="../reference/compound_stmts.html#def"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">def</span></code></a> statements) must be
-executed before they have any effect.  (You could conceivably place a class
-definition in a branch of an <a class="reference internal" href="../reference/compound_stmts.html#if"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">if</span></code></a> statement, or inside a function.)</p>
-<p>In practice, the statements inside a class definition will usually be function
-definitions, but other statements are allowed, and sometimes useful --- we'll
-come back to this later.  The function definitions inside a class normally have
-a peculiar form of argument list, dictated by the calling conventions for
-methods --- again, this is explained later.</p>
-<p>When a class definition is entered, a new namespace is created, and used as the
-local scope --- thus, all assignments to local variables go into this new
-namespace.  In particular, function definitions bind the name of the new
-function here.</p>
-<p>When a class definition is left normally (via the end), a <em>class object</em> is
-created.  This is basically a wrapper around the contents of the namespace
-created by the class definition; we'll learn more about class objects in the
-next section.  The original local scope (the one in effect just before the class
-definition was entered) is reinstated, and the class object is bound here to the
-class name given in the class definition header (<code class="xref py py-class docutils literal notranslate"><span class="pre">ClassName</span></code> in the
-example).</p>
+<p>Class definition，如同函式定義（<a class="reference internal" href="../reference/compound_stmts.html#def"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">def</span></code></a> 陳述式），必須在它們有任何效果前先執行。（你可以想像把 class definition 放在一個 <a class="reference internal" href="../reference/compound_stmts.html#if"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">if</span></code></a> 陳述式的分支，或在函式裡。）</p>
+<p>在實作時，class definition 內的陳述式通常會是函式定義，但其他陳述式也是允許的，有時很有用——我們稍後會回到這裡。Class 中的函式定義通常會有一個獨特的引數列表形式，取決於 method 的呼叫慣例——再一次地，這將會在稍後解釋。</p>
+<p>當進入 class definition，一個新的命名空間將會被建立，並且作為區域作用域——因此，所有區域變數的賦值將進入這個新的命名空間。特別是，函式定義會在這裡連結新函式的名稱。</p>
+<p>正常地（從結尾處）離開 class definition 時，一個 <em>class 物件</em>會被建立。基本上這是一個包裝器 (wrapper)，裝著 class definition 建立的命名空間內容；我們將在下一節中更加了解 class 物件。原始的區域作用域（在進入 class definition 之前已生效的作用域）會恢復，在此 class 物件會被連結到 class definition 標頭中給出的 class 名稱（在範例中為 <code class="xref py py-class docutils literal notranslate"><span class="pre">ClassName</span></code>）。</p>
 </section>
 <section id="class-objects">
-<span id="tut-classobjects"></span><h3><span class="section-number">9.3.2. </span>Class Objects<a class="headerlink" href="#class-objects" title="本標題的永久連結">¶</a></h3>
-<p>Class objects support two kinds of operations: attribute references and
-instantiation.</p>
-<p><em>Attribute references</em> use the standard syntax used for all attribute references
-in Python: <code class="docutils literal notranslate"><span class="pre">obj.name</span></code>.  Valid attribute names are all the names that were in
-the class's namespace when the class object was created.  So, if the class
-definition looked like this:</p>
+<span id="tut-classobjects"></span><h3><span class="section-number">9.3.2. </span>Class 物件<a class="headerlink" href="#class-objects" title="本標題的永久連結">¶</a></h3>
+<p>Class 物件支援兩種運算：屬性參照 (attribute reference) 和實例化 (instantiation)。</p>
+<p><em>屬性參照</em>使用 Python 中所有屬性參照的標準語法：<code class="docutils literal notranslate"><span class="pre">obj.name</span></code>。有效的屬性名稱是 class 物件被建立時，class 的命名空間中所有的名稱。所以，如果 class definition 看起來像這樣：</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MyClass</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;A simple example class&quot;&quot;&quot;</span>
     <span class="n">i</span> <span class="o">=</span> <span class="mi">12345</span>
@@ -403,36 +280,22 @@ definition looked like this:</p>
         <span class="k">return</span> <span class="s1">&#39;hello world&#39;</span>
 </pre></div>
 </div>
-<p>then <code class="docutils literal notranslate"><span class="pre">MyClass.i</span></code> and <code class="docutils literal notranslate"><span class="pre">MyClass.f</span></code> are valid attribute references, returning
-an integer and a function object, respectively. Class attributes can also be
-assigned to, so you can change the value of <code class="docutils literal notranslate"><span class="pre">MyClass.i</span></code> by assignment.
-<code class="xref py py-attr docutils literal notranslate"><span class="pre">__doc__</span></code> is also a valid attribute, returning the docstring belonging to
-the class: <code class="docutils literal notranslate"><span class="pre">&quot;A</span> <span class="pre">simple</span> <span class="pre">example</span> <span class="pre">class&quot;</span></code>.</p>
-<p>Class <em>instantiation</em> uses function notation.  Just pretend that the class
-object is a parameterless function that returns a new instance of the class.
-For example (assuming the above class):</p>
+<p>那麼 <code class="docutils literal notranslate"><span class="pre">MyClass.i</span></code> 和 <code class="docutils literal notranslate"><span class="pre">MyClass.f</span></code> 都是有效的屬性參照，會分別回傳一個整數和一個函式物件。Class 屬性也可以被指派 (assign)，所以您可以透過賦值改變 <code class="docutils literal notranslate"><span class="pre">MyClass.i</span></code> 的值。<code class="xref py py-attr docutils literal notranslate"><span class="pre">__doc__</span></code> 也是一個有效的屬性，會回傳屬於該 class 的說明字串 (docstring)：<code class="docutils literal notranslate"><span class="pre">&quot;A</span> <span class="pre">simple</span> <span class="pre">example</span> <span class="pre">class&quot;</span></code>。</p>
+<p>Class <em>實例化</em>使用了函式記法 (function notation)。就好像 class 物件是一個沒有參數的函式，它回傳一個新的 class 實例。例如（假設是上述的 class）：</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">MyClass</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>creates a new <em>instance</em> of the class and assigns this object to the local
-variable <code class="docutils literal notranslate"><span class="pre">x</span></code>.</p>
-<p>The instantiation operation (&quot;calling&quot; a class object) creates an empty object.
-Many classes like to create objects with instances customized to a specific
-initial state. Therefore a class may define a special method named
-<code class="xref py py-meth docutils literal notranslate"><span class="pre">__init__()</span></code>, like this:</p>
+<p>建立 class 的一個新<em>實例</em>，並將此物件指派給區域變數 <code class="docutils literal notranslate"><span class="pre">x</span></code>。</p>
+<p>實例化運算（「呼叫」一個 class 物件）會建立一個空的物件。許多 class 喜歡在建立物件時有著自訂的特定實例初始狀態。因此，class 可以定義一個名為 <code class="xref py py-meth docutils literal notranslate"><span class="pre">__init__()</span></code> 的特別 method，像這樣：</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
 </pre></div>
 </div>
-<p>When a class defines an <code class="xref py py-meth docutils literal notranslate"><span class="pre">__init__()</span></code> method, class instantiation
-automatically invokes <code class="xref py py-meth docutils literal notranslate"><span class="pre">__init__()</span></code> for the newly-created class instance.  So
-in this example, a new, initialized instance can be obtained by:</p>
+<p>當 class 定義了 <code class="xref py py-meth docutils literal notranslate"><span class="pre">__init__()</span></code> method，class 實例化會為新建的 class 實例自動調用 <code class="xref py py-meth docutils literal notranslate"><span class="pre">__init__()</span></code>。所以在這個範例中，一個新的、初始化的實例可以如此獲得：</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">MyClass</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>Of course, the <code class="xref py py-meth docutils literal notranslate"><span class="pre">__init__()</span></code> method may have arguments for greater
-flexibility.  In that case, arguments given to the class instantiation operator
-are passed on to <code class="xref py py-meth docutils literal notranslate"><span class="pre">__init__()</span></code>.  For example,</p>
+<p>當然，<code class="xref py py-meth docutils literal notranslate"><span class="pre">__init__()</span></code> method 可能為了更多的彈性而有引數。在這種情況下，要給 class 實例化運算子的引數會被傳遞給 <code class="xref py py-meth docutils literal notranslate"><span class="pre">__init__()</span></code>。例如：</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">Complex</span><span class="p">:</span>
 <span class="gp">... </span>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">realpart</span><span class="p">,</span> <span class="n">imagpart</span><span class="p">):</span>
 <span class="gp">... </span>        <span class="bp">self</span><span class="o">.</span><span class="n">r</span> <span class="o">=</span> <span class="n">realpart</span>
@@ -445,15 +308,9 @@ are passed on to <code class="xref py py-meth docutils literal notranslate"><spa
 </div>
 </section>
 <section id="instance-objects">
-<span id="tut-instanceobjects"></span><h3><span class="section-number">9.3.3. </span>Instance Objects<a class="headerlink" href="#instance-objects" title="本標題的永久連結">¶</a></h3>
-<p>Now what can we do with instance objects?  The only operations understood by
-instance objects are attribute references.  There are two kinds of valid
-attribute names: data attributes and methods.</p>
-<p><em>data attributes</em> correspond to &quot;instance variables&quot; in Smalltalk, and to &quot;data
-members&quot; in C++.  Data attributes need not be declared; like local variables,
-they spring into existence when they are first assigned to.  For example, if
-<code class="docutils literal notranslate"><span class="pre">x</span></code> is the instance of <code class="xref py py-class docutils literal notranslate"><span class="pre">MyClass</span></code> created above, the following piece of
-code will print the value <code class="docutils literal notranslate"><span class="pre">16</span></code>, without leaving a trace:</p>
+<span id="tut-instanceobjects"></span><h3><span class="section-number">9.3.3. </span>實例物件<a class="headerlink" href="#instance-objects" title="本標題的永久連結">¶</a></h3>
+<p>現在，我們可以如何處理實例物件？實例物件能理解的唯一運算就是屬性參照。有兩種有效的屬性名稱：資料屬性 (data attribute) 和 method。</p>
+<p><em>資料屬性</em>對應 Smalltalk 中的「實例變數」，以及 C++ 中的「資料成員」。資料屬性不需要被宣告；和區域變數一樣，它們在第一次被賦值時就會立即存在。例如，如果 <code class="docutils literal notranslate"><span class="pre">x</span></code> 是 <code class="xref py py-class docutils literal notranslate"><span class="pre">MyClass</span></code> 在上述例子中建立的實例，下面的程式碼將印出值 <code class="docutils literal notranslate"><span class="pre">16</span></code>，而不留下蹤跡：</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="o">.</span><span class="n">counter</span> <span class="o">=</span> <span class="mi">1</span>
 <span class="k">while</span> <span class="n">x</span><span class="o">.</span><span class="n">counter</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">:</span>
     <span class="n">x</span><span class="o">.</span><span class="n">counter</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">counter</span> <span class="o">*</span> <span class="mi">2</span>
@@ -461,60 +318,29 @@ code will print the value <code class="docutils literal notranslate"><span class
 <span class="k">del</span> <span class="n">x</span><span class="o">.</span><span class="n">counter</span>
 </pre></div>
 </div>
-<p>The other kind of instance attribute reference is a <em>method</em>. A method is a
-function that &quot;belongs to&quot; an object.  (In Python, the term method is not unique
-to class instances: other object types can have methods as well.  For example,
-list objects have methods called append, insert, remove, sort, and so on.
-However, in the following discussion, we'll use the term method exclusively to
-mean methods of class instance objects, unless explicitly stated otherwise.)</p>
-<p id="index-0">Valid method names of an instance object depend on its class.  By definition,
-all attributes of a class that are function  objects define corresponding
-methods of its instances.  So in our example, <code class="docutils literal notranslate"><span class="pre">x.f</span></code> is a valid method
-reference, since <code class="docutils literal notranslate"><span class="pre">MyClass.f</span></code> is a function, but <code class="docutils literal notranslate"><span class="pre">x.i</span></code> is not, since
-<code class="docutils literal notranslate"><span class="pre">MyClass.i</span></code> is not.  But <code class="docutils literal notranslate"><span class="pre">x.f</span></code> is not the same thing as <code class="docutils literal notranslate"><span class="pre">MyClass.f</span></code> --- it
-is a <em>method object</em>, not a function object.</p>
+<p>實例的另一種屬性參照是 <em>method</em>。Method 是一個「屬於」物件的函式。（在 Python 中，術語 method 並不是 class 實例所獨有的：其他物件型別也可以有 method。例如，list 物件具有稱為 append、insert、remove、sort 等 method。但是，在下面的討論中，我們將用術語 method 來專門表示 class 實例物件的 method，除非另有明確說明。）</p>
+<p id="index-0">實例物件的有效 method 名稱取決於其 class。根據定義，一個 class 中所有的函式物件屬性，就定義了實例的對應 method。所以在我們的例子中，<code class="docutils literal notranslate"><span class="pre">x.f</span></code> 是一個有效的 method 參照，因為 <code class="docutils literal notranslate"><span class="pre">MyClass.f</span></code> 是一個函式，但 <code class="docutils literal notranslate"><span class="pre">x.i</span></code> 不是，因為 <code class="docutils literal notranslate"><span class="pre">MyClass.i</span></code> 不是。但 <code class="docutils literal notranslate"><span class="pre">x.f</span></code> 與 <code class="docutils literal notranslate"><span class="pre">MyClass.f</span></code> 是不一樣的——它是一個 <em>method 物件</em>，而不是函式物件。</p>
 </section>
 <section id="method-objects">
-<span id="tut-methodobjects"></span><h3><span class="section-number">9.3.4. </span>Method Objects<a class="headerlink" href="#method-objects" title="本標題的永久連結">¶</a></h3>
-<p>Usually, a method is called right after it is bound:</p>
+<span id="tut-methodobjects"></span><h3><span class="section-number">9.3.4. </span>Method 物件<a class="headerlink" href="#method-objects" title="本標題的永久連結">¶</a></h3>
+<p>通常，一個 method 在它被連結後隨即被呼叫：</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="o">.</span><span class="n">f</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>In the <code class="xref py py-class docutils literal notranslate"><span class="pre">MyClass</span></code> example, this will return the string <code class="docutils literal notranslate"><span class="pre">'hello</span> <span class="pre">world'</span></code>.
-However, it is not necessary to call a method right away: <code class="docutils literal notranslate"><span class="pre">x.f</span></code> is a method
-object, and can be stored away and called at a later time.  For example:</p>
+<p>在 <code class="xref py py-class docutils literal notranslate"><span class="pre">MyClass</span></code> 的例子中，這將回傳字串 <code class="docutils literal notranslate"><span class="pre">’hello</span> <span class="pre">world’</span></code>。然而，並沒有必要立即呼叫一個 method：<code class="docutils literal notranslate"><span class="pre">x.f</span></code> 是一個 method 物件，並且可以被儲藏起來，之後再被呼叫。舉例來說：</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">xf</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">f</span>
 <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">xf</span><span class="p">())</span>
 </pre></div>
 </div>
-<p>will continue to print <code class="docutils literal notranslate"><span class="pre">hello</span> <span class="pre">world</span></code> until the end of time.</p>
-<p>What exactly happens when a method is called?  You may have noticed that
-<code class="docutils literal notranslate"><span class="pre">x.f()</span></code> was called without an argument above, even though the function
-definition for <code class="xref py py-meth docutils literal notranslate"><span class="pre">f()</span></code> specified an argument.  What happened to the argument?
-Surely Python raises an exception when a function that requires an argument is
-called without any --- even if the argument isn't actually used...</p>
-<p>Actually, you may have guessed the answer: the special thing about methods is
-that the instance object is passed as the first argument of the function.  In our
-example, the call <code class="docutils literal notranslate"><span class="pre">x.f()</span></code> is exactly equivalent to <code class="docutils literal notranslate"><span class="pre">MyClass.f(x)</span></code>.  In
-general, calling a method with a list of <em>n</em> arguments is equivalent to calling
-the corresponding function with an argument list that is created by inserting
-the method's instance object before the first argument.</p>
-<p>If you still don't understand how methods work, a look at the implementation can
-perhaps clarify matters.  When a non-data attribute of an instance is
-referenced, the instance's class is searched.  If the name denotes a valid class
-attribute that is a function object, a method object is created by packing
-(pointers to) the instance object and the function object just found together in
-an abstract object: this is the method object.  When the method object is called
-with an argument list, a new argument list is constructed from the instance
-object and the argument list, and the function object is called with this new
-argument list.</p>
+<p>將會持續印出 <code class="docutils literal notranslate"><span class="pre">hello</span> <span class="pre">world</span></code> 直到天荒地老。</p>
+<p>當一個 method 被呼叫時究竟會發生什麼事？你可能已經注意到 <code class="docutils literal notranslate"><span class="pre">x.f()</span></code> 被呼叫時沒有任何的引數，儘管 <code class="xref py py-meth docutils literal notranslate"><span class="pre">f()</span></code> 的函式定義有指定一個引數。這個引數發生了什麼事？當一個需要引數的函式被呼叫而沒有給任何引數時，Python 肯定會引發例外——即使該引數實際上沒有被使用...</p>
+<p>事實上，你可能已經猜到了答案：method 的特殊之處在於，實例物件會作為函式中的第一個引數被傳遞。在我們的例子中，<code class="docutils literal notranslate"><span class="pre">x.f()</span></code> 這個呼叫等同於 <code class="docutils literal notranslate"><span class="pre">MyClass.f(x)</span></code>。一般來說，呼叫一個有 <em>n</em> 個引數的 method，等同於呼叫一個對應函式，其引數列表 (argument list) 被建立時，會在第一個引數前插入該 method 的實例物件。</p>
+<p>如果你仍然不了解 method 怎麼運作，看一眼實作可能會清楚一些事。當一個實例的非資料屬性被參照時，該實例的 class 會被搜尋。如果該名稱是一個有效的 class 屬性，而且是一個函式物件，則一個 method 物件會被建立，建立的方法是藉由打包（指向）該實例物件及剛被找到的函式物件，形成一個抽象的物件：這就是 method 物件。當 method 物件帶著一個引數列表被呼叫，則一個新的引數列表會從實例物件和該引數列表被建構，而該函式物件會以這個新的引數列表被呼叫。</p>
 </section>
 <section id="class-and-instance-variables">
-<span id="tut-class-and-instance-variables"></span><h3><span class="section-number">9.3.5. </span>Class and Instance Variables<a class="headerlink" href="#class-and-instance-variables" title="本標題的永久連結">¶</a></h3>
-<p>Generally speaking, instance variables are for data unique to each instance
-and class variables are for attributes and methods shared by all instances
-of the class:</p>
+<span id="tut-class-and-instance-variables"></span><h3><span class="section-number">9.3.5. </span>Class 及實例變數<a class="headerlink" href="#class-and-instance-variables" title="本標題的永久連結">¶</a></h3>
+<p>一般來說，實例變數用於每一個實例的獨特資料，而 class 變數用於該 class 的所有實例共享的屬性和 method：</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Dog</span><span class="p">:</span>
 
     <span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;canine&#39;</span>         <span class="c1"># class variable shared by all instances</span>
@@ -534,11 +360,7 @@ of the class:</p>
 <span class="s1">&#39;Buddy&#39;</span>
 </pre></div>
 </div>
-<p>As discussed in <a class="reference internal" href="#tut-object"><span class="std std-ref">A Word About Names and Objects</span></a>, shared data can have possibly surprising
-effects with involving <a class="reference internal" href="../glossary.html#term-mutable"><span class="xref std std-term">mutable</span></a> objects such as lists and dictionaries.
-For example, the <em>tricks</em> list in the following code should not be used as a
-class variable because just a single list would be shared by all <em>Dog</em>
-instances:</p>
+<p>如同在<a class="reference internal" href="#tut-object"><span class="std std-ref">關於名稱與物件的一段話</span></a>的討論，共享的資料若涉及 <a class="reference internal" href="../glossary.html#term-mutable"><span class="xref std std-term">mutable</span></a> 物件，如 list 和 dictionary，可能會產生意外的影響。舉例來說，下列程式碼的 <em>tricks</em> list 不應該作為一個 class 變數使用，因為這個 list 將會被所有的 <em>Dog</em> 實例所共享：</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Dog</span><span class="p">:</span>
 
     <span class="n">tricks</span> <span class="o">=</span> <span class="p">[]</span>             <span class="c1"># mistaken use of a class variable</span>
@@ -557,7 +379,7 @@ instances:</p>
 <span class="p">[</span><span class="s1">&#39;roll over&#39;</span><span class="p">,</span> <span class="s1">&#39;play dead&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
-<p>Correct design of the class should use an instance variable instead:</p>
+<p>正確的 class 設計應該使用實例變數：</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Dog</span><span class="p">:</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
@@ -580,9 +402,8 @@ instances:</p>
 </section>
 </section>
 <section id="random-remarks">
-<span id="tut-remarks"></span><h2><span class="section-number">9.4. </span>Random Remarks<a class="headerlink" href="#random-remarks" title="本標題的永久連結">¶</a></h2>
-<p>If the same attribute name occurs in both an instance and in a class,
-then attribute lookup prioritizes the instance:</p>
+<span id="tut-remarks"></span><h2><span class="section-number">9.4. </span>隨意的備註<a class="headerlink" href="#random-remarks" title="本標題的永久連結">¶</a></h2>
+<p>如果屬性名稱同時出現在一個實例和一個 class 中，則屬性的尋找會以實例為優先：</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">Warehouse</span><span class="p">:</span>
 <span class="go">        purpose = &#39;storage&#39;</span>
 <span class="go">        region = &#39;west&#39;</span>
@@ -596,31 +417,11 @@ then attribute lookup prioritizes the instance:</p>
 <span class="go">storage east</span>
 </pre></div>
 </div>
-<p>Data attributes may be referenced by methods as well as by ordinary users
-(&quot;clients&quot;) of an object.  In other words, classes are not usable to implement
-pure abstract data types.  In fact, nothing in Python makes it possible to
-enforce data hiding --- it is all based upon convention.  (On the other hand,
-the Python implementation, written in C, can completely hide implementation
-details and control access to an object if necessary; this can be used by
-extensions to Python written in C.)</p>
-<p>Clients should use data attributes with care --- clients may mess up invariants
-maintained by the methods by stamping on their data attributes.  Note that
-clients may add data attributes of their own to an instance object without
-affecting the validity of the methods, as long as name conflicts are avoided ---
-again, a naming convention can save a lot of headaches here.</p>
-<p>There is no shorthand for referencing data attributes (or other methods!) from
-within methods.  I find that this actually increases the readability of methods:
-there is no chance of confusing local variables and instance variables when
-glancing through a method.</p>
-<p>Often, the first argument of a method is called <code class="docutils literal notranslate"><span class="pre">self</span></code>.  This is nothing more
-than a convention: the name <code class="docutils literal notranslate"><span class="pre">self</span></code> has absolutely no special meaning to
-Python.  Note, however, that by not following the convention your code may be
-less readable to other Python programmers, and it is also conceivable that a
-<em>class browser</em> program might be written that relies upon such a convention.</p>
-<p>Any function object that is a class attribute defines a method for instances of
-that class.  It is not necessary that the function definition is textually
-enclosed in the class definition: assigning a function object to a local
-variable in the class is also ok.  For example:</p>
+<p>資料屬性可能被 method 或是被物件的一般使用者（「客戶端」）所參照。也就是說，class 不可用於實作純粹抽象的資料型別。事實上，在 Python 中沒有任何可能的方法，可強制隱藏資料——這都是基於慣例。（另一方面，以 C 編寫的 Python 實作可以完全隱藏實作細節並且在必要時控制物件的存取；這可以被以 C 編寫的 Python 擴充所使用。）</p>
+<p>客戶端應該小心使用資料屬性——客戶端可能會因為覆寫他們的資料屬性，而破壞了被 method 維護的不變性。注意，客戶端可以增加他們自己的資料屬性到實例物件，但不影響 method 的有效性，只要避免名稱衝突即可——再一次提醒，命名慣例可以在這裡節省很多麻煩。</p>
+<p>在 method 中參照資料屬性（或其他 method！）是沒有簡寫的。我發現這實際上增加了 method 的可閱讀性：在瀏覽 method 時，絕不會混淆區域變數和實例變數。</p>
+<p>通常，方法的第一個引數稱為 <code class="docutils literal notranslate"><span class="pre">self</span></code>。這僅僅只是一個慣例：<code class="docutils literal notranslate"><span class="pre">self</span></code> 這個名字對 Python 來說完全沒有特別的意義。但請注意，如果不遵循慣例，你的程式碼可能對其他 Python 程式設計師來說可讀性較低，此外，也可以想像一個可能因信任此慣例而編寫的 <em>class 瀏覽器 (browser)</em> 程式。</p>
+<p>任何一個作為 class 屬性的函式物件都為該 class 的實例定義了一個相應的 method。函式定義不一定要包含在 class definition 的文本中：將函式物件指定給 class 中的區域變數也是可以的。例如：</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Function defined outside the class</span>
 <span class="k">def</span> <span class="nf">f1</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
     <span class="k">return</span> <span class="nb">min</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">x</span><span class="o">+</span><span class="n">y</span><span class="p">)</span>
@@ -634,12 +435,8 @@ variable in the class is also ok.  For example:</p>
     <span class="n">h</span> <span class="o">=</span> <span class="n">g</span>
 </pre></div>
 </div>
-<p>Now <code class="docutils literal notranslate"><span class="pre">f</span></code>, <code class="docutils literal notranslate"><span class="pre">g</span></code> and <code class="docutils literal notranslate"><span class="pre">h</span></code> are all attributes of class <code class="xref py py-class docutils literal notranslate"><span class="pre">C</span></code> that refer to
-function objects, and consequently they are all methods of instances of
-<code class="xref py py-class docutils literal notranslate"><span class="pre">C</span></code> --- <code class="docutils literal notranslate"><span class="pre">h</span></code> being exactly equivalent to <code class="docutils literal notranslate"><span class="pre">g</span></code>.  Note that this practice
-usually only serves to confuse the reader of a program.</p>
-<p>Methods may call other methods by using method attributes of the <code class="docutils literal notranslate"><span class="pre">self</span></code>
-argument:</p>
+<p>現在 <code class="docutils literal notranslate"><span class="pre">f</span></code>、<code class="docutils literal notranslate"><span class="pre">g</span></code> 和 <code class="docutils literal notranslate"><span class="pre">h</span></code> 都是 class <code class="xref py py-class docutils literal notranslate"><span class="pre">C</span></code> 的屬性，並指向函式物件，所以他們都是class <code class="xref py py-class docutils literal notranslate"><span class="pre">C</span></code> 實例的 method —— <code class="docutils literal notranslate"><span class="pre">h</span></code> 與 <code class="docutils literal notranslate"><span class="pre">g</span></code> 是完全一樣的。請注意，這種做法通常只會使該程式的讀者感到困惑。</p>
+<p>Method 可以藉由使用 <code class="docutils literal notranslate"><span class="pre">self</span></code> 引數的 method 屬性，呼叫其他 method：</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Bag</span><span class="p">:</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
@@ -652,23 +449,12 @@ argument:</p>
         <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Methods may reference global names in the same way as ordinary functions.  The
-global scope associated with a method is the module containing its
-definition.  (A class is never used as a global scope.)  While one
-rarely encounters a good reason for using global data in a method, there are
-many legitimate uses of the global scope: for one thing, functions and modules
-imported into the global scope can be used by methods, as well as functions and
-classes defined in it.  Usually, the class containing the method is itself
-defined in this global scope, and in the next section we'll find some good
-reasons why a method would want to reference its own class.</p>
-<p>Each value is an object, and therefore has a <em>class</em> (also called its <em>type</em>).
-It is stored as <code class="docutils literal notranslate"><span class="pre">object.__class__</span></code>.</p>
+<p>Method 可以用與一般函式相同的方式參照全域名稱。與 method 相關的全域作用域，就是包含其定義的模組。（class 永遠不會被用作全域作用域。）雖然人們很少有在 method 中使用全域資料的充分理由，但全域作用域仍有許多合法的使用：比方說，被 import 至全域作用域的函式和模組，可以被 method 以及在該作用域中定義的函式和 class 所使用。通常，包含 method 的 class，它本身就是被定義在這個全域作用域，在下一節，我們將看到 method 想要參照自己的 class 的一些好原因。</p>
+<p>每個值都是一個物件，因此都具有一個 <em>class</em>，也可以稱為它的 <em>type（型別）</em>。它以 <code class="docutils literal notranslate"><span class="pre">object.__class__</span></code> 被儲存。</p>
 </section>
 <section id="inheritance">
-<span id="tut-inheritance"></span><h2><span class="section-number">9.5. </span>Inheritance<a class="headerlink" href="#inheritance" title="本標題的永久連結">¶</a></h2>
-<p>Of course, a language feature would not be worthy of the name &quot;class&quot; without
-supporting inheritance.  The syntax for a derived class definition looks like
-this:</p>
+<span id="tut-inheritance"></span><h2><span class="section-number">9.5. </span>繼承 (Inheritance)<a class="headerlink" href="#inheritance" title="本標題的永久連結">¶</a></h2>
+<p>當然，如果沒有支援繼承，「class」這個語言特色就不值得被稱為 class。一個 derived class（衍生類別）定義的語法看起來如下：</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">DerivedClassName</span><span class="p">(</span><span class="n">BaseClassName</span><span class="p">):</span>
     <span class="o">&lt;</span><span class="n">statement</span><span class="o">-</span><span class="mi">1</span><span class="o">&gt;</span>
     <span class="o">.</span>
@@ -677,48 +463,22 @@ this:</p>
     <span class="o">&lt;</span><span class="n">statement</span><span class="o">-</span><span class="n">N</span><span class="o">&gt;</span>
 </pre></div>
 </div>
-<p>The name <code class="xref py py-class docutils literal notranslate"><span class="pre">BaseClassName</span></code> must be defined in a scope containing the
-derived class definition.  In place of a base class name, other arbitrary
-expressions are also allowed.  This can be useful, for example, when the base
-class is defined in another module:</p>
+<p>名稱 <code class="xref py py-class docutils literal notranslate"><span class="pre">BaseClassName</span></code> 被定義的作用域必須是包含 derived class 定義的作用域。要代替 base class（基底類別）的名稱，用其他任意的運算式也是被允許的。這會很有用，例如，當一個 base class 是在另一個模組中被定義時：</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">DerivedClassName</span><span class="p">(</span><span class="n">modname</span><span class="o">.</span><span class="n">BaseClassName</span><span class="p">):</span>
 </pre></div>
 </div>
-<p>Execution of a derived class definition proceeds the same as for a base class.
-When the class object is constructed, the base class is remembered.  This is
-used for resolving attribute references: if a requested attribute is not found
-in the class, the search proceeds to look in the base class.  This rule is
-applied recursively if the base class itself is derived from some other class.</p>
-<p>There's nothing special about instantiation of derived classes:
-<code class="docutils literal notranslate"><span class="pre">DerivedClassName()</span></code> creates a new instance of the class.  Method references
-are resolved as follows: the corresponding class attribute is searched,
-descending down the chain of base classes if necessary, and the method reference
-is valid if this yields a function object.</p>
-<p>Derived classes may override methods of their base classes.  Because methods
-have no special privileges when calling other methods of the same object, a
-method of a base class that calls another method defined in the same base class
-may end up calling a method of a derived class that overrides it.  (For C++
-programmers: all methods in Python are effectively <code class="docutils literal notranslate"><span class="pre">virtual</span></code>.)</p>
-<p>An overriding method in a derived class may in fact want to extend rather than
-simply replace the base class method of the same name. There is a simple way to
-call the base class method directly: just call <code class="docutils literal notranslate"><span class="pre">BaseClassName.methodname(self,</span>
-<span class="pre">arguments)</span></code>.  This is occasionally useful to clients as well.  (Note that this
-only works if the base class is accessible as <code class="docutils literal notranslate"><span class="pre">BaseClassName</span></code> in the global
-scope.)</p>
-<p>Python has two built-in functions that work with inheritance:</p>
+<p>執行 derived class 定義的過程，與執行 base class 相同。當 class 物件被建構時，base class 會被記住。這是用於解析屬性參照：如果一個要求的屬性無法在該 class 中找到，則會繼續在 base class 中搜尋。假如該 base class 本身也是衍生自其他 class，則這個規則會遞迴地被應用。</p>
+<p>關於 derived class 的實例化並沒有特別之處：<code class="docutils literal notranslate"><span class="pre">DerivedClassName()</span></code> 會建立該 class 的一個新實例。Method 的參照被解析如下：對應的 class 屬性會被搜尋，如果需要，沿著 base class 的繼承鍊往下走，如果這產生了一個函式物件，則該 method 的參照是有效的。</p>
+<p>Derived class 可以覆寫其 base class 的 method。因為 method 在呼叫同一個物件的其他 method 時沒有特別的特權，所以當 base class 的一個 method 在呼叫相同 base class 中定義的另一個 method 時，最終可能會呼叫到一個覆寫它的 derived class 中的 method。（給 C++ 程式設計師：Python 中所有 method 實際上都是 <code class="docutils literal notranslate"><span class="pre">virtual</span></code>。）</p>
+<p>一個在 derived class 覆寫的 method 可能事實上是想要擴充而非單純取代 base class 中相同名稱的 method。要直接呼叫 base class 的 method 有一個簡單的方法：只要呼叫 <code class="docutils literal notranslate"><span class="pre">BaseClassName.methodname(self,</span> <span class="pre">arguments)</span></code>。這有時對客戶端也很有用。（請注意，只有在 base class 在全域作用域可以用 <code class="docutils literal notranslate"><span class="pre">BaseClassName</span></code> 被存取時，這方法才有效。）</p>
+<p>Python 有兩個內建函式可以用於繼承：</p>
 <ul class="simple">
-<li><p>Use <a class="reference internal" href="../library/functions.html#isinstance" title="isinstance"><code class="xref py py-func docutils literal notranslate"><span class="pre">isinstance()</span></code></a> to check an instance's type: <code class="docutils literal notranslate"><span class="pre">isinstance(obj,</span> <span class="pre">int)</span></code>
-will be <code class="docutils literal notranslate"><span class="pre">True</span></code> only if <code class="docutils literal notranslate"><span class="pre">obj.__class__</span></code> is <a class="reference internal" href="../library/functions.html#int" title="int"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a> or some class
-derived from <a class="reference internal" href="../library/functions.html#int" title="int"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>.</p></li>
-<li><p>Use <a class="reference internal" href="../library/functions.html#issubclass" title="issubclass"><code class="xref py py-func docutils literal notranslate"><span class="pre">issubclass()</span></code></a> to check class inheritance: <code class="docutils literal notranslate"><span class="pre">issubclass(bool,</span> <span class="pre">int)</span></code>
-is <code class="docutils literal notranslate"><span class="pre">True</span></code> since <a class="reference internal" href="../library/functions.html#bool" title="bool"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a> is a subclass of <a class="reference internal" href="../library/functions.html#int" title="int"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>.  However,
-<code class="docutils literal notranslate"><span class="pre">issubclass(float,</span> <span class="pre">int)</span></code> is <code class="docutils literal notranslate"><span class="pre">False</span></code> since <a class="reference internal" href="../library/functions.html#float" title="float"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a> is not a
-subclass of <a class="reference internal" href="../library/functions.html#int" title="int"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>.</p></li>
+<li><p>使用 <a class="reference internal" href="../library/functions.html#isinstance" title="isinstance"><code class="xref py py-func docutils literal notranslate"><span class="pre">isinstance()</span></code></a> 判斷一個實例的型別：<code class="docutils literal notranslate"><span class="pre">isinstance(obj,</span> <span class="pre">int)</span></code> 只有在 <code class="docutils literal notranslate"><span class="pre">obj.__class__</span></code> 是 <a class="reference internal" href="../library/functions.html#int" title="int"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a> 或衍伸自 <a class="reference internal" href="../library/functions.html#int" title="int"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a> 時，結果才會是 <code class="docutils literal notranslate"><span class="pre">True</span></code>。</p></li>
+<li><p>使用 <a class="reference internal" href="../library/functions.html#issubclass" title="issubclass"><code class="xref py py-func docutils literal notranslate"><span class="pre">issubclass()</span></code></a> 判斷 class 繼承：<code class="docutils literal notranslate"><span class="pre">issubclass(bool,</span> <span class="pre">int)</span></code> 會是 <code class="docutils literal notranslate"><span class="pre">True</span></code>，因為 <a class="reference internal" href="../library/functions.html#bool" title="bool"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a> 是 <a class="reference internal" href="../library/functions.html#int" title="int"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a> 的 subclass（子類別）。但是，<code class="docutils literal notranslate"><span class="pre">issubclass(float,</span> <span class="pre">int)</span></code> 是 <code class="docutils literal notranslate"><span class="pre">False</span></code>，因為 <a class="reference internal" href="../library/functions.html#float" title="float"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a> 並不是 <a class="reference internal" href="../library/functions.html#int" title="int"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a> 的 subclass。</p></li>
 </ul>
 <section id="multiple-inheritance">
-<span id="tut-multiple"></span><h3><span class="section-number">9.5.1. </span>Multiple Inheritance<a class="headerlink" href="#multiple-inheritance" title="本標題的永久連結">¶</a></h3>
-<p>Python supports a form of multiple inheritance as well.  A class definition with
-multiple base classes looks like this:</p>
+<span id="tut-multiple"></span><h3><span class="section-number">9.5.1. </span>多重繼承<a class="headerlink" href="#multiple-inheritance" title="本標題的永久連結">¶</a></h3>
+<p>Python 也支援多重繼承的形式。一個有多個 base class 的 class definition 看起來像這樣子：</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">DerivedClassName</span><span class="p">(</span><span class="n">Base1</span><span class="p">,</span> <span class="n">Base2</span><span class="p">,</span> <span class="n">Base3</span><span class="p">):</span>
     <span class="o">&lt;</span><span class="n">statement</span><span class="o">-</span><span class="mi">1</span><span class="o">&gt;</span>
     <span class="o">.</span>
@@ -727,49 +487,16 @@ multiple base classes looks like this:</p>
     <span class="o">&lt;</span><span class="n">statement</span><span class="o">-</span><span class="n">N</span><span class="o">&gt;</span>
 </pre></div>
 </div>
-<p>For most purposes, in the simplest cases, you can think of the search for
-attributes inherited from a parent class as depth-first, left-to-right, not
-searching twice in the same class where there is an overlap in the hierarchy.
-Thus, if an attribute is not found in <code class="xref py py-class docutils literal notranslate"><span class="pre">DerivedClassName</span></code>, it is searched
-for in <code class="xref py py-class docutils literal notranslate"><span class="pre">Base1</span></code>, then (recursively) in the base classes of <code class="xref py py-class docutils literal notranslate"><span class="pre">Base1</span></code>,
-and if it was not found there, it was searched for in <code class="xref py py-class docutils literal notranslate"><span class="pre">Base2</span></code>, and so on.</p>
-<p>In fact, it is slightly more complex than that; the method resolution order
-changes dynamically to support cooperative calls to <a class="reference internal" href="../library/functions.html#super" title="super"><code class="xref py py-func docutils literal notranslate"><span class="pre">super()</span></code></a>.  This
-approach is known in some other multiple-inheritance languages as
-call-next-method and is more powerful than the super call found in
-single-inheritance languages.</p>
-<p>Dynamic ordering is necessary because all cases of multiple inheritance exhibit
-one or more diamond relationships (where at least one of the parent classes
-can be accessed through multiple paths from the bottommost class).  For example,
-all classes inherit from <a class="reference internal" href="../library/functions.html#object" title="object"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a>, so any case of multiple inheritance
-provides more than one path to reach <a class="reference internal" href="../library/functions.html#object" title="object"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a>.  To keep the base classes
-from being accessed more than once, the dynamic algorithm linearizes the search
-order in a way that preserves the left-to-right ordering specified in each
-class, that calls each parent only once, and that is monotonic (meaning that a
-class can be subclassed without affecting the precedence order of its parents).
-Taken together, these properties make it possible to design reliable and
-extensible classes with multiple inheritance.  For more detail, see
-<a class="reference external" href="https://www.python.org/download/releases/2.3/mro/">https://www.python.org/download/releases/2.3/mro/</a>.</p>
+<p>在大多數情況下，最簡單的例子裡，你可以這樣思考，對於繼承自 parent class（父類別）的屬性，其搜尋規則為：深度優先、從左到右、在階層裡重疊的相同 class 中不重複搜尋。因此，假如有一個屬性在 <code class="xref py py-class docutils literal notranslate"><span class="pre">DerivedClassName</span></code> 沒有被找到，則在 <code class="xref py py-class docutils literal notranslate"><span class="pre">Base1</span></code> 搜尋它，接著（遞迴地）在 <code class="xref py py-class docutils literal notranslate"><span class="pre">Base1</span></code> 的 base class 中搜尋，假如在那裡又沒有找到的話，會在 <code class="xref py py-class docutils literal notranslate"><span class="pre">Base2</span></code> 搜尋，依此類推。</p>
+<p>事實上，它稍微複雜一些；method 的解析順序是動態地變化，以支援對 <a class="reference internal" href="../library/functions.html#super" title="super"><code class="xref py py-func docutils literal notranslate"><span class="pre">super()</span></code></a> 的合作呼叫。這個方式在其他的多重繼承語言中，稱為呼叫下一個方法 (call-next-method)，且比在單一繼承語言中的 super call（超級呼叫）來得更強大。</p>
+<p>動態排序是必要的，因為多重繼承的所有情況都表現一或多的菱形關係（其中至少一個 parent class 可以從最底層 class 透過多個路徑存取）。例如，所有的 class 都繼承自 <a class="reference internal" href="../library/functions.html#object" title="object"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a>，因此任何多重繼承的情況都提供了多個到達 <a class="reference internal" href="../library/functions.html#object" title="object"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a> 的路徑。為了避免 base class 被多次存取，動態演算法以這些方式將搜尋順序線性化 (linearize)：保留每個 class 中規定的從左到右的順序、對每個 parent 只會呼叫一次、使用單調的 (monotonic) 方式（意思是，一個 class 可以被 subclassed（子類別化），而不會影響其 parent 的搜尋優先順序）。總之，這些特性使設計出可靠又可擴充、具有多重繼承的 class 成為可能。更多資訊，請見 <a class="reference external" href="https://www.python.org/download/releases/2.3/mro/">https://www.python.org/download/releases/2.3/mro/</a>。</p>
 </section>
 </section>
 <section id="private-variables">
-<span id="tut-private"></span><h2><span class="section-number">9.6. </span>Private Variables<a class="headerlink" href="#private-variables" title="本標題的永久連結">¶</a></h2>
-<p>&quot;Private&quot; instance variables that cannot be accessed except from inside an
-object don't exist in Python.  However, there is a convention that is followed
-by most Python code: a name prefixed with an underscore (e.g. <code class="docutils literal notranslate"><span class="pre">_spam</span></code>) should
-be treated as a non-public part of the API (whether it is a function, a method
-or a data member).  It should be considered an implementation detail and subject
-to change without notice.</p>
-<p id="index-1">Since there is a valid use-case for class-private members (namely to avoid name
-clashes of names with names defined by subclasses), there is limited support for
-such a mechanism, called <em class="dfn">name mangling</em>.  Any identifier of the form
-<code class="docutils literal notranslate"><span class="pre">__spam</span></code> (at least two leading underscores, at most one trailing underscore)
-is textually replaced with <code class="docutils literal notranslate"><span class="pre">_classname__spam</span></code>, where <code class="docutils literal notranslate"><span class="pre">classname</span></code> is the
-current class name with leading underscore(s) stripped.  This mangling is done
-without regard to the syntactic position of the identifier, as long as it
-occurs within the definition of a class.</p>
-<p>Name mangling is helpful for letting subclasses override methods without
-breaking intraclass method calls.  For example:</p>
+<span id="tut-private"></span><h2><span class="section-number">9.6. </span>私有變數<a class="headerlink" href="#private-variables" title="本標題的永久連結">¶</a></h2>
+<p>「私有」(private) 實例變數，指的是不在物件內部便無法存取的變數，這在 Python 中是不存在的。但是，大多數 Python 的程式碼都遵守一個慣例：前綴為一個底線的名稱（如：<code class="docutils literal notranslate"><span class="pre">_spam</span></code>）應被視為 API （應用程式介面）的非公有 (non-public) 部分（無論它是函式、方法或是資料成員）。這被視為一個實作細節，如有調整，亦不另行通知。</p>
+<p id="index-1">既然 class 私有的成員已有一個有效的用例（即避免名稱與 subclass 定義的名稱衝突），這種機制也存在另一個有限的支援，稱為 <em class="dfn">name mangling</em>（名稱修飾）。任何格式為 <code class="docutils literal notranslate"><span class="pre">__spam</span></code>（至少兩個前導下底線，最多一個尾隨下底線）的物件名稱 (identifier) 會被文本地被替換為 <code class="docutils literal notranslate"><span class="pre">_classname__spam</span></code>，在此 <code class="docutils literal notranslate"><span class="pre">classname</span></code> 就是去掉前導下底線的當前 class 名稱。只要這個修飾是在 class 的定義之中發生，它就會在不考慮該物件名稱的語法位置的情況下完成。</p>
+<p>名稱修飾對於讓 subclass 覆寫 method 而不用破壞 class 內部的 method 呼叫，是有幫助的。舉例來說：</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Mapping</span><span class="p">:</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">iterable</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">items_list</span> <span class="o">=</span> <span class="p">[]</span>
@@ -790,25 +517,13 @@ breaking intraclass method calls.  For example:</p>
             <span class="bp">self</span><span class="o">.</span><span class="n">items_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>The above example would work even if <code class="docutils literal notranslate"><span class="pre">MappingSubclass</span></code> were to introduce a
-<code class="docutils literal notranslate"><span class="pre">__update</span></code> identifier since it is replaced with <code class="docutils literal notranslate"><span class="pre">_Mapping__update</span></code> in the
-<code class="docutils literal notranslate"><span class="pre">Mapping</span></code> class  and <code class="docutils literal notranslate"><span class="pre">_MappingSubclass__update</span></code> in the <code class="docutils literal notranslate"><span class="pre">MappingSubclass</span></code>
-class respectively.</p>
-<p>Note that the mangling rules are designed mostly to avoid accidents; it still is
-possible to access or modify a variable that is considered private.  This can
-even be useful in special circumstances, such as in the debugger.</p>
-<p>Notice that code passed to <code class="docutils literal notranslate"><span class="pre">exec()</span></code> or <code class="docutils literal notranslate"><span class="pre">eval()</span></code> does not consider the
-classname of the invoking class to be the current class; this is similar to the
-effect of the <code class="docutils literal notranslate"><span class="pre">global</span></code> statement, the effect of which is likewise restricted
-to code that is byte-compiled together.  The same restriction applies to
-<code class="docutils literal notranslate"><span class="pre">getattr()</span></code>, <code class="docutils literal notranslate"><span class="pre">setattr()</span></code> and <code class="docutils literal notranslate"><span class="pre">delattr()</span></code>, as well as when referencing
-<code class="docutils literal notranslate"><span class="pre">__dict__</span></code> directly.</p>
+<p>在上例中，就算在 <code class="docutils literal notranslate"><span class="pre">MappingSubclass</span></code> 當中加入 <code class="docutils literal notranslate"><span class="pre">__update</span></code> 識別符，也能順利運作，因為在 <code class="docutils literal notranslate"><span class="pre">Mapping</span></code> class 中，它會被替換為 <code class="docutils literal notranslate"><span class="pre">_Mapping__update</span></code>，而在 <code class="docutils literal notranslate"><span class="pre">MappingSubclass</span></code> class 中，它會被替換為 <code class="docutils literal notranslate"><span class="pre">_MappingSubclass__update</span></code>。</p>
+<p>請注意，修飾規則是被設計來避免意外；它仍可能存取或修改一個被視為私有的變數。這在特殊情況下甚至可能很有用，例如在除錯器 (debugger)。</p>
+<p>另外也注意，傳遞給 <code class="docutils literal notranslate"><span class="pre">exec()</span></code> 或 <code class="docutils literal notranslate"><span class="pre">eval()</span></code> 的程式碼不會把調用 class 的名稱視為當前的 class；這和 <code class="docutils literal notranslate"><span class="pre">global</span></code> 陳述式的效果類似，該效果同樣僅限於整體被位元組編譯後 (byte-compiled) 的程式碼。同樣的限制適用於 <code class="docutils literal notranslate"><span class="pre">getattr()</span></code>，<code class="docutils literal notranslate"><span class="pre">setattr()</span></code> 和 <code class="docutils literal notranslate"><span class="pre">delattr()</span></code>，以及直接參照 <code class="docutils literal notranslate"><span class="pre">__dict__</span></code> 時。</p>
 </section>
 <section id="odds-and-ends">
-<span id="tut-odds"></span><h2><span class="section-number">9.7. </span>Odds and Ends<a class="headerlink" href="#odds-and-ends" title="本標題的永久連結">¶</a></h2>
-<p>Sometimes it is useful to have a data type similar to the Pascal &quot;record&quot; or C
-&quot;struct&quot;, bundling together a few named data items.  An empty class definition
-will do nicely:</p>
+<span id="tut-odds"></span><h2><span class="section-number">9.7. </span>補充說明<a class="headerlink" href="#odds-and-ends" title="本標題的永久連結">¶</a></h2>
+<p>如果有一種資料型別，類似於 Pascal 的「record」或 C 的「struct」，可以將一些有名稱的資料項目捆綁在一起，有時候這會很有用。其實一個空白的 class definition 就可以勝任：</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Employee</span><span class="p">:</span>
     <span class="k">pass</span>
 
@@ -820,19 +535,12 @@ will do nicely:</p>
 <span class="n">john</span><span class="o">.</span><span class="n">salary</span> <span class="o">=</span> <span class="mi">1000</span>
 </pre></div>
 </div>
-<p>A piece of Python code that expects a particular abstract data type can often be
-passed a class that emulates the methods of that data type instead.  For
-instance, if you have a function that formats some data from a file object, you
-can define a class with methods <code class="xref py py-meth docutils literal notranslate"><span class="pre">read()</span></code> and <code class="xref py py-meth docutils literal notranslate"><span class="pre">readline()</span></code> that get the
-data from a string buffer instead, and pass it as an argument.</p>
-<p>Instance method objects have attributes, too: <code class="docutils literal notranslate"><span class="pre">m.__self__</span></code> is the instance
-object with the method <code class="xref py py-meth docutils literal notranslate"><span class="pre">m()</span></code>, and <code class="docutils literal notranslate"><span class="pre">m.__func__</span></code> is the function object
-corresponding to the method.</p>
+<p>用來處理特殊抽象資料型別的一段 Python 程式碼，經常能以傳遞一個 class 來替代，此 class 模擬該資料型別的多種 method。例如，如果你有一個函式，它會從一個檔案物件來格式化某些資料，你也可以定義一個有 <code class="xref py py-meth docutils literal notranslate"><span class="pre">read()</span></code> 和 <code class="xref py py-meth docutils literal notranslate"><span class="pre">readline()</span></code> method 的 class 作為替代方式，從字串緩衝區取得資料，並將其作為引數來傳遞。</p>
+<p>實例的 method 物件也具有屬性：<code class="docutils literal notranslate"><span class="pre">m.__self__</span></code> 就是帶有 method <code class="xref py py-meth docutils literal notranslate"><span class="pre">m()</span></code> 的實例物件，而 <code class="docutils literal notranslate"><span class="pre">m.__func__</span></code> 則是該 method 所對應的函式物件。</p>
 </section>
 <section id="iterators">
-<span id="tut-iterators"></span><h2><span class="section-number">9.8. </span>Iterators<a class="headerlink" href="#iterators" title="本標題的永久連結">¶</a></h2>
-<p>By now you have probably noticed that most container objects can be looped over
-using a <a class="reference internal" href="../reference/compound_stmts.html#for"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">for</span></code></a> statement:</p>
+<span id="tut-iterators"></span><h2><span class="section-number">9.8. </span>疊代器 (Iterator)<a class="headerlink" href="#iterators" title="本標題的永久連結">¶</a></h2>
+<p>到目前為止，你可能已經注意到大多數的容器 (container) 物件都可以使用 <a class="reference internal" href="../reference/compound_stmts.html#for"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">for</span></code></a> 陳述式來進行迴圈：</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]:</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">):</span>
@@ -845,14 +553,7 @@ using a <a class="reference internal" href="../reference/compound_stmts.html#for
     <span class="nb">print</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>This style of access is clear, concise, and convenient.  The use of iterators
-pervades and unifies Python.  Behind the scenes, the <a class="reference internal" href="../reference/compound_stmts.html#for"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">for</span></code></a> statement
-calls <a class="reference internal" href="../library/functions.html#iter" title="iter"><code class="xref py py-func docutils literal notranslate"><span class="pre">iter()</span></code></a> on the container object.  The function returns an iterator
-object that defines the method <a class="reference internal" href="../library/stdtypes.html#iterator.__next__" title="iterator.__next__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__next__()</span></code></a> which accesses
-elements in the container one at a time.  When there are no more elements,
-<a class="reference internal" href="../library/stdtypes.html#iterator.__next__" title="iterator.__next__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__next__()</span></code></a> raises a <a class="reference internal" href="../library/exceptions.html#StopIteration" title="StopIteration"><code class="xref py py-exc docutils literal notranslate"><span class="pre">StopIteration</span></code></a> exception which tells the
-<code class="xref std std-keyword docutils literal notranslate"><span class="pre">for</span></code> loop to terminate.  You can call the <a class="reference internal" href="../library/stdtypes.html#iterator.__next__" title="iterator.__next__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__next__()</span></code></a> method
-using the <a class="reference internal" href="../library/functions.html#next" title="next"><code class="xref py py-func docutils literal notranslate"><span class="pre">next()</span></code></a> built-in function; this example shows how it all works:</p>
+<p>這種存取風格清晰、簡潔且方便。疊代器的使用在 Python 中處處可見且用法一致。在幕後，<a class="reference internal" href="../reference/compound_stmts.html#for"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">for</span></code></a> 陳述式會在容器物件上呼叫 <a class="reference internal" href="../library/functions.html#iter" title="iter"><code class="xref py py-func docutils literal notranslate"><span class="pre">iter()</span></code></a>。該函式回傳一個疊代器物件，此物件定義了 <a class="reference internal" href="../library/stdtypes.html#iterator.__next__" title="iterator.__next__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__next__()</span></code></a> method，而此 method 會逐一存取容器中的元素。當元素用盡時，<a class="reference internal" href="../library/stdtypes.html#iterator.__next__" title="iterator.__next__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__next__()</span></code></a> 將引發 <a class="reference internal" href="../library/exceptions.html#StopIteration" title="StopIteration"><code class="xref py py-exc docutils literal notranslate"><span class="pre">StopIteration</span></code></a> 例外，來通知 <code class="xref std std-keyword docutils literal notranslate"><span class="pre">for</span></code> 終止迴圈。你可以使用內建函式 <a class="reference internal" href="../library/functions.html#next" title="next"><code class="xref py py-func docutils literal notranslate"><span class="pre">next()</span></code></a> 來呼叫 <a class="reference internal" href="../library/stdtypes.html#iterator.__next__" title="iterator.__next__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__next__()</span></code></a> method；這個例子展示了它的運作方式：</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="s1">&#39;abc&#39;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">it</span> <span class="o">=</span> <span class="nb">iter</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">it</span>
@@ -870,10 +571,7 @@ using the <a class="reference internal" href="../library/functions.html#next" ti
 <span class="gr">StopIteration</span>
 </pre></div>
 </div>
-<p>Having seen the mechanics behind the iterator protocol, it is easy to add
-iterator behavior to your classes.  Define an <code class="xref py py-meth docutils literal notranslate"><span class="pre">__iter__()</span></code> method which
-returns an object with a <a class="reference internal" href="../library/stdtypes.html#iterator.__next__" title="iterator.__next__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__next__()</span></code></a> method.  If the class
-defines <code class="xref py py-meth docutils literal notranslate"><span class="pre">__next__()</span></code>, then <code class="xref py py-meth docutils literal notranslate"><span class="pre">__iter__()</span></code> can just return <code class="docutils literal notranslate"><span class="pre">self</span></code>:</p>
+<p>看過疊代器協定的幕後機制後，在你的 class 加入疊代器的行為就很容易了。定義一個 <code class="xref py py-meth docutils literal notranslate"><span class="pre">__iter__()</span></code> method 來回傳一個帶有 <a class="reference internal" href="../library/stdtypes.html#iterator.__next__" title="iterator.__next__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__next__()</span></code></a> method 的物件。如果 class 已定義了 <code class="xref py py-meth docutils literal notranslate"><span class="pre">__next__()</span></code>，則 <code class="xref py py-meth docutils literal notranslate"><span class="pre">__iter__()</span></code> 可以只回傳 <code class="docutils literal notranslate"><span class="pre">self</span></code>：</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Reverse</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Iterator for looping over a sequence backwards.&quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
@@ -904,13 +602,8 @@ defines <code class="xref py py-meth docutils literal notranslate"><span class="
 </div>
 </section>
 <section id="generators">
-<span id="tut-generators"></span><h2><span class="section-number">9.9. </span>Generators<a class="headerlink" href="#generators" title="本標題的永久連結">¶</a></h2>
-<p><a class="reference internal" href="../glossary.html#term-generator"><span class="xref std std-term">Generators</span></a> are a simple and powerful tool for creating iterators.  They
-are written like regular functions but use the <a class="reference internal" href="../reference/simple_stmts.html#yield"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">yield</span></code></a> statement
-whenever they want to return data.  Each time <a class="reference internal" href="../library/functions.html#next" title="next"><code class="xref py py-func docutils literal notranslate"><span class="pre">next()</span></code></a> is called on it, the
-generator resumes where it left off (it remembers all the data values and which
-statement was last executed).  An example shows that generators can be trivially
-easy to create:</p>
+<span id="tut-generators"></span><h2><span class="section-number">9.9. </span>產生器 (Generator)<a class="headerlink" href="#generators" title="本標題的永久連結">¶</a></h2>
+<p><a class="reference internal" href="../glossary.html#term-generator"><span class="xref std std-term">產生器</span></a>是一個用於建立疊代器的簡單而強大的工具。它們的寫法和常規的函式一樣，但當它們要回傳資料時，會使用 <a class="reference internal" href="../reference/simple_stmts.html#yield"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">yield</span></code></a> 陳述式。每次在產生器上呼叫 <a class="reference internal" href="../library/functions.html#next" title="next"><code class="xref py py-func docutils literal notranslate"><span class="pre">next()</span></code></a> 時，它會從上次離開的位置恢復執行（它會記得所有資料值以及上一個被執行的陳述式）。以下範例顯示，建立產生器可以相當地容易：</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">reverse</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
     <span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
         <span class="k">yield</span> <span class="n">data</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
@@ -925,28 +618,14 @@ easy to create:</p>
 <span class="go">g</span>
 </pre></div>
 </div>
-<p>Anything that can be done with generators can also be done with class-based
-iterators as described in the previous section.  What makes generators so
-compact is that the <code class="xref py py-meth docutils literal notranslate"><span class="pre">__iter__()</span></code> and <a class="reference internal" href="../reference/expressions.html#generator.__next__" title="generator.__next__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__next__()</span></code></a> methods
-are created automatically.</p>
-<p>Another key feature is that the local variables and execution state are
-automatically saved between calls.  This made the function easier to write and
-much more clear than an approach using instance variables like <code class="docutils literal notranslate"><span class="pre">self.index</span></code>
-and <code class="docutils literal notranslate"><span class="pre">self.data</span></code>.</p>
-<p>In addition to automatic method creation and saving program state, when
-generators terminate, they automatically raise <a class="reference internal" href="../library/exceptions.html#StopIteration" title="StopIteration"><code class="xref py py-exc docutils literal notranslate"><span class="pre">StopIteration</span></code></a>. In
-combination, these features make it easy to create iterators with no more effort
-than writing a regular function.</p>
+<p>任何可以用產生器來完成的事，也能用以 class 為基礎的疊代器來完成，如同前一節的描述。而讓產生器的程式碼更為精簡的原因是，<code class="xref py py-meth docutils literal notranslate"><span class="pre">__iter__()</span></code> 和 <a class="reference internal" href="../reference/expressions.html#generator.__next__" title="generator.__next__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__next__()</span></code></a> method 會自動被建立。</p>
+<p>另一個關鍵的特性在於，區域變數和執行狀態會在每次呼叫之間自動被儲存。這使得該函式比使用 <code class="docutils literal notranslate"><span class="pre">self.index</span></code> 和 <code class="docutils literal notranslate"><span class="pre">self.data</span></code> 這種實例變數的方式更容易編寫且更為清晰。</p>
+<p>除了會自動建立 method 和儲存程式狀態，當產生器終止時，它們還會自動引發 <a class="reference internal" href="../library/exceptions.html#StopIteration" title="StopIteration"><code class="xref py py-exc docutils literal notranslate"><span class="pre">StopIteration</span></code></a>。這些特性結合在一起，使建立疊代器能與編寫常規函式一樣容易。</p>
 </section>
 <section id="generator-expressions">
-<span id="tut-genexps"></span><h2><span class="section-number">9.10. </span>Generator Expressions<a class="headerlink" href="#generator-expressions" title="本標題的永久連結">¶</a></h2>
-<p>Some simple generators can be coded succinctly as expressions using a syntax
-similar to list comprehensions but with parentheses instead of square brackets.
-These expressions are designed for situations where the generator is used right
-away by an enclosing function.  Generator expressions are more compact but less
-versatile than full generator definitions and tend to be more memory friendly
-than equivalent list comprehensions.</p>
-<p>Examples:</p>
+<span id="tut-genexps"></span><h2><span class="section-number">9.10. </span>產生器運算式<a class="headerlink" href="#generator-expressions" title="本標題的永久連結">¶</a></h2>
+<p>某些簡單的產生器可以寫成如運算式一般的簡潔程式碼，所用的語法類似 list comprehension（串列綜合運算），但外層為括號而非方括號。這種運算式被設計用於產生器將立即被外圍函式 (enclosing function) 所使用的情況。產生器運算式與完整的產生器定義相比，程式碼較精簡但功能較少，也比等效的 list comprehension 更為節省記憶體。</p>
+<p>例如：</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">sum</span><span class="p">(</span><span class="n">i</span><span class="o">*</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>                 <span class="c1"># sum of squares</span>
 <span class="go">285</span>
 
@@ -967,11 +646,7 @@ than equivalent list comprehensions.</p>
 <p class="rubric">註解</p>
 <dl class="footnote brackets">
 <dt class="label" id="id2"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
-<dd><p>Except for one thing.  Module objects have a secret read-only attribute called
-<a class="reference internal" href="../library/stdtypes.html#object.__dict__" title="object.__dict__"><code class="xref py py-attr docutils literal notranslate"><span class="pre">__dict__</span></code></a> which returns the dictionary used to implement the module's
-namespace; the name <a class="reference internal" href="../library/stdtypes.html#object.__dict__" title="object.__dict__"><code class="xref py py-attr docutils literal notranslate"><span class="pre">__dict__</span></code></a> is an attribute but not a global name.
-Obviously, using this violates the abstraction of namespace implementation, and
-should be restricted to things like post-mortem debuggers.</p>
+<dd><p>有一個例外。模組物件有一個秘密的唯讀屬性，稱為 <a class="reference internal" href="../library/stdtypes.html#object.__dict__" title="object.__dict__"><code class="xref py py-attr docutils literal notranslate"><span class="pre">__dict__</span></code></a>，它回傳用於實作模組命名空間的 dictionary；<a class="reference internal" href="../library/stdtypes.html#object.__dict__" title="object.__dict__"><code class="xref py py-attr docutils literal notranslate"><span class="pre">__dict__</span></code></a> 這個名稱是一個屬性但不是全域名稱。顯然，使用此屬性將違反命名空間實作的抽象化，而應該僅限用於事後除錯器 (post-mortem debugger) 之類的東西。</p>
 </dd>
 </dl>
 </section>
@@ -986,30 +661,30 @@ should be restricted to things like post-mortem debuggers.</p>
         <div class="sphinxsidebarwrapper">
   <h3><a href="../contents.html">目錄</a></h3>
   <ul>
-<li><a class="reference internal" href="#">9. Classes</a><ul>
-<li><a class="reference internal" href="#a-word-about-names-and-objects">9.1. A Word About Names and Objects</a></li>
-<li><a class="reference internal" href="#python-scopes-and-namespaces">9.2. Python Scopes and Namespaces</a><ul>
-<li><a class="reference internal" href="#scopes-and-namespaces-example">9.2.1. Scopes and Namespaces Example</a></li>
+<li><a class="reference internal" href="#">9. Class（類別）</a><ul>
+<li><a class="reference internal" href="#a-word-about-names-and-objects">9.1. 關於名稱與物件的一段話</a></li>
+<li><a class="reference internal" href="#python-scopes-and-namespaces">9.2. Python 作用域 (Scope) 及命名空間 (Namespace)</a><ul>
+<li><a class="reference internal" href="#scopes-and-namespaces-example">9.2.1. 作用域和命名空間的範例</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#a-first-look-at-classes">9.3. A First Look at Classes</a><ul>
-<li><a class="reference internal" href="#class-definition-syntax">9.3.1. Class Definition Syntax</a></li>
-<li><a class="reference internal" href="#class-objects">9.3.2. Class Objects</a></li>
-<li><a class="reference internal" href="#instance-objects">9.3.3. Instance Objects</a></li>
-<li><a class="reference internal" href="#method-objects">9.3.4. Method Objects</a></li>
-<li><a class="reference internal" href="#class-and-instance-variables">9.3.5. Class and Instance Variables</a></li>
+<li><a class="reference internal" href="#a-first-look-at-classes">9.3. 初見 class</a><ul>
+<li><a class="reference internal" href="#class-definition-syntax">9.3.1. Class definition（類別定義）語法</a></li>
+<li><a class="reference internal" href="#class-objects">9.3.2. Class 物件</a></li>
+<li><a class="reference internal" href="#instance-objects">9.3.3. 實例物件</a></li>
+<li><a class="reference internal" href="#method-objects">9.3.4. Method 物件</a></li>
+<li><a class="reference internal" href="#class-and-instance-variables">9.3.5. Class 及實例變數</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#random-remarks">9.4. Random Remarks</a></li>
-<li><a class="reference internal" href="#inheritance">9.5. Inheritance</a><ul>
-<li><a class="reference internal" href="#multiple-inheritance">9.5.1. Multiple Inheritance</a></li>
+<li><a class="reference internal" href="#random-remarks">9.4. 隨意的備註</a></li>
+<li><a class="reference internal" href="#inheritance">9.5. 繼承 (Inheritance)</a><ul>
+<li><a class="reference internal" href="#multiple-inheritance">9.5.1. 多重繼承</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#private-variables">9.6. Private Variables</a></li>
-<li><a class="reference internal" href="#odds-and-ends">9.7. Odds and Ends</a></li>
-<li><a class="reference internal" href="#iterators">9.8. Iterators</a></li>
-<li><a class="reference internal" href="#generators">9.9. Generators</a></li>
-<li><a class="reference internal" href="#generator-expressions">9.10. Generator Expressions</a></li>
+<li><a class="reference internal" href="#private-variables">9.6. 私有變數</a></li>
+<li><a class="reference internal" href="#odds-and-ends">9.7. 補充說明</a></li>
+<li><a class="reference internal" href="#iterators">9.8. 疊代器 (Iterator)</a></li>
+<li><a class="reference internal" href="#generators">9.9. 產生器 (Generator)</a></li>
+<li><a class="reference internal" href="#generator-expressions">9.10. 產生器運算式</a></li>
 </ul>
 </li>
 </ul>
@@ -1067,7 +742,7 @@ should be restricted to things like post-mortem debuggers.</p>
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 教學</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href=""><span class="section-number">9. </span>Classes</a></li>
+        <li class="nav-item nav-item-this"><a href=""><span class="section-number">9. </span>Class（類別）</a></li>
                 <li class="right">
                     
 
@@ -1099,7 +774,7 @@ should be restricted to things like post-mortem debuggers.</p>
 <br />
     <br />
 
-    最後更新於 9月 17, 2021。
+    最後更新於 9月 27, 2021。
     <a href="https://docs.python.org/3/bugs.html">Found a bug</a>?
     <br />
 

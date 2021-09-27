@@ -948,7 +948,7 @@ standard library's <a class="reference internal" href="queue.html#module-queue" 
 <dd><p>Return the approximate size of the queue.  Because of
 multithreading/multiprocessing semantics, this number is not reliable.</p>
 <p>Note that this may raise <a class="reference internal" href="exceptions.html#NotImplementedError" title="NotImplementedError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">NotImplementedError</span></code></a> on Unix platforms like
-Mac OS X where <code class="docutils literal notranslate"><span class="pre">sem_getvalue()</span></code> is not implemented.</p>
+macOS where <code class="docutils literal notranslate"><span class="pre">sem_getvalue()</span></code> is not implemented.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -1144,7 +1144,8 @@ already finished.</p>
 <p>This number is not equivalent to the number of CPUs the current process can
 use.  The number of usable CPUs can be obtained with
 <code class="docutils literal notranslate"><span class="pre">len(os.sched_getaffinity(0))</span></code></p>
-<p>May raise <a class="reference internal" href="exceptions.html#NotImplementedError" title="NotImplementedError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">NotImplementedError</span></code></a>.</p>
+<p>When the number of CPUs cannot be determined a <a class="reference internal" href="exceptions.html#NotImplementedError" title="NotImplementedError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">NotImplementedError</span></code></a>
+is raised.</p>
 <div class="admonition seealso">
 <p class="admonition-title">也參考</p>
 <p><a class="reference internal" href="os.html#os.cpu_count" title="os.cpu_count"><code class="xref py py-func docutils literal notranslate"><span class="pre">os.cpu_count()</span></code></a></p>
@@ -1232,12 +1233,17 @@ returned.  If the start method has not been fixed and <em>allow_none</em>
 is true then <code class="docutils literal notranslate"><span class="pre">None</span></code> is returned.</p>
 <p>The return value can be <code class="docutils literal notranslate"><span class="pre">'fork'</span></code>, <code class="docutils literal notranslate"><span class="pre">'spawn'</span></code>, <code class="docutils literal notranslate"><span class="pre">'forkserver'</span></code>
 or <code class="docutils literal notranslate"><span class="pre">None</span></code>.  <code class="docutils literal notranslate"><span class="pre">'fork'</span></code> is the default on Unix, while <code class="docutils literal notranslate"><span class="pre">'spawn'</span></code> is
-the default on Windows.</p>
+the default on Windows and macOS.</p>
+</dd></dl>
+
+<div class="versionchanged">
+<p><span class="versionmodified changed">在 3.8 版本變更: </span>On macOS, the <em>spawn</em> start method is now the default.  The <em>fork</em> start
+method should be considered unsafe as it can lead to crashes of the
+subprocess. See <a class="reference external" href="https://bugs.python.org/issue33725">bpo-33725</a>.</p>
 <div class="versionadded">
 <p><span class="versionmodified added">在 3.4 版本新加入.</span></p>
 </div>
-</dd></dl>
-
+</div>
 <dl class="py function">
 <dt class="sig sig-object py" id="multiprocessing.set_executable">
 <span class="sig-prename descclassname"><span class="pre">multiprocessing.</span></span><span class="sig-name descname"><span class="pre">set_executable</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#multiprocessing.set_executable" title="本定義的永久連結">¶</a></dt>
@@ -1441,7 +1447,7 @@ object -- see <a class="reference internal" href="#multiprocessing-managers"><sp
 first argument is named <em>block</em>, as is consistent with <a class="reference internal" href="#multiprocessing.Lock.acquire" title="multiprocessing.Lock.acquire"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Lock.acquire()</span></code></a>.</p>
 <div class="admonition note">
 <p class="admonition-title">備註</p>
-<p>On Mac OS X, this is indistinguishable from <a class="reference internal" href="#multiprocessing.Semaphore" title="multiprocessing.Semaphore"><code class="xref py py-class docutils literal notranslate"><span class="pre">Semaphore</span></code></a> because
+<p>On macOS, this is indistinguishable from <a class="reference internal" href="#multiprocessing.Semaphore" title="multiprocessing.Semaphore"><code class="xref py py-class docutils literal notranslate"><span class="pre">Semaphore</span></code></a> because
 <code class="docutils literal notranslate"><span class="pre">sem_getvalue()</span></code> is not implemented on that platform.</p>
 </div>
 </dd></dl>
@@ -1580,7 +1586,7 @@ first argument is named <em>block</em>, as is consistent with <a class="referenc
 
 <div class="admonition note">
 <p class="admonition-title">備註</p>
-<p>On Mac OS X, <code class="docutils literal notranslate"><span class="pre">sem_timedwait</span></code> is unsupported, so calling <code class="docutils literal notranslate"><span class="pre">acquire()</span></code> with
+<p>On macOS, <code class="docutils literal notranslate"><span class="pre">sem_timedwait</span></code> is unsupported, so calling <code class="docutils literal notranslate"><span class="pre">acquire()</span></code> with
 a timeout will emulate that function's behavior using a sleeping loop.</p>
 </div>
 <div class="admonition note">
@@ -3604,7 +3610,7 @@ processes and collect the results:</p>
 <br />
     <br />
 
-    最後更新於 9月 17, 2021。
+    最後更新於 9月 27, 2021。
     <a href="https://docs.python.org/3/bugs.html">Found a bug</a>?
     <br />
 
