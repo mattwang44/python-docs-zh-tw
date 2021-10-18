@@ -9,7 +9,7 @@
     <title>sqlite3 --- DB-API 2.0 interface for SQLite databases &#8212; Python 3.9.7 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2021.8" />
+    <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2021.11.1" />
     
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -834,8 +834,8 @@ dictionary-based approach or even a db_row based solution.</p>
 <span class="sig-name descname"><span class="pre">text_factory</span></span><a class="headerlink" href="#sqlite3.Connection.text_factory" title="本定義的永久連結">¶</a></dt>
 <dd><p>Using this attribute you can control what objects are returned for the <code class="docutils literal notranslate"><span class="pre">TEXT</span></code>
 data type. By default, this attribute is set to <a class="reference internal" href="stdtypes.html#str" title="str"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a> and the
-<a class="reference internal" href="#module-sqlite3" title="sqlite3: A DB-API 2.0 implementation using SQLite 3.x."><code class="xref py py-mod docutils literal notranslate"><span class="pre">sqlite3</span></code></a> module will return Unicode objects for <code class="docutils literal notranslate"><span class="pre">TEXT</span></code>. If you want to
-return bytestrings instead, you can set it to <a class="reference internal" href="stdtypes.html#bytes" title="bytes"><code class="xref py py-class docutils literal notranslate"><span class="pre">bytes</span></code></a>.</p>
+<a class="reference internal" href="#module-sqlite3" title="sqlite3: A DB-API 2.0 implementation using SQLite 3.x."><code class="xref py py-mod docutils literal notranslate"><span class="pre">sqlite3</span></code></a> module will return <a class="reference internal" href="stdtypes.html#str" title="str"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a> objects for <code class="docutils literal notranslate"><span class="pre">TEXT</span></code>.
+If you want to return <a class="reference internal" href="stdtypes.html#bytes" title="bytes"><code class="xref py py-class docutils literal notranslate"><span class="pre">bytes</span></code></a> instead, you can set it to <a class="reference internal" href="stdtypes.html#bytes" title="bytes"><code class="xref py py-class docutils literal notranslate"><span class="pre">bytes</span></code></a>.</p>
 <p>You can also set it to any other callable that accepts a single bytestring
 parameter and returns the resulting object.</p>
 <p>See the following example code for illustration:</p>
@@ -844,9 +844,9 @@ parameter and returns the resulting object.</p>
 <span class="n">con</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;:memory:&quot;</span><span class="p">)</span>
 <span class="n">cur</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
 
-<span class="n">AUSTRIA</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\xd6</span><span class="s2">sterreich&quot;</span>
+<span class="n">AUSTRIA</span> <span class="o">=</span> <span class="s2">&quot;Österreich&quot;</span>
 
-<span class="c1"># by default, rows are returned as Unicode</span>
+<span class="c1"># by default, rows are returned as str</span>
 <span class="n">cur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;select ?&quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">AUSTRIA</span><span class="p">,))</span>
 <span class="n">row</span> <span class="o">=</span> <span class="n">cur</span><span class="o">.</span><span class="n">fetchone</span><span class="p">()</span>
 <span class="k">assert</span> <span class="n">row</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">AUSTRIA</span>
@@ -1825,7 +1825,7 @@ configure.</p>
 <br />
     <br />
 
-    最後更新於 9月 27, 2021。
+    最後更新於 10月 18, 2021。
     <a href="https://docs.python.org/3/bugs.html">Found a bug</a>?
     <br />
 

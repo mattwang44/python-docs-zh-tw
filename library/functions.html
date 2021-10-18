@@ -9,7 +9,7 @@
     <title>內建函式 &#8212; Python 3.9.7 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2021.8" />
+    <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2021.11.1" />
     
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -1478,8 +1478,8 @@ equivalent to using the power operator: <code class="docutils literal notranslat
 coercion rules for binary arithmetic operators apply.  For <a class="reference internal" href="#int" title="int"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>
 operands, the result has the same type as the operands (after coercion)
 unless the second argument is negative; in that case, all arguments are
-converted to float and a float result is delivered.  For example, <code class="docutils literal notranslate"><span class="pre">10**2</span></code>
-returns <code class="docutils literal notranslate"><span class="pre">100</span></code>, but <code class="docutils literal notranslate"><span class="pre">10**-2</span></code> returns <code class="docutils literal notranslate"><span class="pre">0.01</span></code>.</p>
+converted to float and a float result is delivered.  For example, <code class="docutils literal notranslate"><span class="pre">pow(10,</span> <span class="pre">2)</span></code>
+returns <code class="docutils literal notranslate"><span class="pre">100</span></code>, but <code class="docutils literal notranslate"><span class="pre">pow(10,</span> <span class="pre">-2)</span></code> returns <code class="docutils literal notranslate"><span class="pre">0.01</span></code>.</p>
 <p>For <a class="reference internal" href="#int" title="int"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a> operands <em>base</em> and <em>exp</em>, if <em>mod</em> is present, <em>mod</em> must
 also be of integer type and <em>mod</em> must be nonzero. If <em>mod</em> is present and
 <em>exp</em> is negative, <em>base</em> must be relatively prime to <em>mod</em>. In that case,
@@ -1688,12 +1688,12 @@ compilation time, one must manually mangle a private attribute's
 <em class="property"><span class="pre">class</span> </em><span class="sig-name descname"><span class="pre">slice</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stop</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#slice" title="本定義的永久連結">¶</a></dt>
 <dt class="sig sig-object py">
 <em class="property"><span class="pre">class</span> </em><span class="sig-name descname"><span class="pre">slice</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">start</span></em>, <em class="sig-param"><span class="pre">stop</span></em><span class="optional">[</span>, <em class="sig-param"><span class="pre">step</span></em><span class="optional">]</span><span class="sig-paren">)</span></dt>
-<dd><p id="index-9">Return a <a class="reference internal" href="../glossary.html#term-slice"><span class="xref std std-term">slice</span></a> object representing the set of indices specified by
+<dd><p>Return a <a class="reference internal" href="../glossary.html#term-slice"><span class="xref std std-term">slice</span></a> object representing the set of indices specified by
 <code class="docutils literal notranslate"><span class="pre">range(start,</span> <span class="pre">stop,</span> <span class="pre">step)</span></code>.  The <em>start</em> and <em>step</em> arguments default to
 <code class="docutils literal notranslate"><span class="pre">None</span></code>.  Slice objects have read-only data attributes <code class="xref py py-attr docutils literal notranslate"><span class="pre">start</span></code>,
 <code class="xref py py-attr docutils literal notranslate"><span class="pre">stop</span></code> and <code class="xref py py-attr docutils literal notranslate"><span class="pre">step</span></code> which merely return the argument
 values (or their default).  They have no other explicit functionality;
-however they are used by Numerical Python and other third party extensions.
+however they are used by NumPy and other third party packages.
 Slice objects are also generated when extended indexing syntax is used.  For
 example: <code class="docutils literal notranslate"><span class="pre">a[start:stop:step]</span></code> or <code class="docutils literal notranslate"><span class="pre">a[start:stop,</span> <span class="pre">i]</span></code>.  See
 <a class="reference internal" href="itertools.html#itertools.islice" title="itertools.islice"><code class="xref py py-func docutils literal notranslate"><span class="pre">itertools.islice()</span></code></a> for an alternate version that returns an iterator.</p>
@@ -1717,7 +1717,7 @@ compare equal --- this is helpful for sorting in multiple passes (for
 example, sort by department, then by salary grade).</p>
 <p>The sort algorithm uses only <code class="docutils literal notranslate"><span class="pre">&lt;</span></code> comparisons between items.  While
 defining an <a class="reference internal" href="../reference/datamodel.html#object.__lt__" title="object.__lt__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__lt__()</span></code></a> method will suffice for sorting,
-<span class="target" id="index-10"></span><a class="pep reference external" href="https://www.python.org/dev/peps/pep-0008"><strong>PEP 8</strong></a> recommends that all six <a class="reference internal" href="../reference/expressions.html#comparisons"><span class="std std-ref">rich comparisons</span></a> be implemented.  This will help avoid bugs when using
+<span class="target" id="index-9"></span><a class="pep reference external" href="https://www.python.org/dev/peps/pep-0008"><strong>PEP 8</strong></a> recommends that all six <a class="reference internal" href="../reference/expressions.html#comparisons"><span class="std std-ref">rich comparisons</span></a> be implemented.  This will help avoid bugs when using
 the same data with other ordering tools such as <a class="reference internal" href="#max" title="max"><code class="xref py py-func docutils literal notranslate"><span class="pre">max()</span></code></a> that rely
 on a different underlying method.  Implementing all six comparisons
 also helps avoid confusion for mixed type comparisons which can call
@@ -1755,7 +1755,7 @@ method.  For these cases, use this idiom:</p>
 <p>For more information on static methods, see <a class="reference internal" href="../reference/datamodel.html#types"><span class="std std-ref">The standard type hierarchy</span></a>.</p>
 </dd></dl>
 
-<span class="target" id="func-str"><span id="index-11"></span></span><dl class="py class">
+<span class="target" id="func-str"><span id="index-10"></span></span><dl class="py class">
 <dt class="sig sig-object py">
 <em class="property"><span class="pre">class</span> </em><span class="sig-name descname"><span class="pre">str</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">object</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span></dt>
 <dt class="sig sig-object py">
@@ -1852,7 +1852,7 @@ sequence type, as documented in <a class="reference internal" href="stdtypes.htm
 <em class="property"><span class="pre">class</span> </em><span class="sig-name descname"><span class="pre">type</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">object</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#type" title="本定義的永久連結">¶</a></dt>
 <dt class="sig sig-object py">
 <em class="property"><span class="pre">class</span> </em><span class="sig-name descname"><span class="pre">type</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bases</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwds</span></span></em><span class="sig-paren">)</span></dt>
-<dd><p id="index-12">With one argument, return the type of an <em>object</em>.  The return value is a
+<dd><p id="index-11">With one argument, return the type of an <em>object</em>.  The return value is a
 type object and generally the same object as returned by
 <a class="reference internal" href="stdtypes.html#instance.__class__" title="instance.__class__"><code class="xref py py-attr docutils literal notranslate"><span class="pre">object.__class__</span></code></a>.</p>
 <p>The <a class="reference internal" href="#isinstance" title="isinstance"><code class="xref py py-func docutils literal notranslate"><span class="pre">isinstance()</span></code></a> built-in function is recommended for testing the type
@@ -1949,7 +1949,7 @@ list:</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="import__">
 <span id="__import__"></span><span class="sig-name descname"><span class="pre">__import__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">globals</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">locals</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fromlist</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">level</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#import__" title="本定義的永久連結">¶</a></dt>
-<dd><div class="admonition note" id="index-13">
+<dd><div class="admonition note" id="index-12">
 <p class="admonition-title">備註</p>
 <p>This is an advanced function that is not needed in everyday Python
 programming, unlike <a class="reference internal" href="importlib.html#importlib.import_module" title="importlib.import_module"><code class="xref py py-func docutils literal notranslate"><span class="pre">importlib.import_module()</span></code></a>.</p>
@@ -1958,7 +1958,7 @@ programming, unlike <a class="reference internal" href="importlib.html#importlib
 replaced (by importing the <a class="reference internal" href="builtins.html#module-builtins" title="builtins: The module that provides the built-in namespace."><code class="xref py py-mod docutils literal notranslate"><span class="pre">builtins</span></code></a> module and assigning to
 <code class="docutils literal notranslate"><span class="pre">builtins.__import__</span></code>) in order to change semantics of the
 <code class="xref std std-keyword docutils literal notranslate"><span class="pre">import</span></code> statement, but doing so is <strong>strongly</strong> discouraged as it
-is usually simpler to use import hooks (see <span class="target" id="index-14"></span><a class="pep reference external" href="https://www.python.org/dev/peps/pep-0302"><strong>PEP 302</strong></a>) to attain the same
+is usually simpler to use import hooks (see <span class="target" id="index-13"></span><a class="pep reference external" href="https://www.python.org/dev/peps/pep-0302"><strong>PEP 302</strong></a>) to attain the same
 goals and does not cause issues with code which assumes the default import
 implementation is in use.  Direct use of <a class="reference internal" href="#import__" title="__import__"><code class="xref py py-func docutils literal notranslate"><span class="pre">__import__()</span></code></a> is also
 discouraged in favor of <a class="reference internal" href="importlib.html#importlib.import_module" title="importlib.import_module"><code class="xref py py-func docutils literal notranslate"><span class="pre">importlib.import_module()</span></code></a>.</p>
@@ -1971,7 +1971,7 @@ determine the package context of the <a class="reference internal" href="../refe
 <p><em>level</em> specifies whether to use absolute or relative imports. <code class="docutils literal notranslate"><span class="pre">0</span></code> (the
 default) means only perform absolute imports.  Positive values for
 <em>level</em> indicate the number of parent directories to search relative to the
-directory of the module calling <a class="reference internal" href="#import__" title="__import__"><code class="xref py py-func docutils literal notranslate"><span class="pre">__import__()</span></code></a> (see <span class="target" id="index-15"></span><a class="pep reference external" href="https://www.python.org/dev/peps/pep-0328"><strong>PEP 328</strong></a> for the
+directory of the module calling <a class="reference internal" href="#import__" title="__import__"><code class="xref py py-func docutils literal notranslate"><span class="pre">__import__()</span></code></a> (see <span class="target" id="index-14"></span><a class="pep reference external" href="https://www.python.org/dev/peps/pep-0328"><strong>PEP 328</strong></a> for the
 details).</p>
 <p>When the <em>name</em> variable is of the form <code class="docutils literal notranslate"><span class="pre">package.module</span></code>, normally, the
 top-level package (the name up till the first dot) is returned, <em>not</em> the
@@ -2006,7 +2006,7 @@ the default value to 0).</p>
 </div>
 <div class="versionchanged">
 <p><span class="versionmodified changed">在 3.9 版本變更: </span>When the command line options <a class="reference internal" href="../using/cmdline.html#cmdoption-E"><code class="xref std std-option docutils literal notranslate"><span class="pre">-E</span></code></a> or <a class="reference internal" href="../using/cmdline.html#cmdoption-I"><code class="xref std std-option docutils literal notranslate"><span class="pre">-I</span></code></a> are being used,
-the environment variable <span class="target" id="index-16"></span><a class="reference internal" href="../using/cmdline.html#envvar-PYTHONCASEOK"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PYTHONCASEOK</span></code></a> is now ignored.</p>
+the environment variable <span class="target" id="index-15"></span><a class="reference internal" href="../using/cmdline.html#envvar-PYTHONCASEOK"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PYTHONCASEOK</span></code></a> is now ignored.</p>
 </div>
 </dd></dl>
 
@@ -2112,7 +2112,7 @@ mode to convert Windows or Mac-style newlines.</p>
 <br />
     <br />
 
-    最後更新於 9月 27, 2021。
+    最後更新於 10月 18, 2021。
     <a href="https://docs.python.org/3/bugs.html">Found a bug</a>?
     <br />
 
