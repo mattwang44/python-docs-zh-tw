@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>6. 模組 &#8212; Python 3.9.7 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>6. 模組 (Module) &#8212; Python 3.9.7 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2021.11.1" />
@@ -74,7 +74,7 @@
             <div class="language_switcher_placeholder"></div>
   <h3><a href="../contents.html">目錄</a></h3>
   <ul>
-<li><a class="reference internal" href="#">6. 模組</a><ul>
+<li><a class="reference internal" href="#">6. 模組 (Module)</a><ul>
 <li><a class="reference internal" href="#more-on-modules">6.1. 深入了解模組</a><ul>
 <li><a class="reference internal" href="#executing-modules-as-scripts">6.1.1. 把模組當作腳本執行</a></li>
 <li><a class="reference internal" href="#the-module-search-path">6.1.2. 模組的搜尋路徑</a></li>
@@ -147,7 +147,7 @@
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Python 教學</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href=""><span class="section-number">6. </span>模組</a></li>
+        <li class="nav-item nav-item-this"><a href=""><span class="section-number">6. </span>模組 (Module)</a></li>
                 <li class="right">
                     
 
@@ -171,7 +171,7 @@
           <div class="body" role="main">
             
   <section id="modules">
-<span id="tut-modules"></span><h1><span class="section-number">6. </span>模組<a class="headerlink" href="#modules" title="本標題的永久連結">¶</a></h1>
+<span id="tut-modules"></span><h1><span class="section-number">6. </span>模組 (Module)<a class="headerlink" href="#modules" title="本標題的永久連結">¶</a></h1>
 <p>如果從 Python 直譯器離開後又再次進入，之前（幫函式或變數）做的定義都會消失。因此，想要寫一些比較長的程式時，你最好使用編輯器來準備要輸入給直譯器的內容，並且用該檔案來運行它。這就是一個<em>腳本 (script)</em>。隨著你的程式越變越長，你可能會想要把它分開成幾個檔案，讓它比較好維護。你可能也會想用一個你之前已經在其他程式寫好的函式，但不想要複製該函式的原始定義到所有使用它的程式裡。</p>
 <p>為了支援這一點，Python 有一種方法可以將定義放入檔案中，並在互動模式下的直譯器中使用它們。這種檔案稱為<em>模組 (module)</em>；模組中的定義可以被 <em>import</em> 到其他模組中，或是被 <em>import</em> 至<em>主 (main)</em> 模組（在最頂層執行的腳本，以及互動模式下，所使用的變數集合）。</p>
 <p>模組是指包含 Python 定義和語句的檔案，檔案名稱是模組名稱加上 <code class="file docutils literal notranslate"><span class="pre">.py</span></code>。在模組中，模組的名稱（作為字串）會是全域變數 <code class="docutils literal notranslate"><span class="pre">__name__</span></code> 的值。例如，用您喜歡的文字編輯器在資料夾中創一個名為 <code class="file docutils literal notranslate"><span class="pre">fibo.py</span></code> 的檔案，內容如下：</p>
@@ -279,8 +279,7 @@
 <ul class="simple">
 <li><p>輸入腳本所位在的資料夾（如未指定檔案時，則是當前資料夾）。</p></li>
 <li><p><span class="target" id="index-14"></span><a class="reference internal" href="../using/cmdline.html#envvar-PYTHONPATH"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PYTHONPATH</span></code></a>（一連串和 shell 變數 <span class="target" id="index-15"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PATH</span></code> 的語法相同的資料夾名稱）。</p></li>
-<li><p>The installation-dependent default (by convention including a
-<code class="docutils literal notranslate"><span class="pre">site-packages</span></code> directory, handled by the <a class="reference internal" href="../library/site.html#module-site" title="site: Module responsible for site-specific configuration."><code class="xref py py-mod docutils literal notranslate"><span class="pre">site</span></code></a> module).</p></li>
+<li><p>與安裝相關的預設值（按慣例會包含一個 <code class="docutils literal notranslate"><span class="pre">site-packages</span></code> 資料夾，它是由 <a class="reference internal" href="../library/site.html#module-site" title="site: Module responsible for site-specific configuration."><code class="xref py py-mod docutils literal notranslate"><span class="pre">site</span></code></a> 模組所處理）。</p></li>
 </ul>
 <div class="admonition note">
 <p class="admonition-title">備註</p>
@@ -295,7 +294,7 @@
 <p>Python 在兩種情況下不檢查快取 (cache)。首先，它總是重新編譯且不儲存直接從命令列載入的模組的結果。第二，如果沒有源模組，則不會檢查快取。要支援非源模組（僅編譯）的發布，編譯後的模組必須位於原始資料夾中，並且不能有源模組。</p>
 <p>一些給專家的秘訣：</p>
 <ul class="simple">
-<li><p>可以在 Python 指令上使用開關參數 (switch) <a class="reference internal" href="../using/cmdline.html#cmdoption-O"><code class="xref std std-option docutils literal notranslate"><span class="pre">-O</span></code></a> 或 <a class="reference internal" href="../using/cmdline.html#cmdoption-OO"><code class="xref std std-option docutils literal notranslate"><span class="pre">-OO</span></code></a> 來減小已編譯模組的大小。指令參數 <code class="docutils literal notranslate"><span class="pre">-O</span></code> 刪除 assert（斷言）陳述式，<code class="docutils literal notranslate"><span class="pre">-OO</span></code> 同時刪除 assert 陳述式和 __doc__ 字串。由於有些程式可能依賴於上述這些內容，因此只有在您知道自己在做什麼時，才應使用此參數。「已優化」模組有 <code class="docutils literal notranslate"><span class="pre">opt-</span></code> 標記，且通常較小。未來的版本可能會改變優化的效果。</p></li>
+<li><p>可以在 Python 指令上使用開關參數 (switch) <a class="reference internal" href="../using/cmdline.html#cmdoption-O"><code class="xref std std-option docutils literal notranslate"><span class="pre">-O</span></code></a> 或 <a class="reference internal" href="../using/cmdline.html#cmdoption-OO"><code class="xref std std-option docutils literal notranslate"><span class="pre">-OO</span></code></a> 來減小已編譯模組的大小。開關參數 <code class="docutils literal notranslate"><span class="pre">-O</span></code> 刪除 assert（斷言）陳述式，而 <code class="docutils literal notranslate"><span class="pre">-OO</span></code> 同時刪除 assert 陳述式和 __doc__ 字串。由於有些程式可能依賴於上述這些內容，因此只有在您知道自己在做什麼時，才應使用此參數。「已優化」模組有 <code class="docutils literal notranslate"><span class="pre">opt-</span></code> 標記，且通常較小。未來的版本可能會改變優化的效果。</p></li>
 <li><p>讀取 <code class="docutils literal notranslate"><span class="pre">.pyc</span></code> 檔案時，程式的執行速度並不會比讀取 <code class="docutils literal notranslate"><span class="pre">.py</span></code> 檔案快。唯一比較快的地方是載入的速度。</p></li>
 <li><p>模組 <a class="reference internal" href="../library/compileall.html#module-compileall" title="compileall: Tools for byte-compiling all Python source files in a directory tree."><code class="xref py py-mod docutils literal notranslate"><span class="pre">compileall</span></code></a> 可以為資料夾中的所有模組創建 .pyc 檔。</p></li>
 <li><p>更多的細節，包括決策流程圖，請參考<span class="target" id="index-16"></span><a class="pep reference external" href="https://www.python.org/dev/peps/pep-3147"><strong>PEP 3147</strong></a>。</p></li>
@@ -506,7 +505,7 @@
         <div class="sphinxsidebarwrapper">
   <h3><a href="../contents.html">目錄</a></h3>
   <ul>
-<li><a class="reference internal" href="#">6. 模組</a><ul>
+<li><a class="reference internal" href="#">6. 模組 (Module)</a><ul>
 <li><a class="reference internal" href="#more-on-modules">6.1. 深入了解模組</a><ul>
 <li><a class="reference internal" href="#executing-modules-as-scripts">6.1.1. 把模組當作腳本執行</a></li>
 <li><a class="reference internal" href="#the-module-search-path">6.1.2. 模組的搜尋路徑</a></li>
@@ -578,7 +577,7 @@
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 教學</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href=""><span class="section-number">6. </span>模組</a></li>
+        <li class="nav-item nav-item-this"><a href=""><span class="section-number">6. </span>模組 (Module)</a></li>
                 <li class="right">
                     
 
@@ -610,7 +609,7 @@
 <br />
     <br />
 
-    最後更新於 10月 18, 2021。
+    最後更新於 10月 25, 2021。
     <a href="https://docs.python.org/3/bugs.html">Found a bug</a>?
     <br />
 

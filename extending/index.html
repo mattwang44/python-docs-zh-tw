@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Extending and Embedding the Python Interpreter &#8212; Python 3.9.7 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>擴充和嵌入 Python 直譯器 &#8212; Python 3.9.7 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2021.11.1" />
@@ -74,10 +74,10 @@
             <div class="language_switcher_placeholder"></div>
   <h3><a href="../contents.html">目錄</a></h3>
   <ul>
-<li><a class="reference internal" href="#">Extending and Embedding the Python Interpreter</a><ul>
-<li><a class="reference internal" href="#recommended-third-party-tools">Recommended third party tools</a></li>
-<li><a class="reference internal" href="#creating-extensions-without-third-party-tools">Creating extensions without third party tools</a></li>
-<li><a class="reference internal" href="#embedding-the-cpython-runtime-in-a-larger-application">Embedding the CPython runtime in a larger application</a></li>
+<li><a class="reference internal" href="#">擴充和嵌入 Python 直譯器</a><ul>
+<li><a class="reference internal" href="#recommended-third-party-tools">推薦的第三方工具</a></li>
+<li><a class="reference internal" href="#creating-extensions-without-third-party-tools">不使用第三方工具建立擴充</a></li>
+<li><a class="reference internal" href="#embedding-the-cpython-runtime-in-a-larger-application">在更大的應用程式中嵌入 CPython 運行環境 (runtime)</a></li>
 </ul>
 </li>
 </ul>
@@ -135,7 +135,7 @@
       <a href="../index.html">說明文件 </a> &#187;
     </li>
 
-        <li class="nav-item nav-item-this"><a href="">Extending and Embedding the Python Interpreter</a></li>
+        <li class="nav-item nav-item-this"><a href="">擴充和嵌入 Python 直譯器</a></li>
                 <li class="right">
                     
 
@@ -159,46 +159,24 @@
           <div class="body" role="main">
             
   <section id="extending-and-embedding-the-python-interpreter">
-<span id="extending-index"></span><h1>Extending and Embedding the Python Interpreter<a class="headerlink" href="#extending-and-embedding-the-python-interpreter" title="本標題的永久連結">¶</a></h1>
-<p>This document describes how to write modules in C or C++ to extend the Python
-interpreter with new modules.  Those modules can not only define new functions
-but also new object types and their methods.  The document also describes how
-to embed the Python interpreter in another application, for use as an extension
-language.  Finally, it shows how to compile and link extension modules so that
-they can be loaded dynamically (at run time) into the interpreter, if the
-underlying operating system supports this feature.</p>
-<p>This document assumes basic knowledge about Python.  For an informal
-introduction to the language, see <a class="reference internal" href="../tutorial/index.html#tutorial-index"><span class="std std-ref">Python 教學</span></a>.  <a class="reference internal" href="../reference/index.html#reference-index"><span class="std std-ref">The Python Language Reference</span></a>
-gives a more formal definition of the language.  <a class="reference internal" href="../library/index.html#library-index"><span class="std std-ref">Python 標準函式庫 (Standard Library)</span></a> documents
-the existing object types, functions and modules (both built-in and written in
-Python) that give the language its wide application range.</p>
-<p>For a detailed description of the whole Python/C API, see the separate
-<a class="reference internal" href="../c-api/index.html#c-api-index"><span class="std std-ref">Python / C API 參考手冊</span></a>.</p>
+<span id="extending-index"></span><h1>擴充和嵌入 Python 直譯器<a class="headerlink" href="#extending-and-embedding-the-python-interpreter" title="本標題的永久連結">¶</a></h1>
+<p>這份說明文件描述如何在 C 或 C++ 中編寫模組，並使用新模組來擴充 Python 直譯器功能。那些模組不僅可以定義新的函式，也可以定義新的物件型別及其方法 (method)。文件內容也會描述如何將 Python 直譯器嵌入另一個應用程式中，做為一種擴充語言 (extension language) 使用。最後，它會展示如何編譯及連結擴充模組，使那些模組可以動態地（在運行時）被載入到直譯器中，前提是底層作業系統有支援這個功能。</p>
+<p>這份說明文件假設您具備 Python 的基礎知識。關於此語言的非正式介紹，請參閱 <a class="reference internal" href="../tutorial/index.html#tutorial-index"><span class="std std-ref">Python 教學</span></a>。<a class="reference internal" href="../reference/index.html#reference-index"><span class="std std-ref">Python 語言參考手冊</span></a>給予此語言更為正式的定義。<a class="reference internal" href="../library/index.html#library-index"><span class="std std-ref">Python 標準函式庫 (Standard Library)</span></a> 記錄了賦予此語言廣泛應用範圍的物件型別、函式與（內建的和以 Python 編寫的）模組。</p>
+<p>關於完整的 Python/C API 詳細介紹，請參閱另外一份 <a class="reference internal" href="../c-api/index.html#c-api-index"><span class="std std-ref">Python/C API 參考手冊</span></a>。</p>
 <section id="recommended-third-party-tools">
-<h2>Recommended third party tools<a class="headerlink" href="#recommended-third-party-tools" title="本標題的永久連結">¶</a></h2>
-<p>This guide only covers the basic tools for creating extensions provided
-as part of this version of CPython. Third party tools like
-<a class="reference external" href="http://cython.org/">Cython</a>, <a class="reference external" href="https://cffi.readthedocs.io">cffi</a>,
-<a class="reference external" href="http://www.swig.org">SWIG</a> and <a class="reference external" href="https://numba.pydata.org/">Numba</a>
-offer both simpler and more sophisticated approaches to creating C and C++
-extensions for Python.</p>
+<h2>推薦的第三方工具<a class="headerlink" href="#recommended-third-party-tools" title="本標題的永久連結">¶</a></h2>
+<p>這份指南僅涵蓋了此 CPython 版本所提供的、用以建立擴充的基本工具。第三方工具，例如 <a class="reference external" href="http://cython.org/">Cython</a>、<a class="reference external" href="https://cffi.readthedocs.io">cffi</a>、<a class="reference external" href="http://www.swig.org">SWIG</a> 和 <a class="reference external" href="https://numba.pydata.org/">Numba</a>，提供了更為簡單及更為複雜的多種方法，來為 Python 建立 C 和 C ++ 擴充。</p>
 <div class="admonition seealso">
 <p class="admonition-title">也參考</p>
 <dl class="simple">
-<dt><a class="reference external" href="https://packaging.python.org/guides/packaging-binary-extensions/">Python Packaging User Guide: Binary Extensions</a></dt><dd><p>The Python Packaging User Guide not only covers several available
-tools that simplify the creation of binary extensions, but also
-discusses the various reasons why creating an extension module may be
-desirable in the first place.</p>
+<dt><a class="reference external" href="https://packaging.python.org/guides/packaging-binary-extensions/">Python 封裝使用者指南：二進制擴充</a></dt><dd><p>Python 封裝使用者指南 (Python Packaging User Guide) 不僅涵蓋了數個可以用來簡化二進制擴充建立過程的工具，也會討論為何建立一個擴充模組可能會是您的優先考量。</p>
 </dd>
 </dl>
 </div>
 </section>
 <section id="creating-extensions-without-third-party-tools">
-<h2>Creating extensions without third party tools<a class="headerlink" href="#creating-extensions-without-third-party-tools" title="本標題的永久連結">¶</a></h2>
-<p>This section of the guide covers creating C and C++ extensions without
-assistance from third party tools. It is intended primarily for creators
-of those tools, rather than being a recommended way to create your own
-C extensions.</p>
+<h2>不使用第三方工具建立擴充<a class="headerlink" href="#creating-extensions-without-third-party-tools" title="本標題的永久連結">¶</a></h2>
+<p>本指南中的這一節將說明，在沒有第三方工具的協助下，如何建立 C 和 C ++ 擴充。它主要是寫給使用那些工具的創作者們，而不是讓你建立自己的 C 擴充的推薦方法。</p>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="extending.html">1. 以 C 或 C++ 擴充 Python</a><ul>
@@ -249,11 +227,8 @@ C extensions.</p>
 </div>
 </section>
 <section id="embedding-the-cpython-runtime-in-a-larger-application">
-<h2>Embedding the CPython runtime in a larger application<a class="headerlink" href="#embedding-the-cpython-runtime-in-a-larger-application" title="本標題的永久連結">¶</a></h2>
-<p>Sometimes, rather than creating an extension that runs inside the Python
-interpreter as the main application, it is desirable to instead embed
-the CPython runtime inside a larger application. This section covers
-some of the details involved in doing that successfully.</p>
+<h2>在更大的應用程式中嵌入 CPython 運行環境 (runtime)<a class="headerlink" href="#embedding-the-cpython-runtime-in-a-larger-application" title="本標題的永久連結">¶</a></h2>
+<p>有時候，相較於建立一個擴充，使其在 Python 直譯器中可作為主應用程式運行，還不如將 CPython 運行環境嵌入至一個更大的應用程式中更可取。本節將涵蓋一些要成功完成此任務所涉及的細節。</p>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="embedding.html">1. 在其它 App 內嵌入 Python</a><ul>
@@ -279,10 +254,10 @@ some of the details involved in doing that successfully.</p>
         <div class="sphinxsidebarwrapper">
   <h3><a href="../contents.html">目錄</a></h3>
   <ul>
-<li><a class="reference internal" href="#">Extending and Embedding the Python Interpreter</a><ul>
-<li><a class="reference internal" href="#recommended-third-party-tools">Recommended third party tools</a></li>
-<li><a class="reference internal" href="#creating-extensions-without-third-party-tools">Creating extensions without third party tools</a></li>
-<li><a class="reference internal" href="#embedding-the-cpython-runtime-in-a-larger-application">Embedding the CPython runtime in a larger application</a></li>
+<li><a class="reference internal" href="#">擴充和嵌入 Python 直譯器</a><ul>
+<li><a class="reference internal" href="#recommended-third-party-tools">推薦的第三方工具</a></li>
+<li><a class="reference internal" href="#creating-extensions-without-third-party-tools">不使用第三方工具建立擴充</a></li>
+<li><a class="reference internal" href="#embedding-the-cpython-runtime-in-a-larger-application">在更大的應用程式中嵌入 CPython 運行環境 (runtime)</a></li>
 </ul>
 </li>
 </ul>
@@ -339,7 +314,7 @@ some of the details involved in doing that successfully.</p>
       <a href="../index.html">說明文件 </a> &#187;
     </li>
 
-        <li class="nav-item nav-item-this"><a href="">Extending and Embedding the Python Interpreter</a></li>
+        <li class="nav-item nav-item-this"><a href="">擴充和嵌入 Python 直譯器</a></li>
                 <li class="right">
                     
 
@@ -371,7 +346,7 @@ some of the details involved in doing that successfully.</p>
 <br />
     <br />
 
-    最後更新於 10月 18, 2021。
+    最後更新於 10月 25, 2021。
     <a href="https://docs.python.org/3/bugs.html">Found a bug</a>?
     <br />
 

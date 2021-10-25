@@ -75,6 +75,8 @@
   <h3><a href="../contents.html">目錄</a></h3>
   <ul>
 <li><a class="reference internal" href="#">內建的例外</a><ul>
+<li><a class="reference internal" href="#exception-context">Exception context</a></li>
+<li><a class="reference internal" href="#inheriting-from-built-in-exceptions">Inheriting from built-in exceptions</a></li>
 <li><a class="reference internal" href="#base-classes">Base classes</a></li>
 <li><a class="reference internal" href="#concrete-exceptions">Concrete exceptions</a><ul>
 <li><a class="reference internal" href="#os-exceptions">OS exceptions</a></li>
@@ -186,6 +188,8 @@ programmers are encouraged to derive new exceptions from the <a class="reference
 class or one of its subclasses, and not from <a class="reference internal" href="#BaseException" title="BaseException"><code class="xref py py-exc docutils literal notranslate"><span class="pre">BaseException</span></code></a>.  More
 information on defining exceptions is available in the Python Tutorial under
 <a class="reference internal" href="../tutorial/errors.html#tut-userexceptions"><span class="std std-ref">使用者自定的例外</span></a>.</p>
+<section id="exception-context">
+<h2>Exception context<a class="headerlink" href="#exception-context" title="本標題的永久連結">¶</a></h2>
 <p>When raising (or re-raising) an exception in an <a class="reference internal" href="../reference/compound_stmts.html#except"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">except</span></code></a> or
 <a class="reference internal" href="../reference/compound_stmts.html#finally"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">finally</span></code></a> clause
 <code class="xref py py-attr docutils literal notranslate"><span class="pre">__context__</span></code> is automatically set to the last exception caught; if the
@@ -214,6 +218,23 @@ is <a class="reference internal" href="constants.html#None" title="None"><code c
 <p>In either case, the exception itself is always shown after any chained
 exceptions so that the final line of the traceback always shows the last
 exception that was raised.</p>
+</section>
+<section id="inheriting-from-built-in-exceptions">
+<h2>Inheriting from built-in exceptions<a class="headerlink" href="#inheriting-from-built-in-exceptions" title="本標題的永久連結">¶</a></h2>
+<p>User code can create subclasses that inherit from an exception type.
+It's recommended to only subclass one exception type at a time to avoid
+any possible conflicts between how the bases handle the <code class="docutils literal notranslate"><span class="pre">args</span></code>
+attribute, as well as due to possible memory layout incompatibilities.</p>
+<div class="impl-detail compound">
+<p><strong>CPython implementation detail:</strong> Most built-in exceptions are implemented in C for efficiency, see:
+<a class="reference external" href="https://github.com/python/cpython/tree/3.9/Objects/exceptions.c">Objects/exceptions.c</a>.  Some have custom memory layouts
+which makes it impossible to create a subclass that inherits from
+multiple exception types. The memory layout of a type is an implementation
+detail and might change between Python versions, leading to new
+conflicts in the future.  Therefore, it's recommended to avoid
+subclassing multiple exception types altogether.</p>
+</div>
+</section>
 <section id="base-classes">
 <h2>Base classes<a class="headerlink" href="#base-classes" title="本標題的永久連結">¶</a></h2>
 <p>The following exceptions are used mostly as base classes for other exceptions.</p>
@@ -1099,6 +1120,8 @@ Development Mode</span></a> shows this warning.</p>
   <h3><a href="../contents.html">目錄</a></h3>
   <ul>
 <li><a class="reference internal" href="#">內建的例外</a><ul>
+<li><a class="reference internal" href="#exception-context">Exception context</a></li>
+<li><a class="reference internal" href="#inheriting-from-built-in-exceptions">Inheriting from built-in exceptions</a></li>
 <li><a class="reference internal" href="#base-classes">Base classes</a></li>
 <li><a class="reference internal" href="#concrete-exceptions">Concrete exceptions</a><ul>
 <li><a class="reference internal" href="#os-exceptions">OS exceptions</a></li>
@@ -1195,7 +1218,7 @@ Development Mode</span></a> shows this warning.</p>
 <br />
     <br />
 
-    最後更新於 10月 18, 2021。
+    最後更新於 10月 25, 2021。
     <a href="https://docs.python.org/3/bugs.html">Found a bug</a>?
     <br />
 

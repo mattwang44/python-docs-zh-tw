@@ -1302,9 +1302,9 @@ order is lost before it can be recorded.</p>
 </section>
 <section id="private-names">
 <h4>_Private__names<a class="headerlink" href="#private-names" title="本標題的永久連結">¶</a></h4>
-<p>Private names will be normal attributes in Python 3.10 instead of either an error
+<p><a class="reference internal" href="../reference/expressions.html#private-name-mangling"><span class="std std-ref">Private names</span></a> will be normal attributes in Python 3.11 instead of either an error
 or a member (depending on if the name ends with an underscore). Using these names
-in 3.9 will issue a <a class="reference internal" href="exceptions.html#DeprecationWarning" title="DeprecationWarning"><code class="xref py py-exc docutils literal notranslate"><span class="pre">DeprecationWarning</span></code></a>.</p>
+in 3.9 and 3.10 will issue a <a class="reference internal" href="exceptions.html#DeprecationWarning" title="DeprecationWarning"><code class="xref py py-exc docutils literal notranslate"><span class="pre">DeprecationWarning</span></code></a>.</p>
 </section>
 <section id="enum-member-type">
 <h4><code class="docutils literal notranslate"><span class="pre">Enum</span></code> member type<a class="headerlink" href="#enum-member-type" title="本標題的永久連結">¶</a></h4>
@@ -1324,6 +1324,10 @@ all-uppercase names for members):</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">FieldTypes</span><span class="o">.</span><span class="n">size</span><span class="o">.</span><span class="n">value</span>
 <span class="go">2</span>
 </pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">備註</p>
+<p>This behavior is deprecated and will be removed in 3.12.</p>
 </div>
 <div class="versionchanged">
 <p><span class="versionmodified changed">在 3.5 版本變更.</span></p>
@@ -1371,6 +1375,12 @@ all named flags and all named combinations of flags that are in the value:</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">Color</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span>      <span class="c1"># not named combination</span>
 <span class="go">&lt;Color.CYAN|MAGENTA|BLUE|YELLOW|GREEN|RED: 7&gt;</span>
 </pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">備註</p>
+<p>In 3.11 unnamed combinations of flags will only produce the canonical flag
+members (aka single-value flags).  So <code class="docutils literal notranslate"><span class="pre">Color(7)</span></code> would produce something
+like <code class="docutils literal notranslate"><span class="pre">&lt;Color.BLUE|GREEN|RED:</span> <span class="pre">7&gt;</span></code>.</p>
 </div>
 </section>
 </section>
@@ -1526,7 +1536,7 @@ all named flags and all named combinations of flags that are in the value:</p>
 <br />
     <br />
 
-    最後更新於 10月 18, 2021。
+    最後更新於 10月 25, 2021。
     <a href="https://docs.python.org/3/bugs.html">Found a bug</a>?
     <br />
 
