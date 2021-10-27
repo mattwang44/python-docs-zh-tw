@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>2to3 - 自動將 Python 2的程式碼轉成 Python 3 &#8212; Python 3.9.7 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2to3 - 自動將 Python 2的程式碼轉成 Python 3 &#8212; Python 3.10.0 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2021.11.1" />
@@ -20,7 +20,7 @@
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.9.7 說明文件 中搜尋"
+          title="在 Python 3.10.0 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -30,8 +30,6 @@
     <link rel="prev" title="unittest.mock --- getting started" href="unittest.mock-examples.html" />
     <link rel="canonical" href="https://docs.python.org/3/library/2to3.html" />
     
-      
-      <script type="text/javascript" src="../_static/switchers.js"></script>
       
     
 
@@ -93,7 +91,7 @@
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.9/Doc/library/2to3.rst"
+        <a href="https://github.com/python/cpython/blob/3.10/Doc/library/2to3.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -129,10 +127,8 @@
           <li>
               
           </li>
-    <li>
-      <span class="language_switcher_placeholder">zh_TW</span>
-      <span class="version_switcher_placeholder">3.9.7</span>
-      <a href="../index.html">說明文件 </a> &#187;
+    <li id="cpython-language-and-version">
+      <a href="../index.html">3.10.0 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -721,14 +717,17 @@ calls with <a class="reference internal" href="stdtypes.html#list" title="list">
 </section>
 <section id="module-lib2to3">
 <span id="lib2to3-2to3-s-library"></span><h2><a class="reference internal" href="#module-lib2to3" title="lib2to3: The 2to3 library"><code class="xref py py-mod docutils literal notranslate"><span class="pre">lib2to3</span></code></a> - 2to3's library<a class="headerlink" href="#module-lib2to3" title="本標題的永久連結">¶</a></h2>
-<p><strong>Source code:</strong> <a class="reference external" href="https://github.com/python/cpython/tree/3.9/Lib/lib2to3/">Lib/lib2to3/</a></p>
+<p><strong>Source code:</strong> <a class="reference external" href="https://github.com/python/cpython/tree/3.10/Lib/lib2to3/">Lib/lib2to3/</a></p>
 <hr class="docutils" />
-<div class="deprecated">
-<p><span class="versionmodified deprecated">在 3.10 版本開始棄用: </span>Python 3.9 will switch to a PEG parser (see <span class="target" id="index-0"></span><a class="pep reference external" href="https://www.python.org/dev/peps/pep-0617"><strong>PEP 617</strong></a>), and Python 3.10 may
-include new language syntax that is not parsable by lib2to3's LL(1) parser.
-The <code class="docutils literal notranslate"><span class="pre">lib2to3</span></code> module may be removed from the standard library in a future
-Python version. Consider third-party alternatives such as <a class="reference external" href="https://libcst.readthedocs.io/">LibCST</a> or
-<a class="reference external" href="https://parso.readthedocs.io/">parso</a>.</p>
+<div class="deprecated-removed">
+<p><span class="versionmodified">Deprecated since version 3.11, will be removed in version 3.13: </span>Python 3.9 switched to a PEG parser (see <span class="target" id="index-0"></span><a class="pep reference external" href="https://www.python.org/dev/peps/pep-0617"><strong>PEP 617</strong></a>) while lib2to3 is
+using a less flexible LL(1) parser.  Python 3.10 includes new language
+syntax that is not parsable by lib2to3's LL(1) parser (see <span class="target" id="index-1"></span><a class="pep reference external" href="https://www.python.org/dev/peps/pep-0634"><strong>PEP 634</strong></a>).
+The <code class="docutils literal notranslate"><span class="pre">lib2to3</span></code> module was marked pending for deprecation in Python 3.9
+(raising <a class="reference internal" href="exceptions.html#PendingDeprecationWarning" title="PendingDeprecationWarning"><code class="xref py py-exc docutils literal notranslate"><span class="pre">PendingDeprecationWarning</span></code></a> on import) and fully deprecated
+in Python 3.11 (raising <a class="reference internal" href="exceptions.html#DeprecationWarning" title="DeprecationWarning"><code class="xref py py-exc docutils literal notranslate"><span class="pre">DeprecationWarning</span></code></a>).
+It will be removed from the standard library in Python 3.13.
+Consider third-party alternatives such as <a class="reference external" href="https://libcst.readthedocs.io/">LibCST</a> or <a class="reference external" href="https://parso.readthedocs.io/">parso</a>.</p>
 </div>
 <div class="admonition note">
 <p class="admonition-title">備註</p>
@@ -766,7 +765,7 @@ drastically in the future.</p>
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.9/Doc/library/2to3.rst"
+        <a href="https://github.com/python/cpython/blob/3.10/Doc/library/2to3.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -801,10 +800,8 @@ drastically in the future.</p>
           <li>
               
           </li>
-    <li>
-      <span class="language_switcher_placeholder">zh_TW</span>
-      <span class="version_switcher_placeholder">3.9.7</span>
-      <a href="../index.html">說明文件 </a> &#187;
+    <li id="cpython-language-and-version">
+      <a href="../index.html">3.10.0 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>

@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Queues &#8212; Python 3.9.7 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Queues &#8212; Python 3.10.0 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2021.11.1" />
@@ -20,18 +20,16 @@
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.9.7 說明文件 中搜尋"
+          title="在 Python 3.10.0 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="搜尋" href="../search.html" />
     <link rel="copyright" title="版權" href="../copyright.html" />
     <link rel="next" title="Exceptions" href="asyncio-exceptions.html" />
-    <link rel="prev" title="Subprocesses" href="asyncio-subprocess.html" />
+    <link rel="prev" title="子進程" href="asyncio-subprocess.html" />
     <link rel="canonical" href="https://docs.python.org/3/library/asyncio-queue.html" />
     
-      
-      <script type="text/javascript" src="../_static/switchers.js"></script>
       
     
 
@@ -86,7 +84,7 @@
 
   <h4>上個主題</h4>
   <p class="topless"><a href="asyncio-subprocess.html"
-                        title="上一章">Subprocesses</a></p>
+                        title="上一章">子進程</a></p>
   <h4>下個主題</h4>
   <p class="topless"><a href="asyncio-exceptions.html"
                         title="下一章">Exceptions</a></p>
@@ -95,7 +93,7 @@
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.9/Doc/library/asyncio-queue.rst"
+        <a href="https://github.com/python/cpython/blob/3.10/Doc/library/asyncio-queue.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -119,7 +117,7 @@
           <a href="asyncio-exceptions.html" title="Exceptions"
              accesskey="N">下一頁</a> |</li>
         <li class="right" >
-          <a href="asyncio-subprocess.html" title="Subprocesses"
+          <a href="asyncio-subprocess.html" title="子進程"
              accesskey="P">上一頁</a> |</li>
 
           <li><img src="../_static/py.svg" alt="python logo" style="vertical-align: middle; margin-top: -1px"/></li>
@@ -131,10 +129,8 @@
           <li>
               
           </li>
-    <li>
-      <span class="language_switcher_placeholder">zh_TW</span>
-      <span class="version_switcher_placeholder">3.9.7</span>
-      <a href="../index.html">說明文件 </a> &#187;
+    <li id="cpython-language-and-version">
+      <a href="../index.html">3.10.0 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -165,7 +161,7 @@
             
   <section id="queues">
 <span id="asyncio-queues"></span><h1>Queues<a class="headerlink" href="#queues" title="本標題的永久連結">¶</a></h1>
-<p><strong>Source code:</strong> <a class="reference external" href="https://github.com/python/cpython/tree/3.9/Lib/asyncio/queues.py">Lib/asyncio/queues.py</a></p>
+<p><strong>Source code:</strong> <a class="reference external" href="https://github.com/python/cpython/tree/3.10/Lib/asyncio/queues.py">Lib/asyncio/queues.py</a></p>
 <hr class="docutils" />
 <p>asyncio queues are designed to be similar to classes of the
 <a class="reference internal" href="queue.html#module-queue" title="queue: A synchronized queue class."><code class="xref py py-mod docutils literal notranslate"><span class="pre">queue</span></code></a> module.  Although asyncio queues are not thread-safe,
@@ -178,7 +174,7 @@ timeout.</p>
 <h2>Queue<a class="headerlink" href="#queue" title="本標題的永久連結">¶</a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="asyncio.Queue">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">asyncio.</span></span><span class="sig-name descname"><span class="pre">Queue</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">maxsize=0</span></em>, <em class="sig-param"><span class="pre">\*</span></em>, <em class="sig-param"><span class="pre">loop=None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#asyncio.Queue" title="本定義的永久連結">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">asyncio.</span></span><span class="sig-name descname"><span class="pre">Queue</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">maxsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#asyncio.Queue" title="本定義的永久連結">¶</a></dt>
 <dd><p>A first in, first out (FIFO) queue.</p>
 <p>If <em>maxsize</em> is less than or equal to zero, the queue size is
 infinite.  If it is an integer greater than <code class="docutils literal notranslate"><span class="pre">0</span></code>, then
@@ -187,9 +183,6 @@ until an item is removed by <a class="reference internal" href="#asyncio.Queue.g
 <p>Unlike the standard library threading <a class="reference internal" href="queue.html#module-queue" title="queue: A synchronized queue class."><code class="xref py py-mod docutils literal notranslate"><span class="pre">queue</span></code></a>, the size of
 the queue is always known and can be returned by calling the
 <a class="reference internal" href="#asyncio.Queue.qsize" title="asyncio.Queue.qsize"><code class="xref py py-meth docutils literal notranslate"><span class="pre">qsize()</span></code></a> method.</p>
-<div class="deprecated-removed">
-<p><span class="versionmodified">Deprecated since version 3.8, will be removed in version 3.10: </span>The <em>loop</em> parameter.</p>
-</div>
 <p>This class is <a class="reference internal" href="asyncio-dev.html#asyncio-multithreading"><span class="std std-ref">not thread safe</span></a>.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="asyncio.Queue.maxsize">
@@ -271,6 +264,12 @@ into the queue).</p>
 items placed in the queue.</p>
 </dd></dl>
 
+<div class="deprecated-removed">
+<p><span class="versionmodified">Deprecated since version 3.8, removed in version 3.10: </span>The <code class="docutils literal notranslate"><span class="pre">loop</span></code> parameter.  This function has been implicitly getting the
+current running loop since 3.7.  See
+<a class="reference internal" href="../whatsnew/3.10.html#whatsnew310-removed"><span class="std std-ref">What's New in 3.10's Removed section</span></a>
+for more information.</p>
+</div>
 </dd></dl>
 
 </section>
@@ -396,7 +395,7 @@ concurrent tasks:</p>
 
   <h4>上個主題</h4>
   <p class="topless"><a href="asyncio-subprocess.html"
-                        title="上一章">Subprocesses</a></p>
+                        title="上一章">子進程</a></p>
   <h4>下個主題</h4>
   <p class="topless"><a href="asyncio-exceptions.html"
                         title="下一章">Exceptions</a></p>
@@ -405,7 +404,7 @@ concurrent tasks:</p>
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.9/Doc/library/asyncio-queue.rst"
+        <a href="https://github.com/python/cpython/blob/3.10/Doc/library/asyncio-queue.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -428,7 +427,7 @@ concurrent tasks:</p>
           <a href="asyncio-exceptions.html" title="Exceptions"
              >下一頁</a> |</li>
         <li class="right" >
-          <a href="asyncio-subprocess.html" title="Subprocesses"
+          <a href="asyncio-subprocess.html" title="子進程"
              >上一頁</a> |</li>
 
           <li><img src="../_static/py.svg" alt="python logo" style="vertical-align: middle; margin-top: -1px"/></li>
@@ -440,10 +439,8 @@ concurrent tasks:</p>
           <li>
               
           </li>
-    <li>
-      <span class="language_switcher_placeholder">zh_TW</span>
-      <span class="version_switcher_placeholder">3.9.7</span>
-      <a href="../index.html">說明文件 </a> &#187;
+    <li id="cpython-language-and-version">
+      <a href="../index.html">3.10.0 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>

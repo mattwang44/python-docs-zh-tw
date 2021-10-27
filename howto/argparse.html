@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Argparse 教學 &#8212; Python 3.9.7 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Argparse 教學 &#8212; Python 3.10.0 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2021.11.1" />
@@ -20,7 +20,7 @@
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.9.7 說明文件 中搜尋"
+          title="在 Python 3.10.0 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -30,8 +30,6 @@
     <link rel="prev" title="如何使用urllib套件取得網路資源" href="urllib2.html" />
     <link rel="canonical" href="https://docs.python.org/3/howto/argparse.html" />
     
-      
-      <script type="text/javascript" src="../_static/switchers.js"></script>
       
     
 
@@ -103,7 +101,7 @@
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.9/Doc/howto/argparse.rst"
+        <a href="https://github.com/python/cpython/blob/3.10/Doc/howto/argparse.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -139,10 +137,8 @@
           <li>
               
           </li>
-    <li>
-      <span class="language_switcher_placeholder">zh_TW</span>
-      <span class="version_switcher_placeholder">3.9.7</span>
-      <a href="../index.html">說明文件 </a> &#187;
+    <li id="cpython-language-and-version">
+      <a href="../index.html">3.10.0 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Python 如何達成任務</a> &#187;</li>
@@ -223,7 +219,7 @@
 <span class="gp">$ </span>python3 prog.py --help
 <span class="go">usage: prog.py [-h]</span>
 
-<span class="go">optional arguments:</span>
+<span class="go">options:</span>
 <span class="go">  -h, --help  show this help message and exit</span>
 <span class="gp">$ </span>python3 prog.py --verbose
 <span class="go">usage: prog.py [-h]</span>
@@ -260,7 +256,7 @@
 <span class="go">positional arguments:</span>
 <span class="go">  echo</span>
 
-<span class="go">optional arguments:</span>
+<span class="go">options:</span>
 <span class="go">  -h, --help  show this help message and exit</span>
 <span class="gp">$ </span>python3 prog.py foo
 <span class="go">foo</span>
@@ -291,7 +287,7 @@ to the method, <code class="docutils literal notranslate"><span class="pre">echo
 <span class="go">positional arguments:</span>
 <span class="go">  echo        echo the string you use here</span>
 
-<span class="go">optional arguments:</span>
+<span class="go">options:</span>
 <span class="go">  -h, --help  show this help message and exit</span>
 </pre></div>
 </div>
@@ -349,7 +345,7 @@ have a look on how to add optional ones:</p>
 <span class="gp">$ </span>python3 prog.py --help
 <span class="go">usage: prog.py [-h] [--verbosity VERBOSITY]</span>
 
-<span class="go">optional arguments:</span>
+<span class="go">options:</span>
 <span class="go">  -h, --help            show this help message and exit</span>
 <span class="go">  --verbosity VERBOSITY</span>
 <span class="go">                        increase output verbosity</span>
@@ -388,7 +384,7 @@ test of the <a class="reference internal" href="../reference/compound_stmts.html
 <span class="gp">$ </span>python3 prog.py --help
 <span class="go">usage: prog.py [-h] [--verbose]</span>
 
-<span class="go">optional arguments:</span>
+<span class="go">options:</span>
 <span class="go">  -h, --help  show this help message and exit</span>
 <span class="go">  --verbose   increase output verbosity</span>
 </pre></div>
@@ -423,7 +419,7 @@ actually are.</p></li>
 <span class="gp">$ </span>python3 prog.py --help
 <span class="go">usage: prog.py [-h] [-v]</span>
 
-<span class="go">optional arguments:</span>
+<span class="go">options:</span>
 <span class="go">  -h, --help     show this help message and exit</span>
 <span class="go">  -v, --verbose  increase output verbosity</span>
 </pre></div>
@@ -443,7 +439,7 @@ actually are.</p></li>
 <span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
 <span class="n">answer</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">square</span><span class="o">**</span><span class="mi">2</span>
 <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;the square of </span><span class="si">{}</span><span class="s2"> equals </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">square</span><span class="p">,</span> <span class="n">answer</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;the square of </span><span class="si">{</span><span class="n">args</span><span class="o">.</span><span class="n">square</span><span class="si">}</span><span class="s2"> equals </span><span class="si">{</span><span class="n">answer</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="k">else</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">answer</span><span class="p">)</span>
 </pre></div>
@@ -475,9 +471,9 @@ multiple verbosity values, and actually get to use them:</p>
 <span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
 <span class="n">answer</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">square</span><span class="o">**</span><span class="mi">2</span>
 <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">verbosity</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;the square of </span><span class="si">{}</span><span class="s2"> equals </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">square</span><span class="p">,</span> <span class="n">answer</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;the square of </span><span class="si">{</span><span class="n">args</span><span class="o">.</span><span class="n">square</span><span class="si">}</span><span class="s2"> equals </span><span class="si">{</span><span class="n">answer</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="k">elif</span> <span class="n">args</span><span class="o">.</span><span class="n">verbosity</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2">^2 == </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">square</span><span class="p">,</span> <span class="n">answer</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">args</span><span class="o">.</span><span class="n">square</span><span class="si">}</span><span class="s2">^2 == </span><span class="si">{</span><span class="n">answer</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="k">else</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">answer</span><span class="p">)</span>
 </pre></div>
@@ -507,9 +503,9 @@ Let's fix it by restricting the values the <code class="docutils literal notrans
 <span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
 <span class="n">answer</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">square</span><span class="o">**</span><span class="mi">2</span>
 <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">verbosity</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;the square of </span><span class="si">{}</span><span class="s2"> equals </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">square</span><span class="p">,</span> <span class="n">answer</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;the square of </span><span class="si">{</span><span class="n">args</span><span class="o">.</span><span class="n">square</span><span class="si">}</span><span class="s2"> equals </span><span class="si">{</span><span class="n">answer</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="k">elif</span> <span class="n">args</span><span class="o">.</span><span class="n">verbosity</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2">^2 == </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">square</span><span class="p">,</span> <span class="n">answer</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">args</span><span class="o">.</span><span class="n">square</span><span class="si">}</span><span class="s2">^2 == </span><span class="si">{</span><span class="n">answer</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="k">else</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">answer</span><span class="p">)</span>
 </pre></div>
@@ -524,7 +520,7 @@ Let's fix it by restricting the values the <code class="docutils literal notrans
 <span class="go">positional arguments:</span>
 <span class="go">  square                display a square of a given number</span>
 
-<span class="go">optional arguments:</span>
+<span class="go">options:</span>
 <span class="go">  -h, --help            show this help message and exit</span>
 <span class="go">  -v {0,1,2}, --verbosity {0,1,2}</span>
 <span class="go">                        increase output verbosity</span>
@@ -544,14 +540,14 @@ verbosity argument (check the output of <code class="docutils literal notranslat
 <span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
 <span class="n">answer</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">square</span><span class="o">**</span><span class="mi">2</span>
 <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">verbosity</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;the square of </span><span class="si">{}</span><span class="s2"> equals </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">square</span><span class="p">,</span> <span class="n">answer</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;the square of </span><span class="si">{</span><span class="n">args</span><span class="o">.</span><span class="n">square</span><span class="si">}</span><span class="s2"> equals </span><span class="si">{</span><span class="n">answer</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="k">elif</span> <span class="n">args</span><span class="o">.</span><span class="n">verbosity</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2">^2 == </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">square</span><span class="p">,</span> <span class="n">answer</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">args</span><span class="o">.</span><span class="n">square</span><span class="si">}</span><span class="s2">^2 == </span><span class="si">{</span><span class="n">answer</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="k">else</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">answer</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>我們已經介紹過另一個操作 &quot;count&quot; 用來計算指定的選項參數出現的次數。</p>
+<p>我們已經介紹過另一個操作 &quot;count&quot; 用來計算指定的選項出現的次數。</p>
 <div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>python3 prog.py <span class="m">4</span>
 <span class="go">16</span>
 <span class="gp">$ </span>python3 prog.py <span class="m">4</span> -v
@@ -569,7 +565,7 @@ verbosity argument (check the output of <code class="docutils literal notranslat
 <span class="go">positional arguments:</span>
 <span class="go">  square           display a square of a given number</span>
 
-<span class="go">optional arguments:</span>
+<span class="go">options:</span>
 <span class="go">  -h, --help       show this help message and exit</span>
 <span class="go">  -v, --verbosity  increase output verbosity</span>
 <span class="gp">$ </span>python3 prog.py <span class="m">4</span> -vvv
@@ -601,9 +597,9 @@ our script (e.g. via the <code class="docutils literal notranslate"><span class=
 
 <span class="c1"># bugfix: replace == with &gt;=</span>
 <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">verbosity</span> <span class="o">&gt;=</span> <span class="mi">2</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;the square of </span><span class="si">{}</span><span class="s2"> equals </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">square</span><span class="p">,</span> <span class="n">answer</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;the square of </span><span class="si">{</span><span class="n">args</span><span class="o">.</span><span class="n">square</span><span class="si">}</span><span class="s2"> equals </span><span class="si">{</span><span class="n">answer</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="k">elif</span> <span class="n">args</span><span class="o">.</span><span class="n">verbosity</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2">^2 == </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">square</span><span class="p">,</span> <span class="n">answer</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">args</span><span class="o">.</span><span class="n">square</span><span class="si">}</span><span class="s2">^2 == </span><span class="si">{</span><span class="n">answer</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="k">else</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">answer</span><span class="p">)</span>
 </pre></div>
@@ -635,9 +631,9 @@ That is, we want any value &gt;= 2 to be as verbose as possible.</p></li>
 <span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
 <span class="n">answer</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">square</span><span class="o">**</span><span class="mi">2</span>
 <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">verbosity</span> <span class="o">&gt;=</span> <span class="mi">2</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;the square of </span><span class="si">{}</span><span class="s2"> equals </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">square</span><span class="p">,</span> <span class="n">answer</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;the square of </span><span class="si">{</span><span class="n">args</span><span class="o">.</span><span class="n">square</span><span class="si">}</span><span class="s2"> equals </span><span class="si">{</span><span class="n">answer</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="k">elif</span> <span class="n">args</span><span class="o">.</span><span class="n">verbosity</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2">^2 == </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">square</span><span class="p">,</span> <span class="n">answer</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">args</span><span class="o">.</span><span class="n">square</span><span class="si">}</span><span class="s2">^2 == </span><span class="si">{</span><span class="n">answer</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="k">else</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">answer</span><span class="p">)</span>
 </pre></div>
@@ -669,9 +665,9 @@ and we'll explore a bit more of it before we end this tutorial.</p>
 <span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
 <span class="n">answer</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">x</span><span class="o">**</span><span class="n">args</span><span class="o">.</span><span class="n">y</span>
 <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">verbosity</span> <span class="o">&gt;=</span> <span class="mi">2</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2"> to the power </span><span class="si">{}</span><span class="s2"> equals </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="n">answer</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">args</span><span class="o">.</span><span class="n">x</span><span class="si">}</span><span class="s2"> to the power </span><span class="si">{</span><span class="n">args</span><span class="o">.</span><span class="n">y</span><span class="si">}</span><span class="s2"> equals </span><span class="si">{</span><span class="n">answer</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="k">elif</span> <span class="n">args</span><span class="o">.</span><span class="n">verbosity</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2">^</span><span class="si">{}</span><span class="s2"> == </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="n">answer</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">args</span><span class="o">.</span><span class="n">x</span><span class="si">}</span><span class="s2">^</span><span class="si">{</span><span class="n">args</span><span class="o">.</span><span class="n">y</span><span class="si">}</span><span class="s2"> == </span><span class="si">{</span><span class="n">answer</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="k">else</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">answer</span><span class="p">)</span>
 </pre></div>
@@ -687,7 +683,7 @@ and we'll explore a bit more of it before we end this tutorial.</p>
 <span class="go">  x                the base</span>
 <span class="go">  y                the exponent</span>
 
-<span class="go">optional arguments:</span>
+<span class="go">options:</span>
 <span class="go">  -h, --help       show this help message and exit</span>
 <span class="go">  -v, --verbosity</span>
 <span class="gp">$ </span>python3 prog.py <span class="m">4</span> <span class="m">2</span> -v
@@ -705,9 +701,9 @@ to display <em>more</em> text instead:</p>
 <span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
 <span class="n">answer</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">x</span><span class="o">**</span><span class="n">args</span><span class="o">.</span><span class="n">y</span>
 <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">verbosity</span> <span class="o">&gt;=</span> <span class="mi">2</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Running &#39;</span><span class="si">{}</span><span class="s2">&#39;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="vm">__file__</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Running &#39;</span><span class="si">{</span><span class="vm">__file__</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="p">)</span>
 <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">verbosity</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2">^</span><span class="si">{}</span><span class="s2"> == &quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">y</span><span class="p">),</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">args</span><span class="o">.</span><span class="n">x</span><span class="si">}</span><span class="s2">^</span><span class="si">{</span><span class="n">args</span><span class="o">.</span><span class="n">y</span><span class="si">}</span><span class="s2"> == &quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">answer</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -744,9 +740,9 @@ which will be the opposite of the <code class="docutils literal notranslate"><sp
 <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">quiet</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">answer</span><span class="p">)</span>
 <span class="k">elif</span> <span class="n">args</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2"> to the power </span><span class="si">{}</span><span class="s2"> equals </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="n">answer</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">args</span><span class="o">.</span><span class="n">x</span><span class="si">}</span><span class="s2"> to the power </span><span class="si">{</span><span class="n">args</span><span class="o">.</span><span class="n">y</span><span class="si">}</span><span class="s2"> equals </span><span class="si">{</span><span class="n">answer</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="k">else</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2">^</span><span class="si">{}</span><span class="s2"> == </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="n">answer</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">args</span><span class="o">.</span><span class="n">x</span><span class="si">}</span><span class="s2">^</span><span class="si">{</span><span class="n">args</span><span class="o">.</span><span class="n">y</span><span class="si">}</span><span class="s2"> == </span><span class="si">{</span><span class="n">answer</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Our program is now simpler, and we've lost some functionality for the sake of
@@ -800,7 +796,7 @@ but not both at the same time:</p>
 <span class="go">  x              the base</span>
 <span class="go">  y              the exponent</span>
 
-<span class="go">optional arguments:</span>
+<span class="go">options:</span>
 <span class="go">  -h, --help     show this help message and exit</span>
 <span class="go">  -v, --verbose</span>
 <span class="go">  -q, --quiet</span>
@@ -852,7 +848,7 @@ but not both at the same time:</p>
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.9/Doc/howto/argparse.rst"
+        <a href="https://github.com/python/cpython/blob/3.10/Doc/howto/argparse.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -887,10 +883,8 @@ but not both at the same time:</p>
           <li>
               
           </li>
-    <li>
-      <span class="language_switcher_placeholder">zh_TW</span>
-      <span class="version_switcher_placeholder">3.9.7</span>
-      <a href="../index.html">說明文件 </a> &#187;
+    <li id="cpython-language-and-version">
+      <a href="../index.html">3.10.0 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 如何達成任務</a> &#187;</li>

@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Python/C API 參考手冊 &#8212; Python 3.9.7 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python/C API 參考手冊 &#8212; Python 3.10.0 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2021.11.1" />
@@ -20,7 +20,7 @@
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.9.7 說明文件 中搜尋"
+          title="在 Python 3.10.0 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -30,8 +30,6 @@
     <link rel="prev" title="1. 在其它 App 內嵌入 Python" href="../extending/embedding.html" />
     <link rel="canonical" href="https://docs.python.org/3/c-api/index.html" />
     
-      
-      <script type="text/javascript" src="../_static/switchers.js"></script>
       
     
 
@@ -83,7 +81,7 @@
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.9/Doc/c-api/index.rst"
+        <a href="https://github.com/python/cpython/blob/3.10/Doc/c-api/index.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -119,10 +117,8 @@
           <li>
               
           </li>
-    <li>
-      <span class="language_switcher_placeholder">zh_TW</span>
-      <span class="version_switcher_placeholder">3.9.7</span>
-      <a href="../index.html">說明文件 </a> &#187;
+    <li id="cpython-language-and-version">
+      <a href="../index.html">3.10.0 Documentation</a> &#187;
     </li>
 
         <li class="nav-item nav-item-this"><a href="">Python/C API 參考手冊</a></li>
@@ -163,7 +159,12 @@
 <li class="toctree-l2"><a class="reference internal" href="intro.html#debugging-builds">Debugging Builds</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="stable.html">Stable Application Binary Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="stable.html">C API Stability</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="stable.html#stable-application-binary-interface">Stable Application Binary Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stable.html#platform-considerations">Platform Considerations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stable.html#contents-of-limited-api">Contents of Limited API</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="veryhigh.html">The Very High Level Layer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="refcounting.html">參照計數</a></li>
 <li class="toctree-l1"><a class="reference internal" href="exceptions.html">例外處理</a><ul>
@@ -172,8 +173,8 @@
 <li class="toctree-l2"><a class="reference internal" href="exceptions.html#issuing-warnings">Issuing warnings</a></li>
 <li class="toctree-l2"><a class="reference internal" href="exceptions.html#querying-the-error-indicator">Querying the error indicator</a></li>
 <li class="toctree-l2"><a class="reference internal" href="exceptions.html#signal-handling">Signal Handling</a></li>
-<li class="toctree-l2"><a class="reference internal" href="exceptions.html#exception-classes">Exception Classes</a></li>
-<li class="toctree-l2"><a class="reference internal" href="exceptions.html#exception-objects">Exception Objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exceptions.html#exception-classes">例外類別</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exceptions.html#exception-objects">例外物件</a></li>
 <li class="toctree-l2"><a class="reference internal" href="exceptions.html#unicode-exception-objects">Unicode Exception Objects</a></li>
 <li class="toctree-l2"><a class="reference internal" href="exceptions.html#recursion-control">Recursion Control</a></li>
 <li class="toctree-l2"><a class="reference internal" href="exceptions.html#standard-exceptions">Standard Exceptions</a></li>
@@ -226,15 +227,16 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="init_config.html">Python Initialization Configuration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="init_config.html#example">Example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="init_config.html#pywidestringlist">PyWideStringList</a></li>
 <li class="toctree-l2"><a class="reference internal" href="init_config.html#pystatus">PyStatus</a></li>
 <li class="toctree-l2"><a class="reference internal" href="init_config.html#pypreconfig">PyPreConfig</a></li>
-<li class="toctree-l2"><a class="reference internal" href="init_config.html#preinitialization-with-pypreconfig">Preinitialization with PyPreConfig</a></li>
+<li class="toctree-l2"><a class="reference internal" href="init_config.html#preinitialize-python-with-pypreconfig">Preinitialize Python with PyPreConfig</a></li>
 <li class="toctree-l2"><a class="reference internal" href="init_config.html#pyconfig">PyConfig</a></li>
 <li class="toctree-l2"><a class="reference internal" href="init_config.html#initialization-with-pyconfig">Initialization with PyConfig</a></li>
 <li class="toctree-l2"><a class="reference internal" href="init_config.html#isolated-configuration">Isolated Configuration</a></li>
 <li class="toctree-l2"><a class="reference internal" href="init_config.html#python-configuration">Python Configuration</a></li>
-<li class="toctree-l2"><a class="reference internal" href="init_config.html#path-configuration">Path Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="init_config.html#python-path-configuration">Python Path Configuration</a></li>
 <li class="toctree-l2"><a class="reference internal" href="init_config.html#py-runmain">Py_RunMain()</a></li>
 <li class="toctree-l2"><a class="reference internal" href="init_config.html#py-getargcargv">Py_GetArgcArgv()</a></li>
 <li class="toctree-l2"><a class="reference internal" href="init_config.html#multi-phase-initialization-private-provisional-api">Multi-Phase Initialization Private Provisional API</a></li>
@@ -242,11 +244,13 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="memory.html">記憶體管理</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="memory.html#overview">總覽</a></li>
+<li class="toctree-l2"><a class="reference internal" href="memory.html#allocator-domains">Allocator Domains</a></li>
 <li class="toctree-l2"><a class="reference internal" href="memory.html#raw-memory-interface">Raw Memory Interface</a></li>
 <li class="toctree-l2"><a class="reference internal" href="memory.html#memory-interface">Memory Interface</a></li>
 <li class="toctree-l2"><a class="reference internal" href="memory.html#object-allocators">Object allocators</a></li>
 <li class="toctree-l2"><a class="reference internal" href="memory.html#default-memory-allocators">Default Memory Allocators</a></li>
 <li class="toctree-l2"><a class="reference internal" href="memory.html#customize-memory-allocators">Customize Memory Allocators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="memory.html#debug-hooks-on-the-python-memory-allocators">Debug hooks on the Python memory allocators</a></li>
 <li class="toctree-l2"><a class="reference internal" href="memory.html#the-pymalloc-allocator">The pymalloc allocator</a></li>
 <li class="toctree-l2"><a class="reference internal" href="memory.html#tracemalloc-c-api">tracemalloc C API</a></li>
 <li class="toctree-l2"><a class="reference internal" href="memory.html#examples">Examples</a></li>
@@ -289,7 +293,7 @@
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.9/Doc/c-api/index.rst"
+        <a href="https://github.com/python/cpython/blob/3.10/Doc/c-api/index.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -324,10 +328,8 @@
           <li>
               
           </li>
-    <li>
-      <span class="language_switcher_placeholder">zh_TW</span>
-      <span class="version_switcher_placeholder">3.9.7</span>
-      <a href="../index.html">說明文件 </a> &#187;
+    <li id="cpython-language-and-version">
+      <a href="../index.html">3.10.0 Documentation</a> &#187;
     </li>
 
         <li class="nav-item nav-item-this"><a href="">Python/C API 參考手冊</a></li>

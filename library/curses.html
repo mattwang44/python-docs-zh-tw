@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>curses --- Terminal handling for character-cell displays &#8212; Python 3.9.7 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>curses --- Terminal handling for character-cell displays &#8212; Python 3.10.0 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2021.11.1" />
@@ -20,7 +20,7 @@
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.9.7 說明文件 中搜尋"
+          title="在 Python 3.10.0 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -30,8 +30,6 @@
     <link rel="prev" title="getpass --- Portable password input" href="getpass.html" />
     <link rel="canonical" href="https://docs.python.org/3/library/curses.html" />
     
-      
-      <script type="text/javascript" src="../_static/switchers.js"></script>
       
     
 
@@ -97,7 +95,7 @@
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.9/Doc/library/curses.rst"
+        <a href="https://github.com/python/cpython/blob/3.10/Doc/library/curses.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -133,10 +131,8 @@
           <li>
               
           </li>
-    <li>
-      <span class="language_switcher_placeholder">zh_TW</span>
-      <span class="version_switcher_placeholder">3.9.7</span>
-      <a href="../index.html">說明文件 </a> &#187;
+    <li id="cpython-language-and-version">
+      <a href="../index.html">3.10.0 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -207,7 +203,7 @@ system's default encoding:</p>
 Raymond.</p>
 </dd>
 </dl>
-<p>The <a class="reference external" href="https://github.com/python/cpython/tree/3.9/Tools/demo/">Tools/demo/</a> directory in the Python source distribution contains
+<p>The <a class="reference external" href="https://github.com/python/cpython/tree/3.10/Tools/demo/">Tools/demo/</a> directory in the Python source distribution contains
 some example programs using the curses bindings provided by this module.</p>
 </div>
 <section id="functions">
@@ -382,10 +378,14 @@ method should be called to retrieve the queued mouse event, represented as a
 multiple devices, and <em>x</em>, <em>y</em>, <em>z</em> are the event's coordinates.  (<em>z</em> is
 currently unused.)  <em>bstate</em> is an integer value whose bits will be set to
 indicate the type of event, and will be the bitwise OR of one or more of the
-following constants, where <em>n</em> is the button number from 1 to 4:
+following constants, where <em>n</em> is the button number from 1 to 5:
 <code class="xref py py-const docutils literal notranslate"><span class="pre">BUTTONn_PRESSED</span></code>, <code class="xref py py-const docutils literal notranslate"><span class="pre">BUTTONn_RELEASED</span></code>, <code class="xref py py-const docutils literal notranslate"><span class="pre">BUTTONn_CLICKED</span></code>,
 <code class="xref py py-const docutils literal notranslate"><span class="pre">BUTTONn_DOUBLE_CLICKED</span></code>, <code class="xref py py-const docutils literal notranslate"><span class="pre">BUTTONn_TRIPLE_CLICKED</span></code>,
 <code class="xref py py-const docutils literal notranslate"><span class="pre">BUTTON_SHIFT</span></code>, <code class="xref py py-const docutils literal notranslate"><span class="pre">BUTTON_CTRL</span></code>, <code class="xref py py-const docutils literal notranslate"><span class="pre">BUTTON_ALT</span></code>.</p>
+<div class="versionchanged">
+<p><span class="versionmodified changed">在 3.10 版本變更: </span>The <code class="docutils literal notranslate"><span class="pre">BUTTON5_*</span></code> constants are now exposed if they are provided by the
+underlying curses library.</p>
+</div>
 </dd></dl>
 
 <dl class="py function">
@@ -407,6 +407,18 @@ the new window object.</p>
 <dt class="sig sig-object py" id="curses.has_colors">
 <span class="sig-prename descclassname"><span class="pre">curses.</span></span><span class="sig-name descname"><span class="pre">has_colors</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#curses.has_colors" title="本定義的永久連結">¶</a></dt>
 <dd><p>Return <code class="docutils literal notranslate"><span class="pre">True</span></code> if the terminal can display colors; otherwise, return <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="curses.has_extended_color_support">
+<span class="sig-prename descclassname"><span class="pre">curses.</span></span><span class="sig-name descname"><span class="pre">has_extended_color_support</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#curses.has_extended_color_support" title="本定義的永久連結">¶</a></dt>
+<dd><p>Return <code class="docutils literal notranslate"><span class="pre">True</span></code> if the module supports extended colors; otherwise, return
+<code class="docutils literal notranslate"><span class="pre">False</span></code>. Extended color support allows more than 256 color pairs for
+terminals that support more than 16 colors (e.g. xterm-256color).</p>
+<p>Extended color support requires ncurses version 6.1 or later.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">在 3.10 版本新加入.</span></p>
+</div>
 </dd></dl>
 
 <dl class="py function">
@@ -1183,6 +1195,9 @@ on the window.</p>
 enclosed by the given window, returning <code class="docutils literal notranslate"><span class="pre">True</span></code> or <code class="docutils literal notranslate"><span class="pre">False</span></code>.  It is useful for
 determining what subset of the screen windows enclose the location of a mouse
 event.</p>
+<div class="versionchanged">
+<p><span class="versionmodified changed">在 3.10 版本變更: </span>Previously it returned <code class="docutils literal notranslate"><span class="pre">1</span></code> or <code class="docutils literal notranslate"><span class="pre">0</span></code> instead of <code class="docutils literal notranslate"><span class="pre">True</span></code> or <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p>
+</div>
 </dd></dl>
 
 <dl class="py attribute">
@@ -2279,30 +2294,30 @@ falls back on a crude printable ASCII approximation.</p>
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Constant</p></th>
-<th class="head"><p>Color</p></th>
+<th class="head"><p>顏色</p></th>
 </tr>
 </thead>
 <tbody>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">COLOR_BLACK</span></code></p></td>
-<td><p>Black</p></td>
+<td><p>黑</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">COLOR_BLUE</span></code></p></td>
-<td><p>Blue</p></td>
+<td><p>藍</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">COLOR_CYAN</span></code></p></td>
 <td><p>Cyan (light greenish blue)</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">COLOR_GREEN</span></code></p></td>
-<td><p>Green</p></td>
+<td><p>綠</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">COLOR_MAGENTA</span></code></p></td>
 <td><p>Magenta (purplish red)</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">COLOR_RED</span></code></p></td>
-<td><p>Red</p></td>
+<td><p>紅</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">COLOR_WHITE</span></code></p></td>
-<td><p>White</p></td>
+<td><p>白</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">COLOR_YELLOW</span></code></p></td>
 <td><p>Yellow</p></td>
@@ -2506,7 +2521,7 @@ contents are gathered.</p>
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.9/Doc/library/curses.rst"
+        <a href="https://github.com/python/cpython/blob/3.10/Doc/library/curses.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -2541,10 +2556,8 @@ contents are gathered.</p>
           <li>
               
           </li>
-    <li>
-      <span class="language_switcher_placeholder">zh_TW</span>
-      <span class="version_switcher_placeholder">3.9.7</span>
-      <a href="../index.html">說明文件 </a> &#187;
+    <li id="cpython-language-and-version">
+      <a href="../index.html">3.10.0 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>

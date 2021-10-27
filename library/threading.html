@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>threading --- Thread-based parallelism &#8212; Python 3.9.7 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>threading --- Thread-based parallelism &#8212; Python 3.10.0 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2021.11.1" />
@@ -20,7 +20,7 @@
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.9.7 說明文件 中搜尋"
+          title="在 Python 3.10.0 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -30,8 +30,6 @@
     <link rel="prev" title="Concurrent Execution" href="concurrency.html" />
     <link rel="canonical" href="https://docs.python.org/3/library/threading.html" />
     
-      
-      <script type="text/javascript" src="../_static/switchers.js"></script>
       
     
 
@@ -103,7 +101,7 @@
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.9/Doc/library/threading.rst"
+        <a href="https://github.com/python/cpython/blob/3.10/Doc/library/threading.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -139,10 +137,8 @@
           <li>
               
           </li>
-    <li>
-      <span class="language_switcher_placeholder">zh_TW</span>
-      <span class="version_switcher_placeholder">3.9.7</span>
-      <a href="../index.html">說明文件 </a> &#187;
+    <li id="cpython-language-and-version">
+      <a href="../index.html">3.10.0 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -172,7 +168,7 @@
             
   <section id="module-threading">
 <span id="threading-thread-based-parallelism"></span><h1><a class="reference internal" href="#module-threading" title="threading: Thread-based parallelism."><code class="xref py py-mod docutils literal notranslate"><span class="pre">threading</span></code></a> --- Thread-based parallelism<a class="headerlink" href="#module-threading" title="本標題的永久連結">¶</a></h1>
-<p><strong>Source code:</strong> <a class="reference external" href="https://github.com/python/cpython/tree/3.9/Lib/threading.py">Lib/threading.py</a></p>
+<p><strong>Source code:</strong> <a class="reference external" href="https://github.com/python/cpython/tree/3.10/Lib/threading.py">Lib/threading.py</a></p>
 <hr class="docutils" />
 <p>This module constructs higher-level threading interfaces on top of the lower
 level <a class="reference internal" href="_thread.html#module-_thread" title="_thread: Low-level threading API."><code class="xref py py-mod docutils literal notranslate"><span class="pre">_thread</span></code></a> module.  See also the <a class="reference internal" href="queue.html#module-queue" title="queue: A synchronized queue class."><code class="xref py py-mod docutils literal notranslate"><span class="pre">queue</span></code></a> module.</p>
@@ -181,9 +177,9 @@ level <a class="reference internal" href="_thread.html#module-_thread" title="_t
 </div>
 <div class="admonition note">
 <p class="admonition-title">備註</p>
-<p>While they are not listed below, the <code class="docutils literal notranslate"><span class="pre">camelCase</span></code> names used for some
-methods and functions in this module in the Python 2.x series are still
-supported by this module.</p>
+<p>In the Python 2.x series, this module contained <code class="docutils literal notranslate"><span class="pre">camelCase</span></code> names
+for some methods and functions. These are deprecated as of Python 3.10,
+but they are still supported for compatibility with Python 2.5 and lower.</p>
 </div>
 <div class="impl-detail compound">
 <p><strong>CPython implementation detail:</strong> In CPython, due to the <a class="reference internal" href="../glossary.html#term-global-interpreter-lock"><span class="xref std std-term">Global Interpreter Lock</span></a>, only one thread
@@ -201,6 +197,7 @@ multiple I/O-bound tasks simultaneously.</p>
 <span class="sig-prename descclassname"><span class="pre">threading.</span></span><span class="sig-name descname"><span class="pre">active_count</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#threading.active_count" title="本定義的永久連結">¶</a></dt>
 <dd><p>Return the number of <a class="reference internal" href="#threading.Thread" title="threading.Thread"><code class="xref py py-class docutils literal notranslate"><span class="pre">Thread</span></code></a> objects currently alive.  The returned
 count is equal to the length of the list returned by <a class="reference internal" href="#threading.enumerate" title="threading.enumerate"><code class="xref py py-func docutils literal notranslate"><span class="pre">enumerate()</span></code></a>.</p>
+<p>The function <code class="docutils literal notranslate"><span class="pre">activeCount</span></code> is a deprecated alias for this function.</p>
 </dd></dl>
 
 <dl class="py function">
@@ -210,6 +207,7 @@ count is equal to the length of the list returned by <a class="reference interna
 of control.  If the caller's thread of control was not created through the
 <a class="reference internal" href="#module-threading" title="threading: Thread-based parallelism."><code class="xref py py-mod docutils literal notranslate"><span class="pre">threading</span></code></a> module, a dummy thread object with limited functionality is
 returned.</p>
+<p>The function <code class="docutils literal notranslate"><span class="pre">currentThread</span></code> is a deprecated alias for this function.</p>
 </dd></dl>
 
 <dl class="py function">
@@ -241,6 +239,17 @@ hook completes to avoid resurrecting objects.</p>
 </div>
 <div class="versionadded">
 <p><span class="versionmodified added">在 3.8 版本新加入.</span></p>
+</div>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="threading.__excepthook__">
+<span class="sig-prename descclassname"><span class="pre">threading.</span></span><span class="sig-name descname"><span class="pre">__excepthook__</span></span><a class="headerlink" href="#threading.__excepthook__" title="本定義的永久連結">¶</a></dt>
+<dd><p>Holds the original value of <a class="reference internal" href="#threading.excepthook" title="threading.excepthook"><code class="xref py py-func docutils literal notranslate"><span class="pre">threading.excepthook()</span></code></a>. It is saved so that the
+original value can be restored in case they happen to get replaced with
+broken or alternative objects.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">在 3.10 版本新加入.</span></p>
 </div>
 </dd></dl>
 
@@ -300,11 +309,29 @@ The <em>func</em> will be passed to  <a class="reference internal" href="sys.htm
 </dd></dl>
 
 <dl class="py function">
+<dt class="sig sig-object py" id="threading.gettrace">
+<span class="sig-prename descclassname"><span class="pre">threading.</span></span><span class="sig-name descname"><span class="pre">gettrace</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#threading.gettrace" title="本定義的永久連結">¶</a></dt>
+<dd><p id="index-1">Get the trace function as set by <a class="reference internal" href="#threading.settrace" title="threading.settrace"><code class="xref py py-func docutils literal notranslate"><span class="pre">settrace()</span></code></a>.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">在 3.10 版本新加入.</span></p>
+</div>
+</dd></dl>
+
+<dl class="py function">
 <dt class="sig sig-object py" id="threading.setprofile">
 <span class="sig-prename descclassname"><span class="pre">threading.</span></span><span class="sig-name descname"><span class="pre">setprofile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#threading.setprofile" title="本定義的永久連結">¶</a></dt>
-<dd><p id="index-1">Set a profile function for all threads started from the <a class="reference internal" href="#module-threading" title="threading: Thread-based parallelism."><code class="xref py py-mod docutils literal notranslate"><span class="pre">threading</span></code></a> module.
+<dd><p id="index-2">Set a profile function for all threads started from the <a class="reference internal" href="#module-threading" title="threading: Thread-based parallelism."><code class="xref py py-mod docutils literal notranslate"><span class="pre">threading</span></code></a> module.
 The <em>func</em> will be passed to  <a class="reference internal" href="sys.html#sys.setprofile" title="sys.setprofile"><code class="xref py py-func docutils literal notranslate"><span class="pre">sys.setprofile()</span></code></a> for each thread, before its
 <a class="reference internal" href="#threading.Thread.run" title="threading.Thread.run"><code class="xref py py-meth docutils literal notranslate"><span class="pre">run()</span></code></a> method is called.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="threading.getprofile">
+<span class="sig-prename descclassname"><span class="pre">threading.</span></span><span class="sig-name descname"><span class="pre">getprofile</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#threading.getprofile" title="本定義的永久連結">¶</a></dt>
+<dd><p id="index-3">Get the profiler function as set by <a class="reference internal" href="#threading.setprofile" title="threading.setprofile"><code class="xref py py-func docutils literal notranslate"><span class="pre">setprofile()</span></code></a>.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">在 3.10 版本新加入.</span></p>
+</div>
 </dd></dl>
 
 <dl class="py function">
@@ -421,8 +448,10 @@ are:</p>
 <code class="xref py py-class docutils literal notranslate"><span class="pre">ThreadGroup</span></code> class is implemented.</p>
 <p><em>target</em> is the callable object to be invoked by the <a class="reference internal" href="#threading.Thread.run" title="threading.Thread.run"><code class="xref py py-meth docutils literal notranslate"><span class="pre">run()</span></code></a> method.
 Defaults to <code class="docutils literal notranslate"><span class="pre">None</span></code>, meaning nothing is called.</p>
-<p><em>name</em> is the thread name.  By default, a unique name is constructed of the
-form &quot;Thread-<em>N</em>&quot; where <em>N</em> is a small decimal number.</p>
+<p><em>name</em> is the thread name. By default, a unique name is constructed
+of the form &quot;Thread-<em>N</em>&quot; where <em>N</em> is a small decimal number,
+or &quot;Thread-<em>N</em> (target)&quot; where &quot;target&quot; is <code class="docutils literal notranslate"><span class="pre">target.__name__</span></code> if the
+<em>target</em> argument is specified.</p>
 <p><em>args</em> is the argument tuple for the target invocation.  Defaults to <code class="docutils literal notranslate"><span class="pre">()</span></code>.</p>
 <p><em>kwargs</em> is a dictionary of keyword arguments for the target invocation.
 Defaults to <code class="docutils literal notranslate"><span class="pre">{}</span></code>.</p>
@@ -432,6 +461,9 @@ current thread.</p>
 <p>If the subclass overrides the constructor, it must make sure to invoke the
 base class constructor (<code class="docutils literal notranslate"><span class="pre">Thread.__init__()</span></code>) before doing anything else to
 the thread.</p>
+<div class="versionchanged">
+<p><span class="versionmodified changed">在 3.10 版本變更: </span>Use the <em>target</em> name if <em>name</em> argument is omitted.</p>
+</div>
 <div class="versionchanged">
 <p><span class="versionmodified changed">在 3.3 版本變更: </span>Added the <em>daemon</em> argument.</p>
 </div>
@@ -491,8 +523,11 @@ the constructor.</p>
 <span class="sig-name descname"><span class="pre">getName</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#threading.Thread.getName" title="本定義的永久連結">¶</a></dt>
 <dt class="sig sig-object py" id="threading.Thread.setName">
 <span class="sig-name descname"><span class="pre">setName</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#threading.Thread.setName" title="本定義的永久連結">¶</a></dt>
-<dd><p>Old getter/setter API for <a class="reference internal" href="#threading.Thread.name" title="threading.Thread.name"><code class="xref py py-attr docutils literal notranslate"><span class="pre">name</span></code></a>; use it directly as a
+<dd><p>Deprecated getter/setter API for <a class="reference internal" href="#threading.Thread.name" title="threading.Thread.name"><code class="xref py py-attr docutils literal notranslate"><span class="pre">name</span></code></a>; use it directly as a
 property instead.</p>
+<div class="deprecated">
+<p><span class="versionmodified deprecated">在 3.10 版本開始棄用.</span></p>
+</div>
 </dd></dl>
 
 <dl class="py attribute">
@@ -508,13 +543,12 @@ thread has exited.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="threading.Thread.native_id">
 <span class="sig-name descname"><span class="pre">native_id</span></span><a class="headerlink" href="#threading.Thread.native_id" title="本定義的永久連結">¶</a></dt>
-<dd><p>The native integral thread ID of this thread.
+<dd><p>The Thread ID (<code class="docutils literal notranslate"><span class="pre">TID</span></code>) of this thread, as assigned by the OS (kernel).
 This is a non-negative integer, or <code class="docutils literal notranslate"><span class="pre">None</span></code> if the thread has not
 been started. See the <a class="reference internal" href="#threading.get_native_id" title="threading.get_native_id"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_native_id()</span></code></a> function.
-This represents the Thread ID (<code class="docutils literal notranslate"><span class="pre">TID</span></code>) as assigned to the
-thread by the OS (kernel).  Its value may be used to uniquely identify
-this particular thread system-wide (until the thread terminates,
-after which the value may be recycled by the OS).</p>
+This value may be used to uniquely identify this particular thread
+system-wide (until the thread terminates, after which the value
+may be recycled by the OS).</p>
 <div class="admonition note">
 <p class="admonition-title">備註</p>
 <p>Similar to Process IDs, Thread IDs are only valid (guaranteed unique
@@ -553,8 +587,11 @@ therefore all threads created in the main thread default to
 <span class="sig-name descname"><span class="pre">isDaemon</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#threading.Thread.isDaemon" title="本定義的永久連結">¶</a></dt>
 <dt class="sig sig-object py" id="threading.Thread.setDaemon">
 <span class="sig-name descname"><span class="pre">setDaemon</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#threading.Thread.setDaemon" title="本定義的永久連結">¶</a></dt>
-<dd><p>Old getter/setter API for <a class="reference internal" href="#threading.Thread.daemon" title="threading.Thread.daemon"><code class="xref py py-attr docutils literal notranslate"><span class="pre">daemon</span></code></a>; use it directly as a
+<dd><p>Deprecated getter/setter API for <a class="reference internal" href="#threading.Thread.daemon" title="threading.Thread.daemon"><code class="xref py py-attr docutils literal notranslate"><span class="pre">daemon</span></code></a>; use it directly as a
 property instead.</p>
+<div class="deprecated">
+<p><span class="versionmodified deprecated">在 3.10 版本開始棄用.</span></p>
+</div>
 </dd></dl>
 
 </dd></dl>
@@ -863,6 +900,7 @@ release the lock, its caller should.</p>
 <a class="reference internal" href="#threading.Condition.notify" title="threading.Condition.notify"><code class="xref py py-meth docutils literal notranslate"><span class="pre">notify()</span></code></a>, but wakes up all waiting threads instead of one. If the
 calling thread has not acquired the lock when this method is called, a
 <a class="reference internal" href="exceptions.html#RuntimeError" title="RuntimeError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">RuntimeError</span></code></a> is raised.</p>
+<p>The method <code class="docutils literal notranslate"><span class="pre">notifyAll</span></code> is a deprecated alias for this method.</p>
 </dd></dl>
 
 </dd></dl>
@@ -991,6 +1029,7 @@ The flag is initially false.</p>
 <dt class="sig sig-object py" id="threading.Event.is_set">
 <span class="sig-name descname"><span class="pre">is_set</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#threading.Event.is_set" title="本定義的永久連結">¶</a></dt>
 <dd><p>Return <code class="docutils literal notranslate"><span class="pre">True</span></code> if and only if the internal flag is true.</p>
+<p>The method <code class="docutils literal notranslate"><span class="pre">isSet</span></code> is a deprecated alias for this method.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -1240,7 +1279,7 @@ the following snippet:</p>
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.9/Doc/library/threading.rst"
+        <a href="https://github.com/python/cpython/blob/3.10/Doc/library/threading.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -1275,10 +1314,8 @@ the following snippet:</p>
           <li>
               
           </li>
-    <li>
-      <span class="language_switcher_placeholder">zh_TW</span>
-      <span class="version_switcher_placeholder">3.9.7</span>
-      <a href="../index.html">說明文件 </a> &#187;
+    <li id="cpython-language-and-version">
+      <a href="../index.html">3.10.0 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>

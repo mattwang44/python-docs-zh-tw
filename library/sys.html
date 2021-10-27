@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>sys --- System-specific parameters and functions &#8212; Python 3.9.7 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sys --- System-specific parameters and functions &#8212; Python 3.10.0 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2021.11.1" />
@@ -20,7 +20,7 @@
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.9.7 說明文件 中搜尋"
+          title="在 Python 3.10.0 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -30,8 +30,6 @@
     <link rel="prev" title="Python Runtime Services" href="python.html" />
     <link rel="canonical" href="https://docs.python.org/3/library/sys.html" />
     
-      
-      <script type="text/javascript" src="../_static/switchers.js"></script>
       
     
 
@@ -83,7 +81,7 @@
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.9/Doc/library/sys.rst"
+        <a href="https://github.com/python/cpython/blob/3.10/Doc/library/sys.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -119,10 +117,8 @@
           <li>
               
           </li>
-    <li>
-      <span class="language_switcher_placeholder">zh_TW</span>
-      <span class="version_switcher_placeholder">3.9.7</span>
-      <a href="../index.html">說明文件 </a> &#187;
+    <li id="cpython-language-and-version">
+      <a href="../index.html">3.10.0 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -214,6 +210,7 @@ the interpreter, <code class="docutils literal notranslate"><span class="pre">ar
 was passed to the Python interpreter, <code class="docutils literal notranslate"><span class="pre">argv[0]</span></code> is the empty string.</p>
 <p>To loop over the standard input, or the list of files given on the
 command line, see the <a class="reference internal" href="fileinput.html#module-fileinput" title="fileinput: Loop over standard input or a list of files."><code class="xref py py-mod docutils literal notranslate"><span class="pre">fileinput</span></code></a> module.</p>
+<p>See also <a class="reference internal" href="#sys.orig_argv" title="sys.orig_argv"><code class="xref py py-data docutils literal notranslate"><span class="pre">sys.orig_argv</span></code></a>.</p>
 <div class="admonition note">
 <p class="admonition-title">備註</p>
 <p>On Unix, command line arguments are passed by bytes from OS.  Python decodes
@@ -294,9 +291,10 @@ little-endian (least-significant byte first) platforms.</p>
 <dl class="py data">
 <dt class="sig sig-object py" id="sys.builtin_module_names">
 <span class="sig-prename descclassname"><span class="pre">sys.</span></span><span class="sig-name descname"><span class="pre">builtin_module_names</span></span><a class="headerlink" href="#sys.builtin_module_names" title="本定義的永久連結">¶</a></dt>
-<dd><p>A tuple of strings giving the names of all modules that are compiled into this
+<dd><p>A tuple of strings containing the names of all modules that are compiled into this
 Python interpreter.  (This information is not available in any other way ---
 <code class="docutils literal notranslate"><span class="pre">modules.keys()</span></code> only lists the imported modules.)</p>
+<p>See also the <a class="reference internal" href="#sys.stdlib_module_names" title="sys.stdlib_module_names"><code class="xref py py-attr docutils literal notranslate"><span class="pre">sys.stdlib_module_names</span></code></a> list.</p>
 </dd></dl>
 
 <dl class="py function">
@@ -339,6 +337,18 @@ code examines the frame.</p>
 </dd></dl>
 
 <dl class="py function">
+<dt class="sig sig-object py" id="sys._current_exceptions">
+<span class="sig-prename descclassname"><span class="pre">sys.</span></span><span class="sig-name descname"><span class="pre">_current_exceptions</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sys._current_exceptions" title="本定義的永久連結">¶</a></dt>
+<dd><p>Return a dictionary mapping each thread's identifier to the topmost exception
+currently active in that thread at the time the function is called.
+If a thread is not currently handling an exception, it is not included in
+the result dictionary.</p>
+<p>This is most useful for statistical profiling.</p>
+<p>This function should be used for internal and specialized purposes only.</p>
+<p class="audit-hook">Raises an <a class="reference internal" href="#auditing"><span class="std std-ref">auditing event</span></a> <code class="docutils literal notranslate"><span class="pre">sys._current_exceptions</span></code> with no arguments.</p>
+</dd></dl>
+
+<dl class="py function">
 <dt class="sig sig-object py" id="sys.breakpointhook">
 <span class="sig-prename descclassname"><span class="pre">sys.</span></span><span class="sig-name descname"><span class="pre">breakpointhook</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sys.breakpointhook" title="本定義的永久連結">¶</a></dt>
 <dd><p>This hook function is called by built-in <a class="reference internal" href="functions.html#breakpoint" title="breakpoint"><code class="xref py py-func docutils literal notranslate"><span class="pre">breakpoint()</span></code></a>.  By default,
@@ -376,7 +386,8 @@ breakpoint is ignored.</p>
 <span class="sig-prename descclassname"><span class="pre">sys.</span></span><span class="sig-name descname"><span class="pre">_debugmallocstats</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sys._debugmallocstats" title="本定義的永久連結">¶</a></dt>
 <dd><p>Print low-level information to stderr about the state of CPython's memory
 allocator.</p>
-<p>If Python is configured --with-pydebug, it also performs some expensive
+<p>If Python is <cite>built in debug mode &lt;debug-build&gt;</cite> (<a class="reference internal" href="../using/configure.html#cmdoption-with-pydebug"><code class="xref std std-option docutils literal notranslate"><span class="pre">configure</span>
+<span class="pre">--with-pydebug</span> <span class="pre">option</span></code></a>), it also performs some expensive
 internal consistency checks.</p>
 <div class="versionadded">
 <p><span class="versionmodified added">在 3.3 版本新加入.</span></p>
@@ -836,24 +847,20 @@ found in the <a class="reference internal" href="os.html#module-os" title="os: M
 <dl class="py function">
 <dt class="sig sig-object py" id="sys.getfilesystemencoding">
 <span class="sig-prename descclassname"><span class="pre">sys.</span></span><span class="sig-name descname"><span class="pre">getfilesystemencoding</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sys.getfilesystemencoding" title="本定義的永久連結">¶</a></dt>
-<dd><p>Return the name of the encoding used to convert between Unicode
-filenames and bytes filenames. For best compatibility, str should be
-used for filenames in all cases, although representing filenames as bytes
-is also supported. Functions accepting or returning filenames should support
-either str or bytes and internally convert to the system's preferred
-representation.</p>
-<p>This encoding is always ASCII-compatible.</p>
+<dd><p>Get the <a class="reference internal" href="../glossary.html#term-filesystem-encoding-and-error-handler"><span class="xref std std-term">filesystem encoding</span></a>:
+the encoding used with the <a class="reference internal" href="../glossary.html#term-filesystem-encoding-and-error-handler"><span class="xref std std-term">filesystem error handler</span></a> to convert between Unicode filenames and bytes
+filenames. The filesystem error handler is returned from
+<a class="reference internal" href="#sys.getfilesystemencoding" title="sys.getfilesystemencoding"><code class="xref py py-func docutils literal notranslate"><span class="pre">getfilesystemencoding()</span></code></a>.</p>
+<p>For best compatibility, str should be used for filenames in all cases,
+although representing filenames as bytes is also supported. Functions
+accepting or returning filenames should support either str or bytes and
+internally convert to the system's preferred representation.</p>
 <p><a class="reference internal" href="os.html#os.fsencode" title="os.fsencode"><code class="xref py py-func docutils literal notranslate"><span class="pre">os.fsencode()</span></code></a> and <a class="reference internal" href="os.html#os.fsdecode" title="os.fsdecode"><code class="xref py py-func docutils literal notranslate"><span class="pre">os.fsdecode()</span></code></a> should be used to ensure that
 the correct encoding and errors mode are used.</p>
-<ul class="simple">
-<li><p>In the UTF-8 mode, the encoding is <code class="docutils literal notranslate"><span class="pre">utf-8</span></code> on any platform.</p></li>
-<li><p>On macOS, the encoding is <code class="docutils literal notranslate"><span class="pre">'utf-8'</span></code>.</p></li>
-<li><p>On Unix, the encoding is the locale encoding.</p></li>
-<li><p>On Windows, the encoding may be <code class="docutils literal notranslate"><span class="pre">'utf-8'</span></code> or <code class="docutils literal notranslate"><span class="pre">'mbcs'</span></code>, depending
-on user configuration.</p></li>
-<li><p>On Android, the encoding is <code class="docutils literal notranslate"><span class="pre">'utf-8'</span></code>.</p></li>
-<li><p>On VxWorks, the encoding is <code class="docutils literal notranslate"><span class="pre">'utf-8'</span></code>.</p></li>
-</ul>
+<p>The <a class="reference internal" href="../glossary.html#term-filesystem-encoding-and-error-handler"><span class="xref std std-term">filesystem encoding and error handler</span></a> are configured at Python
+startup by the <code class="xref c c-func docutils literal notranslate"><span class="pre">PyConfig_Read()</span></code> function: see
+<a class="reference internal" href="../c-api/init_config.html#c.PyConfig.filesystem_encoding" title="PyConfig.filesystem_encoding"><code class="xref c c-member docutils literal notranslate"><span class="pre">filesystem_encoding</span></code></a> and
+<a class="reference internal" href="../c-api/init_config.html#c.PyConfig.filesystem_errors" title="PyConfig.filesystem_errors"><code class="xref c c-member docutils literal notranslate"><span class="pre">filesystem_errors</span></code></a> members of <a class="reference internal" href="../c-api/init_config.html#c.PyConfig" title="PyConfig"><code class="xref c c-type docutils literal notranslate"><span class="pre">PyConfig</span></code></a>.</p>
 <div class="versionchanged">
 <p><span class="versionmodified changed">在 3.2 版本變更: </span><a class="reference internal" href="#sys.getfilesystemencoding" title="sys.getfilesystemencoding"><code class="xref py py-func docutils literal notranslate"><span class="pre">getfilesystemencoding()</span></code></a> result cannot be <code class="docutils literal notranslate"><span class="pre">None</span></code> anymore.</p>
 </div>
@@ -862,18 +869,23 @@ on user configuration.</p></li>
 and <a class="reference internal" href="#sys._enablelegacywindowsfsencoding" title="sys._enablelegacywindowsfsencoding"><code class="xref py py-func docutils literal notranslate"><span class="pre">_enablelegacywindowsfsencoding()</span></code></a> for more information.</p>
 </div>
 <div class="versionchanged">
-<p><span class="versionmodified changed">在 3.7 版本變更: </span>Return 'utf-8' in the UTF-8 mode.</p>
+<p><span class="versionmodified changed">在 3.7 版本變更: </span>Return <code class="docutils literal notranslate"><span class="pre">'utf-8'</span></code> if the <a class="reference internal" href="os.html#utf8-mode"><span class="std std-ref">Python UTF-8 Mode</span></a> is
+enabled.</p>
 </div>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="sys.getfilesystemencodeerrors">
 <span class="sig-prename descclassname"><span class="pre">sys.</span></span><span class="sig-name descname"><span class="pre">getfilesystemencodeerrors</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sys.getfilesystemencodeerrors" title="本定義的永久連結">¶</a></dt>
-<dd><p>Return the name of the error mode used to convert between Unicode filenames
-and bytes filenames. The encoding name is returned from
+<dd><p>Get the <a class="reference internal" href="../glossary.html#term-filesystem-encoding-and-error-handler"><span class="xref std std-term">filesystem error handler</span></a>: the error handler used with the <a class="reference internal" href="../glossary.html#term-filesystem-encoding-and-error-handler"><span class="xref std std-term">filesystem encoding</span></a> to convert between Unicode
+filenames and bytes filenames. The filesystem encoding is returned from
 <a class="reference internal" href="#sys.getfilesystemencoding" title="sys.getfilesystemencoding"><code class="xref py py-func docutils literal notranslate"><span class="pre">getfilesystemencoding()</span></code></a>.</p>
 <p><a class="reference internal" href="os.html#os.fsencode" title="os.fsencode"><code class="xref py py-func docutils literal notranslate"><span class="pre">os.fsencode()</span></code></a> and <a class="reference internal" href="os.html#os.fsdecode" title="os.fsdecode"><code class="xref py py-func docutils literal notranslate"><span class="pre">os.fsdecode()</span></code></a> should be used to ensure that
 the correct encoding and errors mode are used.</p>
+<p>The <a class="reference internal" href="../glossary.html#term-filesystem-encoding-and-error-handler"><span class="xref std std-term">filesystem encoding and error handler</span></a> are configured at Python
+startup by the <code class="xref c c-func docutils literal notranslate"><span class="pre">PyConfig_Read()</span></code> function: see
+<a class="reference internal" href="../c-api/init_config.html#c.PyConfig.filesystem_encoding" title="PyConfig.filesystem_encoding"><code class="xref c c-member docutils literal notranslate"><span class="pre">filesystem_encoding</span></code></a> and
+<a class="reference internal" href="../c-api/init_config.html#c.PyConfig.filesystem_errors" title="PyConfig.filesystem_errors"><code class="xref c c-member docutils literal notranslate"><span class="pre">filesystem_errors</span></code></a> members of <a class="reference internal" href="../c-api/init_config.html#c.PyConfig" title="PyConfig"><code class="xref c c-type docutils literal notranslate"><span class="pre">PyConfig</span></code></a>.</p>
 <div class="versionadded">
 <p><span class="versionmodified added">在 3.6 版本新加入.</span></p>
 </div>
@@ -1080,7 +1092,7 @@ implementation.  For more details about hashing of numeric types, see
 <td><p>hash value returned for a positive infinity</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="xref py py-const docutils literal notranslate"><span class="pre">nan</span></code></p></td>
-<td><p>hash value returned for a nan</p></td>
+<td><p>(this attribute is no longer used)</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="xref py py-const docutils literal notranslate"><span class="pre">imag</span></code></p></td>
 <td><p>multiplier used for the imaginary part of a
@@ -1317,7 +1329,22 @@ have a <a class="reference internal" href="importlib.html#importlib.abc.MetaPath
 <dd><p>This is a dictionary that maps module names to modules which have already been
 loaded.  This can be manipulated to force reloading of modules and other tricks.
 However, replacing the dictionary will not necessarily work as expected and
-deleting essential items from the dictionary may cause Python to fail.</p>
+deleting essential items from the dictionary may cause Python to fail.  If
+you want to iterate over this global dictionary always use
+<code class="docutils literal notranslate"><span class="pre">sys.modules.copy()</span></code> or <code class="docutils literal notranslate"><span class="pre">tuple(sys.modules)</span></code> to avoid exceptions as its
+size may change during iteration as a side effect of code or activity in
+other threads.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="sys.orig_argv">
+<span class="sig-prename descclassname"><span class="pre">sys.</span></span><span class="sig-name descname"><span class="pre">orig_argv</span></span><a class="headerlink" href="#sys.orig_argv" title="本定義的永久連結">¶</a></dt>
+<dd><p>The list of the original command line arguments passed to the Python
+executable.</p>
+<p>See also <a class="reference internal" href="#sys.argv" title="sys.argv"><code class="xref py py-data docutils literal notranslate"><span class="pre">sys.argv</span></code></a>.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">在 3.10 版本新加入.</span></p>
+</div>
 </dd></dl>
 
 <dl class="py data">
@@ -1668,7 +1695,7 @@ calls, each of which must raise its own event.</p>
 <p><span class="versionmodified added">在 3.6 版本新加入: </span>See <span class="target" id="index-28"></span><a class="pep reference external" href="https://www.python.org/dev/peps/pep-0525"><strong>PEP 525</strong></a> for more details, and for a reference example of a
 <em>finalizer</em> method see the implementation of
 <code class="docutils literal notranslate"><span class="pre">asyncio.Loop.shutdown_asyncgens</span></code> in
-<a class="reference external" href="https://github.com/python/cpython/tree/3.9/Lib/asyncio/base_events.py">Lib/asyncio/base_events.py</a></p>
+<a class="reference external" href="https://github.com/python/cpython/tree/3.10/Lib/asyncio/base_events.py">Lib/asyncio/base_events.py</a></p>
 </div>
 <div class="admonition note">
 <p class="admonition-title">備註</p>
@@ -1703,10 +1730,13 @@ for details.)  Use it only for debugging purposes.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="sys._enablelegacywindowsfsencoding">
 <span class="sig-prename descclassname"><span class="pre">sys.</span></span><span class="sig-name descname"><span class="pre">_enablelegacywindowsfsencoding</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sys._enablelegacywindowsfsencoding" title="本定義的永久連結">¶</a></dt>
-<dd><p>Changes the default filesystem encoding and errors mode to 'mbcs' and
-'replace' respectively, for consistency with versions of Python prior to 3.6.</p>
+<dd><p>Changes the <a class="reference internal" href="../glossary.html#term-filesystem-encoding-and-error-handler"><span class="xref std std-term">filesystem encoding and error handler</span></a> to 'mbcs' and
+'replace' respectively, for consistency with versions of Python prior to
+3.6.</p>
 <p>This is equivalent to defining the <span class="target" id="index-31"></span><a class="reference internal" href="../using/cmdline.html#envvar-PYTHONLEGACYWINDOWSFSENCODING"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PYTHONLEGACYWINDOWSFSENCODING</span></code></a>
 environment variable before launching Python.</p>
+<p>See also <a class="reference internal" href="#sys.getfilesystemencoding" title="sys.getfilesystemencoding"><code class="xref py py-func docutils literal notranslate"><span class="pre">sys.getfilesystemencoding()</span></code></a> and
+<a class="reference internal" href="#sys.getfilesystemencodeerrors" title="sys.getfilesystemencodeerrors"><code class="xref py py-func docutils literal notranslate"><span class="pre">sys.getfilesystemencodeerrors()</span></code></a>.</p>
 <p class="availability"><a class="reference internal" href="intro.html#availability"><span class="std std-ref">Availability</span></a>: Windows.</p>
 <div class="versionadded">
 <p><span class="versionmodified added">在 3.6 版本新加入: </span>See <span class="target" id="index-32"></span><a class="pep reference external" href="https://www.python.org/dev/peps/pep-0529"><strong>PEP 529</strong></a> for more details.</p>
@@ -1733,16 +1763,15 @@ statements and for the prompts of <a class="reference internal" href="functions.
 returned by the <a class="reference internal" href="functions.html#open" title="open"><code class="xref py py-func docutils literal notranslate"><span class="pre">open()</span></code></a> function.  Their parameters are chosen as
 follows:</p>
 <ul>
-<li><p>The character encoding is platform-dependent.  Non-Windows
-platforms use the locale encoding (see
-<a class="reference internal" href="locale.html#locale.getpreferredencoding" title="locale.getpreferredencoding"><code class="xref py py-meth docutils literal notranslate"><span class="pre">locale.getpreferredencoding()</span></code></a>).</p>
+<li><p>The encoding and error handling are is initialized from
+<a class="reference internal" href="../c-api/init_config.html#c.PyConfig.stdio_encoding" title="PyConfig.stdio_encoding"><code class="xref c c-member docutils literal notranslate"><span class="pre">PyConfig.stdio_encoding</span></code></a> and <a class="reference internal" href="../c-api/init_config.html#c.PyConfig.stdio_errors" title="PyConfig.stdio_errors"><code class="xref c c-member docutils literal notranslate"><span class="pre">PyConfig.stdio_errors</span></code></a>.</p>
 <p>On Windows, UTF-8 is used for the console device.  Non-character
 devices such as disk files and pipes use the system locale
 encoding (i.e. the ANSI codepage).  Non-console character
 devices such as NUL (i.e. where <code class="docutils literal notranslate"><span class="pre">isatty()</span></code> returns <code class="docutils literal notranslate"><span class="pre">True</span></code>) use the
 value of the console input and output codepages at startup,
 respectively for stdin and stdout/stderr. This defaults to the
-system locale encoding if the process is not initially attached
+system <a class="reference internal" href="../glossary.html#term-locale-encoding"><span class="xref std std-term">locale encoding</span></a> if the process is not initially attached
 to a console.</p>
 <p>The special behaviour of the console can be overridden
 by setting the environment variable PYTHONLEGACYWINDOWSSTDIO
@@ -1798,6 +1827,24 @@ replacing it, and restore the saved object.</p>
 original values <code class="docutils literal notranslate"><span class="pre">__stdin__</span></code>, <code class="docutils literal notranslate"><span class="pre">__stdout__</span></code> and <code class="docutils literal notranslate"><span class="pre">__stderr__</span></code> can be
 <code class="docutils literal notranslate"><span class="pre">None</span></code>. It is usually the case for Windows GUI apps that aren't connected
 to a console and Python apps started with <strong class="program">pythonw</strong>.</p>
+</div>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="sys.stdlib_module_names">
+<span class="sig-prename descclassname"><span class="pre">sys.</span></span><span class="sig-name descname"><span class="pre">stdlib_module_names</span></span><a class="headerlink" href="#sys.stdlib_module_names" title="本定義的永久連結">¶</a></dt>
+<dd><p>A frozenset of strings containing the names of standard library modules.</p>
+<p>It is the same on all platforms. Modules which are not available on
+some platforms and modules disabled at Python build are also listed.
+All module kinds are listed: pure Python, built-in, frozen and extension
+modules. Test modules are excluded.</p>
+<p>For packages, only the main package is listed: sub-packages and sub-modules
+are not listed. For example, the <code class="docutils literal notranslate"><span class="pre">email</span></code> package is listed, but the
+<code class="docutils literal notranslate"><span class="pre">email.mime</span></code> sub-package and the <code class="docutils literal notranslate"><span class="pre">email.message</span></code> sub-module are not
+listed.</p>
+<p>See also the <a class="reference internal" href="#sys.builtin_module_names" title="sys.builtin_module_names"><code class="xref py py-attr docutils literal notranslate"><span class="pre">sys.builtin_module_names</span></code></a> list.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">在 3.10 版本新加入.</span></p>
 </div>
 </dd></dl>
 
@@ -1999,7 +2046,7 @@ means, or not at all.</p>
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.9/Doc/library/sys.rst"
+        <a href="https://github.com/python/cpython/blob/3.10/Doc/library/sys.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -2034,10 +2081,8 @@ means, or not at all.</p>
           <li>
               
           </li>
-    <li>
-      <span class="language_switcher_placeholder">zh_TW</span>
-      <span class="version_switcher_placeholder">3.9.7</span>
-      <a href="../index.html">說明文件 </a> &#187;
+    <li id="cpython-language-and-version">
+      <a href="../index.html">3.10.0 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>

@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>py_compile --- Compile Python source files &#8212; Python 3.9.7 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>py_compile --- Compile Python source files &#8212; Python 3.10.0 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2021.11.1" />
@@ -20,7 +20,7 @@
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.9.7 說明文件 中搜尋"
+          title="在 Python 3.10.0 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -30,8 +30,6 @@
     <link rel="prev" title="pyclbr --- Python module browser support" href="pyclbr.html" />
     <link rel="canonical" href="https://docs.python.org/3/library/py_compile.html" />
     
-      
-      <script type="text/javascript" src="../_static/switchers.js"></script>
       
     
 
@@ -72,6 +70,14 @@
     <div class="menu-wrapper">
         <nav class="menu" role="navigation" aria-label="main navigation">
             <div class="language_switcher_placeholder"></div>
+  <h3><a href="../contents.html">目錄</a></h3>
+  <ul>
+<li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">py_compile</span></code> --- Compile Python source files</a><ul>
+<li><a class="reference internal" href="#command-line-interface">Command-Line Interface</a></li>
+</ul>
+</li>
+</ul>
+
   <h4>上個主題</h4>
   <p class="topless"><a href="pyclbr.html"
                         title="上一章"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pyclbr</span></code> --- Python module browser support</a></p>
@@ -83,7 +89,7 @@
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.9/Doc/library/py_compile.rst"
+        <a href="https://github.com/python/cpython/blob/3.10/Doc/library/py_compile.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -119,10 +125,8 @@
           <li>
               
           </li>
-    <li>
-      <span class="language_switcher_placeholder">zh_TW</span>
-      <span class="version_switcher_placeholder">3.9.7</span>
-      <a href="../index.html">說明文件 </a> &#187;
+    <li id="cpython-language-and-version">
+      <a href="../index.html">3.10.0 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -152,7 +156,7 @@
             
   <section id="module-py_compile">
 <span id="py-compile-compile-python-source-files"></span><h1><a class="reference internal" href="#module-py_compile" title="py_compile: Generate byte-code files from Python source files."><code class="xref py py-mod docutils literal notranslate"><span class="pre">py_compile</span></code></a> --- Compile Python source files<a class="headerlink" href="#module-py_compile" title="本標題的永久連結">¶</a></h1>
-<p><strong>Source code:</strong> <a class="reference external" href="https://github.com/python/cpython/tree/3.9/Lib/py_compile.py">Lib/py_compile.py</a></p>
+<p><strong>Source code:</strong> <a class="reference external" href="https://github.com/python/cpython/tree/3.10/Lib/py_compile.py">Lib/py_compile.py</a></p>
 <hr class="docutils" id="index-0" />
 <p>The <a class="reference internal" href="#module-py_compile" title="py_compile: Generate byte-code files from Python source files."><code class="xref py py-mod docutils literal notranslate"><span class="pre">py_compile</span></code></a> module provides a function to generate a byte-code file
 from a source file, and another function used when the module source file is
@@ -268,23 +272,35 @@ system external to Python like a build system.</p>
 
 </dd></dl>
 
-<dl class="py function">
-<dt class="sig sig-object py" id="py_compile.main">
-<span class="sig-prename descclassname"><span class="pre">py_compile.</span></span><span class="sig-name descname"><span class="pre">main</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#py_compile.main" title="本定義的永久連結">¶</a></dt>
-<dd><p>Compile several source files.  The files named in <em>args</em> (or on the command
-line, if <em>args</em> is <code class="docutils literal notranslate"><span class="pre">None</span></code>) are compiled and the resulting byte-code is
-cached in the normal manner.  This function does not search a directory
-structure to locate source files; it only compiles files named explicitly.
-If <code class="docutils literal notranslate"><span class="pre">'-'</span></code> is the only parameter in args, the list of files is taken from
-standard input.</p>
-<div class="versionchanged">
-<p><span class="versionmodified changed">在 3.2 版本變更: </span>Added support for <code class="docutils literal notranslate"><span class="pre">'-'</span></code>.</p>
-</div>
+<section id="command-line-interface">
+<h2>Command-Line Interface<a class="headerlink" href="#command-line-interface" title="本標題的永久連結">¶</a></h2>
+<p>This module can be invoked as a script to compile several source
+files.  The files named in <em>filenames</em> are compiled and the resulting
+bytecode is cached in the normal manner.  This program does not search
+a directory structure to locate source files; it only compiles files
+named explicitly. The exit status is nonzero if one of the files could
+not be compiled.</p>
+<dl class="std cmdoption">
+<dt class="sig sig-object std" id="cmdoption-python-m-py_compile-arg-file">
+<span id="cmdoption-python-m-py-compile-arg-file"></span><span class="sig-name descname"><span class="pre">&lt;file&gt;</span></span><span class="sig-prename descclassname"> <span class="pre">...</span> <span class="pre">&lt;fileN&gt;</span></span><a class="headerlink" href="#cmdoption-python-m-py_compile-arg-file" title="本定義的永久連結">¶</a></dt>
+<dt class="sig sig-object std" id="cmdoption-python-m-py_compile">
+<span id="cmdoption-python-m-py-compile"></span><span class="sig-name descname"><span class="pre">-</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-python-m-py_compile" title="本定義的永久連結">¶</a></dt>
+<dd><p>Positional arguments are files to compile.  If <code class="docutils literal notranslate"><span class="pre">-</span></code> is the only
+parameter, the list of files is taken from standard input.</p>
 </dd></dl>
 
-<p>When this module is run as a script, the <a class="reference internal" href="#py_compile.main" title="py_compile.main"><code class="xref py py-func docutils literal notranslate"><span class="pre">main()</span></code></a> is used to compile all the
-files named on the command line.  The exit status is nonzero if one of the files
-could not be compiled.</p>
+<dl class="std cmdoption">
+<dt class="sig sig-object std" id="cmdoption-python-m-py_compile-q">
+<span id="cmdoption-python-m-py-compile-q"></span><span id="cmdoption-python-m-py_compile-quiet"></span><span id="cmdoption-python-m-py-compile-quiet"></span><span class="sig-name descname"><span class="pre">-q</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--quiet</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-python-m-py_compile-q" title="本定義的永久連結">¶</a></dt>
+<dd><p>Suppress errors output.</p>
+</dd></dl>
+
+<div class="versionchanged">
+<p><span class="versionmodified changed">在 3.2 版本變更: </span>Added support for <code class="docutils literal notranslate"><span class="pre">-</span></code>.</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">在 3.10 版本變更: </span>Added support for <a class="reference internal" href="#cmdoption-python-m-py_compile-q"><code class="xref std std-option docutils literal notranslate"><span class="pre">-q</span></code></a>.</p>
+</div>
 <div class="admonition seealso">
 <p class="admonition-title">也參考</p>
 <dl class="simple">
@@ -292,6 +308,7 @@ could not be compiled.</p>
 </dd>
 </dl>
 </div>
+</section>
 </section>
 
 
@@ -301,6 +318,14 @@ could not be compiled.</p>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
+  <h3><a href="../contents.html">目錄</a></h3>
+  <ul>
+<li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">py_compile</span></code> --- Compile Python source files</a><ul>
+<li><a class="reference internal" href="#command-line-interface">Command-Line Interface</a></li>
+</ul>
+</li>
+</ul>
+
   <h4>上個主題</h4>
   <p class="topless"><a href="pyclbr.html"
                         title="上一章"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pyclbr</span></code> --- Python module browser support</a></p>
@@ -312,7 +337,7 @@ could not be compiled.</p>
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.9/Doc/library/py_compile.rst"
+        <a href="https://github.com/python/cpython/blob/3.10/Doc/library/py_compile.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -347,10 +372,8 @@ could not be compiled.</p>
           <li>
               
           </li>
-    <li>
-      <span class="language_switcher_placeholder">zh_TW</span>
-      <span class="version_switcher_placeholder">3.9.7</span>
-      <a href="../index.html">說明文件 </a> &#187;
+    <li id="cpython-language-and-version">
+      <a href="../index.html">3.10.0 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>

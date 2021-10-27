@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>ast --- Abstract Syntax Trees &#8212; Python 3.9.7 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ast --- Abstract Syntax Trees &#8212; Python 3.10.0 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2021.11.1" />
@@ -20,18 +20,16 @@
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.9.7 說明文件 中搜尋"
+          title="在 Python 3.10.0 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="搜尋" href="../search.html" />
     <link rel="copyright" title="版權" href="../copyright.html" />
     <link rel="next" title="symtable --- Access to the compiler&#39;s symbol tables" href="symtable.html" />
-    <link rel="prev" title="parser --- Access Python parse trees" href="parser.html" />
+    <link rel="prev" title="Python Language Services" href="language.html" />
     <link rel="canonical" href="https://docs.python.org/3/library/ast.html" />
     
-      
-      <script type="text/javascript" src="../_static/switchers.js"></script>
       
     
 
@@ -89,6 +87,7 @@
 </ul>
 </li>
 <li><a class="reference internal" href="#control-flow">Control flow</a></li>
+<li><a class="reference internal" href="#pattern-matching">Pattern matching</a></li>
 <li><a class="reference internal" href="#function-and-class-definitions">Function and class definitions</a></li>
 <li><a class="reference internal" href="#async-and-await">Async and await</a></li>
 </ul>
@@ -101,8 +100,8 @@
 </ul>
 
   <h4>上個主題</h4>
-  <p class="topless"><a href="parser.html"
-                        title="上一章"><code class="xref py py-mod docutils literal notranslate"><span class="pre">parser</span></code> --- Access Python parse trees</a></p>
+  <p class="topless"><a href="language.html"
+                        title="上一章">Python Language Services</a></p>
   <h4>下個主題</h4>
   <p class="topless"><a href="symtable.html"
                         title="下一章"><code class="xref py py-mod docutils literal notranslate"><span class="pre">symtable</span></code> --- Access to the compiler's symbol tables</a></p>
@@ -111,7 +110,7 @@
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.9/Doc/library/ast.rst"
+        <a href="https://github.com/python/cpython/blob/3.10/Doc/library/ast.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -135,7 +134,7 @@
           <a href="symtable.html" title="symtable --- Access to the compiler&#39;s symbol tables"
              accesskey="N">下一頁</a> |</li>
         <li class="right" >
-          <a href="parser.html" title="parser --- Access Python parse trees"
+          <a href="language.html" title="Python Language Services"
              accesskey="P">上一頁</a> |</li>
 
           <li><img src="../_static/py.svg" alt="python logo" style="vertical-align: middle; margin-top: -1px"/></li>
@@ -147,10 +146,8 @@
           <li>
               
           </li>
-    <li>
-      <span class="language_switcher_placeholder">zh_TW</span>
-      <span class="version_switcher_placeholder">3.9.7</span>
-      <a href="../index.html">說明文件 </a> &#187;
+    <li id="cpython-language-and-version">
+      <a href="../index.html">3.10.0 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -180,7 +177,7 @@
             
   <section id="module-ast">
 <span id="ast-abstract-syntax-trees"></span><h1><a class="reference internal" href="#module-ast" title="ast: Abstract Syntax Tree classes and manipulation."><code class="xref py py-mod docutils literal notranslate"><span class="pre">ast</span></code></a> --- Abstract Syntax Trees<a class="headerlink" href="#module-ast" title="本標題的永久連結">¶</a></h1>
-<p><strong>Source code:</strong> <a class="reference external" href="https://github.com/python/cpython/tree/3.9/Lib/ast.py">Lib/ast.py</a></p>
+<p><strong>Source code:</strong> <a class="reference external" href="https://github.com/python/cpython/tree/3.10/Lib/ast.py">Lib/ast.py</a></p>
 <hr class="docutils" />
 <p>The <a class="reference internal" href="#module-ast" title="ast: Abstract Syntax Tree classes and manipulation."><code class="xref py py-mod docutils literal notranslate"><span class="pre">ast</span></code></a> module helps Python applications to process trees of the Python
 abstract syntax grammar.  The abstract syntax itself might change with each
@@ -231,6 +228,8 @@ compiled into a Python code object using the built-in <a class="reference intern
           <span class="o">|</span> <span class="nc">If</span><span class="p">(</span><span class="bp">expr</span><span class="o"> </span><span class="n">test</span>, <span class="bp">stmt</span><span class="o">* </span><span class="n">body</span>, <span class="bp">stmt</span><span class="o">* </span><span class="n">orelse</span><span class="p">)</span>
           <span class="o">|</span> <span class="nc">With</span><span class="p">(</span><span class="bp">withitem</span><span class="o">* </span><span class="n">items</span>, <span class="bp">stmt</span><span class="o">* </span><span class="n">body</span>, <span class="bp">string</span><span class="o">? </span><span class="n">type_comment</span><span class="p">)</span>
           <span class="o">|</span> <span class="nc">AsyncWith</span><span class="p">(</span><span class="bp">withitem</span><span class="o">* </span><span class="n">items</span>, <span class="bp">stmt</span><span class="o">* </span><span class="n">body</span>, <span class="bp">string</span><span class="o">? </span><span class="n">type_comment</span><span class="p">)</span>
+
+          <span class="o">|</span> <span class="nc">Match</span><span class="p">(</span><span class="bp">expr</span><span class="o"> </span><span class="n">subject</span>, <span class="bp">match_case</span><span class="o">* </span><span class="n">cases</span><span class="p">)</span>
 
           <span class="o">|</span> <span class="nc">Raise</span><span class="p">(</span><span class="bp">expr</span><span class="o">? </span><span class="n">exc</span>, <span class="bp">expr</span><span class="o">? </span><span class="n">cause</span><span class="p">)</span>
           <span class="o">|</span> <span class="nc">Try</span><span class="p">(</span><span class="bp">stmt</span><span class="o">* </span><span class="n">body</span>, <span class="bp">excepthandler</span><span class="o">* </span><span class="n">handlers</span>, <span class="bp">stmt</span><span class="o">* </span><span class="n">orelse</span>, <span class="bp">stmt</span><span class="o">* </span><span class="n">finalbody</span><span class="p">)</span>
@@ -314,8 +313,25 @@ compiled into a Python code object using the built-in <a class="reference intern
 
     <span class="c c-Singleline">-- import name with optional &#39;as&#39; alias.</span>
     <span class="n">alias</span> <span class="o">=</span> <span class="p">(</span><span class="bp">identifier</span><span class="o"> </span><span class="n">name</span>, <span class="bp">identifier</span><span class="o">? </span><span class="n">asname</span><span class="p">)</span>
+             <span class="nb">attributes</span> <span class="p">(</span><span class="bp">int</span><span class="o"> </span><span class="n">lineno</span>, <span class="bp">int</span><span class="o"> </span><span class="n">col_offset</span>, <span class="bp">int</span><span class="o">? </span><span class="n">end_lineno</span>, <span class="bp">int</span><span class="o">? </span><span class="n">end_col_offset</span><span class="p">)</span>
 
     <span class="n">withitem</span> <span class="o">=</span> <span class="p">(</span><span class="bp">expr</span><span class="o"> </span><span class="n">context_expr</span>, <span class="bp">expr</span><span class="o">? </span><span class="n">optional_vars</span><span class="p">)</span>
+
+    <span class="n">match_case</span> <span class="o">=</span> <span class="p">(</span><span class="bp">pattern</span><span class="o"> </span><span class="n">pattern</span>, <span class="bp">expr</span><span class="o">? </span><span class="n">guard</span>, <span class="bp">stmt</span><span class="o">* </span><span class="n">body</span><span class="p">)</span>
+
+    <span class="n">pattern</span> <span class="o">=</span> <span class="nc">MatchValue</span><span class="p">(</span><span class="bp">expr</span><span class="o"> </span><span class="n">value</span><span class="p">)</span>
+            <span class="o">|</span> <span class="nc">MatchSingleton</span><span class="p">(</span><span class="bp">constant</span><span class="o"> </span><span class="n">value</span><span class="p">)</span>
+            <span class="o">|</span> <span class="nc">MatchSequence</span><span class="p">(</span><span class="bp">pattern</span><span class="o">* </span><span class="n">patterns</span><span class="p">)</span>
+            <span class="o">|</span> <span class="nc">MatchMapping</span><span class="p">(</span><span class="bp">expr</span><span class="o">* </span><span class="n">keys</span>, <span class="bp">pattern</span><span class="o">* </span><span class="n">patterns</span>, <span class="bp">identifier</span><span class="o">? </span><span class="n">rest</span><span class="p">)</span>
+            <span class="o">|</span> <span class="nc">MatchClass</span><span class="p">(</span><span class="bp">expr</span><span class="o"> </span><span class="n">cls</span>, <span class="bp">pattern</span><span class="o">* </span><span class="n">patterns</span>, <span class="bp">identifier</span><span class="o">* </span><span class="n">kwd_attrs</span>, <span class="bp">pattern</span><span class="o">* </span><span class="n">kwd_patterns</span><span class="p">)</span>
+
+            <span class="o">|</span> <span class="nc">MatchStar</span><span class="p">(</span><span class="bp">identifier</span><span class="o">? </span><span class="n">name</span><span class="p">)</span>
+            <span class="c c-Singleline">-- The optional &quot;rest&quot; MatchMapping parameter handles capturing extra mapping keys</span>
+
+            <span class="o">|</span> <span class="nc">MatchAs</span><span class="p">(</span><span class="bp">pattern</span><span class="o">? </span><span class="n">pattern</span>, <span class="bp">identifier</span><span class="o">? </span><span class="n">name</span><span class="p">)</span>
+            <span class="o">|</span> <span class="nc">MatchOr</span><span class="p">(</span><span class="bp">pattern</span><span class="o">* </span><span class="n">patterns</span><span class="p">)</span>
+
+             <span class="nb">attributes</span> <span class="p">(</span><span class="bp">int</span><span class="o"> </span><span class="n">lineno</span>, <span class="bp">int</span><span class="o"> </span><span class="n">col_offset</span>, <span class="bp">int</span><span class="o"> </span><span class="n">end_lineno</span>, <span class="bp">int</span><span class="o"> </span><span class="n">end_col_offset</span><span class="p">)</span>
 
     <span class="n">type_ignore</span> <span class="o">=</span> <span class="nc">TypeIgnore</span><span class="p">(</span><span class="bp">int</span><span class="o"> </span><span class="n">lineno</span>, <span class="bp">string</span><span class="o"> </span><span class="n">tag</span><span class="p">)</span>
 <span class="p">}</span>
@@ -364,12 +380,12 @@ values when compiling an AST with <a class="reference internal" href="functions.
 <span class="sig-name descname"><span class="pre">end_col_offset</span></span><a class="headerlink" href="#ast.AST.end_col_offset" title="本定義的永久連結">¶</a></dt>
 <dd><p>Instances of <code class="xref py py-class docutils literal notranslate"><span class="pre">ast.expr</span></code> and <code class="xref py py-class docutils literal notranslate"><span class="pre">ast.stmt</span></code> subclasses have
 <a class="reference internal" href="#ast.AST.lineno" title="ast.AST.lineno"><code class="xref py py-attr docutils literal notranslate"><span class="pre">lineno</span></code></a>, <a class="reference internal" href="#ast.AST.col_offset" title="ast.AST.col_offset"><code class="xref py py-attr docutils literal notranslate"><span class="pre">col_offset</span></code></a>, <a class="reference internal" href="#ast.AST.end_lineno" title="ast.AST.end_lineno"><code class="xref py py-attr docutils literal notranslate"><span class="pre">end_lineno</span></code></a>, and
-<a class="reference internal" href="#ast.AST.end_col_offset" title="ast.AST.end_col_offset"><code class="xref py py-attr docutils literal notranslate"><span class="pre">end_col_offset</span></code></a> attributes.  The <a class="reference internal" href="#ast.AST.lineno" title="ast.AST.lineno"><code class="xref py py-attr docutils literal notranslate"><span class="pre">lineno</span></code></a> and
-<a class="reference internal" href="#ast.AST.end_lineno" title="ast.AST.end_lineno"><code class="xref py py-attr docutils literal notranslate"><span class="pre">end_lineno</span></code></a> are the first and last line numbers of the source
-text span (1-indexed so the first line is line 1), and the
-<a class="reference internal" href="#ast.AST.col_offset" title="ast.AST.col_offset"><code class="xref py py-attr docutils literal notranslate"><span class="pre">col_offset</span></code></a> and <a class="reference internal" href="#ast.AST.end_col_offset" title="ast.AST.end_col_offset"><code class="xref py py-attr docutils literal notranslate"><span class="pre">end_col_offset</span></code></a> are the corresponding
-UTF-8 byte offsets of the first and last tokens that generated the node.
-The UTF-8 offset is recorded because the parser uses UTF-8 internally.</p>
+<a class="reference internal" href="#ast.AST.end_col_offset" title="ast.AST.end_col_offset"><code class="xref py py-attr docutils literal notranslate"><span class="pre">end_col_offset</span></code></a> attributes.  The <a class="reference internal" href="#ast.AST.lineno" title="ast.AST.lineno"><code class="xref py py-attr docutils literal notranslate"><span class="pre">lineno</span></code></a> and <a class="reference internal" href="#ast.AST.end_lineno" title="ast.AST.end_lineno"><code class="xref py py-attr docutils literal notranslate"><span class="pre">end_lineno</span></code></a>
+are the first and last line numbers of source text span (1-indexed so the
+first line is line 1) and the <a class="reference internal" href="#ast.AST.col_offset" title="ast.AST.col_offset"><code class="xref py py-attr docutils literal notranslate"><span class="pre">col_offset</span></code></a> and <a class="reference internal" href="#ast.AST.end_col_offset" title="ast.AST.end_col_offset"><code class="xref py py-attr docutils literal notranslate"><span class="pre">end_col_offset</span></code></a>
+are the corresponding UTF-8 byte offsets of the first and last tokens that
+generated the node. The UTF-8 offset is recorded because the parser uses
+UTF-8 internally.</p>
 <p>Note that the end positions are not required by the compiler and are
 therefore optional. The end offset is <em>after</em> the last symbol, for example
 one can get the source segment of a one-line expression node using
@@ -1159,7 +1175,7 @@ between parenthesis and are hence pure names and not expressions.</p>
 <code class="docutils literal notranslate"><span class="pre">target</span></code> is a <a class="reference internal" href="#ast.Name" title="ast.Name"><code class="xref py py-class docutils literal notranslate"><span class="pre">Name</span></code></a> node for <code class="docutils literal notranslate"><span class="pre">x</span></code> (with the <a class="reference internal" href="#ast.Store" title="ast.Store"><code class="xref py py-class docutils literal notranslate"><span class="pre">Store</span></code></a>
 context), <code class="docutils literal notranslate"><span class="pre">op</span></code> is <a class="reference internal" href="#ast.Add" title="ast.Add"><code class="xref py py-class docutils literal notranslate"><span class="pre">Add</span></code></a>, and <code class="docutils literal notranslate"><span class="pre">value</span></code> is a <a class="reference internal" href="#ast.Constant" title="ast.Constant"><code class="xref py py-class docutils literal notranslate"><span class="pre">Constant</span></code></a> with
 value for 1.</p>
-<p>The <code class="docutils literal notranslate"><span class="pre">target</span></code> attribute connot be of class <a class="reference internal" href="#ast.Tuple" title="ast.Tuple"><code class="xref py py-class docutils literal notranslate"><span class="pre">Tuple</span></code></a> or <a class="reference internal" href="#ast.List" title="ast.List"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>,
+<p>The <code class="docutils literal notranslate"><span class="pre">target</span></code> attribute cannot be of class <a class="reference internal" href="#ast.Tuple" title="ast.Tuple"><code class="xref py py-class docutils literal notranslate"><span class="pre">Tuple</span></code></a> or <a class="reference internal" href="#ast.List" title="ast.List"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>,
 unlike the targets of <a class="reference internal" href="#ast.Assign" title="ast.Assign"><code class="xref py py-class docutils literal notranslate"><span class="pre">Assign</span></code></a>.</p>
 <div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">ast</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">ast</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="s1">&#39;x += 2&#39;</span><span class="p">),</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">))</span>
 <span class="go">Module(</span>
@@ -1572,6 +1588,377 @@ isn't used.</p>
 </dd></dl>
 
 </section>
+<section id="pattern-matching">
+<h3>Pattern matching<a class="headerlink" href="#pattern-matching" title="本標題的永久連結">¶</a></h3>
+<dl class="py class">
+<dt class="sig sig-object py" id="ast.Match">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">ast.</span></span><span class="sig-name descname"><span class="pre">Match</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">subject</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cases</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ast.Match" title="本定義的永久連結">¶</a></dt>
+<dd><p>A <code class="docutils literal notranslate"><span class="pre">match</span></code> statement. <code class="docutils literal notranslate"><span class="pre">subject</span></code> holds the subject of the match (the object
+that is being matched against the cases) and <code class="docutils literal notranslate"><span class="pre">cases</span></code> contains an iterable of
+<a class="reference internal" href="#ast.match_case" title="ast.match_case"><code class="xref py py-class docutils literal notranslate"><span class="pre">match_case</span></code></a> nodes with the different cases.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="ast.match_case">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">ast.</span></span><span class="sig-name descname"><span class="pre">match_case</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pattern</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">guard</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">body</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ast.match_case" title="本定義的永久連結">¶</a></dt>
+<dd><p>A single case pattern in a <code class="docutils literal notranslate"><span class="pre">match</span></code> statement. <code class="docutils literal notranslate"><span class="pre">pattern</span></code> contains the
+match pattern that the subject will be matched against. Note that the
+<a class="reference internal" href="#ast.AST" title="ast.AST"><code class="xref py py-class docutils literal notranslate"><span class="pre">AST</span></code></a> nodes produced for patterns differ from those produced for
+expressions, even when they share the same syntax.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">guard</span></code> attribute contains an expression that will be evaluated if
+the pattern matches the subject.</p>
+<p><code class="docutils literal notranslate"><span class="pre">body</span></code> contains a list of nodes to execute if the pattern matches and
+the result of evaluating the guard expression is true.</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">ast</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">ast</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="gp">... </span><span class="s2">match x:</span>
+<span class="gp">... </span><span class="s2">    case [x] if x&gt;0:</span>
+<span class="gp">... </span><span class="s2">        ...</span>
+<span class="gp">... </span><span class="s2">    case tuple():</span>
+<span class="gp">... </span><span class="s2">        ...</span>
+<span class="gp">... </span><span class="s2">&quot;&quot;&quot;</span><span class="p">),</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">))</span>
+<span class="go">Module(</span>
+<span class="go">    body=[</span>
+<span class="go">        Match(</span>
+<span class="go">            subject=Name(id=&#39;x&#39;, ctx=Load()),</span>
+<span class="go">            cases=[</span>
+<span class="go">                match_case(</span>
+<span class="go">                    pattern=MatchSequence(</span>
+<span class="go">                        patterns=[</span>
+<span class="go">                            MatchAs(name=&#39;x&#39;)]),</span>
+<span class="go">                    guard=Compare(</span>
+<span class="go">                        left=Name(id=&#39;x&#39;, ctx=Load()),</span>
+<span class="go">                        ops=[</span>
+<span class="go">                            Gt()],</span>
+<span class="go">                        comparators=[</span>
+<span class="go">                            Constant(value=0)]),</span>
+<span class="go">                    body=[</span>
+<span class="go">                        Expr(</span>
+<span class="go">                            value=Constant(value=Ellipsis))]),</span>
+<span class="go">                match_case(</span>
+<span class="go">                    pattern=MatchClass(</span>
+<span class="go">                        cls=Name(id=&#39;tuple&#39;, ctx=Load()),</span>
+<span class="go">                        patterns=[],</span>
+<span class="go">                        kwd_attrs=[],</span>
+<span class="go">                        kwd_patterns=[]),</span>
+<span class="go">                    body=[</span>
+<span class="go">                        Expr(</span>
+<span class="go">                            value=Constant(value=Ellipsis))])])],</span>
+<span class="go">    type_ignores=[])</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="ast.MatchValue">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">ast.</span></span><span class="sig-name descname"><span class="pre">MatchValue</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ast.MatchValue" title="本定義的永久連結">¶</a></dt>
+<dd><p>A match literal or value pattern that compares by equality. <code class="docutils literal notranslate"><span class="pre">value</span></code> is
+an expression node. Permitted value nodes are restricted as described in
+the match statement documentation. This pattern succeeds if the match
+subject is equal to the evaluated value.</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">ast</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">ast</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="gp">... </span><span class="s2">match x:</span>
+<span class="gp">... </span><span class="s2">    case &quot;Relevant&quot;:</span>
+<span class="gp">... </span><span class="s2">        ...</span>
+<span class="gp">... </span><span class="s2">&quot;&quot;&quot;</span><span class="p">),</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">))</span>
+<span class="go">Module(</span>
+<span class="go">    body=[</span>
+<span class="go">        Match(</span>
+<span class="go">            subject=Name(id=&#39;x&#39;, ctx=Load()),</span>
+<span class="go">            cases=[</span>
+<span class="go">                match_case(</span>
+<span class="go">                    pattern=MatchValue(</span>
+<span class="go">                        value=Constant(value=&#39;Relevant&#39;)),</span>
+<span class="go">                    body=[</span>
+<span class="go">                        Expr(</span>
+<span class="go">                            value=Constant(value=Ellipsis))])])],</span>
+<span class="go">    type_ignores=[])</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="ast.MatchSingleton">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">ast.</span></span><span class="sig-name descname"><span class="pre">MatchSingleton</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ast.MatchSingleton" title="本定義的永久連結">¶</a></dt>
+<dd><p>A match literal pattern that compares by identity. <code class="docutils literal notranslate"><span class="pre">value</span></code> is the
+singleton to be compared against: <code class="docutils literal notranslate"><span class="pre">None</span></code>, <code class="docutils literal notranslate"><span class="pre">True</span></code>, or <code class="docutils literal notranslate"><span class="pre">False</span></code>. This
+pattern succeeds if the match subject is the given constant.</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">ast</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">ast</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="gp">... </span><span class="s2">match x:</span>
+<span class="gp">... </span><span class="s2">    case None:</span>
+<span class="gp">... </span><span class="s2">        ...</span>
+<span class="gp">... </span><span class="s2">&quot;&quot;&quot;</span><span class="p">),</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">))</span>
+<span class="go">Module(</span>
+<span class="go">    body=[</span>
+<span class="go">        Match(</span>
+<span class="go">            subject=Name(id=&#39;x&#39;, ctx=Load()),</span>
+<span class="go">            cases=[</span>
+<span class="go">                match_case(</span>
+<span class="go">                    pattern=MatchSingleton(value=None),</span>
+<span class="go">                    body=[</span>
+<span class="go">                        Expr(</span>
+<span class="go">                            value=Constant(value=Ellipsis))])])],</span>
+<span class="go">    type_ignores=[])</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="ast.MatchSequence">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">ast.</span></span><span class="sig-name descname"><span class="pre">MatchSequence</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">patterns</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ast.MatchSequence" title="本定義的永久連結">¶</a></dt>
+<dd><p>A match sequence pattern. <code class="docutils literal notranslate"><span class="pre">patterns</span></code> contains the patterns to be matched
+against the subject elements if the subject is a sequence. Matches a variable
+length sequence if one of the subpatterns is a <code class="docutils literal notranslate"><span class="pre">MatchStar</span></code> node, otherwise
+matches a fixed length sequence.</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">ast</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">ast</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="gp">... </span><span class="s2">match x:</span>
+<span class="gp">... </span><span class="s2">    case [1, 2]:</span>
+<span class="gp">... </span><span class="s2">        ...</span>
+<span class="gp">... </span><span class="s2">&quot;&quot;&quot;</span><span class="p">),</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">))</span>
+<span class="go">Module(</span>
+<span class="go">    body=[</span>
+<span class="go">        Match(</span>
+<span class="go">            subject=Name(id=&#39;x&#39;, ctx=Load()),</span>
+<span class="go">            cases=[</span>
+<span class="go">                match_case(</span>
+<span class="go">                    pattern=MatchSequence(</span>
+<span class="go">                        patterns=[</span>
+<span class="go">                            MatchValue(</span>
+<span class="go">                                value=Constant(value=1)),</span>
+<span class="go">                            MatchValue(</span>
+<span class="go">                                value=Constant(value=2))]),</span>
+<span class="go">                    body=[</span>
+<span class="go">                        Expr(</span>
+<span class="go">                            value=Constant(value=Ellipsis))])])],</span>
+<span class="go">    type_ignores=[])</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="ast.MatchStar">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">ast.</span></span><span class="sig-name descname"><span class="pre">MatchStar</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ast.MatchStar" title="本定義的永久連結">¶</a></dt>
+<dd><p>Matches the rest of the sequence in a variable length match sequence pattern.
+If <code class="docutils literal notranslate"><span class="pre">name</span></code> is not <code class="docutils literal notranslate"><span class="pre">None</span></code>, a list containing the remaining sequence
+elements is bound to that name if the overall sequence pattern is successful.</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">ast</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">ast</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="gp">... </span><span class="s2">match x:</span>
+<span class="gp">... </span><span class="s2">    case [1, 2, *rest]:</span>
+<span class="gp">... </span><span class="s2">        ...</span>
+<span class="gp">... </span><span class="s2">    case [*_]:</span>
+<span class="gp">... </span><span class="s2">        ...</span>
+<span class="gp">... </span><span class="s2">&quot;&quot;&quot;</span><span class="p">),</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">))</span>
+<span class="go">Module(</span>
+<span class="go">    body=[</span>
+<span class="go">        Match(</span>
+<span class="go">            subject=Name(id=&#39;x&#39;, ctx=Load()),</span>
+<span class="go">            cases=[</span>
+<span class="go">                match_case(</span>
+<span class="go">                    pattern=MatchSequence(</span>
+<span class="go">                        patterns=[</span>
+<span class="go">                            MatchValue(</span>
+<span class="go">                                value=Constant(value=1)),</span>
+<span class="go">                            MatchValue(</span>
+<span class="go">                                value=Constant(value=2)),</span>
+<span class="go">                            MatchStar(name=&#39;rest&#39;)]),</span>
+<span class="go">                    body=[</span>
+<span class="go">                        Expr(</span>
+<span class="go">                            value=Constant(value=Ellipsis))]),</span>
+<span class="go">                match_case(</span>
+<span class="go">                    pattern=MatchSequence(</span>
+<span class="go">                        patterns=[</span>
+<span class="go">                            MatchStar()]),</span>
+<span class="go">                    body=[</span>
+<span class="go">                        Expr(</span>
+<span class="go">                            value=Constant(value=Ellipsis))])])],</span>
+<span class="go">    type_ignores=[])</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="ast.MatchMapping">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">ast.</span></span><span class="sig-name descname"><span class="pre">MatchMapping</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">keys</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">patterns</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rest</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ast.MatchMapping" title="本定義的永久連結">¶</a></dt>
+<dd><p>A match mapping pattern. <code class="docutils literal notranslate"><span class="pre">keys</span></code> is a sequence of expression nodes.
+<code class="docutils literal notranslate"><span class="pre">patterns</span></code> is a corresponding sequence of pattern nodes. <code class="docutils literal notranslate"><span class="pre">rest</span></code> is an
+optional name that can be specified to capture the remaining mapping elements.
+Permitted key expressions are restricted as described in the match statement
+documentation.</p>
+<p>This pattern succeeds if the subject is a mapping, all evaluated key
+expressions are present in the mapping, and the value corresponding to each
+key matches the corresponding subpattern. If <code class="docutils literal notranslate"><span class="pre">rest</span></code> is not <code class="docutils literal notranslate"><span class="pre">None</span></code>, a dict
+containing the remaining mapping elements is bound to that name if the overall
+mapping pattern is successful.</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">ast</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">ast</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="gp">... </span><span class="s2">match x:</span>
+<span class="gp">... </span><span class="s2">    case {1: _, 2: _}:</span>
+<span class="gp">... </span><span class="s2">        ...</span>
+<span class="gp">... </span><span class="s2">    case {**rest}:</span>
+<span class="gp">... </span><span class="s2">        ...</span>
+<span class="gp">... </span><span class="s2">&quot;&quot;&quot;</span><span class="p">),</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">))</span>
+<span class="go">Module(</span>
+<span class="go">    body=[</span>
+<span class="go">        Match(</span>
+<span class="go">            subject=Name(id=&#39;x&#39;, ctx=Load()),</span>
+<span class="go">            cases=[</span>
+<span class="go">                match_case(</span>
+<span class="go">                    pattern=MatchMapping(</span>
+<span class="go">                        keys=[</span>
+<span class="go">                            Constant(value=1),</span>
+<span class="go">                            Constant(value=2)],</span>
+<span class="go">                        patterns=[</span>
+<span class="go">                            MatchAs(),</span>
+<span class="go">                            MatchAs()]),</span>
+<span class="go">                    body=[</span>
+<span class="go">                        Expr(</span>
+<span class="go">                            value=Constant(value=Ellipsis))]),</span>
+<span class="go">                match_case(</span>
+<span class="go">                    pattern=MatchMapping(keys=[], patterns=[], rest=&#39;rest&#39;),</span>
+<span class="go">                    body=[</span>
+<span class="go">                        Expr(</span>
+<span class="go">                            value=Constant(value=Ellipsis))])])],</span>
+<span class="go">    type_ignores=[])</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="ast.MatchClass">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">ast.</span></span><span class="sig-name descname"><span class="pre">MatchClass</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cls</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">patterns</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kwd_attrs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kwd_patterns</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ast.MatchClass" title="本定義的永久連結">¶</a></dt>
+<dd><p>A match class pattern. <code class="docutils literal notranslate"><span class="pre">cls</span></code> is an expression giving the nominal class to
+be matched. <code class="docutils literal notranslate"><span class="pre">patterns</span></code> is a sequence of pattern nodes to be matched against
+the class defined sequence of pattern matching attributes. <code class="docutils literal notranslate"><span class="pre">kwd_attrs</span></code> is a
+sequence of additional attributes to be matched (specified as keyword arguments
+in the class pattern), <code class="docutils literal notranslate"><span class="pre">kwd_patterns</span></code> are the corresponding patterns
+(specified as keyword values in the class pattern).</p>
+<p>This pattern succeeds if the subject is an instance of the nominated class,
+all positional patterns match the corresponding class-defined attributes, and
+any specified keyword attributes match their corresponding pattern.</p>
+<p>Note: classes may define a property that returns self in order to match a
+pattern node against the instance being matched. Several builtin types are
+also matched that way, as described in the match statement documentation.</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">ast</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">ast</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="gp">... </span><span class="s2">match x:</span>
+<span class="gp">... </span><span class="s2">    case Point2D(0, 0):</span>
+<span class="gp">... </span><span class="s2">        ...</span>
+<span class="gp">... </span><span class="s2">    case Point3D(x=0, y=0, z=0):</span>
+<span class="gp">... </span><span class="s2">        ...</span>
+<span class="gp">... </span><span class="s2">&quot;&quot;&quot;</span><span class="p">),</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">))</span>
+<span class="go">Module(</span>
+<span class="go">    body=[</span>
+<span class="go">        Match(</span>
+<span class="go">            subject=Name(id=&#39;x&#39;, ctx=Load()),</span>
+<span class="go">            cases=[</span>
+<span class="go">                match_case(</span>
+<span class="go">                    pattern=MatchClass(</span>
+<span class="go">                        cls=Name(id=&#39;Point2D&#39;, ctx=Load()),</span>
+<span class="go">                        patterns=[</span>
+<span class="go">                            MatchValue(</span>
+<span class="go">                                value=Constant(value=0)),</span>
+<span class="go">                            MatchValue(</span>
+<span class="go">                                value=Constant(value=0))],</span>
+<span class="go">                        kwd_attrs=[],</span>
+<span class="go">                        kwd_patterns=[]),</span>
+<span class="go">                    body=[</span>
+<span class="go">                        Expr(</span>
+<span class="go">                            value=Constant(value=Ellipsis))]),</span>
+<span class="go">                match_case(</span>
+<span class="go">                    pattern=MatchClass(</span>
+<span class="go">                        cls=Name(id=&#39;Point3D&#39;, ctx=Load()),</span>
+<span class="go">                        patterns=[],</span>
+<span class="go">                        kwd_attrs=[</span>
+<span class="go">                            &#39;x&#39;,</span>
+<span class="go">                            &#39;y&#39;,</span>
+<span class="go">                            &#39;z&#39;],</span>
+<span class="go">                        kwd_patterns=[</span>
+<span class="go">                            MatchValue(</span>
+<span class="go">                                value=Constant(value=0)),</span>
+<span class="go">                            MatchValue(</span>
+<span class="go">                                value=Constant(value=0)),</span>
+<span class="go">                            MatchValue(</span>
+<span class="go">                                value=Constant(value=0))]),</span>
+<span class="go">                    body=[</span>
+<span class="go">                        Expr(</span>
+<span class="go">                            value=Constant(value=Ellipsis))])])],</span>
+<span class="go">    type_ignores=[])</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="ast.MatchAs">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">ast.</span></span><span class="sig-name descname"><span class="pre">MatchAs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pattern</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ast.MatchAs" title="本定義的永久連結">¶</a></dt>
+<dd><p>A match &quot;as-pattern&quot;, capture pattern or wildcard pattern. <code class="docutils literal notranslate"><span class="pre">pattern</span></code>
+contains the match pattern that the subject will be matched against.
+If the pattern is <code class="docutils literal notranslate"><span class="pre">None</span></code>, the node represents a capture pattern (i.e a
+bare name) and will always succeed.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">name</span></code> attribute contains the name that will be bound if the pattern
+is successful. If <code class="docutils literal notranslate"><span class="pre">name</span></code> is <code class="docutils literal notranslate"><span class="pre">None</span></code>, <code class="docutils literal notranslate"><span class="pre">pattern</span></code> must also be <code class="docutils literal notranslate"><span class="pre">None</span></code>
+and the node represents the wildcard pattern.</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">ast</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">ast</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="gp">... </span><span class="s2">match x:</span>
+<span class="gp">... </span><span class="s2">    case [x] as y:</span>
+<span class="gp">... </span><span class="s2">        ...</span>
+<span class="gp">... </span><span class="s2">    case _:</span>
+<span class="gp">... </span><span class="s2">        ...</span>
+<span class="gp">... </span><span class="s2">&quot;&quot;&quot;</span><span class="p">),</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">))</span>
+<span class="go">Module(</span>
+<span class="go">    body=[</span>
+<span class="go">        Match(</span>
+<span class="go">            subject=Name(id=&#39;x&#39;, ctx=Load()),</span>
+<span class="go">            cases=[</span>
+<span class="go">                match_case(</span>
+<span class="go">                    pattern=MatchAs(</span>
+<span class="go">                        pattern=MatchSequence(</span>
+<span class="go">                            patterns=[</span>
+<span class="go">                                MatchAs(name=&#39;x&#39;)]),</span>
+<span class="go">                        name=&#39;y&#39;),</span>
+<span class="go">                    body=[</span>
+<span class="go">                        Expr(</span>
+<span class="go">                            value=Constant(value=Ellipsis))]),</span>
+<span class="go">                match_case(</span>
+<span class="go">                    pattern=MatchAs(),</span>
+<span class="go">                    body=[</span>
+<span class="go">                        Expr(</span>
+<span class="go">                            value=Constant(value=Ellipsis))])])],</span>
+<span class="go">    type_ignores=[])</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="ast.MatchOr">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">ast.</span></span><span class="sig-name descname"><span class="pre">MatchOr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">patterns</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ast.MatchOr" title="本定義的永久連結">¶</a></dt>
+<dd><p>A match &quot;or-pattern&quot;. An or-pattern matches each of its subpatterns in turn
+to the subject, until one succeeds. The or-pattern is then deemed to
+succeed. If none of the subpatterns succeed the or-pattern fails. The
+<code class="docutils literal notranslate"><span class="pre">patterns</span></code> attribute contains a list of match pattern nodes that will be
+matched against the subject.</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">ast</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">ast</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="gp">... </span><span class="s2">match x:</span>
+<span class="gp">... </span><span class="s2">    case [x] | (y):</span>
+<span class="gp">... </span><span class="s2">        ...</span>
+<span class="gp">... </span><span class="s2">&quot;&quot;&quot;</span><span class="p">),</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">))</span>
+<span class="go">Module(</span>
+<span class="go">    body=[</span>
+<span class="go">        Match(</span>
+<span class="go">            subject=Name(id=&#39;x&#39;, ctx=Load()),</span>
+<span class="go">            cases=[</span>
+<span class="go">                match_case(</span>
+<span class="go">                    pattern=MatchOr(</span>
+<span class="go">                        patterns=[</span>
+<span class="go">                            MatchSequence(</span>
+<span class="go">                                patterns=[</span>
+<span class="go">                                    MatchAs(name=&#39;x&#39;)]),</span>
+<span class="go">                            MatchAs(name=&#39;y&#39;)]),</span>
+<span class="go">                    body=[</span>
+<span class="go">                        Expr(</span>
+<span class="go">                            value=Constant(value=Ellipsis))])])],</span>
+<span class="go">    type_ignores=[])</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
 <section id="function-and-class-definitions">
 <h3>Function and class definitions<a class="headerlink" href="#function-and-class-definitions" title="本標題的永久連結">¶</a></h3>
 <dl class="py class">
@@ -1940,7 +2327,7 @@ optimizations, such as constant tuples/frozensets).</p>
 <dd><p>Safely evaluate an expression node or a string containing a Python literal or
 container display.  The string or node provided may only consist of the
 following Python literal structures: strings, bytes, numbers, tuples, lists,
-dicts, sets, booleans, and <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+dicts, sets, booleans, <code class="docutils literal notranslate"><span class="pre">None</span></code> and <code class="docutils literal notranslate"><span class="pre">Ellipsis</span></code>.</p>
 <p>This can be used for safely evaluating strings containing Python values from
 untrusted sources without the need to parse the values oneself.  It is not
 capable of evaluating arbitrarily complex expressions, for example involving
@@ -1950,12 +2337,18 @@ operators or indexing.</p>
 <p>It is possible to crash the Python interpreter with a
 sufficiently large/complex string due to stack depth limitations
 in Python's AST compiler.</p>
+<p>It can raise <a class="reference internal" href="exceptions.html#ValueError" title="ValueError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code></a>, <a class="reference internal" href="exceptions.html#TypeError" title="TypeError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">TypeError</span></code></a>, <a class="reference internal" href="exceptions.html#SyntaxError" title="SyntaxError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">SyntaxError</span></code></a>,
+<a class="reference internal" href="exceptions.html#MemoryError" title="MemoryError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">MemoryError</span></code></a> and <a class="reference internal" href="exceptions.html#RecursionError" title="RecursionError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">RecursionError</span></code></a> depending on the malformed
+input.</p>
 </div>
 <div class="versionchanged">
 <p><span class="versionmodified changed">在 3.2 版本變更: </span>Now allows bytes and set literals.</p>
 </div>
 <div class="versionchanged">
 <p><span class="versionmodified changed">在 3.9 版本變更: </span>Now supports creating empty sets with <code class="docutils literal notranslate"><span class="pre">'set()'</span></code>.</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">在 3.10 版本變更: </span>For string inputs, leading spaces and tabs are now stripped.</p>
 </div>
 </dd></dl>
 
@@ -2260,6 +2653,7 @@ in your python file.</p>
 </ul>
 </li>
 <li><a class="reference internal" href="#control-flow">Control flow</a></li>
+<li><a class="reference internal" href="#pattern-matching">Pattern matching</a></li>
 <li><a class="reference internal" href="#function-and-class-definitions">Function and class definitions</a></li>
 <li><a class="reference internal" href="#async-and-await">Async and await</a></li>
 </ul>
@@ -2272,8 +2666,8 @@ in your python file.</p>
 </ul>
 
   <h4>上個主題</h4>
-  <p class="topless"><a href="parser.html"
-                        title="上一章"><code class="xref py py-mod docutils literal notranslate"><span class="pre">parser</span></code> --- Access Python parse trees</a></p>
+  <p class="topless"><a href="language.html"
+                        title="上一章">Python Language Services</a></p>
   <h4>下個主題</h4>
   <p class="topless"><a href="symtable.html"
                         title="下一章"><code class="xref py py-mod docutils literal notranslate"><span class="pre">symtable</span></code> --- Access to the compiler's symbol tables</a></p>
@@ -2282,7 +2676,7 @@ in your python file.</p>
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.9/Doc/library/ast.rst"
+        <a href="https://github.com/python/cpython/blob/3.10/Doc/library/ast.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -2305,7 +2699,7 @@ in your python file.</p>
           <a href="symtable.html" title="symtable --- Access to the compiler&#39;s symbol tables"
              >下一頁</a> |</li>
         <li class="right" >
-          <a href="parser.html" title="parser --- Access Python parse trees"
+          <a href="language.html" title="Python Language Services"
              >上一頁</a> |</li>
 
           <li><img src="../_static/py.svg" alt="python logo" style="vertical-align: middle; margin-top: -1px"/></li>
@@ -2317,10 +2711,8 @@ in your python file.</p>
           <li>
               
           </li>
-    <li>
-      <span class="language_switcher_placeholder">zh_TW</span>
-      <span class="version_switcher_placeholder">3.9.7</span>
-      <a href="../index.html">說明文件 </a> &#187;
+    <li id="cpython-language-and-version">
+      <a href="../index.html">3.10.0 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>

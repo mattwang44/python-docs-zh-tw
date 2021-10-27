@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Extending/Embedding FAQ &#8212; Python 3.9.7 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Extending/Embedding FAQ &#8212; Python 3.10.0 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2021.11.1" />
@@ -20,7 +20,7 @@
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.9.7 說明文件 中搜尋"
+          title="在 Python 3.10.0 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -30,8 +30,6 @@
     <link rel="prev" title="函式庫和擴充功能的常見問題" href="library.html" />
     <link rel="canonical" href="https://docs.python.org/3/faq/extending.html" />
     
-      
-      <script type="text/javascript" src="../_static/switchers.js"></script>
       
     
 
@@ -107,7 +105,7 @@
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.9/Doc/faq/extending.rst"
+        <a href="https://github.com/python/cpython/blob/3.10/Doc/faq/extending.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -143,10 +141,8 @@
           <li>
               
           </li>
-    <li>
-      <span class="language_switcher_placeholder">zh_TW</span>
-      <span class="version_switcher_placeholder">3.9.7</span>
-      <a href="../index.html">說明文件 </a> &#187;
+    <li id="cpython-language-and-version">
+      <a href="../index.html">3.10.0 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Python 常見問題</a> &#187;</li>
@@ -404,39 +400,8 @@ custom input function. See <code class="docutils literal notranslate"><span clas
 for more hints.</p>
 <p>However sometimes you have to run the embedded Python interpreter in the same
 thread as your rest application and you can't allow the
-<a class="reference internal" href="../c-api/veryhigh.html#c.PyRun_InteractiveLoop" title="PyRun_InteractiveLoop"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyRun_InteractiveLoop()</span></code></a> to stop while waiting for user input.  The one
-solution then is to call <code class="xref c c-func docutils literal notranslate"><span class="pre">PyParser_ParseString()</span></code> and test for <code class="docutils literal notranslate"><span class="pre">e.error</span></code>
-equal to <code class="docutils literal notranslate"><span class="pre">E_EOF</span></code>, which means the input is incomplete.  Here's a sample code
-fragment, untested, inspired by code from Alex Farber:</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#define PY_SSIZE_T_CLEAN</span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Python.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;node.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;errcode.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;grammar.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;parsetok.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;compile.h&gt;</span><span class="cp"></span>
-
-<span class="kt">int</span><span class="w"> </span><span class="nf">testcomplete</span><span class="p">(</span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">code</span><span class="p">)</span><span class="w"></span>
-<span class="w">  </span><span class="cm">/* code should end in \n */</span><span class="w"></span>
-<span class="w">  </span><span class="cm">/* return -1 for error, 0 for incomplete, 1 for complete */</span><span class="w"></span>
-<span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="n">node</span><span class="w"> </span><span class="o">*</span><span class="n">n</span><span class="p">;</span><span class="w"></span>
-<span class="w">  </span><span class="n">perrdetail</span><span class="w"> </span><span class="n">e</span><span class="p">;</span><span class="w"></span>
-
-<span class="w">  </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PyParser_ParseString</span><span class="p">(</span><span class="n">code</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">_PyParser_Grammar</span><span class="p">,</span><span class="w"></span>
-<span class="w">                           </span><span class="n">Py_file_input</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">e</span><span class="p">);</span><span class="w"></span>
-<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">error</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">E_EOF</span><span class="p">)</span><span class="w"></span>
-<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">-1</span><span class="p">;</span><span class="w"></span>
-<span class="w">  </span><span class="p">}</span><span class="w"></span>
-
-<span class="w">  </span><span class="n">PyNode_Free</span><span class="p">(</span><span class="n">n</span><span class="p">);</span><span class="w"></span>
-<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
-</pre></div>
-</div>
-<p>Another solution is trying to compile the received string with
+<a class="reference internal" href="../c-api/veryhigh.html#c.PyRun_InteractiveLoop" title="PyRun_InteractiveLoop"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyRun_InteractiveLoop()</span></code></a> to stop while waiting for user input.
+A solution is trying to compile the received string with
 <a class="reference internal" href="../c-api/veryhigh.html#c.Py_CompileString" title="Py_CompileString"><code class="xref c c-func docutils literal notranslate"><span class="pre">Py_CompileString()</span></code></a>. If it compiles without errors, try to execute the
 returned code object by calling <a class="reference internal" href="../c-api/veryhigh.html#c.PyEval_EvalCode" title="PyEval_EvalCode"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyEval_EvalCode()</span></code></a>. Otherwise save the
 input for later. If the compilation fails, find out if it's an error or just
@@ -615,7 +580,7 @@ class written in C++ using the BPL).</p>
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.9/Doc/faq/extending.rst"
+        <a href="https://github.com/python/cpython/blob/3.10/Doc/faq/extending.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -650,10 +615,8 @@ class written in C++ using the BPL).</p>
           <li>
               
           </li>
-    <li>
-      <span class="language_switcher_placeholder">zh_TW</span>
-      <span class="version_switcher_placeholder">3.9.7</span>
-      <a href="../index.html">說明文件 </a> &#187;
+    <li id="cpython-language-and-version">
+      <a href="../index.html">3.10.0 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 常見問題</a> &#187;</li>

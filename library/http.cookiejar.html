@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>http.cookiejar --- Cookie handling for HTTP clients &#8212; Python 3.9.7 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>http.cookiejar --- Cookie handling for HTTP clients &#8212; Python 3.10.0 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2021.11.1" />
@@ -20,7 +20,7 @@
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.9.7 說明文件 中搜尋"
+          title="在 Python 3.10.0 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -30,8 +30,6 @@
     <link rel="prev" title="http.cookies --- HTTP state management" href="http.cookies.html" />
     <link rel="canonical" href="https://docs.python.org/3/library/http.cookiejar.html" />
     
-      
-      <script type="text/javascript" src="../_static/switchers.js"></script>
       
     
 
@@ -96,7 +94,7 @@
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.9/Doc/library/http.cookiejar.rst"
+        <a href="https://github.com/python/cpython/blob/3.10/Doc/library/http.cookiejar.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -132,10 +130,8 @@
           <li>
               
           </li>
-    <li>
-      <span class="language_switcher_placeholder">zh_TW</span>
-      <span class="version_switcher_placeholder">3.9.7</span>
-      <a href="../index.html">說明文件 </a> &#187;
+    <li id="cpython-language-and-version">
+      <a href="../index.html">3.10.0 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -165,7 +161,7 @@
             
   <section id="module-http.cookiejar">
 <span id="http-cookiejar-cookie-handling-for-http-clients"></span><h1><a class="reference internal" href="#module-http.cookiejar" title="http.cookiejar: Classes for automatic handling of HTTP cookies."><code class="xref py py-mod docutils literal notranslate"><span class="pre">http.cookiejar</span></code></a> --- Cookie handling for HTTP clients<a class="headerlink" href="#module-http.cookiejar" title="本標題的永久連結">¶</a></h1>
-<p><strong>Source code:</strong> <a class="reference external" href="https://github.com/python/cpython/tree/3.9/Lib/http/cookiejar.py">Lib/http/cookiejar.py</a></p>
+<p><strong>Source code:</strong> <a class="reference external" href="https://github.com/python/cpython/tree/3.10/Lib/http/cookiejar.py">Lib/http/cookiejar.py</a></p>
 <hr class="docutils" />
 <p>The <a class="reference internal" href="#module-http.cookiejar" title="http.cookiejar: Classes for automatic handling of HTTP cookies."><code class="xref py py-mod docutils literal notranslate"><span class="pre">http.cookiejar</span></code></a> module defines classes for automatic handling of HTTP
 cookies.  It is useful for accessing web sites that require small pieces of data
@@ -175,7 +171,7 @@ web server, and then returned to the server in later HTTP requests.</p>
 <span class="target" id="index-0"></span><a class="rfc reference external" href="https://tools.ietf.org/html/rfc2965.html"><strong>RFC 2965</strong></a> are handled.  RFC 2965 handling is switched off by default.
 <span class="target" id="index-1"></span><a class="rfc reference external" href="https://tools.ietf.org/html/rfc2109.html"><strong>RFC 2109</strong></a> cookies are parsed as Netscape cookies and subsequently treated
 either as Netscape or RFC 2965 cookies according to the 'policy' in effect.
-Note that the great majority of cookies on the Internet are Netscape cookies.
+Note that the great majority of cookies on the internet are Netscape cookies.
 <a class="reference internal" href="#module-http.cookiejar" title="http.cookiejar: Classes for automatic handling of HTTP cookies."><code class="xref py py-mod docutils literal notranslate"><span class="pre">http.cookiejar</span></code></a> attempts to follow the de-facto Netscape cookie protocol (which
 differs substantially from that set out in the original Netscape specification),
 including taking note of the <code class="docutils literal notranslate"><span class="pre">max-age</span></code> and <code class="docutils literal notranslate"><span class="pre">port</span></code> cookie-attributes
@@ -582,15 +578,15 @@ interface, this class allows you to block and allow domains from setting and
 receiving cookies.  There are also some strictness switches that allow you to
 tighten up the rather loose Netscape protocol rules a little bit (at the cost of
 blocking some benign cookies).</p>
-<p>A domain blacklist and whitelist is provided (both off by default). Only domains
-not in the blacklist and present in the whitelist (if the whitelist is active)
+<p>A domain blocklist and allowlist is provided (both off by default). Only domains
+not in the blocklist and present in the allowlist (if the allowlist is active)
 participate in cookie setting and returning.  Use the <em>blocked_domains</em>
 constructor argument, and <code class="xref py py-meth docutils literal notranslate"><span class="pre">blocked_domains()</span></code> and
 <code class="xref py py-meth docutils literal notranslate"><span class="pre">set_blocked_domains()</span></code> methods (and the corresponding argument and methods
-for <em>allowed_domains</em>).  If you set a whitelist, you can turn it off again by
+for <em>allowed_domains</em>).  If you set an allowlist, you can turn it off again by
 setting it to <a class="reference internal" href="constants.html#None" title="None"><code class="xref py py-const docutils literal notranslate"><span class="pre">None</span></code></a>.</p>
 <p>Domains in block or allow lists that do not start with a dot must equal the
-cookie domain to be matched.  For example, <code class="docutils literal notranslate"><span class="pre">&quot;example.com&quot;</span></code> matches a blacklist
+cookie domain to be matched.  For example, <code class="docutils literal notranslate"><span class="pre">&quot;example.com&quot;</span></code> matches a blocklist
 entry of <code class="docutils literal notranslate"><span class="pre">&quot;example.com&quot;</span></code>, but <code class="docutils literal notranslate"><span class="pre">&quot;www.example.com&quot;</span></code> does not.  Domains that do
 start with a dot are matched by more specific domains too. For example, both
 <code class="docutils literal notranslate"><span class="pre">&quot;www.example.com&quot;</span></code> and <code class="docutils literal notranslate"><span class="pre">&quot;www.coyote.example.com&quot;</span></code> match <code class="docutils literal notranslate"><span class="pre">&quot;.example.com&quot;</span></code>
@@ -613,7 +609,7 @@ and <code class="docutils literal notranslate"><span class="pre">&quot;.168.1.2&
 <dl class="py method">
 <dt class="sig sig-object py" id="http.cookiejar.DefaultCookiePolicy.is_blocked">
 <span class="sig-prename descclassname"><span class="pre">DefaultCookiePolicy.</span></span><span class="sig-name descname"><span class="pre">is_blocked</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">domain</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#http.cookiejar.DefaultCookiePolicy.is_blocked" title="本定義的永久連結">¶</a></dt>
-<dd><p>Return whether <em>domain</em> is on the blacklist for setting or receiving cookies.</p>
+<dd><p>Return whether <em>domain</em> is on the blocklist for setting or receiving cookies.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -631,7 +627,7 @@ and <code class="docutils literal notranslate"><span class="pre">&quot;.168.1.2&
 <dl class="py method">
 <dt class="sig sig-object py" id="http.cookiejar.DefaultCookiePolicy.is_not_allowed">
 <span class="sig-prename descclassname"><span class="pre">DefaultCookiePolicy.</span></span><span class="sig-name descname"><span class="pre">is_not_allowed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">domain</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#http.cookiejar.DefaultCookiePolicy.is_not_allowed" title="本定義的永久連結">¶</a></dt>
-<dd><p>Return whether <em>domain</em> is not on the whitelist for setting or receiving
+<dd><p>Return whether <em>domain</em> is not on the allowlist for setting or receiving
 cookies.</p>
 </dd></dl>
 
@@ -942,7 +938,7 @@ returned:</p>
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.9/Doc/library/http.cookiejar.rst"
+        <a href="https://github.com/python/cpython/blob/3.10/Doc/library/http.cookiejar.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -977,10 +973,8 @@ returned:</p>
           <li>
               
           </li>
-    <li>
-      <span class="language_switcher_placeholder">zh_TW</span>
-      <span class="version_switcher_placeholder">3.9.7</span>
-      <a href="../index.html">說明文件 </a> &#187;
+    <li id="cpython-language-and-version">
+      <a href="../index.html">3.10.0 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>

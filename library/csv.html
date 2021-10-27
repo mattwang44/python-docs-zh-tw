@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>csv --- CSV File Reading and Writing &#8212; Python 3.9.7 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>csv --- CSV File Reading and Writing &#8212; Python 3.10.0 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2021.11.1" />
@@ -20,7 +20,7 @@
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.9.7 說明文件 中搜尋"
+          title="在 Python 3.10.0 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -30,8 +30,6 @@
     <link rel="prev" title="檔案格式" href="fileformats.html" />
     <link rel="canonical" href="https://docs.python.org/3/library/csv.html" />
     
-      
-      <script type="text/javascript" src="../_static/switchers.js"></script>
       
     
 
@@ -95,7 +93,7 @@
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.9/Doc/library/csv.rst"
+        <a href="https://github.com/python/cpython/blob/3.10/Doc/library/csv.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -131,10 +129,8 @@
           <li>
               
           </li>
-    <li>
-      <span class="language_switcher_placeholder">zh_TW</span>
-      <span class="version_switcher_placeholder">3.9.7</span>
-      <a href="../index.html">說明文件 </a> &#187;
+    <li id="cpython-language-and-version">
+      <a href="../index.html">3.10.0 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -164,7 +160,7 @@
             
   <section id="module-csv">
 <span id="csv-csv-file-reading-and-writing"></span><h1><a class="reference internal" href="#module-csv" title="csv: Write and read tabular data to and from delimited files."><code class="xref py py-mod docutils literal notranslate"><span class="pre">csv</span></code></a> --- CSV File Reading and Writing<a class="headerlink" href="#module-csv" title="本標題的永久連結">¶</a></h1>
-<p><strong>Source code:</strong> <a class="reference external" href="https://github.com/python/cpython/tree/3.9/Lib/csv.py">Lib/csv.py</a></p>
+<p><strong>Source code:</strong> <a class="reference external" href="https://github.com/python/cpython/tree/3.10/Lib/csv.py">Lib/csv.py</a></p>
 <hr class="docutils" id="index-0" />
 <p>The so-called CSV (Comma Separated Values) format is the most common import and
 export format for spreadsheets and databases.  CSV format was used for many
@@ -428,9 +424,25 @@ delimiter characters.</p>
 <dt class="sig sig-object py" id="csv.Sniffer.has_header">
 <span class="sig-name descname"><span class="pre">has_header</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sample</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#csv.Sniffer.has_header" title="本定義的永久連結">¶</a></dt>
 <dd><p>Analyze the sample text (presumed to be in CSV format) and return
-<a class="reference internal" href="constants.html#True" title="True"><code class="xref py py-const docutils literal notranslate"><span class="pre">True</span></code></a> if the first row appears to be a series of column headers.</p>
+<a class="reference internal" href="constants.html#True" title="True"><code class="xref py py-const docutils literal notranslate"><span class="pre">True</span></code></a> if the first row appears to be a series of column headers.
+Inspecting each column, one of two key criteria will be considered to
+estimate if the sample contains a header:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>the second through n-th rows contain numeric values</p></li>
+<li><p>the second through n-th rows contain strings where at least one value's
+length differs from that of the putative header of that column.</p></li>
+</ul>
+</div></blockquote>
+<p>Twenty rows after the first row are sampled; if more than half of columns +
+rows meet the criteria, <a class="reference internal" href="constants.html#True" title="True"><code class="xref py py-const docutils literal notranslate"><span class="pre">True</span></code></a> is returned.</p>
 </dd></dl>
 
+<div class="admonition note">
+<p class="admonition-title">備註</p>
+<p>This method is a rough heuristic and may produce both false positives and
+negatives.</p>
+</div>
 </dd></dl>
 
 <p>An example for <a class="reference internal" href="#csv.Sniffer" title="csv.Sniffer"><code class="xref py py-class docutils literal notranslate"><span class="pre">Sniffer</span></code></a> use:</p>
@@ -759,7 +771,7 @@ on write an extra <code class="docutils literal notranslate"><span class="pre">\
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.9/Doc/library/csv.rst"
+        <a href="https://github.com/python/cpython/blob/3.10/Doc/library/csv.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -794,10 +806,8 @@ on write an extra <code class="docutils literal notranslate"><span class="pre">\
           <li>
               
           </li>
-    <li>
-      <span class="language_switcher_placeholder">zh_TW</span>
-      <span class="version_switcher_placeholder">3.9.7</span>
-      <a href="../index.html">說明文件 </a> &#187;
+    <li id="cpython-language-and-version">
+      <a href="../index.html">3.10.0 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>

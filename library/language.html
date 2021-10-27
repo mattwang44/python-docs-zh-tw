@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Python Language Services &#8212; Python 3.9.7 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Language Services &#8212; Python 3.10.0 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2021.11.1" />
@@ -20,18 +20,16 @@
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.9.7 說明文件 中搜尋"
+          title="在 Python 3.10.0 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="搜尋" href="../search.html" />
     <link rel="copyright" title="版權" href="../copyright.html" />
-    <link rel="next" title="parser --- Access Python parse trees" href="parser.html" />
+    <link rel="next" title="ast --- Abstract Syntax Trees" href="ast.html" />
     <link rel="prev" title="Using importlib.metadata" href="importlib.metadata.html" />
     <link rel="canonical" href="https://docs.python.org/3/library/language.html" />
     
-      
-      <script type="text/javascript" src="../_static/switchers.js"></script>
       
     
 
@@ -76,14 +74,14 @@
   <p class="topless"><a href="importlib.metadata.html"
                         title="上一章">Using <code class="xref py py-mod docutils literal notranslate"><span class="pre">importlib.metadata</span></code></a></p>
   <h4>下個主題</h4>
-  <p class="topless"><a href="parser.html"
-                        title="下一章"><code class="xref py py-mod docutils literal notranslate"><span class="pre">parser</span></code> --- Access Python parse trees</a></p>
+  <p class="topless"><a href="ast.html"
+                        title="下一章"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ast</span></code> --- Abstract Syntax Trees</a></p>
   <div role="note" aria-label="source link">
     <h3>此頁面</h3>
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.9/Doc/library/language.rst"
+        <a href="https://github.com/python/cpython/blob/3.10/Doc/library/language.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -104,7 +102,7 @@
           <a href="../py-modindex.html" title="Python 模組索引"
              >模組</a> |</li>
         <li class="right" >
-          <a href="parser.html" title="parser --- Access Python parse trees"
+          <a href="ast.html" title="ast --- Abstract Syntax Trees"
              accesskey="N">下一頁</a> |</li>
         <li class="right" >
           <a href="importlib.metadata.html" title="Using importlib.metadata"
@@ -119,10 +117,8 @@
           <li>
               
           </li>
-    <li>
-      <span class="language_switcher_placeholder">zh_TW</span>
-      <span class="version_switcher_placeholder">3.9.7</span>
-      <a href="../index.html">說明文件 </a> &#187;
+    <li id="cpython-language-and-version">
+      <a href="../index.html">3.10.0 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -157,15 +153,6 @@ disassembly, and various other facilities.</p>
 <p>These modules include:</p>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="parser.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">parser</span></code> --- Access Python parse trees</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="parser.html#creating-st-objects">Creating ST Objects</a></li>
-<li class="toctree-l2"><a class="reference internal" href="parser.html#converting-st-objects">Converting ST Objects</a></li>
-<li class="toctree-l2"><a class="reference internal" href="parser.html#queries-on-st-objects">Queries on ST Objects</a></li>
-<li class="toctree-l2"><a class="reference internal" href="parser.html#exceptions-and-error-handling">Exceptions and Error Handling</a></li>
-<li class="toctree-l2"><a class="reference internal" href="parser.html#st-objects">ST Objects</a></li>
-<li class="toctree-l2"><a class="reference internal" href="parser.html#example-emulation-of-compile">Example: Emulation of <code class="xref py py-func docutils literal notranslate"><span class="pre">compile()</span></code></a></li>
-</ul>
-</li>
 <li class="toctree-l1"><a class="reference internal" href="ast.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ast</span></code> --- Abstract Syntax Trees</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="ast.html#abstract-grammar">Abstract Grammar</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ast.html#node-classes">Node classes</a><ul>
@@ -181,6 +168,7 @@ disassembly, and various other facilities.</p>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="ast.html#control-flow">Control flow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ast.html#pattern-matching">Pattern matching</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ast.html#function-and-class-definitions">Function and class definitions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ast.html#async-and-await">Async and await</a></li>
 </ul>
@@ -195,7 +183,6 @@ disassembly, and various other facilities.</p>
 <li class="toctree-l2"><a class="reference internal" href="symtable.html#examining-symbol-tables">Examining Symbol Tables</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="symbol.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">symbol</span></code> --- Constants used with Python parse trees</a></li>
 <li class="toctree-l1"><a class="reference internal" href="token.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">token</span></code> --- Constants used with Python parse trees</a></li>
 <li class="toctree-l1"><a class="reference internal" href="keyword.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">keyword</span></code> --- Testing for Python keywords</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tokenize.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">tokenize</span></code> --- Tokenizer for Python source</a><ul>
@@ -210,7 +197,10 @@ disassembly, and various other facilities.</p>
 <li class="toctree-l2"><a class="reference internal" href="pyclbr.html#class-objects">Class Objects</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="py_compile.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">py_compile</span></code> --- Compile Python source files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="py_compile.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">py_compile</span></code> --- Compile Python source files</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="py_compile.html#command-line-interface">Command-Line Interface</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="compileall.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">compileall</span></code> --- Byte-compile Python libraries</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="compileall.html#command-line-use">Command-line use</a></li>
 <li class="toctree-l2"><a class="reference internal" href="compileall.html#public-functions">Public functions</a></li>
@@ -246,14 +236,14 @@ disassembly, and various other facilities.</p>
   <p class="topless"><a href="importlib.metadata.html"
                         title="上一章">Using <code class="xref py py-mod docutils literal notranslate"><span class="pre">importlib.metadata</span></code></a></p>
   <h4>下個主題</h4>
-  <p class="topless"><a href="parser.html"
-                        title="下一章"><code class="xref py py-mod docutils literal notranslate"><span class="pre">parser</span></code> --- Access Python parse trees</a></p>
+  <p class="topless"><a href="ast.html"
+                        title="下一章"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ast</span></code> --- Abstract Syntax Trees</a></p>
   <div role="note" aria-label="source link">
     <h3>此頁面</h3>
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.9/Doc/library/language.rst"
+        <a href="https://github.com/python/cpython/blob/3.10/Doc/library/language.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -273,7 +263,7 @@ disassembly, and various other facilities.</p>
           <a href="../py-modindex.html" title="Python 模組索引"
              >模組</a> |</li>
         <li class="right" >
-          <a href="parser.html" title="parser --- Access Python parse trees"
+          <a href="ast.html" title="ast --- Abstract Syntax Trees"
              >下一頁</a> |</li>
         <li class="right" >
           <a href="importlib.metadata.html" title="Using importlib.metadata"
@@ -288,10 +278,8 @@ disassembly, and various other facilities.</p>
           <li>
               
           </li>
-    <li>
-      <span class="language_switcher_placeholder">zh_TW</span>
-      <span class="version_switcher_placeholder">3.9.7</span>
-      <a href="../index.html">說明文件 </a> &#187;
+    <li id="cpython-language-and-version">
+      <a href="../index.html">3.10.0 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>

@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>迭代器（Iterator）物件 &#8212; Python 3.9.7 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>迭代器（Iterator）物件 &#8212; Python 3.10.0 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2021.11.1" />
@@ -20,7 +20,7 @@
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.9.7 說明文件 中搜尋"
+          title="在 Python 3.10.0 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -30,8 +30,6 @@
     <link rel="prev" title="模組物件模組" href="module.html" />
     <link rel="canonical" href="https://docs.python.org/3/c-api/iterator.html" />
     
-      
-      <script type="text/javascript" src="../_static/switchers.js"></script>
       
     
 
@@ -83,7 +81,7 @@
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.9/Doc/c-api/iterator.rst"
+        <a href="https://github.com/python/cpython/blob/3.10/Doc/c-api/iterator.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -119,10 +117,8 @@
           <li>
               
           </li>
-    <li>
-      <span class="language_switcher_placeholder">zh_TW</span>
-      <span class="version_switcher_placeholder">3.9.7</span>
-      <a href="../index.html">說明文件 </a> &#187;
+    <li id="cpython-language-and-version">
+      <a href="../index.html">3.10.0 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python/C API 參考手冊</a> &#187;</li>
@@ -160,7 +156,7 @@ sentinel value is returned.</p>
 <dl class="c var">
 <dt class="sig sig-object c" id="c.PySeqIter_Type">
 <a class="reference internal" href="type.html#c.PyTypeObject" title="PyTypeObject"><span class="n"><span class="pre">PyTypeObject</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PySeqIter_Type</span></span></span><a class="headerlink" href="#c.PySeqIter_Type" title="本定義的永久連結">¶</a><br /></dt>
-<dd><p>Type object for iterator objects returned by <a class="reference internal" href="#c.PySeqIter_New" title="PySeqIter_New"><code class="xref c c-func docutils literal notranslate"><span class="pre">PySeqIter_New()</span></code></a> and the
+<dd><em class="stableabi"> Part of the <a class="reference internal" href="stable.html#stable"><span class="std std-ref">Stable ABI</span></a>.</em><p>Type object for iterator objects returned by <a class="reference internal" href="#c.PySeqIter_New" title="PySeqIter_New"><code class="xref c c-func docutils literal notranslate"><span class="pre">PySeqIter_New()</span></code></a> and the
 one-argument form of the <a class="reference internal" href="../library/functions.html#iter" title="iter"><code class="xref py py-func docutils literal notranslate"><span class="pre">iter()</span></code></a> built-in function for built-in sequence
 types.</p>
 </dd></dl>
@@ -175,7 +171,7 @@ always succeeds.</p>
 <dl class="c function">
 <dt class="sig sig-object c" id="c.PySeqIter_New">
 <a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">PySeqIter_New</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">seq</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.PySeqIter_New" title="本定義的永久連結">¶</a><br /></dt>
-<dd><em class="refcount">Return value: New reference.</em><p>Return an iterator that works with a general sequence object, <em>seq</em>.  The
+<dd><em class="refcount">Return value: New reference.</em><em class="stableabi"> Part of the <a class="reference internal" href="stable.html#stable"><span class="std std-ref">Stable ABI</span></a>.</em><p>Return an iterator that works with a general sequence object, <em>seq</em>.  The
 iteration ends when the sequence raises <a class="reference internal" href="../library/exceptions.html#IndexError" title="IndexError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">IndexError</span></code></a> for the subscripting
 operation.</p>
 </dd></dl>
@@ -183,7 +179,7 @@ operation.</p>
 <dl class="c var">
 <dt class="sig sig-object c" id="c.PyCallIter_Type">
 <a class="reference internal" href="type.html#c.PyTypeObject" title="PyTypeObject"><span class="n"><span class="pre">PyTypeObject</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PyCallIter_Type</span></span></span><a class="headerlink" href="#c.PyCallIter_Type" title="本定義的永久連結">¶</a><br /></dt>
-<dd><p>Type object for iterator objects returned by <a class="reference internal" href="#c.PyCallIter_New" title="PyCallIter_New"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyCallIter_New()</span></code></a> and the
+<dd><em class="stableabi"> Part of the <a class="reference internal" href="stable.html#stable"><span class="std std-ref">Stable ABI</span></a>.</em><p>Type object for iterator objects returned by <a class="reference internal" href="#c.PyCallIter_New" title="PyCallIter_New"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyCallIter_New()</span></code></a> and the
 two-argument form of the <a class="reference internal" href="../library/functions.html#iter" title="iter"><code class="xref py py-func docutils literal notranslate"><span class="pre">iter()</span></code></a> built-in function.</p>
 </dd></dl>
 
@@ -197,7 +193,7 @@ function always succeeds.</p>
 <dl class="c function">
 <dt class="sig sig-object c" id="c.PyCallIter_New">
 <a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">PyCallIter_New</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">callable</span></span>, <a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">sentinel</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.PyCallIter_New" title="本定義的永久連結">¶</a><br /></dt>
-<dd><em class="refcount">Return value: New reference.</em><p>Return a new iterator.  The first parameter, <em>callable</em>, can be any Python
+<dd><em class="refcount">Return value: New reference.</em><em class="stableabi"> Part of the <a class="reference internal" href="stable.html#stable"><span class="std std-ref">Stable ABI</span></a>.</em><p>Return a new iterator.  The first parameter, <em>callable</em>, can be any Python
 callable object that can be called with no parameters; each call to it should
 return the next item in the iteration.  When <em>callable</em> returns a value equal to
 <em>sentinel</em>, the iteration will be terminated.</p>
@@ -223,7 +219,7 @@ return the next item in the iteration.  When <em>callable</em> returns a value e
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.9/Doc/c-api/iterator.rst"
+        <a href="https://github.com/python/cpython/blob/3.10/Doc/c-api/iterator.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -258,10 +254,8 @@ return the next item in the iteration.  When <em>callable</em> returns a value e
           <li>
               
           </li>
-    <li>
-      <span class="language_switcher_placeholder">zh_TW</span>
-      <span class="version_switcher_placeholder">3.9.7</span>
-      <a href="../index.html">說明文件 </a> &#187;
+    <li id="cpython-language-and-version">
+      <a href="../index.html">3.10.0 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python/C API 參考手冊</a> &#187;</li>

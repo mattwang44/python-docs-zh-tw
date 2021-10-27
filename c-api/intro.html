@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>簡介 &#8212; Python 3.9.7 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>簡介 &#8212; Python 3.10.0 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2021.11.1" />
@@ -20,18 +20,16 @@
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.9.7 說明文件 中搜尋"
+          title="在 Python 3.10.0 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="搜尋" href="../search.html" />
     <link rel="copyright" title="版權" href="../copyright.html" />
-    <link rel="next" title="Stable Application Binary Interface" href="stable.html" />
+    <link rel="next" title="C API Stability" href="stable.html" />
     <link rel="prev" title="Python/C API 參考手冊" href="index.html" />
     <link rel="canonical" href="https://docs.python.org/3/c-api/intro.html" />
     
-      
-      <script type="text/javascript" src="../_static/switchers.js"></script>
       
     
 
@@ -98,13 +96,13 @@
                         title="上一章">Python/C API 參考手冊</a></p>
   <h4>下個主題</h4>
   <p class="topless"><a href="stable.html"
-                        title="下一章">Stable Application Binary Interface</a></p>
+                        title="下一章">C API Stability</a></p>
   <div role="note" aria-label="source link">
     <h3>此頁面</h3>
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.9/Doc/c-api/intro.rst"
+        <a href="https://github.com/python/cpython/blob/3.10/Doc/c-api/intro.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -125,7 +123,7 @@
           <a href="../py-modindex.html" title="Python 模組索引"
              >模組</a> |</li>
         <li class="right" >
-          <a href="stable.html" title="Stable Application Binary Interface"
+          <a href="stable.html" title="C API Stability"
              accesskey="N">下一頁</a> |</li>
         <li class="right" >
           <a href="index.html" title="Python/C API 參考手冊"
@@ -140,10 +138,8 @@
           <li>
               
           </li>
-    <li>
-      <span class="language_switcher_placeholder">zh_TW</span>
-      <span class="version_switcher_placeholder">3.9.7</span>
-      <a href="../index.html">說明文件 </a> &#187;
+    <li id="cpython-language-and-version">
+      <a href="../index.html">3.10.0 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Python/C API 參考手冊</a> &#187;</li>
@@ -477,7 +473,7 @@ when it's no longer needed---or passing on this responsibility (usually to its
 caller). When a function passes ownership of a reference on to its caller, the
 caller is said to receive a <em>new</em> reference.  When no ownership is transferred,
 the caller is said to <em>borrow</em> the reference. Nothing needs to be done for a
-borrowed reference.</p>
+<a class="reference internal" href="../glossary.html#term-borrowed-reference"><span class="xref std std-term">borrowed reference</span></a>.</p>
 <p>Conversely, when a calling function passes in a reference to an  object, there
 are two possibilities: the function <em>steals</em> a  reference to the object, or it
 does not.  <em>Stealing a reference</em> means that when you pass a reference to a
@@ -757,7 +753,7 @@ the finalization, of the Python interpreter.  Most functionality of the
 interpreter can only be used after the interpreter has been initialized.</p>
 <p id="index-22">The basic initialization function is <a class="reference internal" href="init.html#c.Py_Initialize" title="Py_Initialize"><code class="xref c c-func docutils literal notranslate"><span class="pre">Py_Initialize()</span></code></a>. This initializes
 the table of loaded modules, and creates the fundamental modules
-<a class="reference internal" href="../library/builtins.html#module-builtins" title="builtins: The module that provides the built-in namespace."><code class="xref py py-mod docutils literal notranslate"><span class="pre">builtins</span></code></a>, <a class="reference internal" href="../library/__main__.html#module-__main__" title="__main__: The environment where the top-level script is run."><code class="xref py py-mod docutils literal notranslate"><span class="pre">__main__</span></code></a>, and <a class="reference internal" href="../library/sys.html#module-sys" title="sys: Access system-specific parameters and functions."><code class="xref py py-mod docutils literal notranslate"><span class="pre">sys</span></code></a>.  It also
+<a class="reference internal" href="../library/builtins.html#module-builtins" title="builtins: The module that provides the built-in namespace."><code class="xref py py-mod docutils literal notranslate"><span class="pre">builtins</span></code></a>, <a class="reference internal" href="../library/__main__.html#module-__main__" title="__main__: The environment where top-level code is run. Covers command-line interfaces, import-time behavior, and ``__name__ == '__main__'``."><code class="xref py py-mod docutils literal notranslate"><span class="pre">__main__</span></code></a>, and <a class="reference internal" href="../library/sys.html#module-sys" title="sys: Access system-specific parameters and functions."><code class="xref py py-mod docutils literal notranslate"><span class="pre">sys</span></code></a>.  It also
 initializes the module search path (<code class="docutils literal notranslate"><span class="pre">sys.path</span></code>).</p>
 <p id="index-23"><a class="reference internal" href="init.html#c.Py_Initialize" title="Py_Initialize"><code class="xref c c-func docutils literal notranslate"><span class="pre">Py_Initialize()</span></code></a> does not set the &quot;script argument list&quot;  (<code class="docutils literal notranslate"><span class="pre">sys.argv</span></code>).
 If this variable is needed by Python code that will be executed later, it must
@@ -806,33 +802,20 @@ available that support tracing of reference counts, debugging the memory
 allocator, or low-level profiling of the main interpreter loop.  Only the most
 frequently-used builds will be described in the remainder of this section.</p>
 <p>Compiling the interpreter with the <code class="xref c c-macro docutils literal notranslate"><span class="pre">Py_DEBUG</span></code> macro defined produces
-what is generally meant by &quot;a debug build&quot; of Python. <code class="xref c c-macro docutils literal notranslate"><span class="pre">Py_DEBUG</span></code> is
-enabled in the Unix build by adding <code class="docutils literal notranslate"><span class="pre">--with-pydebug</span></code> to the
-<code class="file docutils literal notranslate"><span class="pre">./configure</span></code> command.  It is also implied by the presence of the
+what is generally meant by <a class="reference internal" href="../using/configure.html#debug-build"><span class="std std-ref">a debug build of Python</span></a>.
+<code class="xref c c-macro docutils literal notranslate"><span class="pre">Py_DEBUG</span></code> is enabled in the Unix build by adding
+<a class="reference internal" href="../using/configure.html#cmdoption-with-pydebug"><code class="xref std std-option docutils literal notranslate"><span class="pre">--with-pydebug</span></code></a> to the <code class="file docutils literal notranslate"><span class="pre">./configure</span></code> command.
+It is also implied by the presence of the
 not-Python-specific <code class="xref c c-macro docutils literal notranslate"><span class="pre">_DEBUG</span></code> macro.  When <code class="xref c c-macro docutils literal notranslate"><span class="pre">Py_DEBUG</span></code> is enabled
 in the Unix build, compiler optimization is disabled.</p>
-<p>In addition to the reference count debugging described below, the following
-extra checks are performed:</p>
-<ul class="simple">
-<li><p>Extra checks are added to the object allocator.</p></li>
-<li><p>Extra checks are added to the parser and compiler.</p></li>
-<li><p>Downcasts from wide types to narrow types are checked for loss of information.</p></li>
-<li><p>A number of assertions are added to the dictionary and set implementations.
-In addition, the set object acquires a <code class="xref py py-meth docutils literal notranslate"><span class="pre">test_c_api()</span></code> method.</p></li>
-<li><p>Sanity checks of the input arguments are added to frame creation.</p></li>
-<li><p>The storage for ints is initialized with a known invalid pattern to catch
-reference to uninitialized digits.</p></li>
-<li><p>Low-level tracing and extra exception checking are added to the runtime
-virtual machine.</p></li>
-<li><p>Extra checks are added to the memory arena implementation.</p></li>
-<li><p>Extra debugging is added to the thread module.</p></li>
-</ul>
-<p>There may be additional checks not mentioned here.</p>
-<p>Defining <code class="xref c c-macro docutils literal notranslate"><span class="pre">Py_TRACE_REFS</span></code> enables reference tracing.  When defined, a
-circular doubly linked list of active objects is maintained by adding two extra
+<p>In addition to the reference count debugging described below, extra checks are
+performed, see <a class="reference internal" href="../using/configure.html#debug-build"><span class="std std-ref">Python Debug Build</span></a>.</p>
+<p>Defining <code class="xref c c-macro docutils literal notranslate"><span class="pre">Py_TRACE_REFS</span></code> enables reference tracing
+(see the <a class="reference internal" href="../using/configure.html#cmdoption-with-trace-refs"><code class="xref std std-option docutils literal notranslate"><span class="pre">configure</span> <span class="pre">--with-trace-refs</span> <span class="pre">option</span></code></a>).
+When defined, a circular doubly linked list of active objects is maintained by adding two extra
 fields to every <a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><code class="xref c c-type docutils literal notranslate"><span class="pre">PyObject</span></code></a>.  Total allocations are tracked as well.  Upon
 exit, all existing references are printed.  (In interactive mode this happens
-after every statement run by the interpreter.)  Implied by <code class="xref c c-macro docutils literal notranslate"><span class="pre">Py_DEBUG</span></code>.</p>
+after every statement run by the interpreter.)</p>
 <p>Please refer to <code class="file docutils literal notranslate"><span class="pre">Misc/SpecialBuilds.txt</span></code> in the Python source distribution
 for more detailed information.</p>
 </section>
@@ -871,13 +854,13 @@ for more detailed information.</p>
                         title="上一章">Python/C API 參考手冊</a></p>
   <h4>下個主題</h4>
   <p class="topless"><a href="stable.html"
-                        title="下一章">Stable Application Binary Interface</a></p>
+                        title="下一章">C API Stability</a></p>
   <div role="note" aria-label="source link">
     <h3>此頁面</h3>
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.9/Doc/c-api/intro.rst"
+        <a href="https://github.com/python/cpython/blob/3.10/Doc/c-api/intro.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -897,7 +880,7 @@ for more detailed information.</p>
           <a href="../py-modindex.html" title="Python 模組索引"
              >模組</a> |</li>
         <li class="right" >
-          <a href="stable.html" title="Stable Application Binary Interface"
+          <a href="stable.html" title="C API Stability"
              >下一頁</a> |</li>
         <li class="right" >
           <a href="index.html" title="Python/C API 參考手冊"
@@ -912,10 +895,8 @@ for more detailed information.</p>
           <li>
               
           </li>
-    <li>
-      <span class="language_switcher_placeholder">zh_TW</span>
-      <span class="version_switcher_placeholder">3.9.7</span>
-      <a href="../index.html">說明文件 </a> &#187;
+    <li id="cpython-language-and-version">
+      <a href="../index.html">3.10.0 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python/C API 參考手冊</a> &#187;</li>

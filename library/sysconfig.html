@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>sysconfig --- Provide access to Python&#39;s configuration information &#8212; Python 3.9.7 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sysconfig --- Provide access to Python&#39;s configuration information &#8212; Python 3.10.0 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2021.11.1" />
@@ -20,7 +20,7 @@
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.9.7 說明文件 中搜尋"
+          title="在 Python 3.10.0 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -30,8 +30,6 @@
     <link rel="prev" title="sys --- System-specific parameters and functions" href="sys.html" />
     <link rel="canonical" href="https://docs.python.org/3/library/sysconfig.html" />
     
-      
-      <script type="text/javascript" src="../_static/switchers.js"></script>
       
     
 
@@ -94,7 +92,7 @@
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.9/Doc/library/sysconfig.rst"
+        <a href="https://github.com/python/cpython/blob/3.10/Doc/library/sysconfig.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -130,10 +128,8 @@
           <li>
               
           </li>
-    <li>
-      <span class="language_switcher_placeholder">zh_TW</span>
-      <span class="version_switcher_placeholder">3.9.7</span>
-      <a href="../index.html">說明文件 </a> &#187;
+    <li id="cpython-language-and-version">
+      <a href="../index.html">3.10.0 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -166,7 +162,7 @@
 <div class="versionadded">
 <p><span class="versionmodified added">在 3.2 版本新加入.</span></p>
 </div>
-<p><strong>Source code:</strong> <a class="reference external" href="https://github.com/python/cpython/tree/3.9/Lib/sysconfig.py">Lib/sysconfig.py</a></p>
+<p><strong>Source code:</strong> <a class="reference external" href="https://github.com/python/cpython/tree/3.10/Lib/sysconfig.py">Lib/sysconfig.py</a></p>
 <hr class="docutils" id="index-0" />
 <p>The <a class="reference internal" href="#module-sysconfig" title="sysconfig: Python's configuration information"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sysconfig</span></code></a> module provides access to Python's configuration
 information like the list of installation paths and the configuration variables
@@ -249,6 +245,45 @@ platform-specific.</p></li>
 <span class="sig-prename descclassname"><span class="pre">sysconfig.</span></span><span class="sig-name descname"><span class="pre">get_scheme_names</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sysconfig.get_scheme_names" title="本定義的永久連結">¶</a></dt>
 <dd><p>Return a tuple containing all schemes currently supported in
 <a class="reference internal" href="#module-sysconfig" title="sysconfig: Python's configuration information"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sysconfig</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="sysconfig.get_default_scheme">
+<span class="sig-prename descclassname"><span class="pre">sysconfig.</span></span><span class="sig-name descname"><span class="pre">get_default_scheme</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sysconfig.get_default_scheme" title="本定義的永久連結">¶</a></dt>
+<dd><p>Return the default scheme name for the current platform.</p>
+<div class="versionchanged">
+<p><span class="versionmodified changed">在 3.10 版本變更: </span>This function was previously named <code class="docutils literal notranslate"><span class="pre">_get_default_scheme()</span></code> and
+considered an implementation detail.</p>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="sysconfig.get_preferred_scheme">
+<span class="sig-prename descclassname"><span class="pre">sysconfig.</span></span><span class="sig-name descname"><span class="pre">get_preferred_scheme</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sysconfig.get_preferred_scheme" title="本定義的永久連結">¶</a></dt>
+<dd><p>Return a preferred scheme name for an installation layout specified by <em>key</em>.</p>
+<p><em>key</em> must be either <code class="docutils literal notranslate"><span class="pre">&quot;prefix&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;home&quot;</span></code>, or <code class="docutils literal notranslate"><span class="pre">&quot;user&quot;</span></code>.</p>
+<p>The return value is a scheme name listed in <a class="reference internal" href="#sysconfig.get_scheme_names" title="sysconfig.get_scheme_names"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_scheme_names()</span></code></a>. It
+can be passed to <a class="reference internal" href="#module-sysconfig" title="sysconfig: Python's configuration information"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sysconfig</span></code></a> functions that take a <em>scheme</em> argument,
+such as <a class="reference internal" href="#sysconfig.get_paths" title="sysconfig.get_paths"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_paths()</span></code></a>.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">在 3.10 版本新加入.</span></p>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="sysconfig._get_preferred_schemes">
+<span class="sig-prename descclassname"><span class="pre">sysconfig.</span></span><span class="sig-name descname"><span class="pre">_get_preferred_schemes</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sysconfig._get_preferred_schemes" title="本定義的永久連結">¶</a></dt>
+<dd><p>Return a dict containing preferred scheme names on the current platform.
+Python implementers and redistributors may add their preferred schemes to
+the <code class="docutils literal notranslate"><span class="pre">_INSTALL_SCHEMES</span></code> module-level global value, and modify this function
+to return those scheme names, to e.g. provide different schemes for system
+and language package managers to use, so packages installed by either do not
+mix with those by the other.</p>
+<p>End users should not use this function, but <a class="reference internal" href="#sysconfig.get_default_scheme" title="sysconfig.get_default_scheme"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_default_scheme()</span></code></a> and
+<a class="reference internal" href="#sysconfig.get_preferred_scheme" title="sysconfig.get_preferred_scheme"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_preferred_scheme()</span></code></a> instead.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">在 3.10 版本新加入.</span></p>
+</div>
 </dd></dl>
 
 <dl class="py function">
@@ -426,7 +461,7 @@ dictionary, and updated with the values read in the file.</p>
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.9/Doc/library/sysconfig.rst"
+        <a href="https://github.com/python/cpython/blob/3.10/Doc/library/sysconfig.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -461,10 +496,8 @@ dictionary, and updated with the values read in the file.</p>
           <li>
               
           </li>
-    <li>
-      <span class="language_switcher_placeholder">zh_TW</span>
-      <span class="version_switcher_placeholder">3.9.7</span>
-      <a href="../index.html">說明文件 </a> &#187;
+    <li id="cpython-language-and-version">
+      <a href="../index.html">3.10.0 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>

@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>如何使用 Logging 模組 &#8212; Python 3.9.7 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>如何使用 Logging 模組 &#8212; Python 3.10.0 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2021.11.1" />
@@ -20,7 +20,7 @@
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.9.7 說明文件 中搜尋"
+          title="在 Python 3.10.0 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -30,8 +30,6 @@
     <link rel="prev" title="函式編程 HOWTO" href="functional.html" />
     <link rel="canonical" href="https://docs.python.org/3/howto/logging.html" />
     
-      
-      <script type="text/javascript" src="../_static/switchers.js"></script>
       
     
 
@@ -119,7 +117,7 @@
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.9/Doc/howto/logging.rst"
+        <a href="https://github.com/python/cpython/blob/3.10/Doc/howto/logging.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -155,10 +153,8 @@
           <li>
               
           </li>
-    <li>
-      <span class="language_switcher_placeholder">zh_TW</span>
-      <span class="version_switcher_placeholder">3.9.7</span>
-      <a href="../index.html">說明文件 </a> &#187;
+    <li id="cpython-language-and-version">
+      <a href="../index.html">3.10.0 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Python 如何達成任務</a> &#187;</li>
@@ -807,7 +803,6 @@ the names of the objects:</p>
 
 <span class="k">[formatter_simpleFormatter]</span>
 <span class="na">format</span><span class="o">=</span><span class="s">%(asctime)s - %(name)s - %(levelname)s - %(message)s</span>
-<span class="na">datefmt</span><span class="o">=</span>
 </pre></div>
 </div>
 <p>The output is nearly identical to that of the non-config-file-based example:</p>
@@ -1164,8 +1159,8 @@ list of things you can do to avoid processing during logging which you don't
 need:</p>
 <table class="docutils align-default">
 <colgroup>
-<col style="width: 54%" />
-<col style="width: 46%" />
+<col style="width: 51%" />
+<col style="width: 49%" />
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>What you don't want to collect</p></th>
@@ -1175,17 +1170,20 @@ need:</p>
 <tbody>
 <tr class="row-even"><td><p>Information about where calls were made from.</p></td>
 <td><p>Set <code class="docutils literal notranslate"><span class="pre">logging._srcfile</span></code> to <code class="docutils literal notranslate"><span class="pre">None</span></code>.
-This avoids calling
-<a class="reference internal" href="../library/sys.html#sys._getframe" title="sys._getframe"><code class="xref py py-func docutils literal notranslate"><span class="pre">sys._getframe()</span></code></a>, which may help
-to speed up your code in environments
-like PyPy (which can't speed up code
-that uses <a class="reference internal" href="../library/sys.html#sys._getframe" title="sys._getframe"><code class="xref py py-func docutils literal notranslate"><span class="pre">sys._getframe()</span></code></a>).</p></td>
+This avoids calling <a class="reference internal" href="../library/sys.html#sys._getframe" title="sys._getframe"><code class="xref py py-func docutils literal notranslate"><span class="pre">sys._getframe()</span></code></a>, which
+may help to speed up your code in environments
+like PyPy (which can't speed up code that uses
+<a class="reference internal" href="../library/sys.html#sys._getframe" title="sys._getframe"><code class="xref py py-func docutils literal notranslate"><span class="pre">sys._getframe()</span></code></a>).</p></td>
 </tr>
 <tr class="row-odd"><td><p>Threading information.</p></td>
-<td><p>Set <code class="docutils literal notranslate"><span class="pre">logging.logThreads</span></code> to <code class="docutils literal notranslate"><span class="pre">0</span></code>.</p></td>
+<td><p>Set <code class="docutils literal notranslate"><span class="pre">logging.logThreads</span></code> to <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p></td>
 </tr>
-<tr class="row-even"><td><p>Process information.</p></td>
-<td><p>Set <code class="docutils literal notranslate"><span class="pre">logging.logProcesses</span></code> to <code class="docutils literal notranslate"><span class="pre">0</span></code>.</p></td>
+<tr class="row-even"><td><p>Current process ID (<a class="reference internal" href="../library/os.html#os.getpid" title="os.getpid"><code class="xref py py-func docutils literal notranslate"><span class="pre">os.getpid()</span></code></a>)</p></td>
+<td><p>Set <code class="docutils literal notranslate"><span class="pre">logging.logProcesses</span></code> to <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Current process name when using <code class="docutils literal notranslate"><span class="pre">multiprocessing</span></code>
+to manage multiple processes.</p></td>
+<td><p>Set <code class="docutils literal notranslate"><span class="pre">logging.logMultiprocessing</span></code> to <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p></td>
 </tr>
 </tbody>
 </table>
@@ -1261,7 +1259,7 @@ take up any memory.</p>
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.9/Doc/howto/logging.rst"
+        <a href="https://github.com/python/cpython/blob/3.10/Doc/howto/logging.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -1296,10 +1294,8 @@ take up any memory.</p>
           <li>
               
           </li>
-    <li>
-      <span class="language_switcher_placeholder">zh_TW</span>
-      <span class="version_switcher_placeholder">3.9.7</span>
-      <a href="../index.html">說明文件 </a> &#187;
+    <li id="cpython-language-and-version">
+      <a href="../index.html">3.10.0 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 如何達成任務</a> &#187;</li>

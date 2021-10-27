@@ -18,7 +18,8 @@ application using SQLite and then port the code to a larger database such as
 PostgreSQL or Oracle.
 
 The sqlite3 module was written by Gerhard Häring.  It provides a SQL interface
-compliant with the DB-API 2.0 specification described by :pep:`249`.
+compliant with the DB-API 2.0 specification described by :pep:`249`, and
+requires SQLite 3.7.15 or newer.
 
 To use the module, you must first create a :class:`Connection` object that
 represents the database.  Here the data will be stored in the
@@ -224,12 +225,16 @@ Module functions and constants
    be found in the `SQLite URI documentation <https://www.sqlite.org/uri.html>`_.
 
    .. audit-event:: sqlite3.connect database sqlite3.connect
+   .. audit-event:: sqlite3.connect/handle connection_handle sqlite3.connect
 
    .. versionchanged:: 3.4
       Added the *uri* parameter.
 
    .. versionchanged:: 3.7
       *database* can now also be a :term:`path-like object`, not only a string.
+
+   .. versionchanged:: 3.10
+      Added the ``sqlite3.connect/handle`` auditing event.
 
 
 .. function:: register_converter(typename, callable)
@@ -474,7 +479,12 @@ Connection Objects
 
       Loadable extensions are disabled by default. See [#f1]_.
 
+      .. audit-event:: sqlite3.enable_load_extension connection,enabled sqlite3.enable_load_extension
+
       .. versionadded:: 3.2
+
+      .. versionchanged:: 3.10
+         Added the ``sqlite3.enable_load_extension`` auditing event.
 
       .. literalinclude:: ../includes/sqlite3/load_extension.py
 
@@ -486,7 +496,12 @@ Connection Objects
 
       Loadable extensions are disabled by default. See [#f1]_.
 
+      .. audit-event:: sqlite3.load_extension connection,path sqlite3.load_extension
+
       .. versionadded:: 3.2
+
+      .. versionchanged:: 3.10
+         Added the ``sqlite3.load_extension`` auditing event.
 
    .. attribute:: row_factory
 
@@ -597,8 +612,6 @@ Connection Objects
          dest = sqlite3.connect(':memory:')
          source.backup(dest)
 
-      Availability: SQLite 3.6.11 or higher
-
       .. versionadded:: 3.7
 
 
@@ -702,9 +715,6 @@ Cursor Objects
       last operation is not determinable by the interface". This includes ``SELECT``
       statements because we cannot determine the number of rows a query produced
       until all rows were fetched.
-
-      With SQLite versions before 3.6.5, :attr:`rowcount` is set to 0 if
-      you make a ``DELETE FROM table`` without any condition.
 
    .. attribute:: lastrowid
 
@@ -1101,5 +1111,5 @@ committed:
 .. [#f1] The sqlite3 module is not built with loadable extension support by
    default, because some platforms (notably macOS) have SQLite
    libraries which are compiled without this feature. To get loadable
-   extension support, you must pass ``--enable-loadable-sqlite-extensions`` to
-   configure.
+   extension support, you must pass the
+   :option:`--enable-loadable-sqlite-extensions` option to configure.

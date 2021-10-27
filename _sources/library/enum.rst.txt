@@ -416,7 +416,7 @@ any members.  So this is forbidden::
     ...
     Traceback (most recent call last):
     ...
-    TypeError: Cannot extend enumerations
+    TypeError: MoreColor: cannot extend enumeration 'Color'
 
 But this is allowed::
 
@@ -908,7 +908,7 @@ to handle any extra arguments::
     ...     BLEACHED_CORAL = () # New color, no Pantone code yet!
     ...
     >>> Swatch.SEA_GREEN
-    <Swatch.SEA_GREEN: 2>
+    <Swatch.SEA_GREEN>
     >>> Swatch.SEA_GREEN.pantone
     '1246'
     >>> Swatch.BLEACHED_CORAL.pantone
@@ -1125,9 +1125,9 @@ and raise an error if the two do not match::
 _Private__names
 """""""""""""""
 
-:ref:`Private names <private-name-mangling>` will be normal attributes in Python 3.11 instead of either an error
-or a member (depending on if the name ends with an underscore). Using these names
-in 3.9 and 3.10 will issue a :exc:`DeprecationWarning`.
+:ref:`Private names <private-name-mangling>` will be normal attributes in Python
+3.11 instead of either an error or a member (depending on if the name ends with
+an underscore). Using these names in 3.10 will issue a :exc:`DeprecationWarning`.
 
 
 ``Enum`` member type
@@ -1182,7 +1182,7 @@ but not of the class::
     >>> dir(Planet)
     ['EARTH', 'JUPITER', 'MARS', 'MERCURY', 'NEPTUNE', 'SATURN', 'URANUS', 'VENUS', '__class__', '__doc__', '__members__', '__module__']
     >>> dir(Planet.EARTH)
-    ['__class__', '__doc__', '__module__', 'name', 'surface_gravity', 'value']
+    ['__class__', '__doc__', '__module__', 'mass', 'name', 'radius', 'surface_gravity', 'value']
 
 
 Combining members of ``Flag``
@@ -1207,5 +1207,6 @@ all named flags and all named combinations of flags that are in the value::
 .. note::
 
    In 3.11 unnamed combinations of flags will only produce the canonical flag
-   members (aka single-value flags).  So ``Color(7)`` would produce something
+   members (aka single-value flags).  So ``Color(7)`` will produce something
    like ``<Color.BLUE|GREEN|RED: 7>``.
+

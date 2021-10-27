@@ -1554,20 +1554,19 @@ Most :meth:`__setattr__` implementations must modify ``self.__dict__`` to store
 local state for self without causing an infinite recursion.
 
 
-How do I call a method defined in a base class from a derived class that overrides it?
---------------------------------------------------------------------------------------
+How do I call a method defined in a base class from a derived class that extends it?
+------------------------------------------------------------------------------------
 
 Use the built-in :func:`super` function::
 
    class Derived(Base):
        def meth(self):
-           super(Derived, self).meth()
+           super().meth()  # calls Base.meth
 
-For version prior to 3.0, you may be using classic classes: For a class
-definition such as ``class Derived(Base): ...`` you can call method ``meth()``
-defined in ``Base`` (or one of ``Base``'s base classes) as ``Base.meth(self,
-arguments...)``.  Here, ``Base.meth`` is an unbound method, so you need to
-provide the ``self`` argument.
+In the example, :func:`super` will automatically determine the instance from
+which it was called (the ``self`` value), look up the :term:`method resolution
+order` (MRO) with ``type(self).__mro__``, and return the next in line after
+``Derived`` in the MRO: ``Base``.
 
 
 How can I organize my code to make it easier to change the base class?
@@ -1897,6 +1896,86 @@ The classes can be used like this:
     'blog-why-python-rocks'
 
 
+How do I cache method calls?
+----------------------------
+
+The two principal tools for caching methods are
+:func:`functools.cached_property` and :func:`functools.lru_cache`.  The
+former stores results at the instance level and the latter at the class
+level.
+
+The *cached_property* approach only works with methods that do not take
+any arguments.  It does not create a reference to the instance.  The
+cached method result will be kept only as long as the instance is alive.
+
+The advantage is that when an instance is not longer used, the cached
+method result will be released right away.  The disadvantage is that if
+instances accumulate, so too will the accumulated method results.  They
+can grow without bound.
+
+The *lru_cache* approach works with methods that have hashable
+arguments.  It creates a reference to the instance unless special
+efforts are made to pass in weak references.
+
+The advantage of the least recently used algorithm is that the cache is
+bounded by the specified *maxsize*.  The disadvantage is that instances
+are kept alive until they age out of the cache or until the cache is
+cleared.
+
+This example shows the various techniques::
+
+    class Weather:
+        "Lookup weather information on a government website"
+
+        def __init__(self, station_id):
+            self._station_id = station_id
+            # The _station_id is private and immutable
+
+        def current_temperature(self):
+            "Latest hourly observation"
+            # Do not cache this because old results
+            # can be out of date.
+
+        @cached_property
+        def location(self):
+            "Return the longitude/latitude coordinates of the station"
+            # Result only depends on the station_id
+
+        @lru_cache(maxsize=20)
+        def historic_rainfall(self, date, units='mm'):
+            "Rainfall on a given date"
+            # Depends on the station_id, date, and units.
+
+The above example assumes that the *station_id* never changes.  If the
+relevant instance attributes are mutable, the *cached_property* approach
+can't be made to work because it cannot detect changes to the
+attributes.
+
+The *lru_cache* approach can be made to work, but the class needs to define the
+*__eq__* and *__hash__* methods so the cache can detect relevant attribute
+updates::
+
+    class Weather:
+        "Example with a mutable station identifier"
+
+        def __init__(self, station_id):
+            self.station_id = station_id
+
+        def change_station(self, station_id):
+            self.station_id = station_id
+
+        def __eq__(self, other):
+            return self.station_id == other.station_id
+
+        def __hash__(self):
+            return hash(self.station_id)
+
+        @lru_cache(maxsize=20)
+        def historic_rainfall(self, date, units='cm'):
+            'Rainfall on a given date'
+            # Depends on the station_id, date, and units.
+
+
 Modules
 =======
 
@@ -1972,26 +2051,26 @@ How can I have modules that mutually import each other?
 
 Suppose you have the following modules:
 
-foo.py::
+:file:`foo.py`::
 
    from bar import bar_var
    foo_var = 1
 
-bar.py::
+:file:`bar.py`::
 
    from foo import foo_var
    bar_var = 2
 
 The problem is that the interpreter will perform the following steps:
 
-* main imports foo
-* Empty globals for foo are created
-* foo is compiled and starts executing
-* foo imports bar
-* Empty globals for bar are created
-* bar is compiled and starts executing
-* bar imports foo (which is a no-op since there already is a module named foo)
-* bar.foo_var = foo.foo_var
+* main imports ``foo``
+* Empty globals for ``foo`` are created
+* ``foo`` is compiled and starts executing
+* ``foo`` imports ``bar``
+* Empty globals for ``bar`` are created
+* ``bar`` is compiled and starts executing
+* ``bar`` imports ``foo`` (which is a no-op since there already is a module named ``foo``)
+* The import mechanism tries to read ``foo_var`` from ``foo`` globals, to set ``bar.foo_var = foo.foo_var``
 
 The last step fails, because Python isn't done with interpreting ``foo`` yet and
 the global symbol dictionary for ``foo`` is still empty.

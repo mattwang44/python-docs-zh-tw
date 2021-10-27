@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>http.client --- HTTP protocol client &#8212; Python 3.9.7 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>http.client --- HTTP protocol client &#8212; Python 3.10.0 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2021.11.1" />
@@ -20,7 +20,7 @@
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.9.7 說明文件 中搜尋"
+          title="在 Python 3.10.0 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -30,8 +30,6 @@
     <link rel="prev" title="http --- HTTP modules" href="http.html" />
     <link rel="canonical" href="https://docs.python.org/3/library/http.client.html" />
     
-      
-      <script type="text/javascript" src="../_static/switchers.js"></script>
       
     
 
@@ -94,7 +92,7 @@
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.9/Doc/library/http.client.rst"
+        <a href="https://github.com/python/cpython/blob/3.10/Doc/library/http.client.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -130,10 +128,8 @@
           <li>
               
           </li>
-    <li>
-      <span class="language_switcher_placeholder">zh_TW</span>
-      <span class="version_switcher_placeholder">3.9.7</span>
-      <a href="../index.html">說明文件 </a> &#187;
+    <li id="cpython-language-and-version">
+      <a href="../index.html">3.10.0 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -163,7 +159,7 @@
             
   <section id="module-http.client">
 <span id="http-client-http-protocol-client"></span><h1><a class="reference internal" href="#module-http.client" title="http.client: HTTP and HTTPS protocol client (requires sockets)."><code class="xref py py-mod docutils literal notranslate"><span class="pre">http.client</span></code></a> --- HTTP protocol client<a class="headerlink" href="#module-http.client" title="本標題的永久連結">¶</a></h1>
-<p><strong>Source code:</strong> <a class="reference external" href="https://github.com/python/cpython/tree/3.9/Lib/http/client.py">Lib/http/client.py</a></p>
+<p><strong>Source code:</strong> <a class="reference external" href="https://github.com/python/cpython/tree/3.10/Lib/http/client.py">Lib/http/client.py</a></p>
 <span class="target" id="index-0"></span><hr class="docutils" id="index-1" />
 <p>This module defines classes which implement the client side of the HTTP and
 HTTPS protocols.  It is normally not used directly --- the module
@@ -242,6 +238,11 @@ parameter.</p>
 <p><span class="versionmodified changed">在 3.8 版本變更: </span>This class now enables TLS 1.3
 <a class="reference internal" href="ssl.html#ssl.SSLContext.post_handshake_auth" title="ssl.SSLContext.post_handshake_auth"><code class="xref py py-attr docutils literal notranslate"><span class="pre">ssl.SSLContext.post_handshake_auth</span></code></a> for the default <em>context</em> or
 when <em>cert_file</em> is passed with a custom <em>context</em>.</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">在 3.10 版本變更: </span>This class now sends an ALPN extension with protocol indicator
+<code class="docutils literal notranslate"><span class="pre">http/1.1</span></code> when no <em>context</em> is given. Custom <em>context</em> should set
+ALPN protocols with <code class="xref py py-meth docutils literal notranslate"><span class="pre">set_alpn_protocol()</span></code>.</p>
 </div>
 <div class="deprecated">
 <p><span class="versionmodified deprecated">在 3.6 版本開始棄用: </span><em>key_file</em> and <em>cert_file</em> are deprecated in favor of <em>context</em>.
@@ -519,6 +520,7 @@ the <a class="reference internal" href="#http.client.HTTPConnection.set_tunnel" 
 <dd><p>Connect to the server specified when the object was created.  By default,
 this is called automatically when making a request if the client does not
 already have a connection.</p>
+<p class="audit-hook">Raises an <a class="reference internal" href="sys.html#auditing"><span class="std std-ref">auditing event</span></a> <code class="docutils literal notranslate"><span class="pre">http.client.connect</span></code> with arguments <code class="docutils literal notranslate"><span class="pre">self</span></code>, <code class="docutils literal notranslate"><span class="pre">host</span></code>, <code class="docutils literal notranslate"><span class="pre">port</span></code>.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -592,6 +594,7 @@ added.</p>
 <dd><p>Send data to the server.  This should be used directly only after the
 <a class="reference internal" href="#http.client.HTTPConnection.endheaders" title="http.client.HTTPConnection.endheaders"><code class="xref py py-meth docutils literal notranslate"><span class="pre">endheaders()</span></code></a> method has been called and before <a class="reference internal" href="#http.client.HTTPConnection.getresponse" title="http.client.HTTPConnection.getresponse"><code class="xref py py-meth docutils literal notranslate"><span class="pre">getresponse()</span></code></a> is
 called.</p>
+<p class="audit-hook">Raises an <a class="reference internal" href="sys.html#auditing"><span class="std std-ref">auditing event</span></a> <code class="docutils literal notranslate"><span class="pre">http.client.send</span></code> with arguments <code class="docutils literal notranslate"><span class="pre">self</span></code>, <code class="docutils literal notranslate"><span class="pre">data</span></code>.</p>
 </dd></dl>
 
 </section>
@@ -832,7 +835,7 @@ response.  It is implemented using the <a class="reference internal" href="email
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.9/Doc/library/http.client.rst"
+        <a href="https://github.com/python/cpython/blob/3.10/Doc/library/http.client.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -867,10 +870,8 @@ response.  It is implemented using the <a class="reference internal" href="email
           <li>
               
           </li>
-    <li>
-      <span class="language_switcher_placeholder">zh_TW</span>
-      <span class="version_switcher_placeholder">3.9.7</span>
-      <a href="../index.html">說明文件 </a> &#187;
+    <li id="cpython-language-and-version">
+      <a href="../index.html">3.10.0 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>

@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>MemoryView objects &#8212; Python 3.9.7 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MemoryView objects &#8212; Python 3.10.0 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2021.11.1" />
@@ -20,7 +20,7 @@
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.9.7 說明文件 中搜尋"
+          title="在 Python 3.10.0 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -30,8 +30,6 @@
     <link rel="prev" title="切片物件" href="slice.html" />
     <link rel="canonical" href="https://docs.python.org/3/c-api/memoryview.html" />
     
-      
-      <script type="text/javascript" src="../_static/switchers.js"></script>
       
     
 
@@ -83,7 +81,7 @@
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.9/Doc/c-api/memoryview.rst"
+        <a href="https://github.com/python/cpython/blob/3.10/Doc/c-api/memoryview.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -119,10 +117,8 @@
           <li>
               
           </li>
-    <li>
-      <span class="language_switcher_placeholder">zh_TW</span>
-      <span class="version_switcher_placeholder">3.9.7</span>
-      <a href="../index.html">說明文件 </a> &#187;
+    <li id="cpython-language-and-version">
+      <a href="../index.html">3.10.0 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python/C API 參考手冊</a> &#187;</li>
@@ -157,7 +153,7 @@ any other object.</p>
 <dl class="c function">
 <dt class="sig sig-object c" id="c.PyMemoryView_FromObject">
 <a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">PyMemoryView_FromObject</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">obj</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.PyMemoryView_FromObject" title="本定義的永久連結">¶</a><br /></dt>
-<dd><em class="refcount">Return value: New reference.</em><p>Create a memoryview object from an object that provides the buffer interface.
+<dd><em class="refcount">Return value: New reference.</em><em class="stableabi"> Part of the <a class="reference internal" href="stable.html#stable"><span class="std std-ref">Stable ABI</span></a>.</em><p>Create a memoryview object from an object that provides the buffer interface.
 If <em>obj</em> supports writable buffer exports, the memoryview object will be
 read/write, otherwise it may be either read-only or read/write at the
 discretion of the exporter.</p>
@@ -166,7 +162,7 @@ discretion of the exporter.</p>
 <dl class="c function">
 <dt class="sig sig-object c" id="c.PyMemoryView_FromMemory">
 <a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">PyMemoryView_FromMemory</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">mem</span></span>, <span class="n"><span class="pre">Py_ssize_t</span></span><span class="w"> </span><span class="n"><span class="pre">size</span></span>, <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n"><span class="pre">flags</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.PyMemoryView_FromMemory" title="本定義的永久連結">¶</a><br /></dt>
-<dd><em class="refcount">Return value: New reference.</em><p>Create a memoryview object using <em>mem</em> as the underlying buffer.
+<dd><em class="refcount">Return value: New reference.</em><em class="stableabi"> Part of the <a class="reference internal" href="stable.html#stable"><span class="std std-ref">Stable ABI</span></a> since version 3.7.</em><p>Create a memoryview object using <em>mem</em> as the underlying buffer.
 <em>flags</em> can be one of <code class="xref c c-macro docutils literal notranslate"><span class="pre">PyBUF_READ</span></code> or <code class="xref c c-macro docutils literal notranslate"><span class="pre">PyBUF_WRITE</span></code>.</p>
 <div class="versionadded">
 <p><span class="versionmodified added">在 3.3 版本新加入.</span></p>
@@ -184,7 +180,7 @@ function.</p>
 <dl class="c function">
 <dt class="sig sig-object c" id="c.PyMemoryView_GetContiguous">
 <a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">PyMemoryView_GetContiguous</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">obj</span></span>, <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n"><span class="pre">buffertype</span></span>, <span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="n"><span class="pre">order</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.PyMemoryView_GetContiguous" title="本定義的永久連結">¶</a><br /></dt>
-<dd><em class="refcount">Return value: New reference.</em><p>Create a memoryview object to a <a class="reference internal" href="../glossary.html#term-contiguous"><span class="xref std std-term">contiguous</span></a> chunk of memory (in either
+<dd><em class="refcount">Return value: New reference.</em><em class="stableabi"> Part of the <a class="reference internal" href="stable.html#stable"><span class="std std-ref">Stable ABI</span></a>.</em><p>Create a memoryview object to a <a class="reference internal" href="../glossary.html#term-contiguous"><span class="xref std std-term">contiguous</span></a> chunk of memory (in either
 'C' or 'F'ortran <em>order</em>) from an object that defines the buffer
 interface. If memory is contiguous, the memoryview object points to the
 original memory. Otherwise, a copy is made and the memoryview points to a
@@ -236,7 +232,7 @@ on or <code class="docutils literal notranslate"><span class="pre">NULL</span></
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.9/Doc/c-api/memoryview.rst"
+        <a href="https://github.com/python/cpython/blob/3.10/Doc/c-api/memoryview.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -271,10 +267,8 @@ on or <code class="docutils literal notranslate"><span class="pre">NULL</span></
           <li>
               
           </li>
-    <li>
-      <span class="language_switcher_placeholder">zh_TW</span>
-      <span class="version_switcher_placeholder">3.9.7</span>
-      <a href="../index.html">說明文件 </a> &#187;
+    <li id="cpython-language-and-version">
+      <a href="../index.html">3.10.0 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python/C API 參考手冊</a> &#187;</li>

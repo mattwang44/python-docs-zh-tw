@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>mmap --- Memory-mapped file support &#8212; Python 3.9.7 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mmap --- Memory-mapped file support &#8212; Python 3.10.0 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2021.11.1" />
@@ -20,7 +20,7 @@
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.9.7 說明文件 中搜尋"
+          title="在 Python 3.10.0 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -30,8 +30,6 @@
     <link rel="prev" title="signal --- Set handlers for asynchronous events" href="signal.html" />
     <link rel="canonical" href="https://docs.python.org/3/library/mmap.html" />
     
-      
-      <script type="text/javascript" src="../_static/switchers.js"></script>
       
     
 
@@ -76,6 +74,7 @@
   <ul>
 <li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">mmap</span></code> --- Memory-mapped file support</a><ul>
 <li><a class="reference internal" href="#madv-constants">MADV_* Constants</a></li>
+<li><a class="reference internal" href="#map-constants">MAP_* Constants</a></li>
 </ul>
 </li>
 </ul>
@@ -91,7 +90,7 @@
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.9/Doc/library/mmap.rst"
+        <a href="https://github.com/python/cpython/blob/3.10/Doc/library/mmap.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -127,10 +126,8 @@
           <li>
               
           </li>
-    <li>
-      <span class="language_switcher_placeholder">zh_TW</span>
-      <span class="version_switcher_placeholder">3.9.7</span>
-      <a href="../index.html">說明文件 </a> &#187;
+    <li id="cpython-language-and-version">
+      <a href="../index.html">3.10.0 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -227,11 +224,13 @@ defaults to 0.  <em>offset</em> must be a multiple of the <code class="xref py p
 descriptor <em>fileno</em>, and returns a mmap object.  If <em>length</em> is <code class="docutils literal notranslate"><span class="pre">0</span></code>, the
 maximum length of the map will be the current size of the file when
 <a class="reference internal" href="#mmap.mmap" title="mmap.mmap"><code class="xref py py-class docutils literal notranslate"><span class="pre">mmap</span></code></a> is called.</p>
-<p><em>flags</em> specifies the nature of the mapping. <code class="xref py py-const docutils literal notranslate"><span class="pre">MAP_PRIVATE</span></code> creates a
+<p><em>flags</em> specifies the nature of the mapping. <a class="reference internal" href="#mmap.MAP_PRIVATE" title="mmap.MAP_PRIVATE"><code class="xref py py-const docutils literal notranslate"><span class="pre">MAP_PRIVATE</span></code></a> creates a
 private copy-on-write mapping, so changes to the contents of the mmap
-object will be private to this process, and <code class="xref py py-const docutils literal notranslate"><span class="pre">MAP_SHARED</span></code> creates a
+object will be private to this process, and <a class="reference internal" href="#mmap.MAP_SHARED" title="mmap.MAP_SHARED"><code class="xref py py-const docutils literal notranslate"><span class="pre">MAP_SHARED</span></code></a> creates a
 mapping that's shared with all other processes mapping the same areas of
-the file.  The default value is <code class="xref py py-const docutils literal notranslate"><span class="pre">MAP_SHARED</span></code>.</p>
+the file.  The default value is <a class="reference internal" href="#mmap.MAP_SHARED" title="mmap.MAP_SHARED"><code class="xref py py-const docutils literal notranslate"><span class="pre">MAP_SHARED</span></code></a>. Some systems have
+additional possible flags with the full list specified in
+<a class="reference internal" href="#map-constants"><span class="std std-ref">MAP_* constants</span></a>.</p>
 <p><em>prot</em>, if specified, gives the desired memory protection; the two most
 useful values are <code class="xref py py-const docutils literal notranslate"><span class="pre">PROT_READ</span></code> and <code class="xref py py-const docutils literal notranslate"><span class="pre">PROT_WRITE</span></code>, to specify
 that the pages may be read or written.  <em>prot</em> defaults to
@@ -516,11 +515,39 @@ raise a <a class="reference internal" href="exceptions.html#TypeError" title="Ty
 <span class="sig-prename descclassname"><span class="pre">mmap.</span></span><span class="sig-name descname"><span class="pre">MADV_CORE</span></span><a class="headerlink" href="#mmap.MADV_CORE" title="本定義的永久連結">¶</a></dt>
 <dt class="sig sig-object py" id="mmap.MADV_PROTECT">
 <span class="sig-prename descclassname"><span class="pre">mmap.</span></span><span class="sig-name descname"><span class="pre">MADV_PROTECT</span></span><a class="headerlink" href="#mmap.MADV_PROTECT" title="本定義的永久連結">¶</a></dt>
+<dt class="sig sig-object py" id="mmap.MADV_FREE_REUSABLE">
+<span class="sig-prename descclassname"><span class="pre">mmap.</span></span><span class="sig-name descname"><span class="pre">MADV_FREE_REUSABLE</span></span><a class="headerlink" href="#mmap.MADV_FREE_REUSABLE" title="本定義的永久連結">¶</a></dt>
+<dt class="sig sig-object py" id="mmap.MADV_FREE_REUSE">
+<span class="sig-prename descclassname"><span class="pre">mmap.</span></span><span class="sig-name descname"><span class="pre">MADV_FREE_REUSE</span></span><a class="headerlink" href="#mmap.MADV_FREE_REUSE" title="本定義的永久連結">¶</a></dt>
 <dd><p>These options can be passed to <a class="reference internal" href="#mmap.mmap.madvise" title="mmap.mmap.madvise"><code class="xref py py-meth docutils literal notranslate"><span class="pre">mmap.madvise()</span></code></a>.  Not every option will
 be present on every system.</p>
 <p>Availability: Systems with the madvise() system call.</p>
 <div class="versionadded">
 <p><span class="versionmodified added">在 3.8 版本新加入.</span></p>
+</div>
+</dd></dl>
+
+</section>
+<section id="map-constants">
+<span id="id1"></span><h2>MAP_* Constants<a class="headerlink" href="#map-constants" title="本標題的永久連結">¶</a></h2>
+<dl class="py data">
+<dt class="sig sig-object py" id="mmap.MAP_SHARED">
+<span class="sig-prename descclassname"><span class="pre">mmap.</span></span><span class="sig-name descname"><span class="pre">MAP_SHARED</span></span><a class="headerlink" href="#mmap.MAP_SHARED" title="本定義的永久連結">¶</a></dt>
+<dt class="sig sig-object py" id="mmap.MAP_PRIVATE">
+<span class="sig-prename descclassname"><span class="pre">mmap.</span></span><span class="sig-name descname"><span class="pre">MAP_PRIVATE</span></span><a class="headerlink" href="#mmap.MAP_PRIVATE" title="本定義的永久連結">¶</a></dt>
+<dt class="sig sig-object py" id="mmap.MAP_DENYWRITE">
+<span class="sig-prename descclassname"><span class="pre">mmap.</span></span><span class="sig-name descname"><span class="pre">MAP_DENYWRITE</span></span><a class="headerlink" href="#mmap.MAP_DENYWRITE" title="本定義的永久連結">¶</a></dt>
+<dt class="sig sig-object py" id="mmap.MAP_EXECUTABLE">
+<span class="sig-prename descclassname"><span class="pre">mmap.</span></span><span class="sig-name descname"><span class="pre">MAP_EXECUTABLE</span></span><a class="headerlink" href="#mmap.MAP_EXECUTABLE" title="本定義的永久連結">¶</a></dt>
+<dt class="sig sig-object py" id="mmap.MAP_ANON">
+<span class="sig-prename descclassname"><span class="pre">mmap.</span></span><span class="sig-name descname"><span class="pre">MAP_ANON</span></span><a class="headerlink" href="#mmap.MAP_ANON" title="本定義的永久連結">¶</a></dt>
+<dt class="sig sig-object py" id="mmap.MAP_ANONYMOUS">
+<span class="sig-prename descclassname"><span class="pre">mmap.</span></span><span class="sig-name descname"><span class="pre">MAP_ANONYMOUS</span></span><a class="headerlink" href="#mmap.MAP_ANONYMOUS" title="本定義的永久連結">¶</a></dt>
+<dt class="sig sig-object py" id="mmap.MAP_POPULATE">
+<span class="sig-prename descclassname"><span class="pre">mmap.</span></span><span class="sig-name descname"><span class="pre">MAP_POPULATE</span></span><a class="headerlink" href="#mmap.MAP_POPULATE" title="本定義的永久連結">¶</a></dt>
+<dd><p>These are the various flags that can be passed to <a class="reference internal" href="#mmap.mmap" title="mmap.mmap"><code class="xref py py-meth docutils literal notranslate"><span class="pre">mmap.mmap()</span></code></a>. Note that some options might not be present on some systems.</p>
+<div class="versionchanged">
+<p><span class="versionmodified changed">在 3.10 版本變更: </span>Added MAP_POPULATE constant.</p>
 </div>
 </dd></dl>
 
@@ -538,6 +565,7 @@ be present on every system.</p>
   <ul>
 <li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">mmap</span></code> --- Memory-mapped file support</a><ul>
 <li><a class="reference internal" href="#madv-constants">MADV_* Constants</a></li>
+<li><a class="reference internal" href="#map-constants">MAP_* Constants</a></li>
 </ul>
 </li>
 </ul>
@@ -553,7 +581,7 @@ be present on every system.</p>
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.9/Doc/library/mmap.rst"
+        <a href="https://github.com/python/cpython/blob/3.10/Doc/library/mmap.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -588,10 +616,8 @@ be present on every system.</p>
           <li>
               
           </li>
-    <li>
-      <span class="language_switcher_placeholder">zh_TW</span>
-      <span class="version_switcher_placeholder">3.9.7</span>
-      <a href="../index.html">說明文件 </a> &#187;
+    <li id="cpython-language-and-version">
+      <a href="../index.html">3.10.0 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>

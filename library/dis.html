@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>dis --- Python bytecode的反組譯器 &#8212; Python 3.9.7 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>dis --- Python bytecode的反組譯器 &#8212; Python 3.10.0 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2021.11.1" />
@@ -20,7 +20,7 @@
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.9.7 說明文件 中搜尋"
+          title="在 Python 3.10.0 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -30,8 +30,6 @@
     <link rel="prev" title="compileall --- Byte-compile Python libraries" href="compileall.html" />
     <link rel="canonical" href="https://docs.python.org/3/library/dis.html" />
     
-      
-      <script type="text/javascript" src="../_static/switchers.js"></script>
       
     
 
@@ -94,7 +92,7 @@
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.9/Doc/library/dis.rst"
+        <a href="https://github.com/python/cpython/blob/3.10/Doc/library/dis.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -130,10 +128,8 @@
           <li>
               
           </li>
-    <li>
-      <span class="language_switcher_placeholder">zh_TW</span>
-      <span class="version_switcher_placeholder">3.9.7</span>
-      <a href="../index.html">說明文件 </a> &#187;
+    <li id="cpython-language-and-version">
+      <a href="../index.html">3.10.0 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -163,7 +159,7 @@
             
   <section id="module-dis">
 <span id="dis-disassembler-for-python-bytecode"></span><h1><a class="reference internal" href="#module-dis" title="dis: Disassembler for Python bytecode."><code class="xref py py-mod docutils literal notranslate"><span class="pre">dis</span></code></a> --- Python bytecode的反組譯器<a class="headerlink" href="#module-dis" title="本標題的永久連結">¶</a></h1>
-<p><strong>原始碼：</strong><a class="reference external" href="https://github.com/python/cpython/tree/3.9/Lib/dis.py">Lib/dis.py</a></p>
+<p><strong>原始碼：</strong><a class="reference external" href="https://github.com/python/cpython/tree/3.10/Lib/dis.py">Lib/dis.py</a></p>
 <hr class="docutils" />
 <p><a class="reference internal" href="#module-dis" title="dis: Disassembler for Python bytecode."><code class="xref py py-mod docutils literal notranslate"><span class="pre">dis</span></code></a> 模組支援反組譯分析 CPython <a class="reference internal" href="../glossary.html#term-bytecode"><span class="xref std std-term">bytecode</span></a>。CPython bytecode 作為輸入的模組被定義於 <code class="file docutils literal notranslate"><span class="pre">Include/opcode.h</span></code> 並且被編譯器和直譯器所使用。</p>
 <div class="impl-detail compound">
@@ -393,7 +389,7 @@ object.</p>
 <dd><p>This generator function uses the <code class="docutils literal notranslate"><span class="pre">co_firstlineno</span></code> and <code class="docutils literal notranslate"><span class="pre">co_lnotab</span></code>
 attributes of the code object <em>code</em> to find the offsets which are starts of
 lines in the source code.  They are generated as <code class="docutils literal notranslate"><span class="pre">(offset,</span> <span class="pre">lineno)</span></code> pairs.
-See <a class="reference external" href="https://github.com/python/cpython/tree/3.9/Objects/lnotab_notes.txt">Objects/lnotab_notes.txt</a> for the <code class="docutils literal notranslate"><span class="pre">co_lnotab</span></code> format and
+See <a class="reference external" href="https://github.com/python/cpython/tree/3.10/Objects/lnotab_notes.txt">Objects/lnotab_notes.txt</a> for the <code class="docutils literal notranslate"><span class="pre">co_lnotab</span></code> format and
 how to decode it.</p>
 <div class="versionchanged">
 <p><span class="versionmodified changed">在 3.6 版本變更: </span>Line numbers can be decreasing. Before, they were always increasing.</p>
@@ -940,7 +936,8 @@ popped values are used to restore the exception state.</p>
 <dl class="std opcode">
 <dt class="sig sig-object std" id="opcode-RERAISE">
 <span class="sig-name descname"><span class="pre">RERAISE</span></span><a class="headerlink" href="#opcode-RERAISE" title="本定義的永久連結">¶</a></dt>
-<dd><p>Re-raises the exception currently on top of the stack.</p>
+<dd><p>Re-raises the exception currently on top of the stack. If oparg is non-zero,
+restores <code class="docutils literal notranslate"><span class="pre">f_lasti</span></code> of the current frame to its value when the exception was raised.</p>
 <div class="versionadded">
 <p><span class="versionmodified added">在 3.9 版本新加入.</span></p>
 </div>
@@ -988,6 +985,62 @@ store it in (a) variable(s) (<a class="reference internal" href="#opcode-STORE_F
 <a class="reference internal" href="#opcode-UNPACK_SEQUENCE"><code class="xref std std-opcode docutils literal notranslate"><span class="pre">UNPACK_SEQUENCE</span></code></a>).</p>
 <div class="versionadded">
 <p><span class="versionmodified added">在 3.2 版本新加入.</span></p>
+</div>
+</dd></dl>
+
+<dl class="std opcode">
+<dt class="sig sig-object std" id="opcode-COPY_DICT_WITHOUT_KEYS">
+<span class="sig-name descname"><span class="pre">COPY_DICT_WITHOUT_KEYS</span></span><a class="headerlink" href="#opcode-COPY_DICT_WITHOUT_KEYS" title="本定義的永久連結">¶</a></dt>
+<dd><p>TOS is a tuple of mapping keys, and TOS1 is the match subject.  Replace TOS
+with a <a class="reference internal" href="stdtypes.html#dict" title="dict"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a> formed from the items of TOS1, but without any of the
+keys in TOS.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">在 3.10 版本新加入.</span></p>
+</div>
+</dd></dl>
+
+<dl class="std opcode">
+<dt class="sig sig-object std" id="opcode-GET_LEN">
+<span class="sig-name descname"><span class="pre">GET_LEN</span></span><a class="headerlink" href="#opcode-GET_LEN" title="本定義的永久連結">¶</a></dt>
+<dd><p>Push <code class="docutils literal notranslate"><span class="pre">len(TOS)</span></code> onto the stack.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">在 3.10 版本新加入.</span></p>
+</div>
+</dd></dl>
+
+<dl class="std opcode">
+<dt class="sig sig-object std" id="opcode-MATCH_MAPPING">
+<span class="sig-name descname"><span class="pre">MATCH_MAPPING</span></span><a class="headerlink" href="#opcode-MATCH_MAPPING" title="本定義的永久連結">¶</a></dt>
+<dd><p>If TOS is an instance of <a class="reference internal" href="collections.abc.html#collections.abc.Mapping" title="collections.abc.Mapping"><code class="xref py py-class docutils literal notranslate"><span class="pre">collections.abc.Mapping</span></code></a> (or, more technically: if
+it has the <a class="reference internal" href="../c-api/typeobj.html#Py_TPFLAGS_MAPPING" title="Py_TPFLAGS_MAPPING"><code class="xref py py-const docutils literal notranslate"><span class="pre">Py_TPFLAGS_MAPPING</span></code></a> flag set in its
+<a class="reference internal" href="../c-api/typeobj.html#c.PyTypeObject.tp_flags" title="PyTypeObject.tp_flags"><code class="xref c c-member docutils literal notranslate"><span class="pre">tp_flags</span></code></a>), push <code class="docutils literal notranslate"><span class="pre">True</span></code> onto the stack.  Otherwise, push
+<code class="docutils literal notranslate"><span class="pre">False</span></code>.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">在 3.10 版本新加入.</span></p>
+</div>
+</dd></dl>
+
+<dl class="std opcode">
+<dt class="sig sig-object std" id="opcode-MATCH_SEQUENCE">
+<span class="sig-name descname"><span class="pre">MATCH_SEQUENCE</span></span><a class="headerlink" href="#opcode-MATCH_SEQUENCE" title="本定義的永久連結">¶</a></dt>
+<dd><p>If TOS is an instance of <a class="reference internal" href="collections.abc.html#collections.abc.Sequence" title="collections.abc.Sequence"><code class="xref py py-class docutils literal notranslate"><span class="pre">collections.abc.Sequence</span></code></a> and is <em>not</em> an instance
+of <a class="reference internal" href="stdtypes.html#str" title="str"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>/<a class="reference internal" href="stdtypes.html#bytes" title="bytes"><code class="xref py py-class docutils literal notranslate"><span class="pre">bytes</span></code></a>/<a class="reference internal" href="stdtypes.html#bytearray" title="bytearray"><code class="xref py py-class docutils literal notranslate"><span class="pre">bytearray</span></code></a> (or, more technically: if it has
+the <a class="reference internal" href="../c-api/typeobj.html#Py_TPFLAGS_SEQUENCE" title="Py_TPFLAGS_SEQUENCE"><code class="xref py py-const docutils literal notranslate"><span class="pre">Py_TPFLAGS_SEQUENCE</span></code></a> flag set in its <a class="reference internal" href="../c-api/typeobj.html#c.PyTypeObject.tp_flags" title="PyTypeObject.tp_flags"><code class="xref c c-member docutils literal notranslate"><span class="pre">tp_flags</span></code></a>),
+push <code class="docutils literal notranslate"><span class="pre">True</span></code> onto the stack.  Otherwise, push <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">在 3.10 版本新加入.</span></p>
+</div>
+</dd></dl>
+
+<dl class="std opcode">
+<dt class="sig sig-object std" id="opcode-MATCH_KEYS">
+<span class="sig-name descname"><span class="pre">MATCH_KEYS</span></span><a class="headerlink" href="#opcode-MATCH_KEYS" title="本定義的永久連結">¶</a></dt>
+<dd><p>TOS is a tuple of mapping keys, and TOS1 is the match subject.  If TOS1
+contains all of the keys in TOS, push a <a class="reference internal" href="stdtypes.html#tuple" title="tuple"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a> containing the
+corresponding values, followed by <code class="docutils literal notranslate"><span class="pre">True</span></code>. Otherwise, push <code class="docutils literal notranslate"><span class="pre">None</span></code>,
+followed by <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">在 3.10 版本新加入.</span></p>
 </div>
 </dd></dl>
 
@@ -1455,11 +1508,14 @@ stack must consist of values if the argument carries a specified flag value</p>
 <li><p><code class="docutils literal notranslate"><span class="pre">0x01</span></code> a tuple of default values for positional-only and
 positional-or-keyword parameters in positional order</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">0x02</span></code> a dictionary of keyword-only parameters' default values</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">0x04</span></code> an annotation dictionary</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">0x04</span></code> a tuple of strings containing parameters' annotations</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">0x08</span></code> a tuple containing cells for free variables, making a closure</p></li>
 <li><p>the code associated with the function (at TOS1)</p></li>
 <li><p>the <a class="reference internal" href="../glossary.html#term-qualified-name"><span class="xref std std-term">qualified name</span></a> of the function (at TOS)</p></li>
 </ul>
+<div class="versionchanged">
+<p><span class="versionmodified changed">在 3.10 版本變更: </span>Flag value <code class="docutils literal notranslate"><span class="pre">0x04</span></code> is a tuple of strings instead of dictionary</p>
+</div>
 </dd></dl>
 
 <dl class="std opcode">
@@ -1500,6 +1556,44 @@ it, else use an empty <em>fmt_spec</em>.</p></li>
 result is pushed on the stack.</p>
 <div class="versionadded">
 <p><span class="versionmodified added">在 3.6 版本新加入.</span></p>
+</div>
+</dd></dl>
+
+<dl class="std opcode">
+<dt class="sig sig-object std" id="opcode-MATCH_CLASS">
+<span class="sig-name descname"><span class="pre">MATCH_CLASS</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">count</span></em><span class="sig-paren">)</span><a class="headerlink" href="#opcode-MATCH_CLASS" title="本定義的永久連結">¶</a></dt>
+<dd><p>TOS is a tuple of keyword attribute names, TOS1 is the class being matched
+against, and TOS2 is the match subject.  <em>count</em> is the number of positional
+sub-patterns.</p>
+<p>Pop TOS.  If TOS2 is an instance of TOS1 and has the positional and keyword
+attributes required by <em>count</em> and TOS, set TOS to <code class="docutils literal notranslate"><span class="pre">True</span></code> and TOS1 to a
+tuple of extracted attributes.  Otherwise, set TOS to <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">在 3.10 版本新加入.</span></p>
+</div>
+</dd></dl>
+
+<dl class="std opcode">
+<dt class="sig sig-object std" id="opcode-GEN_START">
+<span class="sig-name descname"><span class="pre">GEN_START</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">kind</span></em><span class="sig-paren">)</span><a class="headerlink" href="#opcode-GEN_START" title="本定義的永久連結">¶</a></dt>
+<dd><blockquote>
+<div><p>Pops TOS. If TOS was not <code class="docutils literal notranslate"><span class="pre">None</span></code>, raises an exception. The <code class="docutils literal notranslate"><span class="pre">kind</span></code>
+operand corresponds to the type of generator or coroutine and determines
+the error message. The legal kinds are 0 for generator, 1 for coroutine,
+and 2 for async generator.</p>
+</div></blockquote>
+<div class="versionadded">
+<p><span class="versionmodified added">在 3.10 版本新加入.</span></p>
+</div>
+</dd></dl>
+
+<dl class="std opcode">
+<dt class="sig sig-object std" id="opcode-ROT_N">
+<span class="sig-name descname"><span class="pre">ROT_N</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">count</span></em><span class="sig-paren">)</span><a class="headerlink" href="#opcode-ROT_N" title="本定義的永久連結">¶</a></dt>
+<dd><p>Lift the top <em>count</em> stack items one position up, and move TOS down to
+position <em>count</em>.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">在 3.10 版本新加入.</span></p>
 </div>
 </dd></dl>
 
@@ -1615,7 +1709,7 @@ scopes or names in outer scopes that are referenced from this scope.  It does
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.9/Doc/library/dis.rst"
+        <a href="https://github.com/python/cpython/blob/3.10/Doc/library/dis.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -1650,10 +1744,8 @@ scopes or names in outer scopes that are referenced from this scope.  It does
           <li>
               
           </li>
-    <li>
-      <span class="language_switcher_placeholder">zh_TW</span>
-      <span class="version_switcher_placeholder">3.9.7</span>
-      <a href="../index.html">說明文件 </a> &#187;
+    <li id="cpython-language-and-version">
+      <a href="../index.html">3.10.0 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>

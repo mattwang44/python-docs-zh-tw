@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>函式庫和擴充功能的常見問題 &#8212; Python 3.9.7 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>函式庫和擴充功能的常見問題 &#8212; Python 3.10.0 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2021.11.1" />
@@ -20,7 +20,7 @@
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.9.7 說明文件 中搜尋"
+          title="在 Python 3.10.0 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -30,8 +30,6 @@
     <link rel="prev" title="Design and History FAQ" href="design.html" />
     <link rel="canonical" href="https://docs.python.org/3/faq/library.html" />
     
-      
-      <script type="text/javascript" src="../_static/switchers.js"></script>
       
     
 
@@ -97,7 +95,7 @@
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.9/Doc/faq/library.rst"
+        <a href="https://github.com/python/cpython/blob/3.10/Doc/faq/library.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -133,10 +131,8 @@
           <li>
               
           </li>
-    <li>
-      <span class="language_switcher_placeholder">zh_TW</span>
-      <span class="version_switcher_placeholder">3.9.7</span>
-      <a href="../index.html">說明文件 </a> &#187;
+    <li id="cpython-language-and-version">
+      <a href="../index.html">3.10.0 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Python 常見問題</a> &#187;</li>
@@ -238,7 +234,7 @@
 standard library module.  (Eventually you'll learn what's in the standard
 library and will be able to skip this step.)</p>
 <p>For third-party packages, search the <a class="reference external" href="https://pypi.org">Python Package Index</a> or try <a class="reference external" href="https://www.google.com">Google</a> or
-another Web search engine.  Searching for &quot;Python&quot; plus a keyword or two for
+another web search engine.  Searching for &quot;Python&quot; plus a keyword or two for
 your topic of interest will usually find something helpful.</p>
 </section>
 <section id="where-is-the-math-py-socket-py-regex-py-etc-source-file">
@@ -300,7 +296,7 @@ However, you can fix that by adding</p>
 <section id="is-there-a-curses-termcap-package-for-python">
 <h3><a class="toc-backref" href="#id7">Is there a curses/termcap package for Python?</a><a class="headerlink" href="#is-there-a-curses-termcap-package-for-python" title="本標題的永久連結">¶</a></h3>
 <p>For Unix variants: The standard Python source distribution comes with a curses
-module in the <a class="reference external" href="https://github.com/python/cpython/tree/3.9/Modules">Modules</a> subdirectory, though it's not compiled by default.
+module in the <a class="reference external" href="https://github.com/python/cpython/tree/3.10/Modules">Modules</a> subdirectory, though it's not compiled by default.
 (Note that this is not available in the Windows distribution -- there is no
 curses module for Windows.)</p>
 <p>The <a class="reference internal" href="../library/curses.html#module-curses" title="curses: An interface to the curses library, providing portable terminal handling. (Unix)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">curses</span></code></a> module supports basic curses features as well as many additional
@@ -454,11 +450,11 @@ necessary to ensure that each job is handed out exactly once.</p>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">arg</span> <span class="o">=</span> <span class="n">q</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">block</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
         <span class="k">except</span> <span class="n">queue</span><span class="o">.</span><span class="n">Empty</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Worker&#39;</span><span class="p">,</span> <span class="n">threading</span><span class="o">.</span><span class="n">currentThread</span><span class="p">(),</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Worker&#39;</span><span class="p">,</span> <span class="n">threading</span><span class="o">.</span><span class="n">current_thread</span><span class="p">(),</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="p">)</span>
             <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;queue empty&#39;</span><span class="p">)</span>
             <span class="k">break</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Worker&#39;</span><span class="p">,</span> <span class="n">threading</span><span class="o">.</span><span class="n">currentThread</span><span class="p">(),</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Worker&#39;</span><span class="p">,</span> <span class="n">threading</span><span class="o">.</span><span class="n">current_thread</span><span class="p">(),</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="p">)</span>
             <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;running with argument&#39;</span><span class="p">,</span> <span class="n">arg</span><span class="p">)</span>
             <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
 
@@ -868,7 +864,7 @@ multiple random number generators.</p>
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.9/Doc/faq/library.rst"
+        <a href="https://github.com/python/cpython/blob/3.10/Doc/faq/library.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -903,10 +899,8 @@ multiple random number generators.</p>
           <li>
               
           </li>
-    <li>
-      <span class="language_switcher_placeholder">zh_TW</span>
-      <span class="version_switcher_placeholder">3.9.7</span>
-      <a href="../index.html">說明文件 </a> &#187;
+    <li id="cpython-language-and-version">
+      <a href="../index.html">3.10.0 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 常見問題</a> &#187;</li>

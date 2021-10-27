@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>random --- Generate pseudo-random numbers &#8212; Python 3.9.7 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>random --- Generate pseudo-random numbers &#8212; Python 3.10.0 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2021.11.1" />
@@ -20,7 +20,7 @@
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.9.7 說明文件 中搜尋"
+          title="在 Python 3.10.0 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -30,8 +30,6 @@
     <link rel="prev" title="fractions --- Rational numbers" href="fractions.html" />
     <link rel="canonical" href="https://docs.python.org/3/library/random.html" />
     
-      
-      <script type="text/javascript" src="../_static/switchers.js"></script>
       
     
 
@@ -99,7 +97,7 @@
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.9/Doc/library/random.rst"
+        <a href="https://github.com/python/cpython/blob/3.10/Doc/library/random.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -135,10 +133,8 @@
           <li>
               
           </li>
-    <li>
-      <span class="language_switcher_placeholder">zh_TW</span>
-      <span class="version_switcher_placeholder">3.9.7</span>
-      <a href="../index.html">說明文件 </a> &#187;
+    <li id="cpython-language-and-version">
+      <a href="../index.html">3.10.0 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -168,7 +164,7 @@
             
   <section id="module-random">
 <span id="random-generate-pseudo-random-numbers"></span><h1><a class="reference internal" href="#module-random" title="random: Generate pseudo-random numbers with various common distributions."><code class="xref py py-mod docutils literal notranslate"><span class="pre">random</span></code></a> --- Generate pseudo-random numbers<a class="headerlink" href="#module-random" title="本標題的永久連結">¶</a></h1>
-<p><strong>Source code:</strong> <a class="reference external" href="https://github.com/python/cpython/tree/3.9/Lib/random.py">Lib/random.py</a></p>
+<p><strong>Source code:</strong> <a class="reference external" href="https://github.com/python/cpython/tree/3.10/Lib/random.py">Lib/random.py</a></p>
 <hr class="docutils" />
 <p>This module implements pseudo-random number generators for various
 distributions.</p>
@@ -286,6 +282,16 @@ should not be used because the function may use them in unexpected ways.</p>
 values.  Formerly it used a style like <code class="docutils literal notranslate"><span class="pre">int(random()*n)</span></code> which could produce
 slightly uneven distributions.</p>
 </div>
+<div class="deprecated">
+<p><span class="versionmodified deprecated">在 3.10 版本開始棄用: </span>The automatic conversion of non-integer types to equivalent integers is
+deprecated.  Currently <code class="docutils literal notranslate"><span class="pre">randrange(10.0)</span></code> is losslessly converted to
+<code class="docutils literal notranslate"><span class="pre">randrange(10)</span></code>.  In the future, this will raise a <a class="reference internal" href="exceptions.html#TypeError" title="TypeError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">TypeError</span></code></a>.</p>
+</div>
+<div class="deprecated">
+<p><span class="versionmodified deprecated">在 3.10 版本開始棄用: </span>The exception raised for non-integral values such as <code class="docutils literal notranslate"><span class="pre">randrange(10.5)</span></code>
+or <code class="docutils literal notranslate"><span class="pre">randrange('10')</span></code> will be changed from <a class="reference internal" href="exceptions.html#ValueError" title="ValueError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code></a> to
+<a class="reference internal" href="exceptions.html#TypeError" title="TypeError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">TypeError</span></code></a>.</p>
+</div>
 </dd></dl>
 
 <dl class="py function">
@@ -337,8 +343,8 @@ the same length as the <em>population</em> sequence.  It is a <a class="referenc
 to specify both <em>weights</em> and <em>cum_weights</em>.</p>
 <p>The <em>weights</em> or <em>cum_weights</em> can use any numeric type that interoperates
 with the <a class="reference internal" href="functions.html#float" title="float"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a> values returned by <a class="reference internal" href="#module-random" title="random: Generate pseudo-random numbers with various common distributions."><code class="xref py py-func docutils literal notranslate"><span class="pre">random()</span></code></a> (that includes
-integers, floats, and fractions but excludes decimals).  Behavior is
-undefined if any weight is negative.  A <a class="reference internal" href="exceptions.html#ValueError" title="ValueError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code></a> is raised if all
+integers, floats, and fractions but excludes decimals).  Weights are assumed
+to be non-negative and finite.  A <a class="reference internal" href="exceptions.html#ValueError" title="ValueError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code></a> is raised if all
 weights are zero.</p>
 <p>For a given seed, the <a class="reference internal" href="#random.choices" title="random.choices"><code class="xref py py-func docutils literal notranslate"><span class="pre">choices()</span></code></a> function with equal weighting
 typically produces a different sequence than repeated calls to
@@ -468,9 +474,9 @@ parameters are <code class="docutils literal notranslate"><span class="pre">alph
 <dl class="py function">
 <dt class="sig sig-object py" id="random.gauss">
 <span class="sig-prename descclassname"><span class="pre">random.</span></span><span class="sig-name descname"><span class="pre">gauss</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mu</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#random.gauss" title="本定義的永久連結">¶</a></dt>
-<dd><p>Gaussian distribution.  <em>mu</em> is the mean, and <em>sigma</em> is the standard
-deviation.  This is slightly faster than the <a class="reference internal" href="#random.normalvariate" title="random.normalvariate"><code class="xref py py-func docutils literal notranslate"><span class="pre">normalvariate()</span></code></a> function
-defined below.</p>
+<dd><p>Normal distribution, also called the Gaussian distribution.  <em>mu</em> is the mean,
+and <em>sigma</em> is the standard deviation.  This is slightly faster than
+the <a class="reference internal" href="#random.normalvariate" title="random.normalvariate"><code class="xref py py-func docutils literal notranslate"><span class="pre">normalvariate()</span></code></a> function defined below.</p>
 <p>Multithreading note:  When two threads call this function
 simultaneously, it is possible that they will receive the
 same return value.  This can be avoided in three ways.
@@ -655,7 +661,7 @@ between the effects of a drug versus a placebo:</p>
 <p>Simulation of arrival times and service deliveries for a multiserver queue:</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">heapq</span> <span class="kn">import</span> <span class="n">heapify</span><span class="p">,</span> <span class="n">heapreplace</span>
 <span class="kn">from</span> <span class="nn">random</span> <span class="kn">import</span> <span class="n">expovariate</span><span class="p">,</span> <span class="n">gauss</span>
-<span class="kn">from</span> <span class="nn">statistics</span> <span class="kn">import</span> <span class="n">mean</span><span class="p">,</span> <span class="n">median</span><span class="p">,</span> <span class="n">stdev</span>
+<span class="kn">from</span> <span class="nn">statistics</span> <span class="kn">import</span> <span class="n">mean</span><span class="p">,</span> <span class="n">quantiles</span>
 
 <span class="n">average_arrival_interval</span> <span class="o">=</span> <span class="mf">5.6</span>
 <span class="n">average_service_time</span> <span class="o">=</span> <span class="mf">15.0</span>
@@ -675,8 +681,8 @@ between the effects of a drug versus a placebo:</p>
     <span class="n">service_completed</span> <span class="o">=</span> <span class="n">arrival_time</span> <span class="o">+</span> <span class="n">wait</span> <span class="o">+</span> <span class="n">service_duration</span>
     <span class="n">heapreplace</span><span class="p">(</span><span class="n">servers</span><span class="p">,</span> <span class="n">service_completed</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Mean wait: </span><span class="si">{</span><span class="n">mean</span><span class="p">(</span><span class="n">waits</span><span class="p">)</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1">.  Stdev wait: </span><span class="si">{</span><span class="n">stdev</span><span class="p">(</span><span class="n">waits</span><span class="p">)</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1">.&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Median wait: </span><span class="si">{</span><span class="n">median</span><span class="p">(</span><span class="n">waits</span><span class="p">)</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1">.  Max wait: </span><span class="si">{</span><span class="nb">max</span><span class="p">(</span><span class="n">waits</span><span class="p">)</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1">.&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Mean wait: </span><span class="si">{</span><span class="n">mean</span><span class="p">(</span><span class="n">waits</span><span class="p">)</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1">   Max wait: </span><span class="si">{</span><span class="nb">max</span><span class="p">(</span><span class="n">waits</span><span class="p">)</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Quartiles:&#39;</span><span class="p">,</span> <span class="p">[</span><span class="nb">round</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">q</span> <span class="ow">in</span> <span class="n">quantiles</span><span class="p">(</span><span class="n">waits</span><span class="p">)])</span>
 </pre></div>
 </div>
 <div class="admonition seealso">
@@ -781,7 +787,7 @@ fine-grained floats than normally generated by <a class="reference internal" hre
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.9/Doc/library/random.rst"
+        <a href="https://github.com/python/cpython/blob/3.10/Doc/library/random.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -816,10 +822,8 @@ fine-grained floats than normally generated by <a class="reference internal" hre
           <li>
               
           </li>
-    <li>
-      <span class="language_switcher_placeholder">zh_TW</span>
-      <span class="version_switcher_placeholder">3.9.7</span>
-      <a href="../index.html">說明文件 </a> &#187;
+    <li id="cpython-language-and-version">
+      <a href="../index.html">3.10.0 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>

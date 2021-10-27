@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>socket --- Low-level networking interface &#8212; Python 3.9.7 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>socket --- Low-level networking interface &#8212; Python 3.10.0 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2021.11.1" />
@@ -20,7 +20,7 @@
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.9.7 說明文件 中搜尋"
+          title="在 Python 3.10.0 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -30,8 +30,6 @@
     <link rel="prev" title="Developing with asyncio" href="asyncio-dev.html" />
     <link rel="canonical" href="https://docs.python.org/3/library/socket.html" />
     
-      
-      <script type="text/javascript" src="../_static/switchers.js"></script>
       
     
 
@@ -108,7 +106,7 @@
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.9/Doc/library/socket.rst"
+        <a href="https://github.com/python/cpython/blob/3.10/Doc/library/socket.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -144,10 +142,8 @@
           <li>
               
           </li>
-    <li>
-      <span class="language_switcher_placeholder">zh_TW</span>
-      <span class="version_switcher_placeholder">3.9.7</span>
-      <a href="../index.html">說明文件 </a> &#187;
+    <li id="cpython-language-and-version">
+      <a href="../index.html">3.10.0 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -177,7 +173,7 @@
             
   <section id="module-socket">
 <span id="socket-low-level-networking-interface"></span><h1><a class="reference internal" href="#module-socket" title="socket: Low-level networking interface."><code class="xref py py-mod docutils literal notranslate"><span class="pre">socket</span></code></a> --- Low-level networking interface<a class="headerlink" href="#module-socket" title="本標題的永久連結">¶</a></h1>
-<p><strong>Source code:</strong> <a class="reference external" href="https://github.com/python/cpython/tree/3.9/Lib/socket.py">Lib/socket.py</a></p>
+<p><strong>Source code:</strong> <a class="reference external" href="https://github.com/python/cpython/tree/3.10/Lib/socket.py">Lib/socket.py</a></p>
 <hr class="docutils" />
 <p>This module provides access to the BSD <em>socket</em> interface. It is available on
 all modern Unix systems, Windows, MacOS, and probably additional platforms.</p>
@@ -230,7 +226,7 @@ encoding.</p>
 </ul>
 <ul id="host-port">
 <li><p>A pair <code class="docutils literal notranslate"><span class="pre">(host,</span> <span class="pre">port)</span></code> is used for the <a class="reference internal" href="#socket.AF_INET" title="socket.AF_INET"><code class="xref py py-const docutils literal notranslate"><span class="pre">AF_INET</span></code></a> address family,
-where <em>host</em> is a string representing either a hostname in Internet domain
+where <em>host</em> is a string representing either a hostname in internet domain
 notation like <code class="docutils literal notranslate"><span class="pre">'daring.cwi.nl'</span></code> or an IPv4 address like <code class="docutils literal notranslate"><span class="pre">'100.50.200.5'</span></code>,
 and <em>port</em> is an integer.</p>
 <ul class="simple">
@@ -456,13 +452,17 @@ defined in this module.</p>
 <dl class="py exception">
 <dt class="sig sig-object py" id="socket.timeout">
 <em class="property"><span class="pre">exception</span> </em><span class="sig-prename descclassname"><span class="pre">socket.</span></span><span class="sig-name descname"><span class="pre">timeout</span></span><a class="headerlink" href="#socket.timeout" title="本定義的永久連結">¶</a></dt>
-<dd><p>A subclass of <a class="reference internal" href="exceptions.html#OSError" title="OSError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">OSError</span></code></a>, this exception is raised when a timeout
+<dd><p>A deprecated alias of <a class="reference internal" href="exceptions.html#TimeoutError" title="TimeoutError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">TimeoutError</span></code></a>.</p>
+<p>A subclass of <a class="reference internal" href="exceptions.html#OSError" title="OSError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">OSError</span></code></a>, this exception is raised when a timeout
 occurs on a socket which has had timeouts enabled via a prior call to
 <a class="reference internal" href="#socket.socket.settimeout" title="socket.socket.settimeout"><code class="xref py py-meth docutils literal notranslate"><span class="pre">settimeout()</span></code></a> (or implicitly through
 <a class="reference internal" href="#socket.setdefaulttimeout" title="socket.setdefaulttimeout"><code class="xref py py-func docutils literal notranslate"><span class="pre">setdefaulttimeout()</span></code></a>).  The accompanying value is a string
 whose value is currently always &quot;timed out&quot;.</p>
 <div class="versionchanged">
 <p><span class="versionmodified changed">在 3.3 版本變更: </span>This class was made a subclass of <a class="reference internal" href="exceptions.html#OSError" title="OSError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">OSError</span></code></a>.</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">在 3.10 版本變更: </span>This class was made an alias of <a class="reference internal" href="exceptions.html#TimeoutError" title="TimeoutError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">TimeoutError</span></code></a>.</p>
 </div>
 </dd></dl>
 
@@ -572,6 +572,11 @@ supports.</p>
 <p><span class="versionmodified changed">在 3.7 版本變更: </span><code class="docutils literal notranslate"><span class="pre">TCP_NOTSENT_LOWAT</span></code> was added.</p>
 <p>On Windows, <code class="docutils literal notranslate"><span class="pre">TCP_KEEPIDLE</span></code>, <code class="docutils literal notranslate"><span class="pre">TCP_KEEPINTVL</span></code> appear if run-time Windows
 supports.</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">在 3.10 版本變更: </span><code class="docutils literal notranslate"><span class="pre">IP_RECVTOS</span></code> was added.
+ Added <code class="docutils literal notranslate"><span class="pre">TCP_KEEPALIVE</span></code>. On MacOS this constant can be used in the same
+ way that <code class="docutils literal notranslate"><span class="pre">TCP_KEEPIDLE</span></code> is used on Linux.</p>
 </div>
 </dd></dl>
 
@@ -845,6 +850,9 @@ to the underlying system <cite>socket()</cite> call.  Therefore,</p>
 <div class="versionchanged">
 <p><span class="versionmodified changed">在 3.9 版本變更: </span>The CAN_J1939 protocol was added.</p>
 </div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">在 3.10 版本變更: </span>The IPPROTO_MPTCP protocol was added.</p>
+</div>
 </dd></dl>
 
 <dl class="py function">
@@ -870,7 +878,7 @@ than a subset.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="socket.create_connection">
 <span class="sig-prename descclassname"><span class="pre">socket.</span></span><span class="sig-name descname"><span class="pre">create_connection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">address</span></em><span class="optional">[</span>, <em class="sig-param"><span class="pre">timeout</span></em><span class="optional">[</span>, <em class="sig-param"><span class="pre">source_address</span></em><span class="optional">]</span><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#socket.create_connection" title="本定義的永久連結">¶</a></dt>
-<dd><p>Connect to a TCP service listening on the Internet <em>address</em> (a 2-tuple
+<dd><p>Connect to a TCP service listening on the internet <em>address</em> (a 2-tuple
 <code class="docutils literal notranslate"><span class="pre">(host,</span> <span class="pre">port)</span></code>), and return the socket object.  This is a higher-level
 function than <a class="reference internal" href="#socket.socket.connect" title="socket.socket.connect"><code class="xref py py-meth docutils literal notranslate"><span class="pre">socket.connect()</span></code></a>: if <em>host</em> is a non-numeric hostname,
 it will try to resolve it for both <a class="reference internal" href="#socket.AF_INET" title="socket.AF_INET"><code class="xref py py-data docutils literal notranslate"><span class="pre">AF_INET</span></code></a> and <a class="reference internal" href="#socket.AF_INET6" title="socket.AF_INET6"><code class="xref py py-data docutils literal notranslate"><span class="pre">AF_INET6</span></code></a>,
@@ -1020,9 +1028,9 @@ method.</p>
 connection to <code class="docutils literal notranslate"><span class="pre">example.org</span></code> on port 80 (results may differ on your
 system if IPv6 isn't enabled):</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">socket</span><span class="o">.</span><span class="n">getaddrinfo</span><span class="p">(</span><span class="s2">&quot;example.org&quot;</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span> <span class="n">proto</span><span class="o">=</span><span class="n">socket</span><span class="o">.</span><span class="n">IPPROTO_TCP</span><span class="p">)</span>
-<span class="go">[(&lt;AddressFamily.AF_INET6: 10&gt;, &lt;SocketType.SOCK_STREAM: 1&gt;,</span>
+<span class="go">[(&lt;AddressFamily.AF_INET6: 10&gt;, &lt;AddressFamily.SOCK_STREAM: 1&gt;,</span>
 <span class="go"> 6, &#39;&#39;, (&#39;2606:2800:220:1:248:1893:25c8:1946&#39;, 80, 0, 0)),</span>
-<span class="go"> (&lt;AddressFamily.AF_INET: 2&gt;, &lt;SocketType.SOCK_STREAM: 1&gt;,</span>
+<span class="go"> (&lt;AddressFamily.AF_INET: 2&gt;, &lt;AddressFamily.SOCK_STREAM: 1&gt;,</span>
 <span class="go"> 6, &#39;&#39;, (&#39;93.184.216.34&#39;, 80))]</span>
 </pre></div>
 </div>
@@ -1111,7 +1119,7 @@ contains meaningful <em>scope_id</em>. Usually this happens for multicast addres
 <dl class="py function">
 <dt class="sig sig-object py" id="socket.getprotobyname">
 <span class="sig-prename descclassname"><span class="pre">socket.</span></span><span class="sig-name descname"><span class="pre">getprotobyname</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">protocolname</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#socket.getprotobyname" title="本定義的永久連結">¶</a></dt>
-<dd><p>Translate an Internet protocol name (for example, <code class="docutils literal notranslate"><span class="pre">'icmp'</span></code>) to a constant
+<dd><p>Translate an internet protocol name (for example, <code class="docutils literal notranslate"><span class="pre">'icmp'</span></code>) to a constant
 suitable for passing as the (optional) third argument to the <a class="reference internal" href="#socket.socket" title="socket.socket"><code class="xref py py-func docutils literal notranslate"><span class="pre">socket()</span></code></a>
 function.  This is usually only needed for sockets opened in &quot;raw&quot; mode
 (<a class="reference internal" href="#socket.SOCK_RAW" title="socket.SOCK_RAW"><code class="xref py py-const docutils literal notranslate"><span class="pre">SOCK_RAW</span></code></a>); for the normal socket modes, the correct protocol is chosen
@@ -1121,7 +1129,7 @@ automatically if the protocol is omitted or zero.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="socket.getservbyname">
 <span class="sig-prename descclassname"><span class="pre">socket.</span></span><span class="sig-name descname"><span class="pre">getservbyname</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">servicename</span></em><span class="optional">[</span>, <em class="sig-param"><span class="pre">protocolname</span></em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#socket.getservbyname" title="本定義的永久連結">¶</a></dt>
-<dd><p>Translate an Internet service name and protocol name to a port number for that
+<dd><p>Translate an internet service name and protocol name to a port number for that
 service.  The optional protocol name, if given, should be <code class="docutils literal notranslate"><span class="pre">'tcp'</span></code> or
 <code class="docutils literal notranslate"><span class="pre">'udp'</span></code>, otherwise any protocol will match.</p>
 <p class="audit-hook">Raises an <a class="reference internal" href="sys.html#auditing"><span class="std std-ref">auditing event</span></a> <code class="docutils literal notranslate"><span class="pre">socket.getservbyname</span></code> with arguments <code class="docutils literal notranslate"><span class="pre">servicename</span></code>, <code class="docutils literal notranslate"><span class="pre">protocolname</span></code>.</p>
@@ -1130,7 +1138,7 @@ service.  The optional protocol name, if given, should be <code class="docutils 
 <dl class="py function">
 <dt class="sig sig-object py" id="socket.getservbyport">
 <span class="sig-prename descclassname"><span class="pre">socket.</span></span><span class="sig-name descname"><span class="pre">getservbyport</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">port</span></em><span class="optional">[</span>, <em class="sig-param"><span class="pre">protocolname</span></em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#socket.getservbyport" title="本定義的永久連結">¶</a></dt>
-<dd><p>Translate an Internet port number and protocol name to a service name for that
+<dd><p>Translate an internet port number and protocol name to a service name for that
 service.  The optional protocol name, if given, should be <code class="docutils literal notranslate"><span class="pre">'tcp'</span></code> or
 <code class="docutils literal notranslate"><span class="pre">'udp'</span></code>, otherwise any protocol will match.</p>
 <p class="audit-hook">Raises an <a class="reference internal" href="sys.html#auditing"><span class="std std-ref">auditing event</span></a> <code class="docutils literal notranslate"><span class="pre">socket.getservbyport</span></code> with arguments <code class="docutils literal notranslate"><span class="pre">port</span></code>, <code class="docutils literal notranslate"><span class="pre">protocolname</span></code>.</p>
@@ -1150,11 +1158,9 @@ otherwise, it performs a 4-byte swap operation.</p>
 <dd><p>Convert 16-bit positive integers from network to host byte order.  On machines
 where the host byte order is the same as network byte order, this is a no-op;
 otherwise, it performs a 2-byte swap operation.</p>
-<div class="deprecated">
-<p><span class="versionmodified deprecated">在 3.7 版本開始棄用: </span>In case <em>x</em> does not fit in 16-bit unsigned integer, but does fit in a
-positive C int, it is silently truncated to 16-bit unsigned integer.
-This silent truncation feature is deprecated, and will raise an
-exception in future versions of Python.</p>
+<div class="versionchanged">
+<p><span class="versionmodified changed">在 3.10 版本變更: </span>Raises <a class="reference internal" href="exceptions.html#OverflowError" title="OverflowError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">OverflowError</span></code></a> if <em>x</em> does not fit in a 16-bit unsigned
+integer.</p>
 </div>
 </dd></dl>
 
@@ -1172,11 +1178,9 @@ otherwise, it performs a 4-byte swap operation.</p>
 <dd><p>Convert 16-bit positive integers from host to network byte order.  On machines
 where the host byte order is the same as network byte order, this is a no-op;
 otherwise, it performs a 2-byte swap operation.</p>
-<div class="deprecated">
-<p><span class="versionmodified deprecated">在 3.7 版本開始棄用: </span>In case <em>x</em> does not fit in 16-bit unsigned integer, but does fit in a
-positive C int, it is silently truncated to 16-bit unsigned integer.
-This silent truncation feature is deprecated, and will raise an
-exception in future versions of Python.</p>
+<div class="versionchanged">
+<p><span class="versionmodified changed">在 3.10 版本變更: </span>Raises <a class="reference internal" href="exceptions.html#OverflowError" title="OverflowError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">OverflowError</span></code></a> if <em>x</em> does not fit in a 16-bit unsigned
+integer.</p>
 </div>
 </dd></dl>
 
@@ -1484,7 +1488,7 @@ before <a class="reference internal" href="#socket.close" title="socket.close"><
 <dd><p>Connect to a remote socket at <em>address</em>. (The format of <em>address</em> depends on the
 address family --- see above.)</p>
 <p>If the connection is interrupted by a signal, the method waits until the
-connection completes, or raise a <a class="reference internal" href="#socket.timeout" title="socket.timeout"><code class="xref py py-exc docutils literal notranslate"><span class="pre">socket.timeout</span></code></a> on timeout, if the
+connection completes, or raise a <a class="reference internal" href="exceptions.html#TimeoutError" title="TimeoutError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">TimeoutError</span></code></a> on timeout, if the
 signal handler doesn't raise an exception and the socket is blocking or has
 a timeout. For non-blocking sockets, the method raises an
 <a class="reference internal" href="exceptions.html#InterruptedError" title="InterruptedError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">InterruptedError</span></code></a> exception if the connection is interrupted by a
@@ -2377,7 +2381,7 @@ want to refer to <span class="target" id="index-15"></span><a class="rfc referen
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.9/Doc/library/socket.rst"
+        <a href="https://github.com/python/cpython/blob/3.10/Doc/library/socket.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -2412,10 +2416,8 @@ want to refer to <span class="target" id="index-15"></span><a class="rfc referen
           <li>
               
           </li>
-    <li>
-      <span class="language_switcher_placeholder">zh_TW</span>
-      <span class="version_switcher_placeholder">3.9.7</span>
-      <a href="../index.html">說明文件 </a> &#187;
+    <li id="cpython-language-and-version">
+      <a href="../index.html">3.10.0 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>

@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>sqlite3 --- DB-API 2.0 interface for SQLite databases &#8212; Python 3.9.7 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sqlite3 --- DB-API 2.0 interface for SQLite databases &#8212; Python 3.10.0 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2021.11.1" />
@@ -20,7 +20,7 @@
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.9.7 說明文件 中搜尋"
+          title="在 Python 3.10.0 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -30,8 +30,6 @@
     <link rel="prev" title="dbm --- Interfaces to Unix &#34;databases&#34;" href="dbm.html" />
     <link rel="canonical" href="https://docs.python.org/3/library/sqlite3.html" />
     
-      
-      <script type="text/javascript" src="../_static/switchers.js"></script>
       
     
 
@@ -113,7 +111,7 @@
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.9/Doc/library/sqlite3.rst"
+        <a href="https://github.com/python/cpython/blob/3.10/Doc/library/sqlite3.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -149,10 +147,8 @@
           <li>
               
           </li>
-    <li>
-      <span class="language_switcher_placeholder">zh_TW</span>
-      <span class="version_switcher_placeholder">3.9.7</span>
-      <a href="../index.html">說明文件 </a> &#187;
+    <li id="cpython-language-and-version">
+      <a href="../index.html">3.10.0 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -182,7 +178,7 @@
             
   <section id="module-sqlite3">
 <span id="sqlite3-db-api-2-0-interface-for-sqlite-databases"></span><h1><a class="reference internal" href="#module-sqlite3" title="sqlite3: A DB-API 2.0 implementation using SQLite 3.x."><code class="xref py py-mod docutils literal notranslate"><span class="pre">sqlite3</span></code></a> --- DB-API 2.0 interface for SQLite databases<a class="headerlink" href="#module-sqlite3" title="本標題的永久連結">¶</a></h1>
-<p><strong>Source code:</strong> <a class="reference external" href="https://github.com/python/cpython/tree/3.9/Lib/sqlite3/">Lib/sqlite3/</a></p>
+<p><strong>Source code:</strong> <a class="reference external" href="https://github.com/python/cpython/tree/3.10/Lib/sqlite3/">Lib/sqlite3/</a></p>
 <hr class="docutils" />
 <p>SQLite is a C library that provides a lightweight disk-based database that
 doesn't require a separate server process and allows accessing the database
@@ -191,7 +187,8 @@ SQLite for internal data storage.  It's also possible to prototype an
 application using SQLite and then port the code to a larger database such as
 PostgreSQL or Oracle.</p>
 <p>The sqlite3 module was written by Gerhard Häring.  It provides a SQL interface
-compliant with the DB-API 2.0 specification described by <span class="target" id="index-0"></span><a class="pep reference external" href="https://www.python.org/dev/peps/pep-0249"><strong>PEP 249</strong></a>.</p>
+compliant with the DB-API 2.0 specification described by <span class="target" id="index-0"></span><a class="pep reference external" href="https://www.python.org/dev/peps/pep-0249"><strong>PEP 249</strong></a>, and
+requires SQLite 3.7.15 or newer.</p>
 <p>To use the module, you must first create a <a class="reference internal" href="#sqlite3.Connection" title="sqlite3.Connection"><code class="xref py py-class docutils literal notranslate"><span class="pre">Connection</span></code></a> object that
 represents the database.  Here the data will be stored in the
 <code class="file docutils literal notranslate"><span class="pre">example.db</span></code> file:</p>
@@ -400,11 +397,15 @@ you can use:</p>
 <p>More information about this feature, including a list of recognized options, can
 be found in the <a class="reference external" href="https://www.sqlite.org/uri.html">SQLite URI documentation</a>.</p>
 <p class="audit-hook">Raises an <a class="reference internal" href="sys.html#auditing"><span class="std std-ref">auditing event</span></a> <code class="docutils literal notranslate"><span class="pre">sqlite3.connect</span></code> with argument <code class="docutils literal notranslate"><span class="pre">database</span></code>.</p>
+<p class="audit-hook">Raises an <a class="reference internal" href="sys.html#auditing"><span class="std std-ref">auditing event</span></a> <code class="docutils literal notranslate"><span class="pre">sqlite3.connect/handle</span></code> with argument <code class="docutils literal notranslate"><span class="pre">connection_handle</span></code>.</p>
 <div class="versionchanged">
 <p><span class="versionmodified changed">在 3.4 版本變更: </span>Added the <em>uri</em> parameter.</p>
 </div>
 <div class="versionchanged">
 <p><span class="versionmodified changed">在 3.7 版本變更: </span><em>database</em> can now also be a <a class="reference internal" href="../glossary.html#term-path-like-object"><span class="xref std std-term">path-like object</span></a>, not only a string.</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">在 3.10 版本變更: </span>Added the <code class="docutils literal notranslate"><span class="pre">sqlite3.connect/handle</span></code> auditing event.</p>
 </div>
 </dd></dl>
 
@@ -749,8 +750,12 @@ from shared libraries.  SQLite extensions can define new functions,
 aggregates or whole new virtual table implementations.  One well-known
 extension is the fulltext-search extension distributed with SQLite.</p>
 <p>Loadable extensions are disabled by default. See <a class="footnote-reference brackets" href="#f1" id="id1">1</a>.</p>
+<p class="audit-hook">Raises an <a class="reference internal" href="sys.html#auditing"><span class="std std-ref">auditing event</span></a> <code class="docutils literal notranslate"><span class="pre">sqlite3.enable_load_extension</span></code> with arguments <code class="docutils literal notranslate"><span class="pre">connection</span></code>, <code class="docutils literal notranslate"><span class="pre">enabled</span></code>.</p>
 <div class="versionadded">
 <p><span class="versionmodified added">在 3.2 版本新加入.</span></p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">在 3.10 版本變更: </span>Added the <code class="docutils literal notranslate"><span class="pre">sqlite3.enable_load_extension</span></code> auditing event.</p>
 </div>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sqlite3</span>
 
@@ -791,8 +796,12 @@ extension is the fulltext-search extension distributed with SQLite.</p>
 enable extension loading with <a class="reference internal" href="#sqlite3.Connection.enable_load_extension" title="sqlite3.Connection.enable_load_extension"><code class="xref py py-meth docutils literal notranslate"><span class="pre">enable_load_extension()</span></code></a> before you can
 use this routine.</p>
 <p>Loadable extensions are disabled by default. See <a class="footnote-reference brackets" href="#f1" id="id2">1</a>.</p>
+<p class="audit-hook">Raises an <a class="reference internal" href="sys.html#auditing"><span class="std std-ref">auditing event</span></a> <code class="docutils literal notranslate"><span class="pre">sqlite3.load_extension</span></code> with arguments <code class="docutils literal notranslate"><span class="pre">connection</span></code>, <code class="docutils literal notranslate"><span class="pre">path</span></code>.</p>
 <div class="versionadded">
 <p><span class="versionmodified added">在 3.2 版本新加入.</span></p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">在 3.10 版本變更: </span>Added the <code class="docutils literal notranslate"><span class="pre">sqlite3.load_extension</span></code> auditing event.</p>
 </div>
 </dd></dl>
 
@@ -943,7 +952,6 @@ integer or a floating point value.</p>
 <span class="n">source</span><span class="o">.</span><span class="n">backup</span><span class="p">(</span><span class="n">dest</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Availability: SQLite 3.6.11 or higher</p>
 <div class="versionadded">
 <p><span class="versionmodified added">在 3.7 版本新加入.</span></p>
 </div>
@@ -1116,8 +1124,6 @@ case no <code class="docutils literal notranslate"><span class="pre">executeXX()
 last operation is not determinable by the interface&quot;. This includes <code class="docutils literal notranslate"><span class="pre">SELECT</span></code>
 statements because we cannot determine the number of rows a query produced
 until all rows were fetched.</p>
-<p>With SQLite versions before 3.6.5, <a class="reference internal" href="#sqlite3.Cursor.rowcount" title="sqlite3.Cursor.rowcount"><code class="xref py py-attr docutils literal notranslate"><span class="pre">rowcount</span></code></a> is set to 0 if
-you make a <code class="docutils literal notranslate"><span class="pre">DELETE</span> <span class="pre">FROM</span> <span class="pre">table</span></code> without any condition.</p>
 </dd></dl>
 
 <dl class="py attribute">
@@ -1694,8 +1700,8 @@ committed:</p>
 <dd><p>The sqlite3 module is not built with loadable extension support by
 default, because some platforms (notably macOS) have SQLite
 libraries which are compiled without this feature. To get loadable
-extension support, you must pass <code class="docutils literal notranslate"><span class="pre">--enable-loadable-sqlite-extensions</span></code> to
-configure.</p>
+extension support, you must pass the
+<a class="reference internal" href="../using/configure.html#cmdoption-enable-loadable-sqlite-extensions"><code class="xref std std-option docutils literal notranslate"><span class="pre">--enable-loadable-sqlite-extensions</span></code></a> option to configure.</p>
 </dd>
 </dl>
 </section>
@@ -1750,7 +1756,7 @@ configure.</p>
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.9/Doc/library/sqlite3.rst"
+        <a href="https://github.com/python/cpython/blob/3.10/Doc/library/sqlite3.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -1785,10 +1791,8 @@ configure.</p>
           <li>
               
           </li>
-    <li>
-      <span class="language_switcher_placeholder">zh_TW</span>
-      <span class="version_switcher_placeholder">3.9.7</span>
-      <a href="../index.html">說明文件 </a> &#187;
+    <li id="cpython-language-and-version">
+      <a href="../index.html">3.10.0 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>

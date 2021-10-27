@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Call Protocol &#8212; Python 3.9.7 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Call Protocol &#8212; Python 3.10.0 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2021.11.1" />
@@ -20,7 +20,7 @@
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.9.7 說明文件 中搜尋"
+          title="在 Python 3.10.0 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -30,8 +30,6 @@
     <link rel="prev" title="Object Protocol" href="object.html" />
     <link rel="canonical" href="https://docs.python.org/3/c-api/call.html" />
     
-      
-      <script type="text/javascript" src="../_static/switchers.js"></script>
       
     
 
@@ -98,7 +96,7 @@
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.9/Doc/c-api/call.rst"
+        <a href="https://github.com/python/cpython/blob/3.10/Doc/c-api/call.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -134,10 +132,8 @@
           <li>
               
           </li>
-    <li>
-      <span class="language_switcher_placeholder">zh_TW</span>
-      <span class="version_switcher_placeholder">3.9.7</span>
-      <a href="../index.html">說明文件 </a> &#187;
+    <li id="cpython-language-and-version">
+      <a href="../index.html">3.10.0 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python/C API 參考手冊</a> &#187;</li>
@@ -433,7 +429,7 @@ please see individual documentation for details.</p>
 <dl class="c function">
 <dt class="sig sig-object c" id="c.PyObject_Call">
 <a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">PyObject_Call</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">callable</span></span>, <a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span>, <a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">kwargs</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.PyObject_Call" title="本定義的永久連結">¶</a><br /></dt>
-<dd><em class="refcount">Return value: New reference.</em><p>Call a callable Python object <em>callable</em>, with arguments given by the
+<dd><em class="refcount">Return value: New reference.</em><em class="stableabi"> Part of the <a class="reference internal" href="stable.html#stable"><span class="std std-ref">Stable ABI</span></a>.</em><p>Call a callable Python object <em>callable</em>, with arguments given by the
 tuple <em>args</em>, and named arguments given by the dictionary <em>kwargs</em>.</p>
 <p><em>args</em> must not be <em>NULL</em>; use an empty tuple if no arguments are needed.
 If no named arguments are needed, <em>kwargs</em> can be <em>NULL</em>.</p>
@@ -446,7 +442,7 @@ If no named arguments are needed, <em>kwargs</em> can be <em>NULL</em>.</p>
 <dl class="c function">
 <dt class="sig sig-object c" id="c.PyObject_CallNoArgs">
 <a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">PyObject_CallNoArgs</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">callable</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.PyObject_CallNoArgs" title="本定義的永久連結">¶</a><br /></dt>
-<dd><p>Call a callable Python object <em>callable</em> without any arguments. It is the
+<dd><em class="stableabi"> Part of the <a class="reference internal" href="stable.html#stable"><span class="std std-ref">Stable ABI</span></a> since version 3.10.</em><p>Call a callable Python object <em>callable</em> without any arguments. It is the
 most efficient way to call a callable Python object without any argument.</p>
 <p>Return the result of the call on success, or raise an exception and return
 <em>NULL</em> on failure.</p>
@@ -471,7 +467,7 @@ most efficient way to call a callable Python object without any argument.</p>
 <dl class="c function">
 <dt class="sig sig-object c" id="c.PyObject_CallObject">
 <a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">PyObject_CallObject</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">callable</span></span>, <a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.PyObject_CallObject" title="本定義的永久連結">¶</a><br /></dt>
-<dd><em class="refcount">Return value: New reference.</em><p>Call a callable Python object <em>callable</em>, with arguments given by the
+<dd><em class="refcount">Return value: New reference.</em><em class="stableabi"> Part of the <a class="reference internal" href="stable.html#stable"><span class="std std-ref">Stable ABI</span></a>.</em><p>Call a callable Python object <em>callable</em>, with arguments given by the
 tuple <em>args</em>.  If no arguments are needed, then <em>args</em> can be <em>NULL</em>.</p>
 <p>Return the result of the call on success, or raise an exception and return
 <em>NULL</em> on failure.</p>
@@ -481,7 +477,7 @@ tuple <em>args</em>.  If no arguments are needed, then <em>args</em> can be <em>
 <dl class="c function">
 <dt class="sig sig-object c" id="c.PyObject_CallFunction">
 <a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">PyObject_CallFunction</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">callable</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">format</span></span>, <span class="p"><span class="pre">...</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.PyObject_CallFunction" title="本定義的永久連結">¶</a><br /></dt>
-<dd><em class="refcount">Return value: New reference.</em><p>Call a callable Python object <em>callable</em>, with a variable number of C arguments.
+<dd><em class="refcount">Return value: New reference.</em><em class="stableabi"> Part of the <a class="reference internal" href="stable.html#stable"><span class="std std-ref">Stable ABI</span></a>.</em><p>Call a callable Python object <em>callable</em>, with a variable number of C arguments.
 The C arguments are described using a <a class="reference internal" href="arg.html#c.Py_BuildValue" title="Py_BuildValue"><code class="xref c c-func docutils literal notranslate"><span class="pre">Py_BuildValue()</span></code></a> style format
 string.  The format can be <em>NULL</em>, indicating that no arguments are provided.</p>
 <p>Return the result of the call on success, or raise an exception and return
@@ -497,7 +493,7 @@ string.  The format can be <em>NULL</em>, indicating that no arguments are provi
 <dl class="c function">
 <dt class="sig sig-object c" id="c.PyObject_CallMethod">
 <a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">PyObject_CallMethod</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">obj</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">name</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">format</span></span>, <span class="p"><span class="pre">...</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.PyObject_CallMethod" title="本定義的永久連結">¶</a><br /></dt>
-<dd><em class="refcount">Return value: New reference.</em><p>Call the method named <em>name</em> of object <em>obj</em> with a variable number of C
+<dd><em class="refcount">Return value: New reference.</em><em class="stableabi"> Part of the <a class="reference internal" href="stable.html#stable"><span class="std std-ref">Stable ABI</span></a>.</em><p>Call the method named <em>name</em> of object <em>obj</em> with a variable number of C
 arguments.  The C arguments are described by a <a class="reference internal" href="arg.html#c.Py_BuildValue" title="Py_BuildValue"><code class="xref c c-func docutils literal notranslate"><span class="pre">Py_BuildValue()</span></code></a> format
 string that should produce a tuple.</p>
 <p>The format can be <em>NULL</em>, indicating that no arguments are provided.</p>
@@ -515,7 +511,7 @@ string that should produce a tuple.</p>
 <dl class="c function">
 <dt class="sig sig-object c" id="c.PyObject_CallFunctionObjArgs">
 <a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">PyObject_CallFunctionObjArgs</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">callable</span></span>, <span class="p"><span class="pre">...</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.PyObject_CallFunctionObjArgs" title="本定義的永久連結">¶</a><br /></dt>
-<dd><em class="refcount">Return value: New reference.</em><p>Call a callable Python object <em>callable</em>, with a variable number of
+<dd><em class="refcount">Return value: New reference.</em><em class="stableabi"> Part of the <a class="reference internal" href="stable.html#stable"><span class="std std-ref">Stable ABI</span></a>.</em><p>Call a callable Python object <em>callable</em>, with a variable number of
 <span class="xref c c-texpr"><a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n">PyObject</span></a><span class="p">*</span></span> arguments.  The arguments are provided as a variable number
 of parameters followed by <em>NULL</em>.</p>
 <p>Return the result of the call on success, or raise an exception and return
@@ -527,7 +523,7 @@ of parameters followed by <em>NULL</em>.</p>
 <dl class="c function">
 <dt class="sig sig-object c" id="c.PyObject_CallMethodObjArgs">
 <a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">PyObject_CallMethodObjArgs</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">obj</span></span>, <a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">name</span></span>, <span class="p"><span class="pre">...</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.PyObject_CallMethodObjArgs" title="本定義的永久連結">¶</a><br /></dt>
-<dd><em class="refcount">Return value: New reference.</em><p>Call a method of the Python object <em>obj</em>, where the name of the method is given as a
+<dd><em class="refcount">Return value: New reference.</em><em class="stableabi"> Part of the <a class="reference internal" href="stable.html#stable"><span class="std std-ref">Stable ABI</span></a>.</em><p>Call a method of the Python object <em>obj</em>, where the name of the method is given as a
 Python string object in <em>name</em>.  It is called with a variable number of
 <span class="xref c c-texpr"><a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n">PyObject</span></a><span class="p">*</span></span> arguments.  The arguments are provided as a variable number
 of parameters followed by <em>NULL</em>.</p>
@@ -622,7 +618,7 @@ this will call the unbound method object with the full
 <dl class="c function">
 <dt class="sig sig-object c" id="c.PyCallable_Check">
 <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PyCallable_Check</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">o</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.PyCallable_Check" title="本定義的永久連結">¶</a><br /></dt>
-<dd><p>Determine if the object <em>o</em> is callable.  Return <code class="docutils literal notranslate"><span class="pre">1</span></code> if the object is callable
+<dd><em class="stableabi"> Part of the <a class="reference internal" href="stable.html#stable"><span class="std std-ref">Stable ABI</span></a>.</em><p>Determine if the object <em>o</em> is callable.  Return <code class="docutils literal notranslate"><span class="pre">1</span></code> if the object is callable
 and <code class="docutils literal notranslate"><span class="pre">0</span></code> otherwise.  This function always succeeds.</p>
 </dd></dl>
 
@@ -662,7 +658,7 @@ and <code class="docutils literal notranslate"><span class="pre">0</span></code>
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.9/Doc/c-api/call.rst"
+        <a href="https://github.com/python/cpython/blob/3.10/Doc/c-api/call.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -697,10 +693,8 @@ and <code class="docutils literal notranslate"><span class="pre">0</span></code>
           <li>
               
           </li>
-    <li>
-      <span class="language_switcher_placeholder">zh_TW</span>
-      <span class="version_switcher_placeholder">3.9.7</span>
-      <a href="../index.html">說明文件 </a> &#187;
+    <li id="cpython-language-and-version">
+      <a href="../index.html">3.10.0 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python/C API 參考手冊</a> &#187;</li>

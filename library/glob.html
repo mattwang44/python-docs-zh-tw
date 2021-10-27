@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>glob --- Unix style pathname pattern expansion &#8212; Python 3.9.7 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>glob --- Unix style pathname pattern expansion &#8212; Python 3.10.0 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2021.11.1" />
@@ -20,7 +20,7 @@
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.9.7 說明文件 中搜尋"
+          title="在 Python 3.10.0 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -30,8 +30,6 @@
     <link rel="prev" title="tempfile --- Generate temporary files and directories" href="tempfile.html" />
     <link rel="canonical" href="https://docs.python.org/3/library/glob.html" />
     
-      
-      <script type="text/javascript" src="../_static/switchers.js"></script>
       
     
 
@@ -83,7 +81,7 @@
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.9/Doc/library/glob.rst"
+        <a href="https://github.com/python/cpython/blob/3.10/Doc/library/glob.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -119,10 +117,8 @@
           <li>
               
           </li>
-    <li>
-      <span class="language_switcher_placeholder">zh_TW</span>
-      <span class="version_switcher_placeholder">3.9.7</span>
-      <a href="../index.html">說明文件 </a> &#187;
+    <li id="cpython-language-and-version">
+      <a href="../index.html">3.10.0 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -152,7 +148,7 @@
             
   <section id="module-glob">
 <span id="glob-unix-style-pathname-pattern-expansion"></span><h1><a class="reference internal" href="#module-glob" title="glob: Unix shell style pathname pattern expansion."><code class="xref py py-mod docutils literal notranslate"><span class="pre">glob</span></code></a> --- Unix style pathname pattern expansion<a class="headerlink" href="#module-glob" title="本標題的永久連結">¶</a></h1>
-<p><strong>Source code:</strong> <a class="reference external" href="https://github.com/python/cpython/tree/3.9/Lib/glob.py">Lib/glob.py</a></p>
+<p><strong>Source code:</strong> <a class="reference external" href="https://github.com/python/cpython/tree/3.10/Lib/glob.py">Lib/glob.py</a></p>
 <hr class="docutils" id="index-0" />
 <p id="index-1">The <a class="reference internal" href="#module-glob" title="glob: Unix shell style pathname pattern expansion."><code class="xref py py-mod docutils literal notranslate"><span class="pre">glob</span></code></a> module finds all the pathnames matching a specified pattern
 according to the rules used by the Unix shell, although results are returned in
@@ -171,7 +167,7 @@ For example, <code class="docutils literal notranslate"><span class="pre">'[?]'<
 </div>
 <dl class="py function">
 <dt class="sig sig-object py" id="glob.glob">
-<span class="sig-prename descclassname"><span class="pre">glob.</span></span><span class="sig-name descname"><span class="pre">glob</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pathname</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">recursive</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#glob.glob" title="本定義的永久連結">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">glob.</span></span><span class="sig-name descname"><span class="pre">glob</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pathname</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">root_dir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dir_fd</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">recursive</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#glob.glob" title="本定義的永久連結">¶</a></dt>
 <dd><p>Return a possibly-empty list of path names that match <em>pathname</em>, which must be
 a string containing a path specification. <em>pathname</em> can be either absolute
 (like <code class="file docutils literal notranslate"><span class="pre">/usr/src/Python-1.5/Makefile</span></code>) or relative (like
@@ -180,11 +176,18 @@ symlinks are included in the results (as in the shell). Whether or not the
 results are sorted depends on the file system.  If a file that satisfies
 conditions is removed or added during the call of this function, whether
 a path name for that file be included is unspecified.</p>
+<p>If <em>root_dir</em> is not <code class="docutils literal notranslate"><span class="pre">None</span></code>, it should be a <a class="reference internal" href="../glossary.html#term-path-like-object"><span class="xref std std-term">path-like object</span></a>
+specifying the root directory for searching.  It has the same effect on
+<a class="reference internal" href="#module-glob" title="glob: Unix shell style pathname pattern expansion."><code class="xref py py-func docutils literal notranslate"><span class="pre">glob()</span></code></a> as changing the current directory before calling it.  If
+<em>pathname</em> is relative, the result will contain paths relative to
+<em>root_dir</em>.</p>
+<p>This function can support <a class="reference internal" href="os.html#dir-fd"><span class="std std-ref">paths relative to directory descriptors</span></a> with the <em>dir_fd</em> parameter.</p>
 <p id="index-2">If <em>recursive</em> is true, the pattern &quot;<code class="docutils literal notranslate"><span class="pre">**</span></code>&quot; will match any files and zero or
 more directories, subdirectories and symbolic links to directories. If the
 pattern is followed by an <a class="reference internal" href="os.html#os.sep" title="os.sep"><code class="xref py py-data docutils literal notranslate"><span class="pre">os.sep</span></code></a> or <a class="reference internal" href="os.html#os.altsep" title="os.altsep"><code class="xref py py-data docutils literal notranslate"><span class="pre">os.altsep</span></code></a> then files will not
 match.</p>
 <p class="audit-hook">Raises an <a class="reference internal" href="sys.html#auditing"><span class="std std-ref">auditing event</span></a> <code class="docutils literal notranslate"><span class="pre">glob.glob</span></code> with arguments <code class="docutils literal notranslate"><span class="pre">pathname</span></code>, <code class="docutils literal notranslate"><span class="pre">recursive</span></code>.</p>
+<p class="audit-hook">Raises an <a class="reference internal" href="sys.html#auditing"><span class="std std-ref">auditing event</span></a> <code class="docutils literal notranslate"><span class="pre">glob.glob/2</span></code> with arguments <code class="docutils literal notranslate"><span class="pre">pathname</span></code>, <code class="docutils literal notranslate"><span class="pre">recursive</span></code>, <code class="docutils literal notranslate"><span class="pre">root_dir</span></code>, <code class="docutils literal notranslate"><span class="pre">dir_fd</span></code>.</p>
 <div class="admonition note">
 <p class="admonition-title">備註</p>
 <p>Using the &quot;<code class="docutils literal notranslate"><span class="pre">**</span></code>&quot; pattern in large directory trees may consume
@@ -193,14 +196,24 @@ an inordinate amount of time.</p>
 <div class="versionchanged">
 <p><span class="versionmodified changed">在 3.5 版本變更: </span>Support for recursive globs using &quot;<code class="docutils literal notranslate"><span class="pre">**</span></code>&quot;.</p>
 </div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">在 3.10 版本變更: </span>Added the <em>root_dir</em> and <em>dir_fd</em> parameters.</p>
+</div>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="glob.iglob">
-<span class="sig-prename descclassname"><span class="pre">glob.</span></span><span class="sig-name descname"><span class="pre">iglob</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pathname</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">recursive</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#glob.iglob" title="本定義的永久連結">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">glob.</span></span><span class="sig-name descname"><span class="pre">iglob</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pathname</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">root_dir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dir_fd</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">recursive</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#glob.iglob" title="本定義的永久連結">¶</a></dt>
 <dd><p>Return an <a class="reference internal" href="../glossary.html#term-iterator"><span class="xref std std-term">iterator</span></a> which yields the same values as <a class="reference internal" href="#module-glob" title="glob: Unix shell style pathname pattern expansion."><code class="xref py py-func docutils literal notranslate"><span class="pre">glob()</span></code></a>
 without actually storing them all simultaneously.</p>
 <p class="audit-hook">Raises an <a class="reference internal" href="sys.html#auditing"><span class="std std-ref">auditing event</span></a> <code class="docutils literal notranslate"><span class="pre">glob.glob</span></code> with arguments <code class="docutils literal notranslate"><span class="pre">pathname</span></code>, <code class="docutils literal notranslate"><span class="pre">recursive</span></code>.</p>
+<p class="audit-hook">Raises an <a class="reference internal" href="sys.html#auditing"><span class="std std-ref">auditing event</span></a> <code class="docutils literal notranslate"><span class="pre">glob.glob/2</span></code> with arguments <code class="docutils literal notranslate"><span class="pre">pathname</span></code>, <code class="docutils literal notranslate"><span class="pre">recursive</span></code>, <code class="docutils literal notranslate"><span class="pre">root_dir</span></code>, <code class="docutils literal notranslate"><span class="pre">dir_fd</span></code>.</p>
+<div class="versionchanged">
+<p><span class="versionmodified changed">在 3.5 版本變更: </span>Support for recursive globs using &quot;<code class="docutils literal notranslate"><span class="pre">**</span></code>&quot;.</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">在 3.10 版本變更: </span>Added the <em>root_dir</em> and <em>dir_fd</em> parameters.</p>
+</div>
 </dd></dl>
 
 <dl class="py function">
@@ -271,7 +284,7 @@ default. For example, consider a directory containing <code class="file docutils
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.9/Doc/library/glob.rst"
+        <a href="https://github.com/python/cpython/blob/3.10/Doc/library/glob.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -306,10 +319,8 @@ default. For example, consider a directory containing <code class="file docutils
           <li>
               
           </li>
-    <li>
-      <span class="language_switcher_placeholder">zh_TW</span>
-      <span class="version_switcher_placeholder">3.9.7</span>
-      <a href="../index.html">說明文件 </a> &#187;
+    <li id="cpython-language-and-version">
+      <a href="../index.html">3.10.0 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>

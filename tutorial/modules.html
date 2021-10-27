@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>6. 模組 (Module) &#8212; Python 3.9.7 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>6. 模組 (Module) &#8212; Python 3.10.0 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2021.11.1" />
@@ -20,7 +20,7 @@
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.9.7 說明文件 中搜尋"
+          title="在 Python 3.10.0 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -30,8 +30,6 @@
     <link rel="prev" title="5. 資料結構" href="datastructures.html" />
     <link rel="canonical" href="https://docs.python.org/3/tutorial/modules.html" />
     
-      
-      <script type="text/javascript" src="../_static/switchers.js"></script>
       
     
 
@@ -104,7 +102,7 @@
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.9/Doc/tutorial/modules.rst"
+        <a href="https://github.com/python/cpython/blob/3.10/Doc/tutorial/modules.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -140,10 +138,8 @@
           <li>
               
           </li>
-    <li>
-      <span class="language_switcher_placeholder">zh_TW</span>
-      <span class="version_switcher_placeholder">3.9.7</span>
-      <a href="../index.html">說明文件 </a> &#187;
+    <li id="cpython-language-and-version">
+      <a href="../index.html">3.10.0 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Python 教學</a> &#187;</li>
@@ -214,7 +210,7 @@
 </div>
 <section id="more-on-modules">
 <span id="tut-moremodules"></span><h2><span class="section-number">6.1. </span>深入了解模組<a class="headerlink" href="#more-on-modules" title="本標題的永久連結">¶</a></h2>
-<p>模組可以包含可執行的陳述式以及函式的定義。這些陳述式是作為模組的初始化，它們只會在<em>第一次</em>被 import 時才會執行。<a class="footnote-reference brackets" href="#id2" id="id1">1</a>（如果檔案被當成腳本執行，也會執行它們）。</p>
+<p>模組可以包含可執行的陳述式以及函式的定義。這些陳述式是作為模組的初始化，它們只會在<em>第一次</em>被 import 時才會執行。<a class="footnote-reference brackets" href="#id3" id="id1">1</a>（如果檔案被當成腳本執行，也會執行它們）。</p>
 <p>每個模組都有它自己的私有符號表，模組內定義的函式會把該模組的私有符號表當成全域符號表使用。因此，模組的作者可以在模組中使用全域變數，而不必擔心和使用者的全域變數發生意外的名稱衝突。另一方面，如果你知道自己在做什麼，你可以用這個方式取用模組的全域變數，以和引用函式一樣的寫法，<code class="docutils literal notranslate"><span class="pre">modname.itemname</span></code>。</p>
 <p>在一個模組中可以 import 其他模組。把所有的 <a class="reference internal" href="../reference/simple_stmts.html#import"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">import</span></code></a> 陳述式放在模組（就這邊來說，腳本也是一樣）的最開頭是個慣例，但並沒有強制。被 import 的模組名稱放置在原模組的全域符號表中。</p>
 <p><a class="reference internal" href="../reference/simple_stmts.html#import"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">import</span></code></a> 陳述式有另一種變形寫法，可以直接將名稱從欲 import 的模組，直接 import 至原模組的符號表中。例如：</p>
@@ -472,7 +468,7 @@
 <p>記住，使用 <code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">package</span> <span class="pre">import</span> <span class="pre">specific_submodule</span></code> 不會有任何問題！實際上，這是推薦用法，除非 import 的模組需要用到的子模組和其他套件的子模組同名。</p>
 </section>
 <section id="intra-package-references">
-<h3><span class="section-number">6.4.2. </span>套件內引用<a class="headerlink" href="#intra-package-references" title="本標題的永久連結">¶</a></h3>
+<span id="id2"></span><h3><span class="section-number">6.4.2. </span>套件內引用<a class="headerlink" href="#intra-package-references" title="本標題的永久連結">¶</a></h3>
 <p>當套件的結構為多個子套件的組合時（如同範例中的 <code class="xref py py-mod docutils literal notranslate"><span class="pre">sound</span></code> 套件），可以使用「絕對 (absolute) import」，引用同層套件中的子模組。例如，要在 <code class="xref py py-mod docutils literal notranslate"><span class="pre">sound.filters.vocoder</span></code> 模組中使用 <code class="xref py py-mod docutils literal notranslate"><span class="pre">sound.effects</span></code> 中的 <code class="xref py py-mod docutils literal notranslate"><span class="pre">echo</span></code> 模組時，可以用 <code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">sound.effects</span> <span class="pre">import</span> <span class="pre">echo</span></code>。</p>
 <p>你也可以用 <code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">module</span> <span class="pre">import</span> <span class="pre">name</span></code> 的 import 陳述式，編寫「相對 (relative) import」。這些 import 使用前導句號指示相對 import 中的當前套件和母套件。例如，在 <code class="xref py py-mod docutils literal notranslate"><span class="pre">surround</span></code> 模組中，你可以使用：</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">echo</span>
@@ -488,7 +484,7 @@
 <p>雖然這個特色不太常被需要，但它可用於擴充套件中的模組集合。</p>
 <p class="rubric">註解</p>
 <dl class="footnote brackets">
-<dt class="label" id="id2"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dt class="label" id="id3"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
 <dd><p>實際上，函式定義也是「被執行」的「陳述式」；在執行模組階層的函式定義時，會輸入函式名稱到模組的全域符號表。</p>
 </dd>
 </dl>
@@ -535,7 +531,7 @@
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.9/Doc/tutorial/modules.rst"
+        <a href="https://github.com/python/cpython/blob/3.10/Doc/tutorial/modules.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -570,10 +566,8 @@
           <li>
               
           </li>
-    <li>
-      <span class="language_switcher_placeholder">zh_TW</span>
-      <span class="version_switcher_placeholder">3.9.7</span>
-      <a href="../index.html">說明文件 </a> &#187;
+    <li id="cpython-language-and-version">
+      <a href="../index.html">3.10.0 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 教學</a> &#187;</li>
