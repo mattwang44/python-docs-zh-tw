@@ -999,6 +999,12 @@
 <section id="core-and-builtins">
 <h3>Core and Builtins<a class="headerlink" href="#core-and-builtins" title="本標題的永久連結">¶</a></h3>
 <ul>
+<li><p><a class="reference external" href="https://bugs.python.org/issue45738">bpo-45738</a>: Fix computation of error location for invalid continuation
+characters in the parser. Patch by Pablo Galindo.</p></li>
+<li><p><a class="reference external" href="https://bugs.python.org/issue45773">bpo-45773</a>: Fix a compiler hang when attempting to optimize certain jump
+patterns.</p></li>
+<li><p><a class="reference external" href="https://bugs.python.org/issue45688">bpo-45688</a>: <a class="reference internal" href="../library/sys.html#sys.stdlib_module_names" title="sys.stdlib_module_names"><code class="xref py py-data docutils literal notranslate"><span class="pre">sys.stdlib_module_names</span></code></a> now contains the macOS-specific
+module <code class="xref py py-mod docutils literal notranslate"><span class="pre">_scproxy</span></code>.</p></li>
 <li><p><a class="reference external" href="https://bugs.python.org/issue30570">bpo-30570</a>: Fixed a crash in <code class="docutils literal notranslate"><span class="pre">issubclass()</span></code> from infinite recursion when
 searching pathological <code class="docutils literal notranslate"><span class="pre">__bases__</span></code> tuples.</p></li>
 <li><p><a class="reference external" href="https://bugs.python.org/issue45521">bpo-45521</a>: Fix a bug in the obmalloc radix tree code.  On 64-bit machines,
@@ -1035,7 +1041,25 @@ displayed.</p>
 <section id="library">
 <h3>Library<a class="headerlink" href="#library" title="本標題的永久連結">¶</a></h3>
 <ul>
+<li><p><a class="reference external" href="https://bugs.python.org/issue45235">bpo-45235</a>: Reverted an argparse bugfix that caused regression in the
+handling of default arguments for subparsers.  This prevented leaf level
+arguments from taking precedence over root level arguments.</p></li>
+<li><p><a class="reference external" href="https://bugs.python.org/issue45765">bpo-45765</a>: In importlib.metadata, fix distribution discovery for an empty
+path.</p></li>
+<li><p><a class="reference external" href="https://bugs.python.org/issue45757">bpo-45757</a>: Fix bug where <a class="reference internal" href="../library/dis.html#module-dis" title="dis: Disassembler for Python bytecode."><code class="xref py py-mod docutils literal notranslate"><span class="pre">dis</span></code></a> produced an incorrect oparg when
+<a class="reference internal" href="../library/dis.html#opcode-EXTENDED_ARG"><code class="xref std std-opcode docutils literal notranslate"><span class="pre">EXTENDED_ARG</span></code></a> is followed by an opcode that does not use its
+argument.</p></li>
+<li><p><a class="reference external" href="https://bugs.python.org/issue45644">bpo-45644</a>: In-place JSON file formatting using <code class="docutils literal notranslate"><span class="pre">python3</span> <span class="pre">-m</span> <span class="pre">json.tool</span>
+<span class="pre">infile</span> <span class="pre">infile</span></code> now works correctly, previously it left the file empty.
+Patch by Chris Wesseling.</p></li>
+<li><p><a class="reference external" href="https://bugs.python.org/issue45679">bpo-45679</a>: Fix caching of multi-value <a class="reference internal" href="../library/typing.html#typing.Literal" title="typing.Literal"><code class="xref py py-data docutils literal notranslate"><span class="pre">typing.Literal</span></code></a>.
+<code class="docutils literal notranslate"><span class="pre">Literal[True,</span> <span class="pre">2]</span></code> is no longer equal to <code class="docutils literal notranslate"><span class="pre">Literal[1,</span> <span class="pre">2]</span></code>.</p></li>
+<li><p><a class="reference external" href="https://bugs.python.org/issue45438">bpo-45438</a>: Fix typing.Signature string representation for generic builtin
+types.</p></li>
 <li><p><a class="reference external" href="https://bugs.python.org/issue45574">bpo-45574</a>: Fix warning about <code class="docutils literal notranslate"><span class="pre">print_escape</span></code> being unused.</p></li>
+<li><p><a class="reference external" href="https://bugs.python.org/issue45581">bpo-45581</a>: <a class="reference internal" href="../library/sqlite3.html#sqlite3.connect" title="sqlite3.connect"><code class="xref py py-meth docutils literal notranslate"><span class="pre">sqlite3.connect()</span></code></a> now correctly raises <a class="reference internal" href="../library/exceptions.html#MemoryError" title="MemoryError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">MemoryError</span></code></a>
+if the underlying SQLite API signals memory error. Patch by Erlend E.
+Aasland.</p></li>
 <li><p><a class="reference external" href="https://bugs.python.org/issue45557">bpo-45557</a>: pprint.pprint() now handles underscore_numbers correctly.
 Previously it was always setting it to False.</p></li>
 <li><p><a class="reference external" href="https://bugs.python.org/issue45515">bpo-45515</a>: Add references to <a class="reference internal" href="../library/zoneinfo.html#module-zoneinfo" title="zoneinfo: IANA time zone support"><code class="xref py py-mod docutils literal notranslate"><span class="pre">zoneinfo</span></code></a> in the <a class="reference internal" href="../library/datetime.html#module-datetime" title="datetime: Basic date and time types."><code class="xref py py-mod docutils literal notranslate"><span class="pre">datetime</span></code></a>
@@ -1063,6 +1087,12 @@ Patch by Pablo Galindo</p></li>
 <a class="reference internal" href="../library/asyncio-sync.html#asyncio.Lock" title="asyncio.Lock"><code class="xref py py-class docutils literal notranslate"><span class="pre">asyncio.Lock</span></code></a> objects, which was a regression due to removal of
 explicit loop arguments. Patch by Joongi Kim.</p></li>
 <li><p><a class="reference external" href="https://bugs.python.org/issue45419">bpo-45419</a>: Correct interfaces on DegenerateFiles.Path.</p></li>
+<li><p><a class="reference external" href="https://bugs.python.org/issue44904">bpo-44904</a>: Fix bug in the <a class="reference internal" href="../library/doctest.html#module-doctest" title="doctest: Test pieces of code within docstrings."><code class="xref py py-mod docutils literal notranslate"><span class="pre">doctest</span></code></a> module that caused it to fail if
+a docstring included an example with a <code class="docutils literal notranslate"><span class="pre">classmethod</span></code> <code class="docutils literal notranslate"><span class="pre">property</span></code>. Patch
+by Alex Waygood.</p></li>
+<li><p><a class="reference external" href="https://bugs.python.org/issue45406">bpo-45406</a>: Make <a class="reference internal" href="../library/inspect.html#inspect.getmodule" title="inspect.getmodule"><code class="xref py py-func docutils literal notranslate"><span class="pre">inspect.getmodule()</span></code></a> catch <code class="docutils literal notranslate"><span class="pre">FileNotFoundError</span></code>
+raised by :'func:<code class="xref py py-obj docutils literal notranslate"><span class="pre">inspect.getabsfile</span></code>, and return <code class="docutils literal notranslate"><span class="pre">None</span></code> to indicate
+that the module could not be determined.</p></li>
 <li><p><a class="reference external" href="https://bugs.python.org/issue45262">bpo-45262</a>: Prevent use-after-free in asyncio. Make sure the cached running
 loop holder gets cleared on dealloc to prevent use-after-free in
 get_running_loop</p></li>
@@ -1140,10 +1170,25 @@ exception is in flight.</p></li>
 <section id="documentation">
 <h3>Documentation<a class="headerlink" href="#documentation" title="本標題的永久連結">¶</a></h3>
 <ul class="simple">
+<li><p><a class="reference external" href="https://bugs.python.org/issue45772">bpo-45772</a>: <code class="docutils literal notranslate"><span class="pre">socket.socket</span></code> documentation is corrected to a class from a
+function.</p></li>
+<li><p><a class="reference external" href="https://bugs.python.org/issue45392">bpo-45392</a>: Update the docstring of the <a class="reference internal" href="../library/functions.html#type" title="type"><code class="xref py py-class docutils literal notranslate"><span class="pre">type</span></code></a> built-in to remove a
+redundant line and to mention keyword arguments for the constructor.</p></li>
+<li><p><a class="reference external" href="https://bugs.python.org/issue45726">bpo-45726</a>: Improve documentation for <a class="reference internal" href="../library/functools.html#functools.singledispatch" title="functools.singledispatch"><code class="xref py py-func docutils literal notranslate"><span class="pre">functools.singledispatch()</span></code></a> and
+<a class="reference internal" href="../library/functools.html#functools.singledispatchmethod" title="functools.singledispatchmethod"><code class="xref py py-class docutils literal notranslate"><span class="pre">functools.singledispatchmethod</span></code></a>.</p></li>
+<li><p><a class="reference external" href="https://bugs.python.org/issue45680">bpo-45680</a>: Amend the docs on <code class="docutils literal notranslate"><span class="pre">GenericAlias</span></code> objects to clarify that
+non-container classes can also implement <code class="docutils literal notranslate"><span class="pre">__class_getitem__</span></code>. Patch
+contributed by Alex Waygood.</p></li>
+<li><p><a class="reference external" href="https://bugs.python.org/issue45655">bpo-45655</a>: Add a new &quot;relevant PEPs&quot; section to the top of the
+documentation for the <code class="docutils literal notranslate"><span class="pre">typing</span></code> module. Patch by Alex Waygood.</p></li>
+<li><p><a class="reference external" href="https://bugs.python.org/issue45604">bpo-45604</a>: Add <code class="docutils literal notranslate"><span class="pre">level</span></code> argument to <code class="docutils literal notranslate"><span class="pre">multiprocessing.log_to_stderr</span></code>
+function docs.</p></li>
 <li><p><a class="reference external" href="https://bugs.python.org/issue45464">bpo-45464</a>: Mention in the documentation of <a class="reference internal" href="../library/exceptions.html#bltin-exceptions"><span class="std std-ref">Built-in Exceptions</span></a> that inheriting from multiple exception types in a
 single subclass is not recommended due to possible memory layout
 incompatibility.</p></li>
 <li><p><a class="reference external" href="https://bugs.python.org/issue45449">bpo-45449</a>: Add note about <span class="target" id="index-0"></span><a class="pep reference external" href="https://www.python.org/dev/peps/pep-0585"><strong>PEP 585</strong></a> in <a class="reference internal" href="../library/collections.abc.html#module-collections.abc" title="collections.abc: Abstract base classes for containers"><code class="xref py py-mod docutils literal notranslate"><span class="pre">collections.abc</span></code></a>.</p></li>
+<li><p><a class="reference external" href="https://bugs.python.org/issue45516">bpo-45516</a>: Add protocol description to the
+<a class="reference internal" href="../library/importlib.html#importlib.abc.Traversable" title="importlib.abc.Traversable"><code class="xref py py-class docutils literal notranslate"><span class="pre">importlib.abc.Traversable</span></code></a> documentation.</p></li>
 <li><p><a class="reference external" href="https://bugs.python.org/issue20692">bpo-20692</a>: Add Programming FAQ entry explaining that int literal attribute
 access requires either a space after or parentheses around the literal.</p></li>
 <li><p><a class="reference external" href="https://bugs.python.org/issue45216">bpo-45216</a>: Remove extra documentation listing methods in <code class="docutils literal notranslate"><span class="pre">difflib</span></code>. It
@@ -1158,6 +1203,13 @@ Hettinger.</p></li>
 <section id="tests">
 <h3>Tests<a class="headerlink" href="#tests" title="本標題的永久連結">¶</a></h3>
 <ul class="simple">
+<li><p><a class="reference external" href="https://bugs.python.org/issue45678">bpo-45678</a>: Add tests for scenarios in which
+<a class="reference internal" href="../library/functools.html#functools.singledispatchmethod" title="functools.singledispatchmethod"><code class="xref py py-class docutils literal notranslate"><span class="pre">functools.singledispatchmethod</span></code></a> is stacked on top of a method that
+has already been wrapped by two other decorators. Patch by Alex Waygood.</p></li>
+<li><p><a class="reference external" href="https://bugs.python.org/issue45578">bpo-45578</a>: Add tests for <a class="reference internal" href="../library/dis.html#dis.distb" title="dis.distb"><code class="xref py py-func docutils literal notranslate"><span class="pre">dis.distb()</span></code></a></p></li>
+<li><p><a class="reference external" href="https://bugs.python.org/issue45678">bpo-45678</a>: Add tests to ensure that <code class="docutils literal notranslate"><span class="pre">functools.singledispatchmethod</span></code>
+correctly wraps the attributes of the target function.</p></li>
+<li><p><a class="reference external" href="https://bugs.python.org/issue45577">bpo-45577</a>: Add subtests for all <code class="docutils literal notranslate"><span class="pre">pickle</span></code> protocols in <code class="docutils literal notranslate"><span class="pre">test_zoneinfo</span></code>.</p></li>
 <li><p><a class="reference external" href="https://bugs.python.org/issue45566">bpo-45566</a>: Fix <code class="docutils literal notranslate"><span class="pre">test_frozen_pickle</span></code> in <code class="docutils literal notranslate"><span class="pre">test_dataclasses</span></code> to check all
 <code class="docutils literal notranslate"><span class="pre">pickle</span></code> versions.</p></li>
 <li><p><a class="reference external" href="https://bugs.python.org/issue43592">bpo-43592</a>: <code class="xref py py-mod docutils literal notranslate"><span class="pre">test.libregrtest</span></code> now raises the soft resource limit for
@@ -1194,6 +1246,9 @@ by Victor Stinner.</p></li>
 <section id="build">
 <h3>Build<a class="headerlink" href="#build" title="本標題的永久連結">¶</a></h3>
 <ul>
+<li><p><a class="reference external" href="https://bugs.python.org/issue43158">bpo-43158</a>: <code class="docutils literal notranslate"><span class="pre">setup.py</span></code> now uses values from configure script to build the
+<code class="docutils literal notranslate"><span class="pre">_uuid</span></code> extension module. Configure now detects util-linux's
+<code class="docutils literal notranslate"><span class="pre">libuuid</span></code>, too.</p></li>
 <li><p><a class="reference external" href="https://bugs.python.org/issue45571">bpo-45571</a>: <code class="docutils literal notranslate"><span class="pre">Modules/Setup</span></code> now use <code class="docutils literal notranslate"><span class="pre">PY_CFLAGS_NODIST</span></code> instead of
 <code class="docutils literal notranslate"><span class="pre">PY_CFLAGS</span></code> to compile shared modules.</p></li>
 <li><p><a class="reference external" href="https://bugs.python.org/issue45532">bpo-45532</a>: Update <a class="reference internal" href="../library/sys.html#sys.version" title="sys.version"><code class="xref py py-data docutils literal notranslate"><span class="pre">sys.version</span></code></a> to use <code class="docutils literal notranslate"><span class="pre">main</span></code> as fallback
@@ -1221,6 +1276,12 @@ verify the version of the ncurses library &gt;= 20170401.</p>
 <section id="windows">
 <h3>Windows<a class="headerlink" href="#windows" title="本標題的永久連結">¶</a></h3>
 <ul class="simple">
+<li><p><a class="reference external" href="https://bugs.python.org/issue45732">bpo-45732</a>: Updates bundled Tcl/Tk to 8.6.12.</p></li>
+<li><p><a class="reference external" href="https://bugs.python.org/issue45720">bpo-45720</a>: Internal reference to <code class="file docutils literal notranslate"><span class="pre">shlwapi.dll</span></code> was dropped to help
+improve startup time. This DLL will no longer be loaded at the start of
+every Python process.</p></li>
+<li><p><a class="reference external" href="https://bugs.python.org/issue43652">bpo-43652</a>: Update Tcl/Tk to 8.6.11, actually this time. The previous
+update incorrectly included 8.6.10.</p></li>
 <li><p><a class="reference external" href="https://bugs.python.org/issue45337">bpo-45337</a>: venv now warns when the created environment may need to be
 accessed at a different path, due to redirections, links or junctions. It
 also now correctly installs or upgrades components when the alternate path
@@ -1230,6 +1291,9 @@ is required.</p></li>
 <section id="macos">
 <h3>macOS<a class="headerlink" href="#macos" title="本標題的永久連結">¶</a></h3>
 <ul class="simple">
+<li><p><a class="reference external" href="https://bugs.python.org/issue44828">bpo-44828</a>: Avoid tkinter file dialog failure on macOS 12 Monterey when
+using the Tk 8.6.11 provided by python.org macOS installers. Patch by Marc
+Culler of the Tk project.</p></li>
 <li><p><a class="reference external" href="https://bugs.python.org/issue34602">bpo-34602</a>: When building CPython on macOS with <code class="docutils literal notranslate"><span class="pre">./configure</span>
 <span class="pre">--with-undefined-behavior-sanitizer</span> <span class="pre">--with-pydebug</span></code>, the stack size is
 now quadrupled to allow for the entire test suite to pass.</p></li>
@@ -24794,11 +24858,11 @@ Kilburn.</p></li>
 <br />
     <br />
 
-    最後更新於 10月 27, 2021。
+    最後更新於 11月 15, 2021。
     <a href="https://docs.python.org/3/bugs.html">Found a bug</a>?
     <br />
 
-    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.2.0 建立。
+    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.3.0 建立。
     </div>
 
   </body>

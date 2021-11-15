@@ -175,7 +175,7 @@ bleeding to other code unexpectedly, when used in concurrent code.</p>
 <h2>Context Variables<a class="headerlink" href="#context-variables" title="本標題的永久連結">¶</a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="contextvars.ContextVar">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">contextvars.</span></span><span class="sig-name descname"><span class="pre">ContextVar</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">name</span></em><span class="optional">[</span>, <em class="sig-param"><span class="pre">*</span></em>, <em class="sig-param"><span class="pre">default</span></em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#contextvars.ContextVar" title="本定義的永久連結">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">contextvars.</span></span><span class="sig-name descname"><span class="pre">ContextVar</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="optional">[</span>, <em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default</span></span></em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#contextvars.ContextVar" title="本定義的永久連結">¶</a></dt>
 <dd><p>This class is used to declare a new Context Variable, e.g.:</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">var</span><span class="p">:</span> <span class="n">ContextVar</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="n">ContextVar</span><span class="p">(</span><span class="s1">&#39;var&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
 </pre></div>
@@ -200,7 +200,7 @@ from being properly garbage collected.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="contextvars.ContextVar.get">
-<span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><span class="optional">[</span><em class="sig-param"><span class="pre">default</span></em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#contextvars.ContextVar.get" title="本定義的永久連結">¶</a></dt>
+<span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><span class="optional">[</span><em class="sig-param"><span class="n"><span class="pre">default</span></span></em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#contextvars.ContextVar.get" title="本定義的永久連結">¶</a></dt>
 <dd><p>Return a value for the context variable for the current context.</p>
 <p>If there is no value for the variable in the current context,
 the method will:</p>
@@ -220,7 +220,7 @@ if it was created with one; or</p></li>
 context.</p>
 <p>The required <em>value</em> argument is the new value for the context
 variable.</p>
-<p>Returns a <a class="reference internal" href="#contextvars.contextvars.Token" title="contextvars.contextvars.Token"><code class="xref py py-class docutils literal notranslate"><span class="pre">Token</span></code></a> object that can be used
+<p>Returns a <a class="reference internal" href="#contextvars.Token" title="contextvars.Token"><code class="xref py py-class docutils literal notranslate"><span class="pre">Token</span></code></a> object that can be used
 to restore the variable to its previous value via the
 <a class="reference internal" href="#contextvars.ContextVar.reset" title="contextvars.ContextVar.reset"><code class="xref py py-meth docutils literal notranslate"><span class="pre">ContextVar.reset()</span></code></a> method.</p>
 </dd></dl>
@@ -246,32 +246,32 @@ to restore the variable to its previous value via the
 </dd></dl>
 
 <dl class="py class">
-<dt class="sig sig-object py" id="contextvars.contextvars.Token">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">contextvars.</span></span><span class="sig-name descname"><span class="pre">Token</span></span><a class="headerlink" href="#contextvars.contextvars.Token" title="本定義的永久連結">¶</a></dt>
+<dt class="sig sig-object py" id="contextvars.Token">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">contextvars.</span></span><span class="sig-name descname"><span class="pre">Token</span></span><a class="headerlink" href="#contextvars.Token" title="本定義的永久連結">¶</a></dt>
 <dd><p><em>Token</em> objects are returned by the <a class="reference internal" href="#contextvars.ContextVar.set" title="contextvars.ContextVar.set"><code class="xref py py-meth docutils literal notranslate"><span class="pre">ContextVar.set()</span></code></a> method.
 They can be passed to the <a class="reference internal" href="#contextvars.ContextVar.reset" title="contextvars.ContextVar.reset"><code class="xref py py-meth docutils literal notranslate"><span class="pre">ContextVar.reset()</span></code></a> method to revert
 the value of the variable to what it was before the corresponding
 <em>set</em>.</p>
 <dl class="py attribute">
-<dt class="sig sig-object py" id="contextvars.contextvars.Token.Token.var">
-<span class="sig-prename descclassname"><span class="pre">Token.</span></span><span class="sig-name descname"><span class="pre">var</span></span><a class="headerlink" href="#contextvars.contextvars.Token.Token.var" title="本定義的永久連結">¶</a></dt>
+<dt class="sig sig-object py" id="contextvars.Token.var">
+<span class="sig-name descname"><span class="pre">var</span></span><a class="headerlink" href="#contextvars.Token.var" title="本定義的永久連結">¶</a></dt>
 <dd><p>A read-only property.  Points to the <a class="reference internal" href="#contextvars.ContextVar" title="contextvars.ContextVar"><code class="xref py py-class docutils literal notranslate"><span class="pre">ContextVar</span></code></a> object
 that created the token.</p>
 </dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="contextvars.contextvars.Token.Token.old_value">
-<span class="sig-prename descclassname"><span class="pre">Token.</span></span><span class="sig-name descname"><span class="pre">old_value</span></span><a class="headerlink" href="#contextvars.contextvars.Token.Token.old_value" title="本定義的永久連結">¶</a></dt>
+<dt class="sig sig-object py" id="contextvars.Token.old_value">
+<span class="sig-name descname"><span class="pre">old_value</span></span><a class="headerlink" href="#contextvars.Token.old_value" title="本定義的永久連結">¶</a></dt>
 <dd><p>A read-only property.  Set to the value the variable had before
 the <a class="reference internal" href="#contextvars.ContextVar.set" title="contextvars.ContextVar.set"><code class="xref py py-meth docutils literal notranslate"><span class="pre">ContextVar.set()</span></code></a> method call that created the token.
-It points to <code class="xref py py-attr docutils literal notranslate"><span class="pre">Token.MISSING</span></code> is the variable was not set
+It points to <a class="reference internal" href="#contextvars.Token.MISSING" title="contextvars.Token.MISSING"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Token.MISSING</span></code></a> is the variable was not set
 before the call.</p>
 </dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="contextvars.contextvars.Token.Token.MISSING">
-<span class="sig-prename descclassname"><span class="pre">Token.</span></span><span class="sig-name descname"><span class="pre">MISSING</span></span><a class="headerlink" href="#contextvars.contextvars.Token.Token.MISSING" title="本定義的永久連結">¶</a></dt>
-<dd><p>A marker object used by <code class="xref py py-attr docutils literal notranslate"><span class="pre">Token.old_value</span></code>.</p>
+<dt class="sig sig-object py" id="contextvars.Token.MISSING">
+<span class="sig-name descname"><span class="pre">MISSING</span></span><a class="headerlink" href="#contextvars.Token.MISSING" title="本定義的永久連結">¶</a></dt>
+<dd><p>A marker object used by <a class="reference internal" href="#contextvars.Token.old_value" title="contextvars.Token.old_value"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Token.old_value</span></code></a>.</p>
 </dd></dl>
 
 </dd></dl>
@@ -296,7 +296,7 @@ a lot of them.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="contextvars.Context">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">contextvars.</span></span><span class="sig-name descname"><span class="pre">Context</span></span><a class="headerlink" href="#contextvars.Context" title="本定義的永久連結">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">contextvars.</span></span><span class="sig-name descname"><span class="pre">Context</span></span><a class="headerlink" href="#contextvars.Context" title="本定義的永久連結">¶</a></dt>
 <dd><p>A mapping of <a class="reference internal" href="#contextvars.ContextVar" title="contextvars.ContextVar"><code class="xref py py-class docutils literal notranslate"><span class="pre">ContextVars</span></code></a> to their values.</p>
 <p><code class="docutils literal notranslate"><span class="pre">Context()</span></code> creates an empty context with no values in it.
 To get a copy of the current context use the
@@ -365,7 +365,7 @@ If the variable is not set in the context object, a
 
 <dl class="py method">
 <dt class="sig sig-object py" id="contextvars.Context.get">
-<span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">var</span></em><span class="optional">[</span>, <em class="sig-param"><span class="pre">default</span></em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#contextvars.Context.get" title="本定義的永久連結">¶</a></dt>
+<span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">var</span></span></em><span class="optional">[</span>, <em class="sig-param"><span class="n"><span class="pre">default</span></span></em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#contextvars.Context.get" title="本定義的永久連結">¶</a></dt>
 <dd><p>Return the value for <em>var</em> if <em>var</em> has the value in the context
 object.  Return <em>default</em> otherwise.  If <em>default</em> is not given,
 return <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
@@ -559,11 +559,11 @@ client:</p>
 <br />
     <br />
 
-    最後更新於 10月 27, 2021。
+    最後更新於 11月 15, 2021。
     <a href="https://docs.python.org/3/bugs.html">Found a bug</a>?
     <br />
 
-    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.2.0 建立。
+    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.3.0 建立。
     </div>
 
   </body>

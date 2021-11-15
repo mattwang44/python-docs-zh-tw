@@ -458,7 +458,7 @@ defaults to two:</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="functools.partialmethod">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">functools.</span></span><span class="sig-name descname"><span class="pre">partialmethod</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">/</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">keywords</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#functools.partialmethod" title="本定義的永久連結">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">functools.</span></span><span class="sig-name descname"><span class="pre">partialmethod</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">/</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">keywords</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#functools.partialmethod" title="本定義的永久連結">¶</a></dt>
 <dd><p>Return a new <a class="reference internal" href="#functools.partialmethod" title="functools.partialmethod"><code class="xref py py-class docutils literal notranslate"><span class="pre">partialmethod</span></code></a> descriptor which behaves
 like <a class="reference internal" href="#functools.partial" title="functools.partial"><code class="xref py py-class docutils literal notranslate"><span class="pre">partial</span></code></a> except that it is designed to be used as a method
 definition rather than being directly callable.</p>
@@ -501,7 +501,7 @@ the <a class="reference internal" href="#functools.partialmethod" title="functoo
 
 <dl class="py function">
 <dt class="sig sig-object py" id="functools.reduce">
-<span class="sig-prename descclassname"><span class="pre">functools.</span></span><span class="sig-name descname"><span class="pre">reduce</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">function</span></em>, <em class="sig-param"><span class="pre">iterable</span></em><span class="optional">[</span>, <em class="sig-param"><span class="pre">initializer</span></em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#functools.reduce" title="本定義的永久連結">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">functools.</span></span><span class="sig-name descname"><span class="pre">reduce</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">function</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">iterable</span></span></em><span class="optional">[</span>, <em class="sig-param"><span class="n"><span class="pre">initializer</span></span></em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#functools.reduce" title="本定義的永久連結">¶</a></dt>
 <dd><p>Apply <em>function</em> of two arguments cumulatively to the items of <em>iterable</em>, from
 left to right, so as to reduce the iterable to a single value.  For example,
 <code class="docutils literal notranslate"><span class="pre">reduce(lambda</span> <span class="pre">x,</span> <span class="pre">y:</span> <span class="pre">x+y,</span> <span class="pre">[1,</span> <span class="pre">2,</span> <span class="pre">3,</span> <span class="pre">4,</span> <span class="pre">5])</span></code> calculates <code class="docutils literal notranslate"><span class="pre">((((1+2)+3)+4)+5)</span></code>.
@@ -531,8 +531,8 @@ values.</p>
 <span class="sig-prename descclassname"><span class="pre">&#64;</span></span><span class="sig-prename descclassname"><span class="pre">functools.</span></span><span class="sig-name descname"><span class="pre">singledispatch</span></span><a class="headerlink" href="#functools.singledispatch" title="本定義的永久連結">¶</a></dt>
 <dd><p>Transform a function into a <a class="reference internal" href="../glossary.html#term-single-dispatch"><span class="xref std std-term">single-dispatch</span></a> <a class="reference internal" href="../glossary.html#term-generic-function"><span class="xref std std-term">generic function</span></a>.</p>
 <p>To define a generic function, decorate it with the <code class="docutils literal notranslate"><span class="pre">&#64;singledispatch</span></code>
-decorator. Note that the dispatch happens on the type of the first argument,
-create your function accordingly:</p>
+decorator. When defining a function using <code class="docutils literal notranslate"><span class="pre">&#64;singledispatch</span></code>, note that the
+dispatch happens on the type of the first argument:</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">singledispatch</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nd">@singledispatch</span>
 <span class="gp">... </span><span class="k">def</span> <span class="nf">fun</span><span class="p">(</span><span class="n">arg</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
@@ -542,9 +542,9 @@ create your function accordingly:</p>
 </pre></div>
 </div>
 <p>To add overloaded implementations to the function, use the <code class="xref py py-func docutils literal notranslate"><span class="pre">register()</span></code>
-attribute of the generic function.  It is a decorator.  For functions
-annotated with types, the decorator will infer the type of the first
-argument automatically:</p>
+attribute of the generic function, which can be used as a decorator.  For
+functions annotated with types, the decorator will infer the type of the
+first argument automatically:</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nd">@fun</span><span class="o">.</span><span class="n">register</span>
 <span class="gp">... </span><span class="k">def</span> <span class="nf">_</span><span class="p">(</span><span class="n">arg</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="gp">... </span>    <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
@@ -569,17 +569,17 @@ argument can be passed explicitly to the decorator itself:</p>
 <span class="gp">...</span>
 </pre></div>
 </div>
-<p>To enable registering lambdas and pre-existing functions, the
-<code class="xref py py-func docutils literal notranslate"><span class="pre">register()</span></code> attribute can be used in a functional form:</p>
+<p>To enable registering <a class="reference internal" href="../glossary.html#term-lambda"><span class="xref std std-term">lambdas</span></a> and pre-existing functions,
+the <code class="xref py py-func docutils literal notranslate"><span class="pre">register()</span></code> attribute can also be used in a functional form:</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">nothing</span><span class="p">(</span><span class="n">arg</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Nothing.&quot;</span><span class="p">)</span>
 <span class="gp">...</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">fun</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="kc">None</span><span class="p">),</span> <span class="n">nothing</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>The <code class="xref py py-func docutils literal notranslate"><span class="pre">register()</span></code> attribute returns the undecorated function which
-enables decorator stacking, pickling, as well as creating unit tests for
-each variant independently:</p>
+<p>The <code class="xref py py-func docutils literal notranslate"><span class="pre">register()</span></code> attribute returns the undecorated function. This
+enables decorator stacking, <a class="reference internal" href="pickle.html#module-pickle" title="pickle: Convert Python objects to streams of bytes and back."><code class="xref py py-mod docutils literal notranslate"><span class="pre">pickling</span></code></a>, and the creation
+of unit tests for each variant independently:</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nd">@fun</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
 <span class="gp">... </span><span class="nd">@fun</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">Decimal</span><span class="p">)</span>
 <span class="gp">... </span><span class="k">def</span> <span class="nf">fun_num</span><span class="p">(</span><span class="n">arg</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
@@ -614,10 +614,11 @@ argument:</p>
 <p>Where there is no registered implementation for a specific type, its
 method resolution order is used to find a more generic implementation.
 The original function decorated with <code class="docutils literal notranslate"><span class="pre">&#64;singledispatch</span></code> is registered
-for the base <code class="docutils literal notranslate"><span class="pre">object</span></code> type, which means it is used if no better
+for the base <a class="reference internal" href="functions.html#object" title="object"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a> type, which means it is used if no better
 implementation is found.</p>
-<p>If an implementation registered to <a class="reference internal" href="../glossary.html#term-abstract-base-class"><span class="xref std std-term">abstract base class</span></a>, virtual
-subclasses will be dispatched to that implementation:</p>
+<p>If an implementation is registered to an <a class="reference internal" href="../glossary.html#term-abstract-base-class"><span class="xref std std-term">abstract base class</span></a>,
+virtual subclasses of the base class will be dispatched to that
+implementation:</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">collections.abc</span> <span class="kn">import</span> <span class="n">Mapping</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nd">@fun</span><span class="o">.</span><span class="n">register</span>
 <span class="gp">... </span><span class="k">def</span> <span class="nf">_</span><span class="p">(</span><span class="n">arg</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
@@ -630,7 +631,7 @@ subclasses will be dispatched to that implementation:</p>
 <span class="go">a =&gt; b</span>
 </pre></div>
 </div>
-<p>To check which implementation will the generic function choose for
+<p>To check which implementation the generic function will choose for
 a given type, use the <code class="docutils literal notranslate"><span class="pre">dispatch()</span></code> attribute:</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">fun</span><span class="o">.</span><span class="n">dispatch</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
 <span class="go">&lt;function fun_num at 0x1035a2840&gt;</span>
@@ -654,17 +655,18 @@ attribute:</p>
 <p><span class="versionmodified added">在 3.4 版本新加入.</span></p>
 </div>
 <div class="versionchanged">
-<p><span class="versionmodified changed">在 3.7 版本變更: </span>The <code class="xref py py-func docutils literal notranslate"><span class="pre">register()</span></code> attribute supports using type annotations.</p>
+<p><span class="versionmodified changed">在 3.7 版本變更: </span>The <code class="xref py py-func docutils literal notranslate"><span class="pre">register()</span></code> attribute now supports using type annotations.</p>
 </div>
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="functools.singledispatchmethod">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">functools.</span></span><span class="sig-name descname"><span class="pre">singledispatchmethod</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#functools.singledispatchmethod" title="本定義的永久連結">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">functools.</span></span><span class="sig-name descname"><span class="pre">singledispatchmethod</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#functools.singledispatchmethod" title="本定義的永久連結">¶</a></dt>
 <dd><p>Transform a method into a <a class="reference internal" href="../glossary.html#term-single-dispatch"><span class="xref std std-term">single-dispatch</span></a> <a class="reference internal" href="../glossary.html#term-generic-function"><span class="xref std std-term">generic function</span></a>.</p>
 <p>To define a generic method, decorate it with the <code class="docutils literal notranslate"><span class="pre">&#64;singledispatchmethod</span></code>
-decorator. Note that the dispatch happens on the type of the first non-self
-or non-cls argument, create your function accordingly:</p>
+decorator. When defining a function using <code class="docutils literal notranslate"><span class="pre">&#64;singledispatchmethod</span></code>, note
+that the dispatch happens on the type of the first non-<em>self</em> or non-<em>cls</em>
+argument:</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Negator</span><span class="p">:</span>
     <span class="nd">@singledispatchmethod</span>
     <span class="k">def</span> <span class="nf">neg</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">arg</span><span class="p">):</span>
@@ -680,9 +682,10 @@ or non-cls argument, create your function accordingly:</p>
 </pre></div>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">&#64;singledispatchmethod</span></code> supports nesting with other decorators such as
-<code class="docutils literal notranslate"><span class="pre">&#64;classmethod</span></code>. Note that to allow for <code class="docutils literal notranslate"><span class="pre">dispatcher.register</span></code>,
-<code class="docutils literal notranslate"><span class="pre">singledispatchmethod</span></code> must be the <em>outer most</em> decorator. Here is the
-<code class="docutils literal notranslate"><span class="pre">Negator</span></code> class with the <code class="docutils literal notranslate"><span class="pre">neg</span></code> methods being class bound:</p>
+<a class="reference internal" href="functions.html#classmethod" title="classmethod"><code class="xref py py-func docutils literal notranslate"><span class="pre">&#64;classmethod</span></code></a>. Note that to allow for
+<code class="docutils literal notranslate"><span class="pre">dispatcher.register</span></code>, <code class="docutils literal notranslate"><span class="pre">singledispatchmethod</span></code> must be the <em>outer most</em>
+decorator. Here is the <code class="docutils literal notranslate"><span class="pre">Negator</span></code> class with the <code class="docutils literal notranslate"><span class="pre">neg</span></code> methods bound to
+the class, rather than an instance of the class:</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Negator</span><span class="p">:</span>
     <span class="nd">@singledispatchmethod</span>
     <span class="nd">@classmethod</span>
@@ -700,8 +703,9 @@ or non-cls argument, create your function accordingly:</p>
         <span class="k">return</span> <span class="ow">not</span> <span class="n">arg</span>
 </pre></div>
 </div>
-<p>The same pattern can be used for other similar decorators: <code class="docutils literal notranslate"><span class="pre">staticmethod</span></code>,
-<code class="docutils literal notranslate"><span class="pre">abstractmethod</span></code>, and others.</p>
+<p>The same pattern can be used for other similar decorators:
+<a class="reference internal" href="functions.html#staticmethod" title="staticmethod"><code class="xref py py-func docutils literal notranslate"><span class="pre">&#64;staticmethod</span></code></a>,
+<a class="reference internal" href="abc.html#abc.abstractmethod" title="abc.abstractmethod"><code class="xref py py-func docutils literal notranslate"><span class="pre">&#64;abstractmethod</span></code></a>, and others.</p>
 <div class="versionadded">
 <p><span class="versionmodified added">在 3.8 版本新加入.</span></p>
 </div>
@@ -916,11 +920,11 @@ during instance attribute look-up.</p>
 <br />
     <br />
 
-    最後更新於 10月 27, 2021。
+    最後更新於 11月 15, 2021。
     <a href="https://docs.python.org/3/bugs.html">Found a bug</a>?
     <br />
 
-    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.2.0 建立。
+    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.3.0 建立。
     </div>
 
   </body>

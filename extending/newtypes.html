@@ -297,7 +297,19 @@ function:</p>
 <span class="nf">newdatatype_dealloc</span><span class="p">(</span><span class="n">newdatatypeobject</span><span class="w"> </span><span class="o">*</span><span class="n">obj</span><span class="p">)</span><span class="w"></span>
 <span class="p">{</span><span class="w"></span>
 <span class="w">    </span><span class="n">free</span><span class="p">(</span><span class="n">obj</span><span class="o">-&gt;</span><span class="n">obj_UnderlyingDatatypePtr</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">Py_TYPE</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">tp_free</span><span class="p">(</span><span class="n">obj</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">Py_TYPE</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">tp_free</span><span class="p">((</span><span class="n">PyObject</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="n">obj</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p>If your type supports garbage collection, the destructor should call
+<a class="reference internal" href="../c-api/gcsupport.html#c.PyObject_GC_UnTrack" title="PyObject_GC_UnTrack"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyObject_GC_UnTrack()</span></code></a> before clearing any member fields:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="kt">void</span><span class="w"></span>
+<span class="nf">newdatatype_dealloc</span><span class="p">(</span><span class="n">newdatatypeobject</span><span class="w"> </span><span class="o">*</span><span class="n">obj</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">PyObject_GC_UnTrack</span><span class="p">(</span><span class="n">obj</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">Py_CLEAR</span><span class="p">(</span><span class="n">obj</span><span class="o">-&gt;</span><span class="n">other_obj</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">...</span><span class="w"></span>
+<span class="w">    </span><span class="n">Py_TYPE</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">tp_free</span><span class="p">((</span><span class="n">PyObject</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="n">obj</span><span class="p">);</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
@@ -570,7 +582,7 @@ analogous to the <a class="reference internal" href="../reference/datamodel.html
 <code class="xref py py-meth docutils literal notranslate"><span class="pre">__lt__()</span></code>, and also called by <a class="reference internal" href="../c-api/object.html#c.PyObject_RichCompare" title="PyObject_RichCompare"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyObject_RichCompare()</span></code></a> and
 <a class="reference internal" href="../c-api/object.html#c.PyObject_RichCompareBool" title="PyObject_RichCompareBool"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyObject_RichCompareBool()</span></code></a>.</p>
 <p>This function is called with two Python objects and the operator as arguments,
-where the operator is one of <code class="docutils literal notranslate"><span class="pre">Py_EQ</span></code>, <code class="docutils literal notranslate"><span class="pre">Py_NE</span></code>, <code class="docutils literal notranslate"><span class="pre">Py_LE</span></code>, <code class="docutils literal notranslate"><span class="pre">Py_GT</span></code>,
+where the operator is one of <code class="docutils literal notranslate"><span class="pre">Py_EQ</span></code>, <code class="docutils literal notranslate"><span class="pre">Py_NE</span></code>, <code class="docutils literal notranslate"><span class="pre">Py_LE</span></code>, <code class="docutils literal notranslate"><span class="pre">Py_GE</span></code>,
 <code class="docutils literal notranslate"><span class="pre">Py_LT</span></code> or <code class="docutils literal notranslate"><span class="pre">Py_GT</span></code>.  It should compare the two objects with respect to the
 specified operator and return <code class="docutils literal notranslate"><span class="pre">Py_True</span></code> or <code class="docutils literal notranslate"><span class="pre">Py_False</span></code> if the comparison is
 successful, <code class="docutils literal notranslate"><span class="pre">Py_NotImplemented</span></code> to indicate that comparison is not
@@ -909,11 +921,11 @@ its use might be something like the following:</p>
 <br />
     <br />
 
-    最後更新於 10月 27, 2021。
+    最後更新於 11月 15, 2021。
     <a href="https://docs.python.org/3/bugs.html">Found a bug</a>?
     <br />
 
-    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.2.0 建立。
+    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.3.0 建立。
     </div>
 
   </body>

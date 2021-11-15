@@ -518,11 +518,11 @@ required _not_ to match).  We use the <code class="docutils literal notranslate"
     <span class="o">|</span> <span class="nf">named_expression</span>
 
 
-<span class="nf">assigment_expression</span><span class="p">:</span>
+<span class="nf">assignment_expression</span><span class="p">:</span>
     <span class="o">|</span> NAME &#39;:=&#39; ~ <span class="nf">expression</span> 
 
 <span class="nf">named_expression</span><span class="p">:</span>
-    <span class="o">|</span> <span class="nf">assigment_expression</span>
+    <span class="o">|</span> <span class="nf">assignment_expression</span>
     <span class="o">|</span> <span class="nf">expression</span> !&#39;:=&#39;
 
 <span class="nf">annotated_rhs</span><span class="p">:</span> <span class="nf">yield_expr</span> <span class="o">|</span> <span class="nf">star_expressions</span>
@@ -684,7 +684,7 @@ required _not_ to match).  We use the <code class="docutils literal notranslate"
 <span class="nf">group</span><span class="p">:</span>
     <span class="o">|</span> &#39;(&#39; <span class="p">(</span><span class="nf">yield_expr</span> <span class="o">|</span> <span class="nf">named_expression</span><span class="p">)</span> &#39;)&#39; 
 <span class="nf">genexp</span><span class="p">:</span>
-    <span class="o">|</span> &#39;(&#39; <span class="p">(</span> <span class="nf">assigment_expression</span> <span class="o">|</span> <span class="nf">expression</span> !&#39;:=&#39;<span class="p">)</span> <span class="nf">for_if_clauses</span> &#39;)&#39; 
+    <span class="o">|</span> &#39;(&#39; <span class="p">(</span> <span class="nf">assignment_expression</span> <span class="o">|</span> <span class="nf">expression</span> !&#39;:=&#39;<span class="p">)</span> <span class="nf">for_if_clauses</span> &#39;)&#39; 
 <span class="nf">set</span><span class="p">:</span> &#39;{&#39; <span class="nf">star_named_expressions</span> &#39;}&#39; 
 <span class="nf">setcomp</span><span class="p">:</span>
     <span class="o">|</span> &#39;{&#39; <span class="nf">named_expression</span> <span class="nf">for_if_clauses</span> &#39;}&#39; 
@@ -711,7 +711,7 @@ required _not_ to match).  We use the <code class="docutils literal notranslate"
 <span class="nf">arguments</span><span class="p">:</span>
     <span class="o">|</span> <span class="nf">args</span> <span class="p">[</span>&#39;,&#39;<span class="p">]</span> &amp;&#39;)&#39; 
 <span class="nf">args</span><span class="p">:</span>
-    <span class="o">|</span> &#39;,&#39;<span class="o">.</span><span class="p">(</span><span class="nf">starred_expression</span> <span class="o">|</span> <span class="p">(</span> <span class="nf">assigment_expression</span> <span class="o">|</span> <span class="nf">expression</span> !&#39;:=&#39;<span class="p">)</span> !&#39;=&#39;<span class="p">)</span><span class="o">+</span> <span class="p">[</span>&#39;,&#39; <span class="nf">kwargs</span> <span class="p">]</span> 
+    <span class="o">|</span> &#39;,&#39;<span class="o">.</span><span class="p">(</span><span class="nf">starred_expression</span> <span class="o">|</span> <span class="p">(</span> <span class="nf">assignment_expression</span> <span class="o">|</span> <span class="nf">expression</span> !&#39;:=&#39;<span class="p">)</span> !&#39;=&#39;<span class="p">)</span><span class="o">+</span> <span class="p">[</span>&#39;,&#39; <span class="nf">kwargs</span> <span class="p">]</span> 
     <span class="o">|</span> <span class="nf">kwargs</span> 
 
 <span class="nf">kwargs</span><span class="p">:</span>
@@ -869,11 +869,11 @@ required _not_ to match).  We use the <code class="docutils literal notranslate"
 <br />
     <br />
 
-    最後更新於 10月 27, 2021。
+    最後更新於 11月 15, 2021。
     <a href="https://docs.python.org/3/bugs.html">Found a bug</a>?
     <br />
 
-    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.2.0 建立。
+    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.3.0 建立。
     </div>
 
   </body>
