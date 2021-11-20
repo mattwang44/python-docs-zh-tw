@@ -189,15 +189,16 @@ PostgreSQL or Oracle.</p>
 <p>The sqlite3 module was written by Gerhard Häring.  It provides a SQL interface
 compliant with the DB-API 2.0 specification described by <span class="target" id="index-0"></span><a class="pep reference external" href="https://www.python.org/dev/peps/pep-0249"><strong>PEP 249</strong></a>, and
 requires SQLite 3.7.15 or newer.</p>
-<p>To use the module, you must first create a <a class="reference internal" href="#sqlite3.Connection" title="sqlite3.Connection"><code class="xref py py-class docutils literal notranslate"><span class="pre">Connection</span></code></a> object that
+<p>To use the module, start by creating a <a class="reference internal" href="#sqlite3.Connection" title="sqlite3.Connection"><code class="xref py py-class docutils literal notranslate"><span class="pre">Connection</span></code></a> object that
 represents the database.  Here the data will be stored in the
 <code class="file docutils literal notranslate"><span class="pre">example.db</span></code> file:</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sqlite3</span>
 <span class="n">con</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s1">&#39;example.db&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>You can also supply the special name <code class="docutils literal notranslate"><span class="pre">:memory:</span></code> to create a database in RAM.</p>
-<p>Once you have a <a class="reference internal" href="#sqlite3.Connection" title="sqlite3.Connection"><code class="xref py py-class docutils literal notranslate"><span class="pre">Connection</span></code></a>, you can create a <a class="reference internal" href="#sqlite3.Cursor" title="sqlite3.Cursor"><code class="xref py py-class docutils literal notranslate"><span class="pre">Cursor</span></code></a>  object
+<p>The special path name <code class="docutils literal notranslate"><span class="pre">:memory:</span></code> can be provided to create a temporary
+database in RAM.</p>
+<p>Once a <a class="reference internal" href="#sqlite3.Connection" title="sqlite3.Connection"><code class="xref py py-class docutils literal notranslate"><span class="pre">Connection</span></code></a> has been established, create a <a class="reference internal" href="#sqlite3.Cursor" title="sqlite3.Cursor"><code class="xref py py-class docutils literal notranslate"><span class="pre">Cursor</span></code></a> object
 and call its <a class="reference internal" href="#sqlite3.Cursor.execute" title="sqlite3.Cursor.execute"><code class="xref py py-meth docutils literal notranslate"><span class="pre">execute()</span></code></a> method to perform SQL commands:</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">cur</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
 
@@ -216,16 +217,17 @@ and call its <a class="reference internal" href="#sqlite3.Cursor.execute" title=
 <span class="n">con</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>The data you've saved is persistent and is available in subsequent sessions:</p>
+<p>The saved data is persistent: it can be reloaded in a subsequent session even
+after restarting the Python interpreter:</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sqlite3</span>
 <span class="n">con</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s1">&#39;example.db&#39;</span><span class="p">)</span>
 <span class="n">cur</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>To retrieve data after executing a SELECT statement, you can either treat the
-cursor as an <a class="reference internal" href="../glossary.html#term-iterator"><span class="xref std std-term">iterator</span></a>, call the cursor's <a class="reference internal" href="#sqlite3.Cursor.fetchone" title="sqlite3.Cursor.fetchone"><code class="xref py py-meth docutils literal notranslate"><span class="pre">fetchone()</span></code></a> method to
-retrieve a single matching row, or call <a class="reference internal" href="#sqlite3.Cursor.fetchall" title="sqlite3.Cursor.fetchall"><code class="xref py py-meth docutils literal notranslate"><span class="pre">fetchall()</span></code></a> to get a list of the
-matching rows.</p>
+<p>To retrieve data after executing a SELECT statement, either treat the cursor as
+an <a class="reference internal" href="../glossary.html#term-iterator"><span class="xref std std-term">iterator</span></a>, call the cursor's <a class="reference internal" href="#sqlite3.Cursor.fetchone" title="sqlite3.Cursor.fetchone"><code class="xref py py-meth docutils literal notranslate"><span class="pre">fetchone()</span></code></a> method to
+retrieve a single matching row, or call <a class="reference internal" href="#sqlite3.Cursor.fetchall" title="sqlite3.Cursor.fetchall"><code class="xref py py-meth docutils literal notranslate"><span class="pre">fetchall()</span></code></a> to get a list
+of the matching rows.</p>
 <p>This example uses the iterator form:</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">cur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s1">&#39;SELECT * FROM stocks ORDER BY price&#39;</span><span class="p">):</span>
 <span class="go">        print(row)</span>
@@ -236,27 +238,26 @@ matching rows.</p>
 <span class="go">(&#39;2006-04-05&#39;, &#39;BUY&#39;, &#39;MSFT&#39;, 1000, 72.0)</span>
 </pre></div>
 </div>
-<p id="sqlite3-placeholders">Usually your SQL operations will need to use values from Python variables.  You
-shouldn't assemble your query using Python's string operations because doing so
-is insecure; it makes your program vulnerable to an SQL injection attack
-(see the <a class="reference external" href="https://xkcd.com/327/">xkcd webcomic</a> for a humorous example of
-what can go wrong):</p>
+<p id="sqlite3-placeholders">SQL operations usually need to use values from Python variables. However,
+beware of using Python's string operations to assemble queries, as they
+are vulnerable to SQL injection attacks (see the <a class="reference external" href="https://xkcd.com/327/">xkcd webcomic</a> for a humorous example of what can go wrong):</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Never do this -- insecure!</span>
 <span class="n">symbol</span> <span class="o">=</span> <span class="s1">&#39;RHAT&#39;</span>
 <span class="n">cur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;SELECT * FROM stocks WHERE symbol = &#39;</span><span class="si">%s</span><span class="s2">&#39;&quot;</span> <span class="o">%</span> <span class="n">symbol</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Instead, use the DB-API's parameter substitution. Put a placeholder wherever
-you want to use a value, and then provide a tuple of values as the second
-argument to the cursor's <a class="reference internal" href="#sqlite3.Cursor.execute" title="sqlite3.Cursor.execute"><code class="xref py py-meth docutils literal notranslate"><span class="pre">execute()</span></code></a> method. An SQL statement may
+<p>Instead, use the DB-API's parameter substitution. To insert a variable into a
+query string, use a placeholder in the string, and substitute the actual values
+into the query by providing them as a <a class="reference internal" href="stdtypes.html#tuple" title="tuple"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a> of values to the second
+argument of the cursor's <a class="reference internal" href="#sqlite3.Cursor.execute" title="sqlite3.Cursor.execute"><code class="xref py py-meth docutils literal notranslate"><span class="pre">execute()</span></code></a> method. An SQL statement may
 use one of two kinds of placeholders: question marks (qmark style) or named
 placeholders (named style). For the qmark style, <code class="docutils literal notranslate"><span class="pre">parameters</span></code> must be a
 <a class="reference internal" href="../glossary.html#term-sequence"><span class="xref std std-term">sequence</span></a>. For the named style, it can be either a
 <a class="reference internal" href="../glossary.html#term-sequence"><span class="xref std std-term">sequence</span></a> or <a class="reference internal" href="stdtypes.html#dict" title="dict"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a> instance. The length of the
 <a class="reference internal" href="../glossary.html#term-sequence"><span class="xref std std-term">sequence</span></a> must match the number of placeholders, or a
 <a class="reference internal" href="#sqlite3.ProgrammingError" title="sqlite3.ProgrammingError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">ProgrammingError</span></code></a> is raised. If a <a class="reference internal" href="stdtypes.html#dict" title="dict"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a> is given, it must contain
-keys for all named parameters. Any extra items are ignored. Here's an example
-of both styles:</p>
+keys for all named parameters. Any extra items are ignored. Here's an example of
+both styles:</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sqlite3</span>
 
 <span class="n">con</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;:memory:&quot;</span><span class="p">)</span>
@@ -1890,7 +1891,7 @@ extension support, you must pass the
 <br />
     <br />
 
-    最後更新於 11月 15, 2021。
+    最後更新於 11月 20, 2021。
     <a href="https://docs.python.org/3/bugs.html">Found a bug</a>?
     <br />
 

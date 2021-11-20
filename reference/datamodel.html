@@ -98,7 +98,11 @@
 </ul>
 </li>
 <li><a class="reference internal" href="#customizing-instance-and-subclass-checks">3.3.4. Customizing instance and subclass checks</a></li>
-<li><a class="reference internal" href="#emulating-generic-types">3.3.5. Emulating generic types</a></li>
+<li><a class="reference internal" href="#emulating-generic-types">3.3.5. Emulating generic types</a><ul>
+<li><a class="reference internal" href="#the-purpose-of-class-getitem">3.3.5.1. The purpose of <em>__class_getitem__</em></a></li>
+<li><a class="reference internal" href="#class-getitem-versus-getitem">3.3.5.2. <em>__class_getitem__</em> versus <em>__getitem__</em></a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#emulating-callable-objects">3.3.6. Emulating callable objects</a></li>
 <li><a class="reference internal" href="#emulating-container-types">3.3.7. Emulating container types</a></li>
 <li><a class="reference internal" href="#emulating-numeric-types">3.3.8. Emulating numeric types</a></li>
@@ -1833,23 +1837,135 @@ module) to the language.</p>
 </section>
 <section id="emulating-generic-types">
 <h3><span class="section-number">3.3.5. </span>Emulating generic types<a class="headerlink" href="#emulating-generic-types" title="本標題的永久連結">¶</a></h3>
-<p>One can implement the generic class syntax as specified by <span class="target" id="index-91"></span><a class="pep reference external" href="https://www.python.org/dev/peps/pep-0484"><strong>PEP 484</strong></a>
-(for example <code class="docutils literal notranslate"><span class="pre">List[int]</span></code>) by defining a special method:</p>
+<p>When using <a class="reference internal" href="../glossary.html#term-annotation"><span class="xref std std-term">type annotations</span></a>, it is often useful to
+<em>parameterize</em> a <a class="reference internal" href="../glossary.html#term-generic-type"><span class="xref std std-term">generic type</span></a> using Python's square-brackets notation.
+For example, the annotation <code class="docutils literal notranslate"><span class="pre">list[int]</span></code> might be used to signify a
+<a class="reference internal" href="../library/stdtypes.html#list" title="list"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a> in which all the elements are of type <a class="reference internal" href="../library/functions.html#int" title="int"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>.</p>
+<div class="admonition seealso">
+<p class="admonition-title">也參考</p>
+<dl class="simple">
+<dt><span class="target" id="index-91"></span><a class="pep reference external" href="https://www.python.org/dev/peps/pep-0484"><strong>PEP 484</strong></a> - Type Hints</dt><dd><p>Introducing Python's framework for type annotations</p>
+</dd>
+<dt><a class="reference internal" href="../library/stdtypes.html#types-genericalias"><span class="std std-ref">Generic Alias Types</span></a></dt><dd><p>Documentation for objects representing parameterized generic classes</p>
+</dd>
+<dt><a class="reference internal" href="../library/typing.html#generics"><span class="std std-ref">Generics</span></a>, <a class="reference internal" href="../library/typing.html#user-defined-generics"><span class="std std-ref">user-defined generics</span></a> and <a class="reference internal" href="../library/typing.html#typing.Generic" title="typing.Generic"><code class="xref py py-class docutils literal notranslate"><span class="pre">typing.Generic</span></code></a></dt><dd><p>Documentation on how to implement generic classes that can be
+parameterized at runtime and understood by static type-checkers.</p>
+</dd>
+</dl>
+</div>
+<p>A class can <em>generally</em> only be parameterized if it defines the special
+class method <code class="docutils literal notranslate"><span class="pre">__class_getitem__()</span></code>.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="object.__class_getitem__">
 <em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">object.</span></span><span class="sig-name descname"><span class="pre">__class_getitem__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cls</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#object.__class_getitem__" title="本定義的永久連結">¶</a></dt>
 <dd><p>Return an object representing the specialization of a generic class
 by type arguments found in <em>key</em>.</p>
+<p>When defined on a class, <code class="docutils literal notranslate"><span class="pre">__class_getitem__()</span></code> is automatically a class
+method. As such, there is no need for it to be decorated with
+<a class="reference internal" href="../library/functions.html#classmethod" title="classmethod"><code class="xref py py-func docutils literal notranslate"><span class="pre">&#64;classmethod</span></code></a> when it is defined.</p>
 </dd></dl>
 
-<p>This method is looked up on the class object itself, and when defined in
-the class body, this method is implicitly a class method.  Note, this
-mechanism is primarily reserved for use with static type hints, other usage
-is discouraged.</p>
+<section id="the-purpose-of-class-getitem">
+<h4><span class="section-number">3.3.5.1. </span>The purpose of <em>__class_getitem__</em><a class="headerlink" href="#the-purpose-of-class-getitem" title="本標題的永久連結">¶</a></h4>
+<p>The purpose of <a class="reference internal" href="#object.__class_getitem__" title="object.__class_getitem__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__class_getitem__()</span></code></a> is to allow runtime
+parameterization of standard-library generic classes in order to more easily
+apply <a class="reference internal" href="../glossary.html#term-type-hint"><span class="xref std std-term">type hints</span></a> to these classes.</p>
+<p>To implement custom generic classes that can be parameterized at runtime and
+understood by static type-checkers, users should either inherit from a standard
+library class that already implements <a class="reference internal" href="#object.__class_getitem__" title="object.__class_getitem__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__class_getitem__()</span></code></a>, or
+inherit from <a class="reference internal" href="../library/typing.html#typing.Generic" title="typing.Generic"><code class="xref py py-class docutils literal notranslate"><span class="pre">typing.Generic</span></code></a>, which has its own implementation of
+<code class="docutils literal notranslate"><span class="pre">__class_getitem__()</span></code>.</p>
+<p>Custom implementations of <a class="reference internal" href="#object.__class_getitem__" title="object.__class_getitem__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__class_getitem__()</span></code></a> on classes defined
+outside of the standard library may not be understood by third-party
+type-checkers such as mypy. Using <code class="docutils literal notranslate"><span class="pre">__class_getitem__()</span></code> on any class for
+purposes other than type hinting is discouraged.</p>
+</section>
+<section id="class-getitem-versus-getitem">
+<span id="classgetitem-versus-getitem"></span><h4><span class="section-number">3.3.5.2. </span><em>__class_getitem__</em> versus <em>__getitem__</em><a class="headerlink" href="#class-getitem-versus-getitem" title="本標題的永久連結">¶</a></h4>
+<p>Usually, the <a class="reference internal" href="expressions.html#subscriptions"><span class="std std-ref">subscription</span></a> of an object using square
+brackets will call the <a class="reference internal" href="#object.__getitem__" title="object.__getitem__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__getitem__()</span></code></a> instance method defined on
+the object's class. However, if the object being subscribed is itself a class,
+the class method <a class="reference internal" href="#object.__class_getitem__" title="object.__class_getitem__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__class_getitem__()</span></code></a> may be called instead.
+<code class="docutils literal notranslate"><span class="pre">__class_getitem__()</span></code> should return a <a class="reference internal" href="../library/stdtypes.html#types-genericalias"><span class="std std-ref">GenericAlias</span></a>
+object if it is properly defined.</p>
+<p>Presented with the <a class="reference internal" href="../glossary.html#term-expression"><span class="xref std std-term">expression</span></a> <code class="docutils literal notranslate"><span class="pre">obj[x]</span></code>, the Python interpreter
+follows something like the following process to decide whether
+<a class="reference internal" href="#object.__getitem__" title="object.__getitem__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__getitem__()</span></code></a> or <a class="reference internal" href="#object.__class_getitem__" title="object.__class_getitem__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__class_getitem__()</span></code></a> should be
+called:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">inspect</span> <span class="kn">import</span> <span class="n">isclass</span>
+
+<span class="k">def</span> <span class="nf">subscribe</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Return the result of the expression `obj[x]`&quot;&quot;&quot;</span>
+
+    <span class="n">class_of_obj</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
+
+    <span class="c1"># If the class of obj defines __getitem__,</span>
+    <span class="c1"># call class_of_obj.__getitem__(obj, x)</span>
+    <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">class_of_obj</span><span class="p">,</span> <span class="s1">&#39;__getitem__&#39;</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">class_of_obj</span><span class="o">.</span><span class="fm">__getitem__</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+
+    <span class="c1"># Else, if obj is a class and defines __class_getitem__,</span>
+    <span class="c1"># call obj.__class_getitem__(x)</span>
+    <span class="k">elif</span> <span class="n">isclass</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="s1">&#39;__class_getitem__&#39;</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">obj</span><span class="o">.</span><span class="n">__class_getitem__</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+    <span class="c1"># Else, raise an exception</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;&#39;</span><span class="si">{</span><span class="n">class_of_obj</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">&#39; object is not subscriptable&quot;</span>
+        <span class="p">)</span>
+</pre></div>
+</div>
+<p>In Python, all classes are themselves instances of other classes. The class of
+a class is known as that class's <a class="reference internal" href="../glossary.html#term-metaclass"><span class="xref std std-term">metaclass</span></a>, and most classes have the
+<a class="reference internal" href="../library/functions.html#type" title="type"><code class="xref py py-class docutils literal notranslate"><span class="pre">type</span></code></a> class as their metaclass. <a class="reference internal" href="../library/functions.html#type" title="type"><code class="xref py py-class docutils literal notranslate"><span class="pre">type</span></code></a> does not define
+<a class="reference internal" href="#object.__getitem__" title="object.__getitem__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__getitem__()</span></code></a>, meaning that expressions such as <code class="docutils literal notranslate"><span class="pre">list[int]</span></code>,
+<code class="docutils literal notranslate"><span class="pre">dict[str,</span> <span class="pre">float]</span></code> and <code class="docutils literal notranslate"><span class="pre">tuple[str,</span> <span class="pre">bytes]</span></code> all result in
+<a class="reference internal" href="#object.__class_getitem__" title="object.__class_getitem__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__class_getitem__()</span></code></a> being called:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># list has class &quot;type&quot; as its metaclass, like most classes:</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">type</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+<span class="go">&lt;class &#39;type&#39;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">type</span><span class="p">(</span><span class="nb">dict</span><span class="p">)</span> <span class="o">==</span> <span class="nb">type</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span> <span class="o">==</span> <span class="nb">type</span><span class="p">(</span><span class="nb">tuple</span><span class="p">)</span> <span class="o">==</span> <span class="nb">type</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span> <span class="o">==</span> <span class="nb">type</span><span class="p">(</span><span class="nb">bytes</span><span class="p">)</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># &quot;list[int]&quot; calls &quot;list.__class_getitem__(int)&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span>
+<span class="go">list[int]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># list.__class_getitem__ returns a GenericAlias object:</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">type</span><span class="p">(</span><span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span>
+<span class="go">&lt;class &#39;types.GenericAlias&#39;&gt;</span>
+</pre></div>
+</div>
+<p>However, if a class has a custom metaclass that defines
+<a class="reference internal" href="#object.__getitem__" title="object.__getitem__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__getitem__()</span></code></a>, subscribing the class may result in different
+behaviour. An example of this can be found in the <a class="reference internal" href="../library/enum.html#module-enum" title="enum: Implementation of an enumeration class."><code class="xref py py-mod docutils literal notranslate"><span class="pre">enum</span></code></a> module:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">enum</span> <span class="kn">import</span> <span class="n">Enum</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">Menu</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="sd">&quot;&quot;&quot;A breakfast menu&quot;&quot;&quot;</span>
+<span class="gp">... </span>    <span class="n">SPAM</span> <span class="o">=</span> <span class="s1">&#39;spam&#39;</span>
+<span class="gp">... </span>    <span class="n">BACON</span> <span class="o">=</span> <span class="s1">&#39;bacon&#39;</span>
+<span class="gp">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Enum classes have a custom metaclass:</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">type</span><span class="p">(</span><span class="n">Menu</span><span class="p">)</span>
+<span class="go">&lt;class &#39;enum.EnumMeta&#39;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># EnumMeta defines __getitem__,</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># so __class_getitem__ is not called,</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># and the result is not a GenericAlias object:</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Menu</span><span class="p">[</span><span class="s1">&#39;SPAM&#39;</span><span class="p">]</span>
+<span class="go">&lt;Menu.SPAM: &#39;spam&#39;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">type</span><span class="p">(</span><span class="n">Menu</span><span class="p">[</span><span class="s1">&#39;SPAM&#39;</span><span class="p">])</span>
+<span class="go">&lt;enum &#39;Menu&#39;&gt;</span>
+</pre></div>
+</div>
 <div class="admonition seealso">
 <p class="admonition-title">也參考</p>
-<p><span class="target" id="index-92"></span><a class="pep reference external" href="https://www.python.org/dev/peps/pep-0560"><strong>PEP 560</strong></a> - Core support for typing module and generic types</p>
+<dl class="simple">
+<dt><span class="target" id="index-92"></span><a class="pep reference external" href="https://www.python.org/dev/peps/pep-0560"><strong>PEP 560</strong></a> - Core Support for typing module and generic types</dt><dd><p>Introducing <a class="reference internal" href="#object.__class_getitem__" title="object.__class_getitem__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__class_getitem__()</span></code></a>, and outlining when a
+<a class="reference internal" href="expressions.html#subscriptions"><span class="std std-ref">subscription</span></a> results in <code class="docutils literal notranslate"><span class="pre">__class_getitem__()</span></code>
+being called instead of <a class="reference internal" href="#object.__getitem__" title="object.__getitem__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__getitem__()</span></code></a></p>
+</dd>
+</dl>
 </div>
+</section>
 </section>
 <section id="emulating-callable-objects">
 <span id="callable-types"></span><h3><span class="section-number">3.3.6. </span>Emulating callable objects<a class="headerlink" href="#emulating-callable-objects" title="本標題的永久連結">¶</a></h3>
@@ -1936,18 +2052,26 @@ optimization and is never required for correctness.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="object.__getitem__">
 <span class="sig-prename descclassname"><span class="pre">object.</span></span><span class="sig-name descname"><span class="pre">__getitem__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#object.__getitem__" title="本定義的永久連結">¶</a></dt>
-<dd><p>Called to implement evaluation of <code class="docutils literal notranslate"><span class="pre">self[key]</span></code>. For sequence types, the
-accepted keys should be integers and slice objects.  Note that the special
-interpretation of negative indexes (if the class wishes to emulate a sequence
-type) is up to the <a class="reference internal" href="#object.__getitem__" title="object.__getitem__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__getitem__()</span></code></a> method. If <em>key</em> is of an inappropriate
-type, <a class="reference internal" href="../library/exceptions.html#TypeError" title="TypeError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">TypeError</span></code></a> may be raised; if of a value outside the set of indexes
-for the sequence (after any special interpretation of negative values),
-<a class="reference internal" href="../library/exceptions.html#IndexError" title="IndexError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">IndexError</span></code></a> should be raised. For mapping types, if <em>key</em> is missing (not
-in the container), <a class="reference internal" href="../library/exceptions.html#KeyError" title="KeyError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">KeyError</span></code></a> should be raised.</p>
+<dd><p>Called to implement evaluation of <code class="docutils literal notranslate"><span class="pre">self[key]</span></code>. For <a class="reference internal" href="../glossary.html#term-sequence"><span class="xref std std-term">sequence</span></a> types,
+the accepted keys should be integers and slice objects.  Note that the
+special interpretation of negative indexes (if the class wishes to emulate a
+<a class="reference internal" href="../glossary.html#term-sequence"><span class="xref std std-term">sequence</span></a> type) is up to the <a class="reference internal" href="#object.__getitem__" title="object.__getitem__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__getitem__()</span></code></a> method. If <em>key</em> is
+of an inappropriate type, <a class="reference internal" href="../library/exceptions.html#TypeError" title="TypeError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">TypeError</span></code></a> may be raised; if of a value
+outside the set of indexes for the sequence (after any special
+interpretation of negative values), <a class="reference internal" href="../library/exceptions.html#IndexError" title="IndexError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">IndexError</span></code></a> should be raised. For
+<a class="reference internal" href="../glossary.html#term-mapping"><span class="xref std std-term">mapping</span></a> types, if <em>key</em> is missing (not in the container),
+<a class="reference internal" href="../library/exceptions.html#KeyError" title="KeyError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">KeyError</span></code></a> should be raised.</p>
 <div class="admonition note">
 <p class="admonition-title">備註</p>
-<p><a class="reference internal" href="compound_stmts.html#for"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">for</span></code></a> loops expect that an <a class="reference internal" href="../library/exceptions.html#IndexError" title="IndexError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">IndexError</span></code></a> will be raised for illegal
-indexes to allow proper detection of the end of the sequence.</p>
+<p><a class="reference internal" href="compound_stmts.html#for"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">for</span></code></a> loops expect that an <a class="reference internal" href="../library/exceptions.html#IndexError" title="IndexError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">IndexError</span></code></a> will be raised for
+illegal indexes to allow proper detection of the end of the sequence.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">備註</p>
+<p>When <a class="reference internal" href="expressions.html#subscriptions"><span class="std std-ref">subscripting</span></a> a <em>class</em>, the special
+class method <a class="reference internal" href="#object.__class_getitem__" title="object.__class_getitem__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__class_getitem__()</span></code></a> may be called instead of
+<code class="docutils literal notranslate"><span class="pre">__getitem__()</span></code>. See <a class="reference internal" href="#classgetitem-versus-getitem"><span class="std std-ref">__class_getitem__ versus __getitem__</span></a> for more
+details.</p>
 </div>
 </dd></dl>
 
@@ -2584,7 +2708,11 @@ supported, which is why the reflected method is not called.</p>
 </ul>
 </li>
 <li><a class="reference internal" href="#customizing-instance-and-subclass-checks">3.3.4. Customizing instance and subclass checks</a></li>
-<li><a class="reference internal" href="#emulating-generic-types">3.3.5. Emulating generic types</a></li>
+<li><a class="reference internal" href="#emulating-generic-types">3.3.5. Emulating generic types</a><ul>
+<li><a class="reference internal" href="#the-purpose-of-class-getitem">3.3.5.1. The purpose of <em>__class_getitem__</em></a></li>
+<li><a class="reference internal" href="#class-getitem-versus-getitem">3.3.5.2. <em>__class_getitem__</em> versus <em>__getitem__</em></a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#emulating-callable-objects">3.3.6. Emulating callable objects</a></li>
 <li><a class="reference internal" href="#emulating-container-types">3.3.7. Emulating container types</a></li>
 <li><a class="reference internal" href="#emulating-numeric-types">3.3.8. Emulating numeric types</a></li>
@@ -2687,7 +2815,7 @@ supported, which is why the reflected method is not called.</p>
 <br />
     <br />
 
-    最後更新於 11月 15, 2021。
+    最後更新於 11月 20, 2021。
     <a href="https://docs.python.org/3/bugs.html">Found a bug</a>?
     <br />
 

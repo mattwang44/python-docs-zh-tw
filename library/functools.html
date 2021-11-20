@@ -292,10 +292,15 @@ the <em>maxsize</em> at its default value of 128:</p>
 <p>If <em>maxsize</em> is set to <code class="docutils literal notranslate"><span class="pre">None</span></code>, the LRU feature is disabled and the cache can
 grow without bound.</p>
 <p>If <em>typed</em> is set to true, function arguments of different types will be
-cached separately.  For example, <code class="docutils literal notranslate"><span class="pre">f(3)</span></code> and <code class="docutils literal notranslate"><span class="pre">f(3.0)</span></code> will always be
-treated as distinct calls with distinct results.  If <em>typed</em> is false,
-the implementation will usually but not always regard them as equivalent
-calls and only cache a single result.</p>
+cached separately.  If <em>typed</em> is false, the implementation will usually
+regard them as equivalent calls and only cache a single result. (Some
+types such as <em>str</em> and <em>int</em> may be cached separately even when <em>typed</em>
+is false.)</p>
+<p>Note, type specificity applies only to the function's immediate arguments
+rather than their contents.  The scalar arguments, <code class="docutils literal notranslate"><span class="pre">Decimal(42)</span></code> and
+<code class="docutils literal notranslate"><span class="pre">Fraction(42)</span></code> are be treated as distinct calls with distinct results.
+In contrast, the tuple arguments <code class="docutils literal notranslate"><span class="pre">('answer',</span> <span class="pre">Decimal(42))</span></code> and
+<code class="docutils literal notranslate"><span class="pre">('answer',</span> <span class="pre">Fraction(42))</span></code> are treated as equivalent.</p>
 <p>The wrapped function is instrumented with a <code class="xref py py-func docutils literal notranslate"><span class="pre">cache_parameters()</span></code>
 function that returns a new <a class="reference internal" href="stdtypes.html#dict" title="dict"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a> showing the values for <em>maxsize</em>
 and <em>typed</em>.  This is for information purposes only.  Mutating the values
@@ -920,7 +925,7 @@ during instance attribute look-up.</p>
 <br />
     <br />
 
-    最後更新於 11月 15, 2021。
+    最後更新於 11月 20, 2021。
     <a href="https://docs.python.org/3/bugs.html">Found a bug</a>?
     <br />
 

@@ -271,13 +271,11 @@ return <code class="docutils literal notranslate"><span class="pre">NULL</span><
 <span id="extending-errors"></span><h2><span class="section-number">1.2. </span>Intermezzo: Errors and Exceptions<a class="headerlink" href="#intermezzo-errors-and-exceptions" title="本標題的永久連結">¶</a></h2>
 <p>An important convention throughout the Python interpreter is the following: when
 a function fails, it should set an exception condition and return an error value
-(usually a <code class="docutils literal notranslate"><span class="pre">NULL</span></code> pointer).  Exceptions are stored in a static global variable
-inside the interpreter; if this variable is <code class="docutils literal notranslate"><span class="pre">NULL</span></code> no exception has occurred.  A
-second global variable stores the &quot;associated value&quot; of the exception (the
-second argument to <a class="reference internal" href="../reference/simple_stmts.html#raise"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">raise</span></code></a>).  A third variable contains the stack
-traceback in case the error originated in Python code.  These three variables
-are the C equivalents of the result in Python of <a class="reference internal" href="../library/sys.html#sys.exc_info" title="sys.exc_info"><code class="xref py py-meth docutils literal notranslate"><span class="pre">sys.exc_info()</span></code></a> (see the
-section on module <a class="reference internal" href="../library/sys.html#module-sys" title="sys: Access system-specific parameters and functions."><code class="xref py py-mod docutils literal notranslate"><span class="pre">sys</span></code></a> in the Python Library Reference).  It is important
+(usually <code class="docutils literal notranslate"><span class="pre">-1</span></code> or a <code class="docutils literal notranslate"><span class="pre">NULL</span></code> pointer).  Exception information is stored in
+three members of the interpreter's thread state.  These are <code class="docutils literal notranslate"><span class="pre">NULL</span></code> if
+there is no exception.  Otherwise they are the C equivalents of the members
+of the Python tuple returned by <a class="reference internal" href="../library/sys.html#sys.exc_info" title="sys.exc_info"><code class="xref py py-meth docutils literal notranslate"><span class="pre">sys.exc_info()</span></code></a>.  These are the
+exception type, exception instance, and a traceback object.  It is important
 to know about them to understand how errors are passed around.</p>
 <p>The Python API defines a number of functions to set various types of exceptions.</p>
 <p>The most common one is <a class="reference internal" href="../c-api/exceptions.html#c.PyErr_SetString" title="PyErr_SetString"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyErr_SetString()</span></code></a>.  Its arguments are an exception
@@ -1491,7 +1489,7 @@ this is still found in much existing code.</p>
 <br />
     <br />
 
-    最後更新於 11月 15, 2021。
+    最後更新於 11月 20, 2021。
     <a href="https://docs.python.org/3/bugs.html">Found a bug</a>?
     <br />
 
