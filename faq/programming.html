@@ -79,7 +79,7 @@
 <li><a class="reference internal" href="#performance">Performance</a></li>
 <li><a class="reference internal" href="#sequences-tuples-lists">Sequences (Tuples/Lists)</a></li>
 <li><a class="reference internal" href="#objects">Objects</a></li>
-<li><a class="reference internal" href="#modules">Modules</a></li>
+<li><a class="reference internal" href="#modules">模組</a></li>
 </ul>
 </li>
 </ul>
@@ -251,7 +251,7 @@
 <li><p><a class="reference internal" href="#how-do-i-cache-method-calls" id="id69">How do I cache method calls?</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#modules" id="id70">Modules</a></p>
+<li><p><a class="reference internal" href="#modules" id="id70">模組</a></p>
 <ul>
 <li><p><a class="reference internal" href="#how-do-i-create-a-pyc-file" id="id71">How do I create a .pyc file?</a></p></li>
 <li><p><a class="reference internal" href="#how-do-i-find-the-current-module-name" id="id72">How do I find the current module name?</a></p></li>
@@ -329,12 +329,12 @@ interpreter to form a self-contained binary which acts exactly like your script.
 <p>The following packages can help with the creation of console and GUI
 executables:</p>
 <ul class="simple">
-<li><p><a class="reference external" href="https://nuitka.net/">Nuitka</a> (Cross-platform)</p></li>
-<li><p><a class="reference external" href="http://www.pyinstaller.org/">PyInstaller</a> (Cross-platform)</p></li>
-<li><p><a class="reference external" href="https://pyoxidizer.readthedocs.io/en/stable/">PyOxidizer</a> (Cross-platform)</p></li>
-<li><p><a class="reference external" href="https://marcelotduarte.github.io/cx_Freeze/">cx_Freeze</a> (Cross-platform)</p></li>
-<li><p><a class="reference external" href="https://github.com/ronaldoussoren/py2app">py2app</a> (macOS only)</p></li>
-<li><p><a class="reference external" href="http://www.py2exe.org/">py2exe</a> （僅限 Windows）</p></li>
+<li><p><a class="reference external" href="https://nuitka.net/">Nuitka</a>（跨平台）</p></li>
+<li><p><a class="reference external" href="http://www.pyinstaller.org/">PyInstaller</a>（跨平台）</p></li>
+<li><p><a class="reference external" href="https://pyoxidizer.readthedocs.io/en/stable/">PyOxidizer</a>（跨平台）</p></li>
+<li><p><a class="reference external" href="https://marcelotduarte.github.io/cx_Freeze/">cx_Freeze</a>（跨平台）</p></li>
+<li><p><a class="reference external" href="https://github.com/ronaldoussoren/py2app">py2app</a>（僅限 macOS）</p></li>
+<li><p><a class="reference external" href="http://www.py2exe.org/">py2exe</a>（僅限 Windows）</p></li>
 </ul>
 </section>
 <section id="are-there-coding-standards-or-a-style-guide-for-python-programs">
@@ -482,16 +482,16 @@ to create a special module (often called config or cfg).  Just import the config
 module in all modules of your application; the module then becomes available as
 a global name.  Because there is only one instance of each module, any changes
 made to the module object get reflected everywhere.  For example:</p>
-<p>config.py:</p>
+<p>config.py：</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">0</span>   <span class="c1"># Default value of the &#39;x&#39; configuration setting</span>
 </pre></div>
 </div>
-<p>mod.py:</p>
+<p>mod.py：</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">config</span>
 <span class="n">config</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="mi">1</span>
 </pre></div>
 </div>
-<p>main.py:</p>
+<p>main.py：</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">config</span>
 <span class="kn">import</span> <span class="nn">mod</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">x</span><span class="p">)</span>
@@ -571,7 +571,7 @@ list/dictionary/whatever if it is.  For example, don't write:</p>
     <span class="o">...</span>
 </pre></div>
 </div>
-<p>but:</p>
+<p>但是：</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">mydict</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">mydict</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">mydict</span> <span class="o">=</span> <span class="p">{}</span>  <span class="c1"># create a new dict for local namespace</span>
@@ -1448,7 +1448,7 @@ and returning the list.  That's why we say that for lists, <code class="docutils
 <span class="go">[1]</span>
 </pre></div>
 </div>
-<p>This is equivalent to:</p>
+<p>這等價於：</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">result</span> <span class="o">=</span> <span class="n">a_list</span><span class="o">.</span><span class="fm">__iadd__</span><span class="p">([</span><span class="mi">1</span><span class="p">])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">a_list</span> <span class="o">=</span> <span class="n">result</span>
 </pre></div>
@@ -2005,7 +2005,7 @@ updates:</p>
 </section>
 </section>
 <section id="modules">
-<h2><a class="toc-backref" href="#id70">Modules</a><a class="headerlink" href="#modules" title="本標題的永久連結">¶</a></h2>
+<h2><a class="toc-backref" href="#id70">模組</a><a class="headerlink" href="#modules" title="本標題的永久連結">¶</a></h2>
 <section id="how-do-i-create-a-pyc-file">
 <h3><a class="toc-backref" href="#id71">How do I create a .pyc file?</a><a class="headerlink" href="#how-do-i-create-a-pyc-file" title="本標題的永久連結">¶</a></h3>
 <p>When a module is imported for the first time (or when the source file has
@@ -2068,12 +2068,12 @@ after checking <code class="docutils literal notranslate"><span class="pre">__na
 <section id="how-can-i-have-modules-that-mutually-import-each-other">
 <h3><a class="toc-backref" href="#id73">How can I have modules that mutually import each other?</a><a class="headerlink" href="#how-can-i-have-modules-that-mutually-import-each-other" title="本標題的永久連結">¶</a></h3>
 <p>Suppose you have the following modules:</p>
-<p><code class="file docutils literal notranslate"><span class="pre">foo.py</span></code>:</p>
+<p><code class="file docutils literal notranslate"><span class="pre">foo.py</span></code>：</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">bar</span> <span class="kn">import</span> <span class="n">bar_var</span>
 <span class="n">foo_var</span> <span class="o">=</span> <span class="mi">1</span>
 </pre></div>
 </div>
-<p><code class="file docutils literal notranslate"><span class="pre">bar.py</span></code>:</p>
+<p><code class="file docutils literal notranslate"><span class="pre">bar.py</span></code>：</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">foo</span> <span class="kn">import</span> <span class="n">foo_var</span>
 <span class="n">bar_var</span> <span class="o">=</span> <span class="mi">2</span>
 </pre></div>
@@ -2105,7 +2105,7 @@ classes)</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">import</span></code> statements</p></li>
 <li><p>active code (including globals that are initialized from imported values).</p></li>
 </ul>
-<p>van Rossum doesn't like this approach much because the imports appear in a
+<p>Van Rossum doesn't like this approach much because the imports appear in a
 strange place, but it does work.</p>
 <p>Matthias Urlichs recommends restructuring your code so that the recursive import
 is not necessary in the first place.</p>
@@ -2177,7 +2177,7 @@ class objects:</p>
 <li><a class="reference internal" href="#performance">Performance</a></li>
 <li><a class="reference internal" href="#sequences-tuples-lists">Sequences (Tuples/Lists)</a></li>
 <li><a class="reference internal" href="#objects">Objects</a></li>
-<li><a class="reference internal" href="#modules">Modules</a></li>
+<li><a class="reference internal" href="#modules">模組</a></li>
 </ul>
 </li>
 </ul>
@@ -2265,7 +2265,7 @@ class objects:</p>
 <br />
     <br />
 
-    最後更新於 11月 20, 2021。
+    最後更新於 11月 22, 2021。
     <a href="https://docs.python.org/3/bugs.html">Found a bug</a>?
     <br />
 

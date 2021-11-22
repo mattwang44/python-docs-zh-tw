@@ -207,7 +207,7 @@
             
   <section id="module-optparse">
 <span id="optparse-parser-for-command-line-options"></span><h1><a class="reference internal" href="#module-optparse" title="optparse: Command-line option parsing library.（已棄用）"><code class="xref py py-mod docutils literal notranslate"><span class="pre">optparse</span></code></a> --- Parser for command line options<a class="headerlink" href="#module-optparse" title="本標題的永久連結">¶</a></h1>
-<p><strong>Source code:</strong> <a class="reference external" href="https://github.com/python/cpython/tree/3.10/Lib/optparse.py">Lib/optparse.py</a></p>
+<p><strong>原始碼：</strong><a class="reference external" href="https://github.com/python/cpython/tree/3.10/Lib/optparse.py">Lib/optparse.py</a></p>
 <div class="deprecated">
 <p><span class="versionmodified deprecated">在 3.2 版本開始棄用: </span>The <a class="reference internal" href="#module-optparse" title="optparse: Command-line option parsing library.（已棄用）"><code class="xref py py-mod docutils literal notranslate"><span class="pre">optparse</span></code></a> module is deprecated and will not be developed further;
 development will continue with the <a class="reference internal" href="argparse.html#module-argparse" title="argparse: Command-line option and argument parsing library."><code class="xref py py-mod docutils literal notranslate"><span class="pre">argparse</span></code></a> module.</p>
@@ -440,7 +440,7 @@ program's command line:</p>
 </div>
 <p>(If you like, you can pass a custom argument list to <code class="xref py py-meth docutils literal notranslate"><span class="pre">parse_args()</span></code>, but
 that's rarely necessary: by default it uses <code class="docutils literal notranslate"><span class="pre">sys.argv[1:]</span></code>.)</p>
-<p><code class="xref py py-meth docutils literal notranslate"><span class="pre">parse_args()</span></code> returns two values:</p>
+<p><code class="xref py py-meth docutils literal notranslate"><span class="pre">parse_args()</span></code> 回傳兩個值：</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">options</span></code>, an object containing values for all of your options---e.g. if
 <code class="docutils literal notranslate"><span class="pre">--file</span></code> takes a single string argument, then <code class="docutils literal notranslate"><span class="pre">options.file</span></code> will be the
@@ -467,7 +467,7 @@ store it in an attribute of <code class="docutils literal notranslate"><span cla
 <p>The most common option action is <code class="docutils literal notranslate"><span class="pre">store</span></code>, which tells <a class="reference internal" href="#module-optparse" title="optparse: Command-line option parsing library.（已棄用）"><code class="xref py py-mod docutils literal notranslate"><span class="pre">optparse</span></code></a> to take
 the next argument (or the remainder of the current argument), ensure that it is
 of the correct type, and store it to your chosen destination.</p>
-<p>For example:</p>
+<p>舉例來說：</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">parser</span><span class="o">.</span><span class="n">add_option</span><span class="p">(</span><span class="s2">&quot;-f&quot;</span><span class="p">,</span> <span class="s2">&quot;--file&quot;</span><span class="p">,</span>
                   <span class="n">action</span><span class="o">=</span><span class="s2">&quot;store&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;string&quot;</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s2">&quot;filename&quot;</span><span class="p">)</span>
 </pre></div>
@@ -1018,7 +1018,7 @@ attributes; see <a class="reference internal" href="#optparse-standard-option-ac
 <code class="docutils literal notranslate"><span class="pre">options</span></code> (it happens to be an instance of <code class="xref py py-class docutils literal notranslate"><span class="pre">optparse.Values</span></code>).  Option
 arguments (and various other values) are stored as attributes of this object,
 according to the <a class="reference internal" href="#optparse.Option.dest" title="optparse.Option.dest"><code class="xref py py-attr docutils literal notranslate"><span class="pre">dest</span></code></a> (destination) option attribute.</p>
-<p>For example, when you call</p>
+<p>例如說，當你呼叫：</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -1163,7 +1163,7 @@ defaults to <code class="docutils literal notranslate"><span class="pre">&quot;c
 from the first long option string (e.g., <code class="docutils literal notranslate"><span class="pre">--foo-bar</span></code> implies
 <code class="docutils literal notranslate"><span class="pre">foo_bar</span></code>). If there are no long option strings, <a class="reference internal" href="#module-optparse" title="optparse: Command-line option parsing library.（已棄用）"><code class="xref py py-mod docutils literal notranslate"><span class="pre">optparse</span></code></a> derives a
 destination from the first short option string (e.g., <code class="docutils literal notranslate"><span class="pre">-f</span></code> implies <code class="docutils literal notranslate"><span class="pre">f</span></code>).</p>
-<p>Example:</p>
+<p>範例：</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">parser</span><span class="o">.</span><span class="n">add_option</span><span class="p">(</span><span class="s2">&quot;-f&quot;</span><span class="p">)</span>
 <span class="n">parser</span><span class="o">.</span><span class="n">add_option</span><span class="p">(</span><span class="s2">&quot;-p&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;float&quot;</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s2">&quot;point&quot;</span><span class="p">)</span>
 </pre></div>
@@ -1182,7 +1182,7 @@ destination from the first short option string (e.g., <code class="docutils lite
 <li><p><code class="docutils literal notranslate"><span class="pre">&quot;store_const&quot;</span></code> [required: <a class="reference internal" href="#optparse.Option.const" title="optparse.Option.const"><code class="xref py py-attr docutils literal notranslate"><span class="pre">const</span></code></a>; relevant:
 <a class="reference internal" href="#optparse.Option.dest" title="optparse.Option.dest"><code class="xref py py-attr docutils literal notranslate"><span class="pre">dest</span></code></a>]</p>
 <p>The value <a class="reference internal" href="#optparse.Option.const" title="optparse.Option.const"><code class="xref py py-attr docutils literal notranslate"><span class="pre">const</span></code></a> is stored in <a class="reference internal" href="#optparse.Option.dest" title="optparse.Option.dest"><code class="xref py py-attr docutils literal notranslate"><span class="pre">dest</span></code></a>.</p>
-<p>Example:</p>
+<p>範例：</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">parser</span><span class="o">.</span><span class="n">add_option</span><span class="p">(</span><span class="s2">&quot;-q&quot;</span><span class="p">,</span> <span class="s2">&quot;--quiet&quot;</span><span class="p">,</span>
                   <span class="n">action</span><span class="o">=</span><span class="s2">&quot;store_const&quot;</span><span class="p">,</span> <span class="n">const</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s2">&quot;verbose&quot;</span><span class="p">)</span>
 <span class="n">parser</span><span class="o">.</span><span class="n">add_option</span><span class="p">(</span><span class="s2">&quot;-v&quot;</span><span class="p">,</span> <span class="s2">&quot;--verbose&quot;</span><span class="p">,</span>
@@ -1202,7 +1202,7 @@ destination from the first short option string (e.g., <code class="docutils lite
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">&quot;store_false&quot;</span></code> [relevant: <a class="reference internal" href="#optparse.Option.dest" title="optparse.Option.dest"><code class="xref py py-attr docutils literal notranslate"><span class="pre">dest</span></code></a>]</p>
 <p>Like <code class="docutils literal notranslate"><span class="pre">&quot;store_true&quot;</span></code>, but stores <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p>
-<p>Example:</p>
+<p>範例：</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">parser</span><span class="o">.</span><span class="n">add_option</span><span class="p">(</span><span class="s2">&quot;--clobber&quot;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s2">&quot;store_true&quot;</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s2">&quot;clobber&quot;</span><span class="p">)</span>
 <span class="n">parser</span><span class="o">.</span><span class="n">add_option</span><span class="p">(</span><span class="s2">&quot;--no-clobber&quot;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s2">&quot;store_false&quot;</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s2">&quot;clobber&quot;</span><span class="p">)</span>
 </pre></div>
@@ -1218,7 +1218,7 @@ multiple arguments are consumed, and a tuple of length <a class="reference inter
 is appended to <a class="reference internal" href="#optparse.Option.dest" title="optparse.Option.dest"><code class="xref py py-attr docutils literal notranslate"><span class="pre">dest</span></code></a>.</p>
 <p>The defaults for <a class="reference internal" href="#optparse.Option.type" title="optparse.Option.type"><code class="xref py py-attr docutils literal notranslate"><span class="pre">type</span></code></a> and <a class="reference internal" href="#optparse.Option.dest" title="optparse.Option.dest"><code class="xref py py-attr docutils literal notranslate"><span class="pre">dest</span></code></a> are the same as
 for the <code class="docutils literal notranslate"><span class="pre">&quot;store&quot;</span></code> action.</p>
-<p>Example:</p>
+<p>範例：</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">parser</span><span class="o">.</span><span class="n">add_option</span><span class="p">(</span><span class="s2">&quot;-t&quot;</span><span class="p">,</span> <span class="s2">&quot;--tracks&quot;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s2">&quot;append&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;int&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1255,7 +1255,7 @@ is encountered.</p>
 <p>Increment the integer stored at <a class="reference internal" href="#optparse.Option.dest" title="optparse.Option.dest"><code class="xref py py-attr docutils literal notranslate"><span class="pre">dest</span></code></a>.  If no default value is
 supplied, <a class="reference internal" href="#optparse.Option.dest" title="optparse.Option.dest"><code class="xref py py-attr docutils literal notranslate"><span class="pre">dest</span></code></a> is set to zero before being incremented the
 first time.</p>
-<p>Example:</p>
+<p>範例：</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">parser</span><span class="o">.</span><span class="n">add_option</span><span class="p">(</span><span class="s2">&quot;-v&quot;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s2">&quot;count&quot;</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s2">&quot;verbosity&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1289,7 +1289,7 @@ listed in the help message.  To omit an option entirely, use the special value
 <code class="xref py py-data docutils literal notranslate"><span class="pre">optparse.SUPPRESS_HELP</span></code>.</p>
 <p><a class="reference internal" href="#module-optparse" title="optparse: Command-line option parsing library.（已棄用）"><code class="xref py py-mod docutils literal notranslate"><span class="pre">optparse</span></code></a> automatically adds a <a class="reference internal" href="#optparse.Option.help" title="optparse.Option.help"><code class="xref py py-attr docutils literal notranslate"><span class="pre">help</span></code></a> option to all
 OptionParsers, so you do not normally need to create one.</p>
-<p>Example:</p>
+<p>範例：</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">optparse</span> <span class="kn">import</span> <span class="n">OptionParser</span><span class="p">,</span> <span class="n">SUPPRESS_HELP</span>
 
 <span class="c1"># usually, a help option is added automatically, but that can</span>
@@ -2164,7 +2164,7 @@ getting it right when it's needed.</p>
 <br />
     <br />
 
-    最後更新於 11月 20, 2021。
+    最後更新於 11月 22, 2021。
     <a href="https://docs.python.org/3/bugs.html">Found a bug</a>?
     <br />
 

@@ -81,7 +81,7 @@
 <li><a class="reference internal" href="#user-defined-generic-types">User-defined generic types</a></li>
 <li><a class="reference internal" href="#the-any-type">The <code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code> type</a></li>
 <li><a class="reference internal" href="#nominal-vs-structural-subtyping">Nominal vs structural subtyping</a></li>
-<li><a class="reference internal" href="#module-contents">Module contents</a><ul>
+<li><a class="reference internal" href="#module-contents">模組內容</a><ul>
 <li><a class="reference internal" href="#special-typing-primitives">Special typing primitives</a><ul>
 <li><a class="reference internal" href="#special-types">Special types</a></li>
 <li><a class="reference internal" href="#special-forms">Special forms</a></li>
@@ -103,9 +103,9 @@
 </ul>
 </li>
 <li><a class="reference internal" href="#protocols">Protocols</a></li>
-<li><a class="reference internal" href="#functions-and-decorators">Functions and decorators</a></li>
+<li><a class="reference internal" href="#functions-and-decorators">函式與裝飾器</a></li>
 <li><a class="reference internal" href="#introspection-helpers">Introspection helpers</a></li>
-<li><a class="reference internal" href="#constant">Constant</a></li>
+<li><a class="reference internal" href="#constant">常數</a></li>
 </ul>
 </li>
 </ul>
@@ -193,7 +193,7 @@
 <div class="versionadded">
 <p><span class="versionmodified added">在 3.5 版本新加入.</span></p>
 </div>
-<p><strong>Source code:</strong> <a class="reference external" href="https://github.com/python/cpython/tree/3.10/Lib/typing.py">Lib/typing.py</a></p>
+<p><strong>原始碼：</strong><a class="reference external" href="https://github.com/python/cpython/tree/3.10/Lib/typing.py">Lib/typing.py</a></p>
 <div class="admonition note">
 <p class="admonition-title">備註</p>
 <p>The Python runtime does not enforce function and variable type annotations.
@@ -396,7 +396,7 @@ cost will be reduced in 3.11.0.</p>
 <h2>Callable<a class="headerlink" href="#callable" title="本標題的永久連結">¶</a></h2>
 <p>Frameworks expecting callback functions of specific signatures might be
 type hinted using <code class="docutils literal notranslate"><span class="pre">Callable[[Arg1Type,</span> <span class="pre">Arg2Type],</span> <span class="pre">ReturnType]</span></code>.</p>
-<p>For example:</p>
+<p>舉例來說：</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">collections.abc</span> <span class="kn">import</span> <span class="n">Callable</span>
 
 <span class="k">def</span> <span class="nf">feeder</span><span class="p">(</span><span class="n">get_next_item</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[],</span> <span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
@@ -711,7 +711,7 @@ can define new custom protocols to fully enjoy structural subtyping
 (see examples below).</p>
 </section>
 <section id="module-contents">
-<h2>Module contents<a class="headerlink" href="#module-contents" title="本標題的永久連結">¶</a></h2>
+<h2>模組內容<a class="headerlink" href="#module-contents" title="本標題的永久連結">¶</a></h2>
 <p>The module defines the following classes, functions and decorators.</p>
 <div class="admonition note">
 <p class="admonition-title">備註</p>
@@ -957,7 +957,7 @@ callable being passed in:</p>
 <ul class="simple">
 <li><p><span class="target" id="index-26"></span><a class="pep reference external" href="https://www.python.org/dev/peps/pep-0612"><strong>PEP 612</strong></a> -- Parameter Specification Variables (the PEP which introduced
 <code class="docutils literal notranslate"><span class="pre">ParamSpec</span></code> and <code class="docutils literal notranslate"><span class="pre">Concatenate</span></code>).</p></li>
-<li><p><a class="reference internal" href="#typing.ParamSpec" title="typing.ParamSpec"><code class="xref py py-class docutils literal notranslate"><span class="pre">ParamSpec</span></code></a> and <a class="reference internal" href="#typing.Callable" title="typing.Callable"><code class="xref py py-class docutils literal notranslate"><span class="pre">Callable</span></code></a>.</p></li>
+<li><p><a class="reference internal" href="#typing.ParamSpec" title="typing.ParamSpec"><code class="xref py py-class docutils literal notranslate"><span class="pre">ParamSpec</span></code></a> 和 <a class="reference internal" href="#typing.Callable" title="typing.Callable"><code class="xref py py-class docutils literal notranslate"><span class="pre">Callable</span></code></a>。</p></li>
 </ul>
 </div>
 <dl class="py class">
@@ -1206,7 +1206,7 @@ function:</p>
 <li><p>The return value is a boolean.</p></li>
 <li><p>If the return value is <code class="docutils literal notranslate"><span class="pre">True</span></code>, the type of its argument
 is the type inside <code class="docutils literal notranslate"><span class="pre">TypeGuard</span></code>.</p>
-<p>For example:</p>
+<p>舉例來說：</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">is_str_list</span><span class="p">(</span><span class="n">val</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">object</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">TypeGuard</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]:</span>
     <span class="sd">&#39;&#39;&#39;Determines whether all objects in the list are strings&#39;&#39;&#39;</span>
     <span class="k">return</span> <span class="nb">all</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">val</span><span class="p">)</span>
@@ -1277,7 +1277,7 @@ For example, a generic mapping type might be defined as:</p>
 <dt class="sig sig-object py" id="typing.TypeVar">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">typing.</span></span><span class="sig-name descname"><span class="pre">TypeVar</span></span><a class="headerlink" href="#typing.TypeVar" title="本定義的永久連結">¶</a></dt>
 <dd><p>Type variable.</p>
-<p>Usage:</p>
+<p>用法：</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">T</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s1">&#39;T&#39;</span><span class="p">)</span>  <span class="c1"># Can be anything</span>
 <span class="n">A</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="nb">bytes</span><span class="p">)</span>  <span class="c1"># Must be str or bytes</span>
 </pre></div>
@@ -1315,7 +1315,7 @@ see <span class="target" id="index-35"></span><a class="pep reference external" 
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">typing.</span></span><span class="sig-name descname"><span class="pre">ParamSpec</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bound</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">covariant</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">contravariant</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#typing.ParamSpec" title="本定義的永久連結">¶</a></dt>
 <dd><p>Parameter specification variable.  A specialized version of
 <a class="reference internal" href="#typing.TypeVar" title="typing.TypeVar"><code class="xref py py-class docutils literal notranslate"><span class="pre">type</span> <span class="pre">variables</span></code></a>.</p>
-<p>Usage:</p>
+<p>用法：</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">P</span> <span class="o">=</span> <span class="n">ParamSpec</span><span class="p">(</span><span class="s1">&#39;P&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1398,7 +1398,7 @@ be pickled.</p>
 <ul class="simple">
 <li><p><span class="target" id="index-36"></span><a class="pep reference external" href="https://www.python.org/dev/peps/pep-0612"><strong>PEP 612</strong></a> -- Parameter Specification Variables (the PEP which introduced
 <code class="docutils literal notranslate"><span class="pre">ParamSpec</span></code> and <code class="docutils literal notranslate"><span class="pre">Concatenate</span></code>).</p></li>
-<li><p><a class="reference internal" href="#typing.Callable" title="typing.Callable"><code class="xref py py-class docutils literal notranslate"><span class="pre">Callable</span></code></a> and <a class="reference internal" href="#typing.Concatenate" title="typing.Concatenate"><code class="xref py py-class docutils literal notranslate"><span class="pre">Concatenate</span></code></a>.</p></li>
+<li><p><a class="reference internal" href="#typing.Callable" title="typing.Callable"><code class="xref py py-class docutils literal notranslate"><span class="pre">Callable</span></code></a> 和 <a class="reference internal" href="#typing.Concatenate" title="typing.Concatenate"><code class="xref py py-class docutils literal notranslate"><span class="pre">Concatenate</span></code></a>。</p></li>
 </ul>
 </div>
 </dd></dl>
@@ -1518,13 +1518,13 @@ it impossible to call (instantiate) <a class="reference internal" href="ssl.html
 <dt class="sig sig-object py" id="typing.NamedTuple">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">typing.</span></span><span class="sig-name descname"><span class="pre">NamedTuple</span></span><a class="headerlink" href="#typing.NamedTuple" title="本定義的永久連結">¶</a></dt>
 <dd><p>Typed version of <a class="reference internal" href="collections.html#collections.namedtuple" title="collections.namedtuple"><code class="xref py py-func docutils literal notranslate"><span class="pre">collections.namedtuple()</span></code></a>.</p>
-<p>Usage:</p>
+<p>用法：</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Employee</span><span class="p">(</span><span class="n">NamedTuple</span><span class="p">):</span>
     <span class="n">name</span><span class="p">:</span> <span class="nb">str</span>
     <span class="nb">id</span><span class="p">:</span> <span class="nb">int</span>
 </pre></div>
 </div>
-<p>This is equivalent to:</p>
+<p>這等價於：</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">Employee</span> <span class="o">=</span> <span class="n">collections</span><span class="o">.</span><span class="n">namedtuple</span><span class="p">(</span><span class="s1">&#39;Employee&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;id&#39;</span><span class="p">])</span>
 </pre></div>
 </div>
@@ -2272,7 +2272,7 @@ that is covariant in its return type.</p>
 
 </section>
 <section id="functions-and-decorators">
-<h3>Functions and decorators<a class="headerlink" href="#functions-and-decorators" title="本標題的永久連結">¶</a></h3>
+<h3>函式與裝飾器<a class="headerlink" href="#functions-and-decorators" title="本標題的永久連結">¶</a></h3>
 <dl class="py function">
 <dt class="sig sig-object py" id="typing.cast">
 <span class="sig-prename descclassname"><span class="pre">typing.</span></span><span class="sig-name descname"><span class="pre">cast</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">typ</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">val</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#typing.cast" title="本定義的永久連結">¶</a></dt>
@@ -2451,7 +2451,7 @@ Examples:</p>
 <dt class="sig sig-object py" id="typing.is_typeddict">
 <span class="sig-prename descclassname"><span class="pre">typing.</span></span><span class="sig-name descname"><span class="pre">is_typeddict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tp</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#typing.is_typeddict" title="本定義的永久連結">¶</a></dt>
 <dd><p>Check if a type is a <a class="reference internal" href="#typing.TypedDict" title="typing.TypedDict"><code class="xref py py-class docutils literal notranslate"><span class="pre">TypedDict</span></code></a>.</p>
-<p>For example:</p>
+<p>舉例來說：</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Film</span><span class="p">(</span><span class="n">TypedDict</span><span class="p">):</span>
     <span class="n">title</span><span class="p">:</span> <span class="nb">str</span>
     <span class="n">year</span><span class="p">:</span> <span class="nb">int</span>
@@ -2485,7 +2485,7 @@ will not automatically resolve to <code class="docutils literal notranslate"><sp
 
 </section>
 <section id="constant">
-<h3>Constant<a class="headerlink" href="#constant" title="本標題的永久連結">¶</a></h3>
+<h3>常數<a class="headerlink" href="#constant" title="本標題的永久連結">¶</a></h3>
 <dl class="py data">
 <dt class="sig sig-object py" id="typing.TYPE_CHECKING">
 <span class="sig-prename descclassname"><span class="pre">typing.</span></span><span class="sig-name descname"><span class="pre">TYPE_CHECKING</span></span><a class="headerlink" href="#typing.TYPE_CHECKING" title="本定義的永久連結">¶</a></dt>
@@ -2537,7 +2537,7 @@ This makes it unnecessary to use quotes around the annotation.
 <li><a class="reference internal" href="#user-defined-generic-types">User-defined generic types</a></li>
 <li><a class="reference internal" href="#the-any-type">The <code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code> type</a></li>
 <li><a class="reference internal" href="#nominal-vs-structural-subtyping">Nominal vs structural subtyping</a></li>
-<li><a class="reference internal" href="#module-contents">Module contents</a><ul>
+<li><a class="reference internal" href="#module-contents">模組內容</a><ul>
 <li><a class="reference internal" href="#special-typing-primitives">Special typing primitives</a><ul>
 <li><a class="reference internal" href="#special-types">Special types</a></li>
 <li><a class="reference internal" href="#special-forms">Special forms</a></li>
@@ -2559,9 +2559,9 @@ This makes it unnecessary to use quotes around the annotation.
 </ul>
 </li>
 <li><a class="reference internal" href="#protocols">Protocols</a></li>
-<li><a class="reference internal" href="#functions-and-decorators">Functions and decorators</a></li>
+<li><a class="reference internal" href="#functions-and-decorators">函式與裝飾器</a></li>
 <li><a class="reference internal" href="#introspection-helpers">Introspection helpers</a></li>
-<li><a class="reference internal" href="#constant">Constant</a></li>
+<li><a class="reference internal" href="#constant">常數</a></li>
 </ul>
 </li>
 </ul>
@@ -2652,7 +2652,7 @@ This makes it unnecessary to use quotes around the annotation.
 <br />
     <br />
 
-    最後更新於 11月 20, 2021。
+    最後更新於 11月 22, 2021。
     <a href="https://docs.python.org/3/bugs.html">Found a bug</a>?
     <br />
 

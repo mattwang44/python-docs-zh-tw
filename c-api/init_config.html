@@ -73,7 +73,7 @@
   <h3><a href="../contents.html">目錄</a></h3>
   <ul>
 <li><a class="reference internal" href="#">Python Initialization Configuration</a><ul>
-<li><a class="reference internal" href="#example">Example</a></li>
+<li><a class="reference internal" href="#example">範例</a></li>
 <li><a class="reference internal" href="#pywidestringlist">PyWideStringList</a></li>
 <li><a class="reference internal" href="#pystatus">PyStatus</a></li>
 <li><a class="reference internal" href="#pypreconfig">PyPreConfig</a></li>
@@ -192,7 +192,7 @@ program.</p>
 <p><span class="target" id="index-0"></span><a class="pep reference external" href="https://www.python.org/dev/peps/pep-0587"><strong>PEP 587</strong></a> &quot;Python Initialization Configuration&quot;.</p>
 </div>
 <section id="example">
-<h2>Example<a class="headerlink" href="#example" title="本標題的永久連結">¶</a></h2>
+<h2>範例<a class="headerlink" href="#example" title="本標題的永久連結">¶</a></h2>
 <p>Example of customized Python always running in isolated mode:</p>
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">**</span><span class="n">argv</span><span class="p">)</span><span class="w"></span>
 <span class="p">{</span><span class="w"></span>
@@ -289,7 +289,7 @@ or exit.</p>
 <dl class="c member">
 <dt class="sig sig-object c" id="c.PyStatus.err_msg">
 <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">err_msg</span></span></span><a class="headerlink" href="#c.PyStatus.err_msg" title="本定義的永久連結">¶</a><br /></dt>
-<dd><p>Error message.</p>
+<dd><p>錯誤訊息。</p>
 </dd></dl>
 
 <dl class="c member">
@@ -309,7 +309,7 @@ or exit.</p>
 <dt class="sig sig-object c" id="c.PyStatus.PyStatus_Error">
 <a class="reference internal" href="#c.PyStatus" title="PyStatus"><span class="n"><span class="pre">PyStatus</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PyStatus_Error</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">err_msg</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.PyStatus.PyStatus_Error" title="本定義的永久連結">¶</a><br /></dt>
 <dd><p>Initialization error with a message.</p>
-<p><em>err_msg</em> must not be <code class="docutils literal notranslate"><span class="pre">NULL</span></code>.</p>
+<p><em>err_msg</em> 不可為 <code class="docutils literal notranslate"><span class="pre">NULL</span></code>。</p>
 </dd></dl>
 
 <dl class="c function">
@@ -359,7 +359,7 @@ only be called if <code class="docutils literal notranslate"><span class="pre">P
 <p>Internally, Python uses macros which set <code class="docutils literal notranslate"><span class="pre">PyStatus.func</span></code>,
 whereas functions to create a status set <code class="docutils literal notranslate"><span class="pre">func</span></code> to <code class="docutils literal notranslate"><span class="pre">NULL</span></code>.</p>
 </div>
-<p>Example:</p>
+<p>範例：</p>
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">PyStatus</span><span class="w"> </span><span class="nf">alloc</span><span class="p">(</span><span class="kt">void</span><span class="w"> </span><span class="o">**</span><span class="n">ptr</span><span class="p">,</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">size</span><span class="p">)</span><span class="w"></span>
 <span class="p">{</span><span class="w"></span>
 <span class="w">    </span><span class="o">*</span><span class="n">ptr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PyMem_RawMalloc</span><span class="p">(</span><span class="n">size</span><span class="p">);</span><span class="w"></span>
@@ -421,8 +421,8 @@ memory allocator</span></a> with <a class="reference internal" href="memory.html
 </ul>
 <p><code class="docutils literal notranslate"><span class="pre">PYMEM_ALLOCATOR_PYMALLOC</span></code> and <code class="docutils literal notranslate"><span class="pre">PYMEM_ALLOCATOR_PYMALLOC_DEBUG</span></code> are
 not supported if Python is <a class="reference internal" href="../using/configure.html#cmdoption-without-pymalloc"><code class="xref std std-option docutils literal notranslate"><span class="pre">configured</span> <span class="pre">using</span> <span class="pre">--without-pymalloc</span></code></a>.</p>
-<p>See <a class="reference internal" href="memory.html#memory"><span class="std std-ref">Memory Management</span></a>.</p>
-<p>Default: <code class="docutils literal notranslate"><span class="pre">PYMEM_ALLOCATOR_NOT_SET</span></code>.</p>
+<p>請見<a class="reference internal" href="memory.html#memory"><span class="std std-ref">記憶體管理</span></a>。</p>
+<p>預設：<code class="docutils literal notranslate"><span class="pre">PYMEM_ALLOCATOR_NOT_SET</span></code>。</p>
 </dd></dl>
 
 <dl class="c member">
@@ -431,7 +431,7 @@ not supported if Python is <a class="reference internal" href="../using/configur
 <dd><p>Set the LC_CTYPE locale to the user preferred locale?</p>
 <p>If equals to 0, set <a class="reference internal" href="#c.PyPreConfig.coerce_c_locale" title="PyPreConfig.coerce_c_locale"><code class="xref c c-member docutils literal notranslate"><span class="pre">coerce_c_locale</span></code></a> and
 <a class="reference internal" href="#c.PyPreConfig.coerce_c_locale_warn" title="PyPreConfig.coerce_c_locale_warn"><code class="xref c c-member docutils literal notranslate"><span class="pre">coerce_c_locale_warn</span></code></a> members to 0.</p>
-<p>See the <a class="reference internal" href="../glossary.html#term-locale-encoding"><span class="xref std std-term">locale encoding</span></a>.</p>
+<p>請見 <a class="reference internal" href="../glossary.html#term-locale-encoding"><span class="xref std std-term">locale encoding</span></a>。</p>
 <p>Default: <code class="docutils literal notranslate"><span class="pre">1</span></code> in Python config, <code class="docutils literal notranslate"><span class="pre">0</span></code> in isolated config.</p>
 </dd></dl>
 
@@ -441,7 +441,7 @@ not supported if Python is <a class="reference internal" href="../using/configur
 <dd><p>If equals to 2, coerce the C locale.</p>
 <p>If equals to 1, read the LC_CTYPE locale to decide if it should be
 coerced.</p>
-<p>See the <a class="reference internal" href="../glossary.html#term-locale-encoding"><span class="xref std std-term">locale encoding</span></a>.</p>
+<p>請見 <a class="reference internal" href="../glossary.html#term-locale-encoding"><span class="xref std std-term">locale encoding</span></a>。</p>
 <p>Default: <code class="docutils literal notranslate"><span class="pre">-1</span></code> in Python config, <code class="docutils literal notranslate"><span class="pre">0</span></code> in isolated config.</p>
 </dd></dl>
 
@@ -470,17 +470,17 @@ see <a class="reference internal" href="#c.PyConfig.dev_mode" title="PyConfig.de
 <dl class="c member">
 <dt class="sig sig-object c" id="c.PyPreConfig.legacy_windows_fs_encoding">
 <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">legacy_windows_fs_encoding</span></span></span><a class="headerlink" href="#c.PyPreConfig.legacy_windows_fs_encoding" title="本定義的永久連結">¶</a><br /></dt>
-<dd><p>If non-zero:</p>
+<dd><p>如果不為 0：</p>
 <ul class="simple">
-<li><p>Set <a class="reference internal" href="#c.PyPreConfig.utf8_mode" title="PyPreConfig.utf8_mode"><code class="xref c c-member docutils literal notranslate"><span class="pre">PyPreConfig.utf8_mode</span></code></a> to <code class="docutils literal notranslate"><span class="pre">0</span></code>,</p></li>
-<li><p>Set <a class="reference internal" href="#c.PyConfig.filesystem_encoding" title="PyConfig.filesystem_encoding"><code class="xref c c-member docutils literal notranslate"><span class="pre">PyConfig.filesystem_encoding</span></code></a> to <code class="docutils literal notranslate"><span class="pre">&quot;mbcs&quot;</span></code>,</p></li>
-<li><p>Set <a class="reference internal" href="#c.PyConfig.filesystem_errors" title="PyConfig.filesystem_errors"><code class="xref c c-member docutils literal notranslate"><span class="pre">PyConfig.filesystem_errors</span></code></a> to <code class="docutils literal notranslate"><span class="pre">&quot;replace&quot;</span></code>.</p></li>
+<li><p>將 <a class="reference internal" href="#c.PyPreConfig.utf8_mode" title="PyPreConfig.utf8_mode"><code class="xref c c-member docutils literal notranslate"><span class="pre">PyPreConfig.utf8_mode</span></code></a> 設為 <code class="docutils literal notranslate"><span class="pre">0</span></code>、</p></li>
+<li><p>將 <a class="reference internal" href="#c.PyConfig.filesystem_encoding" title="PyConfig.filesystem_encoding"><code class="xref c c-member docutils literal notranslate"><span class="pre">PyConfig.filesystem_encoding</span></code></a> 設為 <code class="docutils literal notranslate"><span class="pre">&quot;mbcs&quot;</span></code>、</p></li>
+<li><p>將 <a class="reference internal" href="#c.PyConfig.filesystem_errors" title="PyConfig.filesystem_errors"><code class="xref c c-member docutils literal notranslate"><span class="pre">PyConfig.filesystem_errors</span></code></a> 設為 <code class="docutils literal notranslate"><span class="pre">&quot;replace&quot;</span></code>。</p></li>
 </ul>
 <p>Initialized the from <span class="target" id="index-1"></span><a class="reference internal" href="../using/cmdline.html#envvar-PYTHONLEGACYWINDOWSFSENCODING"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PYTHONLEGACYWINDOWSFSENCODING</span></code></a> environment
 variable value.</p>
 <p>Only available on Windows. <code class="docutils literal notranslate"><span class="pre">#ifdef</span> <span class="pre">MS_WINDOWS</span></code> macro can be used for
 Windows specific code.</p>
-<p>Default: <code class="docutils literal notranslate"><span class="pre">0</span></code>.</p>
+<p>預設：<code class="docutils literal notranslate"><span class="pre">0</span></code>。</p>
 </dd></dl>
 
 <dl class="c member">
@@ -529,7 +529,7 @@ same way the regular Python parses command line arguments: see
 <dt class="sig sig-object c" id="c.Py_PreInitialize">
 <a class="reference internal" href="#c.PyStatus" title="PyStatus"><span class="n"><span class="pre">PyStatus</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Py_PreInitialize</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.PyPreConfig" title="PyPreConfig"><span class="n"><span class="pre">PyPreConfig</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">preconfig</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.Py_PreInitialize" title="本定義的永久連結">¶</a><br /></dt>
 <dd><p>Preinitialize Python from <em>preconfig</em> preconfiguration.</p>
-<p><em>preconfig</em> must not be <code class="docutils literal notranslate"><span class="pre">NULL</span></code>.</p>
+<p><em>preconfig</em> 不可為 <code class="docutils literal notranslate"><span class="pre">NULL</span></code>。</p>
 </dd></dl>
 
 <dl class="c function">
@@ -538,7 +538,7 @@ same way the regular Python parses command line arguments: see
 <dd><p>Preinitialize Python from <em>preconfig</em> preconfiguration.</p>
 <p>Parse <em>argv</em> command line arguments (bytes strings) if
 <a class="reference internal" href="#c.PyPreConfig.parse_argv" title="PyPreConfig.parse_argv"><code class="xref c c-member docutils literal notranslate"><span class="pre">parse_argv</span></code></a> of <em>preconfig</em> is non-zero.</p>
-<p><em>preconfig</em> must not be <code class="docutils literal notranslate"><span class="pre">NULL</span></code>.</p>
+<p><em>preconfig</em> 不可為 <code class="docutils literal notranslate"><span class="pre">NULL</span></code>。</p>
 </dd></dl>
 
 <dl class="c function">
@@ -547,7 +547,7 @@ same way the regular Python parses command line arguments: see
 <dd><p>Preinitialize Python from <em>preconfig</em> preconfiguration.</p>
 <p>Parse <em>argv</em> command line arguments (wide strings) if
 <a class="reference internal" href="#c.PyPreConfig.parse_argv" title="PyPreConfig.parse_argv"><code class="xref c c-member docutils literal notranslate"><span class="pre">parse_argv</span></code></a> of <em>preconfig</em> is non-zero.</p>
-<p><em>preconfig</em> must not be <code class="docutils literal notranslate"><span class="pre">NULL</span></code>.</p>
+<p><em>preconfig</em> 不可為 <code class="docutils literal notranslate"><span class="pre">NULL</span></code>。</p>
 </dd></dl>
 
 <p>The caller is responsible to handle exceptions (error or exit) using
@@ -750,7 +750,7 @@ disable buffering on the C streams stdout and stderr.</p>
 <p>If equal or greater to 2, raise a <a class="reference internal" href="../library/exceptions.html#BytesWarning" title="BytesWarning"><code class="xref py py-exc docutils literal notranslate"><span class="pre">BytesWarning</span></code></a> exception in these
 cases.</p>
 <p>Incremented by the <a class="reference internal" href="../using/cmdline.html#cmdoption-b"><code class="xref std std-option docutils literal notranslate"><span class="pre">-b</span></code></a> command line option.</p>
-<p>Default: <code class="docutils literal notranslate"><span class="pre">0</span></code>.</p>
+<p>預設：<code class="docutils literal notranslate"><span class="pre">0</span></code>。</p>
 </dd></dl>
 
 <dl class="c member">
@@ -758,7 +758,7 @@ cases.</p>
 <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">warn_default_encoding</span></span></span><a class="headerlink" href="#c.PyConfig.warn_default_encoding" title="本定義的永久連結">¶</a><br /></dt>
 <dd><p>If non-zero, emit a <a class="reference internal" href="../library/exceptions.html#EncodingWarning" title="EncodingWarning"><code class="xref py py-exc docutils literal notranslate"><span class="pre">EncodingWarning</span></code></a> warning when <a class="reference internal" href="../library/io.html#io.TextIOWrapper" title="io.TextIOWrapper"><code class="xref py py-class docutils literal notranslate"><span class="pre">io.TextIOWrapper</span></code></a>
 uses its default encoding. See <a class="reference internal" href="../library/io.html#io-encoding-warning"><span class="std std-ref">Opt-in EncodingWarning</span></a> for details.</p>
-<p>Default: <code class="docutils literal notranslate"><span class="pre">0</span></code>.</p>
+<p>預設：<code class="docutils literal notranslate"><span class="pre">0</span></code>。</p>
 <div class="versionadded">
 <p><span class="versionmodified added">在 3.10 版本新加入.</span></p>
 </div>
@@ -777,7 +777,7 @@ value of the 'check_source' flag.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">L&quot;default&quot;</span></code>: The 'check_source' flag in hash-based pycs
 determines invalidation.</p></li>
 </ul>
-<p>Default: <code class="docutils literal notranslate"><span class="pre">L&quot;default&quot;</span></code>.</p>
+<p>預設：<code class="docutils literal notranslate"><span class="pre">L&quot;default&quot;</span></code>。</p>
 <p>See also <span class="target" id="index-5"></span><a class="pep reference external" href="https://www.python.org/dev/peps/pep-0552"><strong>PEP 552</strong></a> &quot;Deterministic pycs&quot;.</p>
 </dd></dl>
 
@@ -811,7 +811,7 @@ buffering on stdin and stdout (only stdout on Windows).</p></li>
 <p>Set to <code class="docutils literal notranslate"><span class="pre">1</span></code> by the <span class="target" id="index-6"></span><a class="reference internal" href="../using/cmdline.html#envvar-PYTHONDUMPREFS"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PYTHONDUMPREFS</span></code></a> environment variable.</p>
 <p>Need a special build of Python with the <code class="docutils literal notranslate"><span class="pre">Py_TRACE_REFS</span></code> macro defined:
 see the <a class="reference internal" href="../using/configure.html#cmdoption-with-trace-refs"><code class="xref std std-option docutils literal notranslate"><span class="pre">configure</span> <span class="pre">--with-trace-refs</span> <span class="pre">option</span></code></a>.</p>
-<p>Default: <code class="docutils literal notranslate"><span class="pre">0</span></code>.</p>
+<p>預設：<code class="docutils literal notranslate"><span class="pre">0</span></code>。</p>
 </dd></dl>
 
 <dl class="c member">
@@ -918,7 +918,7 @@ not <code class="docutils literal notranslate"><span class="pre">NULL</span></co
 <dd><p>If non-zero, profile import time.</p>
 <p>Set the <code class="docutils literal notranslate"><span class="pre">1</span></code> by the <a class="reference internal" href="../using/cmdline.html#cmdoption-X"><code class="xref std std-option docutils literal notranslate"><span class="pre">-X</span> <span class="pre">importtime</span></code></a> option and the
 <span class="target" id="index-10"></span><a class="reference internal" href="../using/cmdline.html#envvar-PYTHONPROFILEIMPORTTIME"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PYTHONPROFILEIMPORTTIME</span></code></a> environment variable.</p>
-<p>Default: <code class="docutils literal notranslate"><span class="pre">0</span></code>.</p>
+<p>預設：<code class="docutils literal notranslate"><span class="pre">0</span></code>。</p>
 </dd></dl>
 
 <dl class="c member">
@@ -931,7 +931,7 @@ the script or the command, even when <a class="reference internal" href="../libr
 be a terminal.</p>
 <p>Incremented by the <a class="reference internal" href="../using/cmdline.html#cmdoption-i"><code class="xref std std-option docutils literal notranslate"><span class="pre">-i</span></code></a> command line option. Set to <code class="docutils literal notranslate"><span class="pre">1</span></code> if the
 <span class="target" id="index-11"></span><a class="reference internal" href="../using/cmdline.html#envvar-PYTHONINSPECT"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PYTHONINSPECT</span></code></a> environment variable is non-empty.</p>
-<p>Default: <code class="docutils literal notranslate"><span class="pre">0</span></code>.</p>
+<p>預設：<code class="docutils literal notranslate"><span class="pre">0</span></code>。</p>
 </dd></dl>
 
 <dl class="c member">
@@ -946,7 +946,7 @@ be a terminal.</p>
 <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">interactive</span></span></span><a class="headerlink" href="#c.PyConfig.interactive" title="本定義的永久連結">¶</a><br /></dt>
 <dd><p>If greater than 0, enable the interactive mode (REPL).</p>
 <p>Incremented by the <a class="reference internal" href="../using/cmdline.html#cmdoption-i"><code class="xref std std-option docutils literal notranslate"><span class="pre">-i</span></code></a> command line option.</p>
-<p>Default: <code class="docutils literal notranslate"><span class="pre">0</span></code>.</p>
+<p>預設：<code class="docutils literal notranslate"><span class="pre">0</span></code>。</p>
 </dd></dl>
 
 <dl class="c member">
@@ -976,7 +976,7 @@ and <a class="reference internal" href="../library/sys.html#sys.stderr" title="s
 variable is set to a non-empty string.</p>
 <p>Only available on Windows. <code class="docutils literal notranslate"><span class="pre">#ifdef</span> <span class="pre">MS_WINDOWS</span></code> macro can be used for
 Windows specific code.</p>
-<p>Default: <code class="docutils literal notranslate"><span class="pre">0</span></code>.</p>
+<p>預設：<code class="docutils literal notranslate"><span class="pre">0</span></code>。</p>
 <p>See also the <span class="target" id="index-13"></span><a class="pep reference external" href="https://www.python.org/dev/peps/pep-0528"><strong>PEP 528</strong></a> (Change Windows console encoding to UTF-8).</p>
 </dd></dl>
 
@@ -987,7 +987,7 @@ Windows specific code.</p>
 <p>Set to <code class="docutils literal notranslate"><span class="pre">1</span></code> by the <span class="target" id="index-14"></span><a class="reference internal" href="../using/cmdline.html#envvar-PYTHONMALLOCSTATS"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PYTHONMALLOCSTATS</span></code></a> environment variable.</p>
 <p>The option is ignored if Python is <a class="reference internal" href="../using/configure.html#cmdoption-without-pymalloc"><code class="xref std std-option docutils literal notranslate"><span class="pre">configured</span> <span class="pre">using</span>
 <span class="pre">the</span> <span class="pre">--without-pymalloc</span> <span class="pre">option</span></code></a>.</p>
-<p>Default: <code class="docutils literal notranslate"><span class="pre">0</span></code>.</p>
+<p>預設：<code class="docutils literal notranslate"><span class="pre">0</span></code>。</p>
 </dd></dl>
 
 <dl class="c member">
@@ -1043,7 +1043,7 @@ overrides the <a class="reference internal" href="#c.PyConfig.module_search_path
 </ul>
 <p>Incremented by the <a class="reference internal" href="../using/cmdline.html#cmdoption-O"><code class="xref std std-option docutils literal notranslate"><span class="pre">-O</span></code></a> command line option. Set to the
 <span class="target" id="index-17"></span><a class="reference internal" href="../using/cmdline.html#envvar-PYTHONOPTIMIZE"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PYTHONOPTIMIZE</span></code></a> environment variable value.</p>
-<p>Default: <code class="docutils literal notranslate"><span class="pre">0</span></code>.</p>
+<p>預設：<code class="docutils literal notranslate"><span class="pre">0</span></code>。</p>
 </dd></dl>
 
 <dl class="c member">
@@ -1091,7 +1091,7 @@ parse the application options as Python options.</p>
 on compilation options).</p>
 <p>Incremented by the <a class="reference internal" href="../using/cmdline.html#cmdoption-d"><code class="xref std std-option docutils literal notranslate"><span class="pre">-d</span></code></a> command line option. Set to the
 <span class="target" id="index-18"></span><a class="reference internal" href="../using/cmdline.html#envvar-PYTHONDEBUG"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PYTHONDEBUG</span></code></a> environment variable value.</p>
-<p>Default: <code class="docutils literal notranslate"><span class="pre">0</span></code>.</p>
+<p>預設：<code class="docutils literal notranslate"><span class="pre">0</span></code>。</p>
 </dd></dl>
 
 <dl class="c member">
@@ -1149,7 +1149,7 @@ the <span class="target" id="index-21"></span><a class="reference internal" href
 <dd><p>Quiet mode. If greater than 0, don't display the copyright and version at
 Python startup in interactive mode.</p>
 <p>Incremented by the <a class="reference internal" href="../using/cmdline.html#cmdoption-q"><code class="xref std std-option docutils literal notranslate"><span class="pre">-q</span></code></a> command line option.</p>
-<p>Default: <code class="docutils literal notranslate"><span class="pre">0</span></code>.</p>
+<p>預設：<code class="docutils literal notranslate"><span class="pre">0</span></code>。</p>
 </dd></dl>
 
 <dl class="c member">
@@ -1186,7 +1186,7 @@ command.</p>
 <p>Set to 1 by <a class="reference internal" href="../using/cmdline.html#cmdoption-X"><code class="xref std std-option docutils literal notranslate"><span class="pre">-X</span> <span class="pre">showrefcount</span></code></a> command line option.</p>
 <p>Need a <a class="reference internal" href="../using/configure.html#debug-build"><span class="std std-ref">debug build of Python</span></a> (the <code class="docutils literal notranslate"><span class="pre">Py_REF_DEBUG</span></code>
 macro must be defined).</p>
-<p>Default: <code class="docutils literal notranslate"><span class="pre">0</span></code>.</p>
+<p>預設：<code class="docutils literal notranslate"><span class="pre">0</span></code>。</p>
 </dd></dl>
 
 <dl class="c member">
@@ -1211,7 +1211,7 @@ source.</p>
 <p>It allows the usage of non-Unix forms of <code class="docutils literal notranslate"><span class="pre">#!cmd</span></code>. This is intended for
 a DOS specific hack only.</p>
 <p>Set to <code class="docutils literal notranslate"><span class="pre">1</span></code> by the <a class="reference internal" href="../using/cmdline.html#cmdoption-x"><code class="xref std std-option docutils literal notranslate"><span class="pre">-x</span></code></a> command line option.</p>
-<p>Default: <code class="docutils literal notranslate"><span class="pre">0</span></code>.</p>
+<p>預設：<code class="docutils literal notranslate"><span class="pre">0</span></code>。</p>
 </dd></dl>
 
 <dl class="c member">
@@ -1281,7 +1281,7 @@ for when searching for a module. Also provides information on module
 cleanup at exit.</p>
 <p>Incremented by the <a class="reference internal" href="../using/cmdline.html#cmdoption-1"><code class="xref std std-option docutils literal notranslate"><span class="pre">-v</span></code></a> command line option.</p>
 <p>Set to the <span class="target" id="index-25"></span><a class="reference internal" href="../using/cmdline.html#envvar-PYTHONVERBOSE"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PYTHONVERBOSE</span></code></a> environment variable value.</p>
-<p>Default: <code class="docutils literal notranslate"><span class="pre">0</span></code>.</p>
+<p>預設：<code class="docutils literal notranslate"><span class="pre">0</span></code>。</p>
 </dd></dl>
 
 <dl class="c member">
@@ -1661,7 +1661,7 @@ phases:</p>
   <h3><a href="../contents.html">目錄</a></h3>
   <ul>
 <li><a class="reference internal" href="#">Python Initialization Configuration</a><ul>
-<li><a class="reference internal" href="#example">Example</a></li>
+<li><a class="reference internal" href="#example">範例</a></li>
 <li><a class="reference internal" href="#pywidestringlist">PyWideStringList</a></li>
 <li><a class="reference internal" href="#pystatus">PyStatus</a></li>
 <li><a class="reference internal" href="#pypreconfig">PyPreConfig</a></li>
@@ -1761,7 +1761,7 @@ phases:</p>
 <br />
     <br />
 
-    最後更新於 11月 20, 2021。
+    最後更新於 11月 22, 2021。
     <a href="https://docs.python.org/3/bugs.html">Found a bug</a>?
     <br />
 

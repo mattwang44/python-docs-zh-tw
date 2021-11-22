@@ -78,8 +78,8 @@
 <li><a class="reference internal" href="#module-cProfile"><code class="xref py py-mod docutils literal notranslate"><span class="pre">profile</span></code> and <code class="xref py py-mod docutils literal notranslate"><span class="pre">cProfile</span></code> Module Reference</a></li>
 <li><a class="reference internal" href="#the-stats-class">The <code class="xref py py-class docutils literal notranslate"><span class="pre">Stats</span></code> Class</a></li>
 <li><a class="reference internal" href="#what-is-deterministic-profiling">What Is Deterministic Profiling?</a></li>
-<li><a class="reference internal" href="#limitations">Limitations</a></li>
-<li><a class="reference internal" href="#calibration">Calibration</a></li>
+<li><a class="reference internal" href="#limitations">限制</a></li>
+<li><a class="reference internal" href="#calibration">校正</a></li>
 <li><a class="reference internal" href="#using-a-custom-timer">Using a custom timer</a></li>
 </ul>
 </li>
@@ -163,7 +163,7 @@
             
   <section id="the-python-profilers">
 <span id="profile"></span><h1>The Python Profilers<a class="headerlink" href="#the-python-profilers" title="本標題的永久連結">¶</a></h1>
-<p><strong>Source code:</strong> <a class="reference external" href="https://github.com/python/cpython/tree/3.10/Lib/profile.py">Lib/profile.py</a> and <a class="reference external" href="https://github.com/python/cpython/tree/3.10/Lib/pstats.py">Lib/pstats.py</a></p>
+<p><strong>原始碼：</strong><a class="reference external" href="https://github.com/python/cpython/tree/3.10/Lib/profile.py">Lib/profile.py</a> and <a class="reference external" href="https://github.com/python/cpython/tree/3.10/Lib/pstats.py">Lib/pstats.py</a></p>
 <hr class="docutils" />
 <section id="introduction-to-the-profilers">
 <span id="profiler-introduction"></span><h2>Introduction to the profilers<a class="headerlink" href="#introduction-to-the-profilers" title="本標題的永久連結">¶</a></h2>
@@ -741,7 +741,7 @@ implementations of algorithms to be directly compared to iterative
 implementations.</p>
 </section>
 <section id="limitations">
-<span id="profile-limitations"></span><h2>Limitations<a class="headerlink" href="#limitations" title="本標題的永久連結">¶</a></h2>
+<span id="profile-limitations"></span><h2>限制<a class="headerlink" href="#limitations" title="本標題的永久連結">¶</a></h2>
 <p>One limitation has to do with accuracy of timing information. There is a
 fundamental problem with deterministic profilers involving accuracy.  The most
 obvious restriction is that the underlying &quot;clock&quot; is only ticking at a rate
@@ -769,12 +769,12 @@ the profile.  They should <em>only</em> appear if you have calibrated your profi
 and the results are actually better than without calibration.</p>
 </section>
 <section id="calibration">
-<span id="profile-calibration"></span><h2>Calibration<a class="headerlink" href="#calibration" title="本標題的永久連結">¶</a></h2>
+<span id="profile-calibration"></span><h2>校正<a class="headerlink" href="#calibration" title="本標題的永久連結">¶</a></h2>
 <p>The profiler of the <a class="reference internal" href="#module-profile" title="profile: Python source profiler."><code class="xref py py-mod docutils literal notranslate"><span class="pre">profile</span></code></a> module subtracts a constant from each event
 handling time to compensate for the overhead of calling the time function, and
 socking away the results.  By default, the constant is 0. The following
 procedure can be used to obtain a better constant for a given platform (see
-<a class="reference internal" href="#profile-limitations"><span class="std std-ref">Limitations</span></a>).</p>
+<a class="reference internal" href="#profile-limitations"><span class="std std-ref">限制</span></a>).</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">profile</span>
 <span class="n">pr</span> <span class="o">=</span> <span class="n">profile</span><span class="o">.</span><span class="n">Profile</span><span class="p">()</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
@@ -824,7 +824,7 @@ function returns a single time number, or the list of returned numbers has
 length 2, then you will get an especially fast version of the dispatch
 routine.</p>
 <p>Be warned that you should calibrate the profiler class for the timer function
-that you choose (see <a class="reference internal" href="#profile-calibration"><span class="std std-ref">Calibration</span></a>).  For most machines, a timer
+that you choose (see <a class="reference internal" href="#profile-calibration"><span class="std std-ref">校正</span></a>).  For most machines, a timer
 that returns a lone integer value will provide the best results in terms of
 low overhead during profiling.  (<a class="reference internal" href="os.html#os.times" title="os.times"><code class="xref py py-func docutils literal notranslate"><span class="pre">os.times()</span></code></a> is <em>pretty</em> bad, as it
 returns a tuple of floating point values).  If you want to substitute a
@@ -867,8 +867,8 @@ precise measurements of process or wall-clock time. For example, see
 <li><a class="reference internal" href="#module-cProfile"><code class="xref py py-mod docutils literal notranslate"><span class="pre">profile</span></code> and <code class="xref py py-mod docutils literal notranslate"><span class="pre">cProfile</span></code> Module Reference</a></li>
 <li><a class="reference internal" href="#the-stats-class">The <code class="xref py py-class docutils literal notranslate"><span class="pre">Stats</span></code> Class</a></li>
 <li><a class="reference internal" href="#what-is-deterministic-profiling">What Is Deterministic Profiling?</a></li>
-<li><a class="reference internal" href="#limitations">Limitations</a></li>
-<li><a class="reference internal" href="#calibration">Calibration</a></li>
+<li><a class="reference internal" href="#limitations">限制</a></li>
+<li><a class="reference internal" href="#calibration">校正</a></li>
 <li><a class="reference internal" href="#using-a-custom-timer">Using a custom timer</a></li>
 </ul>
 </li>
@@ -958,7 +958,7 @@ precise measurements of process or wall-clock time. For example, see
 <br />
     <br />
 
-    最後更新於 11月 20, 2021。
+    最後更新於 11月 22, 2021。
     <a href="https://docs.python.org/3/bugs.html">Found a bug</a>?
     <br />
 

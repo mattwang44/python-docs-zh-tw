@@ -93,7 +93,7 @@
 <li><a class="reference internal" href="#buffer-object-structures">Buffer Object Structures</a></li>
 <li><a class="reference internal" href="#async-object-structures">Async Object Structures</a></li>
 <li><a class="reference internal" href="#slot-type-typedefs">Slot Type typedefs</a></li>
-<li><a class="reference internal" href="#examples">Examples</a></li>
+<li><a class="reference internal" href="#examples">範例</a></li>
 </ul>
 
   <h4>上個主題</h4>
@@ -187,7 +187,7 @@ function pointers, each of which implements a small part of the type's
 functionality.  The fields of the type object are examined in detail in this
 section.  The fields will be described in the order in which they occur in the
 structure.</p>
-<p>In addition to the following quick reference, the <a class="reference internal" href="#typedef-examples"><span class="std std-ref">Examples</span></a>
+<p>In addition to the following quick reference, the <a class="reference internal" href="#typedef-examples"><span class="std std-ref">範例</span></a>
 section provides at-a-glance insight into the meaning and use of
 <a class="reference internal" href="type.html#c.PyTypeObject" title="PyTypeObject"><code class="xref c c-type docutils literal notranslate"><span class="pre">PyTypeObject</span></code></a>.</p>
 <section id="quick-reference">
@@ -211,7 +211,7 @@ section provides at-a-glance insight into the meaning and use of
 methods/attrs</p></th>
 <th class="head" colspan="4"><p>Info <a class="footnote-reference brackets" href="#cols" id="id2">2</a></p></th>
 </tr>
-<tr class="row-even"><th class="head"><p>0</p></th>
+<tr class="row-even"><th class="head"><p>O</p></th>
 <th class="head"><p>T</p></th>
 <th class="head"><p>D</p></th>
 <th class="head"><p>I</p></th>
@@ -1512,7 +1512,7 @@ same value.  If this is not feasible, it should return a string starting with
 object can be deduced.</p>
 <p><strong>Inheritance:</strong></p>
 <p>This field is inherited by subtypes.</p>
-<p><strong>Default:</strong></p>
+<p><strong>預設：</strong></p>
 <p>When this field is not set, a string of the form <code class="docutils literal notranslate"><span class="pre">&lt;%s</span> <span class="pre">object</span> <span class="pre">at</span> <span class="pre">%p&gt;</span></code> is
 returned, where <code class="docutils literal notranslate"><span class="pre">%s</span></code> is replaced by the type name, and <code class="docutils literal notranslate"><span class="pre">%p</span></code> by the object's
 memory address.</p>
@@ -1610,7 +1610,7 @@ representation of the object, as this is the representation that will be used,
 among other things, by the <a class="reference internal" href="../library/functions.html#print" title="print"><code class="xref py py-func docutils literal notranslate"><span class="pre">print()</span></code></a> function.</p>
 <p><strong>Inheritance:</strong></p>
 <p>This field is inherited by subtypes.</p>
-<p><strong>Default:</strong></p>
+<p><strong>預設：</strong></p>
 <p>When this field is not set, <a class="reference internal" href="object.html#c.PyObject_Repr" title="PyObject_Repr"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyObject_Repr()</span></code></a> is called to return a string
 representation.</p>
 </dd></dl>
@@ -1630,7 +1630,7 @@ which implements the normal way of looking for object attributes.</p>
 <p>This field is inherited by subtypes together with <a class="reference internal" href="#c.PyTypeObject.tp_getattr" title="PyTypeObject.tp_getattr"><code class="xref c c-member docutils literal notranslate"><span class="pre">tp_getattr</span></code></a>: a subtype
 inherits both <a class="reference internal" href="#c.PyTypeObject.tp_getattr" title="PyTypeObject.tp_getattr"><code class="xref c c-member docutils literal notranslate"><span class="pre">tp_getattr</span></code></a> and <a class="reference internal" href="#c.PyTypeObject.tp_getattro" title="PyTypeObject.tp_getattro"><code class="xref c c-member docutils literal notranslate"><span class="pre">tp_getattro</span></code></a> from its base type when
 the subtype's <a class="reference internal" href="#c.PyTypeObject.tp_getattr" title="PyTypeObject.tp_getattr"><code class="xref c c-member docutils literal notranslate"><span class="pre">tp_getattr</span></code></a> and <a class="reference internal" href="#c.PyTypeObject.tp_getattro" title="PyTypeObject.tp_getattro"><code class="xref c c-member docutils literal notranslate"><span class="pre">tp_getattro</span></code></a> are both <code class="docutils literal notranslate"><span class="pre">NULL</span></code>.</p>
-<p><strong>Default:</strong></p>
+<p><strong>預設：</strong></p>
 <p><code class="xref c c-type docutils literal notranslate"><span class="pre">PyBaseObject_Type</span></code> uses <a class="reference internal" href="object.html#c.PyObject_GenericGetAttr" title="PyObject_GenericGetAttr"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyObject_GenericGetAttr()</span></code></a>.</p>
 </dd></dl>
 
@@ -1651,7 +1651,7 @@ way of setting object attributes.</p>
 <p>This field is inherited by subtypes together with <a class="reference internal" href="#c.PyTypeObject.tp_setattr" title="PyTypeObject.tp_setattr"><code class="xref c c-member docutils literal notranslate"><span class="pre">tp_setattr</span></code></a>: a subtype
 inherits both <a class="reference internal" href="#c.PyTypeObject.tp_setattr" title="PyTypeObject.tp_setattr"><code class="xref c c-member docutils literal notranslate"><span class="pre">tp_setattr</span></code></a> and <a class="reference internal" href="#c.PyTypeObject.tp_setattro" title="PyTypeObject.tp_setattro"><code class="xref c c-member docutils literal notranslate"><span class="pre">tp_setattro</span></code></a> from its base type when
 the subtype's <a class="reference internal" href="#c.PyTypeObject.tp_setattr" title="PyTypeObject.tp_setattr"><code class="xref c c-member docutils literal notranslate"><span class="pre">tp_setattr</span></code></a> and <a class="reference internal" href="#c.PyTypeObject.tp_setattro" title="PyTypeObject.tp_setattro"><code class="xref c c-member docutils literal notranslate"><span class="pre">tp_setattro</span></code></a> are both <code class="docutils literal notranslate"><span class="pre">NULL</span></code>.</p>
-<p><strong>Default:</strong></p>
+<p><strong>預設：</strong></p>
 <p><code class="xref c c-type docutils literal notranslate"><span class="pre">PyBaseObject_Type</span></code> uses <a class="reference internal" href="object.html#c.PyObject_GenericSetAttr" title="PyObject_GenericSetAttr"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyObject_GenericSetAttr()</span></code></a>.</p>
 </dd></dl>
 
@@ -1687,7 +1687,7 @@ the <a class="reference internal" href="#c.PyTypeObject.tp_traverse" title="PyTy
 <a class="reference internal" href="#Py_TPFLAGS_HAVE_GC" title="Py_TPFLAGS_HAVE_GC"><code class="xref py py-const docutils literal notranslate"><span class="pre">Py_TPFLAGS_HAVE_GC</span></code></a> flag bit is clear in the subtype and the
 <a class="reference internal" href="#c.PyTypeObject.tp_traverse" title="PyTypeObject.tp_traverse"><code class="xref c c-member docutils literal notranslate"><span class="pre">tp_traverse</span></code></a> and <a class="reference internal" href="#c.PyTypeObject.tp_clear" title="PyTypeObject.tp_clear"><code class="xref c c-member docutils literal notranslate"><span class="pre">tp_clear</span></code></a> fields in the subtype exist and have
 <code class="docutils literal notranslate"><span class="pre">NULL</span></code> values.</p>
-<p><strong>Default:</strong></p>
+<p><strong>預設：</strong></p>
 <p><code class="xref c c-type docutils literal notranslate"><span class="pre">PyBaseObject_Type</span></code> uses
 <code class="docutils literal notranslate"><span class="pre">Py_TPFLAGS_DEFAULT</span> <span class="pre">|</span> <span class="pre">Py_TPFLAGS_BASETYPE</span></code>.</p>
 <p><strong>Bit Masks:</strong></p>
@@ -2105,7 +2105,7 @@ set an exception condition.</p>
 <col style="width: 43%" />
 </colgroup>
 <thead>
-<tr class="row-odd"><th class="head"><p>Constant</p></th>
+<tr class="row-odd"><th class="head"><p>常數</p></th>
 <th class="head"><p>Comparison</p></th>
 </tr>
 </thead>
@@ -2152,7 +2152,7 @@ operation, as for <a class="reference internal" href="object.html#c.PyObject_Ric
 a subtype inherits <a class="reference internal" href="#c.PyTypeObject.tp_richcompare" title="PyTypeObject.tp_richcompare"><code class="xref c c-member docutils literal notranslate"><span class="pre">tp_richcompare</span></code></a> and <a class="reference internal" href="#c.PyTypeObject.tp_hash" title="PyTypeObject.tp_hash"><code class="xref c c-member docutils literal notranslate"><span class="pre">tp_hash</span></code></a> when
 the subtype's <a class="reference internal" href="#c.PyTypeObject.tp_richcompare" title="PyTypeObject.tp_richcompare"><code class="xref c c-member docutils literal notranslate"><span class="pre">tp_richcompare</span></code></a> and <a class="reference internal" href="#c.PyTypeObject.tp_hash" title="PyTypeObject.tp_hash"><code class="xref c c-member docutils literal notranslate"><span class="pre">tp_hash</span></code></a> are both
 <code class="docutils literal notranslate"><span class="pre">NULL</span></code>.</p>
-<p><strong>Default:</strong></p>
+<p><strong>預設：</strong></p>
 <p><code class="xref c c-type docutils literal notranslate"><span class="pre">PyBaseObject_Type</span></code> provides a <code class="xref py py-attr docutils literal notranslate"><span class="pre">tp_richcompare</span></code>
 implementation, which may be inherited.  However, if only
 <code class="xref py py-attr docutils literal notranslate"><span class="pre">tp_hash</span></code> is defined, not even the inherited function is used
@@ -2282,7 +2282,7 @@ the extension module's init function.</p>
 </div>
 <p><strong>Inheritance:</strong></p>
 <p>This field is not inherited by subtypes (obviously).</p>
-<p><strong>Default:</strong></p>
+<p><strong>預設：</strong></p>
 <p>This field defaults to <code class="docutils literal notranslate"><span class="pre">&amp;PyBaseObject_Type</span></code> (which to Python
 programmers is known as the type <a class="reference internal" href="../library/functions.html#object" title="object"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a>).</p>
 </dd></dl>
@@ -2299,7 +2299,7 @@ correspond to overloaded operations (like <code class="xref py py-meth docutils 
 <p><strong>Inheritance:</strong></p>
 <p>This field is not inherited by subtypes (though the attributes defined in here
 are inherited through a different mechanism).</p>
-<p><strong>Default:</strong></p>
+<p><strong>預設：</strong></p>
 <p>If this field is <code class="docutils literal notranslate"><span class="pre">NULL</span></code>, <a class="reference internal" href="type.html#c.PyType_Ready" title="PyType_Ready"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyType_Ready()</span></code></a> will assign a new
 dictionary to it.</p>
 <div class="admonition warning">
@@ -2381,7 +2381,7 @@ the type inherits its <a class="reference internal" href="#c.PyTypeObject.tp_dic
 <p>(Adding a slot named <a class="reference internal" href="../library/stdtypes.html#object.__dict__" title="object.__dict__"><code class="xref py py-attr docutils literal notranslate"><span class="pre">__dict__</span></code></a> to the <code class="xref py py-attr docutils literal notranslate"><span class="pre">__slots__</span></code> declaration does
 not have the expected effect, it just causes confusion.  Maybe this should be
 added as a feature just like <code class="xref py py-attr docutils literal notranslate"><span class="pre">__weakref__</span></code> though.)</p>
-<p><strong>Default:</strong></p>
+<p><strong>預設：</strong></p>
 <p>This slot has no default.  For <a class="reference internal" href="#static-types"><span class="std std-ref">static types</span></a>, if the
 field is <code class="docutils literal notranslate"><span class="pre">NULL</span></code> then no <code class="xref py py-attr docutils literal notranslate"><span class="pre">__dict__</span></code> gets created for instances.</p>
 </dd></dl>
@@ -2410,7 +2410,7 @@ subtype of the original type, the subtype's <a class="reference internal" href="
 <p>Returns <code class="docutils literal notranslate"><span class="pre">0</span></code> on success, <code class="docutils literal notranslate"><span class="pre">-1</span></code> and sets an exception on error.</p>
 <p><strong>Inheritance:</strong></p>
 <p>This field is inherited by subtypes.</p>
-<p><strong>Default:</strong></p>
+<p><strong>預設：</strong></p>
 <p>For <a class="reference internal" href="#static-types"><span class="std std-ref">static types</span></a> this field does not have a default.</p>
 </dd></dl>
 
@@ -2425,7 +2425,7 @@ subtype of the original type, the subtype's <a class="reference internal" href="
 <p><strong>Inheritance:</strong></p>
 <p>This field is inherited by static subtypes, but not by dynamic
 subtypes (subtypes created by a class statement).</p>
-<p><strong>Default:</strong></p>
+<p><strong>預設：</strong></p>
 <p>For dynamic subtypes, this field is always set to
 <a class="reference internal" href="type.html#c.PyType_GenericAlloc" title="PyType_GenericAlloc"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyType_GenericAlloc()</span></code></a>, to force a standard heap
 allocation strategy.</p>
@@ -2460,7 +2460,7 @@ instances of the type in Python.</p>
 <p>This field is inherited by subtypes, except it is not inherited by
 <a class="reference internal" href="#static-types"><span class="std std-ref">static types</span></a> whose <a class="reference internal" href="#c.PyTypeObject.tp_base" title="PyTypeObject.tp_base"><code class="xref c c-member docutils literal notranslate"><span class="pre">tp_base</span></code></a>
 is <code class="docutils literal notranslate"><span class="pre">NULL</span></code> or <code class="docutils literal notranslate"><span class="pre">&amp;PyBaseObject_Type</span></code>.</p>
-<p><strong>Default:</strong></p>
+<p><strong>預設：</strong></p>
 <p>For <a class="reference internal" href="#static-types"><span class="std std-ref">static types</span></a> this field has no default.
 This means if the slot is defined as <code class="docutils literal notranslate"><span class="pre">NULL</span></code>, the type cannot be called
 to create new instances; presumably there is some other way to create
@@ -2478,7 +2478,7 @@ instances, like a factory function.</p>
 <p><strong>Inheritance:</strong></p>
 <p>This field is inherited by static subtypes, but not by dynamic
 subtypes (subtypes created by a class statement)</p>
-<p><strong>Default:</strong></p>
+<p><strong>預設：</strong></p>
 <p>In dynamic subtypes, this field is set to a deallocator suitable to
 match <a class="reference internal" href="type.html#c.PyType_GenericAlloc" title="PyType_GenericAlloc"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyType_GenericAlloc()</span></code></a> and the value of the
 <a class="reference internal" href="#Py_TPFLAGS_HAVE_GC" title="Py_TPFLAGS_HAVE_GC"><code class="xref py py-const docutils literal notranslate"><span class="pre">Py_TPFLAGS_HAVE_GC</span></code></a> flag bit.</p>
@@ -2504,7 +2504,7 @@ define this function; it should return <code class="docutils literal notranslate
 and <a class="reference internal" href="#heap-types"><span class="std std-ref">dynamically allocated types</span></a>.)</p>
 <p><strong>Inheritance:</strong></p>
 <p>This field is inherited by subtypes.</p>
-<p><strong>Default:</strong></p>
+<p><strong>預設：</strong></p>
 <p>This slot has no default.  If this field is <code class="docutils literal notranslate"><span class="pre">NULL</span></code>,
 <a class="reference internal" href="#Py_TPFLAGS_HAVE_GC" title="Py_TPFLAGS_HAVE_GC"><code class="xref py py-const docutils literal notranslate"><span class="pre">Py_TPFLAGS_HAVE_GC</span></code></a> is used as the functional equivalent.</p>
 </dd></dl>
@@ -3224,25 +3224,25 @@ allocate additional memory; that should be done by <a class="reference internal"
 <dl class="c type">
 <dt class="sig sig-object c" id="c.freefunc">
 <span class="k"><span class="pre">typedef</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="p"><span class="pre">(</span></span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">freefunc</span></span></span><span class="p"><span class="pre">)</span></span><span class="p"><span class="pre">(</span></span><span class="kt"><span class="pre">void</span></span><span class="p"><span class="pre">*</span></span><span class="p"><span class="pre">)</span></span><a class="headerlink" href="#c.freefunc" title="本定義的永久連結">¶</a><br /></dt>
-<dd><p>See <a class="reference internal" href="#c.PyTypeObject.tp_free" title="PyTypeObject.tp_free"><code class="xref c c-member docutils literal notranslate"><span class="pre">tp_free</span></code></a>.</p>
+<dd><p>請見 <a class="reference internal" href="#c.PyTypeObject.tp_free" title="PyTypeObject.tp_free"><code class="xref c c-member docutils literal notranslate"><span class="pre">tp_free</span></code></a>。</p>
 </dd></dl>
 
 <dl class="c type">
 <dt class="sig sig-object c" id="c.newfunc">
 <span class="k"><span class="pre">typedef</span></span><span class="w"> </span><a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="p"><span class="pre">(</span></span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">newfunc</span></span></span><span class="p"><span class="pre">)</span></span><span class="p"><span class="pre">(</span></span><a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="p"><span class="pre">*</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="p"><span class="pre">*</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="p"><span class="pre">*</span></span><span class="p"><span class="pre">)</span></span><a class="headerlink" href="#c.newfunc" title="本定義的永久連結">¶</a><br /></dt>
-<dd><em class="stableabi"> Part of the <a class="reference internal" href="stable.html#stable"><span class="std std-ref">Stable ABI</span></a>.</em><p>See <a class="reference internal" href="#c.PyTypeObject.tp_new" title="PyTypeObject.tp_new"><code class="xref c c-member docutils literal notranslate"><span class="pre">tp_new</span></code></a>.</p>
+<dd><em class="stableabi"> Part of the <a class="reference internal" href="stable.html#stable"><span class="std std-ref">Stable ABI</span></a>.</em><p>請見 <a class="reference internal" href="#c.PyTypeObject.tp_new" title="PyTypeObject.tp_new"><code class="xref c c-member docutils literal notranslate"><span class="pre">tp_new</span></code></a>。</p>
 </dd></dl>
 
 <dl class="c type">
 <dt class="sig sig-object c" id="c.initproc">
 <span class="k"><span class="pre">typedef</span></span><span class="w"> </span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="p"><span class="pre">(</span></span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">initproc</span></span></span><span class="p"><span class="pre">)</span></span><span class="p"><span class="pre">(</span></span><a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="p"><span class="pre">*</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="p"><span class="pre">*</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="p"><span class="pre">*</span></span><span class="p"><span class="pre">)</span></span><a class="headerlink" href="#c.initproc" title="本定義的永久連結">¶</a><br /></dt>
-<dd><em class="stableabi"> Part of the <a class="reference internal" href="stable.html#stable"><span class="std std-ref">Stable ABI</span></a>.</em><p>See <a class="reference internal" href="#c.PyTypeObject.tp_init" title="PyTypeObject.tp_init"><code class="xref c c-member docutils literal notranslate"><span class="pre">tp_init</span></code></a>.</p>
+<dd><em class="stableabi"> Part of the <a class="reference internal" href="stable.html#stable"><span class="std std-ref">Stable ABI</span></a>.</em><p>請見 <a class="reference internal" href="#c.PyTypeObject.tp_init" title="PyTypeObject.tp_init"><code class="xref c c-member docutils literal notranslate"><span class="pre">tp_init</span></code></a>。</p>
 </dd></dl>
 
 <dl class="c type">
 <dt class="sig sig-object c" id="c.reprfunc">
 <span class="k"><span class="pre">typedef</span></span><span class="w"> </span><a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="p"><span class="pre">(</span></span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">reprfunc</span></span></span><span class="p"><span class="pre">)</span></span><span class="p"><span class="pre">(</span></span><a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="p"><span class="pre">*</span></span><span class="p"><span class="pre">)</span></span><a class="headerlink" href="#c.reprfunc" title="本定義的永久連結">¶</a><br /></dt>
-<dd><em class="stableabi"> Part of the <a class="reference internal" href="stable.html#stable"><span class="std std-ref">Stable ABI</span></a>.</em><p>See <a class="reference internal" href="#c.PyTypeObject.tp_repr" title="PyTypeObject.tp_repr"><code class="xref c c-member docutils literal notranslate"><span class="pre">tp_repr</span></code></a>.</p>
+<dd><em class="stableabi"> Part of the <a class="reference internal" href="stable.html#stable"><span class="std std-ref">Stable ABI</span></a>.</em><p>請見 <a class="reference internal" href="#c.PyTypeObject.tp_repr" title="PyTypeObject.tp_repr"><code class="xref c c-member docutils literal notranslate"><span class="pre">tp_repr</span></code></a>。</p>
 </dd></dl>
 
 <dl class="c type">
@@ -3262,7 +3262,7 @@ The value argument is set to <code class="docutils literal notranslate"><span cl
 <dt class="sig sig-object c" id="c.getattrofunc">
 <span class="k"><span class="pre">typedef</span></span><span class="w"> </span><a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="p"><span class="pre">(</span></span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">getattrofunc</span></span></span><span class="p"><span class="pre">)</span></span><span class="p"><span class="pre">(</span></span><a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">attr</span></span><span class="p"><span class="pre">)</span></span><a class="headerlink" href="#c.getattrofunc" title="本定義的永久連結">¶</a><br /></dt>
 <dd><em class="stableabi"> Part of the <a class="reference internal" href="stable.html#stable"><span class="std std-ref">Stable ABI</span></a>.</em><p>Return the value of the named attribute for the object.</p>
-<p>See <a class="reference internal" href="#c.PyTypeObject.tp_getattro" title="PyTypeObject.tp_getattro"><code class="xref c c-member docutils literal notranslate"><span class="pre">tp_getattro</span></code></a>.</p>
+<p>請見 <a class="reference internal" href="#c.PyTypeObject.tp_getattro" title="PyTypeObject.tp_getattro"><code class="xref c c-member docutils literal notranslate"><span class="pre">tp_getattro</span></code></a>。</p>
 </dd></dl>
 
 <dl class="c type">
@@ -3270,43 +3270,43 @@ The value argument is set to <code class="docutils literal notranslate"><span cl
 <span class="k"><span class="pre">typedef</span></span><span class="w"> </span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="p"><span class="pre">(</span></span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">setattrofunc</span></span></span><span class="p"><span class="pre">)</span></span><span class="p"><span class="pre">(</span></span><a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">attr</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">)</span></span><a class="headerlink" href="#c.setattrofunc" title="本定義的永久連結">¶</a><br /></dt>
 <dd><em class="stableabi"> Part of the <a class="reference internal" href="stable.html#stable"><span class="std std-ref">Stable ABI</span></a>.</em><p>Set the value of the named attribute for the object.
 The value argument is set to <code class="docutils literal notranslate"><span class="pre">NULL</span></code> to delete the attribute.</p>
-<p>See <a class="reference internal" href="#c.PyTypeObject.tp_setattro" title="PyTypeObject.tp_setattro"><code class="xref c c-member docutils literal notranslate"><span class="pre">tp_setattro</span></code></a>.</p>
+<p>請見 <a class="reference internal" href="#c.PyTypeObject.tp_setattro" title="PyTypeObject.tp_setattro"><code class="xref c c-member docutils literal notranslate"><span class="pre">tp_setattro</span></code></a>。</p>
 </dd></dl>
 
 <dl class="c type">
 <dt class="sig sig-object c" id="c.descrgetfunc">
 <span class="k"><span class="pre">typedef</span></span><span class="w"> </span><a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="p"><span class="pre">(</span></span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">descrgetfunc</span></span></span><span class="p"><span class="pre">)</span></span><span class="p"><span class="pre">(</span></span><a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="p"><span class="pre">*</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="p"><span class="pre">*</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="p"><span class="pre">*</span></span><span class="p"><span class="pre">)</span></span><a class="headerlink" href="#c.descrgetfunc" title="本定義的永久連結">¶</a><br /></dt>
-<dd><em class="stableabi"> Part of the <a class="reference internal" href="stable.html#stable"><span class="std std-ref">Stable ABI</span></a>.</em><p>See <code class="xref c c-member docutils literal notranslate"><span class="pre">tp_descrget</span></code>.</p>
+<dd><em class="stableabi"> Part of the <a class="reference internal" href="stable.html#stable"><span class="std std-ref">Stable ABI</span></a>.</em><p>請見 <code class="xref c c-member docutils literal notranslate"><span class="pre">tp_descrget</span></code>。</p>
 </dd></dl>
 
 <dl class="c type">
 <dt class="sig sig-object c" id="c.descrsetfunc">
 <span class="k"><span class="pre">typedef</span></span><span class="w"> </span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="p"><span class="pre">(</span></span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">descrsetfunc</span></span></span><span class="p"><span class="pre">)</span></span><span class="p"><span class="pre">(</span></span><a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="p"><span class="pre">*</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="p"><span class="pre">*</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="p"><span class="pre">*</span></span><span class="p"><span class="pre">)</span></span><a class="headerlink" href="#c.descrsetfunc" title="本定義的永久連結">¶</a><br /></dt>
-<dd><em class="stableabi"> Part of the <a class="reference internal" href="stable.html#stable"><span class="std std-ref">Stable ABI</span></a>.</em><p>See <code class="xref c c-member docutils literal notranslate"><span class="pre">tp_descrset</span></code>.</p>
+<dd><em class="stableabi"> Part of the <a class="reference internal" href="stable.html#stable"><span class="std std-ref">Stable ABI</span></a>.</em><p>請見 <code class="xref c c-member docutils literal notranslate"><span class="pre">tp_descrset</span></code>。</p>
 </dd></dl>
 
 <dl class="c type">
 <dt class="sig sig-object c" id="c.hashfunc">
 <span class="k"><span class="pre">typedef</span></span><span class="w"> </span><span class="n"><span class="pre">Py_hash_t</span></span><span class="w"> </span><span class="p"><span class="pre">(</span></span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">hashfunc</span></span></span><span class="p"><span class="pre">)</span></span><span class="p"><span class="pre">(</span></span><a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="p"><span class="pre">*</span></span><span class="p"><span class="pre">)</span></span><a class="headerlink" href="#c.hashfunc" title="本定義的永久連結">¶</a><br /></dt>
-<dd><em class="stableabi"> Part of the <a class="reference internal" href="stable.html#stable"><span class="std std-ref">Stable ABI</span></a>.</em><p>See <a class="reference internal" href="#c.PyTypeObject.tp_hash" title="PyTypeObject.tp_hash"><code class="xref c c-member docutils literal notranslate"><span class="pre">tp_hash</span></code></a>.</p>
+<dd><em class="stableabi"> Part of the <a class="reference internal" href="stable.html#stable"><span class="std std-ref">Stable ABI</span></a>.</em><p>請見 <a class="reference internal" href="#c.PyTypeObject.tp_hash" title="PyTypeObject.tp_hash"><code class="xref c c-member docutils literal notranslate"><span class="pre">tp_hash</span></code></a>。</p>
 </dd></dl>
 
 <dl class="c type">
 <dt class="sig sig-object c" id="c.richcmpfunc">
 <span class="k"><span class="pre">typedef</span></span><span class="w"> </span><a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="p"><span class="pre">(</span></span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">richcmpfunc</span></span></span><span class="p"><span class="pre">)</span></span><span class="p"><span class="pre">(</span></span><a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="p"><span class="pre">*</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="p"><span class="pre">*</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="kt"><span class="pre">int</span></span><span class="p"><span class="pre">)</span></span><a class="headerlink" href="#c.richcmpfunc" title="本定義的永久連結">¶</a><br /></dt>
-<dd><em class="stableabi"> Part of the <a class="reference internal" href="stable.html#stable"><span class="std std-ref">Stable ABI</span></a>.</em><p>See <a class="reference internal" href="#c.PyTypeObject.tp_richcompare" title="PyTypeObject.tp_richcompare"><code class="xref c c-member docutils literal notranslate"><span class="pre">tp_richcompare</span></code></a>.</p>
+<dd><em class="stableabi"> Part of the <a class="reference internal" href="stable.html#stable"><span class="std std-ref">Stable ABI</span></a>.</em><p>請見 <a class="reference internal" href="#c.PyTypeObject.tp_richcompare" title="PyTypeObject.tp_richcompare"><code class="xref c c-member docutils literal notranslate"><span class="pre">tp_richcompare</span></code></a>。</p>
 </dd></dl>
 
 <dl class="c type">
 <dt class="sig sig-object c" id="c.getiterfunc">
 <span class="k"><span class="pre">typedef</span></span><span class="w"> </span><a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="p"><span class="pre">(</span></span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">getiterfunc</span></span></span><span class="p"><span class="pre">)</span></span><span class="p"><span class="pre">(</span></span><a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="p"><span class="pre">*</span></span><span class="p"><span class="pre">)</span></span><a class="headerlink" href="#c.getiterfunc" title="本定義的永久連結">¶</a><br /></dt>
-<dd><em class="stableabi"> Part of the <a class="reference internal" href="stable.html#stable"><span class="std std-ref">Stable ABI</span></a>.</em><p>See <a class="reference internal" href="#c.PyTypeObject.tp_iter" title="PyTypeObject.tp_iter"><code class="xref c c-member docutils literal notranslate"><span class="pre">tp_iter</span></code></a>.</p>
+<dd><em class="stableabi"> Part of the <a class="reference internal" href="stable.html#stable"><span class="std std-ref">Stable ABI</span></a>.</em><p>請見 <a class="reference internal" href="#c.PyTypeObject.tp_iter" title="PyTypeObject.tp_iter"><code class="xref c c-member docutils literal notranslate"><span class="pre">tp_iter</span></code></a>。</p>
 </dd></dl>
 
 <dl class="c type">
 <dt class="sig sig-object c" id="c.iternextfunc">
 <span class="k"><span class="pre">typedef</span></span><span class="w"> </span><a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="p"><span class="pre">(</span></span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">iternextfunc</span></span></span><span class="p"><span class="pre">)</span></span><span class="p"><span class="pre">(</span></span><a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="p"><span class="pre">*</span></span><span class="p"><span class="pre">)</span></span><a class="headerlink" href="#c.iternextfunc" title="本定義的永久連結">¶</a><br /></dt>
-<dd><em class="stableabi"> Part of the <a class="reference internal" href="stable.html#stable"><span class="std std-ref">Stable ABI</span></a>.</em><p>See <a class="reference internal" href="#c.PyTypeObject.tp_iternext" title="PyTypeObject.tp_iternext"><code class="xref c c-member docutils literal notranslate"><span class="pre">tp_iternext</span></code></a>.</p>
+<dd><em class="stableabi"> Part of the <a class="reference internal" href="stable.html#stable"><span class="std std-ref">Stable ABI</span></a>.</em><p>請見 <a class="reference internal" href="#c.PyTypeObject.tp_iternext" title="PyTypeObject.tp_iternext"><code class="xref c c-member docutils literal notranslate"><span class="pre">tp_iternext</span></code></a>。</p>
 </dd></dl>
 
 <dl class="c type">
@@ -3337,7 +3337,7 @@ The value argument is set to <code class="docutils literal notranslate"><span cl
 <dl class="c type">
 <dt class="sig sig-object c" id="c.sendfunc">
 <span class="k"><span class="pre">typedef</span></span><span class="w"> </span><a class="reference internal" href="iter.html#c.PySendResult" title="PySendResult"><span class="n"><span class="pre">PySendResult</span></span></a><span class="w"> </span><span class="p"><span class="pre">(</span></span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">sendfunc</span></span></span><span class="p"><span class="pre">)</span></span><span class="p"><span class="pre">(</span></span><a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="p"><span class="pre">*</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="p"><span class="pre">*</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="p"><span class="pre">*</span></span><span class="p"><span class="pre">*</span></span><span class="p"><span class="pre">)</span></span><a class="headerlink" href="#c.sendfunc" title="本定義的永久連結">¶</a><br /></dt>
-<dd><p>See <a class="reference internal" href="#c.PyAsyncMethods.am_send" title="PyAsyncMethods.am_send"><code class="xref c c-member docutils literal notranslate"><span class="pre">am_send</span></code></a>.</p>
+<dd><p>請見 <a class="reference internal" href="#c.PyAsyncMethods.am_send" title="PyAsyncMethods.am_send"><code class="xref c c-member docutils literal notranslate"><span class="pre">am_send</span></code></a>。</p>
 </dd></dl>
 
 <dl class="c type">
@@ -3367,7 +3367,7 @@ The value argument is set to <code class="docutils literal notranslate"><span cl
 
 </section>
 <section id="examples">
-<span id="typedef-examples"></span><h1>Examples<a class="headerlink" href="#examples" title="本標題的永久連結">¶</a></h1>
+<span id="typedef-examples"></span><h1>範例<a class="headerlink" href="#examples" title="本標題的永久連結">¶</a></h1>
 <p>The following are simple examples of Python type definitions.  They
 include common usage you may encounter.  Some demonstrate tricky corner
 cases.  For more examples, practical info, and a tutorial, see
@@ -3536,7 +3536,7 @@ to create instances (e.g. uses a separate factory func) using
 <li><a class="reference internal" href="#buffer-object-structures">Buffer Object Structures</a></li>
 <li><a class="reference internal" href="#async-object-structures">Async Object Structures</a></li>
 <li><a class="reference internal" href="#slot-type-typedefs">Slot Type typedefs</a></li>
-<li><a class="reference internal" href="#examples">Examples</a></li>
+<li><a class="reference internal" href="#examples">範例</a></li>
 </ul>
 
   <h4>上個主題</h4>
@@ -3623,7 +3623,7 @@ to create instances (e.g. uses a separate factory func) using
 <br />
     <br />
 
-    最後更新於 11月 20, 2021。
+    最後更新於 11月 22, 2021。
     <a href="https://docs.python.org/3/bugs.html">Found a bug</a>?
     <br />
 

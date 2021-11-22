@@ -77,8 +77,8 @@
 <li><a class="reference internal" href="#measures-of-spread">離度 (spread) 的測量</a></li>
 <li><a class="reference internal" href="#statistics-for-relations-between-two-inputs">Statistics for relations between two inputs</a></li>
 <li><a class="reference internal" href="#function-details">函式細節</a></li>
-<li><a class="reference internal" href="#exceptions">Exceptions</a></li>
-<li><a class="reference internal" href="#normaldist-objects"><code class="xref py py-class docutils literal notranslate"><span class="pre">NormalDist</span></code> objects</a><ul>
+<li><a class="reference internal" href="#exceptions">例外</a></li>
+<li><a class="reference internal" href="#normaldist-objects"><code class="xref py py-class docutils literal notranslate"><span class="pre">NormalDist</span></code> 物件</a><ul>
 <li><a class="reference internal" href="#normaldist-examples-and-recipes"><code class="xref py py-class docutils literal notranslate"><span class="pre">NormalDist</span></code> Examples and Recipes</a></li>
 </ul>
 </li>
@@ -167,7 +167,7 @@
 <div class="versionadded">
 <p><span class="versionmodified added">在 3.4 版本新加入.</span></p>
 </div>
-<p><strong>Source code:</strong> <a class="reference external" href="https://github.com/python/cpython/tree/3.10/Lib/statistics.py">Lib/statistics.py</a></p>
+<p><strong>原始碼：</strong><a class="reference external" href="https://github.com/python/cpython/tree/3.10/Lib/statistics.py">Lib/statistics.py</a></p>
 <hr class="docutils" />
 <p>這個模組提供計算數值 (<code class="xref py py-class docutils literal notranslate"><span class="pre">Real</span></code>-valued) 資料的數學統計函式。</p>
 <p>The module is not intended to be a competitor to third-party libraries such
@@ -569,7 +569,7 @@ the arithmetic mean is automatically calculated.</p>
 estimate the variance from a sample, the <a class="reference internal" href="#statistics.variance" title="statistics.variance"><code class="xref py py-func docutils literal notranslate"><span class="pre">variance()</span></code></a> function is usually
 a better choice.</p>
 <p>Raises <a class="reference internal" href="#statistics.StatisticsError" title="statistics.StatisticsError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">StatisticsError</span></code></a> if <em>data</em> is empty.</p>
-<p>Examples:</p>
+<p>範例：</p>
 <div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">,</span> <span class="mf">1.25</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mf">1.75</span><span class="p">,</span> <span class="mf">2.75</span><span class="p">,</span> <span class="mf">3.25</span><span class="p">]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">pvariance</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 <span class="go">1.25</span>
@@ -630,7 +630,7 @@ automatically calculated.</p>
 <p>Use this function when your data is a sample from a population. To calculate
 the variance from the entire population, see <a class="reference internal" href="#statistics.pvariance" title="statistics.pvariance"><code class="xref py py-func docutils literal notranslate"><span class="pre">pvariance()</span></code></a>.</p>
 <p>Raises <a class="reference internal" href="#statistics.StatisticsError" title="statistics.StatisticsError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">StatisticsError</span></code></a> if <em>data</em> has fewer than two values.</p>
-<p>Examples:</p>
+<p>範例：</p>
 <div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="mf">2.75</span><span class="p">,</span> <span class="mf">1.75</span><span class="p">,</span> <span class="mf">1.25</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.25</span><span class="p">,</span> <span class="mf">3.5</span><span class="p">]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">variance</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 <span class="go">1.3720238095238095</span>
@@ -723,7 +723,7 @@ values, the method sorts them and assigns the following percentiles:
 is a measure of the joint variability of two inputs.</p>
 <p>Both inputs must be of the same length (no less than two), otherwise
 <a class="reference internal" href="#statistics.StatisticsError" title="statistics.StatisticsError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">StatisticsError</span></code></a> is raised.</p>
-<p>Examples:</p>
+<p>範例：</p>
 <div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">covariance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
@@ -750,7 +750,7 @@ relationship, where +1 means very strong, positive linear relationship,
 -1 very strong, negative linear relationship, and 0 no linear relationship.</p>
 <p>Both inputs must be of the same length (no less than two), and need
 not to be constant, otherwise <a class="reference internal" href="#statistics.StatisticsError" title="statistics.StatisticsError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">StatisticsError</span></code></a> is raised.</p>
-<p>Examples:</p>
+<p>範例：</p>
 <div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="mi">9</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">correlation</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
@@ -801,7 +801,7 @@ assuming that they had kept the pace.</p>
 
 </section>
 <section id="exceptions">
-<h2>Exceptions<a class="headerlink" href="#exceptions" title="本標題的永久連結">¶</a></h2>
+<h2>例外<a class="headerlink" href="#exceptions" title="本標題的永久連結">¶</a></h2>
 <p>A single exception is defined:</p>
 <dl class="py exception">
 <dt class="sig sig-object py" id="statistics.StatisticsError">
@@ -811,7 +811,7 @@ assuming that they had kept the pace.</p>
 
 </section>
 <section id="normaldist-objects">
-<h2><a class="reference internal" href="#statistics.NormalDist" title="statistics.NormalDist"><code class="xref py py-class docutils literal notranslate"><span class="pre">NormalDist</span></code></a> objects<a class="headerlink" href="#normaldist-objects" title="本標題的永久連結">¶</a></h2>
+<h2><a class="reference internal" href="#statistics.NormalDist" title="statistics.NormalDist"><code class="xref py py-class docutils literal notranslate"><span class="pre">NormalDist</span></code></a> 物件<a class="headerlink" href="#normaldist-objects" title="本標題的永久連結">¶</a></h2>
 <p><a class="reference internal" href="#statistics.NormalDist" title="statistics.NormalDist"><code class="xref py py-class docutils literal notranslate"><span class="pre">NormalDist</span></code></a> is a tool for creating and manipulating normal
 distributions of a <a class="reference external" href="http://www.stat.yale.edu/Courses/1997-98/101/ranvar.htm">random variable</a>.  It is a
 class that treats the mean and standard deviation of data
@@ -1100,8 +1100,8 @@ feature measurements given the gender:</p>
 <li><a class="reference internal" href="#measures-of-spread">離度 (spread) 的測量</a></li>
 <li><a class="reference internal" href="#statistics-for-relations-between-two-inputs">Statistics for relations between two inputs</a></li>
 <li><a class="reference internal" href="#function-details">函式細節</a></li>
-<li><a class="reference internal" href="#exceptions">Exceptions</a></li>
-<li><a class="reference internal" href="#normaldist-objects"><code class="xref py py-class docutils literal notranslate"><span class="pre">NormalDist</span></code> objects</a><ul>
+<li><a class="reference internal" href="#exceptions">例外</a></li>
+<li><a class="reference internal" href="#normaldist-objects"><code class="xref py py-class docutils literal notranslate"><span class="pre">NormalDist</span></code> 物件</a><ul>
 <li><a class="reference internal" href="#normaldist-examples-and-recipes"><code class="xref py py-class docutils literal notranslate"><span class="pre">NormalDist</span></code> Examples and Recipes</a></li>
 </ul>
 </li>
@@ -1193,7 +1193,7 @@ feature measurements given the gender:</p>
 <br />
     <br />
 
-    最後更新於 11月 20, 2021。
+    最後更新於 11月 22, 2021。
     <a href="https://docs.python.org/3/bugs.html">Found a bug</a>?
     <br />
 
