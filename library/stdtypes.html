@@ -927,19 +927,19 @@ number, <a class="reference internal" href="functions.html#float" title="float">
 using two distinct methods; these are used to allow user-defined classes to
 support iteration.  Sequences, described below in more detail, always support
 the iteration methods.</p>
-<p>One method needs to be defined for container objects to provide iteration
+<p>One method needs to be defined for container objects to provide <a class="reference internal" href="../glossary.html#term-iterable"><span class="xref std std-term">iterable</span></a>
 support:</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="container.__iter__">
 <span class="sig-prename descclassname"><span class="pre">container.</span></span><span class="sig-name descname"><span class="pre">__iter__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#container.__iter__" title="本定義的永久連結">¶</a></dt>
-<dd><p>Return an iterator object.  The object is required to support the iterator
-protocol described below.  If a container supports different types of
-iteration, additional methods can be provided to specifically request
+<dd><p>Return an <a class="reference internal" href="../glossary.html#term-iterator"><span class="xref std std-term">iterator</span></a> object.  The object is required to support the
+iterator protocol described below.  If a container supports different types
+of iteration, additional methods can be provided to specifically request
 iterators for those iteration types.  (An example of an object supporting
 multiple forms of iteration would be a tree structure which supports both
 breadth-first and depth-first traversal.)  This method corresponds to the
-<a class="reference internal" href="../c-api/typeobj.html#c.PyTypeObject.tp_iter" title="PyTypeObject.tp_iter"><code class="xref c c-member docutils literal notranslate"><span class="pre">tp_iter</span></code></a> slot of the type structure for Python objects in the Python/C
-API.</p>
+<a class="reference internal" href="../c-api/typeobj.html#c.PyTypeObject.tp_iter" title="PyTypeObject.tp_iter"><code class="xref c c-member docutils literal notranslate"><span class="pre">tp_iter</span></code></a> slot of the type structure for Python
+objects in the Python/C API.</p>
 </dd></dl>
 
 <p>The iterator objects themselves are required to support the following two
@@ -947,19 +947,20 @@ methods, which together form the <em class="dfn">iterator protocol</em>:</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="iterator.__iter__">
 <span class="sig-prename descclassname"><span class="pre">iterator.</span></span><span class="sig-name descname"><span class="pre">__iter__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#iterator.__iter__" title="本定義的永久連結">¶</a></dt>
-<dd><p>Return the iterator object itself.  This is required to allow both containers
-and iterators to be used with the <a class="reference internal" href="../reference/compound_stmts.html#for"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">for</span></code></a> and <a class="reference internal" href="../reference/expressions.html#in"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">in</span></code></a> statements.
-This method corresponds to the <a class="reference internal" href="../c-api/typeobj.html#c.PyTypeObject.tp_iter" title="PyTypeObject.tp_iter"><code class="xref c c-member docutils literal notranslate"><span class="pre">tp_iter</span></code></a> slot of the type structure for
-Python objects in the Python/C API.</p>
+<dd><p>Return the <a class="reference internal" href="../glossary.html#term-iterator"><span class="xref std std-term">iterator</span></a> object itself.  This is required to allow both
+containers and iterators to be used with the <a class="reference internal" href="../reference/compound_stmts.html#for"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">for</span></code></a> and
+<a class="reference internal" href="../reference/expressions.html#in"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">in</span></code></a> statements.  This method corresponds to the
+<a class="reference internal" href="../c-api/typeobj.html#c.PyTypeObject.tp_iter" title="PyTypeObject.tp_iter"><code class="xref c c-member docutils literal notranslate"><span class="pre">tp_iter</span></code></a> slot of the type structure for Python
+objects in the Python/C API.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="iterator.__next__">
 <span class="sig-prename descclassname"><span class="pre">iterator.</span></span><span class="sig-name descname"><span class="pre">__next__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#iterator.__next__" title="本定義的永久連結">¶</a></dt>
-<dd><p>Return the next item from the container.  If there are no further items, raise
-the <a class="reference internal" href="exceptions.html#StopIteration" title="StopIteration"><code class="xref py py-exc docutils literal notranslate"><span class="pre">StopIteration</span></code></a> exception.  This method corresponds to the
-<a class="reference internal" href="../c-api/typeobj.html#c.PyTypeObject.tp_iternext" title="PyTypeObject.tp_iternext"><code class="xref c c-member docutils literal notranslate"><span class="pre">tp_iternext</span></code></a> slot of the type structure for Python objects in the
-Python/C API.</p>
+<dd><p>Return the next item from the <a class="reference internal" href="../glossary.html#term-iterator"><span class="xref std std-term">iterator</span></a>.  If there are no further
+items, raise the <a class="reference internal" href="exceptions.html#StopIteration" title="StopIteration"><code class="xref py py-exc docutils literal notranslate"><span class="pre">StopIteration</span></code></a> exception.  This method corresponds to
+the <a class="reference internal" href="../c-api/typeobj.html#c.PyTypeObject.tp_iternext" title="PyTypeObject.tp_iternext"><code class="xref c c-member docutils literal notranslate"><span class="pre">tp_iternext</span></code></a> slot of the type structure for
+Python objects in the Python/C API.</p>
 </dd></dl>
 
 <p>Python defines several iterator objects to support iteration over general and
@@ -5756,7 +5757,7 @@ element is the tuple to be formatted.</p>
 <br />
     <br />
 
-    最後更新於 11月 22, 2021。
+    最後更新於 11月 23, 2021。
     <a href="https://docs.python.org/3/bugs.html">Found a bug</a>?
     <br />
 

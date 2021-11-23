@@ -152,8 +152,8 @@
 <dl class="c function">
 <dt class="sig sig-object c" id="c.PyIter_Check">
 <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PyIter_Check</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">o</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.PyIter_Check" title="本定義的永久連結">¶</a><br /></dt>
-<dd><em class="stableabi"> Part of the <a class="reference internal" href="stable.html#stable"><span class="std std-ref">Stable ABI</span></a> since version 3.8.</em><p>Return non-zero if the object <em>o</em> supports the iterator protocol, and <code class="docutils literal notranslate"><span class="pre">0</span></code>
-otherwise.  This function always succeeds.</p>
+<dd><em class="stableabi"> Part of the <a class="reference internal" href="stable.html#stable"><span class="std std-ref">Stable ABI</span></a> since version 3.8.</em><p>Return non-zero if the object <em>o</em> can be safely passed to
+<a class="reference internal" href="#c.PyIter_Next" title="PyIter_Next"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyIter_Next()</span></code></a>, and <code class="docutils literal notranslate"><span class="pre">0</span></code> otherwise.  This function always succeeds.</p>
 </dd></dl>
 
 <dl class="c function">
@@ -169,10 +169,11 @@ protocols, and <code class="docutils literal notranslate"><span class="pre">0</s
 <dl class="c function">
 <dt class="sig sig-object c" id="c.PyIter_Next">
 <a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">PyIter_Next</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">o</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.PyIter_Next" title="本定義的永久連結">¶</a><br /></dt>
-<dd><em class="refcount">Return value: New reference.</em><em class="stableabi"> Part of the <a class="reference internal" href="stable.html#stable"><span class="std std-ref">Stable ABI</span></a>.</em><p>Return the next value from the iteration <em>o</em>.  The object must be an iterator
-(it is up to the caller to check this).  If there are no remaining values,
-returns <code class="docutils literal notranslate"><span class="pre">NULL</span></code> with no exception set.  If an error occurs while retrieving
-the item, returns <code class="docutils literal notranslate"><span class="pre">NULL</span></code> and passes along the exception.</p>
+<dd><em class="refcount">Return value: New reference.</em><em class="stableabi"> Part of the <a class="reference internal" href="stable.html#stable"><span class="std std-ref">Stable ABI</span></a>.</em><p>Return the next value from the iterator <em>o</em>.  The object must be an iterator
+according to <a class="reference internal" href="#c.PyIter_Check" title="PyIter_Check"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyIter_Check()</span></code></a> (it is up to the caller to check this).
+If there are no remaining values, returns <code class="docutils literal notranslate"><span class="pre">NULL</span></code> with no exception set.
+If an error occurs while retrieving the item, returns <code class="docutils literal notranslate"><span class="pre">NULL</span></code> and passes
+along the exception.</p>
 </dd></dl>
 
 <p>To write a loop which iterates over an iterator, the C code should look
@@ -317,7 +318,7 @@ something like this:</p>
 <br />
     <br />
 
-    最後更新於 11月 22, 2021。
+    最後更新於 11月 23, 2021。
     <a href="https://docs.python.org/3/bugs.html">Found a bug</a>?
     <br />
 

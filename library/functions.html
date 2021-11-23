@@ -300,8 +300,6 @@ If the argument is a complex number, its magnitude is returned.</p>
 <span class="sig-name descname"><span class="pre">aiter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">async_iterable</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#aiter" title="本定義的永久連結">¶</a></dt>
 <dd><p>Return an <a class="reference internal" href="../glossary.html#term-asynchronous-iterator"><span class="xref std std-term">asynchronous iterator</span></a> for an <a class="reference internal" href="../glossary.html#term-asynchronous-iterable"><span class="xref std std-term">asynchronous iterable</span></a>.
 Equivalent to calling <code class="docutils literal notranslate"><span class="pre">x.__aiter__()</span></code>.</p>
-<p><code class="docutils literal notranslate"><span class="pre">aiter(x)</span></code> itself has an <code class="docutils literal notranslate"><span class="pre">__aiter__()</span></code> method that returns <code class="docutils literal notranslate"><span class="pre">x</span></code>,
-so <code class="docutils literal notranslate"><span class="pre">aiter(aiter(x))</span></code> is the same as <code class="docutils literal notranslate"><span class="pre">aiter(x)</span></code>.</p>
 <p>Note: Unlike <a class="reference internal" href="#iter" title="iter"><code class="xref py py-func docutils literal notranslate"><span class="pre">iter()</span></code></a>, <a class="reference internal" href="#aiter" title="aiter"><code class="xref py py-func docutils literal notranslate"><span class="pre">aiter()</span></code></a> has no 2-argument variant.</p>
 <div class="versionadded">
 <p><span class="versionmodified added">在 3.10 版本新加入.</span></p>
@@ -1130,8 +1128,8 @@ exception is raised.</p>
 <dd><p>Return an <a class="reference internal" href="../glossary.html#term-iterator"><span class="xref std std-term">iterator</span></a> object.  The first argument is interpreted very
 differently depending on the presence of the second argument. Without a
 second argument, <em>object</em> must be a collection object which supports the
-iteration protocol (the <code class="xref py py-meth docutils literal notranslate"><span class="pre">__iter__()</span></code> method), or it must support the
-sequence protocol (the <code class="xref py py-meth docutils literal notranslate"><span class="pre">__getitem__()</span></code> method with integer arguments
+<a class="reference internal" href="../glossary.html#term-iterable"><span class="xref std std-term">iterable</span></a> protocol (the <code class="xref py py-meth docutils literal notranslate"><span class="pre">__iter__()</span></code> method), or it must support
+the sequence protocol (the <code class="xref py py-meth docutils literal notranslate"><span class="pre">__getitem__()</span></code> method with integer arguments
 starting at <code class="docutils literal notranslate"><span class="pre">0</span></code>).  If it does not support either of those protocols,
 <a class="reference internal" href="exceptions.html#TypeError" title="TypeError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">TypeError</span></code></a> is raised. If the second argument, <em>sentinel</em>, is given,
 then <em>object</em> must be a callable object.  The iterator created in this case
@@ -1261,7 +1259,7 @@ such as <code class="docutils literal notranslate"><span class="pre">sorted(iter
 <dl class="py function">
 <dt class="sig sig-object py" id="next">
 <span class="sig-name descname"><span class="pre">next</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">iterator</span></span></em><span class="optional">[</span>, <em class="sig-param"><span class="n"><span class="pre">default</span></span></em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#next" title="本定義的永久連結">¶</a></dt>
-<dd><p>Retrieve the next item from the <em>iterator</em> by calling its
+<dd><p>Retrieve the next item from the <a class="reference internal" href="../glossary.html#term-iterator"><span class="xref std std-term">iterator</span></a> by calling its
 <a class="reference internal" href="stdtypes.html#iterator.__next__" title="iterator.__next__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__next__()</span></code></a> method.  If <em>default</em> is given, it is returned
 if the iterator is exhausted, otherwise <a class="reference internal" href="exceptions.html#StopIteration" title="StopIteration"><code class="xref py py-exc docutils literal notranslate"><span class="pre">StopIteration</span></code></a> is raised.</p>
 </dd></dl>
@@ -2239,7 +2237,7 @@ mode to convert Windows or Mac-style newlines.</p>
 <br />
     <br />
 
-    最後更新於 11月 22, 2021。
+    最後更新於 11月 23, 2021。
     <a href="https://docs.python.org/3/bugs.html">Found a bug</a>?
     <br />
 
