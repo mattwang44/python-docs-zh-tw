@@ -999,6 +999,9 @@
 <section id="core-and-builtins">
 <h3>Core and Builtins<a class="headerlink" href="#core-and-builtins" title="本標題的永久連結">¶</a></h3>
 <ul>
+<li><p><a class="reference external" href="https://bugs.python.org/issue45727">bpo-45727</a>: Refine the custom syntax error that suggests that a comma may
+be missing to trigger only when the expressions are detected between
+parentheses or brackets. Patch by Pablo Galindo</p></li>
 <li><p><a class="reference external" href="https://bugs.python.org/issue45848">bpo-45848</a>: Allow the parser to obtain error lines directly from encoded
 files. Patch by Pablo Galindo</p></li>
 <li><p><a class="reference external" href="https://bugs.python.org/issue45826">bpo-45826</a>: Fixed a crash when calling <code class="docutils literal notranslate"><span class="pre">.with_traceback(None)</span></code> on
@@ -1284,11 +1287,19 @@ by Victor Stinner.</p></li>
 <section id="build">
 <h3>Build<a class="headerlink" href="#build" title="本標題的永久連結">¶</a></h3>
 <ul>
+<li><p><a class="reference external" href="https://bugs.python.org/issue33393">bpo-33393</a>: Update <code class="docutils literal notranslate"><span class="pre">config.guess</span></code> to 2021-06-03 and <code class="docutils literal notranslate"><span class="pre">config.sub</span></code> to
+2021-08-14. <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> now has an <code class="docutils literal notranslate"><span class="pre">update-config</span></code> target to make
+updating more convenient.</p></li>
+<li><p><a class="reference external" href="https://bugs.python.org/issue41498">bpo-41498</a>: Python now compiles on platforms without <code class="docutils literal notranslate"><span class="pre">sigset_t</span></code>. Several
+functions in <a class="reference internal" href="../library/signal.html#module-signal" title="signal: Set handlers for asynchronous events."><code class="xref py py-mod docutils literal notranslate"><span class="pre">signal</span></code></a> are not available when <code class="docutils literal notranslate"><span class="pre">sigset_t</span></code> is missing.</p>
+<p>Based on patch by Roman Yurchak for pyodide.</p>
+</li>
 <li><p><a class="reference external" href="https://bugs.python.org/issue43158">bpo-43158</a>: <code class="docutils literal notranslate"><span class="pre">setup.py</span></code> now uses values from configure script to build the
 <code class="docutils literal notranslate"><span class="pre">_uuid</span></code> extension module. Configure now detects util-linux's
 <code class="docutils literal notranslate"><span class="pre">libuuid</span></code>, too.</p></li>
 <li><p><a class="reference external" href="https://bugs.python.org/issue45571">bpo-45571</a>: <code class="docutils literal notranslate"><span class="pre">Modules/Setup</span></code> now use <code class="docutils literal notranslate"><span class="pre">PY_CFLAGS_NODIST</span></code> instead of
 <code class="docutils literal notranslate"><span class="pre">PY_CFLAGS</span></code> to compile shared modules.</p></li>
+<li><p><a class="reference external" href="https://bugs.python.org/issue45561">bpo-45561</a>: Run smelly.py tool from $(srcdir).</p></li>
 <li><p><a class="reference external" href="https://bugs.python.org/issue45532">bpo-45532</a>: Update <a class="reference internal" href="../library/sys.html#sys.version" title="sys.version"><code class="xref py py-data docutils literal notranslate"><span class="pre">sys.version</span></code></a> to use <code class="docutils literal notranslate"><span class="pre">main</span></code> as fallback
 information. Patch by Jeong YunWon.</p></li>
 <li><p><a class="reference external" href="https://bugs.python.org/issue45536">bpo-45536</a>: The <code class="docutils literal notranslate"><span class="pre">configure</span></code> script now checks whether OpenSSL headers and
@@ -1314,6 +1325,10 @@ verify the version of the ncurses library &gt;= 20170401.</p>
 <section id="windows">
 <h3>Windows<a class="headerlink" href="#windows" title="本標題的永久連結">¶</a></h3>
 <ul class="simple">
+<li><p><a class="reference external" href="https://bugs.python.org/issue45616">bpo-45616</a>: Fix Python Launcher's ability to distinguish between versions
+3.1 and 3.10 when either one is explicitly requested.  Previously, 3.1
+would be used if 3.10 was requested but not installed, and 3.10 would be
+used if 3.1 was requested but 3.10 was installed.</p></li>
 <li><p><a class="reference external" href="https://bugs.python.org/issue45732">bpo-45732</a>: Updates bundled Tcl/Tk to 8.6.12.</p></li>
 <li><p><a class="reference external" href="https://bugs.python.org/issue45720">bpo-45720</a>: Internal reference to <code class="file docutils literal notranslate"><span class="pre">shlwapi.dll</span></code> was dropped to help
 improve startup time. This DLL will no longer be loaded at the start of
@@ -1355,6 +1370,8 @@ works, instead of &lt;Ctrl-Z Return&gt;, which does not work in IDLE.</p></li>
 <section id="c-api">
 <h3>C API<a class="headerlink" href="#c-api" title="本標題的永久連結">¶</a></h3>
 <ul class="simple">
+<li><p><a class="reference external" href="https://bugs.python.org/issue39026">bpo-39026</a>: Fix Python.h to build C extensions with Xcode: remove a
+relative include from <code class="docutils literal notranslate"><span class="pre">Include/cpython/pystate.h</span></code>.</p></li>
 <li><p><a class="reference external" href="https://bugs.python.org/issue45307">bpo-45307</a>: Restore the private C API function
 <code class="xref py py-func docutils literal notranslate"><span class="pre">_PyImport_FindExtensionObject()</span></code>. It will be removed in Python 3.11.</p></li>
 <li><p><a class="reference external" href="https://bugs.python.org/issue44687">bpo-44687</a>: <code class="xref py py-meth docutils literal notranslate"><span class="pre">BufferedReader.peek()</span></code> no longer raises <a class="reference internal" href="../library/exceptions.html#ValueError" title="ValueError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code></a>
@@ -24896,7 +24913,7 @@ Kilburn.</p></li>
 <br />
     <br />
 
-    最後更新於 11月 23, 2021。
+    最後更新於 11月 26, 2021。
     <a href="https://docs.python.org/3/bugs.html">Found a bug</a>?
     <br />
 
