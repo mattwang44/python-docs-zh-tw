@@ -999,9 +999,13 @@
 <section id="core-and-builtins">
 <h3>Core and Builtins<a class="headerlink" href="#core-and-builtins" title="本標題的永久連結">¶</a></h3>
 <ul>
+<li><p><a class="reference external" href="https://bugs.python.org/issue42268">bpo-42268</a>: Fail the configure step if the selected compiler doesn't
+support memory sanitizer. Patch by Pablo Galindo</p></li>
 <li><p><a class="reference external" href="https://bugs.python.org/issue45727">bpo-45727</a>: Refine the custom syntax error that suggests that a comma may
 be missing to trigger only when the expressions are detected between
 parentheses or brackets. Patch by Pablo Galindo</p></li>
+<li><p><a class="reference external" href="https://bugs.python.org/issue45614">bpo-45614</a>: Fix <a class="reference internal" href="../library/traceback.html#module-traceback" title="traceback: Print or retrieve a stack traceback."><code class="xref py py-mod docutils literal notranslate"><span class="pre">traceback</span></code></a> display for exceptions with invalid module
+name.</p></li>
 <li><p><a class="reference external" href="https://bugs.python.org/issue45848">bpo-45848</a>: Allow the parser to obtain error lines directly from encoded
 files. Patch by Pablo Galindo</p></li>
 <li><p><a class="reference external" href="https://bugs.python.org/issue45826">bpo-45826</a>: Fixed a crash when calling <code class="docutils literal notranslate"><span class="pre">.with_traceback(None)</span></code> on
@@ -1060,6 +1064,9 @@ displayed.</p>
 <section id="library">
 <h3>Library<a class="headerlink" href="#library" title="本標題的永久連結">¶</a></h3>
 <ul>
+<li><p><a class="reference external" href="https://bugs.python.org/issue37658">bpo-37658</a>: Fix issue when on certain conditions <code class="docutils literal notranslate"><span class="pre">asyncio.wait_for()</span></code> may
+allow a coroutine to complete successfully, but fail to return the result,
+potentially causing memory leaks or other issues.</p></li>
 <li><p><a class="reference external" href="https://bugs.python.org/issue44649">bpo-44649</a>: Handle dataclass(slots=True) with a field that has default a
 default value, but for which init=False.</p></li>
 <li><p><a class="reference external" href="https://bugs.python.org/issue45803">bpo-45803</a>: Added missing kw_only parameter to
@@ -1069,6 +1076,8 @@ filenames and function names) with a single write() syscall when dumping a
 traceback. It reduces the risk of getting an unreadable dump when two
 threads or two processes dump a traceback to the same file (like stderr)
 at the same time. Patch by Victor Stinner.</p></li>
+<li><p><a class="reference external" href="https://bugs.python.org/issue41735">bpo-41735</a>: Fix thread lock in <code class="docutils literal notranslate"><span class="pre">zlib.Decompress.flush()</span></code> method before
+<code class="docutils literal notranslate"><span class="pre">PyObject_GetBuffer</span></code>.</p></li>
 <li><p><a class="reference external" href="https://bugs.python.org/issue45235">bpo-45235</a>: Reverted an argparse bugfix that caused regression in the
 handling of default arguments for subparsers.  This prevented leaf level
 arguments from taking precedence over root level arguments.</p></li>
@@ -1196,6 +1205,9 @@ exception is in flight.</p></li>
 <li><p><a class="reference external" href="https://bugs.python.org/issue44295">bpo-44295</a>: Ensure deprecation warning from
 <code class="xref py py-func docutils literal notranslate"><span class="pre">assertDictContainsSubset()</span></code> points at calling code - by Anthony
 Sottile.</p></li>
+<li><p><a class="reference external" href="https://bugs.python.org/issue43498">bpo-43498</a>: Avoid a possible <em>&quot;RuntimeError: dictionary changed size during
+iteration&quot;</em> when adjusting the process count of
+<code class="xref py py-class docutils literal notranslate"><span class="pre">ProcessPoolExecutor</span></code>.</p></li>
 </ul>
 </section>
 <section id="documentation">
@@ -1237,11 +1249,16 @@ purely by presence of the right <a class="reference internal" href="../glossary.
 Hettinger.</p></li>
 <li><p><a class="reference external" href="https://bugs.python.org/issue25381">bpo-25381</a>: In the extending chapter of the extending doc, update a
 paragraph about the global variables containing exception information.</p></li>
+<li><p><a class="reference external" href="https://bugs.python.org/issue43905">bpo-43905</a>: Expanded <a class="reference internal" href="../library/dataclasses.html#dataclasses.astuple" title="dataclasses.astuple"><code class="xref py py-func docutils literal notranslate"><span class="pre">astuple()</span></code></a> and
+<a class="reference internal" href="../library/dataclasses.html#dataclasses.asdict" title="dataclasses.asdict"><code class="xref py py-func docutils literal notranslate"><span class="pre">asdict()</span></code></a> docs, warning about deepcopy being applied and
+providing a workaround.</p></li>
 </ul>
 </section>
 <section id="tests">
 <h3>Tests<a class="headerlink" href="#tests" title="本標題的永久連結">¶</a></h3>
 <ul class="simple">
+<li><p><a class="reference external" href="https://bugs.python.org/issue19460">bpo-19460</a>: Add new Test for
+<a class="reference internal" href="../library/email.mime.html#email.mime.nonmultipart.MIMENonMultipart" title="email.mime.nonmultipart.MIMENonMultipart"><code class="xref py py-class docutils literal notranslate"><span class="pre">email.mime.nonmultipart.MIMENonMultipart</span></code></a>.</p></li>
 <li><p><a class="reference external" href="https://bugs.python.org/issue45835">bpo-45835</a>: Fix race condition in test_queue tests with multiple &quot;feeder&quot;
 threads.</p></li>
 <li><p><a class="reference external" href="https://bugs.python.org/issue45678">bpo-45678</a>: Add tests for scenarios in which
@@ -1290,10 +1307,16 @@ by Victor Stinner.</p></li>
 <li><p><a class="reference external" href="https://bugs.python.org/issue33393">bpo-33393</a>: Update <code class="docutils literal notranslate"><span class="pre">config.guess</span></code> to 2021-06-03 and <code class="docutils literal notranslate"><span class="pre">config.sub</span></code> to
 2021-08-14. <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> now has an <code class="docutils literal notranslate"><span class="pre">update-config</span></code> target to make
 updating more convenient.</p></li>
+<li><p><a class="reference external" href="https://bugs.python.org/issue45866">bpo-45866</a>: <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">regen-all</span></code> now produces the same output when run from a
+directory other than the source tree: when building Python out of the
+source tree. pegen now strips directory of the &quot;generated by pygen from
+&lt;FILENAME&gt;&quot; header Patch by Victor Stinner.</p></li>
 <li><p><a class="reference external" href="https://bugs.python.org/issue41498">bpo-41498</a>: Python now compiles on platforms without <code class="docutils literal notranslate"><span class="pre">sigset_t</span></code>. Several
 functions in <a class="reference internal" href="../library/signal.html#module-signal" title="signal: Set handlers for asynchronous events."><code class="xref py py-mod docutils literal notranslate"><span class="pre">signal</span></code></a> are not available when <code class="docutils literal notranslate"><span class="pre">sigset_t</span></code> is missing.</p>
 <p>Based on patch by Roman Yurchak for pyodide.</p>
 </li>
+<li><p><a class="reference external" href="https://bugs.python.org/issue45881">bpo-45881</a>: <code class="docutils literal notranslate"><span class="pre">setup.py</span></code> now uses <code class="docutils literal notranslate"><span class="pre">CC</span></code> from environment first to discover
+multiarch and cross compile paths.</p></li>
 <li><p><a class="reference external" href="https://bugs.python.org/issue43158">bpo-43158</a>: <code class="docutils literal notranslate"><span class="pre">setup.py</span></code> now uses values from configure script to build the
 <code class="docutils literal notranslate"><span class="pre">_uuid</span></code> extension module. Configure now detects util-linux's
 <code class="docutils literal notranslate"><span class="pre">libuuid</span></code>, too.</p></li>
@@ -1325,6 +1348,11 @@ verify the version of the ncurses library &gt;= 20170401.</p>
 <section id="windows">
 <h3>Windows<a class="headerlink" href="#windows" title="本標題的永久連結">¶</a></h3>
 <ul class="simple">
+<li><p><a class="reference external" href="https://bugs.python.org/issue45901">bpo-45901</a>: When installed through the Microsoft Store and set as the
+default app for <code class="file docutils literal notranslate"><span class="pre">*.py</span></code> files, command line arguments will now be
+passed to Python when invoking a script without explicitly launching
+Python (that is, <code class="docutils literal notranslate"><span class="pre">script.py</span> <span class="pre">args</span></code> rather than <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">script.py</span>
+<span class="pre">args</span></code>).</p></li>
 <li><p><a class="reference external" href="https://bugs.python.org/issue45616">bpo-45616</a>: Fix Python Launcher's ability to distinguish between versions
 3.1 and 3.10 when either one is explicitly requested.  Previously, 3.1
 would be used if 3.10 was requested but not installed, and 3.10 would be
@@ -24913,11 +24941,11 @@ Kilburn.</p></li>
 <br />
     <br />
 
-    最後更新於 11月 26, 2021。
+    最後更新於 12月 05, 2021。
     <a href="https://docs.python.org/3/bugs.html">Found a bug</a>?
     <br />
 
-    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.3.0 建立。
+    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.3.1 建立。
     </div>
 
   </body>

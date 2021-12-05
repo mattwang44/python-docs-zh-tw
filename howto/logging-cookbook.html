@@ -79,7 +79,10 @@
 <li><a class="reference internal" href="#logging-to-multiple-destinations">Logging to multiple destinations</a></li>
 <li><a class="reference internal" href="#configuration-server-example">Configuration server example</a></li>
 <li><a class="reference internal" href="#dealing-with-handlers-that-block">Dealing with handlers that block</a></li>
-<li><a class="reference internal" href="#sending-and-receiving-logging-events-across-a-network">Sending and receiving logging events across a network</a></li>
+<li><a class="reference internal" href="#sending-and-receiving-logging-events-across-a-network">Sending and receiving logging events across a network</a><ul>
+<li><a class="reference internal" href="#running-a-logging-socket-listener-in-production">Running a logging socket listener in production</a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#adding-contextual-information-to-your-logging-output">Adding contextual information to your logging output</a><ul>
 <li><a class="reference internal" href="#using-loggeradapters-to-impart-contextual-information">Using LoggerAdapters to impart contextual information</a><ul>
 <li><a class="reference internal" href="#using-objects-other-than-dicts-to-pass-contextual-information">Using objects other than dicts to pass contextual information</a></li>
@@ -90,6 +93,7 @@
 </li>
 <li><a class="reference internal" href="#logging-to-a-single-file-from-multiple-processes">Logging to a single file from multiple processes</a><ul>
 <li><a class="reference internal" href="#using-concurrent-futures-processpoolexecutor">Using concurrent.futures.ProcessPoolExecutor</a></li>
+<li><a class="reference internal" href="#deploying-web-applications-using-gunicorn-and-uwsgi">Deploying Web applications using Gunicorn and uWSGI</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#using-file-rotation">Using file rotation</a></li>
@@ -708,6 +712,14 @@ these affect you, you can use an alternative serialization scheme by overriding
 the <code class="xref py py-meth docutils literal notranslate"><span class="pre">makePickle()</span></code> method and implementing your
 alternative there, as well as adapting the above script to use your alternative
 serialization.</p>
+<section id="running-a-logging-socket-listener-in-production">
+<h3>Running a logging socket listener in production<a class="headerlink" href="#running-a-logging-socket-listener-in-production" title="本標題的永久連結">¶</a></h3>
+<p>To run a logging listener in production, you may need to use a process-management tool
+such as <a class="reference external" href="http://supervisord.org/">Supervisor</a>. <a class="reference external" href="https://gist.github.com/vsajip/4b227eeec43817465ca835ca66f75e2b">Here</a> is a Gist which
+provides the bare-bones files to run the above functionality using Supervisor: you
+will need to change the <cite>/path/to/</cite> parts in the Gist to reflect the actual paths you
+want to use.</p>
+</section>
 </section>
 <section id="adding-contextual-information-to-your-logging-output">
 <span id="context-info"></span><h2>Adding contextual information to your logging output<a class="headerlink" href="#adding-contextual-information-to-your-logging-output" title="本標題的永久連結">¶</a></h2>
@@ -1122,6 +1134,15 @@ Instead of</p>
         <span class="n">executor</span><span class="o">.</span><span class="n">submit</span><span class="p">(</span><span class="n">worker_process</span><span class="p">,</span> <span class="n">queue</span><span class="p">,</span> <span class="n">worker_configurer</span><span class="p">)</span>
 </pre></div>
 </div>
+</section>
+<section id="deploying-web-applications-using-gunicorn-and-uwsgi">
+<h3>Deploying Web applications using Gunicorn and uWSGI<a class="headerlink" href="#deploying-web-applications-using-gunicorn-and-uwsgi" title="本標題的永久連結">¶</a></h3>
+<p>When deploying Web applications using <a class="reference external" href="https://gunicorn.org/">Gunicorn</a> or <a class="reference external" href="https://uwsgi-docs.readthedocs.io/en/latest/">uWSGI</a> (or similar), multiple worker
+processes are created to handle client requests. In such environments, avoid creating
+file-based handlers directly in your web application. Instead, use a
+<a class="reference internal" href="../library/logging.handlers.html#logging.handlers.SocketHandler" title="logging.handlers.SocketHandler"><code class="xref py py-class docutils literal notranslate"><span class="pre">SocketHandler</span></code></a> to log from the web application to a listener in a separate
+process. This can be set up using a process management tool such as Supervisor - see
+<a class="reference internal" href="#running-a-logging-socket-listener-in-production">Running a logging socket listener in production</a> for more details.</p>
 </section>
 </section>
 <section id="using-file-rotation">
@@ -3055,7 +3076,10 @@ more fine-grained than that).</p>
 <li><a class="reference internal" href="#logging-to-multiple-destinations">Logging to multiple destinations</a></li>
 <li><a class="reference internal" href="#configuration-server-example">Configuration server example</a></li>
 <li><a class="reference internal" href="#dealing-with-handlers-that-block">Dealing with handlers that block</a></li>
-<li><a class="reference internal" href="#sending-and-receiving-logging-events-across-a-network">Sending and receiving logging events across a network</a></li>
+<li><a class="reference internal" href="#sending-and-receiving-logging-events-across-a-network">Sending and receiving logging events across a network</a><ul>
+<li><a class="reference internal" href="#running-a-logging-socket-listener-in-production">Running a logging socket listener in production</a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#adding-contextual-information-to-your-logging-output">Adding contextual information to your logging output</a><ul>
 <li><a class="reference internal" href="#using-loggeradapters-to-impart-contextual-information">Using LoggerAdapters to impart contextual information</a><ul>
 <li><a class="reference internal" href="#using-objects-other-than-dicts-to-pass-contextual-information">Using objects other than dicts to pass contextual information</a></li>
@@ -3066,6 +3090,7 @@ more fine-grained than that).</p>
 </li>
 <li><a class="reference internal" href="#logging-to-a-single-file-from-multiple-processes">Logging to a single file from multiple processes</a><ul>
 <li><a class="reference internal" href="#using-concurrent-futures-processpoolexecutor">Using concurrent.futures.ProcessPoolExecutor</a></li>
+<li><a class="reference internal" href="#deploying-web-applications-using-gunicorn-and-uwsgi">Deploying Web applications using Gunicorn and uWSGI</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#using-file-rotation">Using file rotation</a></li>
@@ -3186,11 +3211,11 @@ more fine-grained than that).</p>
 <br />
     <br />
 
-    最後更新於 11月 26, 2021。
+    最後更新於 12月 05, 2021。
     <a href="https://docs.python.org/3/bugs.html">Found a bug</a>?
     <br />
 
-    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.3.0 建立。
+    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.3.1 建立。
     </div>
 
   </body>

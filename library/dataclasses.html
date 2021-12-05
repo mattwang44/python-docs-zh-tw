@@ -478,7 +478,9 @@ Does not return pseudo-fields which are <code class="docutils literal notranslat
 <dd><p>Converts the dataclass <code class="docutils literal notranslate"><span class="pre">instance</span></code> to a dict (by using the
 factory function <code class="docutils literal notranslate"><span class="pre">dict_factory</span></code>).  Each dataclass is converted
 to a dict of its fields, as <code class="docutils literal notranslate"><span class="pre">name:</span> <span class="pre">value</span></code> pairs.  dataclasses, dicts,
-lists, and tuples are recursed into.  For example:</p>
+lists, and tuples are recursed into.  Other objects are copied with
+<a class="reference internal" href="copy.html#copy.deepcopy" title="copy.deepcopy"><code class="xref py py-func docutils literal notranslate"><span class="pre">copy.deepcopy()</span></code></a>.</p>
+<p>Example of using <a class="reference internal" href="#dataclasses.asdict" title="dataclasses.asdict"><code class="xref py py-func docutils literal notranslate"><span class="pre">asdict()</span></code></a> on nested dataclasses:</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="nd">@dataclass</span>
 <span class="k">class</span> <span class="nc">Point</span><span class="p">:</span>
      <span class="n">x</span><span class="p">:</span> <span class="nb">int</span>
@@ -495,7 +497,12 @@ lists, and tuples are recursed into.  For example:</p>
 <span class="k">assert</span> <span class="n">asdict</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="o">==</span> <span class="p">{</span><span class="s1">&#39;mylist&#39;</span><span class="p">:</span> <span class="p">[{</span><span class="s1">&#39;x&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">},</span> <span class="p">{</span><span class="s1">&#39;x&#39;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">}]}</span>
 </pre></div>
 </div>
-<p>Raises <a class="reference internal" href="exceptions.html#TypeError" title="TypeError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">TypeError</span></code></a> if <code class="docutils literal notranslate"><span class="pre">instance</span></code> is not a dataclass instance.</p>
+<p>To create a shallow copy, the following workaround may be used:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="nb">dict</span><span class="p">((</span><span class="n">field</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">instance</span><span class="p">,</span> <span class="n">field</span><span class="o">.</span><span class="n">name</span><span class="p">))</span> <span class="k">for</span> <span class="n">field</span> <span class="ow">in</span> <span class="n">fields</span><span class="p">(</span><span class="n">instance</span><span class="p">))</span>
+</pre></div>
+</div>
+<p><a class="reference internal" href="#dataclasses.asdict" title="dataclasses.asdict"><code class="xref py py-func docutils literal notranslate"><span class="pre">asdict()</span></code></a> raises <a class="reference internal" href="exceptions.html#TypeError" title="TypeError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">TypeError</span></code></a> if <code class="docutils literal notranslate"><span class="pre">instance</span></code> is not a dataclass
+instance.</p>
 </dd></dl>
 
 <dl class="py function">
@@ -504,13 +511,19 @@ lists, and tuples are recursed into.  For example:</p>
 <dd><p>Converts the dataclass <code class="docutils literal notranslate"><span class="pre">instance</span></code> to a tuple (by using the
 factory function <code class="docutils literal notranslate"><span class="pre">tuple_factory</span></code>).  Each dataclass is converted
 to a tuple of its field values.  dataclasses, dicts, lists, and
-tuples are recursed into.</p>
+tuples are recursed into. Other objects are copied with
+<a class="reference internal" href="copy.html#copy.deepcopy" title="copy.deepcopy"><code class="xref py py-func docutils literal notranslate"><span class="pre">copy.deepcopy()</span></code></a>.</p>
 <p>Continuing from the previous example:</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">assert</span> <span class="n">astuple</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="o">==</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
 <span class="k">assert</span> <span class="n">astuple</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="o">==</span> <span class="p">([(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">4</span><span class="p">)],)</span>
 </pre></div>
 </div>
-<p>Raises <a class="reference internal" href="exceptions.html#TypeError" title="TypeError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">TypeError</span></code></a> if <code class="docutils literal notranslate"><span class="pre">instance</span></code> is not a dataclass instance.</p>
+<p>To create a shallow copy, the following workaround may be used:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="nb">tuple</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="n">instance</span><span class="p">,</span> <span class="n">field</span><span class="o">.</span><span class="n">name</span><span class="p">)</span> <span class="k">for</span> <span class="n">field</span> <span class="ow">in</span> <span class="n">dataclasses</span><span class="o">.</span><span class="n">fields</span><span class="p">(</span><span class="n">instance</span><span class="p">))</span>
+</pre></div>
+</div>
+<p><a class="reference internal" href="#dataclasses.astuple" title="dataclasses.astuple"><code class="xref py py-func docutils literal notranslate"><span class="pre">astuple()</span></code></a> raises <a class="reference internal" href="exceptions.html#TypeError" title="TypeError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">TypeError</span></code></a> if <code class="docutils literal notranslate"><span class="pre">instance</span></code> is not a dataclass
+instance.</p>
 </dd></dl>
 
 <dl class="py function">
@@ -972,11 +985,11 @@ mutable types as default values for fields:</p>
 <br />
     <br />
 
-    最後更新於 11月 26, 2021。
+    最後更新於 12月 05, 2021。
     <a href="https://docs.python.org/3/bugs.html">Found a bug</a>?
     <br />
 
-    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.3.0 建立。
+    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.3.1 建立。
     </div>
 
   </body>
