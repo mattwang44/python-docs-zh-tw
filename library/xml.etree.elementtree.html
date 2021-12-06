@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>xml.etree.ElementTree --- The ElementTree XML API &#8212; Python 3.10.0 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>xml.etree.ElementTree --- The ElementTree XML API &#8212; Python 3.10.1 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2021.11.1" />
@@ -20,7 +20,7 @@
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.10.0 說明文件 中搜尋"
+          title="在 Python 3.10.1 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -100,11 +100,11 @@
 <li><a class="reference internal" href="#id4">Reference</a><ul>
 <li><a class="reference internal" href="#elementinclude-functions">函式</a></li>
 <li><a class="reference internal" href="#element-objects">Element Objects</a></li>
-<li><a class="reference internal" href="#elementtree-objects">ElementTree Objects</a></li>
-<li><a class="reference internal" href="#qname-objects">QName Objects</a></li>
-<li><a class="reference internal" href="#treebuilder-objects">TreeBuilder Objects</a></li>
-<li><a class="reference internal" href="#xmlparser-objects">XMLParser Objects</a></li>
-<li><a class="reference internal" href="#xmlpullparser-objects">XMLPullParser Objects</a></li>
+<li><a class="reference internal" href="#elementtree-objects">ElementTree 物件</a></li>
+<li><a class="reference internal" href="#qname-objects">QName 物件</a></li>
+<li><a class="reference internal" href="#treebuilder-objects">TreeBuilder 物件</a></li>
+<li><a class="reference internal" href="#xmlparser-objects">XMLParser 物件</a></li>
+<li><a class="reference internal" href="#xmlpullparser-objects">XMLPullParser 物件</a></li>
 <li><a class="reference internal" href="#exceptions">例外</a></li>
 </ul>
 </li>
@@ -160,7 +160,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.0 Documentation</a> &#187;
+      <a href="../index.html">3.10.1 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -832,10 +832,10 @@ present.</p>
 <p>If you need a fully populated element, look for &quot;end&quot; events instead.</p>
 </div>
 <div class="deprecated">
-<p><span class="versionmodified deprecated">在 3.4 版本開始棄用: </span>The <em>parser</em> argument.</p>
+<p><span class="versionmodified deprecated">在 3.4 版本開始棄用: </span><em>parser</em> 引數。</p>
 </div>
 <div class="versionchanged">
-<p><span class="versionmodified changed">在 3.8 版本變更: </span>The <code class="docutils literal notranslate"><span class="pre">comment</span></code> and <code class="docutils literal notranslate"><span class="pre">pi</span></code> events were added.</p>
+<p><span class="versionmodified changed">在 3.8 版本變更: </span>新增 <em>context</em> 與 <em>check_hostname</em> 事件。</p>
 </div>
 </dd></dl>
 
@@ -899,7 +899,7 @@ is either <code class="docutils literal notranslate"><span class="pre">&quot;xml
 meaning as in <a class="reference internal" href="#xml.etree.ElementTree.ElementTree.write" title="xml.etree.ElementTree.ElementTree.write"><code class="xref py py-meth docutils literal notranslate"><span class="pre">ElementTree.write()</span></code></a>. Returns an (optionally) encoded string
 containing the XML data.</p>
 <div class="versionadded">
-<p><span class="versionmodified added">在 3.4 版本新加入: </span>The <em>short_empty_elements</em> parameter.</p>
+<p><span class="versionmodified added">在 3.4 版本新加入: </span><em>short_empty_elements</em> 參數。</p>
 </div>
 <div class="versionadded">
 <p><span class="versionmodified added">在 3.8 版本新加入: </span>The <em>xml_declaration</em> and <em>default_namespace</em> parameters.</p>
@@ -926,7 +926,7 @@ except that <code class="docutils literal notranslate"><span class="pre">b&quot;
 <p><span class="versionmodified added">在 3.2 版本新加入.</span></p>
 </div>
 <div class="versionadded">
-<p><span class="versionmodified added">在 3.4 版本新加入: </span>The <em>short_empty_elements</em> parameter.</p>
+<p><span class="versionmodified added">在 3.4 版本新加入: </span><em>short_empty_elements</em> 參數。</p>
 </div>
 <div class="versionadded">
 <p><span class="versionmodified added">在 3.8 版本新加入: </span>The <em>xml_declaration</em> and <em>default_namespace</em> parameters.</p>
@@ -1280,7 +1280,7 @@ an order independently from the Element creation:</p>
 
 </section>
 <section id="elementtree-objects">
-<span id="elementtree-elementtree-objects"></span><h3>ElementTree Objects<a class="headerlink" href="#elementtree-objects" title="本標題的永久連結">¶</a></h3>
+<span id="elementtree-elementtree-objects"></span><h3>ElementTree 物件<a class="headerlink" href="#elementtree-objects" title="本標題的永久連結">¶</a></h3>
 <dl class="py class">
 <dt class="sig sig-object py" id="xml.etree.ElementTree.ElementTree">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">xml.etree.ElementTree.</span></span><span class="sig-name descname"><span class="pre">ElementTree</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">element</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#xml.etree.ElementTree.ElementTree" title="本定義的永久連結">¶</a></dt>
@@ -1370,7 +1370,7 @@ this may conflict with the type of <em>file</em> if it's an open
 <a class="reference internal" href="../glossary.html#term-file-object"><span class="xref std std-term">file object</span></a>; make sure you do not try to write a string to a
 binary stream and vice versa.</p>
 <div class="versionadded">
-<p><span class="versionmodified added">在 3.4 版本新加入: </span>The <em>short_empty_elements</em> parameter.</p>
+<p><span class="versionmodified added">在 3.4 版本新加入: </span><em>short_empty_elements</em> 參數。</p>
 </div>
 <div class="versionchanged">
 <p><span class="versionmodified changed">在 3.8 版本變更: </span>The <a class="reference internal" href="#xml.etree.ElementTree.ElementTree.write" title="xml.etree.ElementTree.ElementTree.write"><code class="xref py py-meth docutils literal notranslate"><span class="pre">write()</span></code></a> method now preserves the attribute order specified
@@ -1410,7 +1410,7 @@ by the user.</p>
 </div>
 </section>
 <section id="qname-objects">
-<span id="elementtree-qname-objects"></span><h3>QName Objects<a class="headerlink" href="#qname-objects" title="本標題的永久連結">¶</a></h3>
+<span id="elementtree-qname-objects"></span><h3>QName 物件<a class="headerlink" href="#qname-objects" title="本標題的永久連結">¶</a></h3>
 <dl class="py class">
 <dt class="sig sig-object py" id="xml.etree.ElementTree.QName">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">xml.etree.ElementTree.</span></span><span class="sig-name descname"><span class="pre">QName</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text_or_uri</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tag</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#xml.etree.ElementTree.QName" title="本定義的永久連結">¶</a></dt>
@@ -1424,7 +1424,7 @@ interpreted as a URI, and this argument is interpreted as a local name.
 
 </section>
 <section id="treebuilder-objects">
-<span id="elementtree-treebuilder-objects"></span><h3>TreeBuilder Objects<a class="headerlink" href="#treebuilder-objects" title="本標題的永久連結">¶</a></h3>
+<span id="elementtree-treebuilder-objects"></span><h3>TreeBuilder 物件<a class="headerlink" href="#treebuilder-objects" title="本標題的永久連結">¶</a></h3>
 <dl class="py class">
 <dt class="sig sig-object py" id="xml.etree.ElementTree.TreeBuilder">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">xml.etree.ElementTree.</span></span><span class="sig-name descname"><span class="pre">TreeBuilder</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">element_factory</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comment_factory</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pi_factory</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">insert_comments</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">insert_pis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#xml.etree.ElementTree.TreeBuilder" title="本定義的永久連結">¶</a></dt>
@@ -1541,7 +1541,7 @@ using the <em>write</em> function.</p>
 
 </section>
 <section id="xmlparser-objects">
-<span id="elementtree-xmlparser-objects"></span><h3>XMLParser Objects<a class="headerlink" href="#xmlparser-objects" title="本標題的永久連結">¶</a></h3>
+<span id="elementtree-xmlparser-objects"></span><h3>XMLParser 物件<a class="headerlink" href="#xmlparser-objects" title="本標題的永久連結">¶</a></h3>
 <dl class="py class">
 <dt class="sig sig-object py" id="xml.etree.ElementTree.XMLParser">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">xml.etree.ElementTree.</span></span><span class="sig-name descname"><span class="pre">XMLParser</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">encoding</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#xml.etree.ElementTree.XMLParser" title="本定義的永久連結">¶</a></dt>
@@ -1614,7 +1614,7 @@ of an XML file:</p>
 
 </section>
 <section id="xmlpullparser-objects">
-<span id="elementtree-xmlpullparser-objects"></span><h3>XMLPullParser Objects<a class="headerlink" href="#xmlpullparser-objects" title="本標題的永久連結">¶</a></h3>
+<span id="elementtree-xmlpullparser-objects"></span><h3>XMLPullParser 物件<a class="headerlink" href="#xmlpullparser-objects" title="本標題的永久連結">¶</a></h3>
 <dl class="py class">
 <dt class="sig sig-object py" id="xml.etree.ElementTree.XMLPullParser">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">xml.etree.ElementTree.</span></span><span class="sig-name descname"><span class="pre">XMLPullParser</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">events</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#xml.etree.ElementTree.XMLPullParser" title="本定義的永久連結">¶</a></dt>
@@ -1676,7 +1676,7 @@ they may or may not be present.</p>
 <p><span class="versionmodified added">在 3.4 版本新加入.</span></p>
 </div>
 <div class="versionchanged">
-<p><span class="versionmodified changed">在 3.8 版本變更: </span>The <code class="docutils literal notranslate"><span class="pre">comment</span></code> and <code class="docutils literal notranslate"><span class="pre">pi</span></code> events were added.</p>
+<p><span class="versionmodified changed">在 3.8 版本變更: </span>新增 <em>context</em> 與 <em>check_hostname</em> 事件。</p>
 </div>
 </dd></dl>
 
@@ -1755,11 +1755,11 @@ and <a class="reference external" href="https://www.iana.org/assignments/charact
 <li><a class="reference internal" href="#id4">Reference</a><ul>
 <li><a class="reference internal" href="#elementinclude-functions">函式</a></li>
 <li><a class="reference internal" href="#element-objects">Element Objects</a></li>
-<li><a class="reference internal" href="#elementtree-objects">ElementTree Objects</a></li>
-<li><a class="reference internal" href="#qname-objects">QName Objects</a></li>
-<li><a class="reference internal" href="#treebuilder-objects">TreeBuilder Objects</a></li>
-<li><a class="reference internal" href="#xmlparser-objects">XMLParser Objects</a></li>
-<li><a class="reference internal" href="#xmlpullparser-objects">XMLPullParser Objects</a></li>
+<li><a class="reference internal" href="#elementtree-objects">ElementTree 物件</a></li>
+<li><a class="reference internal" href="#qname-objects">QName 物件</a></li>
+<li><a class="reference internal" href="#treebuilder-objects">TreeBuilder 物件</a></li>
+<li><a class="reference internal" href="#xmlparser-objects">XMLParser 物件</a></li>
+<li><a class="reference internal" href="#xmlpullparser-objects">XMLPullParser 物件</a></li>
 <li><a class="reference internal" href="#exceptions">例外</a></li>
 </ul>
 </li>
@@ -1814,7 +1814,7 @@ and <a class="reference external" href="https://www.iana.org/assignments/charact
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.0 Documentation</a> &#187;
+      <a href="../index.html">3.10.1 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -1851,7 +1851,7 @@ and <a class="reference external" href="https://www.iana.org/assignments/charact
 <br />
     <br />
 
-    最後更新於 12月 05, 2021。
+    最後更新於 12月 06, 2021。
     <a href="https://docs.python.org/3/bugs.html">Found a bug</a>?
     <br />
 

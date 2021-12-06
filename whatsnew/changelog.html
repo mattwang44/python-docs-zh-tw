@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Changelog（更動日誌） &#8212; Python 3.10.0 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Changelog（更動日誌） &#8212; Python 3.10.1 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2021.11.1" />
@@ -20,7 +20,7 @@
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.10.0 說明文件 中搜尋"
+          title="在 Python 3.10.1 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -74,7 +74,7 @@
   <h3><a href="../contents.html">目錄</a></h3>
   <ul>
 <li><a class="reference internal" href="#">Changelog（更動日誌）</a><ul>
-<li><a class="reference internal" href="#python-next">Python next</a><ul>
+<li><a class="reference internal" href="#python-3-10-1-final">Python 3.10.1 final</a><ul>
 <li><a class="reference internal" href="#core-and-builtins">Core and Builtins</a></li>
 <li><a class="reference internal" href="#library">Library</a></li>
 <li><a class="reference internal" href="#documentation">Documentation</a></li>
@@ -964,7 +964,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.0 Documentation</a> &#187;
+      <a href="../index.html">3.10.1 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Python 有什麼新功能？</a> &#187;</li>
@@ -993,9 +993,9 @@
             
   <section id="changelog">
 <span id="id1"></span><h1>Changelog（更動日誌）<a class="headerlink" href="#changelog" title="本標題的永久連結">¶</a></h1>
-<section id="python-next">
-<h2>Python next<a class="headerlink" href="#python-next" title="本標題的永久連結">¶</a></h2>
-<p><em>Release date: XXXX-XX-XX</em></p>
+<section id="python-3-10-1-final">
+<h2>Python 3.10.1 final<a class="headerlink" href="#python-3-10-1-final" title="本標題的永久連結">¶</a></h2>
+<p><em>Release date: 2021-12-06</em></p>
 <section id="core-and-builtins">
 <h3>Core and Builtins<a class="headerlink" href="#core-and-builtins" title="本標題的永久連結">¶</a></h3>
 <ul>
@@ -1064,6 +1064,9 @@ displayed.</p>
 <section id="library">
 <h3>Library<a class="headerlink" href="#library" title="本標題的永久連結">¶</a></h3>
 <ul>
+<li><p><a class="reference external" href="https://bugs.python.org/issue27946">bpo-27946</a>: Fix possible crash when getting an attribute of
+class:<a class="reference internal" href="../library/xml.etree.elementtree.html#xml.etree.ElementTree.Element" title="xml.etree.ElementTree.Element"><code class="xref py py-obj docutils literal notranslate"><span class="pre">xml.etree.ElementTree.Element</span></code></a> simultaneously with replacing the
+<code class="docutils literal notranslate"><span class="pre">attrib</span></code> dict.</p></li>
 <li><p><a class="reference external" href="https://bugs.python.org/issue37658">bpo-37658</a>: Fix issue when on certain conditions <code class="docutils literal notranslate"><span class="pre">asyncio.wait_for()</span></code> may
 allow a coroutine to complete successfully, but fail to return the result,
 potentially causing memory leaks or other issues.</p></li>
@@ -1091,6 +1094,12 @@ argument.</p></li>
 Patch by Chris Wesseling.</p></li>
 <li><p><a class="reference external" href="https://bugs.python.org/issue45679">bpo-45679</a>: Fix caching of multi-value <a class="reference internal" href="../library/typing.html#typing.Literal" title="typing.Literal"><code class="xref py py-data docutils literal notranslate"><span class="pre">typing.Literal</span></code></a>.
 <code class="docutils literal notranslate"><span class="pre">Literal[True,</span> <span class="pre">2]</span></code> is no longer equal to <code class="docutils literal notranslate"><span class="pre">Literal[1,</span> <span class="pre">2]</span></code>.</p></li>
+<li><p><a class="reference external" href="https://bugs.python.org/issue45664">bpo-45664</a>: Fix <a class="reference internal" href="../library/types.html#types.resolve_bases" title="types.resolve_bases"><code class="xref py py-func docutils literal notranslate"><span class="pre">types.resolve_bases()</span></code></a> and <a class="reference internal" href="../library/types.html#types.new_class" title="types.new_class"><code class="xref py py-func docutils literal notranslate"><span class="pre">types.new_class()</span></code></a> for
+<a class="reference internal" href="../library/types.html#types.GenericAlias" title="types.GenericAlias"><code class="xref py py-class docutils literal notranslate"><span class="pre">types.GenericAlias</span></code></a> instance as a base.</p></li>
+<li><p><a class="reference external" href="https://bugs.python.org/issue45663">bpo-45663</a>: Fix <a class="reference internal" href="../library/dataclasses.html#dataclasses.is_dataclass" title="dataclasses.is_dataclass"><code class="xref py py-func docutils literal notranslate"><span class="pre">dataclasses.is_dataclass()</span></code></a> for dataclasses which are
+subclasses of <a class="reference internal" href="../library/types.html#types.GenericAlias" title="types.GenericAlias"><code class="xref py py-class docutils literal notranslate"><span class="pre">types.GenericAlias</span></code></a>.</p></li>
+<li><p><a class="reference external" href="https://bugs.python.org/issue45662">bpo-45662</a>: Fix the repr of <code class="xref py py-data docutils literal notranslate"><span class="pre">dataclasses.InitVar</span></code> with a type alias
+to the built-in class, e.g. <code class="docutils literal notranslate"><span class="pre">InitVar[list[int]]</span></code>.</p></li>
 <li><p><a class="reference external" href="https://bugs.python.org/issue45438">bpo-45438</a>: Fix typing.Signature string representation for generic builtin
 types.</p></li>
 <li><p><a class="reference external" href="https://bugs.python.org/issue45574">bpo-45574</a>: Fix warning about <code class="docutils literal notranslate"><span class="pre">print_escape</span></code> being unused.</p></li>
@@ -1304,6 +1313,8 @@ by Victor Stinner.</p></li>
 <section id="build">
 <h3>Build<a class="headerlink" href="#build" title="本標題的永久連結">¶</a></h3>
 <ul>
+<li><p><a class="reference external" href="https://bugs.python.org/issue44035">bpo-44035</a>: CI now verifies that autoconf files have been regenerated with
+a current and unpatched autoconf package.</p></li>
 <li><p><a class="reference external" href="https://bugs.python.org/issue33393">bpo-33393</a>: Update <code class="docutils literal notranslate"><span class="pre">config.guess</span></code> to 2021-06-03 and <code class="docutils literal notranslate"><span class="pre">config.sub</span></code> to
 2021-08-14. <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> now has an <code class="docutils literal notranslate"><span class="pre">update-config</span></code> target to make
 updating more convenient.</p></li>
@@ -1372,6 +1383,7 @@ is required.</p></li>
 <section id="macos">
 <h3>macOS<a class="headerlink" href="#macos" title="本標題的永久連結">¶</a></h3>
 <ul class="simple">
+<li><p><a class="reference external" href="https://bugs.python.org/issue45732">bpo-45732</a>: Update python.org macOS installer to use Tcl/Tk 8.6.12.</p></li>
 <li><p><a class="reference external" href="https://bugs.python.org/issue44828">bpo-44828</a>: Avoid tkinter file dialog failure on macOS 12 Monterey when
 using the Tk 8.6.11 provided by python.org macOS installers. Patch by Marc
 Culler of the Tk project.</p></li>
@@ -24016,7 +24028,7 @@ Kilburn.</p></li>
   <h3><a href="../contents.html">目錄</a></h3>
   <ul>
 <li><a class="reference internal" href="#">Changelog（更動日誌）</a><ul>
-<li><a class="reference internal" href="#python-next">Python next</a><ul>
+<li><a class="reference internal" href="#python-3-10-1-final">Python 3.10.1 final</a><ul>
 <li><a class="reference internal" href="#core-and-builtins">Core and Builtins</a></li>
 <li><a class="reference internal" href="#library">Library</a></li>
 <li><a class="reference internal" href="#documentation">Documentation</a></li>
@@ -24905,7 +24917,7 @@ Kilburn.</p></li>
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.0 Documentation</a> &#187;
+      <a href="../index.html">3.10.1 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 有什麼新功能？</a> &#187;</li>
@@ -24941,7 +24953,7 @@ Kilburn.</p></li>
 <br />
     <br />
 
-    最後更新於 12月 05, 2021。
+    最後更新於 12月 06, 2021。
     <a href="https://docs.python.org/3/bugs.html">Found a bug</a>?
     <br />
 
