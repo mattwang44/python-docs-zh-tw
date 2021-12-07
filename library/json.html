@@ -304,7 +304,7 @@ have all incoming non-ASCII characters escaped.  If <em>ensure_ascii</em> is
 false, these characters will be output as-is.</p>
 <p>If <em>check_circular</em> is false (default: <code class="docutils literal notranslate"><span class="pre">True</span></code>), then the circular
 reference check for container types will be skipped and a circular reference
-will result in an <a class="reference internal" href="exceptions.html#OverflowError" title="OverflowError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">OverflowError</span></code></a> (or worse).</p>
+will result in an <a class="reference internal" href="exceptions.html#RecursionError" title="RecursionError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">RecursionError</span></code></a> (or worse).</p>
 <p>If <em>allow_nan</em> is false (default: <code class="docutils literal notranslate"><span class="pre">True</span></code>), then it will be a
 <a class="reference internal" href="exceptions.html#ValueError" title="ValueError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code></a> to serialize out of range <a class="reference internal" href="functions.html#float" title="float"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a> values (<code class="docutils literal notranslate"><span class="pre">nan</span></code>,
 <code class="docutils literal notranslate"><span class="pre">inf</span></code>, <code class="docutils literal notranslate"><span class="pre">-inf</span></code>) in strict compliance of the JSON specification.
@@ -584,7 +584,7 @@ have all incoming non-ASCII characters escaped.  If <em>ensure_ascii</em> is
 false, these characters will be output as-is.</p>
 <p>If <em>check_circular</em> is true (the default), then lists, dicts, and custom
 encoded objects will be checked for circular references during encoding to
-prevent an infinite recursion (which would cause an <a class="reference internal" href="exceptions.html#OverflowError" title="OverflowError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">OverflowError</span></code></a>).
+prevent an infinite recursion (which would cause an <a class="reference internal" href="exceptions.html#RecursionError" title="RecursionError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">RecursionError</span></code></a>).
 Otherwise, no such check takes place.</p>
 <p>If <em>allow_nan</em> is true (the default), then <code class="docutils literal notranslate"><span class="pre">NaN</span></code>, <code class="docutils literal notranslate"><span class="pre">Infinity</span></code>, and
 <code class="docutils literal notranslate"><span class="pre">-Infinity</span></code> will be encoded as such.  This behavior is not JSON
@@ -1027,7 +1027,7 @@ U+2029 (PARAGRAPH SEPARATOR) characters in strings, whereas JavaScript
 <br />
     <br />
 
-    最後更新於 12月 06, 2021。
+    最後更新於 12月 07, 2021。
     <a href="https://docs.python.org/3/bugs.html">Found a bug</a>?
     <br />
 
