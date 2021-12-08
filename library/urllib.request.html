@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>urllib.request --- Extensible library for opening URLs &#8212; Python 3.10.1 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>urllib.request --- 用來開啟 URLs 的可擴充函式庫 &#8212; Python 3.10.1 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2021.11.1" />
@@ -72,7 +72,7 @@
             <div class="language_switcher_placeholder"></div>
   <h3><a href="../contents.html">目錄</a></h3>
   <ul>
-<li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">urllib.request</span></code> --- Extensible library for opening URLs</a><ul>
+<li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">urllib.request</span></code> --- 用來開啟 URLs 的可擴充函式庫</a><ul>
 <li><a class="reference internal" href="#request-objects">Request Objects</a></li>
 <li><a class="reference internal" href="#openerdirector-objects">OpenerDirector 物件</a></li>
 <li><a class="reference internal" href="#basehandler-objects">BaseHandler 物件</a></li>
@@ -156,7 +156,7 @@
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="internet.html" accesskey="U">Internet Protocols and Support</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href=""><code class="xref py py-mod docutils literal notranslate"><span class="pre">urllib.request</span></code> --- Extensible library for opening URLs</a></li>
+        <li class="nav-item nav-item-this"><a href=""><code class="xref py py-mod docutils literal notranslate"><span class="pre">urllib.request</span></code> --- 用來開啟 URLs 的可擴充函式庫</a></li>
                 <li class="right">
                     
 
@@ -180,240 +180,118 @@
           <div class="body" role="main">
             
   <section id="module-urllib.request">
-<span id="urllib-request-extensible-library-for-opening-urls"></span><h1><a class="reference internal" href="#module-urllib.request" title="urllib.request: Extensible library for opening URLs."><code class="xref py py-mod docutils literal notranslate"><span class="pre">urllib.request</span></code></a> --- Extensible library for opening URLs<a class="headerlink" href="#module-urllib.request" title="本標題的永久連結">¶</a></h1>
-<p><strong>Source code:</strong> <a class="reference external" href="https://github.com/python/cpython/tree/3.10/Lib/urllib/request.py">Lib/urllib/request.py</a></p>
+<span id="urllib-request-extensible-library-for-opening-urls"></span><h1><a class="reference internal" href="#module-urllib.request" title="urllib.request: Extensible library for opening URLs."><code class="xref py py-mod docutils literal notranslate"><span class="pre">urllib.request</span></code></a> --- 用來開啟 URLs 的可擴充函式庫<a class="headerlink" href="#module-urllib.request" title="本標題的永久連結">¶</a></h1>
+<p><strong>原始碼：</strong><a class="reference external" href="https://github.com/python/cpython/tree/3.10/Lib/urllib/request.py">Lib/urllib/request.py</a></p>
 <hr class="docutils" />
-<p>The <a class="reference internal" href="#module-urllib.request" title="urllib.request: Extensible library for opening URLs."><code class="xref py py-mod docutils literal notranslate"><span class="pre">urllib.request</span></code></a> module defines functions and classes which help in
-opening URLs (mostly HTTP) in a complex world --- basic and digest
-authentication, redirections, cookies and more.</p>
+<p><a class="reference internal" href="#module-urllib.request" title="urllib.request: Extensible library for opening URLs."><code class="xref py py-mod docutils literal notranslate"><span class="pre">urllib.request</span></code></a> module（模組）定義了一些函式與 class（類別）用以開啟 URLs（大部分是 HTTP），並處理各式複雜情況如：basic 驗證與 digest 驗證、重新導向、cookies。</p>
 <div class="admonition seealso">
 <p class="admonition-title">也參考</p>
-<p>The <a class="reference external" href="https://requests.readthedocs.io/en/master/">Requests package</a>
-is recommended for a higher-level HTTP client interface.</p>
+<p>有關於更高階的 HTTP 用戶端介面，推薦使用 <a class="reference external" href="https://requests.readthedocs.io/en/master/">Requests 套件</a>。</p>
 </div>
-<p>The <a class="reference internal" href="#module-urllib.request" title="urllib.request: Extensible library for opening URLs."><code class="xref py py-mod docutils literal notranslate"><span class="pre">urllib.request</span></code></a> module defines the following functions:</p>
+<p><a class="reference internal" href="#module-urllib.request" title="urllib.request: Extensible library for opening URLs."><code class="xref py py-mod docutils literal notranslate"><span class="pre">urllib.request</span></code></a> module 定義下列函式：</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="urllib.request.urlopen">
 <span class="sig-prename descclassname"><span class="pre">urllib.request.</span></span><span class="sig-name descname"><span class="pre">urlopen</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data=None</span></span></em>, <span class="optional">[</span><em class="sig-param"><span class="n"><span class="pre">timeout</span></span></em>, <span class="optional">]</span><em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cafile=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">capath=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cadefault=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">context=None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#urllib.request.urlopen" title="本定義的永久連結">¶</a></dt>
-<dd><p>Open the URL <em>url</em>, which can be either a string or a
-<a class="reference internal" href="#urllib.request.Request" title="urllib.request.Request"><code class="xref py py-class docutils literal notranslate"><span class="pre">Request</span></code></a> object.</p>
-<p><em>data</em> must be an object specifying additional data to be sent to the
-server, or <code class="docutils literal notranslate"><span class="pre">None</span></code> if no such data is needed.  See <a class="reference internal" href="#urllib.request.Request" title="urllib.request.Request"><code class="xref py py-class docutils literal notranslate"><span class="pre">Request</span></code></a>
-for details.</p>
-<p>urllib.request module uses HTTP/1.1 and includes <code class="docutils literal notranslate"><span class="pre">Connection:close</span></code> header
-in its HTTP requests.</p>
-<p>The optional <em>timeout</em> parameter specifies a timeout in seconds for
-blocking operations like the connection attempt (if not specified,
-the global default timeout setting will be used).  This actually
-only works for HTTP, HTTPS and FTP connections.</p>
-<p>If <em>context</em> is specified, it must be a <a class="reference internal" href="ssl.html#ssl.SSLContext" title="ssl.SSLContext"><code class="xref py py-class docutils literal notranslate"><span class="pre">ssl.SSLContext</span></code></a> instance
-describing the various SSL options. See <a class="reference internal" href="http.client.html#http.client.HTTPSConnection" title="http.client.HTTPSConnection"><code class="xref py py-class docutils literal notranslate"><span class="pre">HTTPSConnection</span></code></a>
-for more details.</p>
-<p>The optional <em>cafile</em> and <em>capath</em> parameters specify a set of trusted
-CA certificates for HTTPS requests.  <em>cafile</em> should point to a single
-file containing a bundle of CA certificates, whereas <em>capath</em> should
-point to a directory of hashed certificate files.  More information can
-be found in <a class="reference internal" href="ssl.html#ssl.SSLContext.load_verify_locations" title="ssl.SSLContext.load_verify_locations"><code class="xref py py-meth docutils literal notranslate"><span class="pre">ssl.SSLContext.load_verify_locations()</span></code></a>.</p>
-<p>The <em>cadefault</em> parameter is ignored.</p>
-<p>This function always returns an object which can work as a
-<a class="reference internal" href="../glossary.html#term-context-manager"><span class="xref std std-term">context manager</span></a> and has the properties <em>url</em>, <em>headers</em>, and <em>status</em>.
-See <a class="reference internal" href="#urllib.response.addinfourl" title="urllib.response.addinfourl"><code class="xref py py-class docutils literal notranslate"><span class="pre">urllib.response.addinfourl</span></code></a> for more detail on these properties.</p>
-<p>For HTTP and HTTPS URLs, this function returns a
-<a class="reference internal" href="http.client.html#http.client.HTTPResponse" title="http.client.HTTPResponse"><code class="xref py py-class docutils literal notranslate"><span class="pre">http.client.HTTPResponse</span></code></a> object slightly modified. In addition
-to the three new methods above, the msg attribute contains the
-same information as the <a class="reference internal" href="http.client.html#http.client.HTTPResponse.reason" title="http.client.HTTPResponse.reason"><code class="xref py py-attr docutils literal notranslate"><span class="pre">reason</span></code></a>
-attribute --- the reason phrase returned by server --- instead of
-the response headers as it is specified in the documentation for
-<a class="reference internal" href="http.client.html#http.client.HTTPResponse" title="http.client.HTTPResponse"><code class="xref py py-class docutils literal notranslate"><span class="pre">HTTPResponse</span></code></a>.</p>
-<p>For FTP, file, and data URLs and requests explicitly handled by legacy
-<a class="reference internal" href="#urllib.request.URLopener" title="urllib.request.URLopener"><code class="xref py py-class docutils literal notranslate"><span class="pre">URLopener</span></code></a> and <a class="reference internal" href="#urllib.request.FancyURLopener" title="urllib.request.FancyURLopener"><code class="xref py py-class docutils literal notranslate"><span class="pre">FancyURLopener</span></code></a> classes, this function
-returns a <a class="reference internal" href="#urllib.response.addinfourl" title="urllib.response.addinfourl"><code class="xref py py-class docutils literal notranslate"><span class="pre">urllib.response.addinfourl</span></code></a> object.</p>
-<p>Raises <a class="reference internal" href="urllib.error.html#urllib.error.URLError" title="urllib.error.URLError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">URLError</span></code></a> on protocol errors.</p>
-<p>Note that <code class="docutils literal notranslate"><span class="pre">None</span></code> may be returned if no handler handles the request (though
-the default installed global <a class="reference internal" href="#urllib.request.OpenerDirector" title="urllib.request.OpenerDirector"><code class="xref py py-class docutils literal notranslate"><span class="pre">OpenerDirector</span></code></a> uses
-<a class="reference internal" href="#urllib.request.UnknownHandler" title="urllib.request.UnknownHandler"><code class="xref py py-class docutils literal notranslate"><span class="pre">UnknownHandler</span></code></a> to ensure this never happens).</p>
-<p>In addition, if proxy settings are detected (for example, when a <code class="docutils literal notranslate"><span class="pre">*_proxy</span></code>
-environment variable like <span class="target" id="index-0"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">http_proxy</span></code> is set),
-<a class="reference internal" href="#urllib.request.ProxyHandler" title="urllib.request.ProxyHandler"><code class="xref py py-class docutils literal notranslate"><span class="pre">ProxyHandler</span></code></a> is default installed and makes sure the requests are
-handled through the proxy.</p>
-<p>The legacy <code class="docutils literal notranslate"><span class="pre">urllib.urlopen</span></code> function from Python 2.6 and earlier has been
-discontinued; <a class="reference internal" href="#urllib.request.urlopen" title="urllib.request.urlopen"><code class="xref py py-func docutils literal notranslate"><span class="pre">urllib.request.urlopen()</span></code></a> corresponds to the old
-<code class="docutils literal notranslate"><span class="pre">urllib2.urlopen</span></code>.  Proxy handling, which was done by passing a dictionary
-parameter to <code class="docutils literal notranslate"><span class="pre">urllib.urlopen</span></code>, can be obtained by using
-<a class="reference internal" href="#urllib.request.ProxyHandler" title="urllib.request.ProxyHandler"><code class="xref py py-class docutils literal notranslate"><span class="pre">ProxyHandler</span></code></a> objects.</p>
-<p class="audit-hook"><p>The default opener raises an <a class="reference internal" href="sys.html#auditing"><span class="std std-ref">auditing event</span></a>
-<code class="docutils literal notranslate"><span class="pre">urllib.Request</span></code> with arguments <code class="docutils literal notranslate"><span class="pre">fullurl</span></code>, <code class="docutils literal notranslate"><span class="pre">data</span></code>, <code class="docutils literal notranslate"><span class="pre">headers</span></code>,
-<code class="docutils literal notranslate"><span class="pre">method</span></code> taken from the request object.</p>
-</p>
+<dd><p>打開 URL <em>url</em>，其值可以是一個字串或是一個 <a class="reference internal" href="#urllib.request.Request" title="urllib.request.Request"><code class="xref py py-class docutils literal notranslate"><span class="pre">Request</span></code></a> 物件。</p>
+<p><em>data</em> 必須是一個包含傳送給伺服器額外資料的物件，若不需要傳送額外資料則指定為 <code class="docutils literal notranslate"><span class="pre">None</span></code>。更多細節請見 <a class="reference internal" href="#urllib.request.Request" title="urllib.request.Request"><code class="xref py py-class docutils literal notranslate"><span class="pre">Request</span></code></a>。</p>
+<p>urllib.request module 使用 HTTP/1.1 並包含 <code class="docutils literal notranslate"><span class="pre">Connection:close</span></code> header（標頭）在其 HTTP 請求中。</p>
+<p>透過選擇性參數 <em>timeout</em> 來指定 blocking operations（阻塞性操作，如：嘗試連接）的 timeout（超時時間），以秒為單位。若沒有指定值，則會使用全域預設超時時間設定。實際上，此參數僅作用於 HTTP、HTTPS 以及 FTP 的連接。</p>
+<p>若 <em>context</em> 有被指定時，它必須是一個 <a class="reference internal" href="ssl.html#ssl.SSLContext" title="ssl.SSLContext"><code class="xref py py-class docutils literal notranslate"><span class="pre">ssl.SSLContext</span></code></a> 的實例並描述著各種 SSL 選項。更多細節請見 <a class="reference internal" href="http.client.html#http.client.HTTPSConnection" title="http.client.HTTPSConnection"><code class="xref py py-class docutils literal notranslate"><span class="pre">HTTPSConnection</span></code></a>。</p>
+<p>選擇性參數 <em>cafile</em> 與 <em>capath</em> 用來指定一組 HTTPS 請求中所需之受信任 CA 憑證。<em>cafile</em> 的值應該指向內容包含一堆 CA 憑證的單一檔案，而 <em>capath</em> 則指向存放一堆雜湊後的憑證檔案的目錄。欲瞭解更多的資訊請參見 <a class="reference internal" href="ssl.html#ssl.SSLContext.load_verify_locations" title="ssl.SSLContext.load_verify_locations"><code class="xref py py-meth docutils literal notranslate"><span class="pre">ssl.SSLContext.load_verify_locations()</span></code></a>。</p>
+<p>參數 <em>cadefault</em> 已被忽略。</p>
+<p>這個函數總是回傳一個可作為 <a class="reference internal" href="../glossary.html#term-context-manager"><span class="xref std std-term">context manager</span></a> 使用的物件，並有著特性 (property) <em>url</em>、<em>headers</em> 與 <em>status</em>。欲知更多這些特性細節請參見 <a class="reference internal" href="#urllib.response.addinfourl" title="urllib.response.addinfourl"><code class="xref py py-class docutils literal notranslate"><span class="pre">urllib.response.addinfourl</span></code></a>。</p>
+<p>對於 HTTP 與 HTTPS 的 URLs，這個函式回傳一個稍有不同的 <a class="reference internal" href="http.client.html#http.client.HTTPResponse" title="http.client.HTTPResponse"><code class="xref py py-class docutils literal notranslate"><span class="pre">http.client.HTTPResponse</span></code></a> 物件。除了上述提到的三個方法外，另有 msg 屬性並有著與 <a class="reference internal" href="http.client.html#http.client.HTTPResponse.reason" title="http.client.HTTPResponse.reason"><code class="xref py py-attr docutils literal notranslate"><span class="pre">reason</span></code></a> 相同的資訊 --- 由伺服器回傳的原因敘述 (reason phrase)，而不是在 <a class="reference internal" href="http.client.html#http.client.HTTPResponse" title="http.client.HTTPResponse"><code class="xref py py-class docutils literal notranslate"><span class="pre">HTTPResponse</span></code></a> 文件中提到的回應 headers。</p>
+<p>對於 FTP、檔案、資料的 URLs、以及那些由傳統 classes <a class="reference internal" href="#urllib.request.URLopener" title="urllib.request.URLopener"><code class="xref py py-class docutils literal notranslate"><span class="pre">URLopener</span></code></a> 與 <a class="reference internal" href="#urllib.request.FancyURLopener" title="urllib.request.FancyURLopener"><code class="xref py py-class docutils literal notranslate"><span class="pre">FancyURLopener</span></code></a> 所處理的請求，這個函式會回傳一個 <a class="reference internal" href="#urllib.response.addinfourl" title="urllib.response.addinfourl"><code class="xref py py-class docutils literal notranslate"><span class="pre">urllib.response.addinfourl</span></code></a> 物件。</p>
+<p>當遇到協定上的錯誤時會引發 <a class="reference internal" href="urllib.error.html#urllib.error.URLError" title="urllib.error.URLError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">URLError</span></code></a>。</p>
+<p>請注意若沒有 handler 處理請求時，<code class="docutils literal notranslate"><span class="pre">None</span></code> 值將會被回傳。（即使有預設的全域類別 <a class="reference internal" href="#urllib.request.OpenerDirector" title="urllib.request.OpenerDirector"><code class="xref py py-class docutils literal notranslate"><span class="pre">OpenerDirector</span></code></a> 使用 <a class="reference internal" href="#urllib.request.UnknownHandler" title="urllib.request.UnknownHandler"><code class="xref py py-class docutils literal notranslate"><span class="pre">UnknownHandler</span></code></a> 來確保這種情況不會發生）</p>
+<p>另外，若有偵測到代理服務的設定（例如當 <code class="docutils literal notranslate"><span class="pre">*_proxy</span></code> 環境變數像是：<span class="target" id="index-18"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">http_proxy</span></code> 有被設置時），<a class="reference internal" href="#urllib.request.ProxyHandler" title="urllib.request.ProxyHandler"><code class="xref py py-class docutils literal notranslate"><span class="pre">ProxyHandler</span></code></a> 會被預設使用以確保請求有透過代理服務來處理。</p>
+<p>Python 2.6 或更早版本的遺留函式 <code class="docutils literal notranslate"><span class="pre">urllib.urlopen</span></code> 已經不再被維護；新函式 <a class="reference internal" href="#urllib.request.urlopen" title="urllib.request.urlopen"><code class="xref py py-func docutils literal notranslate"><span class="pre">urllib.request.urlopen()</span></code></a> 對應到舊函式 <code class="docutils literal notranslate"><span class="pre">urllib2.urlopen</span></code>。有關代理服務的處理，以往是透過傳遞 dictionary（字典）參數給 <code class="docutils literal notranslate"><span class="pre">urllib.urlopen</span></code> 來取得的，現在則可以透過 <a class="reference internal" href="#urllib.request.ProxyHandler" title="urllib.request.ProxyHandler"><code class="xref py py-class docutils literal notranslate"><span class="pre">ProxyHandler</span></code></a> 物件來取得。</p>
+<p class="audit-hook">觸發一個 <a class="reference internal" href="sys.html#auditing"><span class="std std-ref">auditing event</span></a> <code class="docutils literal notranslate"><span class="pre">urllib.Request</span></code> 及其引數 <code class="docutils literal notranslate"><span class="pre">fullurl</span></code>、<code class="docutils literal notranslate"><span class="pre">data</span></code>、<code class="docutils literal notranslate"><span class="pre">headers</span></code>、<code class="docutils literal notranslate"><span class="pre">method</span></code>。</p>
 <div class="versionchanged">
-<p><span class="versionmodified changed">在 3.2 版本變更: </span><em>cafile</em> and <em>capath</em> were added.</p>
+<p><span class="versionmodified changed">在 3.2 版本變更: </span>新增 <em>cafile</em> 與 <em>capath</em>。</p>
 </div>
 <div class="versionchanged">
-<p><span class="versionmodified changed">在 3.2 版本變更: </span>HTTPS virtual hosts are now supported if possible (that is, if
-<a class="reference internal" href="ssl.html#ssl.HAS_SNI" title="ssl.HAS_SNI"><code class="xref py py-data docutils literal notranslate"><span class="pre">ssl.HAS_SNI</span></code></a> is true).</p>
+<p><span class="versionmodified changed">在 3.2 版本變更: </span>HTTPS 虛擬主機 (virtual hosts) 現已支援，只要 <a class="reference internal" href="ssl.html#ssl.HAS_SNI" title="ssl.HAS_SNI"><code class="xref py py-data docutils literal notranslate"><span class="pre">ssl.HAS_SNI</span></code></a> 的值為 true。</p>
 </div>
 <div class="versionadded">
-<p><span class="versionmodified added">在 3.2 版本新加入: </span><em>data</em> can be an iterable object.</p>
+<p><span class="versionmodified added">在 3.2 版本新加入: </span><em>data</em> 可以是一個可疊代物件。</p>
 </div>
 <div class="versionchanged">
-<p><span class="versionmodified changed">在 3.3 版本變更: </span><em>cadefault</em> was added.</p>
+<p><span class="versionmodified changed">在 3.3 版本變更: </span><em>cadefault</em> 被新增。</p>
 </div>
 <div class="versionchanged">
-<p><span class="versionmodified changed">在 3.4.3 版本變更: </span><em>context</em> was added.</p>
+<p><span class="versionmodified changed">在 3.4.3 版本變更: </span><em>context</em> 被新增。</p>
 </div>
 <div class="versionchanged">
-<p><span class="versionmodified changed">在 3.10 版本變更: </span>HTTPS connection now send an ALPN extension with protocol indicator
-<code class="docutils literal notranslate"><span class="pre">http/1.1</span></code> when no <em>context</em> is given. Custom <em>context</em> should set
-ALPN protocols with <code class="xref py py-meth docutils literal notranslate"><span class="pre">set_alpn_protocol()</span></code>.</p>
+<p><span class="versionmodified changed">在 3.10 版本變更: </span>當 <em>context</em> 沒有被指定時，HTTPS 連線現在會傳送一個帶有協定指示器 <code class="docutils literal notranslate"><span class="pre">http/1.1</span></code> 的 ALPN 擴充 (extension)。自訂的 <em>context</em> 應該利用 <code class="xref py py-meth docutils literal notranslate"><span class="pre">set_alpn_protocol()</span></code> 來自行設定 ALPN 協定。</p>
 </div>
 <div class="deprecated">
-<p><span class="versionmodified deprecated">在 3.6 版本開始棄用: </span><em>cafile</em>, <em>capath</em> and <em>cadefault</em> are deprecated in favor of <em>context</em>.
-Please use <a class="reference internal" href="ssl.html#ssl.SSLContext.load_cert_chain" title="ssl.SSLContext.load_cert_chain"><code class="xref py py-meth docutils literal notranslate"><span class="pre">ssl.SSLContext.load_cert_chain()</span></code></a> instead, or let
-<a class="reference internal" href="ssl.html#ssl.create_default_context" title="ssl.create_default_context"><code class="xref py py-func docutils literal notranslate"><span class="pre">ssl.create_default_context()</span></code></a> select the system's trusted CA
-certificates for you.</p>
+<p><span class="versionmodified deprecated">在 3.6 版本開始棄用: </span><em>cafile</em>、<em>capath</em>、<em>cadefault</em> 已經被棄用並應改為使用 <em>context</em>。請改用 <a class="reference internal" href="ssl.html#ssl.SSLContext.load_cert_chain" title="ssl.SSLContext.load_cert_chain"><code class="xref py py-meth docutils literal notranslate"><span class="pre">ssl.SSLContext.load_cert_chain()</span></code></a>，或是讓 <a class="reference internal" href="ssl.html#ssl.create_default_context" title="ssl.create_default_context"><code class="xref py py-func docutils literal notranslate"><span class="pre">ssl.create_default_context()</span></code></a> 選取系統中受信任的 CA 憑證。</p>
 </div>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="urllib.request.install_opener">
 <span class="sig-prename descclassname"><span class="pre">urllib.request.</span></span><span class="sig-name descname"><span class="pre">install_opener</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">opener</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#urllib.request.install_opener" title="本定義的永久連結">¶</a></dt>
-<dd><p>Install an <a class="reference internal" href="#urllib.request.OpenerDirector" title="urllib.request.OpenerDirector"><code class="xref py py-class docutils literal notranslate"><span class="pre">OpenerDirector</span></code></a> instance as the default global opener.
-Installing an opener is only necessary if you want urlopen to use that
-opener; otherwise, simply call <a class="reference internal" href="#urllib.request.OpenerDirector.open" title="urllib.request.OpenerDirector.open"><code class="xref py py-meth docutils literal notranslate"><span class="pre">OpenerDirector.open()</span></code></a> instead of
-<a class="reference internal" href="#urllib.request.urlopen" title="urllib.request.urlopen"><code class="xref py py-func docutils literal notranslate"><span class="pre">urlopen()</span></code></a>.  The code does not check for a real
-<a class="reference internal" href="#urllib.request.OpenerDirector" title="urllib.request.OpenerDirector"><code class="xref py py-class docutils literal notranslate"><span class="pre">OpenerDirector</span></code></a>, and any class with the appropriate interface will
-work.</p>
+<dd><p>安裝一個 <a class="reference internal" href="#urllib.request.OpenerDirector" title="urllib.request.OpenerDirector"><code class="xref py py-class docutils literal notranslate"><span class="pre">OpenerDirector</span></code></a> 實例作為預設的全域 opener。僅在當你想要讓 urlopen 使用該 opener 時安裝一個 opener，否則的話應直接呼叫 <a class="reference internal" href="#urllib.request.OpenerDirector.open" title="urllib.request.OpenerDirector.open"><code class="xref py py-meth docutils literal notranslate"><span class="pre">OpenerDirector.open()</span></code></a> 而非 <a class="reference internal" href="#urllib.request.urlopen" title="urllib.request.urlopen"><code class="xref py py-func docutils literal notranslate"><span class="pre">urlopen()</span></code></a>。程式碼不會檢查 class 是否真的為 <a class="reference internal" href="#urllib.request.OpenerDirector" title="urllib.request.OpenerDirector"><code class="xref py py-class docutils literal notranslate"><span class="pre">OpenerDirector</span></code></a>，而是任何具有正確介面的 class 都能適用。</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="urllib.request.build_opener">
 <span class="sig-prename descclassname"><span class="pre">urllib.request.</span></span><span class="sig-name descname"><span class="pre">build_opener</span></span><span class="sig-paren">(</span><span class="optional">[</span><em class="sig-param"><span class="n"><span class="pre">handler</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">...</span></span></em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#urllib.request.build_opener" title="本定義的永久連結">¶</a></dt>
-<dd><p>Return an <a class="reference internal" href="#urllib.request.OpenerDirector" title="urllib.request.OpenerDirector"><code class="xref py py-class docutils literal notranslate"><span class="pre">OpenerDirector</span></code></a> instance, which chains the handlers in the
-order given. <em>handler</em>s can be either instances of <a class="reference internal" href="#urllib.request.BaseHandler" title="urllib.request.BaseHandler"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseHandler</span></code></a>, or
-subclasses of <a class="reference internal" href="#urllib.request.BaseHandler" title="urllib.request.BaseHandler"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseHandler</span></code></a> (in which case it must be possible to call
-the constructor without any parameters).  Instances of the following classes
-will be in front of the <em>handler</em>s, unless the <em>handler</em>s contain them,
-instances of them or subclasses of them: <a class="reference internal" href="#urllib.request.ProxyHandler" title="urllib.request.ProxyHandler"><code class="xref py py-class docutils literal notranslate"><span class="pre">ProxyHandler</span></code></a> (if proxy
-settings are detected), <a class="reference internal" href="#urllib.request.UnknownHandler" title="urllib.request.UnknownHandler"><code class="xref py py-class docutils literal notranslate"><span class="pre">UnknownHandler</span></code></a>, <a class="reference internal" href="#urllib.request.HTTPHandler" title="urllib.request.HTTPHandler"><code class="xref py py-class docutils literal notranslate"><span class="pre">HTTPHandler</span></code></a>,
-<a class="reference internal" href="#urllib.request.HTTPDefaultErrorHandler" title="urllib.request.HTTPDefaultErrorHandler"><code class="xref py py-class docutils literal notranslate"><span class="pre">HTTPDefaultErrorHandler</span></code></a>, <a class="reference internal" href="#urllib.request.HTTPRedirectHandler" title="urllib.request.HTTPRedirectHandler"><code class="xref py py-class docutils literal notranslate"><span class="pre">HTTPRedirectHandler</span></code></a>,
-<a class="reference internal" href="#urllib.request.FTPHandler" title="urllib.request.FTPHandler"><code class="xref py py-class docutils literal notranslate"><span class="pre">FTPHandler</span></code></a>, <a class="reference internal" href="#urllib.request.FileHandler" title="urllib.request.FileHandler"><code class="xref py py-class docutils literal notranslate"><span class="pre">FileHandler</span></code></a>, <a class="reference internal" href="#urllib.request.HTTPErrorProcessor" title="urllib.request.HTTPErrorProcessor"><code class="xref py py-class docutils literal notranslate"><span class="pre">HTTPErrorProcessor</span></code></a>.</p>
-<p>If the Python installation has SSL support (i.e., if the <a class="reference internal" href="ssl.html#module-ssl" title="ssl: TLS/SSL wrapper for socket objects"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ssl</span></code></a> module
-can be imported), <a class="reference internal" href="#urllib.request.HTTPSHandler" title="urllib.request.HTTPSHandler"><code class="xref py py-class docutils literal notranslate"><span class="pre">HTTPSHandler</span></code></a> will also be added.</p>
-<p>A <a class="reference internal" href="#urllib.request.BaseHandler" title="urllib.request.BaseHandler"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseHandler</span></code></a> subclass may also change its <code class="xref py py-attr docutils literal notranslate"><span class="pre">handler_order</span></code>
-attribute to modify its position in the handlers list.</p>
+<dd><p>回傳一個 <a class="reference internal" href="#urllib.request.OpenerDirector" title="urllib.request.OpenerDirector"><code class="xref py py-class docutils literal notranslate"><span class="pre">OpenerDirector</span></code></a> 實例，以給定的順序把 handlers 串接起來。<em>handler</em>s 可以是 <a class="reference internal" href="#urllib.request.BaseHandler" title="urllib.request.BaseHandler"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseHandler</span></code></a> 的實例，亦或是 <a class="reference internal" href="#urllib.request.BaseHandler" title="urllib.request.BaseHandler"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseHandler</span></code></a> 的 subclasses（這個情況下必須有不帶參數的建構函式能夠被呼叫）。以下 classes 的實例順位會在 <em>handler</em>s 之前，除非 <em>handler</em>s 已經包含它們，是它們的實例，或是它們的 subclasses：<a class="reference internal" href="#urllib.request.ProxyHandler" title="urllib.request.ProxyHandler"><code class="xref py py-class docutils literal notranslate"><span class="pre">ProxyHandler</span></code></a>（如果代理服務設定被偵測到）、<a class="reference internal" href="#urllib.request.UnknownHandler" title="urllib.request.UnknownHandler"><code class="xref py py-class docutils literal notranslate"><span class="pre">UnknownHandler</span></code></a>、<a class="reference internal" href="#urllib.request.HTTPHandler" title="urllib.request.HTTPHandler"><code class="xref py py-class docutils literal notranslate"><span class="pre">HTTPHandler</span></code></a>、<a class="reference internal" href="#urllib.request.HTTPDefaultErrorHandler" title="urllib.request.HTTPDefaultErrorHandler"><code class="xref py py-class docutils literal notranslate"><span class="pre">HTTPDefaultErrorHandler</span></code></a>、<a class="reference internal" href="#urllib.request.HTTPRedirectHandler" title="urllib.request.HTTPRedirectHandler"><code class="xref py py-class docutils literal notranslate"><span class="pre">HTTPRedirectHandler</span></code></a>、<a class="reference internal" href="#urllib.request.FTPHandler" title="urllib.request.FTPHandler"><code class="xref py py-class docutils literal notranslate"><span class="pre">FTPHandler</span></code></a>、<a class="reference internal" href="#urllib.request.FileHandler" title="urllib.request.FileHandler"><code class="xref py py-class docutils literal notranslate"><span class="pre">FileHandler</span></code></a>、<a class="reference internal" href="#urllib.request.HTTPErrorProcessor" title="urllib.request.HTTPErrorProcessor"><code class="xref py py-class docutils literal notranslate"><span class="pre">HTTPErrorProcessor</span></code></a>。</p>
+<p>如果 Python 安裝時已帶有 SSL 支援（如果 <a class="reference internal" href="ssl.html#module-ssl" title="ssl: TLS/SSL wrapper for socket objects"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ssl</span></code></a> module 能夠被 import），則 <a class="reference internal" href="#urllib.request.HTTPSHandler" title="urllib.request.HTTPSHandler"><code class="xref py py-class docutils literal notranslate"><span class="pre">HTTPSHandler</span></code></a> 也在上述 class 之中。</p>
+<p>一個 <a class="reference internal" href="#urllib.request.BaseHandler" title="urllib.request.BaseHandler"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseHandler</span></code></a> 的 subclass 可能透過改變其 <code class="xref py py-attr docutils literal notranslate"><span class="pre">handler_order</span></code> 屬性來調整它在 handlers list 中的位置。</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="urllib.request.pathname2url">
 <span class="sig-prename descclassname"><span class="pre">urllib.request.</span></span><span class="sig-name descname"><span class="pre">pathname2url</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#urllib.request.pathname2url" title="本定義的永久連結">¶</a></dt>
-<dd><p>Convert the pathname <em>path</em> from the local syntax for a path to the form used in
-the path component of a URL.  This does not produce a complete URL.  The return
-value will already be quoted using the <a class="reference internal" href="urllib.parse.html#urllib.parse.quote" title="urllib.parse.quote"><code class="xref py py-func docutils literal notranslate"><span class="pre">quote()</span></code></a> function.</p>
+<dd><p>將路徑名 <em>path</em> 從路徑的本地語法 (local syntax) 轉換為 URL 中的 path component（路徑元件）格式。本函式並不會產生完整的 URL。回傳值將使用 <a class="reference internal" href="urllib.parse.html#urllib.parse.quote" title="urllib.parse.quote"><code class="xref py py-func docutils literal notranslate"><span class="pre">quote()</span></code></a> 函式先進行編碼過。</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="urllib.request.url2pathname">
 <span class="sig-prename descclassname"><span class="pre">urllib.request.</span></span><span class="sig-name descname"><span class="pre">url2pathname</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#urllib.request.url2pathname" title="本定義的永久連結">¶</a></dt>
-<dd><p>Convert the path component <em>path</em> from a percent-encoded URL to the local syntax for a
-path.  This does not accept a complete URL.  This function uses
-<a class="reference internal" href="urllib.parse.html#urllib.parse.unquote" title="urllib.parse.unquote"><code class="xref py py-func docutils literal notranslate"><span class="pre">unquote()</span></code></a> to decode <em>path</em>.</p>
+<dd><p>將一個用 &quot;%&quot; 編碼過的 URL path component <em>path</em> 轉換為路徑的本地語法 (local syntax)。本函式並不接受完整的 URL。本函式使用 <a class="reference internal" href="urllib.parse.html#urllib.parse.unquote" title="urllib.parse.unquote"><code class="xref py py-func docutils literal notranslate"><span class="pre">unquote()</span></code></a> 來將 <em>path</em> 解碼。</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="urllib.request.getproxies">
 <span class="sig-prename descclassname"><span class="pre">urllib.request.</span></span><span class="sig-name descname"><span class="pre">getproxies</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#urllib.request.getproxies" title="本定義的永久連結">¶</a></dt>
-<dd><p>This helper function returns a dictionary of scheme to proxy server URL
-mappings. It scans the environment for variables named <code class="docutils literal notranslate"><span class="pre">&lt;scheme&gt;_proxy</span></code>,
-in a case insensitive approach, for all operating systems first, and when it
-cannot find it, looks for proxy information from System
-Configuration for macOS and Windows Systems Registry for Windows.
-If both lowercase and uppercase environment variables exist (and disagree),
-lowercase is preferred.</p>
+<dd><p>這個輔助函式 (helper function) 回傳一個代理伺服器 URL mappings（對映）的 dictionary。在所有的作業系統中，它首先掃描環境中有著 <code class="docutils literal notranslate"><span class="pre">&lt;scheme&gt;_proxy</span></code> 名稱的變數（忽略大小寫的），如果找不到的話就會在 macOS 中的系統設定 (System Configuration) 或是 Windows 系統中的 Windows Systems Registry 尋找代理服務設定。如果大小寫的環境變數同時存在且值有不同，小寫的環境變數會被選用。</p>
 <div class="admonition note">
 <p class="admonition-title">備註</p>
-<p>If the environment variable <code class="docutils literal notranslate"><span class="pre">REQUEST_METHOD</span></code> is set, which usually
-indicates your script is running in a CGI environment, the environment
-variable <code class="docutils literal notranslate"><span class="pre">HTTP_PROXY</span></code> (uppercase <code class="docutils literal notranslate"><span class="pre">_PROXY</span></code>) will be ignored. This is
-because that variable can be injected by a client using the &quot;Proxy:&quot; HTTP
-header. If you need to use an HTTP proxy in a CGI environment, either use
-<code class="docutils literal notranslate"><span class="pre">ProxyHandler</span></code> explicitly, or make sure the variable name is in
-lowercase (or at least the <code class="docutils literal notranslate"><span class="pre">_proxy</span></code> suffix).</p>
+<p>如果環境變數 <code class="docutils literal notranslate"><span class="pre">REQUEST_METHOD</span></code> 有被設置（通常這代表著你的 script 是運行在一個共用閘道介面 (CGI) 環境中），那麼環境變數 <code class="docutils literal notranslate"><span class="pre">HTTP_PROXY</span></code> （大寫的 <code class="docutils literal notranslate"><span class="pre">_PROXY</span></code>）將被忽略。這是因為變數可以透過使用 &quot;Proxy:&quot; HTTP header 被注入。如果需要在共用閘道介面環境中使用 HTTP 代理服務，可以明確使用 <code class="docutils literal notranslate"><span class="pre">ProxyHandler</span></code>，亦或是確認變數名稱是小寫的（或至少 <code class="docutils literal notranslate"><span class="pre">_proxy</span></code> 後綴是小寫的）。</p>
 </div>
 </dd></dl>
 
-<p>The following classes are provided:</p>
+<p>提供了以下的 classes：</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="urllib.request.Request">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">urllib.request.</span></span><span class="sig-name descname"><span class="pre">Request</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">headers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">origin_req_host</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unverifiable</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#urllib.request.Request" title="本定義的永久連結">¶</a></dt>
-<dd><p>This class is an abstraction of a URL request.</p>
-<p><em>url</em> should be a string containing a valid URL.</p>
-<p><em>data</em> must be an object specifying additional data to send to the
-server, or <code class="docutils literal notranslate"><span class="pre">None</span></code> if no such data is needed.  Currently HTTP
-requests are the only ones that use <em>data</em>.  The supported object
-types include bytes, file-like objects, and iterables of bytes-like objects.
-If no <code class="docutils literal notranslate"><span class="pre">Content-Length</span></code> nor <code class="docutils literal notranslate"><span class="pre">Transfer-Encoding</span></code> header field
-has been provided, <a class="reference internal" href="#urllib.request.HTTPHandler" title="urllib.request.HTTPHandler"><code class="xref py py-class docutils literal notranslate"><span class="pre">HTTPHandler</span></code></a> will set these headers according
-to the type of <em>data</em>.  <code class="docutils literal notranslate"><span class="pre">Content-Length</span></code> will be used to send
-bytes objects, while <code class="docutils literal notranslate"><span class="pre">Transfer-Encoding:</span> <span class="pre">chunked</span></code> as specified in
-<span class="target" id="index-1"></span><a class="rfc reference external" href="https://tools.ietf.org/html/rfc7230.html"><strong>RFC 7230</strong></a>, Section 3.3.1 will be used to send files and other iterables.</p>
-<p>For an HTTP POST request method, <em>data</em> should be a buffer in the
-standard <em class="mimetype">application/x-www-form-urlencoded</em> format.  The
-<a class="reference internal" href="urllib.parse.html#urllib.parse.urlencode" title="urllib.parse.urlencode"><code class="xref py py-func docutils literal notranslate"><span class="pre">urllib.parse.urlencode()</span></code></a> function takes a mapping or sequence
-of 2-tuples and returns an ASCII string in this format. It should
-be encoded to bytes before being used as the <em>data</em> parameter.</p>
-<p><em>headers</em> should be a dictionary, and will be treated as if
-<a class="reference internal" href="#urllib.request.Request.add_header" title="urllib.request.Request.add_header"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_header()</span></code></a> was called with each key and value as arguments.
-This is often used to &quot;spoof&quot; the <code class="docutils literal notranslate"><span class="pre">User-Agent</span></code> header value, which is
-used by a browser to identify itself -- some HTTP servers only
-allow requests coming from common browsers as opposed to scripts.
-For example, Mozilla Firefox may identify itself as <code class="docutils literal notranslate"><span class="pre">&quot;Mozilla/5.0</span>
-<span class="pre">(X11;</span> <span class="pre">U;</span> <span class="pre">Linux</span> <span class="pre">i686)</span> <span class="pre">Gecko/20071127</span> <span class="pre">Firefox/2.0.0.11&quot;</span></code>, while
-<a class="reference internal" href="urllib.html#module-urllib" title="urllib"><code class="xref py py-mod docutils literal notranslate"><span class="pre">urllib</span></code></a>'s default user agent string is
-<code class="docutils literal notranslate"><span class="pre">&quot;Python-urllib/2.6&quot;</span></code> (on Python 2.6).</p>
-<p>An appropriate <code class="docutils literal notranslate"><span class="pre">Content-Type</span></code> header should be included if the <em>data</em>
-argument is present.  If this header has not been provided and <em>data</em>
-is not None, <code class="docutils literal notranslate"><span class="pre">Content-Type:</span> <span class="pre">application/x-www-form-urlencoded</span></code> will
-be added as a default.</p>
-<p>The next two arguments are only of interest for correct handling
-of third-party HTTP cookies:</p>
-<p><em>origin_req_host</em> should be the request-host of the origin
-transaction, as defined by <span class="target" id="index-2"></span><a class="rfc reference external" href="https://tools.ietf.org/html/rfc2965.html"><strong>RFC 2965</strong></a>.  It defaults to
-<code class="docutils literal notranslate"><span class="pre">http.cookiejar.request_host(self)</span></code>.  This is the host name or IP
-address of the original request that was initiated by the user.
-For example, if the request is for an image in an HTML document,
-this should be the request-host of the request for the page
-containing the image.</p>
-<p><em>unverifiable</em> should indicate whether the request is unverifiable,
-as defined by <span class="target" id="index-3"></span><a class="rfc reference external" href="https://tools.ietf.org/html/rfc2965.html"><strong>RFC 2965</strong></a>.  It defaults to <code class="docutils literal notranslate"><span class="pre">False</span></code>.  An unverifiable
-request is one whose URL the user did not have the option to
-approve.  For example, if the request is for an image in an HTML
-document, and the user had no option to approve the automatic
-fetching of the image, this should be true.</p>
-<p><em>method</em> should be a string that indicates the HTTP request method that
-will be used (e.g. <code class="docutils literal notranslate"><span class="pre">'HEAD'</span></code>).  If provided, its value is stored in the
-<a class="reference internal" href="#urllib.request.Request.method" title="urllib.request.Request.method"><code class="xref py py-attr docutils literal notranslate"><span class="pre">method</span></code></a> attribute and is used by <a class="reference internal" href="#urllib.request.Request.get_method" title="urllib.request.Request.get_method"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_method()</span></code></a>.
-The default is <code class="docutils literal notranslate"><span class="pre">'GET'</span></code> if <em>data</em> is <code class="docutils literal notranslate"><span class="pre">None</span></code> or <code class="docutils literal notranslate"><span class="pre">'POST'</span></code> otherwise.
-Subclasses may indicate a different default method by setting the
-<a class="reference internal" href="#urllib.request.Request.method" title="urllib.request.Request.method"><code class="xref py py-attr docutils literal notranslate"><span class="pre">method</span></code></a> attribute in the class itself.</p>
+<dd><p>這個 class 是一個 URL 請求的抽象 class。</p>
+<p><em>url</em> 是一個包含有效 URL 的字串。</p>
+<p><em>data</em> 必須是一個包含要送到伺服器的附加資料的物件，若不需帶附加資料則其值應為 <code class="docutils literal notranslate"><span class="pre">None</span></code>。目前 HTTP 請求是唯一有使用 <em>data</em> 參數的，其支援的物件型別包含位元組、類檔案物件 (file-like objects)、以及可疊代的類位元組串物件 (bytes-like objects)。如果沒有提供 <code class="docutils literal notranslate"><span class="pre">Content-Length</span></code> 及 <code class="docutils literal notranslate"><span class="pre">Transfer-Encoding</span></code> headers 欄位，<a class="reference internal" href="#urllib.request.HTTPHandler" title="urllib.request.HTTPHandler"><code class="xref py py-class docutils literal notranslate"><span class="pre">HTTPHandler</span></code></a> 將會根據 <em>data</em> 的型別設置這些 header。<code class="docutils literal notranslate"><span class="pre">Content-Length</span></code> 會被用來傳送位元組串物件，而 <span class="target" id="index-19"></span><a class="rfc reference external" href="https://tools.ietf.org/html/rfc7230.html"><strong>RFC 7230</strong></a> 章節 3.3.1 所定義的 <code class="docutils literal notranslate"><span class="pre">Transfer-Encoding:</span> <span class="pre">chunked</span></code> 則會被用來傳送檔案或是其它可疊代物件 (iterables)。</p>
+<p>對於一個 HTTP POST 請求方法，<em>data</em> 應為一個標準 <em class="mimetype">application/x-www-form-urlencoded</em> 格式的 buffer。<a class="reference internal" href="urllib.parse.html#urllib.parse.urlencode" title="urllib.parse.urlencode"><code class="xref py py-func docutils literal notranslate"><span class="pre">urllib.parse.urlencode()</span></code></a> 方法接受一個 mapping 或是 sequence（序列）的 2-tuples，並回傳一個對應格式的 ASCII 字串。在被作為 <em>data</em> 參數前它應該被編碼成位元組串。</p>
+<p><em>headers</em> 必須是一個 dictionary，並會被視為如同每對 key 和 value 作為引數來呼叫 <a class="reference internal" href="#urllib.request.Request.add_header" title="urllib.request.Request.add_header"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_header()</span></code></a>。經常用於「偽裝」 <code class="docutils literal notranslate"><span class="pre">User-Agent</span></code>  header 的值，這個 header 是用來讓一個瀏覽器向伺服器表明自己的身分 --- 有些 HTTP 伺服器僅允許來自普通瀏覽器的請求，而不接受來自程式腳本的請求。例如，Mozilla Firefox 會將 header 的值設為 <code class="docutils literal notranslate"><span class="pre">&quot;Mozilla/5.0</span> <span class="pre">(X11;</span> <span class="pre">U;</span> <span class="pre">Linux</span> <span class="pre">i686)</span> <span class="pre">Gecko/20071127</span> <span class="pre">Firefox/2.0.0.11&quot;</span></code>，而 <a class="reference internal" href="urllib.html#module-urllib" title="urllib"><code class="xref py py-mod docutils literal notranslate"><span class="pre">urllib</span></code></a> 的值則是 <code class="docutils literal notranslate"><span class="pre">&quot;Python-urllib/2.6&quot;</span></code>（在 Python 2.6 上）。</p>
+<p>當有給定 <em>data</em> 引數時，一個適當的 <code class="docutils literal notranslate"><span class="pre">Content-Type</span></code> header 應該被設置。如果這個 header 沒有被提供且 <em>data</em> 也不為 None 時，預設值 <code class="docutils literal notranslate"><span class="pre">Content-Type:</span> <span class="pre">application/x-www-form-urlencoded</span></code> 會被新增至請求中。</p>
+<p>接下來的兩個引數的介紹提供給那些有興趣正確處理第三方 HTTP cookies 的使用者：</p>
+<p><em>origin_req_host</em> 應為原始傳輸互動的請求主機 (request-host)，如同在 <span class="target" id="index-20"></span><a class="rfc reference external" href="https://tools.ietf.org/html/rfc2965.html"><strong>RFC 2965</strong></a> 中的定義。預設值為 <code class="docutils literal notranslate"><span class="pre">http.cookiejar.request_host(self)</span></code>。這是使用者發起的原始請求的主機名稱或是 IP 位址。例如當請求是要求一個 HTML 文件中的一個影像，則這個屬性應為請求包含影像頁面的請求主機。</p>
+<p><em>unverifiable</em> 應該標示一個請求是否是無法驗證的，如同在 <span class="target" id="index-21"></span><a class="rfc reference external" href="https://tools.ietf.org/html/rfc2965.html"><strong>RFC 2965</strong></a> 中的定義。其預設值為 <code class="docutils literal notranslate"><span class="pre">False</span></code>。一個無法驗證的請求是指使用者沒有機會去批准請求的 URL，例如一個對於 HTML 文件中的影像所做的請求，而使用者沒有機會去批准是否能自動擷取影像，則這個值應該為 true。</p>
+<p><em>method</em> 應為一個標示 HTTP 請求方法的字串（例如：<code class="docutils literal notranslate"><span class="pre">'HEAD'</span></code>）。如果有提供值，則會被存在 <a class="reference internal" href="#urllib.request.Request.method" title="urllib.request.Request.method"><code class="xref py py-attr docutils literal notranslate"><span class="pre">method</span></code></a> 屬性中且被 <a class="reference internal" href="#urllib.request.Request.get_method" title="urllib.request.Request.get_method"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_method()</span></code></a> 所使用。當 <em>data</em> 是 <code class="docutils literal notranslate"><span class="pre">None</span></code> 時，其預設值為 <code class="docutils literal notranslate"><span class="pre">'GET'</span></code>，否則預設值為 <code class="docutils literal notranslate"><span class="pre">'POST'</span></code>。Subclasses 可以透過設置其 <a class="reference internal" href="#urllib.request.Request.method" title="urllib.request.Request.method"><code class="xref py py-attr docutils literal notranslate"><span class="pre">method</span></code></a> 屬性來設定不一樣的預設請求方法。</p>
 <div class="admonition note">
 <p class="admonition-title">備註</p>
-<p>The request will not work as expected if the data object is unable
-to deliver its content more than once (e.g. a file or an iterable
-that can produce the content only once) and the request is retried
-for HTTP redirects or authentication.  The <em>data</em> is sent to the
-HTTP server right away after the headers.  There is no support for
-a 100-continue expectation in the library.</p>
+<p>如果資料物件無法重複提供其內容（例如一個檔案或是只能產生一次內容的可疊代物件）且請求因為 HTTP 重導向 (redirects) 或是 HTTP 驗證 (authentication) 而被重新嘗試傳送，則該請求不會正常運作。<em>data</em> 會接在 headers 之後被送至 HTTP 伺服器。此函式庫沒有支援 100-continue expectation。</p>
 </div>
 <div class="versionchanged">
-<p><span class="versionmodified changed">在 3.3 版本變更: </span><a class="reference internal" href="#urllib.request.Request.method" title="urllib.request.Request.method"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Request.method</span></code></a> argument is added to the Request class.</p>
+<p><span class="versionmodified changed">在 3.3 版本變更: </span>新增 <a class="reference internal" href="#urllib.request.Request.method" title="urllib.request.Request.method"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Request.method</span></code></a> 引數到 Request class。</p>
 </div>
 <div class="versionchanged">
-<p><span class="versionmodified changed">在 3.4 版本變更: </span>Default <a class="reference internal" href="#urllib.request.Request.method" title="urllib.request.Request.method"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Request.method</span></code></a> may be indicated at the class level.</p>
+<p><span class="versionmodified changed">在 3.4 版本變更: </span>能夠在 class 中設置預設的 <a class="reference internal" href="#urllib.request.Request.method" title="urllib.request.Request.method"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Request.method</span></code></a>。</p>
 </div>
 <div class="versionchanged">
-<p><span class="versionmodified changed">在 3.6 版本變更: </span>Do not raise an error if the <code class="docutils literal notranslate"><span class="pre">Content-Length</span></code> has not been
-provided and <em>data</em> is neither <code class="docutils literal notranslate"><span class="pre">None</span></code> nor a bytes object.
-Fall back to use chunked transfer encoding instead.</p>
+<p><span class="versionmodified changed">在 3.6 版本變更: </span>如果 <code class="docutils literal notranslate"><span class="pre">Content-Length</span></code> 尚未被提供且 <em>data</em> 既不是 <code class="docutils literal notranslate"><span class="pre">None</span></code> 也不是一個位元組串物件，則不會觸發錯誤，並 fall back（後備）使用分塊傳輸編碼 (chunked transfer encoding)。</p>
 </div>
 </dd></dl>
 
@@ -1763,7 +1641,7 @@ The typical response object is a <a class="reference internal" href="#urllib.res
         <div class="sphinxsidebarwrapper">
   <h3><a href="../contents.html">目錄</a></h3>
   <ul>
-<li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">urllib.request</span></code> --- Extensible library for opening URLs</a><ul>
+<li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">urllib.request</span></code> --- 用來開啟 URLs 的可擴充函式庫</a><ul>
 <li><a class="reference internal" href="#request-objects">Request Objects</a></li>
 <li><a class="reference internal" href="#openerdirector-objects">OpenerDirector 物件</a></li>
 <li><a class="reference internal" href="#basehandler-objects">BaseHandler 物件</a></li>
@@ -1846,7 +1724,7 @@ The typical response object is a <a class="reference internal" href="#urllib.res
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="internet.html" >Internet Protocols and Support</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href=""><code class="xref py py-mod docutils literal notranslate"><span class="pre">urllib.request</span></code> --- Extensible library for opening URLs</a></li>
+        <li class="nav-item nav-item-this"><a href=""><code class="xref py py-mod docutils literal notranslate"><span class="pre">urllib.request</span></code> --- 用來開啟 URLs 的可擴充函式庫</a></li>
                 <li class="right">
                     
 
@@ -1878,7 +1756,7 @@ The typical response object is a <a class="reference internal" href="#urllib.res
 <br />
     <br />
 
-    最後更新於 12月 07, 2021。
+    最後更新於 12月 08, 2021。
     <a href="https://docs.python.org/3/bugs.html">Found a bug</a>?
     <br />
 

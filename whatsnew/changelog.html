@@ -1003,6 +1003,11 @@
 <section id="core-and-builtins">
 <h3>Core and Builtins<a class="headerlink" href="#core-and-builtins" title="本標題的永久連結">¶</a></h3>
 <ul class="simple">
+<li><p><a class="reference external" href="https://bugs.python.org/issue46009">bpo-46009</a>: Restore behavior from 3.9 and earlier when sending non-None to
+newly started generator. In 3.9 this did not affect the state of the
+generator. In 3.10.0 and 3.10.1 <code class="docutils literal notranslate"><span class="pre">gen_func().send(0)</span></code> is equivalent to
+<code class="docutils literal notranslate"><span class="pre">gen_func().throw(TypeError(...)</span></code> which exhausts the generator. In
+3.10.2 onward, the behavior has been reverted to that of 3.9.</p></li>
 <li><p><a class="reference external" href="https://bugs.python.org/issue46004">bpo-46004</a>: Fix the <a class="reference internal" href="../library/exceptions.html#SyntaxError" title="SyntaxError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">SyntaxError</span></code></a> location for errors involving for
 loops with invalid targets. Patch by Pablo Galindo</p></li>
 </ul>
@@ -24972,7 +24977,7 @@ Kilburn.</p></li>
 <br />
     <br />
 
-    最後更新於 12月 07, 2021。
+    最後更新於 12月 08, 2021。
     <a href="https://docs.python.org/3/bugs.html">Found a bug</a>?
     <br />
 
