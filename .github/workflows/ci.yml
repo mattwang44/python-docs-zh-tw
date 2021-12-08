@@ -18,4 +18,7 @@ jobs:
         run: sudo apt-get install gettext
 
       - name: Validate
-        run: VERSION=${{ github.event.pull_request.base.ref }} MODE=dummy make
+        run: VERSION=${{ github.event.pull_request.base.ref }} MODE=suspicious make
+
+      - name: List suspicious markup
+        run: cat ../cpython/Doc/build/suspicious/suspicious.csv 2>/dev/null 
