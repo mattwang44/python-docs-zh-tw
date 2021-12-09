@@ -14,6 +14,11 @@ jobs:
       - name: Install Dependencies
         run: sudo apt-get install gettext
 
+      - uses: actions/cache@v2
+        with:
+          path: '../cpython/'
+          key: ${{ github.event.pull_request.base.ref }}
+
       - name: Validate
         run: MODE=suspicious make
 
