@@ -348,12 +348,13 @@ class objects) is equivalent to <a class="reference internal" href="../reference
 operators are only defined where they make sense; for example, they raise a
 <a class="reference internal" href="exceptions.html#TypeError" title="TypeError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">TypeError</span></code></a> exception when one of the arguments is a complex number.</p>
 <p id="index-9">Non-identical instances of a class normally compare as non-equal unless the
-class defines the <code class="xref py py-meth docutils literal notranslate"><span class="pre">__eq__()</span></code> method.</p>
+class defines the <a class="reference internal" href="../reference/datamodel.html#object.__eq__" title="object.__eq__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__eq__()</span></code></a> method.</p>
 <p>Instances of a class cannot be ordered with respect to other instances of the
 same class, or other types of object, unless the class defines enough of the
-methods <code class="xref py py-meth docutils literal notranslate"><span class="pre">__lt__()</span></code>, <code class="xref py py-meth docutils literal notranslate"><span class="pre">__le__()</span></code>, <code class="xref py py-meth docutils literal notranslate"><span class="pre">__gt__()</span></code>, and <code class="xref py py-meth docutils literal notranslate"><span class="pre">__ge__()</span></code> (in
-general, <code class="xref py py-meth docutils literal notranslate"><span class="pre">__lt__()</span></code> and <code class="xref py py-meth docutils literal notranslate"><span class="pre">__eq__()</span></code> are sufficient, if you want the
-conventional meanings of the comparison operators).</p>
+methods <a class="reference internal" href="../reference/datamodel.html#object.__lt__" title="object.__lt__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__lt__()</span></code></a>, <a class="reference internal" href="../reference/datamodel.html#object.__le__" title="object.__le__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__le__()</span></code></a>, <a class="reference internal" href="../reference/datamodel.html#object.__gt__" title="object.__gt__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__gt__()</span></code></a>, and
+<a class="reference internal" href="../reference/datamodel.html#object.__ge__" title="object.__ge__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__ge__()</span></code></a> (in general, <a class="reference internal" href="../reference/datamodel.html#object.__lt__" title="object.__lt__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__lt__()</span></code></a> and
+<a class="reference internal" href="../reference/datamodel.html#object.__eq__" title="object.__eq__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__eq__()</span></code></a> are sufficient, if you want the conventional meanings of the
+comparison operators).</p>
 <p>The behavior of the <a class="reference internal" href="../reference/expressions.html#is"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">is</span></code></a> and <a class="reference internal" href="../reference/expressions.html#is-not"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">is</span> <span class="pre">not</span></code></a> operators cannot be
 customized; also they can be applied to any two objects and never raise an
 exception.</p>
@@ -831,7 +832,7 @@ hexadecimal string representing the same number:</p>
 <section id="hashing-of-numeric-types">
 <span id="numeric-hash"></span><h3>Hashing of numeric types<a class="headerlink" href="#hashing-of-numeric-types" title="本標題的永久連結">¶</a></h3>
 <p>For numbers <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code>, possibly of different types, it's a requirement
-that <code class="docutils literal notranslate"><span class="pre">hash(x)</span> <span class="pre">==</span> <span class="pre">hash(y)</span></code> whenever <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">==</span> <span class="pre">y</span></code> (see the <code class="xref py py-meth docutils literal notranslate"><span class="pre">__hash__()</span></code>
+that <code class="docutils literal notranslate"><span class="pre">hash(x)</span> <span class="pre">==</span> <span class="pre">hash(y)</span></code> whenever <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">==</span> <span class="pre">y</span></code> (see the <a class="reference internal" href="../reference/datamodel.html#object.__hash__" title="object.__hash__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__hash__()</span></code></a>
 method documentation for more details).  For ease of implementation and
 efficiency across a variety of numeric types (including <a class="reference internal" href="functions.html#int" title="int"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>,
 <a class="reference internal" href="functions.html#float" title="float"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>, <a class="reference internal" href="decimal.html#decimal.Decimal" title="decimal.Decimal"><code class="xref py py-class docutils literal notranslate"><span class="pre">decimal.Decimal</span></code></a> and <a class="reference internal" href="fractions.html#fractions.Fraction" title="fractions.Fraction"><code class="xref py py-class docutils literal notranslate"><span class="pre">fractions.Fraction</span></code></a>)
@@ -1405,7 +1406,7 @@ loops.</p>
 <dt class="sig sig-object py">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">range</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stop</span></span></em><span class="optional">[</span>, <em class="sig-param"><span class="n"><span class="pre">step</span></span></em><span class="optional">]</span><span class="sig-paren">)</span></dt>
 <dd><p>The arguments to the range constructor must be integers (either built-in
-<a class="reference internal" href="functions.html#int" title="int"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a> or any object that implements the <code class="docutils literal notranslate"><span class="pre">__index__</span></code> special
+<a class="reference internal" href="functions.html#int" title="int"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a> or any object that implements the <a class="reference internal" href="../reference/datamodel.html#object.__index__" title="object.__index__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__index__()</span></code></a> special
 method).  If the <em>step</em> argument is omitted, it defaults to <code class="docutils literal notranslate"><span class="pre">1</span></code>.
 If the <em>start</em> argument is omitted, it defaults to <code class="docutils literal notranslate"><span class="pre">0</span></code>.
 If <em>step</em> is zero, <a class="reference internal" href="exceptions.html#ValueError" title="ValueError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code></a> is raised.</p>
@@ -5041,9 +5042,9 @@ their implementation of the context management protocol. See the
 <p>Python's <a class="reference internal" href="../glossary.html#term-generator"><span class="xref std std-term">generator</span></a>s and the <a class="reference internal" href="contextlib.html#contextlib.contextmanager" title="contextlib.contextmanager"><code class="xref py py-class docutils literal notranslate"><span class="pre">contextlib.contextmanager</span></code></a> decorator
 provide a convenient way to implement these protocols.  If a generator function is
 decorated with the <a class="reference internal" href="contextlib.html#contextlib.contextmanager" title="contextlib.contextmanager"><code class="xref py py-class docutils literal notranslate"><span class="pre">contextlib.contextmanager</span></code></a> decorator, it will return a
-context manager implementing the necessary <code class="xref py py-meth docutils literal notranslate"><span class="pre">__enter__()</span></code> and
-<code class="xref py py-meth docutils literal notranslate"><span class="pre">__exit__()</span></code> methods, rather than the iterator produced by an undecorated
-generator function.</p>
+context manager implementing the necessary <a class="reference internal" href="#contextmanager.__enter__" title="contextmanager.__enter__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__enter__()</span></code></a> and
+<a class="reference internal" href="#contextmanager.__exit__" title="contextmanager.__exit__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__exit__()</span></code></a> methods, rather than the iterator produced by an
+undecorated generator function.</p>
 <p>Note that there is no specific slot for any of these methods in the type
 structure for Python objects in the Python/C API. Extension types wanting to
 define these methods must provide them as a normal Python accessible method.
@@ -5757,7 +5758,7 @@ element is the tuple to be formatted.</p>
 <br />
     <br />
 
-    最後更新於 12月 08, 2021。
+    最後更新於 12月 13, 2021。
     <a href="https://docs.python.org/3/bugs.html">Found a bug</a>?
     <br />
 
