@@ -309,7 +309,7 @@ once created their value never changes.  Python numbers are of course strongly
 related to mathematical numbers, but subject to the limitations of numerical
 representation in computers.</p>
 <p>The string representations of the numeric classes, computed by
-<code class="xref py py-meth docutils literal notranslate"><span class="pre">__repr__()</span></code> and <code class="xref py py-meth docutils literal notranslate"><span class="pre">__str__()</span></code>, have the following
+<a class="reference internal" href="#object.__repr__" title="object.__repr__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__repr__()</span></code></a> and <a class="reference internal" href="#object.__str__" title="object.__str__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__str__()</span></code></a>, have the following
 properties:</p>
 <ul class="simple">
 <li><p>They are valid numeric literals which, when passed to their
@@ -660,7 +660,8 @@ which uses the <a class="reference internal" href="simple_stmts.html#yield"><cod
 <em class="dfn">asynchronous generator function</em>.  Such a function, when called,
 returns an <a class="reference internal" href="../glossary.html#term-asynchronous-iterator"><span class="xref std std-term">asynchronous iterator</span></a> object which can be used in an
 <a class="reference internal" href="compound_stmts.html#async-for"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">async</span> <span class="pre">for</span></code></a> statement to execute the body of the function.</p>
-<p>Calling the asynchronous iterator's <code class="xref py py-meth docutils literal notranslate"><span class="pre">aiterator.__anext__()</span></code> method
+<p>Calling the asynchronous iterator's
+<a class="reference internal" href="#object.__anext__" title="object.__anext__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">aiterator.__anext__</span></code></a> method
 will return an <a class="reference internal" href="../glossary.html#term-awaitable"><span class="xref std std-term">awaitable</span></a> which when awaited
 will execute until it provides a value using the <a class="reference internal" href="simple_stmts.html#yield"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">yield</span></code></a>
 expression.  When the function executes an empty <a class="reference internal" href="simple_stmts.html#return"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">return</span></code></a>
@@ -685,12 +686,12 @@ denoted by <em>alist</em>.</p>
 </dd>
 <dt>Classes</dt><dd><p>Classes are callable.  These objects normally act as factories for new
 instances of themselves, but variations are possible for class types that
-override <code class="xref py py-meth docutils literal notranslate"><span class="pre">__new__()</span></code>.  The arguments of the call are passed to
-<code class="xref py py-meth docutils literal notranslate"><span class="pre">__new__()</span></code> and, in the typical case, to <code class="xref py py-meth docutils literal notranslate"><span class="pre">__init__()</span></code> to
+override <a class="reference internal" href="#object.__new__" title="object.__new__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__new__()</span></code></a>.  The arguments of the call are passed to
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">__new__()</span></code> and, in the typical case, to <a class="reference internal" href="#object.__init__" title="object.__init__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__init__()</span></code></a> to
 initialize the new instance.</p>
 </dd>
 <dt>Class Instances</dt><dd><p>Instances of arbitrary classes can be made callable by defining a
-<code class="xref py py-meth docutils literal notranslate"><span class="pre">__call__()</span></code> method in their class.</p>
+<a class="reference internal" href="#object.__call__" title="object.__call__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__call__()</span></code></a> method in their class.</p>
 </dd>
 </dl>
 </dd>
@@ -795,11 +796,11 @@ class method objects are also transformed; see above under &quot;Classes&quot;. 
 section <a class="reference internal" href="#descriptors"><span class="std std-ref">Implementing Descriptors</span></a> for another way in which attributes of a class
 retrieved via its instances may differ from the objects actually stored in
 the class's <a class="reference internal" href="../library/stdtypes.html#object.__dict__" title="object.__dict__"><code class="xref py py-attr docutils literal notranslate"><span class="pre">__dict__</span></code></a>.  If no class attribute is found, and the
-object's class has a <code class="xref py py-meth docutils literal notranslate"><span class="pre">__getattr__()</span></code> method, that is called to satisfy
+object's class has a <a class="reference internal" href="#object.__getattr__" title="object.__getattr__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__getattr__()</span></code></a> method, that is called to satisfy
 the lookup.</p>
 <p id="index-50">Attribute assignments and deletions update the instance's dictionary, never a
-class's dictionary.  If the class has a <code class="xref py py-meth docutils literal notranslate"><span class="pre">__setattr__()</span></code> or
-<code class="xref py py-meth docutils literal notranslate"><span class="pre">__delattr__()</span></code> method, this is called instead of updating the instance
+class's dictionary.  If the class has a <a class="reference internal" href="#object.__setattr__" title="object.__setattr__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__setattr__()</span></code></a> or
+<a class="reference internal" href="#object.__delattr__" title="object.__delattr__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__delattr__()</span></code></a> method, this is called instead of updating the instance
 dictionary directly.</p>
 <p id="index-51">Class instances can pretend to be numbers, sequences, or mappings if they have
 methods with certain special names.  See section <a class="reference internal" href="#specialnames"><span class="std std-ref">Special method names</span></a>.</p>
@@ -942,7 +943,8 @@ there is no next level.</p>
 and the <code class="docutils literal notranslate"><span class="pre">tb_next</span></code> attribute of existing instances can be updated.</p>
 </div>
 </dd>
-<dt>Slice objects</dt><dd><p id="index-65">Slice objects are used to represent slices for <code class="xref py py-meth docutils literal notranslate"><span class="pre">__getitem__()</span></code>
+<dt>Slice objects</dt><dd><p id="index-65">Slice objects are used to represent slices for
+<a class="reference internal" href="#object.__getitem__" title="object.__getitem__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__getitem__()</span></code></a>
 methods.  They are also created by the built-in <a class="reference internal" href="../library/functions.html#slice" title="slice"><code class="xref py py-func docutils literal notranslate"><span class="pre">slice()</span></code></a> function.</p>
 <p id="index-66">Special read-only attributes: <code class="xref py py-attr docutils literal notranslate"><span class="pre">start</span></code> is the lower bound;
 <code class="xref py py-attr docutils literal notranslate"><span class="pre">stop</span></code> is the upper bound; <code class="xref py py-attr docutils literal notranslate"><span class="pre">step</span></code> is the step
@@ -984,16 +986,17 @@ by the built-in <a class="reference internal" href="../library/functions.html#cl
 (such as arithmetic operations or subscripting and slicing) by defining methods
 with special names. This is Python's approach to <em class="dfn">operator overloading</em>,
 allowing classes to define their own behavior with respect to language
-operators.  For instance, if a class defines a method named <code class="xref py py-meth docutils literal notranslate"><span class="pre">__getitem__()</span></code>,
+operators.  For instance, if a class defines a method named
+<a class="reference internal" href="#object.__getitem__" title="object.__getitem__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__getitem__()</span></code></a>,
 and <code class="docutils literal notranslate"><span class="pre">x</span></code> is an instance of this class, then <code class="docutils literal notranslate"><span class="pre">x[i]</span></code> is roughly equivalent
 to <code class="docutils literal notranslate"><span class="pre">type(x).__getitem__(x,</span> <span class="pre">i)</span></code>.  Except where mentioned, attempts to execute an
 operation raise an exception when no appropriate method is defined (typically
 <a class="reference internal" href="../library/exceptions.html#AttributeError" title="AttributeError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">AttributeError</span></code></a> or <a class="reference internal" href="../library/exceptions.html#TypeError" title="TypeError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">TypeError</span></code></a>).</p>
 <p>Setting a special method to <code class="docutils literal notranslate"><span class="pre">None</span></code> indicates that the corresponding
 operation is not available.  For example, if a class sets
-<code class="xref py py-meth docutils literal notranslate"><span class="pre">__iter__()</span></code> to <code class="docutils literal notranslate"><span class="pre">None</span></code>, the class is not iterable, so calling
+<a class="reference internal" href="#object.__iter__" title="object.__iter__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__iter__()</span></code></a> to <code class="docutils literal notranslate"><span class="pre">None</span></code>, the class is not iterable, so calling
 <a class="reference internal" href="../library/functions.html#iter" title="iter"><code class="xref py py-func docutils literal notranslate"><span class="pre">iter()</span></code></a> on its instances will raise a <a class="reference internal" href="../library/exceptions.html#TypeError" title="TypeError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">TypeError</span></code></a> (without
-falling back to <code class="xref py py-meth docutils literal notranslate"><span class="pre">__getitem__()</span></code>). <a class="footnote-reference brackets" href="#id9" id="id2">2</a></p>
+falling back to <a class="reference internal" href="#object.__getitem__" title="object.__getitem__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__getitem__()</span></code></a>). <a class="footnote-reference brackets" href="#id9" id="id2">2</a></p>
 <p>When implementing a class that emulates any built-in type, it is important that
 the emulation only be implemented to the degree that it makes sense for the
 object being modelled.  For example, some sequences may work well with retrieval
@@ -1471,7 +1474,8 @@ CPython sets this attribute for unbound methods that are implemented in C).</p>
 <span id="descriptor-invocation"></span><h4><span class="section-number">3.3.2.3. </span>Invoking Descriptors<a class="headerlink" href="#invoking-descriptors" title="本標題的永久連結">¶</a></h4>
 <p>In general, a descriptor is an object attribute with &quot;binding behavior&quot;, one
 whose attribute access has been overridden by methods in the descriptor
-protocol:  <code class="xref py py-meth docutils literal notranslate"><span class="pre">__get__()</span></code>, <code class="xref py py-meth docutils literal notranslate"><span class="pre">__set__()</span></code>, and <code class="xref py py-meth docutils literal notranslate"><span class="pre">__delete__()</span></code>. If any of
+protocol:  <a class="reference internal" href="#object.__get__" title="object.__get__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__get__()</span></code></a>, <a class="reference internal" href="#object.__set__" title="object.__set__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__set__()</span></code></a>, and
+<a class="reference internal" href="#object.__delete__" title="object.__delete__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__delete__()</span></code></a>. If any of
 those methods are defined for an object, it is said to be a descriptor.</p>
 <p>The default behavior for attribute access is to get, set, or delete the
 attribute from an object's dictionary. For instance, <code class="docutils literal notranslate"><span class="pre">a.x</span></code> has a lookup chain
@@ -1501,7 +1505,8 @@ immediately following <code class="docutils literal notranslate"><span class="pr
 </dl>
 <p>For instance bindings, the precedence of descriptor invocation depends on
 which descriptor methods are defined.  A descriptor can define any combination
-of <code class="xref py py-meth docutils literal notranslate"><span class="pre">__get__()</span></code>, <code class="xref py py-meth docutils literal notranslate"><span class="pre">__set__()</span></code> and <code class="xref py py-meth docutils literal notranslate"><span class="pre">__delete__()</span></code>.  If it does not
+of <a class="reference internal" href="#object.__get__" title="object.__get__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__get__()</span></code></a>, <a class="reference internal" href="#object.__set__" title="object.__set__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__set__()</span></code></a> and
+<a class="reference internal" href="#object.__delete__" title="object.__delete__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__delete__()</span></code></a>.  If it does not
 define <code class="xref py py-meth docutils literal notranslate"><span class="pre">__get__()</span></code>, then accessing the attribute will return the descriptor
 object itself unless there is a value in the object's instance dictionary.  If
 the descriptor defines <code class="xref py py-meth docutils literal notranslate"><span class="pre">__set__()</span></code> and/or <code class="xref py py-meth docutils literal notranslate"><span class="pre">__delete__()</span></code>, it is a data
@@ -1511,7 +1516,8 @@ descriptors have just the <code class="xref py py-meth docutils literal notransl
 <code class="xref py py-meth docutils literal notranslate"><span class="pre">__get__()</span></code> and <code class="xref py py-meth docutils literal notranslate"><span class="pre">__set__()</span></code> (and/or <code class="xref py py-meth docutils literal notranslate"><span class="pre">__delete__()</span></code>) defined always override a redefinition in an
 instance dictionary.  In contrast, non-data descriptors can be overridden by
 instances.</p>
-<p>Python methods (including <a class="reference internal" href="../library/functions.html#staticmethod" title="staticmethod"><code class="xref py py-func docutils literal notranslate"><span class="pre">staticmethod()</span></code></a> and <a class="reference internal" href="../library/functions.html#classmethod" title="classmethod"><code class="xref py py-func docutils literal notranslate"><span class="pre">classmethod()</span></code></a>) are
+<p>Python methods (including those decorated with
+<a class="reference internal" href="../library/functions.html#staticmethod" title="staticmethod"><code class="xref py py-func docutils literal notranslate"><span class="pre">&#64;staticmethod</span></code></a> and <a class="reference internal" href="../library/functions.html#classmethod" title="classmethod"><code class="xref py py-func docutils literal notranslate"><span class="pre">&#64;classmethod</span></code></a>) are
 implemented as non-data descriptors.  Accordingly, instances can redefine and
 override methods.  This allows individual instances to acquire behaviors that
 differ from other instances of the same class.</p>
@@ -1521,41 +1527,45 @@ instances cannot override the behavior of a property.</p>
 <section id="slots">
 <span id="id3"></span><h4><span class="section-number">3.3.2.4. </span>__slots__<a class="headerlink" href="#slots" title="本標題的永久連結">¶</a></h4>
 <p><em>__slots__</em> allow us to explicitly declare data members (like
-properties) and deny the creation of <em>__dict__</em> and <em>__weakref__</em>
+properties) and deny the creation of <a class="reference internal" href="../library/stdtypes.html#object.__dict__" title="object.__dict__"><code class="xref py py-attr docutils literal notranslate"><span class="pre">__dict__</span></code></a> and <em>__weakref__</em>
 (unless explicitly declared in <em>__slots__</em> or available in a parent.)</p>
-<p>The space saved over using <em>__dict__</em> can be significant.
+<p>The space saved over using <a class="reference internal" href="../library/stdtypes.html#object.__dict__" title="object.__dict__"><code class="xref py py-attr docutils literal notranslate"><span class="pre">__dict__</span></code></a> can be significant.
 Attribute lookup speed can be significantly improved as well.</p>
 <dl class="py data">
 <dt class="sig sig-object py" id="object.__slots__">
 <span class="sig-prename descclassname"><span class="pre">object.</span></span><span class="sig-name descname"><span class="pre">__slots__</span></span><a class="headerlink" href="#object.__slots__" title="本定義的永久連結">¶</a></dt>
 <dd><p>This class variable can be assigned a string, iterable, or sequence of
 strings with variable names used by instances.  <em>__slots__</em> reserves space
-for the declared variables and prevents the automatic creation of <em>__dict__</em>
+for the declared variables and prevents the automatic creation of
+<a class="reference internal" href="../library/stdtypes.html#object.__dict__" title="object.__dict__"><code class="xref py py-attr docutils literal notranslate"><span class="pre">__dict__</span></code></a>
 and <em>__weakref__</em> for each instance.</p>
 </dd></dl>
 
 <section id="notes-on-using-slots">
 <h5><span class="section-number">3.3.2.4.1. </span>Notes on using <em>__slots__</em><a class="headerlink" href="#notes-on-using-slots" title="本標題的永久連結">¶</a></h5>
 <ul class="simple">
-<li><p>When inheriting from a class without <em>__slots__</em>, the <em>__dict__</em> and
+<li><p>When inheriting from a class without <em>__slots__</em>, the
+<a class="reference internal" href="../library/stdtypes.html#object.__dict__" title="object.__dict__"><code class="xref py py-attr docutils literal notranslate"><span class="pre">__dict__</span></code></a> and
 <em>__weakref__</em> attribute of the instances will always be accessible.</p></li>
-<li><p>Without a <em>__dict__</em> variable, instances cannot be assigned new variables not
+<li><p>Without a <a class="reference internal" href="../library/stdtypes.html#object.__dict__" title="object.__dict__"><code class="xref py py-attr docutils literal notranslate"><span class="pre">__dict__</span></code></a> variable, instances cannot be assigned new
+variables not
 listed in the <em>__slots__</em> definition.  Attempts to assign to an unlisted
 variable name raises <a class="reference internal" href="../library/exceptions.html#AttributeError" title="AttributeError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">AttributeError</span></code></a>. If dynamic assignment of new
 variables is desired, then add <code class="docutils literal notranslate"><span class="pre">'__dict__'</span></code> to the sequence of strings in
 the <em>__slots__</em> declaration.</p></li>
 <li><p>Without a <em>__weakref__</em> variable for each instance, classes defining
-<em>__slots__</em> do not support weak references to its instances. If weak reference
+<em>__slots__</em> do not support <a class="reference internal" href="../library/weakref.html#module-weakref" title="weakref: Support for weak references and weak dictionaries."><code class="xref py py-mod docutils literal notranslate"><span class="pre">weak</span> <span class="pre">references</span></code></a> to its instances.
+If weak reference
 support is needed, then add <code class="docutils literal notranslate"><span class="pre">'__weakref__'</span></code> to the sequence of strings in the
 <em>__slots__</em> declaration.</p></li>
-<li><p><em>__slots__</em> are implemented at the class level by creating descriptors
-(<a class="reference internal" href="#descriptors"><span class="std std-ref">Implementing Descriptors</span></a>) for each variable name.  As a result, class attributes
+<li><p><em>__slots__</em> are implemented at the class level by creating <a class="reference internal" href="#descriptors"><span class="std std-ref">descriptors</span></a>
+for each variable name.  As a result, class attributes
 cannot be used to set default values for instance variables defined by
 <em>__slots__</em>; otherwise, the class attribute would overwrite the descriptor
 assignment.</p></li>
 <li><p>The action of a <em>__slots__</em> declaration is not limited to the class
 where it is defined.  <em>__slots__</em> declared in parents are available in
-child classes. However, child subclasses will get a <em>__dict__</em>  and
+child classes. However, child subclasses will get a <a class="reference internal" href="../library/stdtypes.html#object.__dict__" title="object.__dict__"><code class="xref py py-attr docutils literal notranslate"><span class="pre">__dict__</span></code></a> and
 <em>__weakref__</em> unless they also define <em>__slots__</em> (which should only
 contain names of any <em>additional</em> slots).</p></li>
 <li><p>If a class defines a slot also defined in a base class, the instance variable
@@ -1567,12 +1577,15 @@ built-in types such as <a class="reference internal" href="../library/functions.
 <li><p>Any non-string iterable may be assigned to <em>__slots__</em>. Mappings may also be
 used; however, in the future, special meaning may be assigned to the values
 corresponding to each key.</p></li>
-<li><p><em>__class__</em> assignment works only if both classes have the same <em>__slots__</em>.</p></li>
-<li><p>Multiple inheritance with multiple slotted parent classes can be used,
+<li><p><a class="reference internal" href="../library/stdtypes.html#instance.__class__" title="instance.__class__"><code class="xref py py-attr docutils literal notranslate"><span class="pre">__class__</span></code></a> assignment works only if both classes have the
+same <em>__slots__</em>.</p></li>
+<li><p><a class="reference internal" href="../tutorial/classes.html#tut-multiple"><span class="std std-ref">Multiple inheritance</span></a> with multiple slotted parent
+classes can be used,
 but only one parent is allowed to have attributes created by slots
 (the other bases must have empty slot layouts) - violations raise
 <a class="reference internal" href="../library/exceptions.html#TypeError" title="TypeError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">TypeError</span></code></a>.</p></li>
-<li><p>If an iterator is used for <em>__slots__</em> then a descriptor is created for each
+<li><p>If an <a class="reference internal" href="../glossary.html#term-iterator"><span class="xref std std-term">iterator</span></a> is used for <em>__slots__</em> then a <a class="reference internal" href="../glossary.html#term-descriptor"><span class="xref std std-term">descriptor</span></a> is
+created for each
 of the iterator's values. However, the <em>__slots__</em> attribute will be an empty
 iterator.</p></li>
 </ul>
@@ -1581,7 +1594,7 @@ iterator.</p></li>
 </section>
 <section id="customizing-class-creation">
 <span id="class-customization"></span><h3><span class="section-number">3.3.3. </span>Customizing class creation<a class="headerlink" href="#customizing-class-creation" title="本標題的永久連結">¶</a></h3>
-<p>Whenever a class inherits from another class, <em>__init_subclass__</em> is
+<p>Whenever a class inherits from another class, <a class="reference internal" href="#object.__init_subclass__" title="object.__init_subclass__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__init_subclass__()</span></code></a> is
 called on that class. This way, it is possible to write classes which
 change the behavior of subclasses. This is closely related to class
 decorators, but where class decorators only affect the specific class they're
@@ -1622,7 +1635,7 @@ The actual metaclass (rather than the explicit hint) can be accessed as
 </dd></dl>
 
 <p>When a class is created, <code class="xref py py-meth docutils literal notranslate"><span class="pre">type.__new__()</span></code> scans the class variables
-and makes callbacks to those with a <code class="xref py py-meth docutils literal notranslate"><span class="pre">__set_name__()</span></code> hook.</p>
+and makes callbacks to those with a <a class="reference internal" href="#object.__set_name__" title="object.__set_name__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__set_name__()</span></code></a> hook.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="object.__set_name__">
 <span class="sig-prename descclassname"><span class="pre">object.</span></span><span class="sig-name descname"><span class="pre">__set_name__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">owner</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#object.__set_name__" title="本定義的永久連結">¶</a></dt>
@@ -1713,7 +1726,8 @@ that criterion, then the class definition will fail with <code class="docutils l
 is prepared. If the metaclass has a <code class="docutils literal notranslate"><span class="pre">__prepare__</span></code> attribute, it is called
 as <code class="docutils literal notranslate"><span class="pre">namespace</span> <span class="pre">=</span> <span class="pre">metaclass.__prepare__(name,</span> <span class="pre">bases,</span> <span class="pre">**kwds)</span></code> (where the
 additional keyword arguments, if any, come from the class definition). The
-<code class="docutils literal notranslate"><span class="pre">__prepare__</span></code> method should be implemented as a <a class="reference internal" href="../library/functions.html#classmethod" title="classmethod"><code class="xref py py-func docutils literal notranslate"><span class="pre">classmethod()</span></code></a>. The
+<code class="docutils literal notranslate"><span class="pre">__prepare__</span></code> method should be implemented as a
+<a class="reference internal" href="../library/functions.html#classmethod" title="classmethod"><code class="xref py py-func docutils literal notranslate"><span class="pre">classmethod</span></code></a>. The
 namespace returned by <code class="docutils literal notranslate"><span class="pre">__prepare__</span></code> is passed in to <code class="docutils literal notranslate"><span class="pre">__new__</span></code>, but when
 the final class object is created the namespace is copied into a new <code class="docutils literal notranslate"><span class="pre">dict</span></code>.</p>
 <p>If the metaclass has no <code class="docutils literal notranslate"><span class="pre">__prepare__</span></code> attribute, then the class namespace
@@ -1978,31 +1992,36 @@ being called instead of <a class="reference internal" href="#object.__getitem__"
 <section id="emulating-container-types">
 <span id="sequence-types"></span><h3><span class="section-number">3.3.7. </span>Emulating container types<a class="headerlink" href="#emulating-container-types" title="本標題的永久連結">¶</a></h3>
 <p>The following methods can be defined to implement container objects.  Containers
-usually are sequences (such as lists or tuples) or mappings (like dictionaries),
+usually are <a class="reference internal" href="../glossary.html#term-sequence"><span class="xref std std-term">sequences</span></a> (such as <a class="reference internal" href="../library/stdtypes.html#list" title="list"><code class="xref py py-class docutils literal notranslate"><span class="pre">lists</span></code></a> or
+<a class="reference internal" href="../library/stdtypes.html#tuple" title="tuple"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuples</span></code></a>) or <a class="reference internal" href="../glossary.html#term-mapping"><span class="xref std std-term">mappings</span></a> (like
+<a class="reference internal" href="../library/stdtypes.html#dict" title="dict"><code class="xref py py-class docutils literal notranslate"><span class="pre">dictionaries</span></code></a>),
 but can represent other containers as well.  The first set of methods is used
 either to emulate a sequence or to emulate a mapping; the difference is that for
 a sequence, the allowable keys should be the integers <em>k</em> for which <code class="docutils literal notranslate"><span class="pre">0</span> <span class="pre">&lt;=</span> <span class="pre">k</span> <span class="pre">&lt;</span>
-<span class="pre">N</span></code> where <em>N</em> is the length of the sequence, or slice objects, which define a
+<span class="pre">N</span></code> where <em>N</em> is the length of the sequence, or <a class="reference internal" href="../library/functions.html#slice" title="slice"><code class="xref py py-class docutils literal notranslate"><span class="pre">slice</span></code></a> objects, which define a
 range of items.  It is also recommended that mappings provide the methods
 <code class="xref py py-meth docutils literal notranslate"><span class="pre">keys()</span></code>, <code class="xref py py-meth docutils literal notranslate"><span class="pre">values()</span></code>, <code class="xref py py-meth docutils literal notranslate"><span class="pre">items()</span></code>, <code class="xref py py-meth docutils literal notranslate"><span class="pre">get()</span></code>, <code class="xref py py-meth docutils literal notranslate"><span class="pre">clear()</span></code>,
 <code class="xref py py-meth docutils literal notranslate"><span class="pre">setdefault()</span></code>, <code class="xref py py-meth docutils literal notranslate"><span class="pre">pop()</span></code>, <code class="xref py py-meth docutils literal notranslate"><span class="pre">popitem()</span></code>, <code class="xref py py-meth docutils literal notranslate"><span class="pre">copy()</span></code>, and
-<code class="xref py py-meth docutils literal notranslate"><span class="pre">update()</span></code> behaving similar to those for Python's standard dictionary
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">update()</span></code> behaving similar to those for Python's standard <a class="reference internal" href="../library/stdtypes.html#dict" title="dict"><code class="xref py py-class docutils literal notranslate"><span class="pre">dictionary</span></code></a>
 objects.  The <a class="reference internal" href="../library/collections.abc.html#module-collections.abc" title="collections.abc: Abstract base classes for containers"><code class="xref py py-mod docutils literal notranslate"><span class="pre">collections.abc</span></code></a> module provides a
 <a class="reference internal" href="../library/collections.abc.html#collections.abc.MutableMapping" title="collections.abc.MutableMapping"><code class="xref py py-class docutils literal notranslate"><span class="pre">MutableMapping</span></code></a>
-abstract base class to help create those methods from a base set of
-<code class="xref py py-meth docutils literal notranslate"><span class="pre">__getitem__()</span></code>, <code class="xref py py-meth docutils literal notranslate"><span class="pre">__setitem__()</span></code>, <code class="xref py py-meth docutils literal notranslate"><span class="pre">__delitem__()</span></code>, and <code class="xref py py-meth docutils literal notranslate"><span class="pre">keys()</span></code>.
+<a class="reference internal" href="../glossary.html#term-abstract-base-class"><span class="xref std std-term">abstract base class</span></a> to help create those methods from a base set of
+<a class="reference internal" href="#object.__getitem__" title="object.__getitem__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__getitem__()</span></code></a>, <a class="reference internal" href="#object.__setitem__" title="object.__setitem__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__setitem__()</span></code></a>, <a class="reference internal" href="#object.__delitem__" title="object.__delitem__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__delitem__()</span></code></a>, and <code class="xref py py-meth docutils literal notranslate"><span class="pre">keys()</span></code>.
 Mutable sequences should provide methods <code class="xref py py-meth docutils literal notranslate"><span class="pre">append()</span></code>, <code class="xref py py-meth docutils literal notranslate"><span class="pre">count()</span></code>,
 <code class="xref py py-meth docutils literal notranslate"><span class="pre">index()</span></code>, <code class="xref py py-meth docutils literal notranslate"><span class="pre">extend()</span></code>, <code class="xref py py-meth docutils literal notranslate"><span class="pre">insert()</span></code>, <code class="xref py py-meth docutils literal notranslate"><span class="pre">pop()</span></code>, <code class="xref py py-meth docutils literal notranslate"><span class="pre">remove()</span></code>,
-<code class="xref py py-meth docutils literal notranslate"><span class="pre">reverse()</span></code> and <code class="xref py py-meth docutils literal notranslate"><span class="pre">sort()</span></code>, like Python standard list objects.  Finally,
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">reverse()</span></code> and <code class="xref py py-meth docutils literal notranslate"><span class="pre">sort()</span></code>, like Python standard <a class="reference internal" href="../library/stdtypes.html#list" title="list"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>
+objects. Finally,
 sequence types should implement addition (meaning concatenation) and
-multiplication (meaning repetition) by defining the methods <code class="xref py py-meth docutils literal notranslate"><span class="pre">__add__()</span></code>,
-<code class="xref py py-meth docutils literal notranslate"><span class="pre">__radd__()</span></code>, <code class="xref py py-meth docutils literal notranslate"><span class="pre">__iadd__()</span></code>, <code class="xref py py-meth docutils literal notranslate"><span class="pre">__mul__()</span></code>, <code class="xref py py-meth docutils literal notranslate"><span class="pre">__rmul__()</span></code> and
-<code class="xref py py-meth docutils literal notranslate"><span class="pre">__imul__()</span></code> described below; they should not define other numerical
+multiplication (meaning repetition) by defining the methods
+<a class="reference internal" href="#object.__add__" title="object.__add__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__add__()</span></code></a>, <a class="reference internal" href="#object.__radd__" title="object.__radd__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__radd__()</span></code></a>, <a class="reference internal" href="#object.__iadd__" title="object.__iadd__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__iadd__()</span></code></a>,
+<a class="reference internal" href="#object.__mul__" title="object.__mul__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__mul__()</span></code></a>, <a class="reference internal" href="#object.__rmul__" title="object.__rmul__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__rmul__()</span></code></a> and <a class="reference internal" href="#object.__imul__" title="object.__imul__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__imul__()</span></code></a>
+described below; they should not define other numerical
 operators.  It is recommended that both mappings and sequences implement the
-<code class="xref py py-meth docutils literal notranslate"><span class="pre">__contains__()</span></code> method to allow efficient use of the <code class="docutils literal notranslate"><span class="pre">in</span></code> operator; for
+<a class="reference internal" href="#object.__contains__" title="object.__contains__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__contains__()</span></code></a> method to allow efficient use of the <code class="docutils literal notranslate"><span class="pre">in</span></code>
+operator; for
 mappings, <code class="docutils literal notranslate"><span class="pre">in</span></code> should search the mapping's keys; for sequences, it should
 search through the values.  It is further recommended that both mappings and
-sequences implement the <code class="xref py py-meth docutils literal notranslate"><span class="pre">__iter__()</span></code> method to allow efficient iteration
+sequences implement the <a class="reference internal" href="#object.__iter__" title="object.__iter__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__iter__()</span></code></a> method to allow efficient iteration
 through the container; for mappings, <code class="xref py py-meth docutils literal notranslate"><span class="pre">__iter__()</span></code> should iterate
 through the object's keys; for sequences, it should iterate through the values.</p>
 <dl class="py method">
@@ -2426,7 +2445,8 @@ exception:</p>
 </pre></div>
 </div>
 <p>The rationale behind this behaviour lies with a number of special methods such
-as <code class="xref py py-meth docutils literal notranslate"><span class="pre">__hash__()</span></code> and <code class="xref py py-meth docutils literal notranslate"><span class="pre">__repr__()</span></code> that are implemented by all objects,
+as <a class="reference internal" href="#object.__hash__" title="object.__hash__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__hash__()</span></code></a> and <a class="reference internal" href="#object.__repr__" title="object.__repr__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__repr__()</span></code></a> that are implemented
+by all objects,
 including type objects. If the implicit lookup of these methods used the
 conventional lookup process, they would fail when invoked on the type object
 itself:</p>
@@ -2449,7 +2469,7 @@ the instance when looking up special methods:</p>
 </div>
 <p>In addition to bypassing any instance attributes in the interest of
 correctness, implicit special method lookup generally also bypasses the
-<code class="xref py py-meth docutils literal notranslate"><span class="pre">__getattribute__()</span></code> method even of the object's metaclass:</p>
+<a class="reference internal" href="#object.__getattribute__" title="object.__getattribute__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__getattribute__()</span></code></a> method even of the object's metaclass:</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">Meta</span><span class="p">(</span><span class="nb">type</span><span class="p">):</span>
 <span class="gp">... </span>    <span class="k">def</span> <span class="fm">__getattribute__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
 <span class="gp">... </span>        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Metaclass getattribute invoked&quot;</span><span class="p">)</span>
@@ -2473,7 +2493,7 @@ correctness, implicit special method lookup generally also bypasses the
 <span class="go">10</span>
 </pre></div>
 </div>
-<p>Bypassing the <code class="xref py py-meth docutils literal notranslate"><span class="pre">__getattribute__()</span></code> machinery in this fashion
+<p>Bypassing the <a class="reference internal" href="#object.__getattribute__" title="object.__getattribute__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__getattribute__()</span></code></a> machinery in this fashion
 provides significant scope for speed optimisations within the
 interpreter, at the cost of some flexibility in the handling of
 special methods (the special method <em>must</em> be set on the class
@@ -2484,14 +2504,14 @@ object itself in order to be consistently invoked by the interpreter).</p>
 <span id="index-105"></span><h2><span class="section-number">3.4. </span>協程<a class="headerlink" href="#coroutines" title="本標題的永久連結">¶</a></h2>
 <section id="awaitable-objects">
 <h3><span class="section-number">3.4.1. </span>Awaitable Objects<a class="headerlink" href="#awaitable-objects" title="本標題的永久連結">¶</a></h3>
-<p>An <a class="reference internal" href="../glossary.html#term-awaitable"><span class="xref std std-term">awaitable</span></a> object generally implements an <code class="xref py py-meth docutils literal notranslate"><span class="pre">__await__()</span></code> method.
+<p>An <a class="reference internal" href="../glossary.html#term-awaitable"><span class="xref std std-term">awaitable</span></a> object generally implements an <a class="reference internal" href="#object.__await__" title="object.__await__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__await__()</span></code></a> method.
 <a class="reference internal" href="../glossary.html#term-coroutine"><span class="xref std std-term">Coroutine objects</span></a> returned from <a class="reference internal" href="compound_stmts.html#async-def"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">async</span> <span class="pre">def</span></code></a> functions
 are awaitable.</p>
 <div class="admonition note">
 <p class="admonition-title">備註</p>
 <p>The <a class="reference internal" href="../glossary.html#term-generator-iterator"><span class="xref std std-term">generator iterator</span></a> objects returned from generators
 decorated with <a class="reference internal" href="../library/types.html#types.coroutine" title="types.coroutine"><code class="xref py py-func docutils literal notranslate"><span class="pre">types.coroutine()</span></code></a> or <a class="reference internal" href="../library/asyncio-task.html#asyncio.coroutine" title="asyncio.coroutine"><code class="xref py py-func docutils literal notranslate"><span class="pre">asyncio.coroutine()</span></code></a>
-are also awaitable, but they do not implement <code class="xref py py-meth docutils literal notranslate"><span class="pre">__await__()</span></code>.</p>
+are also awaitable, but they do not implement <a class="reference internal" href="#object.__await__" title="object.__await__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__await__()</span></code></a>.</p>
 </div>
 <dl class="py method">
 <dt class="sig sig-object py" id="object.__await__">
@@ -2512,7 +2532,7 @@ this method to be compatible with the <a class="reference internal" href="expres
 <section id="coroutine-objects">
 <span id="id7"></span><h3><span class="section-number">3.4.2. </span>Coroutine Objects<a class="headerlink" href="#coroutine-objects" title="本標題的永久連結">¶</a></h3>
 <p><a class="reference internal" href="../glossary.html#term-coroutine"><span class="xref std std-term">Coroutine objects</span></a> are <a class="reference internal" href="../glossary.html#term-awaitable"><span class="xref std std-term">awaitable</span></a> objects.
-A coroutine's execution can be controlled by calling <code class="xref py py-meth docutils literal notranslate"><span class="pre">__await__()</span></code> and
+A coroutine's execution can be controlled by calling <a class="reference internal" href="#object.__await__" title="object.__await__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__await__()</span></code></a> and
 iterating over the result.  When the coroutine has finished executing and
 returns, the iterator raises <a class="reference internal" href="../library/exceptions.html#StopIteration" title="StopIteration"><code class="xref py py-exc docutils literal notranslate"><span class="pre">StopIteration</span></code></a>, and the exception's
 <code class="xref py py-attr docutils literal notranslate"><span class="pre">value</span></code> attribute holds the return value.  If the
@@ -2529,7 +2549,7 @@ generators, coroutines do not directly support iteration.</p>
 <span class="sig-prename descclassname"><span class="pre">coroutine.</span></span><span class="sig-name descname"><span class="pre">send</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#coroutine.send" title="本定義的永久連結">¶</a></dt>
 <dd><p>Starts or resumes execution of the coroutine.  If <em>value</em> is <code class="docutils literal notranslate"><span class="pre">None</span></code>,
 this is equivalent to advancing the iterator returned by
-<code class="xref py py-meth docutils literal notranslate"><span class="pre">__await__()</span></code>.  If <em>value</em> is not <code class="docutils literal notranslate"><span class="pre">None</span></code>, this method delegates
+<a class="reference internal" href="#object.__await__" title="object.__await__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__await__()</span></code></a>.  If <em>value</em> is not <code class="docutils literal notranslate"><span class="pre">None</span></code>, this method delegates
 to the <a class="reference internal" href="expressions.html#generator.send" title="generator.send"><code class="xref py py-meth docutils literal notranslate"><span class="pre">send()</span></code></a> method of the iterator that caused
 the coroutine to suspend.  The result (return value,
 <a class="reference internal" href="../library/exceptions.html#StopIteration" title="StopIteration"><code class="xref py py-exc docutils literal notranslate"><span class="pre">StopIteration</span></code></a>, or other exception) is the same as when
@@ -2544,7 +2564,7 @@ to the <a class="reference internal" href="expressions.html#generator.throw" tit
 the coroutine to suspend, if it has such a method.  Otherwise,
 the exception is raised at the suspension point.  The result
 (return value, <a class="reference internal" href="../library/exceptions.html#StopIteration" title="StopIteration"><code class="xref py py-exc docutils literal notranslate"><span class="pre">StopIteration</span></code></a>, or other exception) is the same as
-when iterating over the <code class="xref py py-meth docutils literal notranslate"><span class="pre">__await__()</span></code> return value, described
+when iterating over the <a class="reference internal" href="#object.__await__" title="object.__await__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__await__()</span></code></a> return value, described
 above.  If the exception is not caught in the coroutine, it propagates
 back to the caller.</p>
 </dd></dl>
@@ -2601,10 +2621,10 @@ raise a <a class="reference internal" href="../library/exceptions.html#StopAsync
 <p><span class="versionmodified added">在 3.5 版本新加入.</span></p>
 </div>
 <div class="versionchanged">
-<p><span class="versionmodified changed">在 3.7 版本變更: </span>Prior to Python 3.7, <code class="docutils literal notranslate"><span class="pre">__aiter__</span></code> could return an <em>awaitable</em>
+<p><span class="versionmodified changed">在 3.7 版本變更: </span>Prior to Python 3.7, <a class="reference internal" href="#object.__aiter__" title="object.__aiter__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__aiter__()</span></code></a> could return an <em>awaitable</em>
 that would resolve to an
 <a class="reference internal" href="../glossary.html#term-asynchronous-iterator"><span class="xref std std-term">asynchronous iterator</span></a>.</p>
-<p>Starting with Python 3.7, <code class="docutils literal notranslate"><span class="pre">__aiter__</span></code> must return an
+<p>Starting with Python 3.7, <a class="reference internal" href="#object.__aiter__" title="object.__aiter__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__aiter__()</span></code></a> must return an
 asynchronous iterator object.  Returning anything else
 will result in a <a class="reference internal" href="../library/exceptions.html#TypeError" title="TypeError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">TypeError</span></code></a> error.</p>
 </div>
@@ -2648,8 +2668,9 @@ controlled conditions. It generally isn't a good idea though, since it can
 lead to some very strange behaviour if it is handled incorrectly.</p>
 </dd>
 <dt class="label" id="id9"><span class="brackets"><a class="fn-backref" href="#id2">2</a></span></dt>
-<dd><p>The <code class="xref py py-meth docutils literal notranslate"><span class="pre">__hash__()</span></code>, <code class="xref py py-meth docutils literal notranslate"><span class="pre">__iter__()</span></code>, <code class="xref py py-meth docutils literal notranslate"><span class="pre">__reversed__()</span></code>, and
-<code class="xref py py-meth docutils literal notranslate"><span class="pre">__contains__()</span></code> methods have special handling for this; others
+<dd><p>The <a class="reference internal" href="#object.__hash__" title="object.__hash__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__hash__()</span></code></a>, <a class="reference internal" href="#object.__iter__" title="object.__iter__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__iter__()</span></code></a>,
+<a class="reference internal" href="#object.__reversed__" title="object.__reversed__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__reversed__()</span></code></a>, and <a class="reference internal" href="#object.__contains__" title="object.__contains__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__contains__()</span></code></a> methods have
+special handling for this; others
 will still raise a <a class="reference internal" href="../library/exceptions.html#TypeError" title="TypeError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">TypeError</span></code></a>, but may do so by relying on
 the behavior that <code class="docutils literal notranslate"><span class="pre">None</span></code> is not callable.</p>
 </dd>
@@ -2662,7 +2683,8 @@ method—that will instead have the opposite effect of explicitly
 </dd>
 <dt class="label" id="id11"><span class="brackets"><a class="fn-backref" href="#id6">4</a></span></dt>
 <dd><p>For operands of the same type, it is assumed that if the non-reflected
-method -- such as <code class="xref py py-meth docutils literal notranslate"><span class="pre">__add__()</span></code> -- fails then the overall operation is not
+method -- such as <a class="reference internal" href="#object.__add__" title="object.__add__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__add__()</span></code></a> -- fails then the overall
+operation is not
 supported, which is why the reflected method is not called.</p>
 </dd>
 </dl>
@@ -2812,7 +2834,7 @@ supported, which is why the reflected method is not called.</p>
 <br />
     <br />
 
-    最後更新於 12月 13, 2021。
+    最後更新於 12月 15, 2021。
     <a href="https://docs.python.org/3/bugs.html">Found a bug</a>?
     <br />
 
