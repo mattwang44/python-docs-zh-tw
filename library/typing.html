@@ -609,12 +609,12 @@ compatible with every type.</p>
 value of type <a class="reference internal" href="#typing.Any" title="typing.Any"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a> and assign it to any variable:</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span>
 
-<span class="n">a</span> <span class="o">=</span> <span class="kc">None</span>    <span class="c1"># type: Any</span>
-<span class="n">a</span> <span class="o">=</span> <span class="p">[]</span>      <span class="c1"># OK</span>
-<span class="n">a</span> <span class="o">=</span> <span class="mi">2</span>       <span class="c1"># OK</span>
+<span class="n">a</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="n">a</span> <span class="o">=</span> <span class="p">[]</span>          <span class="c1"># OK</span>
+<span class="n">a</span> <span class="o">=</span> <span class="mi">2</span>           <span class="c1"># OK</span>
 
-<span class="n">s</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>      <span class="c1"># type: str</span>
-<span class="n">s</span> <span class="o">=</span> <span class="n">a</span>       <span class="c1"># OK</span>
+<span class="n">s</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>          <span class="c1"># Inferred type of &#39;s&#39; is str</span>
+<span class="n">s</span> <span class="o">=</span> <span class="n">a</span>           <span class="c1"># OK</span>
 
 <span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">item</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
     <span class="c1"># Typechecks; &#39;item&#39; could be any type,</span>
@@ -2088,11 +2088,10 @@ and <a class="reference internal" href="stdtypes.html#types-genericalias"><span 
 The variance and order of type variables
 correspond to those of <a class="reference internal" href="#typing.Generator" title="typing.Generator"><code class="xref py py-class docutils literal notranslate"><span class="pre">Generator</span></code></a>, for example:</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">collections.abc</span> <span class="kn">import</span> <span class="n">Coroutine</span>
-<span class="n">c</span> <span class="o">=</span> <span class="kc">None</span> <span class="c1"># type: Coroutine[list[str], str, int]</span>
-<span class="o">...</span>
-<span class="n">x</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s1">&#39;hi&#39;</span><span class="p">)</span> <span class="c1"># type: list[str]</span>
+<span class="n">c</span><span class="p">:</span> <span class="n">Coroutine</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">]</span>  <span class="c1"># Some coroutine defined elsewhere</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s1">&#39;hi&#39;</span><span class="p">)</span>                   <span class="c1"># Inferred type of &#39;x&#39; is list[str]</span>
 <span class="k">async</span> <span class="k">def</span> <span class="nf">bar</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-    <span class="n">x</span> <span class="o">=</span> <span class="k">await</span> <span class="n">c</span> <span class="c1"># type: int</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="k">await</span> <span class="n">c</span>                    <span class="c1"># Inferred type of &#39;y&#39; is int</span>
 </pre></div>
 </div>
 <div class="versionadded">
@@ -2652,11 +2651,11 @@ This makes it unnecessary to use quotes around the annotation.
 <br />
     <br />
 
-    最後更新於 12月 18, 2021。
+    最後更新於 12月 20, 2021。
     <a href="https://docs.python.org/3/bugs.html">Found a bug</a>?
     <br />
 
-    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.3.1 建立。
+    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.3.2 建立。
     </div>
 
   </body>

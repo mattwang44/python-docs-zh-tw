@@ -1574,9 +1574,11 @@ descriptor directly from the base class). This renders the meaning of the
 program undefined.  In the future, a check may be added to prevent this.</p></li>
 <li><p>Nonempty <em>__slots__</em> does not work for classes derived from &quot;variable-length&quot;
 built-in types such as <a class="reference internal" href="../library/functions.html#int" title="int"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <a class="reference internal" href="../library/stdtypes.html#bytes" title="bytes"><code class="xref py py-class docutils literal notranslate"><span class="pre">bytes</span></code></a> and <a class="reference internal" href="../library/stdtypes.html#tuple" title="tuple"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>.</p></li>
-<li><p>Any non-string iterable may be assigned to <em>__slots__</em>. Mappings may also be
-used; however, in the future, special meaning may be assigned to the values
-corresponding to each key.</p></li>
+<li><p>Any non-string <a class="reference internal" href="../glossary.html#term-iterable"><span class="xref std std-term">iterable</span></a> may be assigned to <em>__slots__</em>.</p></li>
+<li><p>If a <a class="reference internal" href="../library/stdtypes.html#dict" title="dict"><code class="xref py py-class docutils literal notranslate"><span class="pre">dictionary</span></code></a> is used to assign <em>__slots__</em>, the dictionary
+keys will be used as the slot names. The values of the dictionary can be used
+to provide per-attribute docstrings that will be recognised by
+<a class="reference internal" href="../library/inspect.html#inspect.getdoc" title="inspect.getdoc"><code class="xref py py-func docutils literal notranslate"><span class="pre">inspect.getdoc()</span></code></a> and displayed in the output of <a class="reference internal" href="../library/functions.html#help" title="help"><code class="xref py py-func docutils literal notranslate"><span class="pre">help()</span></code></a>.</p></li>
 <li><p><a class="reference internal" href="../library/stdtypes.html#instance.__class__" title="instance.__class__"><code class="xref py py-attr docutils literal notranslate"><span class="pre">__class__</span></code></a> assignment works only if both classes have the
 same <em>__slots__</em>.</p></li>
 <li><p><a class="reference internal" href="../tutorial/classes.html#tut-multiple"><span class="std std-ref">Multiple inheritance</span></a> with multiple slotted parent
@@ -2834,11 +2836,11 @@ supported, which is why the reflected method is not called.</p>
 <br />
     <br />
 
-    最後更新於 12月 18, 2021。
+    最後更新於 12月 20, 2021。
     <a href="https://docs.python.org/3/bugs.html">Found a bug</a>?
     <br />
 
-    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.3.1 建立。
+    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.3.2 建立。
     </div>
 
   </body>
