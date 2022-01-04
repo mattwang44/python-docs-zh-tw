@@ -1121,7 +1121,7 @@ __delitem__</p></td>
 <p>The structure definition for <a class="reference internal" href="type.html#c.PyTypeObject" title="PyTypeObject"><code class="xref c c-type docutils literal notranslate"><span class="pre">PyTypeObject</span></code></a> can be found in
 <code class="file docutils literal notranslate"><span class="pre">Include/object.h</span></code>.  For convenience of reference, this repeats the
 definition found there:</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">typedef</span><span class="w"> </span><span class="k">struct</span> <span class="nc">_typeobject</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">_typeobject</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">    </span><span class="n">PyObject_VAR_HEAD</span><span class="w"></span>
 <span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">tp_name</span><span class="p">;</span><span class="w"> </span><span class="cm">/* For printing, in format &quot;&lt;module&gt;.&lt;name&gt;&quot; */</span><span class="w"></span>
 <span class="w">    </span><span class="n">Py_ssize_t</span><span class="w"> </span><span class="n">tp_basicsize</span><span class="p">,</span><span class="w"> </span><span class="n">tp_itemsize</span><span class="p">;</span><span class="w"> </span><span class="cm">/* For allocation */</span><span class="w"></span>
@@ -1177,11 +1177,11 @@ definition found there:</p>
 <span class="w">    </span><span class="n">iternextfunc</span><span class="w"> </span><span class="n">tp_iternext</span><span class="p">;</span><span class="w"></span>
 
 <span class="w">    </span><span class="cm">/* Attribute descriptor and subclassing stuff */</span><span class="w"></span>
-<span class="w">    </span><span class="k">struct</span> <span class="nc">PyMethodDef</span><span class="w"> </span><span class="o">*</span><span class="n">tp_methods</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="k">struct</span> <span class="nc">PyMemberDef</span><span class="w"> </span><span class="o">*</span><span class="n">tp_members</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="k">struct</span> <span class="nc">PyGetSetDef</span><span class="w"> </span><span class="o">*</span><span class="n">tp_getset</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="nc">PyMethodDef</span><span class="w"> </span><span class="o">*</span><span class="n">tp_methods</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="nc">PyMemberDef</span><span class="w"> </span><span class="o">*</span><span class="n">tp_members</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="nc">PyGetSetDef</span><span class="w"> </span><span class="o">*</span><span class="n">tp_getset</span><span class="p">;</span><span class="w"></span>
 <span class="w">    </span><span class="c1">// Strong reference on a heap type, borrowed reference on a static type</span>
-<span class="w">    </span><span class="k">struct</span> <span class="nc">_typeobject</span><span class="w"> </span><span class="o">*</span><span class="n">tp_base</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="nc">_typeobject</span><span class="w"> </span><span class="o">*</span><span class="n">tp_base</span><span class="p">;</span><span class="w"></span>
 <span class="w">    </span><span class="n">PyObject</span><span class="w"> </span><span class="o">*</span><span class="n">tp_dict</span><span class="p">;</span><span class="w"></span>
 <span class="w">    </span><span class="n">descrgetfunc</span><span class="w"> </span><span class="n">tp_descr_get</span><span class="p">;</span><span class="w"></span>
 <span class="w">    </span><span class="n">descrsetfunc</span><span class="w"> </span><span class="n">tp_descr_set</span><span class="p">;</span><span class="w"></span>
@@ -2675,7 +2675,7 @@ or <a class="reference internal" href="type.html#c.PyType_FromModuleAndSpec" tit
 implement the number protocol.  Each function is used by the function of
 similar name documented in the <a class="reference internal" href="number.html#number"><span class="std std-ref">Number Protocol</span></a> section.</p>
 <p>Here is the structure definition:</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">typedef</span><span class="w"> </span><span class="k">struct</span> <span class="p">{</span><span class="w"></span>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">     </span><span class="n">binaryfunc</span><span class="w"> </span><span class="n">nb_add</span><span class="p">;</span><span class="w"></span>
 <span class="w">     </span><span class="n">binaryfunc</span><span class="w"> </span><span class="n">nb_subtract</span><span class="p">;</span><span class="w"></span>
 <span class="w">     </span><span class="n">binaryfunc</span><span class="w"> </span><span class="n">nb_multiply</span><span class="p">;</span><span class="w"></span>
@@ -3138,7 +3138,7 @@ wraps this function.</p>
 <dd><p>This structure holds pointers to the functions required to implement
 <a class="reference internal" href="../glossary.html#term-awaitable"><span class="xref std std-term">awaitable</span></a> and <a class="reference internal" href="../glossary.html#term-asynchronous-iterator"><span class="xref std std-term">asynchronous iterator</span></a> objects.</p>
 <p>Here is the structure definition:</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">typedef</span><span class="w"> </span><span class="k">struct</span> <span class="p">{</span><span class="w"></span>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">    </span><span class="n">unaryfunc</span><span class="w"> </span><span class="n">am_await</span><span class="p">;</span><span class="w"></span>
 <span class="w">    </span><span class="n">unaryfunc</span><span class="w"> </span><span class="n">am_aiter</span><span class="p">;</span><span class="w"></span>
 <span class="w">    </span><span class="n">unaryfunc</span><span class="w"> </span><span class="n">am_anext</span><span class="p">;</span><span class="w"></span>
@@ -3373,7 +3373,7 @@ include common usage you may encounter.  Some demonstrate tricky corner
 cases.  For more examples, practical info, and a tutorial, see
 <a class="reference internal" href="../extending/newtypes_tutorial.html#defining-new-types"><span class="std std-ref">Defining Extension Types: Tutorial</span></a> and <a class="reference internal" href="../extending/newtypes.html#new-types-topics"><span class="std std-ref">Defining Extension Types: Assorted Topics</span></a>.</p>
 <p>A basic <a class="reference internal" href="#static-types"><span class="std std-ref">static type</span></a>:</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">typedef</span><span class="w"> </span><span class="k">struct</span> <span class="p">{</span><span class="w"></span>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">    </span><span class="n">PyObject_HEAD</span><span class="w"></span>
 <span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">data</span><span class="p">;</span><span class="w"></span>
 <span class="p">}</span><span class="w"> </span><span class="n">MyObject</span><span class="p">;</span><span class="w"></span>
@@ -3434,7 +3434,7 @@ with a more verbose initializer:</p>
 </pre></div>
 </div>
 <p>A type that supports weakrefs, instance dicts, and hashing:</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">typedef</span><span class="w"> </span><span class="k">struct</span> <span class="p">{</span><span class="w"></span>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">    </span><span class="n">PyObject_HEAD</span><span class="w"></span>
 <span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">data</span><span class="p">;</span><span class="w"></span>
 <span class="w">    </span><span class="n">PyObject</span><span class="w"> </span><span class="o">*</span><span class="n">inst_dict</span><span class="p">;</span><span class="w"></span>
@@ -3463,7 +3463,7 @@ with a more verbose initializer:</p>
 <p>A str subclass that cannot be subclassed and cannot be called
 to create instances (e.g. uses a separate factory func) using
 <code class="xref c c-data docutils literal notranslate"><span class="pre">Py_TPFLAGS_DISALLOW_INSTANTIATION</span></code> flag:</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">typedef</span><span class="w"> </span><span class="k">struct</span> <span class="p">{</span><span class="w"></span>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">    </span><span class="n">PyUnicodeObject</span><span class="w"> </span><span class="n">raw</span><span class="p">;</span><span class="w"></span>
 <span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">extra</span><span class="p">;</span><span class="w"></span>
 <span class="p">}</span><span class="w"> </span><span class="n">MyStr</span><span class="p">;</span><span class="w"></span>
@@ -3480,7 +3480,7 @@ to create instances (e.g. uses a separate factory func) using
 </pre></div>
 </div>
 <p>The simplest <a class="reference internal" href="#static-types"><span class="std std-ref">static type</span></a> with fixed-length instances:</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">typedef</span><span class="w"> </span><span class="k">struct</span> <span class="p">{</span><span class="w"></span>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">    </span><span class="n">PyObject_HEAD</span><span class="w"></span>
 <span class="p">}</span><span class="w"> </span><span class="n">MyObject</span><span class="p">;</span><span class="w"></span>
 
@@ -3491,7 +3491,7 @@ to create instances (e.g. uses a separate factory func) using
 </pre></div>
 </div>
 <p>The simplest <a class="reference internal" href="#static-types"><span class="std std-ref">static type</span></a> with variable-length instances:</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">typedef</span><span class="w"> </span><span class="k">struct</span> <span class="p">{</span><span class="w"></span>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">    </span><span class="n">PyObject_VAR_HEAD</span><span class="w"></span>
 <span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">data</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span><span class="w"></span>
 <span class="p">}</span><span class="w"> </span><span class="n">MyObject</span><span class="p">;</span><span class="w"></span>
@@ -3609,7 +3609,7 @@ to create instances (e.g. uses a separate factory func) using
       </ul>
     </div>  
     <div class="footer">
-    &copy; <a href="../copyright.html">版權</a> 2001-2021, Python Software Foundation.
+    &copy; <a href="../copyright.html">版權</a> 2001-2022, Python Software Foundation.
     <br />
     This page is licensed under the Python Software Foundation License Version 2.
     <br />
@@ -3623,7 +3623,7 @@ to create instances (e.g. uses a separate factory func) using
 <br />
     <br />
 
-    最後更新於 12月 20, 2021。
+    最後更新於 1月 04, 2022。
     <a href="https://docs.python.org/3/bugs.html">Found a bug</a>?
     <br />
 

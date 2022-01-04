@@ -357,37 +357,37 @@ other languages), but it can also extract components (sequence elements or
 object attributes) from the value into variables.</p>
 <p>The simplest form compares a subject value against one or more literals:</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">http_error</span><span class="p">(</span><span class="n">status</span><span class="p">):</span>
-    <span class="n">match</span> <span class="n">status</span><span class="p">:</span>
-        <span class="n">case</span> <span class="mi">400</span><span class="p">:</span>
+    <span class="k">match</span> <span class="n">status</span><span class="p">:</span>
+        <span class="k">case</span> <span class="mi">400</span><span class="p">:</span>
             <span class="k">return</span> <span class="s2">&quot;Bad request&quot;</span>
-        <span class="n">case</span> <span class="mi">404</span><span class="p">:</span>
+        <span class="k">case</span> <span class="mi">404</span><span class="p">:</span>
             <span class="k">return</span> <span class="s2">&quot;Not found&quot;</span>
-        <span class="n">case</span> <span class="mi">418</span><span class="p">:</span>
+        <span class="k">case</span> <span class="mi">418</span><span class="p">:</span>
             <span class="k">return</span> <span class="s2">&quot;I&#39;m a teapot&quot;</span>
-        <span class="n">case</span> <span class="n">_</span><span class="p">:</span>
+        <span class="k">case</span> <span class="k">_</span><span class="p">:</span>
             <span class="k">return</span> <span class="s2">&quot;Something&#39;s wrong with the internet&quot;</span>
 </pre></div>
 </div>
 <p>Note the last block: the &quot;variable name&quot; <code class="docutils literal notranslate"><span class="pre">_</span></code> acts as a <em>wildcard</em> and
 never fails to match. If no case matches, none of the branches is executed.</p>
 <p>You can combine several literals in a single pattern using <code class="docutils literal notranslate"><span class="pre">|</span></code> (&quot;or&quot;):</p>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">case</span> <span class="mi">401</span> <span class="o">|</span> <span class="mi">403</span> <span class="o">|</span> <span class="mi">404</span><span class="p">:</span>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">case</span> <span class="mi">401</span> <span class="o">|</span> <span class="mi">403</span> <span class="o">|</span> <span class="mi">404</span><span class="p">:</span>
     <span class="k">return</span> <span class="s2">&quot;Not allowed&quot;</span>
 </pre></div>
 </div>
 <p>Patterns can look like unpacking assignments, and can be used to bind
 variables:</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># point is an (x, y) tuple</span>
-<span class="n">match</span> <span class="n">point</span><span class="p">:</span>
-    <span class="n">case</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">):</span>
+<span class="k">match</span> <span class="n">point</span><span class="p">:</span>
+    <span class="k">case</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">):</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Origin&quot;</span><span class="p">)</span>
-    <span class="n">case</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="k">case</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Y=</span><span class="si">{</span><span class="n">y</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-    <span class="n">case</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">0</span><span class="p">):</span>
+    <span class="k">case</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">0</span><span class="p">):</span>
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;X=</span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-    <span class="n">case</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="k">case</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;X=</span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s2">, Y=</span><span class="si">{</span><span class="n">y</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-    <span class="n">case</span> <span class="n">_</span><span class="p">:</span>
+    <span class="k">case</span> <span class="k">_</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Not a point&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -405,16 +405,16 @@ constructor, but with the ability to capture attributes into variables:</p>
     <span class="n">y</span><span class="p">:</span> <span class="nb">int</span>
 
 <span class="k">def</span> <span class="nf">where_is</span><span class="p">(</span><span class="n">point</span><span class="p">):</span>
-    <span class="n">match</span> <span class="n">point</span><span class="p">:</span>
-        <span class="n">case</span> <span class="n">Point</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="k">match</span> <span class="n">point</span><span class="p">:</span>
+        <span class="k">case</span> <span class="n">Point</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
             <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Origin&quot;</span><span class="p">)</span>
-        <span class="n">case</span> <span class="n">Point</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">):</span>
+        <span class="k">case</span> <span class="n">Point</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">):</span>
             <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Y=</span><span class="si">{</span><span class="n">y</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-        <span class="n">case</span> <span class="n">Point</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+        <span class="k">case</span> <span class="n">Point</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
             <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;X=</span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-        <span class="n">case</span> <span class="n">Point</span><span class="p">():</span>
+        <span class="k">case</span> <span class="n">Point</span><span class="p">():</span>
             <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Somewhere else&quot;</span><span class="p">)</span>
-        <span class="n">case</span> <span class="n">_</span><span class="p">:</span>
+        <span class="k">case</span> <span class="k">_</span><span class="p">:</span>
             <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Not a point&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -437,26 +437,26 @@ Dotted names (like <code class="docutils literal notranslate"><span class="pre">
 (recognized by the &quot;(...)&quot; next to them like <code class="docutils literal notranslate"><span class="pre">Point</span></code> above) are never assigned to.</p>
 <p>Patterns can be arbitrarily nested.  For example, if we have a short
 list of points, we could match it like this:</p>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">match</span> <span class="n">points</span><span class="p">:</span>
-    <span class="n">case</span> <span class="p">[]:</span>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">match</span> <span class="n">points</span><span class="p">:</span>
+    <span class="k">case</span> <span class="p">[]:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;No points&quot;</span><span class="p">)</span>
-    <span class="n">case</span> <span class="p">[</span><span class="n">Point</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)]:</span>
+    <span class="k">case</span> <span class="p">[</span><span class="n">Point</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)]:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The origin&quot;</span><span class="p">)</span>
-    <span class="n">case</span> <span class="p">[</span><span class="n">Point</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)]:</span>
+    <span class="k">case</span> <span class="p">[</span><span class="n">Point</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)]:</span>
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Single point </span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">y</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-    <span class="n">case</span> <span class="p">[</span><span class="n">Point</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">y1</span><span class="p">),</span> <span class="n">Point</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">y2</span><span class="p">)]:</span>
+    <span class="k">case</span> <span class="p">[</span><span class="n">Point</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">y1</span><span class="p">),</span> <span class="n">Point</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">y2</span><span class="p">)]:</span>
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Two on the Y axis at </span><span class="si">{</span><span class="n">y1</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">y2</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-    <span class="n">case</span> <span class="n">_</span><span class="p">:</span>
+    <span class="k">case</span> <span class="k">_</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Something else&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>We can add an <code class="docutils literal notranslate"><span class="pre">if</span></code> clause to a pattern, known as a &quot;guard&quot;.  If the
 guard is false, <code class="docutils literal notranslate"><span class="pre">match</span></code> goes on to try the next case block.  Note
 that value capture happens before the guard is evaluated:</p>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">match</span> <span class="n">point</span><span class="p">:</span>
-    <span class="n">case</span> <span class="n">Point</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="n">y</span><span class="p">:</span>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">match</span> <span class="n">point</span><span class="p">:</span>
+    <span class="k">case</span> <span class="n">Point</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="n">y</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Y=X at </span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-    <span class="n">case</span> <span class="n">Point</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="k">case</span> <span class="n">Point</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Not on the diagonal&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -474,7 +474,7 @@ of at least two items without binding the remaining items.</p></li>
 patterns, extra keys are ignored.  An unpacking like <code class="docutils literal notranslate"><span class="pre">**rest</span></code> is also
 supported.  (But <code class="docutils literal notranslate"><span class="pre">**_</span></code> would be redundant, so it is not allowed.)</p></li>
 <li><p>Subpatterns may be captured using the <code class="docutils literal notranslate"><span class="pre">as</span></code> keyword:</p>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">case</span> <span class="p">(</span><span class="n">Point</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">y1</span><span class="p">),</span> <span class="n">Point</span><span class="p">(</span><span class="n">x2</span><span class="p">,</span> <span class="n">y2</span><span class="p">)</span> <span class="k">as</span> <span class="n">p2</span><span class="p">):</span> <span class="o">...</span>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">case</span> <span class="p">(</span><span class="n">Point</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">y1</span><span class="p">),</span> <span class="n">Point</span><span class="p">(</span><span class="n">x2</span><span class="p">,</span> <span class="n">y2</span><span class="p">)</span> <span class="k">as</span> <span class="n">p2</span><span class="p">):</span> <span class="o">...</span>
 </pre></div>
 </div>
 <p>will capture the second element of the input as <code class="docutils literal notranslate"><span class="pre">p2</span></code> (as long as the input is
@@ -492,12 +492,12 @@ to prevent them from being interpreted as capture variable:</p>
 
 <span class="n">color</span> <span class="o">=</span> <span class="n">Color</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Enter your choice of &#39;red&#39;, &#39;blue&#39; or &#39;green&#39;: &quot;</span><span class="p">))</span>
 
-<span class="n">match</span> <span class="n">color</span><span class="p">:</span>
-    <span class="n">case</span> <span class="n">Color</span><span class="o">.</span><span class="n">RED</span><span class="p">:</span>
+<span class="k">match</span> <span class="n">color</span><span class="p">:</span>
+    <span class="k">case</span> <span class="n">Color</span><span class="o">.</span><span class="n">RED</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;I see red!&quot;</span><span class="p">)</span>
-    <span class="n">case</span> <span class="n">Color</span><span class="o">.</span><span class="n">GREEN</span><span class="p">:</span>
+    <span class="k">case</span> <span class="n">Color</span><span class="o">.</span><span class="n">GREEN</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Grass is green&quot;</span><span class="p">)</span>
-    <span class="n">case</span> <span class="n">Color</span><span class="o">.</span><span class="n">BLUE</span><span class="p">:</span>
+    <span class="k">case</span> <span class="n">Color</span><span class="o">.</span><span class="n">BLUE</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;I&#39;m feeling the blues :(&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1051,7 +1051,7 @@ sketch : Cheese Shop Sketch
       </ul>
     </div>  
     <div class="footer">
-    &copy; <a href="../copyright.html">版權</a> 2001-2021, Python Software Foundation.
+    &copy; <a href="../copyright.html">版權</a> 2001-2022, Python Software Foundation.
     <br />
     This page is licensed under the Python Software Foundation License Version 2.
     <br />
@@ -1065,7 +1065,7 @@ sketch : Cheese Shop Sketch
 <br />
     <br />
 
-    最後更新於 12月 20, 2021。
+    最後更新於 1月 04, 2022。
     <a href="https://docs.python.org/3/bugs.html">Found a bug</a>?
     <br />
 

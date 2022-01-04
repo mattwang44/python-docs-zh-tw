@@ -289,13 +289,13 @@
 <span id="tut-internet-access"></span><h2><span class="section-number">10.7. </span>網路存取<a class="headerlink" href="#internet-access" title="本標題的永久連結">¶</a></h2>
 <p>Python 中有許多存取網路以及處理網路協定。最簡單的兩個例子包括 <a class="reference internal" href="../library/urllib.request.html#module-urllib.request" title="urllib.request: Extensible library for opening URLs."><code class="xref py py-mod docutils literal notranslate"><span class="pre">urllib.request</span></code></a> 模組可以從網址抓取資料以及 <a class="reference internal" href="../library/smtplib.html#module-smtplib" title="smtplib: SMTP protocol client (requires sockets)."><code class="xref py py-mod docutils literal notranslate"><span class="pre">smtplib</span></code></a> 可以用來寄郵件：</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">urllib.request</span> <span class="kn">import</span> <span class="n">urlopen</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">with</span> <span class="n">urlopen</span><span class="p">(</span><span class="s1">&#39;http://tycho.usno.navy.mil/cgi-bin/timer.pl&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">response</span><span class="p">:</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">with</span> <span class="n">urlopen</span><span class="p">(</span><span class="s1">&#39;http://worldtimeapi.org/api/timezone/etc/UTC.txt&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">response</span><span class="p">:</span>
 <span class="gp">... </span>    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">response</span><span class="p">:</span>
-<span class="gp">... </span>        <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>  <span class="c1"># Decoding the binary data to text.</span>
-<span class="gp">... </span>        <span class="k">if</span> <span class="s1">&#39;EST&#39;</span> <span class="ow">in</span> <span class="n">line</span> <span class="ow">or</span> <span class="s1">&#39;EDT&#39;</span> <span class="ow">in</span> <span class="n">line</span><span class="p">:</span>  <span class="c1"># look for Eastern Time</span>
-<span class="gp">... </span>            <span class="nb">print</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
-
-<span class="go">&lt;BR&gt;Nov. 25, 09:43:32 PM EST</span>
+<span class="gp">... </span>        <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span>             <span class="c1"># Convert bytes to a str</span>
+<span class="gp">... </span>        <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;datetime&#39;</span><span class="p">):</span>
+<span class="gp">... </span>            <span class="nb">print</span><span class="p">(</span><span class="n">line</span><span class="o">.</span><span class="n">rstrip</span><span class="p">())</span>         <span class="c1"># Remove trailing newline</span>
+<span class="gp">...</span>
+<span class="go">datetime: 2022-01-01T01:36:47.689215+00:00</span>
 
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">smtplib</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">server</span> <span class="o">=</span> <span class="n">smtplib</span><span class="o">.</span><span class="n">SMTP</span><span class="p">(</span><span class="s1">&#39;localhost&#39;</span><span class="p">)</span>
@@ -500,7 +500,7 @@
       </ul>
     </div>  
     <div class="footer">
-    &copy; <a href="../copyright.html">版權</a> 2001-2021, Python Software Foundation.
+    &copy; <a href="../copyright.html">版權</a> 2001-2022, Python Software Foundation.
     <br />
     This page is licensed under the Python Software Foundation License Version 2.
     <br />
@@ -514,7 +514,7 @@
 <br />
     <br />
 
-    最後更新於 12月 20, 2021。
+    最後更新於 1月 04, 2022。
     <a href="https://docs.python.org/3/bugs.html">Found a bug</a>?
     <br />
 

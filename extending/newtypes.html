@@ -169,7 +169,7 @@
 implement and what they do.</p>
 <p>Here is the definition of <a class="reference internal" href="../c-api/type.html#c.PyTypeObject" title="PyTypeObject"><code class="xref c c-type docutils literal notranslate"><span class="pre">PyTypeObject</span></code></a>, with some fields only used in
 <a class="reference internal" href="../using/configure.html#debug-build"><span class="std std-ref">debug builds</span></a> omitted:</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">typedef</span><span class="w"> </span><span class="k">struct</span> <span class="nc">_typeobject</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">_typeobject</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">    </span><span class="n">PyObject_VAR_HEAD</span><span class="w"></span>
 <span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">tp_name</span><span class="p">;</span><span class="w"> </span><span class="cm">/* For printing, in format &quot;&lt;module&gt;.&lt;name&gt;&quot; */</span><span class="w"></span>
 <span class="w">    </span><span class="n">Py_ssize_t</span><span class="w"> </span><span class="n">tp_basicsize</span><span class="p">,</span><span class="w"> </span><span class="n">tp_itemsize</span><span class="p">;</span><span class="w"> </span><span class="cm">/* For allocation */</span><span class="w"></span>
@@ -225,11 +225,11 @@ implement and what they do.</p>
 <span class="w">    </span><span class="n">iternextfunc</span><span class="w"> </span><span class="n">tp_iternext</span><span class="p">;</span><span class="w"></span>
 
 <span class="w">    </span><span class="cm">/* Attribute descriptor and subclassing stuff */</span><span class="w"></span>
-<span class="w">    </span><span class="k">struct</span> <span class="nc">PyMethodDef</span><span class="w"> </span><span class="o">*</span><span class="n">tp_methods</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="k">struct</span> <span class="nc">PyMemberDef</span><span class="w"> </span><span class="o">*</span><span class="n">tp_members</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="k">struct</span> <span class="nc">PyGetSetDef</span><span class="w"> </span><span class="o">*</span><span class="n">tp_getset</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="nc">PyMethodDef</span><span class="w"> </span><span class="o">*</span><span class="n">tp_methods</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="nc">PyMemberDef</span><span class="w"> </span><span class="o">*</span><span class="n">tp_members</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="nc">PyGetSetDef</span><span class="w"> </span><span class="o">*</span><span class="n">tp_getset</span><span class="p">;</span><span class="w"></span>
 <span class="w">    </span><span class="c1">// Strong reference on a heap type, borrowed reference on a static type</span>
-<span class="w">    </span><span class="k">struct</span> <span class="nc">_typeobject</span><span class="w"> </span><span class="o">*</span><span class="n">tp_base</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="nc">_typeobject</span><span class="w"> </span><span class="o">*</span><span class="n">tp_base</span><span class="p">;</span><span class="w"></span>
 <span class="w">    </span><span class="n">PyObject</span><span class="w"> </span><span class="o">*</span><span class="n">tp_dict</span><span class="p">;</span><span class="w"></span>
 <span class="w">    </span><span class="n">descrgetfunc</span><span class="w"> </span><span class="n">tp_descr_get</span><span class="p">;</span><span class="w"></span>
 <span class="w">    </span><span class="n">descrsetfunc</span><span class="w"> </span><span class="n">tp_descr_set</span><span class="p">;</span><span class="w"></span>
@@ -454,15 +454,15 @@ the type will only have attributes that are inherited from their base type, and
 should leave the <a class="reference internal" href="../c-api/typeobj.html#c.PyTypeObject.tp_getattro" title="PyTypeObject.tp_getattro"><code class="xref c c-member docutils literal notranslate"><span class="pre">tp_getattro</span></code></a> and <a class="reference internal" href="../c-api/typeobj.html#c.PyTypeObject.tp_setattro" title="PyTypeObject.tp_setattro"><code class="xref c c-member docutils literal notranslate"><span class="pre">tp_setattro</span></code></a> fields <code class="docutils literal notranslate"><span class="pre">NULL</span></code> as
 well, allowing the base type to handle attributes.</p>
 <p>The tables are declared as three fields of the type object:</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">struct</span> <span class="nc">PyMethodDef</span><span class="w"> </span><span class="o">*</span><span class="n">tp_methods</span><span class="p">;</span><span class="w"></span>
-<span class="k">struct</span> <span class="nc">PyMemberDef</span><span class="w"> </span><span class="o">*</span><span class="n">tp_members</span><span class="p">;</span><span class="w"></span>
-<span class="k">struct</span> <span class="nc">PyGetSetDef</span><span class="w"> </span><span class="o">*</span><span class="n">tp_getset</span><span class="p">;</span><span class="w"></span>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">struct</span><span class="w"> </span><span class="nc">PyMethodDef</span><span class="w"> </span><span class="o">*</span><span class="n">tp_methods</span><span class="p">;</span><span class="w"></span>
+<span class="k">struct</span><span class="w"> </span><span class="nc">PyMemberDef</span><span class="w"> </span><span class="o">*</span><span class="n">tp_members</span><span class="p">;</span><span class="w"></span>
+<span class="k">struct</span><span class="w"> </span><span class="nc">PyGetSetDef</span><span class="w"> </span><span class="o">*</span><span class="n">tp_getset</span><span class="p">;</span><span class="w"></span>
 </pre></div>
 </div>
 <p>If <a class="reference internal" href="../c-api/typeobj.html#c.PyTypeObject.tp_methods" title="PyTypeObject.tp_methods"><code class="xref c c-member docutils literal notranslate"><span class="pre">tp_methods</span></code></a> is not <code class="docutils literal notranslate"><span class="pre">NULL</span></code>, it must refer to an array of
 <a class="reference internal" href="../c-api/structures.html#c.PyMethodDef" title="PyMethodDef"><code class="xref c c-type docutils literal notranslate"><span class="pre">PyMethodDef</span></code></a> structures.  Each entry in the table is an instance of this
 structure:</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">typedef</span><span class="w"> </span><span class="k">struct</span> <span class="nc">PyMethodDef</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">PyMethodDef</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w">  </span><span class="o">*</span><span class="n">ml_name</span><span class="p">;</span><span class="w">       </span><span class="cm">/* method name */</span><span class="w"></span>
 <span class="w">    </span><span class="n">PyCFunction</span><span class="w">  </span><span class="n">ml_meth</span><span class="p">;</span><span class="w">       </span><span class="cm">/* implementation function */</span><span class="w"></span>
 <span class="w">    </span><span class="kt">int</span><span class="w">          </span><span class="n">ml_flags</span><span class="p">;</span><span class="w">      </span><span class="cm">/* flags */</span><span class="w"></span>
@@ -477,7 +477,7 @@ at the end; it is a sentinel that marks the end of the array.  The
 <p>The second table is used to define attributes which map directly to data stored
 in the instance.  A variety of primitive C types are supported, and access may
 be read-only or read-write.  The structures in the table are defined as:</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">typedef</span><span class="w"> </span><span class="k">struct</span> <span class="nc">PyMemberDef</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">PyMemberDef</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">name</span><span class="p">;</span><span class="w"></span>
 <span class="w">    </span><span class="kt">int</span><span class="w">         </span><span class="n">type</span><span class="p">;</span><span class="w"></span>
 <span class="w">    </span><span class="kt">int</span><span class="w">         </span><span class="n">offset</span><span class="p">;</span><span class="w"></span>
@@ -610,7 +610,7 @@ size of an internal pointer is equal:</p>
 <span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="nl">Py_GT</span><span class="p">:</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">size1</span><span class="w"> </span><span class="o">&gt;</span><span class="w">  </span><span class="n">size2</span><span class="p">;</span><span class="w"> </span><span class="k">break</span><span class="p">;</span><span class="w"></span>
 <span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="nl">Py_GE</span><span class="p">:</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">size1</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">size2</span><span class="p">;</span><span class="w"> </span><span class="k">break</span><span class="p">;</span><span class="w"></span>
 <span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="w">    </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="nl">Py_True</span> <span class="p">:</span><span class="w"> </span><span class="n">Py_False</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="nl">Py_True</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">Py_False</span><span class="p">;</span><span class="w"></span>
 <span class="w">    </span><span class="n">Py_INCREF</span><span class="p">(</span><span class="n">result</span><span class="p">);</span><span class="w"></span>
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">result</span><span class="p">;</span><span class="w"></span>
 <span class="w"> </span><span class="p">}</span><span class="w"></span>
@@ -756,7 +756,7 @@ so that the interpreter knows how to access and modify that field.</p></li>
 </ol>
 <p>Concretely, here is how a trivial object structure would be augmented
 with the required field:</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">typedef</span><span class="w"> </span><span class="k">struct</span> <span class="p">{</span><span class="w"></span>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">    </span><span class="n">PyObject_HEAD</span><span class="w"></span>
 <span class="w">    </span><span class="n">PyObject</span><span class="w"> </span><span class="o">*</span><span class="n">weakreflist</span><span class="p">;</span><span class="w">  </span><span class="cm">/* List of weak references */</span><span class="w"></span>
 <span class="p">}</span><span class="w"> </span><span class="n">TrivialObject</span><span class="p">;</span><span class="w"></span>
@@ -907,7 +907,7 @@ its use might be something like the following:</p>
       </ul>
     </div>  
     <div class="footer">
-    &copy; <a href="../copyright.html">版權</a> 2001-2021, Python Software Foundation.
+    &copy; <a href="../copyright.html">版權</a> 2001-2022, Python Software Foundation.
     <br />
     This page is licensed under the Python Software Foundation License Version 2.
     <br />
@@ -921,7 +921,7 @@ its use might be something like the following:</p>
 <br />
     <br />
 
-    最後更新於 12月 20, 2021。
+    最後更新於 1月 04, 2022。
     <a href="https://docs.python.org/3/bugs.html">Found a bug</a>?
     <br />
 

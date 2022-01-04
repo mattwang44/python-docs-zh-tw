@@ -274,7 +274,7 @@
 <dd class="field-odd"><p>3.10.1</p>
 </dd>
 <dt class="field-even">日期</dt>
-<dd class="field-even"><p>12月 20, 2021</p>
+<dd class="field-even"><p>1月 04, 2022</p>
 </dd>
 <dt class="field-odd">編輯者</dt>
 <dd class="field-odd"><p>Pablo Galindo Salgado</p>
@@ -610,14 +610,14 @@ forms of data.</p>
 <section id="syntax-and-operations">
 <h4>Syntax and operations<a class="headerlink" href="#syntax-and-operations" title="本標題的永久連結">¶</a></h4>
 <p>The generic syntax of pattern matching is:</p>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">match</span> <span class="n">subject</span><span class="p">:</span>
-    <span class="n">case</span> <span class="o">&lt;</span><span class="n">pattern_1</span><span class="o">&gt;</span><span class="p">:</span>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">match</span> <span class="n">subject</span><span class="p">:</span>
+    <span class="k">case</span> <span class="o">&lt;</span><span class="n">pattern_1</span><span class="o">&gt;</span><span class="p">:</span>
         <span class="o">&lt;</span><span class="n">action_1</span><span class="o">&gt;</span>
-    <span class="n">case</span> <span class="o">&lt;</span><span class="n">pattern_2</span><span class="o">&gt;</span><span class="p">:</span>
+    <span class="k">case</span> <span class="o">&lt;</span><span class="n">pattern_2</span><span class="o">&gt;</span><span class="p">:</span>
         <span class="o">&lt;</span><span class="n">action_2</span><span class="o">&gt;</span>
-    <span class="n">case</span> <span class="o">&lt;</span><span class="n">pattern_3</span><span class="o">&gt;</span><span class="p">:</span>
+    <span class="k">case</span> <span class="o">&lt;</span><span class="n">pattern_3</span><span class="o">&gt;</span><span class="p">:</span>
         <span class="o">&lt;</span><span class="n">action_3</span><span class="o">&gt;</span>
-    <span class="n">case</span> <span class="n">_</span><span class="p">:</span>
+    <span class="k">case</span> <span class="k">_</span><span class="p">:</span>
         <span class="o">&lt;</span><span class="n">action_wildcard</span><span class="o">&gt;</span>
 </pre></div>
 </div>
@@ -665,14 +665,14 @@ below, <code class="docutils literal notranslate"><span class="pre">status</span
 each of the case statements, where literals represent request status codes.
 The associated action to the case is executed after a match:</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">http_error</span><span class="p">(</span><span class="n">status</span><span class="p">):</span>
-    <span class="n">match</span> <span class="n">status</span><span class="p">:</span>
-        <span class="n">case</span> <span class="mi">400</span><span class="p">:</span>
+    <span class="k">match</span> <span class="n">status</span><span class="p">:</span>
+        <span class="k">case</span> <span class="mi">400</span><span class="p">:</span>
             <span class="k">return</span> <span class="s2">&quot;Bad request&quot;</span>
-        <span class="n">case</span> <span class="mi">404</span><span class="p">:</span>
+        <span class="k">case</span> <span class="mi">404</span><span class="p">:</span>
             <span class="k">return</span> <span class="s2">&quot;Not found&quot;</span>
-        <span class="n">case</span> <span class="mi">418</span><span class="p">:</span>
+        <span class="k">case</span> <span class="mi">418</span><span class="p">:</span>
             <span class="k">return</span> <span class="s2">&quot;I&#39;m a teapot&quot;</span>
-        <span class="n">case</span> <span class="n">_</span><span class="p">:</span>
+        <span class="k">case</span> <span class="k">_</span><span class="p">:</span>
             <span class="k">return</span> <span class="s2">&quot;Something&#39;s wrong with the internet&quot;</span>
 </pre></div>
 </div>
@@ -683,7 +683,7 @@ returned.
 Note the last block: the variable name, <code class="docutils literal notranslate"><span class="pre">_</span></code>, acts as a <em>wildcard</em> and insures
 the subject will always match. The use of <code class="docutils literal notranslate"><span class="pre">_</span></code> is optional.</p>
 <p>You can combine several literals in a single pattern using <code class="docutils literal notranslate"><span class="pre">|</span></code> (&quot;or&quot;):</p>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">case</span> <span class="mi">401</span> <span class="o">|</span> <span class="mi">403</span> <span class="o">|</span> <span class="mi">404</span><span class="p">:</span>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">case</span> <span class="mi">401</span> <span class="o">|</span> <span class="mi">403</span> <span class="o">|</span> <span class="mi">404</span><span class="p">:</span>
     <span class="k">return</span> <span class="s2">&quot;Not allowed&quot;</span>
 </pre></div>
 </div>
@@ -692,12 +692,12 @@ the subject will always match. The use of <code class="docutils literal notransl
 <p>If we modify the above example by removing the last case block, the example
 becomes:</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">http_error</span><span class="p">(</span><span class="n">status</span><span class="p">):</span>
-    <span class="n">match</span> <span class="n">status</span><span class="p">:</span>
-        <span class="n">case</span> <span class="mi">400</span><span class="p">:</span>
+    <span class="k">match</span> <span class="n">status</span><span class="p">:</span>
+        <span class="k">case</span> <span class="mi">400</span><span class="p">:</span>
             <span class="k">return</span> <span class="s2">&quot;Bad request&quot;</span>
-        <span class="n">case</span> <span class="mi">404</span><span class="p">:</span>
+        <span class="k">case</span> <span class="mi">404</span><span class="p">:</span>
             <span class="k">return</span> <span class="s2">&quot;Not found&quot;</span>
-        <span class="n">case</span> <span class="mi">418</span><span class="p">:</span>
+        <span class="k">case</span> <span class="mi">418</span><span class="p">:</span>
             <span class="k">return</span> <span class="s2">&quot;I&#39;m a teapot&quot;</span>
 </pre></div>
 </div>
@@ -712,16 +712,16 @@ passed, a no-op occurs.</p>
 variables. In this example, a data point can be unpacked to its x-coordinate
 and y-coordinate:</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># point is an (x, y) tuple</span>
-<span class="n">match</span> <span class="n">point</span><span class="p">:</span>
-    <span class="n">case</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">):</span>
+<span class="k">match</span> <span class="n">point</span><span class="p">:</span>
+    <span class="k">case</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">):</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Origin&quot;</span><span class="p">)</span>
-    <span class="n">case</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="k">case</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Y=</span><span class="si">{</span><span class="n">y</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-    <span class="n">case</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">0</span><span class="p">):</span>
+    <span class="k">case</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">0</span><span class="p">):</span>
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;X=</span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-    <span class="n">case</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="k">case</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;X=</span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s2">, Y=</span><span class="si">{</span><span class="n">y</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-    <span class="n">case</span> <span class="n">_</span><span class="p">:</span>
+    <span class="k">case</span> <span class="k">_</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Not a point&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -741,16 +741,16 @@ pattern has the ability to capture class attributes into variables:</p>
     <span class="n">y</span><span class="p">:</span> <span class="nb">int</span>
 
 <span class="k">def</span> <span class="nf">location</span><span class="p">(</span><span class="n">point</span><span class="p">):</span>
-    <span class="n">match</span> <span class="n">point</span><span class="p">:</span>
-        <span class="n">case</span> <span class="n">Point</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="k">match</span> <span class="n">point</span><span class="p">:</span>
+        <span class="k">case</span> <span class="n">Point</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
             <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Origin is the point&#39;s location.&quot;</span><span class="p">)</span>
-        <span class="n">case</span> <span class="n">Point</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">):</span>
+        <span class="k">case</span> <span class="n">Point</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">):</span>
             <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Y=</span><span class="si">{</span><span class="n">y</span><span class="si">}</span><span class="s2"> and the point is on the y-axis.&quot;</span><span class="p">)</span>
-        <span class="n">case</span> <span class="n">Point</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+        <span class="k">case</span> <span class="n">Point</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
             <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;X=</span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s2"> and the point is on the x-axis.&quot;</span><span class="p">)</span>
-        <span class="n">case</span> <span class="n">Point</span><span class="p">():</span>
+        <span class="k">case</span> <span class="n">Point</span><span class="p">():</span>
             <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The point is located somewhere else on the plane.&quot;</span><span class="p">)</span>
-        <span class="n">case</span> <span class="n">_</span><span class="p">:</span>
+        <span class="k">case</span> <span class="k">_</span><span class="p">:</span>
             <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Not a point&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -773,16 +773,16 @@ are all equivalent (and all bind the <code class="docutils literal notranslate">
 <h4>Nested patterns<a class="headerlink" href="#nested-patterns" title="本標題的永久連結">¶</a></h4>
 <p>Patterns can be arbitrarily nested.  For example, if our data is a short
 list of points, it could be matched like this:</p>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">match</span> <span class="n">points</span><span class="p">:</span>
-    <span class="n">case</span> <span class="p">[]:</span>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">match</span> <span class="n">points</span><span class="p">:</span>
+    <span class="k">case</span> <span class="p">[]:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;No points in the list.&quot;</span><span class="p">)</span>
-    <span class="n">case</span> <span class="p">[</span><span class="n">Point</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)]:</span>
+    <span class="k">case</span> <span class="p">[</span><span class="n">Point</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)]:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The origin is the only point in the list.&quot;</span><span class="p">)</span>
-    <span class="n">case</span> <span class="p">[</span><span class="n">Point</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)]:</span>
+    <span class="k">case</span> <span class="p">[</span><span class="n">Point</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)]:</span>
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;A single point </span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">y</span><span class="si">}</span><span class="s2"> is in the list.&quot;</span><span class="p">)</span>
-    <span class="n">case</span> <span class="p">[</span><span class="n">Point</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">y1</span><span class="p">),</span> <span class="n">Point</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">y2</span><span class="p">)]:</span>
+    <span class="k">case</span> <span class="p">[</span><span class="n">Point</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">y1</span><span class="p">),</span> <span class="n">Point</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">y2</span><span class="p">)]:</span>
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Two points on the Y axis at </span><span class="si">{</span><span class="n">y1</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">y2</span><span class="si">}</span><span class="s2"> are in the list.&quot;</span><span class="p">)</span>
-    <span class="n">case</span> <span class="n">_</span><span class="p">:</span>
+    <span class="k">case</span> <span class="k">_</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Something else is found in the list.&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -792,10 +792,10 @@ list of points, it could be matched like this:</p>
 <p>To this point, the examples have used <code class="docutils literal notranslate"><span class="pre">_</span></code> alone in the last case statement.
 A wildcard can be used in more complex patterns, such as <code class="docutils literal notranslate"><span class="pre">('error',</span> <span class="pre">code,</span> <span class="pre">_)</span></code>.
 For example:</p>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">match</span> <span class="n">test_variable</span><span class="p">:</span>
-    <span class="n">case</span> <span class="p">(</span><span class="s1">&#39;warning&#39;</span><span class="p">,</span> <span class="n">code</span><span class="p">,</span> <span class="mi">40</span><span class="p">):</span>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">match</span> <span class="n">test_variable</span><span class="p">:</span>
+    <span class="k">case</span> <span class="p">(</span><span class="s1">&#39;warning&#39;</span><span class="p">,</span> <span class="n">code</span><span class="p">,</span> <span class="mi">40</span><span class="p">):</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;A warning has been received.&quot;</span><span class="p">)</span>
-    <span class="n">case</span> <span class="p">(</span><span class="s1">&#39;error&#39;</span><span class="p">,</span> <span class="n">code</span><span class="p">,</span> <span class="n">_</span><span class="p">):</span>
+    <span class="k">case</span> <span class="p">(</span><span class="s1">&#39;error&#39;</span><span class="p">,</span> <span class="n">code</span><span class="p">,</span> <span class="k">_</span><span class="p">):</span>
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;An error </span><span class="si">{</span><span class="n">code</span><span class="si">}</span><span class="s2"> occurred.&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -807,10 +807,10 @@ For example:</p>
 <p>We can add an <code class="docutils literal notranslate"><span class="pre">if</span></code> clause to a pattern, known as a &quot;guard&quot;.  If the
 guard is false, <code class="docutils literal notranslate"><span class="pre">match</span></code> goes on to try the next case block.  Note
 that value capture happens before the guard is evaluated:</p>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">match</span> <span class="n">point</span><span class="p">:</span>
-    <span class="n">case</span> <span class="n">Point</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="n">y</span><span class="p">:</span>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">match</span> <span class="n">point</span><span class="p">:</span>
+    <span class="k">case</span> <span class="n">Point</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="n">y</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The point is located on the diagonal Y=X at </span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
-    <span class="n">case</span> <span class="n">Point</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="k">case</span> <span class="n">Point</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Point is not on the diagonal.&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -833,7 +833,7 @@ of at least two items without binding the remaining items.</p></li>
 patterns, extra keys are ignored.  A wildcard <code class="docutils literal notranslate"><span class="pre">**rest</span></code> is also
 supported.  (But <code class="docutils literal notranslate"><span class="pre">**_</span></code> would be redundant, so is not allowed.)</p></li>
 <li><p>Subpatterns may be captured using the <code class="docutils literal notranslate"><span class="pre">as</span></code> keyword:</p>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">case</span> <span class="p">(</span><span class="n">Point</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">y1</span><span class="p">),</span> <span class="n">Point</span><span class="p">(</span><span class="n">x2</span><span class="p">,</span> <span class="n">y2</span><span class="p">)</span> <span class="k">as</span> <span class="n">p2</span><span class="p">):</span> <span class="o">...</span>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">case</span> <span class="p">(</span><span class="n">Point</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">y1</span><span class="p">),</span> <span class="n">Point</span><span class="p">(</span><span class="n">x2</span><span class="p">,</span> <span class="n">y2</span><span class="p">)</span> <span class="k">as</span> <span class="n">p2</span><span class="p">):</span> <span class="o">...</span>
 </pre></div>
 </div>
 <p>This binds x1, y1, x2, y2 like you would expect without the <code class="docutils literal notranslate"><span class="pre">as</span></code> clause,
@@ -850,12 +850,12 @@ variable:</p>
     <span class="n">GREEN</span> <span class="o">=</span> <span class="mi">1</span>
     <span class="n">BLUE</span> <span class="o">=</span> <span class="mi">2</span>
 
-<span class="n">match</span> <span class="n">color</span><span class="p">:</span>
-    <span class="n">case</span> <span class="n">Color</span><span class="o">.</span><span class="n">RED</span><span class="p">:</span>
+<span class="k">match</span> <span class="n">color</span><span class="p">:</span>
+    <span class="k">case</span> <span class="n">Color</span><span class="o">.</span><span class="n">RED</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;I see red!&quot;</span><span class="p">)</span>
-    <span class="n">case</span> <span class="n">Color</span><span class="o">.</span><span class="n">GREEN</span><span class="p">:</span>
+    <span class="k">case</span> <span class="n">Color</span><span class="o">.</span><span class="n">GREEN</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Grass is green&quot;</span><span class="p">)</span>
-    <span class="n">case</span> <span class="n">Color</span><span class="o">.</span><span class="n">BLUE</span><span class="p">:</span>
+    <span class="k">case</span> <span class="n">Color</span><span class="o">.</span><span class="n">BLUE</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;I&#39;m feeling the blues :(&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1480,7 +1480,7 @@ and to match the behavior of static type checkers specified in the PEP.</p>
 <ol class="arabic">
 <li><p><code class="docutils literal notranslate"><span class="pre">Literal</span></code> now de-duplicates parameters.</p></li>
 <li><p>Equality comparisons between <code class="docutils literal notranslate"><span class="pre">Literal</span></code> objects are now order independent.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">Literal</span></code> comparisons now respects types.  For example,
+<li><p><code class="docutils literal notranslate"><span class="pre">Literal</span></code> comparisons now respect types.  For example,
 <code class="docutils literal notranslate"><span class="pre">Literal[0]</span> <span class="pre">==</span> <span class="pre">Literal[False]</span></code> previously evaluated to <code class="docutils literal notranslate"><span class="pre">True</span></code>.  It is
 now <code class="docutils literal notranslate"><span class="pre">False</span></code>.  To support this change, the internally used type cache now
 supports differentiating types.</p></li>
@@ -1671,13 +1671,12 @@ system now triggers an <a class="reference internal" href="../library/exceptions
 <code class="xref py py-meth docutils literal notranslate"><span class="pre">importlib.machinery.FrozenImporter.find_module()</span></code>,
 <code class="xref py py-meth docutils literal notranslate"><span class="pre">importlib.machinery.WindowsRegistryFinder.find_module()</span></code>,
 <a class="reference internal" href="../library/importlib.html#importlib.machinery.PathFinder.find_module" title="importlib.machinery.PathFinder.find_module"><code class="xref py py-meth docutils literal notranslate"><span class="pre">importlib.machinery.PathFinder.find_module()</span></code></a>,
-<a class="reference internal" href="../library/importlib.html#importlib.abc.MetaPathFinder.find_module" title="importlib.abc.MetaPathFinder.find_module"><code class="xref py py-meth docutils literal notranslate"><span class="pre">importlib.abc.MetaPathFinder.find_module()</span></code></a>),
+<a class="reference internal" href="../library/importlib.html#importlib.abc.MetaPathFinder.find_module" title="importlib.abc.MetaPathFinder.find_module"><code class="xref py py-meth docutils literal notranslate"><span class="pre">importlib.abc.MetaPathFinder.find_module()</span></code></a> ),
 <a class="reference internal" href="../library/importlib.html#importlib.abc.PathEntryFinder.find_module" title="importlib.abc.PathEntryFinder.find_module"><code class="xref py py-meth docutils literal notranslate"><span class="pre">importlib.abc.PathEntryFinder.find_module()</span></code></a> (
-<code class="xref py py-meth docutils literal notranslate"><span class="pre">importlib.machinery.FileFinder.find_module()</span></code>,
-), and
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">importlib.machinery.FileFinder.find_module()</span></code> ), and
 <a class="reference internal" href="../library/importlib.html#importlib.abc.PathEntryFinder.find_loader" title="importlib.abc.PathEntryFinder.find_loader"><code class="xref py py-meth docutils literal notranslate"><span class="pre">importlib.abc.PathEntryFinder.find_loader()</span></code></a> (
-<a class="reference internal" href="../library/importlib.html#importlib.machinery.FileFinder.find_loader" title="importlib.machinery.FileFinder.find_loader"><code class="xref py py-meth docutils literal notranslate"><span class="pre">importlib.machinery.FileFinder.find_loader()</span></code></a>
-) now raise <a class="reference internal" href="../library/exceptions.html#DeprecationWarning" title="DeprecationWarning"><code class="xref py py-exc docutils literal notranslate"><span class="pre">DeprecationWarning</span></code></a> and are slated for removal in
+<a class="reference internal" href="../library/importlib.html#importlib.machinery.FileFinder.find_loader" title="importlib.machinery.FileFinder.find_loader"><code class="xref py py-meth docutils literal notranslate"><span class="pre">importlib.machinery.FileFinder.find_loader()</span></code></a> )
+now raise <a class="reference internal" href="../library/exceptions.html#DeprecationWarning" title="DeprecationWarning"><code class="xref py py-exc docutils literal notranslate"><span class="pre">DeprecationWarning</span></code></a> and are slated for removal in
 Python 3.12 (previously they were documented as deprecated in Python 3.4).
 (Contributed by Brett Cannon in <a class="reference external" href="https://bugs.python.org/issue42135">bpo-42135</a>.)</p></li>
 <li><p><a class="reference internal" href="../library/importlib.html#importlib.abc.Finder" title="importlib.abc.Finder"><code class="xref py py-class docutils literal notranslate"><span class="pre">importlib.abc.Finder</span></code></a> is deprecated (including its sole method,
@@ -1712,7 +1711,7 @@ scheduled for removal in Python 3.12.
 <li><p><a class="reference internal" href="../library/asyncio-eventloop.html#asyncio.get_event_loop" title="asyncio.get_event_loop"><code class="xref py py-func docutils literal notranslate"><span class="pre">asyncio.get_event_loop()</span></code></a> now emits a deprecation warning if there is
 no running event loop. In the future it will be an alias of
 <a class="reference internal" href="../library/asyncio-eventloop.html#asyncio.get_running_loop" title="asyncio.get_running_loop"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_running_loop()</span></code></a>.
-<a class="reference internal" href="../library/asyncio.html#module-asyncio" title="asyncio: Asynchronous I/O."><code class="xref py py-mod docutils literal notranslate"><span class="pre">asyncio</span></code></a> functions which implicitly create a <a class="reference internal" href="../library/asyncio-future.html#asyncio.Future" title="asyncio.Future"><code class="xref py py-class docutils literal notranslate"><span class="pre">Future</span></code></a>
+<a class="reference internal" href="../library/asyncio.html#module-asyncio" title="asyncio: Asynchronous I/O."><code class="xref py py-mod docutils literal notranslate"><span class="pre">asyncio</span></code></a> functions which implicitly create <a class="reference internal" href="../library/asyncio-future.html#asyncio.Future" title="asyncio.Future"><code class="xref py py-class docutils literal notranslate"><span class="pre">Future</span></code></a>
 or <a class="reference internal" href="../library/asyncio-task.html#asyncio.Task" title="asyncio.Task"><code class="xref py py-class docutils literal notranslate"><span class="pre">Task</span></code></a> objects now emit
 a deprecation warning if there is no running event loop and no explicit
 <em>loop</em> argument is passed: <a class="reference internal" href="../library/asyncio-future.html#asyncio.ensure_future" title="asyncio.ensure_future"><code class="xref py py-func docutils literal notranslate"><span class="pre">ensure_future()</span></code></a>,
@@ -1826,7 +1825,7 @@ pass the event loop to the API in most normal use cases.</p></li>
 running in different threads.</p></li>
 </ol>
 <p>Note that the low-level API will still accept <code class="docutils literal notranslate"><span class="pre">loop</span></code>.
-See <a class="reference internal" href="#changes-in-the-python-api">Changes in the Python API</a> for examples of how to replace existing code.</p>
+See <a class="reference internal" href="#changes-python-api"><span class="std std-ref">Changes in the Python API</span></a> for examples of how to replace existing code.</p>
 <p>(Contributed by Yurii Karabas, Andrew Svetlov, Yury Selivanov and Kyle Stanley
 in <a class="reference external" href="https://bugs.python.org/issue42392">bpo-42392</a>.)</p>
 </li>
@@ -1849,7 +1848,7 @@ following keyword.
 </ul>
 </section>
 <section id="changes-in-the-python-api">
-<h3>Changes in the Python API<a class="headerlink" href="#changes-in-the-python-api" title="本標題的永久連結">¶</a></h3>
+<span id="changes-python-api"></span><h3>Changes in the Python API<a class="headerlink" href="#changes-in-the-python-api" title="本標題的永久連結">¶</a></h3>
 <ul>
 <li><p>The <em>etype</em> parameters of the <a class="reference internal" href="../library/traceback.html#traceback.format_exception" title="traceback.format_exception"><code class="xref py py-func docutils literal notranslate"><span class="pre">format_exception()</span></code></a>,
 <a class="reference internal" href="../library/traceback.html#traceback.format_exception_only" title="traceback.format_exception_only"><code class="xref py py-func docutils literal notranslate"><span class="pre">format_exception_only()</span></code></a>, and
@@ -1963,7 +1962,7 @@ longer supported.
 to build Python.
 (Contributed by Victor Stinner in <a class="reference external" href="https://bugs.python.org/issue36020">bpo-36020</a>.)</p></li>
 <li><p><a class="reference internal" href="../library/sqlite3.html#module-sqlite3" title="sqlite3: A DB-API 2.0 implementation using SQLite 3.x."><code class="xref py py-mod docutils literal notranslate"><span class="pre">sqlite3</span></code></a> requires SQLite 3.7.15 or higher. (Contributed by Sergey Fedoseev
-and Erlend E. Aasland <a class="reference external" href="https://bugs.python.org/issue40744">bpo-40744</a> and <a class="reference external" href="https://bugs.python.org/issue40810">bpo-40810</a>.)</p></li>
+and Erlend E. Aasland in <a class="reference external" href="https://bugs.python.org/issue40744">bpo-40744</a> and <a class="reference external" href="https://bugs.python.org/issue40810">bpo-40810</a>.)</p></li>
 <li><p>The <a class="reference internal" href="../library/atexit.html#module-atexit" title="atexit: Register and execute cleanup functions."><code class="xref py py-mod docutils literal notranslate"><span class="pre">atexit</span></code></a> module must now always be built as a built-in module.
 (Contributed by Victor Stinner in <a class="reference external" href="https://bugs.python.org/issue42639">bpo-42639</a>.)</p></li>
 <li><p>Add <a class="reference internal" href="../using/configure.html#cmdoption-disable-test-modules"><code class="xref std std-option docutils literal notranslate"><span class="pre">--disable-test-modules</span></code></a> option to the <code class="docutils literal notranslate"><span class="pre">configure</span></code> script:
@@ -2452,7 +2451,7 @@ only used internally by the compiler.
       </ul>
     </div>  
     <div class="footer">
-    &copy; <a href="../copyright.html">版權</a> 2001-2021, Python Software Foundation.
+    &copy; <a href="../copyright.html">版權</a> 2001-2022, Python Software Foundation.
     <br />
     This page is licensed under the Python Software Foundation License Version 2.
     <br />
@@ -2466,7 +2465,7 @@ only used internally by the compiler.
 <br />
     <br />
 
-    最後更新於 12月 20, 2021。
+    最後更新於 1月 04, 2022。
     <a href="https://docs.python.org/3/bugs.html">Found a bug</a>?
     <br />
 

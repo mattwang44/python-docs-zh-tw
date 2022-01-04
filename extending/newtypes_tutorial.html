@@ -189,7 +189,7 @@ allows defining heap-allocated extension types using the
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#define PY_SSIZE_T_CLEAN</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Python.h&gt;</span><span class="cp"></span>
 
-<span class="k">typedef</span><span class="w"> </span><span class="k">struct</span> <span class="p">{</span><span class="w"></span>
+<span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">    </span><span class="n">PyObject_HEAD</span><span class="w"></span>
 <span class="w">    </span><span class="cm">/* Type-specific fields go here. */</span><span class="w"></span>
 <span class="p">}</span><span class="w"> </span><span class="n">CustomObject</span><span class="p">;</span><span class="w"></span>
@@ -245,7 +245,7 @@ inspects when specific operations are requested.</p></li>
 function and the associated <code class="docutils literal notranslate"><span class="pre">custommodule</span></code> struct.</p></li>
 </ol>
 <p>The first bit is:</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">typedef</span><span class="w"> </span><span class="k">struct</span> <span class="p">{</span><span class="w"></span>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">    </span><span class="n">PyObject_HEAD</span><span class="w"></span>
 <span class="p">}</span><span class="w"> </span><span class="n">CustomObject</span><span class="p">;</span><span class="w"></span>
 </pre></div>
@@ -264,7 +264,7 @@ Be wary of adding one by accident: some compilers will complain.</p>
 <p>Of course, objects generally store additional data besides the standard
 <code class="docutils literal notranslate"><span class="pre">PyObject_HEAD</span></code> boilerplate; for example, here is the definition for
 standard Python floats:</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">typedef</span><span class="w"> </span><span class="k">struct</span> <span class="p">{</span><span class="w"></span>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">    </span><span class="n">PyObject_HEAD</span><span class="w"></span>
 <span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">ob_fval</span><span class="p">;</span><span class="w"></span>
 <span class="p">}</span><span class="w"> </span><span class="n">PyFloatObject</span><span class="p">;</span><span class="w"></span>
@@ -409,7 +409,7 @@ adds these capabilities:</p>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Python.h&gt;</span><span class="cp"></span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;structmember.h&quot;</span><span class="cp"></span>
 
-<span class="k">typedef</span><span class="w"> </span><span class="k">struct</span> <span class="p">{</span><span class="w"></span>
+<span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">    </span><span class="n">PyObject_HEAD</span><span class="w"></span>
 <span class="w">    </span><span class="n">PyObject</span><span class="w"> </span><span class="o">*</span><span class="n">first</span><span class="p">;</span><span class="w"> </span><span class="cm">/* first name */</span><span class="w"></span>
 <span class="w">    </span><span class="n">PyObject</span><span class="w"> </span><span class="o">*</span><span class="n">last</span><span class="p">;</span><span class="w">  </span><span class="cm">/* last name */</span><span class="w"></span>
@@ -556,7 +556,7 @@ described a bit later.</p>
 <em>first</em>, <em>last</em>, and <em>number</em>.  The <em>first</em> and <em>last</em> variables are Python
 strings containing first and last names.  The <em>number</em> attribute is a C integer.</p>
 <p>The object structure is updated accordingly:</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">typedef</span><span class="w"> </span><span class="k">struct</span> <span class="p">{</span><span class="w"></span>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">    </span><span class="n">PyObject_HEAD</span><span class="w"></span>
 <span class="w">    </span><span class="n">PyObject</span><span class="w"> </span><span class="o">*</span><span class="n">first</span><span class="p">;</span><span class="w"> </span><span class="cm">/* first name */</span><span class="w"></span>
 <span class="w">    </span><span class="n">PyObject</span><span class="w"> </span><span class="o">*</span><span class="n">last</span><span class="p">;</span><span class="w">  </span><span class="cm">/* last name */</span><span class="w"></span>
@@ -838,7 +838,7 @@ these attributes always contain strings.</p>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Python.h&gt;</span><span class="cp"></span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;structmember.h&quot;</span><span class="cp"></span>
 
-<span class="k">typedef</span><span class="w"> </span><span class="k">struct</span> <span class="p">{</span><span class="w"></span>
+<span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">    </span><span class="n">PyObject_HEAD</span><span class="w"></span>
 <span class="w">    </span><span class="n">PyObject</span><span class="w"> </span><span class="o">*</span><span class="n">first</span><span class="p">;</span><span class="w"> </span><span class="cm">/* first name */</span><span class="w"></span>
 <span class="w">    </span><span class="n">PyObject</span><span class="w"> </span><span class="o">*</span><span class="n">last</span><span class="p">;</span><span class="w">  </span><span class="cm">/* last name */</span><span class="w"></span>
@@ -1161,7 +1161,7 @@ needs to fill two additional slots and to enable a flag that enables these slots
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Python.h&gt;</span><span class="cp"></span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;structmember.h&quot;</span><span class="cp"></span>
 
-<span class="k">typedef</span><span class="w"> </span><span class="k">struct</span> <span class="p">{</span><span class="w"></span>
+<span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">    </span><span class="n">PyObject_HEAD</span><span class="w"></span>
 <span class="w">    </span><span class="n">PyObject</span><span class="w"> </span><span class="o">*</span><span class="n">first</span><span class="p">;</span><span class="w"> </span><span class="cm">/* first name */</span><span class="w"></span>
 <span class="w">    </span><span class="n">PyObject</span><span class="w"> </span><span class="o">*</span><span class="n">last</span><span class="p">;</span><span class="w">  </span><span class="cm">/* last name */</span><span class="w"></span>
@@ -1481,7 +1481,7 @@ increases an internal counter:</p>
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#define PY_SSIZE_T_CLEAN</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Python.h&gt;</span><span class="cp"></span>
 
-<span class="k">typedef</span><span class="w"> </span><span class="k">struct</span> <span class="p">{</span><span class="w"></span>
+<span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">    </span><span class="n">PyListObject</span><span class="w"> </span><span class="n">list</span><span class="p">;</span><span class="w"></span>
 <span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">state</span><span class="p">;</span><span class="w"></span>
 <span class="p">}</span><span class="w"> </span><span class="n">SubListObject</span><span class="p">;</span><span class="w"></span>
@@ -1551,7 +1551,7 @@ increases an internal counter:</p>
 </div>
 <p>As you can see, the source code closely resembles the <code class="xref py py-class docutils literal notranslate"><span class="pre">Custom</span></code> examples in
 previous sections. We will break down the main differences between them.</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">typedef</span><span class="w"> </span><span class="k">struct</span> <span class="p">{</span><span class="w"></span>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">    </span><span class="n">PyListObject</span><span class="w"> </span><span class="n">list</span><span class="p">;</span><span class="w"></span>
 <span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">state</span><span class="p">;</span><span class="w"></span>
 <span class="p">}</span><span class="w"> </span><span class="n">SubListObject</span><span class="p">;</span><span class="w"></span>
@@ -1728,7 +1728,7 @@ reference cycles.</p>
       </ul>
     </div>  
     <div class="footer">
-    &copy; <a href="../copyright.html">版權</a> 2001-2021, Python Software Foundation.
+    &copy; <a href="../copyright.html">版權</a> 2001-2022, Python Software Foundation.
     <br />
     This page is licensed under the Python Software Foundation License Version 2.
     <br />
@@ -1742,7 +1742,7 @@ reference cycles.</p>
 <br />
     <br />
 
-    最後更新於 12月 20, 2021。
+    最後更新於 1月 04, 2022。
     <a href="https://docs.python.org/3/bugs.html">Found a bug</a>?
     <br />
 

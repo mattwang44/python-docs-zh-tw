@@ -646,11 +646,16 @@ most one period.</p>
 including the leading period. Note that previous periods will be ignored:</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">splitext</span><span class="p">(</span><span class="s1">&#39;foo.bar.exe&#39;</span><span class="p">)</span>
 <span class="go">(&#39;foo.bar&#39;, &#39;.exe&#39;)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">splitext</span><span class="p">(</span><span class="s1">&#39;/foo/bar.exe&#39;</span><span class="p">)</span>
+<span class="go">(&#39;/foo/bar&#39;, &#39;.exe&#39;)</span>
 </pre></div>
 </div>
-<p>Leading periods on the basename are ignored:</p>
+<p>Leading periods of the last component of the path are considered to
+be part of the root:</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">splitext</span><span class="p">(</span><span class="s1">&#39;.cshrc&#39;</span><span class="p">)</span>
 <span class="go">(&#39;.cshrc&#39;, &#39;&#39;)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">splitext</span><span class="p">(</span><span class="s1">&#39;/foo/....jpg&#39;</span><span class="p">)</span>
+<span class="go">(&#39;/foo/....jpg&#39;, &#39;&#39;)</span>
 </pre></div>
 </div>
 <div class="versionchanged">
@@ -744,7 +749,7 @@ imposed by the file system).</p>
       </ul>
     </div>  
     <div class="footer">
-    &copy; <a href="../copyright.html">版權</a> 2001-2021, Python Software Foundation.
+    &copy; <a href="../copyright.html">版權</a> 2001-2022, Python Software Foundation.
     <br />
     This page is licensed under the Python Software Foundation License Version 2.
     <br />
@@ -758,7 +763,7 @@ imposed by the file system).</p>
 <br />
     <br />
 
-    最後更新於 12月 20, 2021。
+    最後更新於 1月 04, 2022。
     <a href="https://docs.python.org/3/bugs.html">Found a bug</a>?
     <br />
 
