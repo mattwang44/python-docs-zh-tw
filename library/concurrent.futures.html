@@ -9,7 +9,7 @@
     <title>concurrent.futures -- 啟動平行任務 &#8212; Python 3.10.1 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2021.11.1" />
+    <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
     
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -189,7 +189,7 @@ should not be used directly, but through its concrete subclasses.</p>
 <div><dl class="py method">
 <dt class="sig sig-object py" id="concurrent.futures.Executor.submit">
 <span class="sig-name descname"><span class="pre">submit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fn</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">/</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#concurrent.futures.Executor.submit" title="本定義的永久連結">¶</a></dt>
-<dd><p>Schedules the callable, <em>fn</em>, to be executed as <code class="docutils literal notranslate"><span class="pre">fn(*args</span> <span class="pre">**kwargs)</span></code>
+<dd><p>Schedules the callable, <em>fn</em>, to be executed as <code class="docutils literal notranslate"><span class="pre">fn(*args,</span> <span class="pre">**kwargs)</span></code>
 and returns a <a class="reference internal" href="#concurrent.futures.Future" title="concurrent.futures.Future"><code class="xref py py-class docutils literal notranslate"><span class="pre">Future</span></code></a> object representing the execution of the
 callable.</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">ThreadPoolExecutor</span><span class="p">(</span><span class="n">max_workers</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="k">as</span> <span class="n">executor</span><span class="p">:</span>
@@ -596,7 +596,8 @@ already done.</p>
 <dt class="sig sig-object py" id="concurrent.futures.wait">
 <span class="sig-prename descclassname"><span class="pre">concurrent.futures.</span></span><span class="sig-name descname"><span class="pre">wait</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_when</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">ALL_COMPLETED</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#concurrent.futures.wait" title="本定義的永久連結">¶</a></dt>
 <dd><p>Wait for the <a class="reference internal" href="#concurrent.futures.Future" title="concurrent.futures.Future"><code class="xref py py-class docutils literal notranslate"><span class="pre">Future</span></code></a> instances (possibly created by different
-<a class="reference internal" href="#concurrent.futures.Executor" title="concurrent.futures.Executor"><code class="xref py py-class docutils literal notranslate"><span class="pre">Executor</span></code></a> instances) given by <em>fs</em> to complete.  Returns a named
+<a class="reference internal" href="#concurrent.futures.Executor" title="concurrent.futures.Executor"><code class="xref py py-class docutils literal notranslate"><span class="pre">Executor</span></code></a> instances) given by <em>fs</em> to complete. Duplicate futures
+given to <em>fs</em> are removed and will be returned only once. Returns a named
 2-tuple of sets.  The first set, named <code class="docutils literal notranslate"><span class="pre">done</span></code>, contains the futures that
 completed (finished or cancelled futures) before the wait completed.  The
 second set, named <code class="docutils literal notranslate"><span class="pre">not_done</span></code>, contains the futures that did not complete
@@ -822,16 +823,16 @@ fashion (for example, if it was killed from the outside).</p>
     <br />
     Examples, recipes, and other code in the documentation are additionally licensed under the Zero Clause BSD License.
     <br />
-    See <a href="">History and License</a> for more information.
-    <br /><br />
+    See <a href="/license.html">History and License</a> for more information.<br />
+    <br />
 
     The Python Software Foundation is a non-profit corporation.
 <a href="https://www.python.org/psf/donations/">Please donate.</a>
 <br />
     <br />
 
-    最後更新於 1月 04, 2022。
-    <a href="https://docs.python.org/3/bugs.html">Found a bug</a>?
+    最後更新於 1月 14, 2022。
+    <a href="/bugs.html">Found a bug</a>?
     <br />
 
     使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.3.2 建立。

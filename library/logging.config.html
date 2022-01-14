@@ -9,7 +9,7 @@
     <title>logging.config --- Logging configuration &#8212; Python 3.10.1 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2021.11.1" />
+    <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
     
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -74,6 +74,7 @@
   <ul>
 <li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">logging.config</span></code> --- Logging configuration</a><ul>
 <li><a class="reference internal" href="#configuration-functions">Configuration functions</a></li>
+<li><a class="reference internal" href="#security-considerations">Security considerations</a></li>
 <li><a class="reference internal" href="#configuration-dictionary-schema">Configuration dictionary schema</a><ul>
 <li><a class="reference internal" href="#dictionary-schema-details">Dictionary Schema Details</a></li>
 <li><a class="reference internal" href="#incremental-configuration">Incremental Configuration</a></li>
@@ -357,6 +358,18 @@ This is typically called before calling <code class="xref py py-meth docutils li
 <a class="reference internal" href="#logging.config.listen" title="logging.config.listen"><code class="xref py py-func docutils literal notranslate"><span class="pre">listen()</span></code></a>.</p>
 </dd></dl>
 
+</section>
+<section id="security-considerations">
+<h2>Security considerations<a class="headerlink" href="#security-considerations" title="本標題的永久連結">¶</a></h2>
+<p>The logging configuration functionality tries to offer convenience, and in part this
+is done by offering the ability to convert text in configuration files into Python
+objects used in logging configuration - for example, as described in
+<a class="reference internal" href="#logging-config-dict-userdef"><span class="std std-ref">User-defined objects</span></a>. However, these same mechanisms (importing
+callables from user-defined modules and calling them with parameters from the
+configuration) could be used to invoke any code you like, and for this reason you
+should treat configuration files from untrusted sources with <em>extreme caution</em> and
+satisfy yourself that nothing bad can happen if you load them, before actually loading
+them.</p>
 </section>
 <section id="configuration-dictionary-schema">
 <span id="logging-config-dictschema"></span><h2>Configuration dictionary schema<a class="headerlink" href="#configuration-dictionary-schema" title="本標題的永久連結">¶</a></h2>
@@ -933,6 +946,7 @@ multiple users with no mutual trust run code on the same machine; see the
   <ul>
 <li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">logging.config</span></code> --- Logging configuration</a><ul>
 <li><a class="reference internal" href="#configuration-functions">Configuration functions</a></li>
+<li><a class="reference internal" href="#security-considerations">Security considerations</a></li>
 <li><a class="reference internal" href="#configuration-dictionary-schema">Configuration dictionary schema</a><ul>
 <li><a class="reference internal" href="#dictionary-schema-details">Dictionary Schema Details</a></li>
 <li><a class="reference internal" href="#incremental-configuration">Incremental Configuration</a></li>
@@ -1024,16 +1038,16 @@ multiple users with no mutual trust run code on the same machine; see the
     <br />
     Examples, recipes, and other code in the documentation are additionally licensed under the Zero Clause BSD License.
     <br />
-    See <a href="">History and License</a> for more information.
-    <br /><br />
+    See <a href="/license.html">History and License</a> for more information.<br />
+    <br />
 
     The Python Software Foundation is a non-profit corporation.
 <a href="https://www.python.org/psf/donations/">Please donate.</a>
 <br />
     <br />
 
-    最後更新於 1月 04, 2022。
-    <a href="https://docs.python.org/3/bugs.html">Found a bug</a>?
+    最後更新於 1月 14, 2022。
+    <a href="/bugs.html">Found a bug</a>?
     <br />
 
     使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.3.2 建立。
