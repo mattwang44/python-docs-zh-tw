@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Platform Support &#8212; Python 3.10.2 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>平臺支援 &#8212; Python 3.10.2 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -73,10 +73,10 @@
   <div>
     <h3><a href="../contents.html">目錄</a></h3>
     <ul>
-<li><a class="reference internal" href="#">Platform Support</a><ul>
+<li><a class="reference internal" href="#">平臺支援</a><ul>
 <li><a class="reference internal" href="#all-platforms">所有平台</a></li>
 <li><a class="reference internal" href="#windows">Windows</a><ul>
-<li><a class="reference internal" href="#subprocess-support-on-windows">Subprocess Support on Windows</a></li>
+<li><a class="reference internal" href="#subprocess-support-on-windows">Windows 的子行程支援</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#macos">macOS</a></li>
@@ -143,7 +143,7 @@
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="ipc.html" >Networking and Interprocess Communication</a> &#187;</li>
           <li class="nav-item nav-item-3"><a href="asyncio.html" accesskey="U"><code class="xref py py-mod docutils literal notranslate"><span class="pre">asyncio</span></code> --- 非同步 I/O</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">Platform Support</a></li>
+        <li class="nav-item nav-item-this"><a href="">平臺支援</a></li>
                 <li class="right">
                     
 
@@ -167,15 +167,12 @@
           <div class="body" role="main">
             
   <section id="platform-support">
-<span id="asyncio-platform-support"></span><h1>Platform Support<a class="headerlink" href="#platform-support" title="本標題的永久連結">¶</a></h1>
-<p>The <a class="reference internal" href="asyncio.html#module-asyncio" title="asyncio: Asynchronous I/O."><code class="xref py py-mod docutils literal notranslate"><span class="pre">asyncio</span></code></a> module is designed to be portable,
-but some platforms have subtle differences and limitations
-due to the platforms' underlying architecture and capabilities.</p>
+<span id="asyncio-platform-support"></span><h1>平臺支援<a class="headerlink" href="#platform-support" title="本標題的永久連結">¶</a></h1>
+<p><a class="reference internal" href="asyncio.html#module-asyncio" title="asyncio: Asynchronous I/O."><code class="xref py py-mod docutils literal notranslate"><span class="pre">asyncio</span></code></a> module（模組）被設計為可攜的 (portable)，但由於平臺的底層架構和功能不同，在一些平臺上存在細微的差異和限制。</p>
 <section id="all-platforms">
 <h2>所有平台<a class="headerlink" href="#all-platforms" title="本標題的永久連結">¶</a></h2>
 <ul class="simple">
-<li><p><a class="reference internal" href="asyncio-eventloop.html#asyncio.loop.add_reader" title="asyncio.loop.add_reader"><code class="xref py py-meth docutils literal notranslate"><span class="pre">loop.add_reader()</span></code></a> and <a class="reference internal" href="asyncio-eventloop.html#asyncio.loop.add_writer" title="asyncio.loop.add_writer"><code class="xref py py-meth docutils literal notranslate"><span class="pre">loop.add_writer()</span></code></a>
-cannot be used to monitor file I/O.</p></li>
+<li><p><a class="reference internal" href="asyncio-eventloop.html#asyncio.loop.add_reader" title="asyncio.loop.add_reader"><code class="xref py py-meth docutils literal notranslate"><span class="pre">loop.add_reader()</span></code></a> 和 <a class="reference internal" href="asyncio-eventloop.html#asyncio.loop.add_writer" title="asyncio.loop.add_writer"><code class="xref py py-meth docutils literal notranslate"><span class="pre">loop.add_writer()</span></code></a> 不能用來監視檔案 I/O。</p></li>
 </ul>
 </section>
 <section id="windows">
@@ -183,56 +180,36 @@ cannot be used to monitor file I/O.</p></li>
 <p><strong>原始碼：</strong><a class="reference external" href="https://github.com/python/cpython/tree/3.10/Lib/asyncio/proactor_events.py">Lib/asyncio/proactor_events.py</a>、<a class="reference external" href="https://github.com/python/cpython/tree/3.10/Lib/asyncio/windows_events.py">Lib/asyncio/windows_events.py</a>、<a class="reference external" href="https://github.com/python/cpython/tree/3.10/Lib/asyncio/windows_utils.py">Lib/asyncio/windows_utils.py</a></p>
 <hr class="docutils" />
 <div class="versionchanged">
-<p><span class="versionmodified changed">在 3.8 版本變更: </span>On Windows, <a class="reference internal" href="asyncio-eventloop.html#asyncio.ProactorEventLoop" title="asyncio.ProactorEventLoop"><code class="xref py py-class docutils literal notranslate"><span class="pre">ProactorEventLoop</span></code></a> is now the default event loop.</p>
+<p><span class="versionmodified changed">在 3.8 版本變更: </span>在 Windows 上，現在 <a class="reference internal" href="asyncio-eventloop.html#asyncio.ProactorEventLoop" title="asyncio.ProactorEventLoop"><code class="xref py py-class docutils literal notranslate"><span class="pre">ProactorEventLoop</span></code></a> 是預設的事件迴圈。</p>
 </div>
-<p>All event loops on Windows do not support the following methods:</p>
+<p>Windows 上的所有事件迴圈都不支援以下 method（方法）：</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="asyncio-eventloop.html#asyncio.loop.create_unix_connection" title="asyncio.loop.create_unix_connection"><code class="xref py py-meth docutils literal notranslate"><span class="pre">loop.create_unix_connection()</span></code></a> and
-<a class="reference internal" href="asyncio-eventloop.html#asyncio.loop.create_unix_server" title="asyncio.loop.create_unix_server"><code class="xref py py-meth docutils literal notranslate"><span class="pre">loop.create_unix_server()</span></code></a> are not supported.
-The <a class="reference internal" href="socket.html#socket.AF_UNIX" title="socket.AF_UNIX"><code class="xref py py-data docutils literal notranslate"><span class="pre">socket.AF_UNIX</span></code></a> socket family is specific to Unix.</p></li>
-<li><p><a class="reference internal" href="asyncio-eventloop.html#asyncio.loop.add_signal_handler" title="asyncio.loop.add_signal_handler"><code class="xref py py-meth docutils literal notranslate"><span class="pre">loop.add_signal_handler()</span></code></a> and
-<a class="reference internal" href="asyncio-eventloop.html#asyncio.loop.remove_signal_handler" title="asyncio.loop.remove_signal_handler"><code class="xref py py-meth docutils literal notranslate"><span class="pre">loop.remove_signal_handler()</span></code></a> are not supported.</p></li>
+<li><p>不支援 <a class="reference internal" href="asyncio-eventloop.html#asyncio.loop.create_unix_connection" title="asyncio.loop.create_unix_connection"><code class="xref py py-meth docutils literal notranslate"><span class="pre">loop.create_unix_connection()</span></code></a> 和 <a class="reference internal" href="asyncio-eventloop.html#asyncio.loop.create_unix_server" title="asyncio.loop.create_unix_server"><code class="xref py py-meth docutils literal notranslate"><span class="pre">loop.create_unix_server()</span></code></a>。<a class="reference internal" href="socket.html#socket.AF_UNIX" title="socket.AF_UNIX"><code class="xref py py-data docutils literal notranslate"><span class="pre">socket.AF_UNIX</span></code></a> socket 系列常數僅限於 Unix 上使用。</p></li>
+<li><p>不支援 <a class="reference internal" href="asyncio-eventloop.html#asyncio.loop.add_signal_handler" title="asyncio.loop.add_signal_handler"><code class="xref py py-meth docutils literal notranslate"><span class="pre">loop.add_signal_handler()</span></code></a> 和 <a class="reference internal" href="asyncio-eventloop.html#asyncio.loop.remove_signal_handler" title="asyncio.loop.remove_signal_handler"><code class="xref py py-meth docutils literal notranslate"><span class="pre">loop.remove_signal_handler()</span></code></a>。</p></li>
 </ul>
 <p><a class="reference internal" href="asyncio-eventloop.html#asyncio.SelectorEventLoop" title="asyncio.SelectorEventLoop"><code class="xref py py-class docutils literal notranslate"><span class="pre">SelectorEventLoop</span></code></a> 有以下限制：</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="selectors.html#selectors.SelectSelector" title="selectors.SelectSelector"><code class="xref py py-class docutils literal notranslate"><span class="pre">SelectSelector</span></code></a> is used to wait on socket events:
-it supports sockets and is limited to 512 sockets.</p></li>
-<li><p><a class="reference internal" href="asyncio-eventloop.html#asyncio.loop.add_reader" title="asyncio.loop.add_reader"><code class="xref py py-meth docutils literal notranslate"><span class="pre">loop.add_reader()</span></code></a> and <a class="reference internal" href="asyncio-eventloop.html#asyncio.loop.add_writer" title="asyncio.loop.add_writer"><code class="xref py py-meth docutils literal notranslate"><span class="pre">loop.add_writer()</span></code></a> only accept
-socket handles (e.g. pipe file descriptors are not supported).</p></li>
-<li><p>Pipes are not supported, so the <a class="reference internal" href="asyncio-eventloop.html#asyncio.loop.connect_read_pipe" title="asyncio.loop.connect_read_pipe"><code class="xref py py-meth docutils literal notranslate"><span class="pre">loop.connect_read_pipe()</span></code></a>
-and <a class="reference internal" href="asyncio-eventloop.html#asyncio.loop.connect_write_pipe" title="asyncio.loop.connect_write_pipe"><code class="xref py py-meth docutils literal notranslate"><span class="pre">loop.connect_write_pipe()</span></code></a> methods are not implemented.</p></li>
-<li><p><a class="reference internal" href="asyncio-subprocess.html#asyncio-subprocess"><span class="std std-ref">Subprocesses</span></a> are not supported, i.e.
-<a class="reference internal" href="asyncio-eventloop.html#asyncio.loop.subprocess_exec" title="asyncio.loop.subprocess_exec"><code class="xref py py-meth docutils literal notranslate"><span class="pre">loop.subprocess_exec()</span></code></a> and <a class="reference internal" href="asyncio-eventloop.html#asyncio.loop.subprocess_shell" title="asyncio.loop.subprocess_shell"><code class="xref py py-meth docutils literal notranslate"><span class="pre">loop.subprocess_shell()</span></code></a>
-methods are not implemented.</p></li>
+<li><p><a class="reference internal" href="selectors.html#selectors.SelectSelector" title="selectors.SelectSelector"><code class="xref py py-class docutils literal notranslate"><span class="pre">SelectSelector</span></code></a> 只被用於等待 socket 事件：它支援 socket 且最多支援 512 個 socket。</p></li>
+<li><p><a class="reference internal" href="asyncio-eventloop.html#asyncio.loop.add_reader" title="asyncio.loop.add_reader"><code class="xref py py-meth docutils literal notranslate"><span class="pre">loop.add_reader()</span></code></a> 和 <a class="reference internal" href="asyncio-eventloop.html#asyncio.loop.add_writer" title="asyncio.loop.add_writer"><code class="xref py py-meth docutils literal notranslate"><span class="pre">loop.add_writer()</span></code></a> 只接受 socket 處理函式（例如不支援 pipe 檔案描述器 (pipe file descriptor)）。</p></li>
+<li><p>因為不支援 pipe，所以 <a class="reference internal" href="asyncio-eventloop.html#asyncio.loop.connect_read_pipe" title="asyncio.loop.connect_read_pipe"><code class="xref py py-meth docutils literal notranslate"><span class="pre">loop.connect_read_pipe()</span></code></a> 和 <a class="reference internal" href="asyncio-eventloop.html#asyncio.loop.connect_write_pipe" title="asyncio.loop.connect_write_pipe"><code class="xref py py-meth docutils literal notranslate"><span class="pre">loop.connect_write_pipe()</span></code></a> method 沒有被實作出來。</p></li>
+<li><p>不支援<a class="reference internal" href="asyncio-subprocess.html#asyncio-subprocess"><span class="std std-ref">子行程 (subprocess)</span></a>，也就是說 <a class="reference internal" href="asyncio-eventloop.html#asyncio.loop.subprocess_exec" title="asyncio.loop.subprocess_exec"><code class="xref py py-meth docutils literal notranslate"><span class="pre">loop.subprocess_exec()</span></code></a> 和 <a class="reference internal" href="asyncio-eventloop.html#asyncio.loop.subprocess_shell" title="asyncio.loop.subprocess_shell"><code class="xref py py-meth docutils literal notranslate"><span class="pre">loop.subprocess_shell()</span></code></a> method 沒有被實作出來。</p></li>
 </ul>
 <p><a class="reference internal" href="asyncio-eventloop.html#asyncio.ProactorEventLoop" title="asyncio.ProactorEventLoop"><code class="xref py py-class docutils literal notranslate"><span class="pre">ProactorEventLoop</span></code></a> 有以下限制：</p>
 <ul class="simple">
-<li><p>The <a class="reference internal" href="asyncio-eventloop.html#asyncio.loop.add_reader" title="asyncio.loop.add_reader"><code class="xref py py-meth docutils literal notranslate"><span class="pre">loop.add_reader()</span></code></a> and <a class="reference internal" href="asyncio-eventloop.html#asyncio.loop.add_writer" title="asyncio.loop.add_writer"><code class="xref py py-meth docutils literal notranslate"><span class="pre">loop.add_writer()</span></code></a>
-methods are not supported.</p></li>
+<li><p>不支援 <a class="reference internal" href="asyncio-eventloop.html#asyncio.loop.add_reader" title="asyncio.loop.add_reader"><code class="xref py py-meth docutils literal notranslate"><span class="pre">loop.add_reader()</span></code></a> 和 <a class="reference internal" href="asyncio-eventloop.html#asyncio.loop.add_writer" title="asyncio.loop.add_writer"><code class="xref py py-meth docutils literal notranslate"><span class="pre">loop.add_writer()</span></code></a> method。</p></li>
 </ul>
-<p>The resolution of the monotonic clock on Windows is usually around 15.6
-msec.  The best resolution is 0.5 msec. The resolution depends on the
-hardware (availability of <a class="reference external" href="https://en.wikipedia.org/wiki/High_Precision_Event_Timer">HPET</a>) and on the
-Windows configuration.</p>
+<p>Windows 上單調時鐘 (monotonic clock) 的解析度大約為 15.6 毫秒。最佳的解析度是 0.5 毫秒。解析度和硬體（<a class="reference external" href="https://zh.wikipedia.org/wiki/高精度事件計時器">HPET</a> 是否可用）與 Windows 的設定有關。</p>
 <section id="subprocess-support-on-windows">
-<span id="asyncio-windows-subprocess"></span><h3>Subprocess Support on Windows<a class="headerlink" href="#subprocess-support-on-windows" title="本標題的永久連結">¶</a></h3>
-<p>On Windows, the default event loop <a class="reference internal" href="asyncio-eventloop.html#asyncio.ProactorEventLoop" title="asyncio.ProactorEventLoop"><code class="xref py py-class docutils literal notranslate"><span class="pre">ProactorEventLoop</span></code></a> supports
-subprocesses, whereas <a class="reference internal" href="asyncio-eventloop.html#asyncio.SelectorEventLoop" title="asyncio.SelectorEventLoop"><code class="xref py py-class docutils literal notranslate"><span class="pre">SelectorEventLoop</span></code></a> does not.</p>
-<p>The <a class="reference internal" href="asyncio-policy.html#asyncio.AbstractEventLoopPolicy.set_child_watcher" title="asyncio.AbstractEventLoopPolicy.set_child_watcher"><code class="xref py py-meth docutils literal notranslate"><span class="pre">policy.set_child_watcher()</span></code></a> function is also
-not supported, as <a class="reference internal" href="asyncio-eventloop.html#asyncio.ProactorEventLoop" title="asyncio.ProactorEventLoop"><code class="xref py py-class docutils literal notranslate"><span class="pre">ProactorEventLoop</span></code></a> has a different mechanism
-to watch child processes.</p>
+<span id="asyncio-windows-subprocess"></span><h3>Windows 的子行程支援<a class="headerlink" href="#subprocess-support-on-windows" title="本標題的永久連結">¶</a></h3>
+<p>在 Windows 上，預設的事件迴圈 <a class="reference internal" href="asyncio-eventloop.html#asyncio.ProactorEventLoop" title="asyncio.ProactorEventLoop"><code class="xref py py-class docutils literal notranslate"><span class="pre">ProactorEventLoop</span></code></a> 支援子行程，而 <a class="reference internal" href="asyncio-eventloop.html#asyncio.SelectorEventLoop" title="asyncio.SelectorEventLoop"><code class="xref py py-class docutils literal notranslate"><span class="pre">SelectorEventLoop</span></code></a> 則不支援。</p>
+<p>也不支援 <a class="reference internal" href="asyncio-policy.html#asyncio.AbstractEventLoopPolicy.set_child_watcher" title="asyncio.AbstractEventLoopPolicy.set_child_watcher"><code class="xref py py-meth docutils literal notranslate"><span class="pre">policy.set_child_watcher()</span></code></a> 函式，<a class="reference internal" href="asyncio-eventloop.html#asyncio.ProactorEventLoop" title="asyncio.ProactorEventLoop"><code class="xref py py-class docutils literal notranslate"><span class="pre">ProactorEventLoop</span></code></a> 在監視子行程上有不同的機制。</p>
 </section>
 </section>
 <section id="macos">
 <h2>macOS<a class="headerlink" href="#macos" title="本標題的永久連結">¶</a></h2>
-<p>Modern macOS versions are fully supported.</p>
+<p>完整支援現在普遍流行的 macOS 版本。</p>
 <p class="rubric">macOS &lt;= 10.8</p>
-<p>On macOS 10.6, 10.7 and 10.8, the default event loop
-uses <a class="reference internal" href="selectors.html#selectors.KqueueSelector" title="selectors.KqueueSelector"><code class="xref py py-class docutils literal notranslate"><span class="pre">selectors.KqueueSelector</span></code></a>, which does not support
-character devices on these versions.  The <a class="reference internal" href="asyncio-eventloop.html#asyncio.SelectorEventLoop" title="asyncio.SelectorEventLoop"><code class="xref py py-class docutils literal notranslate"><span class="pre">SelectorEventLoop</span></code></a>
-can be manually configured to use <a class="reference internal" href="selectors.html#selectors.SelectSelector" title="selectors.SelectSelector"><code class="xref py py-class docutils literal notranslate"><span class="pre">SelectSelector</span></code></a>
-or <a class="reference internal" href="selectors.html#selectors.PollSelector" title="selectors.PollSelector"><code class="xref py py-class docutils literal notranslate"><span class="pre">PollSelector</span></code></a> to support character devices on
-these older versions of macOS.  Example:</p>
+<p>在 macOS 10.6、10.7 和 10.8 上，預設的事件迴圈是使用 <a class="reference internal" href="selectors.html#selectors.KqueueSelector" title="selectors.KqueueSelector"><code class="xref py py-class docutils literal notranslate"><span class="pre">selectors.KqueueSelector</span></code></a>，在這些版本上它並不支援字元裝置 (character device)。可以手工設置 <a class="reference internal" href="asyncio-eventloop.html#asyncio.SelectorEventLoop" title="asyncio.SelectorEventLoop"><code class="xref py py-class docutils literal notranslate"><span class="pre">SelectorEventLoop</span></code></a> 來使用 <a class="reference internal" href="selectors.html#selectors.SelectSelector" title="selectors.SelectSelector"><code class="xref py py-class docutils literal notranslate"><span class="pre">SelectSelector</span></code></a> 或 <a class="reference internal" href="selectors.html#selectors.PollSelector" title="selectors.PollSelector"><code class="xref py py-class docutils literal notranslate"><span class="pre">PollSelector</span></code></a> 以在這些舊版 macOS 上支援字元裝置。例如：</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">asyncio</span>
 <span class="kn">import</span> <span class="nn">selectors</span>
 
@@ -254,10 +231,10 @@ these older versions of macOS.  Example:</p>
   <div>
     <h3><a href="../contents.html">目錄</a></h3>
     <ul>
-<li><a class="reference internal" href="#">Platform Support</a><ul>
+<li><a class="reference internal" href="#">平臺支援</a><ul>
 <li><a class="reference internal" href="#all-platforms">所有平台</a></li>
 <li><a class="reference internal" href="#windows">Windows</a><ul>
-<li><a class="reference internal" href="#subprocess-support-on-windows">Subprocess Support on Windows</a></li>
+<li><a class="reference internal" href="#subprocess-support-on-windows">Windows 的子行程支援</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#macos">macOS</a></li>
@@ -323,7 +300,7 @@ these older versions of macOS.  Example:</p>
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="ipc.html" >Networking and Interprocess Communication</a> &#187;</li>
           <li class="nav-item nav-item-3"><a href="asyncio.html" ><code class="xref py py-mod docutils literal notranslate"><span class="pre">asyncio</span></code> --- 非同步 I/O</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">Platform Support</a></li>
+        <li class="nav-item nav-item-this"><a href="">平臺支援</a></li>
                 <li class="right">
                     
 
