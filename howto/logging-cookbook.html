@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Logging Cookbook &#8212; Python 3.10.1 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logging Cookbook &#8212; Python 3.10.2 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -20,7 +20,7 @@
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.10.1 說明文件 中搜尋"
+          title="在 Python 3.10.2 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -70,8 +70,9 @@
     <div class="menu-wrapper">
         <nav class="menu" role="navigation" aria-label="main navigation">
             <div class="language_switcher_placeholder"></div>
-  <h3><a href="../contents.html">目錄</a></h3>
-  <ul>
+  <div>
+    <h3><a href="../contents.html">目錄</a></h3>
+    <ul>
 <li><a class="reference internal" href="#">Logging Cookbook</a><ul>
 <li><a class="reference internal" href="#using-logging-in-multiple-modules">Using logging in multiple modules</a></li>
 <li><a class="reference internal" href="#logging-from-multiple-threads">Logging from multiple threads</a></li>
@@ -131,12 +132,17 @@
 </li>
 </ul>
 
-  <h4>上個主題</h4>
-  <p class="topless"><a href="logging.html"
-                        title="上一章">如何使用 Logging 模組</a></p>
-  <h4>下個主題</h4>
-  <p class="topless"><a href="regex.html"
-                        title="下一章">如何使用正規表達式</a></p>
+  </div>
+  <div>
+    <h4>上個主題</h4>
+    <p class="topless"><a href="logging.html"
+                          title="上一章">如何使用 Logging 模組</a></p>
+  </div>
+  <div>
+    <h4>下個主題</h4>
+    <p class="topless"><a href="regex.html"
+                          title="下一章">如何使用正規表達式</a></p>
+  </div>
   <div role="note" aria-label="source link">
     <h3>此頁面</h3>
     <ul class="this-page-menu">
@@ -179,7 +185,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.1 Documentation</a> &#187;
+      <a href="../index.html">3.10.2 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Python 如何達成任務</a> &#187;</li>
@@ -1803,11 +1809,11 @@ works:</p>
 </section>
 <section id="inserting-a-bom-into-messages-sent-to-a-sysloghandler">
 <h2>Inserting a BOM into messages sent to a SysLogHandler<a class="headerlink" href="#inserting-a-bom-into-messages-sent-to-a-sysloghandler" title="本標題的永久連結">¶</a></h2>
-<p><span class="target" id="index-0"></span><a class="rfc reference external" href="https://tools.ietf.org/html/rfc5424.html"><strong>RFC 5424</strong></a> requires that a
+<p><span class="target" id="index-0"></span><a class="rfc reference external" href="https://datatracker.ietf.org/doc/html/rfc5424.html"><strong>RFC 5424</strong></a> requires that a
 Unicode message be sent to a syslog daemon as a set of bytes which have the
 following structure: an optional pure-ASCII component, followed by a UTF-8 Byte
 Order Mark (BOM), followed by Unicode encoded using UTF-8. (See the
-<span class="target" id="index-1"></span><a class="rfc reference external" href="https://tools.ietf.org/html/rfc5424.html#section-6"><strong>relevant section of the specification</strong></a>.)</p>
+<span class="target" id="index-1"></span><a class="rfc reference external" href="https://datatracker.ietf.org/doc/html/rfc5424.html#section-6"><strong>relevant section of the specification</strong></a>.)</p>
 <p>In Python 3.1, code was added to
 <a class="reference internal" href="../library/logging.handlers.html#logging.handlers.SysLogHandler" title="logging.handlers.SysLogHandler"><code class="xref py py-class docutils literal notranslate"><span class="pre">SysLogHandler</span></code></a> to insert a BOM into the message, but
 unfortunately, it was implemented incorrectly, with the BOM appearing at the
@@ -1815,7 +1821,7 @@ beginning of the message and hence not allowing any pure-ASCII component to
 appear before it.</p>
 <p>As this behaviour is broken, the incorrect BOM insertion code is being removed
 from Python 3.2.4 and later. However, it is not being replaced, and if you
-want to produce <span class="target" id="index-2"></span><a class="rfc reference external" href="https://tools.ietf.org/html/rfc5424.html"><strong>RFC 5424</strong></a>-compliant messages which include a BOM, an optional
+want to produce <span class="target" id="index-2"></span><a class="rfc reference external" href="https://datatracker.ietf.org/doc/html/rfc5424.html"><strong>RFC 5424</strong></a>-compliant messages which include a BOM, an optional
 pure-ASCII sequence before it and arbitrary Unicode after it, encoded using
 UTF-8, then you need to do the following:</p>
 <ol class="arabic">
@@ -1837,7 +1843,7 @@ range, that's fine -- it will be encoded using UTF-8.</p></li>
 </ol>
 <p>The formatted message <em>will</em> be encoded using UTF-8 encoding by
 <code class="docutils literal notranslate"><span class="pre">SysLogHandler</span></code>. If you follow the above rules, you should be able to produce
-<span class="target" id="index-3"></span><a class="rfc reference external" href="https://tools.ietf.org/html/rfc5424.html"><strong>RFC 5424</strong></a>-compliant messages. If you don't, logging may not complain, but your
+<span class="target" id="index-3"></span><a class="rfc reference external" href="https://datatracker.ietf.org/doc/html/rfc5424.html"><strong>RFC 5424</strong></a>-compliant messages. If you don't, logging may not complain, but your
 messages will not be RFC 5424-compliant, and your syslog daemon may complain.</p>
 </section>
 <section id="implementing-structured-logging">
@@ -3067,8 +3073,9 @@ more fine-grained than that).</p>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-  <h3><a href="../contents.html">目錄</a></h3>
-  <ul>
+  <div>
+    <h3><a href="../contents.html">目錄</a></h3>
+    <ul>
 <li><a class="reference internal" href="#">Logging Cookbook</a><ul>
 <li><a class="reference internal" href="#using-logging-in-multiple-modules">Using logging in multiple modules</a></li>
 <li><a class="reference internal" href="#logging-from-multiple-threads">Logging from multiple threads</a></li>
@@ -3128,12 +3135,17 @@ more fine-grained than that).</p>
 </li>
 </ul>
 
-  <h4>上個主題</h4>
-  <p class="topless"><a href="logging.html"
-                        title="上一章">如何使用 Logging 模組</a></p>
-  <h4>下個主題</h4>
-  <p class="topless"><a href="regex.html"
-                        title="下一章">如何使用正規表達式</a></p>
+  </div>
+  <div>
+    <h4>上個主題</h4>
+    <p class="topless"><a href="logging.html"
+                          title="上一章">如何使用 Logging 模組</a></p>
+  </div>
+  <div>
+    <h4>下個主題</h4>
+    <p class="topless"><a href="regex.html"
+                          title="下一章">如何使用正規表達式</a></p>
+  </div>
   <div role="note" aria-label="source link">
     <h3>此頁面</h3>
     <ul class="this-page-menu">
@@ -3175,7 +3187,7 @@ more fine-grained than that).</p>
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.1 Documentation</a> &#187;
+      <a href="../index.html">3.10.2 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 如何達成任務</a> &#187;</li>
@@ -3211,11 +3223,11 @@ more fine-grained than that).</p>
 <br />
     <br />
 
-    最後更新於 1月 14, 2022。
+    最後更新於 1月 17, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 
-    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.3.2 建立。
+    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.4.0 建立。
     </div>
 
   </body>

@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>imaplib --- IMAP4 protocol client &#8212; Python 3.10.1 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>imaplib --- IMAP4 protocol client &#8212; Python 3.10.2 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -20,7 +20,7 @@
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.10.1 說明文件 中搜尋"
+          title="在 Python 3.10.2 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -70,8 +70,9 @@
     <div class="menu-wrapper">
         <nav class="menu" role="navigation" aria-label="main navigation">
             <div class="language_switcher_placeholder"></div>
-  <h3><a href="../contents.html">目錄</a></h3>
-  <ul>
+  <div>
+    <h3><a href="../contents.html">目錄</a></h3>
+    <ul>
 <li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">imaplib</span></code> --- IMAP4 protocol client</a><ul>
 <li><a class="reference internal" href="#imap4-objects">IMAP4 物件</a></li>
 <li><a class="reference internal" href="#imap4-example">IMAP4 範例</a></li>
@@ -79,12 +80,17 @@
 </li>
 </ul>
 
-  <h4>上個主題</h4>
-  <p class="topless"><a href="poplib.html"
-                        title="上一章"><code class="xref py py-mod docutils literal notranslate"><span class="pre">poplib</span></code> --- POP3 protocol client</a></p>
-  <h4>下個主題</h4>
-  <p class="topless"><a href="nntplib.html"
-                        title="下一章"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nntplib</span></code> --- NNTP protocol client</a></p>
+  </div>
+  <div>
+    <h4>上個主題</h4>
+    <p class="topless"><a href="poplib.html"
+                          title="上一章"><code class="xref py py-mod docutils literal notranslate"><span class="pre">poplib</span></code> --- POP3 protocol client</a></p>
+  </div>
+  <div>
+    <h4>下個主題</h4>
+    <p class="topless"><a href="nntplib.html"
+                          title="下一章"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nntplib</span></code> --- NNTP protocol client</a></p>
+  </div>
   <div role="note" aria-label="source link">
     <h3>此頁面</h3>
     <ul class="this-page-menu">
@@ -127,7 +133,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.1 Documentation</a> &#187;
+      <a href="../index.html">3.10.2 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -162,7 +168,7 @@
 <p>This module defines three classes, <a class="reference internal" href="#imaplib.IMAP4" title="imaplib.IMAP4"><code class="xref py py-class docutils literal notranslate"><span class="pre">IMAP4</span></code></a>, <a class="reference internal" href="#imaplib.IMAP4_SSL" title="imaplib.IMAP4_SSL"><code class="xref py py-class docutils literal notranslate"><span class="pre">IMAP4_SSL</span></code></a> and
 <a class="reference internal" href="#imaplib.IMAP4_stream" title="imaplib.IMAP4_stream"><code class="xref py py-class docutils literal notranslate"><span class="pre">IMAP4_stream</span></code></a>, which encapsulate a connection to an IMAP4 server and
 implement a large subset of the IMAP4rev1 client protocol as defined in
-<span class="target" id="index-1"></span><a class="rfc reference external" href="https://tools.ietf.org/html/rfc2060.html"><strong>RFC 2060</strong></a>. It is backward compatible with IMAP4 (<span class="target" id="index-2"></span><a class="rfc reference external" href="https://tools.ietf.org/html/rfc1730.html"><strong>RFC 1730</strong></a>) servers, but
+<span class="target" id="index-1"></span><a class="rfc reference external" href="https://datatracker.ietf.org/doc/html/rfc2060.html"><strong>RFC 2060</strong></a>. It is backward compatible with IMAP4 (<span class="target" id="index-2"></span><a class="rfc reference external" href="https://datatracker.ietf.org/doc/html/rfc1730.html"><strong>RFC 1730</strong></a>) servers, but
 note that the <code class="docutils literal notranslate"><span class="pre">STATUS</span></code> command is not supported in IMAP4.</p>
 <p>Three classes are provided by the <a class="reference internal" href="#module-imaplib" title="imaplib: IMAP4 protocol client (requires sockets)."><code class="xref py py-mod docutils literal notranslate"><span class="pre">imaplib</span></code></a> module, <a class="reference internal" href="#imaplib.IMAP4" title="imaplib.IMAP4"><code class="xref py py-class docutils literal notranslate"><span class="pre">IMAP4</span></code></a> is the
 base class:</p>
@@ -401,11 +407,11 @@ mailbox. This is the recommended command before <code class="docutils literal no
 <dl class="py method">
 <dt class="sig sig-object py" id="imaplib.IMAP4.enable">
 <span class="sig-prename descclassname"><span class="pre">IMAP4.</span></span><span class="sig-name descname"><span class="pre">enable</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">capability</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#imaplib.IMAP4.enable" title="本定義的永久連結">¶</a></dt>
-<dd><p>Enable <em>capability</em> (see <span class="target" id="index-3"></span><a class="rfc reference external" href="https://tools.ietf.org/html/rfc5161.html"><strong>RFC 5161</strong></a>).  Most capabilities do not need to be
+<dd><p>Enable <em>capability</em> (see <span class="target" id="index-3"></span><a class="rfc reference external" href="https://datatracker.ietf.org/doc/html/rfc5161.html"><strong>RFC 5161</strong></a>).  Most capabilities do not need to be
 enabled.  Currently only the <code class="docutils literal notranslate"><span class="pre">UTF8=ACCEPT</span></code> capability is supported
-(see <span class="target" id="index-4"></span><a class="rfc reference external" href="https://tools.ietf.org/html/rfc6855.html"><strong>RFC 6855</strong></a>).</p>
+(see <span class="target" id="index-4"></span><a class="rfc reference external" href="https://datatracker.ietf.org/doc/html/rfc6855.html"><strong>RFC 6855</strong></a>).</p>
 <div class="versionadded">
-<p><span class="versionmodified added">在 3.5 版本新加入: </span>The <a class="reference internal" href="#imaplib.IMAP4.enable" title="imaplib.IMAP4.enable"><code class="xref py py-meth docutils literal notranslate"><span class="pre">enable()</span></code></a> method itself, and <span class="target" id="index-5"></span><a class="rfc reference external" href="https://tools.ietf.org/html/rfc6855.html"><strong>RFC 6855</strong></a> support.</p>
+<p><span class="versionmodified added">在 3.5 版本新加入: </span>The <a class="reference internal" href="#imaplib.IMAP4.enable" title="imaplib.IMAP4.enable"><code class="xref py py-meth docutils literal notranslate"><span class="pre">enable()</span></code></a> method itself, and <span class="target" id="index-5"></span><a class="rfc reference external" href="https://datatracker.ietf.org/doc/html/rfc6855.html"><strong>RFC 6855</strong></a> support.</p>
 </div>
 </dd></dl>
 
@@ -501,7 +507,7 @@ Returned data are tuples of message part envelope and data.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="imaplib.IMAP4.namespace">
 <span class="sig-prename descclassname"><span class="pre">IMAP4.</span></span><span class="sig-name descname"><span class="pre">namespace</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#imaplib.IMAP4.namespace" title="本定義的永久連結">¶</a></dt>
-<dd><p>Returns IMAP namespaces as defined in <span class="target" id="index-6"></span><a class="rfc reference external" href="https://tools.ietf.org/html/rfc2342.html"><strong>RFC 2342</strong></a>.</p>
+<dd><p>Returns IMAP namespaces as defined in <span class="target" id="index-6"></span><a class="rfc reference external" href="https://datatracker.ietf.org/doc/html/rfc2342.html"><strong>RFC 2342</strong></a>.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -686,7 +692,7 @@ best practices.</p>
 <dt class="sig sig-object py" id="imaplib.IMAP4.store">
 <span class="sig-prename descclassname"><span class="pre">IMAP4.</span></span><span class="sig-name descname"><span class="pre">store</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message_set</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">command</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flag_list</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#imaplib.IMAP4.store" title="本定義的永久連結">¶</a></dt>
 <dd><p>Alters flag dispositions for messages in mailbox.  <em>command</em> is specified by
-section 6.4.6 of <span class="target" id="index-7"></span><a class="rfc reference external" href="https://tools.ietf.org/html/rfc2060.html"><strong>RFC 2060</strong></a> as being one of &quot;FLAGS&quot;, &quot;+FLAGS&quot;, or &quot;-FLAGS&quot;,
+section 6.4.6 of <span class="target" id="index-7"></span><a class="rfc reference external" href="https://datatracker.ietf.org/doc/html/rfc2060.html"><strong>RFC 2060</strong></a> as being one of &quot;FLAGS&quot;, &quot;+FLAGS&quot;, or &quot;-FLAGS&quot;,
 optionally with a suffix of &quot;.SILENT&quot;.</p>
 <p>For example, to set the delete flag on all messages:</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">typ</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">M</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;ALL&#39;</span><span class="p">)</span>
@@ -698,7 +704,7 @@ optionally with a suffix of &quot;.SILENT&quot;.</p>
 <div class="admonition note">
 <p class="admonition-title">備註</p>
 <p>Creating flags containing ']' (for example: &quot;[test]&quot;) violates
-<span class="target" id="index-8"></span><a class="rfc reference external" href="https://tools.ietf.org/html/rfc3501.html"><strong>RFC 3501</strong></a> (the IMAP protocol).  However, imaplib has historically
+<span class="target" id="index-8"></span><a class="rfc reference external" href="https://datatracker.ietf.org/doc/html/rfc3501.html"><strong>RFC 3501</strong></a> (the IMAP protocol).  However, imaplib has historically
 allowed creation of such tags, and popular IMAP servers, such as Gmail,
 accept and produce such flags.  There are non-Python programs which also
 create such tags.  Although it is an RFC violation and IMAP clients and
@@ -822,8 +828,9 @@ retrieves and prints all messages:</p>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-  <h3><a href="../contents.html">目錄</a></h3>
-  <ul>
+  <div>
+    <h3><a href="../contents.html">目錄</a></h3>
+    <ul>
 <li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">imaplib</span></code> --- IMAP4 protocol client</a><ul>
 <li><a class="reference internal" href="#imap4-objects">IMAP4 物件</a></li>
 <li><a class="reference internal" href="#imap4-example">IMAP4 範例</a></li>
@@ -831,12 +838,17 @@ retrieves and prints all messages:</p>
 </li>
 </ul>
 
-  <h4>上個主題</h4>
-  <p class="topless"><a href="poplib.html"
-                        title="上一章"><code class="xref py py-mod docutils literal notranslate"><span class="pre">poplib</span></code> --- POP3 protocol client</a></p>
-  <h4>下個主題</h4>
-  <p class="topless"><a href="nntplib.html"
-                        title="下一章"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nntplib</span></code> --- NNTP protocol client</a></p>
+  </div>
+  <div>
+    <h4>上個主題</h4>
+    <p class="topless"><a href="poplib.html"
+                          title="上一章"><code class="xref py py-mod docutils literal notranslate"><span class="pre">poplib</span></code> --- POP3 protocol client</a></p>
+  </div>
+  <div>
+    <h4>下個主題</h4>
+    <p class="topless"><a href="nntplib.html"
+                          title="下一章"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nntplib</span></code> --- NNTP protocol client</a></p>
+  </div>
   <div role="note" aria-label="source link">
     <h3>此頁面</h3>
     <ul class="this-page-menu">
@@ -878,7 +890,7 @@ retrieves and prints all messages:</p>
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.1 Documentation</a> &#187;
+      <a href="../index.html">3.10.2 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -915,11 +927,11 @@ retrieves and prints all messages:</p>
 <br />
     <br />
 
-    最後更新於 1月 14, 2022。
+    最後更新於 1月 17, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 
-    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.3.2 建立。
+    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.4.0 建立。
     </div>
 
   </body>

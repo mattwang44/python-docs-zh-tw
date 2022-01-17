@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>nntplib --- NNTP protocol client &#8212; Python 3.10.1 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>nntplib --- NNTP protocol client &#8212; Python 3.10.2 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -20,7 +20,7 @@
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.10.1 說明文件 中搜尋"
+          title="在 Python 3.10.2 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -70,8 +70,9 @@
     <div class="menu-wrapper">
         <nav class="menu" role="navigation" aria-label="main navigation">
             <div class="language_switcher_placeholder"></div>
-  <h3><a href="../contents.html">目錄</a></h3>
-  <ul>
+  <div>
+    <h3><a href="../contents.html">目錄</a></h3>
+    <ul>
 <li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nntplib</span></code> --- NNTP protocol client</a><ul>
 <li><a class="reference internal" href="#nntp-objects">NNTP 物件</a><ul>
 <li><a class="reference internal" href="#attributes">屬性</a></li>
@@ -83,12 +84,17 @@
 </li>
 </ul>
 
-  <h4>上個主題</h4>
-  <p class="topless"><a href="imaplib.html"
-                        title="上一章"><code class="xref py py-mod docutils literal notranslate"><span class="pre">imaplib</span></code> --- IMAP4 protocol client</a></p>
-  <h4>下個主題</h4>
-  <p class="topless"><a href="smtplib.html"
-                        title="下一章"><code class="xref py py-mod docutils literal notranslate"><span class="pre">smtplib</span></code> --- SMTP protocol client</a></p>
+  </div>
+  <div>
+    <h4>上個主題</h4>
+    <p class="topless"><a href="imaplib.html"
+                          title="上一章"><code class="xref py py-mod docutils literal notranslate"><span class="pre">imaplib</span></code> --- IMAP4 protocol client</a></p>
+  </div>
+  <div>
+    <h4>下個主題</h4>
+    <p class="topless"><a href="smtplib.html"
+                          title="下一章"><code class="xref py py-mod docutils literal notranslate"><span class="pre">smtplib</span></code> --- SMTP protocol client</a></p>
+  </div>
   <div role="note" aria-label="source link">
     <h3>此頁面</h3>
     <ul class="this-page-menu">
@@ -131,7 +137,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.1 Documentation</a> &#187;
+      <a href="../index.html">3.10.2 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -165,8 +171,8 @@
 <hr class="docutils" id="index-0" />
 <p>This module defines the class <a class="reference internal" href="#nntplib.NNTP" title="nntplib.NNTP"><code class="xref py py-class docutils literal notranslate"><span class="pre">NNTP</span></code></a> which implements the client side of
 the Network News Transfer Protocol.  It can be used to implement a news reader
-or poster, or automated news processors.  It is compatible with <span class="target" id="index-1"></span><a class="rfc reference external" href="https://tools.ietf.org/html/rfc3977.html"><strong>RFC 3977</strong></a>
-as well as the older <span class="target" id="index-2"></span><a class="rfc reference external" href="https://tools.ietf.org/html/rfc977.html"><strong>RFC 977</strong></a> and <span class="target" id="index-3"></span><a class="rfc reference external" href="https://tools.ietf.org/html/rfc2980.html"><strong>RFC 2980</strong></a>.</p>
+or poster, or automated news processors.  It is compatible with <span class="target" id="index-1"></span><a class="rfc reference external" href="https://datatracker.ietf.org/doc/html/rfc3977.html"><strong>RFC 3977</strong></a>
+as well as the older <span class="target" id="index-2"></span><a class="rfc reference external" href="https://datatracker.ietf.org/doc/html/rfc977.html"><strong>RFC 977</strong></a> and <span class="target" id="index-3"></span><a class="rfc reference external" href="https://datatracker.ietf.org/doc/html/rfc2980.html"><strong>RFC 2980</strong></a>.</p>
 <p>Here are two small examples of how it can be used.  To list some statistics
 about a newsgroup and print the subjects of the last 10 articles:</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="n">nntplib</span><span class="o">.</span><span class="n">NNTP</span><span class="p">(</span><span class="s1">&#39;news.gmane.io&#39;</span><span class="p">)</span>
@@ -255,7 +261,7 @@ port <em>port</em>.  <a class="reference internal" href="#nntplib.NNTP_SSL" titl
 <em>ssl_context</em> is also optional, and is a <a class="reference internal" href="ssl.html#ssl.SSLContext" title="ssl.SSLContext"><code class="xref py py-class docutils literal notranslate"><span class="pre">SSLContext</span></code></a> object.
 Please read <a class="reference internal" href="ssl.html#ssl-security"><span class="std std-ref">Security considerations</span></a> for best practices.
 All other parameters behave the same as for <a class="reference internal" href="#nntplib.NNTP" title="nntplib.NNTP"><code class="xref py py-class docutils literal notranslate"><span class="pre">NNTP</span></code></a>.</p>
-<p>Note that SSL-on-563 is discouraged per <span class="target" id="index-4"></span><a class="rfc reference external" href="https://tools.ietf.org/html/rfc4642.html"><strong>RFC 4642</strong></a>, in favor of
+<p>Note that SSL-on-563 is discouraged per <span class="target" id="index-4"></span><a class="rfc reference external" href="https://datatracker.ietf.org/doc/html/rfc4642.html"><strong>RFC 4642</strong></a>, in favor of
 STARTTLS as described below.  However, some servers only support the
 former.</p>
 <p class="audit-hook">Raises an <a class="reference internal" href="sys.html#auditing"><span class="std std-ref">auditing event</span></a> <code class="docutils literal notranslate"><span class="pre">nntplib.connect</span></code> with arguments <code class="docutils literal notranslate"><span class="pre">self</span></code>, <code class="docutils literal notranslate"><span class="pre">host</span></code>, <code class="docutils literal notranslate"><span class="pre">port</span></code>.</p>
@@ -333,7 +339,7 @@ following methods and attributes.</p>
 <span class="sig-prename descclassname"><span class="pre">NNTP.</span></span><span class="sig-name descname"><span class="pre">nntp_version</span></span><a class="headerlink" href="#nntplib.NNTP.nntp_version" title="本定義的永久連結">¶</a></dt>
 <dd><p>An integer representing the version of the NNTP protocol supported by the
 server.  In practice, this should be <code class="docutils literal notranslate"><span class="pre">2</span></code> for servers advertising
-<span class="target" id="index-5"></span><a class="rfc reference external" href="https://tools.ietf.org/html/rfc3977.html"><strong>RFC 3977</strong></a> compliance and <code class="docutils literal notranslate"><span class="pre">1</span></code> for others.</p>
+<span class="target" id="index-5"></span><a class="rfc reference external" href="https://datatracker.ietf.org/doc/html/rfc3977.html"><strong>RFC 3977</strong></a> compliance and <code class="docutils literal notranslate"><span class="pre">1</span></code> for others.</p>
 <div class="versionadded">
 <p><span class="versionmodified added">在 3.2 版本新加入.</span></p>
 </div>
@@ -384,7 +390,7 @@ that may be relevant to the user.)</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="nntplib.NNTP.getcapabilities">
 <span class="sig-prename descclassname"><span class="pre">NNTP.</span></span><span class="sig-name descname"><span class="pre">getcapabilities</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nntplib.NNTP.getcapabilities" title="本定義的永久連結">¶</a></dt>
-<dd><p>Return the <span class="target" id="index-6"></span><a class="rfc reference external" href="https://tools.ietf.org/html/rfc3977.html"><strong>RFC 3977</strong></a> capabilities advertised by the server, as a
+<dd><p>Return the <span class="target" id="index-6"></span><a class="rfc reference external" href="https://datatracker.ietf.org/doc/html/rfc3977.html"><strong>RFC 3977</strong></a> capabilities advertised by the server, as a
 <a class="reference internal" href="stdtypes.html#dict" title="dict"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a> instance mapping capability names to (possibly empty) lists
 of values. On legacy servers which don't understand the <code class="docutils literal notranslate"><span class="pre">CAPABILITIES</span></code>
 command, an empty dictionary is returned instead.</p>
@@ -494,7 +500,7 @@ really need to refresh them.</p>
 <dt class="sig sig-object py" id="nntplib.NNTP.descriptions">
 <span class="sig-prename descclassname"><span class="pre">NNTP.</span></span><span class="sig-name descname"><span class="pre">descriptions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">grouppattern</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nntplib.NNTP.descriptions" title="本定義的永久連結">¶</a></dt>
 <dd><p>Send a <code class="docutils literal notranslate"><span class="pre">LIST</span> <span class="pre">NEWSGROUPS</span></code> command, where <em>grouppattern</em> is a wildmat string as
-specified in <span class="target" id="index-7"></span><a class="rfc reference external" href="https://tools.ietf.org/html/rfc3977.html"><strong>RFC 3977</strong></a> (it's essentially the same as DOS or UNIX shell wildcard
+specified in <span class="target" id="index-7"></span><a class="rfc reference external" href="https://datatracker.ietf.org/doc/html/rfc3977.html"><strong>RFC 3977</strong></a> (it's essentially the same as DOS or UNIX shell wildcard
 strings).  Return a pair <code class="docutils literal notranslate"><span class="pre">(response,</span> <span class="pre">descriptions)</span></code>, where <em>descriptions</em>
 is a dictionary mapping group names to textual descriptions.</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">resp</span><span class="p">,</span> <span class="n">descs</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">descriptions</span><span class="p">(</span><span class="s1">&#39;gmane.comp.python.*&#39;</span><span class="p">)</span>
@@ -694,8 +700,8 @@ of debugging output, logging each line sent and received on the connection
 (including message text).</p>
 </dd></dl>
 
-<p>The following are optional NNTP extensions defined in <span class="target" id="index-8"></span><a class="rfc reference external" href="https://tools.ietf.org/html/rfc2980.html"><strong>RFC 2980</strong></a>.  Some of
-them have been superseded by newer commands in <span class="target" id="index-9"></span><a class="rfc reference external" href="https://tools.ietf.org/html/rfc3977.html"><strong>RFC 3977</strong></a>.</p>
+<p>The following are optional NNTP extensions defined in <span class="target" id="index-8"></span><a class="rfc reference external" href="https://datatracker.ietf.org/doc/html/rfc2980.html"><strong>RFC 2980</strong></a>.  Some of
+them have been superseded by newer commands in <span class="target" id="index-9"></span><a class="rfc reference external" href="https://datatracker.ietf.org/doc/html/rfc3977.html"><strong>RFC 3977</strong></a>.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="nntplib.NNTP.xhdr">
 <span class="sig-prename descclassname"><span class="pre">NNTP.</span></span><span class="sig-name descname"><span class="pre">xhdr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">hdr</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nntplib.NNTP.xhdr" title="本定義的永久連結">¶</a></dt>
@@ -754,8 +760,9 @@ in a human readable form:</p>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-  <h3><a href="../contents.html">目錄</a></h3>
-  <ul>
+  <div>
+    <h3><a href="../contents.html">目錄</a></h3>
+    <ul>
 <li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nntplib</span></code> --- NNTP protocol client</a><ul>
 <li><a class="reference internal" href="#nntp-objects">NNTP 物件</a><ul>
 <li><a class="reference internal" href="#attributes">屬性</a></li>
@@ -767,12 +774,17 @@ in a human readable form:</p>
 </li>
 </ul>
 
-  <h4>上個主題</h4>
-  <p class="topless"><a href="imaplib.html"
-                        title="上一章"><code class="xref py py-mod docutils literal notranslate"><span class="pre">imaplib</span></code> --- IMAP4 protocol client</a></p>
-  <h4>下個主題</h4>
-  <p class="topless"><a href="smtplib.html"
-                        title="下一章"><code class="xref py py-mod docutils literal notranslate"><span class="pre">smtplib</span></code> --- SMTP protocol client</a></p>
+  </div>
+  <div>
+    <h4>上個主題</h4>
+    <p class="topless"><a href="imaplib.html"
+                          title="上一章"><code class="xref py py-mod docutils literal notranslate"><span class="pre">imaplib</span></code> --- IMAP4 protocol client</a></p>
+  </div>
+  <div>
+    <h4>下個主題</h4>
+    <p class="topless"><a href="smtplib.html"
+                          title="下一章"><code class="xref py py-mod docutils literal notranslate"><span class="pre">smtplib</span></code> --- SMTP protocol client</a></p>
+  </div>
   <div role="note" aria-label="source link">
     <h3>此頁面</h3>
     <ul class="this-page-menu">
@@ -814,7 +826,7 @@ in a human readable form:</p>
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.1 Documentation</a> &#187;
+      <a href="../index.html">3.10.2 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -851,11 +863,11 @@ in a human readable form:</p>
 <br />
     <br />
 
-    最後更新於 1月 14, 2022。
+    最後更新於 1月 17, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 
-    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.3.2 建立。
+    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.4.0 建立。
     </div>
 
   </body>

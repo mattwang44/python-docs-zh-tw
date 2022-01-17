@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>email.headerregistry: Custom Header Objects &#8212; Python 3.10.1 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>email.headerregistry: Custom Header Objects &#8212; Python 3.10.2 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -20,7 +20,7 @@
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.10.1 說明文件 中搜尋"
+          title="在 Python 3.10.2 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -70,12 +70,16 @@
     <div class="menu-wrapper">
         <nav class="menu" role="navigation" aria-label="main navigation">
             <div class="language_switcher_placeholder"></div>
-  <h4>上個主題</h4>
-  <p class="topless"><a href="email.errors.html"
-                        title="上一章"><code class="xref py py-mod docutils literal notranslate"><span class="pre">email.errors</span></code>: Exception and Defect classes</a></p>
-  <h4>下個主題</h4>
-  <p class="topless"><a href="email.contentmanager.html"
-                        title="下一章"><code class="xref py py-mod docutils literal notranslate"><span class="pre">email.contentmanager</span></code>: Managing MIME Content</a></p>
+  <div>
+    <h4>上個主題</h4>
+    <p class="topless"><a href="email.errors.html"
+                          title="上一章"><code class="xref py py-mod docutils literal notranslate"><span class="pre">email.errors</span></code>: Exception and Defect classes</a></p>
+  </div>
+  <div>
+    <h4>下個主題</h4>
+    <p class="topless"><a href="email.contentmanager.html"
+                          title="下一章"><code class="xref py py-mod docutils literal notranslate"><span class="pre">email.contentmanager</span></code>: Managing MIME Content</a></p>
+  </div>
   <div role="note" aria-label="source link">
     <h3>此頁面</h3>
     <ul class="this-page-menu">
@@ -118,7 +122,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.1 Documentation</a> &#187;
+      <a href="../index.html">3.10.2 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -158,7 +162,7 @@
 particular class used to represent a given header is determined by the
 <a class="reference internal" href="email.policy.html#email.policy.EmailPolicy.header_factory" title="email.policy.EmailPolicy.header_factory"><code class="xref py py-attr docutils literal notranslate"><span class="pre">header_factory</span></code></a> of the <a class="reference internal" href="email.policy.html#module-email.policy" title="email.policy: Controlling the parsing and generating of messages"><code class="xref py py-mod docutils literal notranslate"><span class="pre">policy</span></code></a> in
 effect when the headers are created.  This section documents the particular
-<code class="docutils literal notranslate"><span class="pre">header_factory</span></code> implemented by the email package for handling <span class="target" id="index-0"></span><a class="rfc reference external" href="https://tools.ietf.org/html/rfc5322.html"><strong>RFC 5322</strong></a>
+<code class="docutils literal notranslate"><span class="pre">header_factory</span></code> implemented by the email package for handling <span class="target" id="index-0"></span><a class="rfc reference external" href="https://datatracker.ietf.org/doc/html/rfc5322.html"><strong>RFC 5322</strong></a>
 compliant email messages, which not only provides customized header objects for
 various header types, but also provides an extension mechanism for applications
 to add their own custom header types.</p>
@@ -221,7 +225,7 @@ characters as required to correctly fold the header according to
 <em>policy</em>.  A <a class="reference internal" href="email.policy.html#email.policy.Policy.cte_type" title="email.policy.Policy.cte_type"><code class="xref py py-attr docutils literal notranslate"><span class="pre">cte_type</span></code></a> of <code class="docutils literal notranslate"><span class="pre">8bit</span></code> will be
 treated as if it were <code class="docutils literal notranslate"><span class="pre">7bit</span></code>, since headers may not contain arbitrary
 binary data.  If <a class="reference internal" href="email.policy.html#email.policy.EmailPolicy.utf8" title="email.policy.EmailPolicy.utf8"><code class="xref py py-attr docutils literal notranslate"><span class="pre">utf8</span></code></a> is <code class="docutils literal notranslate"><span class="pre">False</span></code>,
-non-ASCII data will be <span class="target" id="index-1"></span><a class="rfc reference external" href="https://tools.ietf.org/html/rfc2047.html"><strong>RFC 2047</strong></a> encoded.</p>
+non-ASCII data will be <span class="target" id="index-1"></span><a class="rfc reference external" href="https://datatracker.ietf.org/doc/html/rfc2047.html"><strong>RFC 2047</strong></a> encoded.</p>
 </dd></dl>
 
 <p><code class="docutils literal notranslate"><span class="pre">BaseHeader</span></code> by itself cannot be used to create a header object.  It
@@ -257,16 +261,16 @@ dictionary should be removed and handled, and the remaining contents of
 <dl class="py class">
 <dt class="sig sig-object py" id="email.headerregistry.UnstructuredHeader">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">email.headerregistry.</span></span><span class="sig-name descname"><span class="pre">UnstructuredHeader</span></span><a class="headerlink" href="#email.headerregistry.UnstructuredHeader" title="本定義的永久連結">¶</a></dt>
-<dd><p>An &quot;unstructured&quot; header is the default type of header in <span class="target" id="index-2"></span><a class="rfc reference external" href="https://tools.ietf.org/html/rfc5322.html"><strong>RFC 5322</strong></a>.
+<dd><p>An &quot;unstructured&quot; header is the default type of header in <span class="target" id="index-2"></span><a class="rfc reference external" href="https://datatracker.ietf.org/doc/html/rfc5322.html"><strong>RFC 5322</strong></a>.
 Any header that does not have a specified syntax is treated as
 unstructured.  The classic example of an unstructured header is the
 <em class="mailheader">Subject</em> header.</p>
-<p>In <span class="target" id="index-3"></span><a class="rfc reference external" href="https://tools.ietf.org/html/rfc5322.html"><strong>RFC 5322</strong></a>, an unstructured header is a run of arbitrary text in the
-ASCII character set.  <span class="target" id="index-4"></span><a class="rfc reference external" href="https://tools.ietf.org/html/rfc2047.html"><strong>RFC 2047</strong></a>, however, has an <span class="target" id="index-5"></span><a class="rfc reference external" href="https://tools.ietf.org/html/rfc5322.html"><strong>RFC 5322</strong></a> compatible
+<p>In <span class="target" id="index-3"></span><a class="rfc reference external" href="https://datatracker.ietf.org/doc/html/rfc5322.html"><strong>RFC 5322</strong></a>, an unstructured header is a run of arbitrary text in the
+ASCII character set.  <span class="target" id="index-4"></span><a class="rfc reference external" href="https://datatracker.ietf.org/doc/html/rfc2047.html"><strong>RFC 2047</strong></a>, however, has an <span class="target" id="index-5"></span><a class="rfc reference external" href="https://datatracker.ietf.org/doc/html/rfc5322.html"><strong>RFC 5322</strong></a> compatible
 mechanism for encoding non-ASCII text as ASCII characters within a header
 value.  When a <em>value</em> containing encoded words is passed to the
 constructor, the <code class="docutils literal notranslate"><span class="pre">UnstructuredHeader</span></code> parser converts such encoded words
-into unicode, following the <span class="target" id="index-6"></span><a class="rfc reference external" href="https://tools.ietf.org/html/rfc2047.html"><strong>RFC 2047</strong></a> rules for unstructured text.  The
+into unicode, following the <span class="target" id="index-6"></span><a class="rfc reference external" href="https://datatracker.ietf.org/doc/html/rfc2047.html"><strong>RFC 2047</strong></a> rules for unstructured text.  The
 parser uses heuristics to attempt to decode certain non-compliant encoded
 words.  Defects are registered in such cases, as well as defects for issues
 such as invalid characters within the encoded words or the non-encoded text.</p>
@@ -276,7 +280,7 @@ such as invalid characters within the encoded words or the non-encoded text.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="email.headerregistry.DateHeader">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">email.headerregistry.</span></span><span class="sig-name descname"><span class="pre">DateHeader</span></span><a class="headerlink" href="#email.headerregistry.DateHeader" title="本定義的永久連結">¶</a></dt>
-<dd><p><span class="target" id="index-7"></span><a class="rfc reference external" href="https://tools.ietf.org/html/rfc5322.html"><strong>RFC 5322</strong></a> specifies a very specific format for dates within email headers.
+<dd><p><span class="target" id="index-7"></span><a class="rfc reference external" href="https://datatracker.ietf.org/doc/html/rfc5322.html"><strong>RFC 5322</strong></a> specifies a very specific format for dates within email headers.
 The <code class="docutils literal notranslate"><span class="pre">DateHeader</span></code> parser recognizes that date format, as well as
 recognizing a number of variant forms that are sometimes found &quot;in the
 wild&quot;.</p>
@@ -296,7 +300,7 @@ offset.</p>
 </dd></dl>
 
 <p>The <code class="docutils literal notranslate"><span class="pre">decoded</span></code> value of the header is determined by formatting the
-<code class="docutils literal notranslate"><span class="pre">datetime</span></code> according to the <span class="target" id="index-8"></span><a class="rfc reference external" href="https://tools.ietf.org/html/rfc5322.html"><strong>RFC 5322</strong></a> rules; that is, it is set to:</p>
+<code class="docutils literal notranslate"><span class="pre">datetime</span></code> according to the <span class="target" id="index-8"></span><a class="rfc reference external" href="https://datatracker.ietf.org/doc/html/rfc5322.html"><strong>RFC 5322</strong></a> rules; that is, it is set to:</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">email</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">format_datetime</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">datetime</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -380,7 +384,7 @@ variant, <a class="reference internal" href="#email.headerregistry.BaseHeader.ma
 <dd><p>There is really only one valid value for the <em class="mailheader">MIME-Version</em>
 header, and that is <code class="docutils literal notranslate"><span class="pre">1.0</span></code>.  For future proofing, this header class
 supports other valid version numbers.  If a version number has a valid value
-per <span class="target" id="index-9"></span><a class="rfc reference external" href="https://tools.ietf.org/html/rfc2045.html"><strong>RFC 2045</strong></a>, then the header object will have non-<code class="docutils literal notranslate"><span class="pre">None</span></code> values for
+per <span class="target" id="index-9"></span><a class="rfc reference external" href="https://datatracker.ietf.org/doc/html/rfc2045.html"><strong>RFC 2045</strong></a>, then the header object will have non-<code class="docutils literal notranslate"><span class="pre">None</span></code> values for
 the following attributes:</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="email.headerregistry.MIMEVersionHeader.version">
@@ -462,7 +466,7 @@ This class serves as a base for all the MIME headers that take parameters.</p>
 <dt class="sig sig-object py" id="email.headerregistry.ContentTransferEncoding.cte">
 <span class="sig-name descname"><span class="pre">cte</span></span><a class="headerlink" href="#email.headerregistry.ContentTransferEncoding.cte" title="本定義的永久連結">¶</a></dt>
 <dd><p>Valid values are <code class="docutils literal notranslate"><span class="pre">7bit</span></code>, <code class="docutils literal notranslate"><span class="pre">8bit</span></code>, <code class="docutils literal notranslate"><span class="pre">base64</span></code>, and
-<code class="docutils literal notranslate"><span class="pre">quoted-printable</span></code>.  See <span class="target" id="index-10"></span><a class="rfc reference external" href="https://tools.ietf.org/html/rfc2045.html"><strong>RFC 2045</strong></a> for more information.</p>
+<code class="docutils literal notranslate"><span class="pre">quoted-printable</span></code>.  See <span class="target" id="index-10"></span><a class="rfc reference external" href="https://datatracker.ietf.org/doc/html/rfc2045.html"><strong>RFC 2045</strong></a> for more information.</p>
 </dd></dl>
 
 </dd></dl>
@@ -588,7 +592,7 @@ address is:</p>
 </pre></div>
 </div>
 <p>where each part must conform to specific syntax rules spelled out in
-<span class="target" id="index-11"></span><a class="rfc reference external" href="https://tools.ietf.org/html/rfc5322.html"><strong>RFC 5322</strong></a>.</p>
+<span class="target" id="index-11"></span><a class="rfc reference external" href="https://datatracker.ietf.org/doc/html/rfc5322.html"><strong>RFC 5322</strong></a>.</p>
 <p>As a convenience <em>addr_spec</em> can be specified instead of <em>username</em> and
 <em>domain</em>, in which case <em>username</em> and <em>domain</em> will be parsed from the
 <em>addr_spec</em>.  An <em>addr_spec</em> must be a properly RFC quoted string; if it is
@@ -627,11 +631,11 @@ attribute is not mutable.</p>
 <dt class="sig sig-object py" id="email.headerregistry.Address.__str__">
 <span class="sig-name descname"><span class="pre">__str__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#email.headerregistry.Address.__str__" title="本定義的永久連結">¶</a></dt>
 <dd><p>The <code class="docutils literal notranslate"><span class="pre">str</span></code> value of the object is the address quoted according to
-<span class="target" id="index-12"></span><a class="rfc reference external" href="https://tools.ietf.org/html/rfc5322.html"><strong>RFC 5322</strong></a> rules, but with no Content Transfer Encoding of any non-ASCII
+<span class="target" id="index-12"></span><a class="rfc reference external" href="https://datatracker.ietf.org/doc/html/rfc5322.html"><strong>RFC 5322</strong></a> rules, but with no Content Transfer Encoding of any non-ASCII
 characters.</p>
 </dd></dl>
 
-<p>To support SMTP (<span class="target" id="index-13"></span><a class="rfc reference external" href="https://tools.ietf.org/html/rfc5321.html"><strong>RFC 5321</strong></a>), <code class="docutils literal notranslate"><span class="pre">Address</span></code> handles one special case: if
+<p>To support SMTP (<span class="target" id="index-13"></span><a class="rfc reference external" href="https://datatracker.ietf.org/doc/html/rfc5321.html"><strong>RFC 5321</strong></a>), <code class="docutils literal notranslate"><span class="pre">Address</span></code> handles one special case: if
 <code class="docutils literal notranslate"><span class="pre">username</span></code> and <code class="docutils literal notranslate"><span class="pre">domain</span></code> are both the empty string (or <code class="docutils literal notranslate"><span class="pre">None</span></code>), then
 the string value of the <code class="docutils literal notranslate"><span class="pre">Address</span></code> is <code class="docutils literal notranslate"><span class="pre">&lt;&gt;</span></code>.</p>
 </dd></dl>
@@ -666,7 +670,7 @@ addresses in the group.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="email.headerregistry.Group.__str__">
 <span class="sig-name descname"><span class="pre">__str__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#email.headerregistry.Group.__str__" title="本定義的永久連結">¶</a></dt>
-<dd><p>The <code class="docutils literal notranslate"><span class="pre">str</span></code> value of a <code class="docutils literal notranslate"><span class="pre">Group</span></code> is formatted according to <span class="target" id="index-14"></span><a class="rfc reference external" href="https://tools.ietf.org/html/rfc5322.html"><strong>RFC 5322</strong></a>,
+<dd><p>The <code class="docutils literal notranslate"><span class="pre">str</span></code> value of a <code class="docutils literal notranslate"><span class="pre">Group</span></code> is formatted according to <span class="target" id="index-14"></span><a class="rfc reference external" href="https://datatracker.ietf.org/doc/html/rfc5322.html"><strong>RFC 5322</strong></a>,
 but with no Content Transfer Encoding of any non-ASCII characters.  If
 <code class="docutils literal notranslate"><span class="pre">display_name</span></code> is none and there is a single <code class="docutils literal notranslate"><span class="pre">Address</span></code> in the
 <code class="docutils literal notranslate"><span class="pre">addresses</span></code> list, the <code class="docutils literal notranslate"><span class="pre">str</span></code> value will be the same as the <code class="docutils literal notranslate"><span class="pre">str</span></code> of
@@ -690,12 +694,16 @@ that single <code class="docutils literal notranslate"><span class="pre">Address
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-  <h4>上個主題</h4>
-  <p class="topless"><a href="email.errors.html"
-                        title="上一章"><code class="xref py py-mod docutils literal notranslate"><span class="pre">email.errors</span></code>: Exception and Defect classes</a></p>
-  <h4>下個主題</h4>
-  <p class="topless"><a href="email.contentmanager.html"
-                        title="下一章"><code class="xref py py-mod docutils literal notranslate"><span class="pre">email.contentmanager</span></code>: Managing MIME Content</a></p>
+  <div>
+    <h4>上個主題</h4>
+    <p class="topless"><a href="email.errors.html"
+                          title="上一章"><code class="xref py py-mod docutils literal notranslate"><span class="pre">email.errors</span></code>: Exception and Defect classes</a></p>
+  </div>
+  <div>
+    <h4>下個主題</h4>
+    <p class="topless"><a href="email.contentmanager.html"
+                          title="下一章"><code class="xref py py-mod docutils literal notranslate"><span class="pre">email.contentmanager</span></code>: Managing MIME Content</a></p>
+  </div>
   <div role="note" aria-label="source link">
     <h3>此頁面</h3>
     <ul class="this-page-menu">
@@ -737,7 +745,7 @@ that single <code class="docutils literal notranslate"><span class="pre">Address
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.1 Documentation</a> &#187;
+      <a href="../index.html">3.10.2 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -775,11 +783,11 @@ that single <code class="docutils literal notranslate"><span class="pre">Address
 <br />
     <br />
 
-    最後更新於 1月 14, 2022。
+    最後更新於 1月 17, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 
-    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.3.2 建立。
+    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.4.0 建立。
     </div>
 
   </body>
