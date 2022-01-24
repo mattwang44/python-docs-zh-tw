@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>operator --- Standard operators as functions &#8212; Python 3.10.2 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>operator --- 標準運算子替代函式 &#8212; Python 3.10.2 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -73,9 +73,9 @@
   <div>
     <h3><a href="../contents.html">目錄</a></h3>
     <ul>
-<li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">operator</span></code> --- Standard operators as functions</a><ul>
-<li><a class="reference internal" href="#mapping-operators-to-functions">Mapping Operators to Functions</a></li>
-<li><a class="reference internal" href="#in-place-operators">In-place Operators</a></li>
+<li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">operator</span></code> --- 標準運算子替代函式</a><ul>
+<li><a class="reference internal" href="#mapping-operators-to-functions">運算子與函式間的對映</a></li>
+<li><a class="reference internal" href="#in-place-operators">原地 (in-place) 運算子</a></li>
 </ul>
 </li>
 </ul>
@@ -138,7 +138,7 @@
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="functional.html" accesskey="U">函式編程模組</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href=""><code class="xref py py-mod docutils literal notranslate"><span class="pre">operator</span></code> --- Standard operators as functions</a></li>
+        <li class="nav-item nav-item-this"><a href=""><code class="xref py py-mod docutils literal notranslate"><span class="pre">operator</span></code> --- 標準運算子替代函式</a></li>
                 <li class="right">
                     
 
@@ -162,19 +162,12 @@
           <div class="body" role="main">
             
   <section id="module-operator">
-<span id="operator-standard-operators-as-functions"></span><h1><a class="reference internal" href="#module-operator" title="operator: Functions corresponding to the standard operators."><code class="xref py py-mod docutils literal notranslate"><span class="pre">operator</span></code></a> --- Standard operators as functions<a class="headerlink" href="#module-operator" title="本標題的永久連結">¶</a></h1>
+<span id="operator-standard-operators-as-functions"></span><h1><a class="reference internal" href="#module-operator" title="operator: Functions corresponding to the standard operators."><code class="xref py py-mod docutils literal notranslate"><span class="pre">operator</span></code></a> --- 標準運算子替代函式<a class="headerlink" href="#module-operator" title="本標題的永久連結">¶</a></h1>
 <p><strong>原始碼：</strong><a class="reference external" href="https://github.com/python/cpython/tree/3.10/Lib/operator.py">Lib/operator.py</a></p>
 <hr class="docutils" />
-<p>The <a class="reference internal" href="#module-operator" title="operator: Functions corresponding to the standard operators."><code class="xref py py-mod docutils literal notranslate"><span class="pre">operator</span></code></a> module exports a set of efficient functions corresponding to
-the intrinsic operators of Python.  For example, <code class="docutils literal notranslate"><span class="pre">operator.add(x,</span> <span class="pre">y)</span></code> is
-equivalent to the expression <code class="docutils literal notranslate"><span class="pre">x+y</span></code>. Many function names are those used for
-special methods, without the double underscores.  For backward compatibility,
-many of these have a variant with the double underscores kept. The variants
-without the double underscores are preferred for clarity.</p>
-<p>The functions fall into categories that perform object comparisons, logical
-operations, mathematical operations and sequence operations.</p>
-<p>The object comparison functions are useful for all objects, and are named after
-the rich comparison operators they support:</p>
+<p><a class="reference internal" href="#module-operator" title="operator: Functions corresponding to the standard operators."><code class="xref py py-mod docutils literal notranslate"><span class="pre">operator</span></code></a> module（模組）提供了一套與 Python 原生運算子對應的高效率函式。例如，<code class="docutils literal notranslate"><span class="pre">operator.add(x,</span> <span class="pre">y)</span></code> 與表示式 <code class="docutils literal notranslate"><span class="pre">x+y</span></code> 相同。許多函式名與特殊方法名相同，只是沒有雙底線。為了向後相容，許多包含雙底線的函式被保留了下來，但為了易於表達，建議使用沒有雙底線的函式。</p>
+<p>函式種類有物件的比較運算、邏輯運算、數學運算以及序列運算。</p>
+<p>物件比較函式適用於所有物件，函式根據它們對應的 rich comparison 運算子命名：</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="operator.lt">
 <span class="sig-prename descclassname"><span class="pre">operator.</span></span><span class="sig-name descname"><span class="pre">lt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#operator.lt" title="本定義的永久連結">¶</a></dt>
@@ -200,54 +193,43 @@ the rich comparison operators they support:</p>
 <span class="sig-prename descclassname"><span class="pre">operator.</span></span><span class="sig-name descname"><span class="pre">__ge__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#operator.__ge__" title="本定義的永久連結">¶</a></dt>
 <dt class="sig sig-object py" id="operator.__gt__">
 <span class="sig-prename descclassname"><span class="pre">operator.</span></span><span class="sig-name descname"><span class="pre">__gt__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#operator.__gt__" title="本定義的永久連結">¶</a></dt>
-<dd><p>Perform &quot;rich comparisons&quot; between <em>a</em> and <em>b</em>. Specifically, <code class="docutils literal notranslate"><span class="pre">lt(a,</span> <span class="pre">b)</span></code> is
-equivalent to <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">&lt;</span> <span class="pre">b</span></code>, <code class="docutils literal notranslate"><span class="pre">le(a,</span> <span class="pre">b)</span></code> is equivalent to <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">&lt;=</span> <span class="pre">b</span></code>, <code class="docutils literal notranslate"><span class="pre">eq(a,</span>
-<span class="pre">b)</span></code> is equivalent to <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">==</span> <span class="pre">b</span></code>, <code class="docutils literal notranslate"><span class="pre">ne(a,</span> <span class="pre">b)</span></code> is equivalent to <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">!=</span> <span class="pre">b</span></code>,
-<code class="docutils literal notranslate"><span class="pre">gt(a,</span> <span class="pre">b)</span></code> is equivalent to <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">&gt;</span> <span class="pre">b</span></code> and <code class="docutils literal notranslate"><span class="pre">ge(a,</span> <span class="pre">b)</span></code> is equivalent to <code class="docutils literal notranslate"><span class="pre">a</span>
-<span class="pre">&gt;=</span> <span class="pre">b</span></code>.  Note that these functions can return any value, which may
-or may not be interpretable as a Boolean value.  See
-<a class="reference internal" href="../reference/expressions.html#comparisons"><span class="std std-ref">Comparisons</span></a> for more information about rich comparisons.</p>
+<dd><p>在 <em>a</em> 和 <em>b</em> 之間進行 &quot;rich comparison&quot;。具體來說，<code class="docutils literal notranslate"><span class="pre">lt(a,</span> <span class="pre">b)</span></code> 與 <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">&lt;</span> <span class="pre">b</span></code> 相同，<code class="docutils literal notranslate"><span class="pre">le(a,</span> <span class="pre">b)</span></code> 與 <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">&lt;=</span> <span class="pre">b</span></code> 相同，<code class="docutils literal notranslate"><span class="pre">eq(a,</span> <span class="pre">b)</span></code> 與 <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">==</span> <span class="pre">b</span></code> 相同，<code class="docutils literal notranslate"><span class="pre">ne(a,</span> <span class="pre">b)</span></code> 與 <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">!=</span> <span class="pre">b</span></code> 相同，<code class="docutils literal notranslate"><span class="pre">gt(a,</span> <span class="pre">b)</span></code> 與 <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">&gt;</span> <span class="pre">b</span></code> 相同，<code class="docutils literal notranslate"><span class="pre">ge(a,</span> <span class="pre">b)</span></code> 與 <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">&gt;=</span> <span class="pre">b</span></code> 相同。注意這些函式可以回傳任何值，無論它是否可當作 boolean（布林）值。關於 rich comparison 的更多資訊請參考 <a class="reference internal" href="../reference/expressions.html#comparisons"><span class="std std-ref">Comparisons</span></a>。</p>
 </dd></dl>
 
-<p>The logical operations are also generally applicable to all objects, and support
-truth tests, identity tests, and boolean operations:</p>
+<p>邏輯運算通常也適用於所有物件，並且支援真值檢測、標識檢測和 boolean 運算：</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="operator.not_">
 <span class="sig-prename descclassname"><span class="pre">operator.</span></span><span class="sig-name descname"><span class="pre">not_</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#operator.not_" title="本定義的永久連結">¶</a></dt>
 <dt class="sig sig-object py" id="operator.__not__">
 <span class="sig-prename descclassname"><span class="pre">operator.</span></span><span class="sig-name descname"><span class="pre">__not__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#operator.__not__" title="本定義的永久連結">¶</a></dt>
-<dd><p>Return the outcome of <a class="reference internal" href="../reference/expressions.html#not"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">not</span></code></a> <em>obj</em>.  (Note that there is no
-<a class="reference internal" href="#operator.__not__" title="operator.__not__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__not__()</span></code></a> method for object instances; only the interpreter core defines
-this operation.  The result is affected by the <code class="xref py py-meth docutils literal notranslate"><span class="pre">__bool__()</span></code> and
-<code class="xref py py-meth docutils literal notranslate"><span class="pre">__len__()</span></code> methods.)</p>
+<dd><p>回傳 <a class="reference internal" href="../reference/expressions.html#not"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">not</span></code></a> <em>obj</em> 的結果。（請注意物件實例並沒有 <a class="reference internal" href="#operator.__not__" title="operator.__not__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__not__()</span></code></a> method（方法）；只有直譯器核心定義此操作。結果會受 <code class="xref py py-meth docutils literal notranslate"><span class="pre">__bool__()</span></code> 和 <code class="xref py py-meth docutils literal notranslate"><span class="pre">__len__()</span></code> method 影響。）</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="operator.truth">
 <span class="sig-prename descclassname"><span class="pre">operator.</span></span><span class="sig-name descname"><span class="pre">truth</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#operator.truth" title="本定義的永久連結">¶</a></dt>
-<dd><p>Return <a class="reference internal" href="constants.html#True" title="True"><code class="xref py py-const docutils literal notranslate"><span class="pre">True</span></code></a> if <em>obj</em> is true, and <a class="reference internal" href="constants.html#False" title="False"><code class="xref py py-const docutils literal notranslate"><span class="pre">False</span></code></a> otherwise.  This is
-equivalent to using the <a class="reference internal" href="functions.html#bool" title="bool"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a> constructor.</p>
+<dd><p>如果 <em>obj</em> 為真值則回傳 <a class="reference internal" href="constants.html#True" title="True"><code class="xref py py-const docutils literal notranslate"><span class="pre">True</span></code></a>，否則回傳 <a class="reference internal" href="constants.html#False" title="False"><code class="xref py py-const docutils literal notranslate"><span class="pre">False</span></code></a>。這等價於使用 <a class="reference internal" href="functions.html#bool" title="bool"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a> 建構器。</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="operator.is_">
 <span class="sig-prename descclassname"><span class="pre">operator.</span></span><span class="sig-name descname"><span class="pre">is_</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#operator.is_" title="本定義的永久連結">¶</a></dt>
-<dd><p>Return <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">is</span> <span class="pre">b</span></code>.  Tests object identity.</p>
+<dd><p>回傳 <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">is</span> <span class="pre">b</span></code>。檢測物件標識。</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="operator.is_not">
 <span class="sig-prename descclassname"><span class="pre">operator.</span></span><span class="sig-name descname"><span class="pre">is_not</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#operator.is_not" title="本定義的永久連結">¶</a></dt>
-<dd><p>Return <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">is</span> <span class="pre">not</span> <span class="pre">b</span></code>.  Tests object identity.</p>
+<dd><p>回傳 <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">is</span> <span class="pre">not</span> <span class="pre">b</span></code>。檢測物件標識。</p>
 </dd></dl>
 
-<p>The mathematical and bitwise operations are the most numerous:</p>
+<p>數學和位元運算的種類是最多的：</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="operator.abs">
 <span class="sig-prename descclassname"><span class="pre">operator.</span></span><span class="sig-name descname"><span class="pre">abs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#operator.abs" title="本定義的永久連結">¶</a></dt>
 <dt class="sig sig-object py" id="operator.__abs__">
 <span class="sig-prename descclassname"><span class="pre">operator.</span></span><span class="sig-name descname"><span class="pre">__abs__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#operator.__abs__" title="本定義的永久連結">¶</a></dt>
-<dd><p>Return the absolute value of <em>obj</em>.</p>
+<dd><p>回傳 <em>obj</em> 的絕對值。</p>
 </dd></dl>
 
 <dl class="py function">
@@ -255,7 +237,7 @@ equivalent to using the <a class="reference internal" href="functions.html#bool"
 <span class="sig-prename descclassname"><span class="pre">operator.</span></span><span class="sig-name descname"><span class="pre">add</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#operator.add" title="本定義的永久連結">¶</a></dt>
 <dt class="sig sig-object py" id="operator.__add__">
 <span class="sig-prename descclassname"><span class="pre">operator.</span></span><span class="sig-name descname"><span class="pre">__add__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#operator.__add__" title="本定義的永久連結">¶</a></dt>
-<dd><p>Return <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">+</span> <span class="pre">b</span></code>, for <em>a</em> and <em>b</em> numbers.</p>
+<dd><p>對於數字 <em>a</em> 和 <em>b</em>，回傳 <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">+</span> <span class="pre">b</span></code>。</p>
 </dd></dl>
 
 <dl class="py function">
@@ -263,7 +245,7 @@ equivalent to using the <a class="reference internal" href="functions.html#bool"
 <span class="sig-prename descclassname"><span class="pre">operator.</span></span><span class="sig-name descname"><span class="pre">and_</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#operator.and_" title="本定義的永久連結">¶</a></dt>
 <dt class="sig sig-object py" id="operator.__and__">
 <span class="sig-prename descclassname"><span class="pre">operator.</span></span><span class="sig-name descname"><span class="pre">__and__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#operator.__and__" title="本定義的永久連結">¶</a></dt>
-<dd><p>Return the bitwise and of <em>a</em> and <em>b</em>.</p>
+<dd><p>回傳 <em>x</em> 和 <em>y</em> 位元運算與 (and) 的結果。</p>
 </dd></dl>
 
 <dl class="py function">
@@ -271,7 +253,7 @@ equivalent to using the <a class="reference internal" href="functions.html#bool"
 <span class="sig-prename descclassname"><span class="pre">operator.</span></span><span class="sig-name descname"><span class="pre">floordiv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#operator.floordiv" title="本定義的永久連結">¶</a></dt>
 <dt class="sig sig-object py" id="operator.__floordiv__">
 <span class="sig-prename descclassname"><span class="pre">operator.</span></span><span class="sig-name descname"><span class="pre">__floordiv__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#operator.__floordiv__" title="本定義的永久連結">¶</a></dt>
-<dd><p>Return <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">//</span> <span class="pre">b</span></code>.</p>
+<dd><p>回傳 <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">//</span> <span class="pre">b</span></code>。</p>
 </dd></dl>
 
 <dl class="py function">
@@ -279,10 +261,9 @@ equivalent to using the <a class="reference internal" href="functions.html#bool"
 <span class="sig-prename descclassname"><span class="pre">operator.</span></span><span class="sig-name descname"><span class="pre">index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#operator.index" title="本定義的永久連結">¶</a></dt>
 <dt class="sig sig-object py" id="operator.__index__">
 <span class="sig-prename descclassname"><span class="pre">operator.</span></span><span class="sig-name descname"><span class="pre">__index__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#operator.__index__" title="本定義的永久連結">¶</a></dt>
-<dd><p>Return <em>a</em> converted to an integer.  Equivalent to <code class="docutils literal notranslate"><span class="pre">a.__index__()</span></code>.</p>
+<dd><p>回傳 <em>a</em> 轉換為整數的結果。等價於 <code class="docutils literal notranslate"><span class="pre">a.__index__()</span></code>。</p>
 <div class="versionchanged">
-<p><span class="versionmodified changed">在 3.10 版本變更: </span>The result always has exact type <a class="reference internal" href="functions.html#int" title="int"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>.  Previously, the result
-could have been an instance of a subclass of <code class="docutils literal notranslate"><span class="pre">int</span></code>.</p>
+<p><span class="versionmodified changed">在 3.10 版本變更: </span>結果總是 <a class="reference internal" href="functions.html#int" title="int"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a> 型別。在過去的版本中，結果可能為 <code class="docutils literal notranslate"><span class="pre">int</span></code> 子類別的實例。</p>
 </div>
 </dd></dl>
 
@@ -295,7 +276,7 @@ could have been an instance of a subclass of <code class="docutils literal notra
 <span class="sig-prename descclassname"><span class="pre">operator.</span></span><span class="sig-name descname"><span class="pre">__inv__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#operator.__inv__" title="本定義的永久連結">¶</a></dt>
 <dt class="sig sig-object py" id="operator.__invert__">
 <span class="sig-prename descclassname"><span class="pre">operator.</span></span><span class="sig-name descname"><span class="pre">__invert__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#operator.__invert__" title="本定義的永久連結">¶</a></dt>
-<dd><p>Return the bitwise inverse of the number <em>obj</em>.  This is equivalent to <code class="docutils literal notranslate"><span class="pre">~obj</span></code>.</p>
+<dd><p>回傳數字 <em>obj</em> 按位元取反 (inverse) 的結果。這等價於 <code class="docutils literal notranslate"><span class="pre">~obj</span></code>。</p>
 </dd></dl>
 
 <dl class="py function">
@@ -303,7 +284,7 @@ could have been an instance of a subclass of <code class="docutils literal notra
 <span class="sig-prename descclassname"><span class="pre">operator.</span></span><span class="sig-name descname"><span class="pre">lshift</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#operator.lshift" title="本定義的永久連結">¶</a></dt>
 <dt class="sig sig-object py" id="operator.__lshift__">
 <span class="sig-prename descclassname"><span class="pre">operator.</span></span><span class="sig-name descname"><span class="pre">__lshift__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#operator.__lshift__" title="本定義的永久連結">¶</a></dt>
-<dd><p>Return <em>a</em> shifted left by <em>b</em>.</p>
+<dd><p>回傳 <em>a</em> 左移 <em>b</em> 位的結果。</p>
 </dd></dl>
 
 <dl class="py function">
@@ -311,7 +292,7 @@ could have been an instance of a subclass of <code class="docutils literal notra
 <span class="sig-prename descclassname"><span class="pre">operator.</span></span><span class="sig-name descname"><span class="pre">mod</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#operator.mod" title="本定義的永久連結">¶</a></dt>
 <dt class="sig sig-object py" id="operator.__mod__">
 <span class="sig-prename descclassname"><span class="pre">operator.</span></span><span class="sig-name descname"><span class="pre">__mod__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#operator.__mod__" title="本定義的永久連結">¶</a></dt>
-<dd><p>Return <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">%</span> <span class="pre">b</span></code>.</p>
+<dd><p>回傳 <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">%</span> <span class="pre">b</span></code>。</p>
 </dd></dl>
 
 <dl class="py function">
@@ -319,7 +300,7 @@ could have been an instance of a subclass of <code class="docutils literal notra
 <span class="sig-prename descclassname"><span class="pre">operator.</span></span><span class="sig-name descname"><span class="pre">mul</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#operator.mul" title="本定義的永久連結">¶</a></dt>
 <dt class="sig sig-object py" id="operator.__mul__">
 <span class="sig-prename descclassname"><span class="pre">operator.</span></span><span class="sig-name descname"><span class="pre">__mul__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#operator.__mul__" title="本定義的永久連結">¶</a></dt>
-<dd><p>Return <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">*</span> <span class="pre">b</span></code>, for <em>a</em> and <em>b</em> numbers.</p>
+<dd><p>對於數字 <em>a</em> 和 <em>b</em>，回傳 <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">*</span> <span class="pre">b</span></code>。</p>
 </dd></dl>
 
 <dl class="py function">
@@ -327,7 +308,7 @@ could have been an instance of a subclass of <code class="docutils literal notra
 <span class="sig-prename descclassname"><span class="pre">operator.</span></span><span class="sig-name descname"><span class="pre">matmul</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#operator.matmul" title="本定義的永久連結">¶</a></dt>
 <dt class="sig sig-object py" id="operator.__matmul__">
 <span class="sig-prename descclassname"><span class="pre">operator.</span></span><span class="sig-name descname"><span class="pre">__matmul__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#operator.__matmul__" title="本定義的永久連結">¶</a></dt>
-<dd><p>Return <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">&#64;</span> <span class="pre">b</span></code>.</p>
+<dd><p>回傳 <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">&#64;</span> <span class="pre">b</span></code>。</p>
 <div class="versionadded">
 <p><span class="versionmodified added">在 3.5 版本新加入.</span></p>
 </div>
@@ -338,7 +319,7 @@ could have been an instance of a subclass of <code class="docutils literal notra
 <span class="sig-prename descclassname"><span class="pre">operator.</span></span><span class="sig-name descname"><span class="pre">neg</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#operator.neg" title="本定義的永久連結">¶</a></dt>
 <dt class="sig sig-object py" id="operator.__neg__">
 <span class="sig-prename descclassname"><span class="pre">operator.</span></span><span class="sig-name descname"><span class="pre">__neg__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#operator.__neg__" title="本定義的永久連結">¶</a></dt>
-<dd><p>Return <em>obj</em> negated (<code class="docutils literal notranslate"><span class="pre">-obj</span></code>).</p>
+<dd><p>回傳 <em>obj</em> 取負值的結果 (<code class="docutils literal notranslate"><span class="pre">-obj</span></code>)。</p>
 </dd></dl>
 
 <dl class="py function">
@@ -346,7 +327,7 @@ could have been an instance of a subclass of <code class="docutils literal notra
 <span class="sig-prename descclassname"><span class="pre">operator.</span></span><span class="sig-name descname"><span class="pre">or_</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#operator.or_" title="本定義的永久連結">¶</a></dt>
 <dt class="sig sig-object py" id="operator.__or__">
 <span class="sig-prename descclassname"><span class="pre">operator.</span></span><span class="sig-name descname"><span class="pre">__or__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#operator.__or__" title="本定義的永久連結">¶</a></dt>
-<dd><p>Return the bitwise or of <em>a</em> and <em>b</em>.</p>
+<dd><p>回傳 <em>a</em> 和 <em>b</em> 按位元或 (or) 的結果。</p>
 </dd></dl>
 
 <dl class="py function">
@@ -354,7 +335,7 @@ could have been an instance of a subclass of <code class="docutils literal notra
 <span class="sig-prename descclassname"><span class="pre">operator.</span></span><span class="sig-name descname"><span class="pre">pos</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#operator.pos" title="本定義的永久連結">¶</a></dt>
 <dt class="sig sig-object py" id="operator.__pos__">
 <span class="sig-prename descclassname"><span class="pre">operator.</span></span><span class="sig-name descname"><span class="pre">__pos__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#operator.__pos__" title="本定義的永久連結">¶</a></dt>
-<dd><p>Return <em>obj</em> positive (<code class="docutils literal notranslate"><span class="pre">+obj</span></code>).</p>
+<dd><p>回傳 <em>obj</em> 取正的結果 (<code class="docutils literal notranslate"><span class="pre">+obj</span></code>)。</p>
 </dd></dl>
 
 <dl class="py function">
@@ -362,7 +343,7 @@ could have been an instance of a subclass of <code class="docutils literal notra
 <span class="sig-prename descclassname"><span class="pre">operator.</span></span><span class="sig-name descname"><span class="pre">pow</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#operator.pow" title="本定義的永久連結">¶</a></dt>
 <dt class="sig sig-object py" id="operator.__pow__">
 <span class="sig-prename descclassname"><span class="pre">operator.</span></span><span class="sig-name descname"><span class="pre">__pow__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#operator.__pow__" title="本定義的永久連結">¶</a></dt>
-<dd><p>Return <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">**</span> <span class="pre">b</span></code>, for <em>a</em> and <em>b</em> numbers.</p>
+<dd><p>對於數字 <em>a</em> 和 <em>b</em>，回傳 <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">**</span> <span class="pre">b</span></code>。</p>
 </dd></dl>
 
 <dl class="py function">
@@ -370,7 +351,7 @@ could have been an instance of a subclass of <code class="docutils literal notra
 <span class="sig-prename descclassname"><span class="pre">operator.</span></span><span class="sig-name descname"><span class="pre">rshift</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#operator.rshift" title="本定義的永久連結">¶</a></dt>
 <dt class="sig sig-object py" id="operator.__rshift__">
 <span class="sig-prename descclassname"><span class="pre">operator.</span></span><span class="sig-name descname"><span class="pre">__rshift__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#operator.__rshift__" title="本定義的永久連結">¶</a></dt>
-<dd><p>Return <em>a</em> shifted right by <em>b</em>.</p>
+<dd><p>回傳 <em>a</em> 右移 <em>b</em> 位的結果。</p>
 </dd></dl>
 
 <dl class="py function">
@@ -378,7 +359,7 @@ could have been an instance of a subclass of <code class="docutils literal notra
 <span class="sig-prename descclassname"><span class="pre">operator.</span></span><span class="sig-name descname"><span class="pre">sub</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#operator.sub" title="本定義的永久連結">¶</a></dt>
 <dt class="sig sig-object py" id="operator.__sub__">
 <span class="sig-prename descclassname"><span class="pre">operator.</span></span><span class="sig-name descname"><span class="pre">__sub__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#operator.__sub__" title="本定義的永久連結">¶</a></dt>
-<dd><p>Return <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">-</span> <span class="pre">b</span></code>.</p>
+<dd><p>回傳 <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">-</span> <span class="pre">b</span></code>。</p>
 </dd></dl>
 
 <dl class="py function">
@@ -386,8 +367,7 @@ could have been an instance of a subclass of <code class="docutils literal notra
 <span class="sig-prename descclassname"><span class="pre">operator.</span></span><span class="sig-name descname"><span class="pre">truediv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#operator.truediv" title="本定義的永久連結">¶</a></dt>
 <dt class="sig sig-object py" id="operator.__truediv__">
 <span class="sig-prename descclassname"><span class="pre">operator.</span></span><span class="sig-name descname"><span class="pre">__truediv__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#operator.__truediv__" title="本定義的永久連結">¶</a></dt>
-<dd><p>Return <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">/</span> <span class="pre">b</span></code> where 2/3 is .66 rather than 0.  This is also known as
-&quot;true&quot; division.</p>
+<dd><p>回傳 <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">/</span> <span class="pre">b</span></code>，例如 2/3 將等於 .66 而不是 0。這也被稱為「真」除法。</p>
 </dd></dl>
 
 <dl class="py function">
@@ -395,16 +375,16 @@ could have been an instance of a subclass of <code class="docutils literal notra
 <span class="sig-prename descclassname"><span class="pre">operator.</span></span><span class="sig-name descname"><span class="pre">xor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#operator.xor" title="本定義的永久連結">¶</a></dt>
 <dt class="sig sig-object py" id="operator.__xor__">
 <span class="sig-prename descclassname"><span class="pre">operator.</span></span><span class="sig-name descname"><span class="pre">__xor__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#operator.__xor__" title="本定義的永久連結">¶</a></dt>
-<dd><p>Return the bitwise exclusive or of <em>a</em> and <em>b</em>.</p>
+<dd><p>回傳 <em>a</em> 和 <em>b</em> 按位元異或 (exclusive or) 的結果。</p>
 </dd></dl>
 
-<p>Operations which work with sequences (some of them with mappings too) include:</p>
+<p>適用於序列的操作（其中一些也適用於對映 (mapping)），包括：</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="operator.concat">
 <span class="sig-prename descclassname"><span class="pre">operator.</span></span><span class="sig-name descname"><span class="pre">concat</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#operator.concat" title="本定義的永久連結">¶</a></dt>
 <dt class="sig sig-object py" id="operator.__concat__">
 <span class="sig-prename descclassname"><span class="pre">operator.</span></span><span class="sig-name descname"><span class="pre">__concat__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#operator.__concat__" title="本定義的永久連結">¶</a></dt>
-<dd><p>Return <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">+</span> <span class="pre">b</span></code> for <em>a</em> and <em>b</em> sequences.</p>
+<dd><p>對於序列 <em>a</em> 和 <em>b</em>，回傳 <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">+</span> <span class="pre">b</span></code>。</p>
 </dd></dl>
 
 <dl class="py function">
@@ -412,13 +392,13 @@ could have been an instance of a subclass of <code class="docutils literal notra
 <span class="sig-prename descclassname"><span class="pre">operator.</span></span><span class="sig-name descname"><span class="pre">contains</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#operator.contains" title="本定義的永久連結">¶</a></dt>
 <dt class="sig sig-object py" id="operator.__contains__">
 <span class="sig-prename descclassname"><span class="pre">operator.</span></span><span class="sig-name descname"><span class="pre">__contains__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#operator.__contains__" title="本定義的永久連結">¶</a></dt>
-<dd><p>Return the outcome of the test <code class="docutils literal notranslate"><span class="pre">b</span> <span class="pre">in</span> <span class="pre">a</span></code>. Note the reversed operands.</p>
+<dd><p>回傳 <code class="docutils literal notranslate"><span class="pre">b</span> <span class="pre">in</span> <span class="pre">a</span></code> 檢測的結果。請注意運算元是反序的。</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="operator.countOf">
 <span class="sig-prename descclassname"><span class="pre">operator.</span></span><span class="sig-name descname"><span class="pre">countOf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#operator.countOf" title="本定義的永久連結">¶</a></dt>
-<dd><p>Return the number of occurrences of <em>b</em> in <em>a</em>.</p>
+<dd><p>回傳 <em>b</em> 在 <em>a</em> 中的出現次數。</p>
 </dd></dl>
 
 <dl class="py function">
@@ -426,7 +406,7 @@ could have been an instance of a subclass of <code class="docutils literal notra
 <span class="sig-prename descclassname"><span class="pre">operator.</span></span><span class="sig-name descname"><span class="pre">delitem</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#operator.delitem" title="本定義的永久連結">¶</a></dt>
 <dt class="sig sig-object py" id="operator.__delitem__">
 <span class="sig-prename descclassname"><span class="pre">operator.</span></span><span class="sig-name descname"><span class="pre">__delitem__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#operator.__delitem__" title="本定義的永久連結">¶</a></dt>
-<dd><p>Remove the value of <em>a</em> at index <em>b</em>.</p>
+<dd><p>移除 <em>a</em> 中索引為 <em>b</em> 的值。</p>
 </dd></dl>
 
 <dl class="py function">
@@ -434,13 +414,13 @@ could have been an instance of a subclass of <code class="docutils literal notra
 <span class="sig-prename descclassname"><span class="pre">operator.</span></span><span class="sig-name descname"><span class="pre">getitem</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#operator.getitem" title="本定義的永久連結">¶</a></dt>
 <dt class="sig sig-object py" id="operator.__getitem__">
 <span class="sig-prename descclassname"><span class="pre">operator.</span></span><span class="sig-name descname"><span class="pre">__getitem__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#operator.__getitem__" title="本定義的永久連結">¶</a></dt>
-<dd><p>Return the value of <em>a</em> at index <em>b</em>.</p>
+<dd><p>回傳 <em>a</em> 中索引為 <em>b</em> 的值。</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="operator.indexOf">
 <span class="sig-prename descclassname"><span class="pre">operator.</span></span><span class="sig-name descname"><span class="pre">indexOf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#operator.indexOf" title="本定義的永久連結">¶</a></dt>
-<dd><p>Return the index of the first of occurrence of <em>b</em> in <em>a</em>.</p>
+<dd><p>回傳 <em>b</em> 在 <em>a</em> 中首次出現所在的索引。</p>
 </dd></dl>
 
 <dl class="py function">
@@ -448,38 +428,29 @@ could have been an instance of a subclass of <code class="docutils literal notra
 <span class="sig-prename descclassname"><span class="pre">operator.</span></span><span class="sig-name descname"><span class="pre">setitem</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">c</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#operator.setitem" title="本定義的永久連結">¶</a></dt>
 <dt class="sig sig-object py" id="operator.__setitem__">
 <span class="sig-prename descclassname"><span class="pre">operator.</span></span><span class="sig-name descname"><span class="pre">__setitem__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">c</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#operator.__setitem__" title="本定義的永久連結">¶</a></dt>
-<dd><p>Set the value of <em>a</em> at index <em>b</em> to <em>c</em>.</p>
+<dd><p>將 <em>a</em> 中索引為 <em>b</em> 的值設為 <em>c</em>。</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="operator.length_hint">
 <span class="sig-prename descclassname"><span class="pre">operator.</span></span><span class="sig-name descname"><span class="pre">length_hint</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#operator.length_hint" title="本定義的永久連結">¶</a></dt>
-<dd><p>Return an estimated length for the object <em>o</em>. First try to return its
-actual length, then an estimate using <a class="reference internal" href="../reference/datamodel.html#object.__length_hint__" title="object.__length_hint__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">object.__length_hint__()</span></code></a>, and
-finally return the default value.</p>
+<dd><p>回傳物件 <em>o</em> 的估計長度。首先嘗試回傳其實際長度，再使用 <a class="reference internal" href="../reference/datamodel.html#object.__length_hint__" title="object.__length_hint__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">object.__length_hint__()</span></code></a> 得出估計值，最後才是回傳預設值。</p>
 <div class="versionadded">
 <p><span class="versionmodified added">在 3.4 版本新加入.</span></p>
 </div>
 </dd></dl>
 
-<p>The <a class="reference internal" href="#module-operator" title="operator: Functions corresponding to the standard operators."><code class="xref py py-mod docutils literal notranslate"><span class="pre">operator</span></code></a> module also defines tools for generalized attribute and item
-lookups.  These are useful for making fast field extractors as arguments for
-<a class="reference internal" href="functions.html#map" title="map"><code class="xref py py-func docutils literal notranslate"><span class="pre">map()</span></code></a>, <a class="reference internal" href="functions.html#sorted" title="sorted"><code class="xref py py-func docutils literal notranslate"><span class="pre">sorted()</span></code></a>, <a class="reference internal" href="itertools.html#itertools.groupby" title="itertools.groupby"><code class="xref py py-meth docutils literal notranslate"><span class="pre">itertools.groupby()</span></code></a>, or other functions that
-expect a function argument.</p>
+<p><a class="reference internal" href="#module-operator" title="operator: Functions corresponding to the standard operators."><code class="xref py py-mod docutils literal notranslate"><span class="pre">operator</span></code></a> module 還定義了一些用於常規屬性和條目查詢的工具。這些工具適合用來編寫快速欄位提取器以作為 <a class="reference internal" href="functions.html#map" title="map"><code class="xref py py-func docutils literal notranslate"><span class="pre">map()</span></code></a>、<a class="reference internal" href="functions.html#sorted" title="sorted"><code class="xref py py-func docutils literal notranslate"><span class="pre">sorted()</span></code></a>、<a class="reference internal" href="itertools.html#itertools.groupby" title="itertools.groupby"><code class="xref py py-meth docutils literal notranslate"><span class="pre">itertools.groupby()</span></code></a> 或其他需要函式引數的函式之引數。</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="operator.attrgetter">
 <span class="sig-prename descclassname"><span class="pre">operator.</span></span><span class="sig-name descname"><span class="pre">attrgetter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">attr</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#operator.attrgetter" title="本定義的永久連結">¶</a></dt>
 <dt class="sig sig-object py">
 <span class="sig-prename descclassname"><span class="pre">operator.</span></span><span class="sig-name descname"><span class="pre">attrgetter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">attrs</span></span></em><span class="sig-paren">)</span></dt>
-<dd><p>Return a callable object that fetches <em>attr</em> from its operand.
-If more than one attribute is requested, returns a tuple of attributes.
-The attribute names can also contain dots. For example:</p>
+<dd><p>回傳一個可從運算元中獲取 <em>attr</em> 的可呼叫 (callable) 物件。如果請求了一個以上的屬性，則回傳一個包含屬性的 tupple（元組）。屬性名稱還可包含點號。例如：</p>
 <ul class="simple">
-<li><p>After <code class="docutils literal notranslate"><span class="pre">f</span> <span class="pre">=</span> <span class="pre">attrgetter('name')</span></code>, the call <code class="docutils literal notranslate"><span class="pre">f(b)</span></code> returns <code class="docutils literal notranslate"><span class="pre">b.name</span></code>.</p></li>
-<li><p>After <code class="docutils literal notranslate"><span class="pre">f</span> <span class="pre">=</span> <span class="pre">attrgetter('name',</span> <span class="pre">'date')</span></code>, the call <code class="docutils literal notranslate"><span class="pre">f(b)</span></code> returns
-<code class="docutils literal notranslate"><span class="pre">(b.name,</span> <span class="pre">b.date)</span></code>.</p></li>
-<li><p>After <code class="docutils literal notranslate"><span class="pre">f</span> <span class="pre">=</span> <span class="pre">attrgetter('name.first',</span> <span class="pre">'name.last')</span></code>, the call <code class="docutils literal notranslate"><span class="pre">f(b)</span></code>
-returns <code class="docutils literal notranslate"><span class="pre">(b.name.first,</span> <span class="pre">b.name.last)</span></code>.</p></li>
+<li><p>在 <code class="docutils literal notranslate"><span class="pre">f</span> <span class="pre">=</span> <span class="pre">attrgetter('name')</span></code> 之後，呼叫 <code class="docutils literal notranslate"><span class="pre">f(b)</span></code> 將回傳 <code class="docutils literal notranslate"><span class="pre">b.name</span></code>。</p></li>
+<li><p>在 <code class="docutils literal notranslate"><span class="pre">f</span> <span class="pre">=</span> <span class="pre">attrgetter('name',</span> <span class="pre">'date')</span></code> 之後，呼叫 <code class="docutils literal notranslate"><span class="pre">f(b)</span></code> 將回傳 <code class="docutils literal notranslate"><span class="pre">(b.name,</span> <span class="pre">b.date)</span></code>。</p></li>
+<li><p>在 <code class="docutils literal notranslate"><span class="pre">f</span> <span class="pre">=</span> <span class="pre">attrgetter('name.first',</span> <span class="pre">'name.last')</span></code> 之後，呼叫 <code class="docutils literal notranslate"><span class="pre">f(b)</span></code> 將回傳 <code class="docutils literal notranslate"><span class="pre">(b.name.first,</span> <span class="pre">b.name.last)</span></code>。</p></li>
 </ul>
 <p>等價於：</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">attrgetter</span><span class="p">(</span><span class="o">*</span><span class="n">items</span><span class="p">):</span>
@@ -507,13 +478,10 @@ returns <code class="docutils literal notranslate"><span class="pre">(b.name.fir
 <span class="sig-prename descclassname"><span class="pre">operator.</span></span><span class="sig-name descname"><span class="pre">itemgetter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">item</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#operator.itemgetter" title="本定義的永久連結">¶</a></dt>
 <dt class="sig sig-object py">
 <span class="sig-prename descclassname"><span class="pre">operator.</span></span><span class="sig-name descname"><span class="pre">itemgetter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">items</span></span></em><span class="sig-paren">)</span></dt>
-<dd><p>Return a callable object that fetches <em>item</em> from its operand using the
-operand's <a class="reference internal" href="#operator.__getitem__" title="operator.__getitem__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__getitem__()</span></code></a> method.  If multiple items are specified,
-returns a tuple of lookup values.  For example:</p>
+<dd><p>回傳一個使用運算元的 <a class="reference internal" href="#operator.__getitem__" title="operator.__getitem__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__getitem__()</span></code></a> 方法從運算元中獲取 <em>item</em> 的可呼叫物件。如果指定了多個條目，則回傳一個查詢值的 tupple。例如：</p>
 <ul class="simple">
-<li><p>After <code class="docutils literal notranslate"><span class="pre">f</span> <span class="pre">=</span> <span class="pre">itemgetter(2)</span></code>, the call <code class="docutils literal notranslate"><span class="pre">f(r)</span></code> returns <code class="docutils literal notranslate"><span class="pre">r[2]</span></code>.</p></li>
-<li><p>After <code class="docutils literal notranslate"><span class="pre">g</span> <span class="pre">=</span> <span class="pre">itemgetter(2,</span> <span class="pre">5,</span> <span class="pre">3)</span></code>, the call <code class="docutils literal notranslate"><span class="pre">g(r)</span></code> returns
-<code class="docutils literal notranslate"><span class="pre">(r[2],</span> <span class="pre">r[5],</span> <span class="pre">r[3])</span></code>.</p></li>
+<li><p>在 <code class="docutils literal notranslate"><span class="pre">f</span> <span class="pre">=</span> <span class="pre">itemgetter(2)</span></code> 之後，呼叫 <code class="docutils literal notranslate"><span class="pre">f(r)</span></code> 將回傳 <code class="docutils literal notranslate"><span class="pre">r[2]</span></code>。</p></li>
+<li><p>在 <code class="docutils literal notranslate"><span class="pre">g</span> <span class="pre">=</span> <span class="pre">itemgetter(2,</span> <span class="pre">5,</span> <span class="pre">3)</span></code> 之後，呼叫 <code class="docutils literal notranslate"><span class="pre">g(r)</span></code> 將回傳 <code class="docutils literal notranslate"><span class="pre">(r[2],</span> <span class="pre">r[5],</span> <span class="pre">r[3])</span></code>。</p></li>
 </ul>
 <p>等價於：</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">itemgetter</span><span class="p">(</span><span class="o">*</span><span class="n">items</span><span class="p">):</span>
@@ -527,9 +495,7 @@ returns a tuple of lookup values.  For example:</p>
     <span class="k">return</span> <span class="n">g</span>
 </pre></div>
 </div>
-<p>The items can be any type accepted by the operand's <a class="reference internal" href="#operator.__getitem__" title="operator.__getitem__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__getitem__()</span></code></a>
-method.  Dictionaries accept any hashable value.  Lists, tuples, and
-strings accept an index or a slice:</p>
+<p>傳入的條目可以為運算元的 <a class="reference internal" href="#operator.__getitem__" title="operator.__getitem__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__getitem__()</span></code></a> 所接受的任何型別。dictionary（字典）接受任意可雜湊 (hashable) 的值。list、tupple 和字串接受索引或切片：</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">itemgetter</span><span class="p">(</span><span class="mi">1</span><span class="p">)(</span><span class="s1">&#39;ABCDEFG&#39;</span><span class="p">)</span>
 <span class="go">&#39;B&#39;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">itemgetter</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">)(</span><span class="s1">&#39;ABCDEFG&#39;</span><span class="p">)</span>
@@ -541,8 +507,7 @@ strings accept an index or a slice:</p>
 <span class="go">&#39;captain&#39;</span>
 </pre></div>
 </div>
-<p>Example of using <a class="reference internal" href="#operator.itemgetter" title="operator.itemgetter"><code class="xref py py-func docutils literal notranslate"><span class="pre">itemgetter()</span></code></a> to retrieve specific fields from a
-tuple record:</p>
+<p>使用 <a class="reference internal" href="#operator.itemgetter" title="operator.itemgetter"><code class="xref py py-func docutils literal notranslate"><span class="pre">itemgetter()</span></code></a> 從 tuple 中提取特定欄位的例子：</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">inventory</span> <span class="o">=</span> <span class="p">[(</span><span class="s1">&#39;apple&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;banana&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;pear&#39;</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;orange&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">getcount</span> <span class="o">=</span> <span class="n">itemgetter</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">getcount</span><span class="p">,</span> <span class="n">inventory</span><span class="p">))</span>
@@ -556,13 +521,10 @@ tuple record:</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="operator.methodcaller">
 <span class="sig-prename descclassname"><span class="pre">operator.</span></span><span class="sig-name descname"><span class="pre">methodcaller</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">/</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#operator.methodcaller" title="本定義的永久連結">¶</a></dt>
-<dd><p>Return a callable object that calls the method <em>name</em> on its operand.  If
-additional arguments and/or keyword arguments are given, they will be given
-to the method as well.  For example:</p>
+<dd><p>回傳一個在運算元上呼叫 <em>name</em> method 的可呼叫物件。如果給定額外的引數和/或關鍵字引數，它們也將被傳給該 method。例如：</p>
 <ul class="simple">
-<li><p>After <code class="docutils literal notranslate"><span class="pre">f</span> <span class="pre">=</span> <span class="pre">methodcaller('name')</span></code>, the call <code class="docutils literal notranslate"><span class="pre">f(b)</span></code> returns <code class="docutils literal notranslate"><span class="pre">b.name()</span></code>.</p></li>
-<li><p>After <code class="docutils literal notranslate"><span class="pre">f</span> <span class="pre">=</span> <span class="pre">methodcaller('name',</span> <span class="pre">'foo',</span> <span class="pre">bar=1)</span></code>, the call <code class="docutils literal notranslate"><span class="pre">f(b)</span></code>
-returns <code class="docutils literal notranslate"><span class="pre">b.name('foo',</span> <span class="pre">bar=1)</span></code>.</p></li>
+<li><p>在 <code class="docutils literal notranslate"><span class="pre">f</span> <span class="pre">=</span> <span class="pre">methodcaller('name')</span></code> 之後，呼叫 <code class="docutils literal notranslate"><span class="pre">f(b)</span></code> 將回傳 <code class="docutils literal notranslate"><span class="pre">b.name()</span></code>。</p></li>
+<li><p>在 <code class="docutils literal notranslate"><span class="pre">f</span> <span class="pre">=</span> <span class="pre">methodcaller('name',</span> <span class="pre">'foo',</span> <span class="pre">bar=1)</span></code> 之後，呼叫 <code class="docutils literal notranslate"><span class="pre">f(b)</span></code> 將回傳 <code class="docutils literal notranslate"><span class="pre">b.name('foo',</span> <span class="pre">bar=1)</span></code>。</p></li>
 </ul>
 <p>等價於：</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">methodcaller</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="o">/</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
@@ -574,9 +536,8 @@ returns <code class="docutils literal notranslate"><span class="pre">b.name('foo
 </dd></dl>
 
 <section id="mapping-operators-to-functions">
-<span id="operator-map"></span><h2>Mapping Operators to Functions<a class="headerlink" href="#mapping-operators-to-functions" title="本標題的永久連結">¶</a></h2>
-<p>This table shows how abstract operations correspond to operator symbols in the
-Python syntax and the functions in the <a class="reference internal" href="#module-operator" title="operator: Functions corresponding to the standard operators."><code class="xref py py-mod docutils literal notranslate"><span class="pre">operator</span></code></a> module.</p>
+<span id="operator-map"></span><h2>運算子與函式間的對映<a class="headerlink" href="#mapping-operators-to-functions" title="本標題的永久連結">¶</a></h2>
+<p>以下表格表示了抽象運算是如何對應於 Python 語法中的運算子和 <a class="reference internal" href="#module-operator" title="operator: Functions corresponding to the standard operators."><code class="xref py py-mod docutils literal notranslate"><span class="pre">operator</span></code></a> module中的函式。</p>
 <table class="docutils align-default">
 <colgroup>
 <col style="width: 26%" />
@@ -584,149 +545,149 @@ Python syntax and the functions in the <a class="reference internal" href="#modu
 <col style="width: 45%" />
 </colgroup>
 <thead>
-<tr class="row-odd"><th class="head"><p>Operation</p></th>
-<th class="head"><p>Syntax</p></th>
+<tr class="row-odd"><th class="head"><p>運算</p></th>
+<th class="head"><p>語法</p></th>
 <th class="head"><p>函式</p></th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>Addition</p></td>
+<tr class="row-even"><td><p>加法</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">+</span> <span class="pre">b</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">add(a,</span> <span class="pre">b)</span></code></p></td>
 </tr>
-<tr class="row-odd"><td><p>Concatenation</p></td>
+<tr class="row-odd"><td><p>字串串接</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">seq1</span> <span class="pre">+</span> <span class="pre">seq2</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">concat(seq1,</span> <span class="pre">seq2)</span></code></p></td>
 </tr>
-<tr class="row-even"><td><p>Containment Test</p></td>
+<tr class="row-even"><td><p>包含性檢測</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">obj</span> <span class="pre">in</span> <span class="pre">seq</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">contains(seq,</span> <span class="pre">obj)</span></code></p></td>
 </tr>
-<tr class="row-odd"><td><p>Division</p></td>
+<tr class="row-odd"><td><p>除法</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">/</span> <span class="pre">b</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">truediv(a,</span> <span class="pre">b)</span></code></p></td>
 </tr>
-<tr class="row-even"><td><p>Division</p></td>
+<tr class="row-even"><td><p>除法</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">//</span> <span class="pre">b</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">floordiv(a,</span> <span class="pre">b)</span></code></p></td>
 </tr>
-<tr class="row-odd"><td><p>Bitwise And</p></td>
+<tr class="row-odd"><td><p>按位元與 (And)</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">&amp;</span> <span class="pre">b</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">and_(a,</span> <span class="pre">b)</span></code></p></td>
 </tr>
-<tr class="row-even"><td><p>Bitwise Exclusive Or</p></td>
+<tr class="row-even"><td><p>按位元互斥或 (Exclusive Or)</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">^</span> <span class="pre">b</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">xor(a,</span> <span class="pre">b)</span></code></p></td>
 </tr>
-<tr class="row-odd"><td><p>Bitwise Inversion</p></td>
+<tr class="row-odd"><td><p>按位元取反 (Inversion)</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">~</span> <span class="pre">a</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">invert(a)</span></code></p></td>
 </tr>
-<tr class="row-even"><td><p>Bitwise Or</p></td>
+<tr class="row-even"><td><p>按位元或 (Or)</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">|</span> <span class="pre">b</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">or_(a,</span> <span class="pre">b)</span></code></p></td>
 </tr>
-<tr class="row-odd"><td><p>Exponentiation</p></td>
+<tr class="row-odd"><td><p>取冪</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">**</span> <span class="pre">b</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">pow(a,</span> <span class="pre">b)</span></code></p></td>
 </tr>
-<tr class="row-even"><td><p>Identity</p></td>
+<tr class="row-even"><td><p>標識</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">is</span> <span class="pre">b</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">is_(a,</span> <span class="pre">b)</span></code></p></td>
 </tr>
-<tr class="row-odd"><td><p>Identity</p></td>
+<tr class="row-odd"><td><p>標識</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">is</span> <span class="pre">not</span> <span class="pre">b</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">is_not(a,</span> <span class="pre">b)</span></code></p></td>
 </tr>
-<tr class="row-even"><td><p>Indexed Assignment</p></td>
+<tr class="row-even"><td><p>索引賦值</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">obj[k]</span> <span class="pre">=</span> <span class="pre">v</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">setitem(obj,</span> <span class="pre">k,</span> <span class="pre">v)</span></code></p></td>
 </tr>
-<tr class="row-odd"><td><p>Indexed Deletion</p></td>
+<tr class="row-odd"><td><p>索引刪除</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">del</span> <span class="pre">obj[k]</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">delitem(obj,</span> <span class="pre">k)</span></code></p></td>
 </tr>
-<tr class="row-even"><td><p>Indexing</p></td>
+<tr class="row-even"><td><p>索引取值</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">obj[k]</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">getitem(obj,</span> <span class="pre">k)</span></code></p></td>
 </tr>
-<tr class="row-odd"><td><p>Left Shift</p></td>
+<tr class="row-odd"><td><p>左移</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">&lt;&lt;</span> <span class="pre">b</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">lshift(a,</span> <span class="pre">b)</span></code></p></td>
 </tr>
-<tr class="row-even"><td><p>Modulo</p></td>
+<tr class="row-even"><td><p>模除 (Modulo)</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">%</span> <span class="pre">b</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">mod(a,</span> <span class="pre">b)</span></code></p></td>
 </tr>
-<tr class="row-odd"><td><p>Multiplication</p></td>
+<tr class="row-odd"><td><p>乘法</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">*</span> <span class="pre">b</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">mul(a,</span> <span class="pre">b)</span></code></p></td>
 </tr>
-<tr class="row-even"><td><p>Matrix Multiplication</p></td>
+<tr class="row-even"><td><p>矩陣乘法</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">&#64;</span> <span class="pre">b</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">matmul(a,</span> <span class="pre">b)</span></code></p></td>
 </tr>
-<tr class="row-odd"><td><p>Negation (Arithmetic)</p></td>
+<tr class="row-odd"><td><p>反相（算術）</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">-</span> <span class="pre">a</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">neg(a)</span></code></p></td>
 </tr>
-<tr class="row-even"><td><p>Negation (Logical)</p></td>
+<tr class="row-even"><td><p>反相（邏輯）</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">not</span> <span class="pre">a</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">not_(a)</span></code></p></td>
 </tr>
-<tr class="row-odd"><td><p>Positive</p></td>
+<tr class="row-odd"><td><p>正數</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">+</span> <span class="pre">a</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">pos(a)</span></code></p></td>
 </tr>
-<tr class="row-even"><td><p>Right Shift</p></td>
+<tr class="row-even"><td><p>右移</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">&gt;&gt;</span> <span class="pre">b</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">rshift(a,</span> <span class="pre">b)</span></code></p></td>
 </tr>
-<tr class="row-odd"><td><p>Slice Assignment</p></td>
+<tr class="row-odd"><td><p>切片賦值</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">seq[i:j]</span> <span class="pre">=</span> <span class="pre">values</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">setitem(seq,</span> <span class="pre">slice(i,</span> <span class="pre">j),</span> <span class="pre">values)</span></code></p></td>
 </tr>
-<tr class="row-even"><td><p>Slice Deletion</p></td>
+<tr class="row-even"><td><p>切片刪除</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">del</span> <span class="pre">seq[i:j]</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">delitem(seq,</span> <span class="pre">slice(i,</span> <span class="pre">j))</span></code></p></td>
 </tr>
-<tr class="row-odd"><td><p>Slicing</p></td>
+<tr class="row-odd"><td><p>切片取值</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">seq[i:j]</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">getitem(seq,</span> <span class="pre">slice(i,</span> <span class="pre">j))</span></code></p></td>
 </tr>
-<tr class="row-even"><td><p>String Formatting</p></td>
+<tr class="row-even"><td><p>字串格式化</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">s</span> <span class="pre">%</span> <span class="pre">obj</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">mod(s,</span> <span class="pre">obj)</span></code></p></td>
 </tr>
-<tr class="row-odd"><td><p>Subtraction</p></td>
+<tr class="row-odd"><td><p>減法</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">-</span> <span class="pre">b</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">sub(a,</span> <span class="pre">b)</span></code></p></td>
 </tr>
-<tr class="row-even"><td><p>Truth Test</p></td>
+<tr class="row-even"><td><p>真值檢測</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">obj</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">truth(obj)</span></code></p></td>
 </tr>
-<tr class="row-odd"><td><p>Ordering</p></td>
+<tr class="row-odd"><td><p>比較大小</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">&lt;</span> <span class="pre">b</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">lt(a,</span> <span class="pre">b)</span></code></p></td>
 </tr>
-<tr class="row-even"><td><p>Ordering</p></td>
+<tr class="row-even"><td><p>比較大小</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">&lt;=</span> <span class="pre">b</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">le(a,</span> <span class="pre">b)</span></code></p></td>
 </tr>
-<tr class="row-odd"><td><p>Equality</p></td>
+<tr class="row-odd"><td><p>相等性</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">==</span> <span class="pre">b</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">eq(a,</span> <span class="pre">b)</span></code></p></td>
 </tr>
-<tr class="row-even"><td><p>Difference</p></td>
+<tr class="row-even"><td><p>不等性</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">!=</span> <span class="pre">b</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">ne(a,</span> <span class="pre">b)</span></code></p></td>
 </tr>
-<tr class="row-odd"><td><p>Ordering</p></td>
+<tr class="row-odd"><td><p>比較大小</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">&gt;=</span> <span class="pre">b</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">ge(a,</span> <span class="pre">b)</span></code></p></td>
 </tr>
-<tr class="row-even"><td><p>Ordering</p></td>
+<tr class="row-even"><td><p>比較大小</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">&gt;</span> <span class="pre">b</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">gt(a,</span> <span class="pre">b)</span></code></p></td>
 </tr>
@@ -734,19 +695,10 @@ Python syntax and the functions in the <a class="reference internal" href="#modu
 </table>
 </section>
 <section id="in-place-operators">
-<h2>In-place Operators<a class="headerlink" href="#in-place-operators" title="本標題的永久連結">¶</a></h2>
-<p>Many operations have an &quot;in-place&quot; version.  Listed below are functions
-providing a more primitive access to in-place operators than the usual syntax
-does; for example, the <a class="reference internal" href="../glossary.html#term-statement"><span class="xref std std-term">statement</span></a> <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">+=</span> <span class="pre">y</span></code> is equivalent to
-<code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">=</span> <span class="pre">operator.iadd(x,</span> <span class="pre">y)</span></code>.  Another way to put it is to say that
-<code class="docutils literal notranslate"><span class="pre">z</span> <span class="pre">=</span> <span class="pre">operator.iadd(x,</span> <span class="pre">y)</span></code> is equivalent to the compound statement
-<code class="docutils literal notranslate"><span class="pre">z</span> <span class="pre">=</span> <span class="pre">x;</span> <span class="pre">z</span> <span class="pre">+=</span> <span class="pre">y</span></code>.</p>
-<p>In those examples, note that when an in-place method is called, the computation
-and assignment are performed in two separate steps.  The in-place functions
-listed below only do the first step, calling the in-place method.  The second
-step, assignment, is not handled.</p>
-<p>For immutable targets such as strings, numbers, and tuples, the updated
-value is computed, but not assigned back to the input variable:</p>
+<h2>原地 (in-place) 運算子<a class="headerlink" href="#in-place-operators" title="本標題的永久連結">¶</a></h2>
+<p>許多運算都有「原地」版本。以下列出的是提供對原地運算子（與一般語法相比）更底層存取的函式，例如 <a class="reference internal" href="../glossary.html#term-statement"><span class="xref std std-term">statement</span></a> <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">+=</span> <span class="pre">y</span></code> 相當於 <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">=</span> <span class="pre">operator.iadd(x,</span> <span class="pre">y)</span></code>。換一種方式來講就是 <code class="docutils literal notranslate"><span class="pre">z</span> <span class="pre">=</span> <span class="pre">operator.iadd(x,</span> <span class="pre">y)</span></code> 等價於複合陳述式 <code class="docutils literal notranslate"><span class="pre">z</span> <span class="pre">=</span> <span class="pre">x;</span> <span class="pre">z</span> <span class="pre">+=</span> <span class="pre">y</span></code>。</p>
+<p>在這些例子中，請注意當呼叫一個原地方法時，運算和賦值是分成兩個步驟來執行的。下面列出的原地函式只執行第一步，即呼叫原地方法，第二步賦值則不加處理。</p>
+<p>對於不可變 (immutable) 的目標例如字串、數字和 tupple，更新的值會被計算，但不會被再被賦值給輸入變數：</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="s1">&#39;hello&#39;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">iadd</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="s1">&#39; world&#39;</span><span class="p">)</span>
 <span class="go">&#39;hello world&#39;</span>
@@ -754,8 +706,7 @@ value is computed, but not assigned back to the input variable:</p>
 <span class="go">&#39;hello&#39;</span>
 </pre></div>
 </div>
-<p>For mutable targets such as lists and dictionaries, the in-place method
-will perform the update, so no subsequent assignment is necessary:</p>
+<p>對於可變 (mutable) 的目標例如 list 和 dictionary，原地方法將執行更新，因此不需要後續賦值操作：</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;h&#39;</span><span class="p">,</span> <span class="s1">&#39;e&#39;</span><span class="p">,</span> <span class="s1">&#39;l&#39;</span><span class="p">,</span> <span class="s1">&#39;l&#39;</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">iadd</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="s1">&#39;l&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">])</span>
 <span class="go">[&#39;h&#39;, &#39;e&#39;, &#39;l&#39;, &#39;l&#39;, &#39;o&#39;, &#39; &#39;, &#39;w&#39;, &#39;o&#39;, &#39;r&#39;, &#39;l&#39;, &#39;d&#39;]</span>
@@ -784,7 +735,7 @@ will perform the update, so no subsequent assignment is necessary:</p>
 <span class="sig-prename descclassname"><span class="pre">operator.</span></span><span class="sig-name descname"><span class="pre">iconcat</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#operator.iconcat" title="本定義的永久連結">¶</a></dt>
 <dt class="sig sig-object py" id="operator.__iconcat__">
 <span class="sig-prename descclassname"><span class="pre">operator.</span></span><span class="sig-name descname"><span class="pre">__iconcat__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#operator.__iconcat__" title="本定義的永久連結">¶</a></dt>
-<dd><p><code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">=</span> <span class="pre">iconcat(a,</span> <span class="pre">b)</span></code> is equivalent to <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">+=</span> <span class="pre">b</span></code> for <em>a</em> and <em>b</em> sequences.</p>
+<dd><p><code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">=</span> <span class="pre">iconcat(a,</span> <span class="pre">b)</span></code> 等價於 <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">+=</span> <span class="pre">b</span></code>，其中 <em>a</em> 和 <em>b</em> 為序列。</p>
 </dd></dl>
 
 <dl class="py function">
@@ -891,9 +842,9 @@ will perform the update, so no subsequent assignment is necessary:</p>
   <div>
     <h3><a href="../contents.html">目錄</a></h3>
     <ul>
-<li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">operator</span></code> --- Standard operators as functions</a><ul>
-<li><a class="reference internal" href="#mapping-operators-to-functions">Mapping Operators to Functions</a></li>
-<li><a class="reference internal" href="#in-place-operators">In-place Operators</a></li>
+<li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">operator</span></code> --- 標準運算子替代函式</a><ul>
+<li><a class="reference internal" href="#mapping-operators-to-functions">運算子與函式間的對映</a></li>
+<li><a class="reference internal" href="#in-place-operators">原地 (in-place) 運算子</a></li>
 </ul>
 </li>
 </ul>
@@ -955,7 +906,7 @@ will perform the update, so no subsequent assignment is necessary:</p>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="functional.html" >函式編程模組</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href=""><code class="xref py py-mod docutils literal notranslate"><span class="pre">operator</span></code> --- Standard operators as functions</a></li>
+        <li class="nav-item nav-item-this"><a href=""><code class="xref py py-mod docutils literal notranslate"><span class="pre">operator</span></code> --- 標準運算子替代函式</a></li>
                 <li class="right">
                     
 
