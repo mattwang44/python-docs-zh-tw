@@ -118,8 +118,8 @@
 <li><a class="reference internal" href="#context-manager-types">Context Manager Types</a></li>
 <li><a class="reference internal" href="#type-annotation-types-generic-alias-union">Type Annotation Types --- <span class="xref std std-ref">Generic Alias</span>, <span class="xref std std-ref">Union</span></a><ul>
 <li><a class="reference internal" href="#generic-alias-type">Generic Alias Type</a><ul>
-<li><a class="reference internal" href="#standard-generic-collections">Standard Generic Collections</a></li>
-<li><a class="reference internal" href="#special-attributes-of-generic-alias">Special Attributes of Generic Alias</a></li>
+<li><a class="reference internal" href="#standard-generic-classes">Standard Generic Classes</a></li>
+<li><a class="reference internal" href="#special-attributes-of-genericalias-objects">Special Attributes of <code class="docutils literal notranslate"><span class="pre">GenericAlias</span></code> objects</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#union-type">Union Type</a></li>
@@ -5068,30 +5068,50 @@ single class dictionary lookup is negligible.</p>
 <a class="reference internal" href="#types-genericalias"><span class="std std-ref">Generic Alias</span></a> and <a class="reference internal" href="#types-union"><span class="std std-ref">Union</span></a>.</p>
 <section id="generic-alias-type">
 <span id="types-genericalias"></span><h3>Generic Alias Type<a class="headerlink" href="#generic-alias-type" title="本標題的永久連結">¶</a></h3>
-<p id="index-55"><code class="docutils literal notranslate"><span class="pre">GenericAlias</span></code> objects are created by subscripting a class (usually a
-container), such as <code class="docutils literal notranslate"><span class="pre">list[int]</span></code>.  They are intended primarily for
+<p id="index-55"><code class="docutils literal notranslate"><span class="pre">GenericAlias</span></code> objects are generally created by
+<a class="reference internal" href="../reference/expressions.html#subscriptions"><span class="std std-ref">subscripting</span></a> a class. They are most often used with
+<a class="reference internal" href="../reference/datamodel.html#sequence-types"><span class="std std-ref">container classes</span></a>, such as <a class="reference internal" href="#list" title="list"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a> or
+<a class="reference internal" href="#dict" title="dict"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>. For example, <code class="docutils literal notranslate"><span class="pre">list[int]</span></code> is a <code class="docutils literal notranslate"><span class="pre">GenericAlias</span></code> object created
+by subscripting the <code class="docutils literal notranslate"><span class="pre">list</span></code> class with the argument <a class="reference internal" href="functions.html#int" title="int"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>.
+<code class="docutils literal notranslate"><span class="pre">GenericAlias</span></code> objects are intended primarily for use with
 <a class="reference internal" href="../glossary.html#term-annotation"><span class="xref std std-term">type annotations</span></a>.</p>
-<p>Usually, the <a class="reference internal" href="../reference/expressions.html#subscriptions"><span class="std std-ref">subscription</span></a> of container objects calls the
-method <code class="xref py py-meth docutils literal notranslate"><span class="pre">__getitem__()</span></code> of the object.  However, the subscription of some
-containers' classes may call the classmethod <code class="xref py py-meth docutils literal notranslate"><span class="pre">__class_getitem__()</span></code> of the
-class instead. The classmethod <code class="xref py py-meth docutils literal notranslate"><span class="pre">__class_getitem__()</span></code> should return a
-<code class="docutils literal notranslate"><span class="pre">GenericAlias</span></code> object.</p>
 <div class="admonition note">
 <p class="admonition-title">備註</p>
-<p>If the <code class="xref py py-meth docutils literal notranslate"><span class="pre">__getitem__()</span></code> of the class' metaclass is present, it will take
-precedence over the <code class="xref py py-meth docutils literal notranslate"><span class="pre">__class_getitem__()</span></code> defined in the class (see
-<span class="target" id="index-56"></span><a class="pep reference external" href="https://www.python.org/dev/peps/pep-0560"><strong>PEP 560</strong></a> for more details).</p>
+<p>It is generally only possible to subscript a class if the class implements
+the special method <a class="reference internal" href="../reference/datamodel.html#object.__class_getitem__" title="object.__class_getitem__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__class_getitem__()</span></code></a>.</p>
 </div>
-<p>The <code class="docutils literal notranslate"><span class="pre">GenericAlias</span></code> object acts as a proxy for <a class="reference internal" href="../glossary.html#term-generic-type"><span class="xref std std-term">generic types</span></a>, implementing <em>parameterized generics</em> - a specific instance
-of a generic which provides the types for container elements.</p>
-<p>The user-exposed type for the <code class="docutils literal notranslate"><span class="pre">GenericAlias</span></code> object can be accessed from
-<a class="reference internal" href="types.html#types.GenericAlias" title="types.GenericAlias"><code class="xref py py-class docutils literal notranslate"><span class="pre">types.GenericAlias</span></code></a> and used for <a class="reference internal" href="functions.html#isinstance" title="isinstance"><code class="xref py py-func docutils literal notranslate"><span class="pre">isinstance()</span></code></a> checks.  It can
-also be used to create <code class="docutils literal notranslate"><span class="pre">GenericAlias</span></code> objects directly.</p>
+<p>A <code class="docutils literal notranslate"><span class="pre">GenericAlias</span></code> object acts as a proxy for a <a class="reference internal" href="../glossary.html#term-generic-type"><span class="xref std std-term">generic type</span></a>,
+implementing <em>parameterized generics</em>.</p>
+<p>For a container class, the
+argument(s) supplied to a <a class="reference internal" href="../reference/expressions.html#subscriptions"><span class="std std-ref">subscription</span></a> of the class may
+indicate the type(s) of the elements an object contains. For example,
+<code class="docutils literal notranslate"><span class="pre">set[bytes]</span></code> can be used in type annotations to signify a <a class="reference internal" href="#set" title="set"><code class="xref py py-class docutils literal notranslate"><span class="pre">set</span></code></a> in
+which all the elements are of type <a class="reference internal" href="#bytes" title="bytes"><code class="xref py py-class docutils literal notranslate"><span class="pre">bytes</span></code></a>.</p>
+<p>For a class which defines <a class="reference internal" href="../reference/datamodel.html#object.__class_getitem__" title="object.__class_getitem__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__class_getitem__()</span></code></a> but is not a
+container, the argument(s) supplied to a subscription of the class will often
+indicate the return type(s) of one or more methods defined on an object. For
+example, <a class="reference internal" href="re.html#module-re" title="re: Regular expression operations."><code class="xref py py-mod docutils literal notranslate"><span class="pre">regular</span> <span class="pre">expressions</span></code></a> can be used on both the <a class="reference internal" href="#str" title="str"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a> data
+type and the <a class="reference internal" href="#bytes" title="bytes"><code class="xref py py-class docutils literal notranslate"><span class="pre">bytes</span></code></a> data type:</p>
+<ul class="simple">
+<li><p>If <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">=</span> <span class="pre">re.search('foo',</span> <span class="pre">'foo')</span></code>, <code class="docutils literal notranslate"><span class="pre">x</span></code> will be a
+<a class="reference internal" href="re.html#match-objects"><span class="std std-ref">re.Match</span></a> object where the return values of
+<code class="docutils literal notranslate"><span class="pre">x.group(0)</span></code> and <code class="docutils literal notranslate"><span class="pre">x[0]</span></code> will both be of type <a class="reference internal" href="#str" title="str"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>. We can
+represent this kind of object in type annotations with the <code class="docutils literal notranslate"><span class="pre">GenericAlias</span></code>
+<code class="docutils literal notranslate"><span class="pre">re.Match[str]</span></code>.</p></li>
+<li><p>If <code class="docutils literal notranslate"><span class="pre">y</span> <span class="pre">=</span> <span class="pre">re.search(b'bar',</span> <span class="pre">b'bar')</span></code>, (note the <code class="docutils literal notranslate"><span class="pre">b</span></code> for <a class="reference internal" href="#bytes" title="bytes"><code class="xref py py-class docutils literal notranslate"><span class="pre">bytes</span></code></a>),
+<code class="docutils literal notranslate"><span class="pre">y</span></code> will also be an instance of <code class="docutils literal notranslate"><span class="pre">re.Match</span></code>, but the return
+values of <code class="docutils literal notranslate"><span class="pre">y.group(0)</span></code> and <code class="docutils literal notranslate"><span class="pre">y[0]</span></code> will both be of type
+<a class="reference internal" href="#bytes" title="bytes"><code class="xref py py-class docutils literal notranslate"><span class="pre">bytes</span></code></a>. In type annotations, we would represent this
+variety of <a class="reference internal" href="re.html#match-objects"><span class="std std-ref">re.Match</span></a> objects with <code class="docutils literal notranslate"><span class="pre">re.Match[bytes]</span></code>.</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">GenericAlias</span></code> objects are instances of the class
+<a class="reference internal" href="types.html#types.GenericAlias" title="types.GenericAlias"><code class="xref py py-class docutils literal notranslate"><span class="pre">types.GenericAlias</span></code></a>, which can also be used to create <code class="docutils literal notranslate"><span class="pre">GenericAlias</span></code>
+objects directly.</p>
 <dl class="describe">
 <dt class="sig sig-object">
 <span class="sig-name descname"><span class="pre">T[X,</span> <span class="pre">Y,</span> <span class="pre">...]</span></span></dt>
-<dd><p>Creates a <code class="docutils literal notranslate"><span class="pre">GenericAlias</span></code> representing a type <code class="docutils literal notranslate"><span class="pre">T</span></code> containing elements
-of types <em>X</em>, <em>Y</em>, and more depending on the <code class="docutils literal notranslate"><span class="pre">T</span></code> used.
+<dd><p>Creates a <code class="docutils literal notranslate"><span class="pre">GenericAlias</span></code> representing a type <code class="docutils literal notranslate"><span class="pre">T</span></code> parameterized by types
+<em>X</em>, <em>Y</em>, and more depending on the <code class="docutils literal notranslate"><span class="pre">T</span></code> used.
 For example, a function expecting a <a class="reference internal" href="#list" title="list"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a> containing
 <a class="reference internal" href="functions.html#float" title="float"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a> elements:</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">average</span><span class="p">(</span><span class="n">values</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
@@ -5118,7 +5138,7 @@ keys of type <a class="reference internal" href="#str" title="str"><code class="
 </div>
 <p>The Python runtime does not enforce <a class="reference internal" href="../glossary.html#term-annotation"><span class="xref std std-term">type annotations</span></a>.
 This extends to generic types and their type parameters. When creating
-an object from a <code class="docutils literal notranslate"><span class="pre">GenericAlias</span></code>, container elements are not checked
+a container object from a <code class="docutils literal notranslate"><span class="pre">GenericAlias</span></code>, the elements in the container are not checked
 against their type. For example, the following code is discouraged, but will
 run without errors:</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">t</span> <span class="o">=</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
@@ -5145,8 +5165,8 @@ creation:</p>
 <span class="go">&#39;list[int]&#39;</span>
 </pre></div>
 </div>
-<p>The <code class="xref py py-meth docutils literal notranslate"><span class="pre">__getitem__()</span></code> method of generics will raise an exception to disallow
-mistakes like <code class="docutils literal notranslate"><span class="pre">dict[str][str]</span></code>:</p>
+<p>The <a class="reference internal" href="../reference/datamodel.html#object.__getitem__" title="object.__getitem__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__getitem__()</span></code></a> method of generic containers will raise an
+exception to disallow mistakes like <code class="docutils literal notranslate"><span class="pre">dict[str][str]</span></code>:</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">][</span><span class="nb">str</span><span class="p">]</span>
 <span class="gt">Traceback (most recent call last):</span>
   File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
@@ -5162,9 +5182,10 @@ in the <code class="docutils literal notranslate"><span class="pre">GenericAlias
 <span class="go">dict[str, int]</span>
 </pre></div>
 </div>
-<section id="standard-generic-collections">
-<h4>Standard Generic Collections<a class="headerlink" href="#standard-generic-collections" title="本標題的永久連結">¶</a></h4>
-<p>These standard library collections support parameterized generics.</p>
+<section id="standard-generic-classes">
+<h4>Standard Generic Classes<a class="headerlink" href="#standard-generic-classes" title="本標題的永久連結">¶</a></h4>
+<p>The following standard library classes support parameterized generics. This
+list is non-exhaustive.</p>
 <ul class="simple">
 <li><p><a class="reference internal" href="#tuple" title="tuple"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a></p></li>
 <li><p><a class="reference internal" href="#list" title="list"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a></p></li>
@@ -5202,12 +5223,32 @@ in the <code class="docutils literal notranslate"><span class="pre">GenericAlias
 <li><p><a class="reference internal" href="collections.abc.html#collections.abc.ValuesView" title="collections.abc.ValuesView"><code class="xref py py-class docutils literal notranslate"><span class="pre">collections.abc.ValuesView</span></code></a></p></li>
 <li><p><a class="reference internal" href="contextlib.html#contextlib.AbstractContextManager" title="contextlib.AbstractContextManager"><code class="xref py py-class docutils literal notranslate"><span class="pre">contextlib.AbstractContextManager</span></code></a></p></li>
 <li><p><a class="reference internal" href="contextlib.html#contextlib.AbstractAsyncContextManager" title="contextlib.AbstractAsyncContextManager"><code class="xref py py-class docutils literal notranslate"><span class="pre">contextlib.AbstractAsyncContextManager</span></code></a></p></li>
+<li><p><a class="reference internal" href="dataclasses.html#dataclasses.Field" title="dataclasses.Field"><code class="xref py py-class docutils literal notranslate"><span class="pre">dataclasses.Field</span></code></a></p></li>
+<li><p><a class="reference internal" href="functools.html#functools.cached_property" title="functools.cached_property"><code class="xref py py-class docutils literal notranslate"><span class="pre">functools.cached_property</span></code></a></p></li>
+<li><p><a class="reference internal" href="functools.html#functools.partialmethod" title="functools.partialmethod"><code class="xref py py-class docutils literal notranslate"><span class="pre">functools.partialmethod</span></code></a></p></li>
+<li><p><a class="reference internal" href="os.html#os.PathLike" title="os.PathLike"><code class="xref py py-class docutils literal notranslate"><span class="pre">os.PathLike</span></code></a></p></li>
+<li><p><a class="reference internal" href="pathlib.html#pathlib.Path" title="pathlib.Path"><code class="xref py py-class docutils literal notranslate"><span class="pre">pathlib.Path</span></code></a></p></li>
+<li><p><a class="reference internal" href="pathlib.html#pathlib.PurePath" title="pathlib.PurePath"><code class="xref py py-class docutils literal notranslate"><span class="pre">pathlib.PurePath</span></code></a></p></li>
+<li><p><a class="reference internal" href="pathlib.html#pathlib.PurePosixPath" title="pathlib.PurePosixPath"><code class="xref py py-class docutils literal notranslate"><span class="pre">pathlib.PurePosixPath</span></code></a></p></li>
+<li><p><a class="reference internal" href="pathlib.html#pathlib.PureWindowsPath" title="pathlib.PureWindowsPath"><code class="xref py py-class docutils literal notranslate"><span class="pre">pathlib.PureWindowsPath</span></code></a></p></li>
+<li><p><a class="reference internal" href="queue.html#queue.LifoQueue" title="queue.LifoQueue"><code class="xref py py-class docutils literal notranslate"><span class="pre">queue.LifoQueue</span></code></a></p></li>
+<li><p><a class="reference internal" href="queue.html#queue.Queue" title="queue.Queue"><code class="xref py py-class docutils literal notranslate"><span class="pre">queue.Queue</span></code></a></p></li>
+<li><p><a class="reference internal" href="queue.html#queue.PriorityQueue" title="queue.PriorityQueue"><code class="xref py py-class docutils literal notranslate"><span class="pre">queue.PriorityQueue</span></code></a></p></li>
+<li><p><a class="reference internal" href="queue.html#queue.SimpleQueue" title="queue.SimpleQueue"><code class="xref py py-class docutils literal notranslate"><span class="pre">queue.SimpleQueue</span></code></a></p></li>
 <li><p><a class="reference internal" href="re.html#re-objects"><span class="std std-ref">re.Pattern</span></a></p></li>
 <li><p><a class="reference internal" href="re.html#match-objects"><span class="std std-ref">re.Match</span></a></p></li>
+<li><p><a class="reference internal" href="shelve.html#shelve.BsdDbShelf" title="shelve.BsdDbShelf"><code class="xref py py-class docutils literal notranslate"><span class="pre">shelve.BsdDbShelf</span></code></a></p></li>
+<li><p><a class="reference internal" href="shelve.html#shelve.DbfilenameShelf" title="shelve.DbfilenameShelf"><code class="xref py py-class docutils literal notranslate"><span class="pre">shelve.DbfilenameShelf</span></code></a></p></li>
+<li><p><a class="reference internal" href="shelve.html#shelve.Shelf" title="shelve.Shelf"><code class="xref py py-class docutils literal notranslate"><span class="pre">shelve.Shelf</span></code></a></p></li>
+<li><p><a class="reference internal" href="types.html#types.MappingProxyType" title="types.MappingProxyType"><code class="xref py py-class docutils literal notranslate"><span class="pre">types.MappingProxyType</span></code></a></p></li>
+<li><p><a class="reference internal" href="weakref.html#weakref.WeakKeyDictionary" title="weakref.WeakKeyDictionary"><code class="xref py py-class docutils literal notranslate"><span class="pre">weakref.WeakKeyDictionary</span></code></a></p></li>
+<li><p><a class="reference internal" href="weakref.html#weakref.WeakMethod" title="weakref.WeakMethod"><code class="xref py py-class docutils literal notranslate"><span class="pre">weakref.WeakMethod</span></code></a></p></li>
+<li><p><a class="reference internal" href="weakref.html#weakref.WeakSet" title="weakref.WeakSet"><code class="xref py py-class docutils literal notranslate"><span class="pre">weakref.WeakSet</span></code></a></p></li>
+<li><p><a class="reference internal" href="weakref.html#weakref.WeakValueDictionary" title="weakref.WeakValueDictionary"><code class="xref py py-class docutils literal notranslate"><span class="pre">weakref.WeakValueDictionary</span></code></a></p></li>
 </ul>
 </section>
-<section id="special-attributes-of-generic-alias">
-<h4>Special Attributes of Generic Alias<a class="headerlink" href="#special-attributes-of-generic-alias" title="本標題的永久連結">¶</a></h4>
+<section id="special-attributes-of-genericalias-objects">
+<h4>Special Attributes of <code class="docutils literal notranslate"><span class="pre">GenericAlias</span></code> objects<a class="headerlink" href="#special-attributes-of-genericalias-objects" title="本標題的永久連結">¶</a></h4>
 <p>All parameterized generics implement special read-only attributes.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="genericalias.__origin__">
@@ -5223,8 +5264,8 @@ in the <code class="docutils literal notranslate"><span class="pre">GenericAlias
 <dt class="sig sig-object py" id="genericalias.__args__">
 <span class="sig-prename descclassname"><span class="pre">genericalias.</span></span><span class="sig-name descname"><span class="pre">__args__</span></span><a class="headerlink" href="#genericalias.__args__" title="本定義的永久連結">¶</a></dt>
 <dd><p>This attribute is a <a class="reference internal" href="#tuple" title="tuple"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a> (possibly of length 1) of generic
-types passed to the original <code class="xref py py-meth docutils literal notranslate"><span class="pre">__class_getitem__()</span></code>
-of the generic container:</p>
+types passed to the original <a class="reference internal" href="../reference/datamodel.html#object.__class_getitem__" title="object.__class_getitem__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__class_getitem__()</span></code></a> of the
+generic class:</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]]</span><span class="o">.</span><span class="n">__args__</span>
 <span class="go">(&lt;class &#39;str&#39;&gt;, list[int])</span>
 </pre></div>
@@ -5253,11 +5294,17 @@ have correct <code class="docutils literal notranslate"><span class="pre">__para
 
 <div class="admonition seealso">
 <p class="admonition-title">也參考</p>
-<ul class="simple">
-<li><p><span class="target" id="index-57"></span><a class="pep reference external" href="https://www.python.org/dev/peps/pep-0585"><strong>PEP 585</strong></a> -- &quot;Type Hinting Generics In Standard Collections&quot;</p></li>
-<li><p><code class="xref py py-meth docutils literal notranslate"><span class="pre">__class_getitem__()</span></code> -- Used to implement parameterized generics.</p></li>
-<li><p><a class="reference internal" href="typing.html#generics"><span class="std std-ref">Generics</span></a> -- Generics in the <a class="reference internal" href="typing.html#module-typing" title="typing: Support for type hints (see :pep:`484`)."><code class="xref py py-mod docutils literal notranslate"><span class="pre">typing</span></code></a> module.</p></li>
-</ul>
+<dl class="simple">
+<dt><span class="target" id="index-56"></span><a class="pep reference external" href="https://www.python.org/dev/peps/pep-0484"><strong>PEP 484</strong></a> - Type Hints</dt><dd><p>Introducing Python's framework for type annotations.</p>
+</dd>
+<dt><span class="target" id="index-57"></span><a class="pep reference external" href="https://www.python.org/dev/peps/pep-0585"><strong>PEP 585</strong></a> - Type Hinting Generics In Standard Collections</dt><dd><p>Introducing the ability to natively parameterize standard-library
+classes, provided they implement the special class method
+<a class="reference internal" href="../reference/datamodel.html#object.__class_getitem__" title="object.__class_getitem__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__class_getitem__()</span></code></a>.</p>
+</dd>
+<dt><a class="reference internal" href="typing.html#generics"><span class="std std-ref">Generics</span></a>, <a class="reference internal" href="typing.html#user-defined-generics"><span class="std std-ref">user-defined generics</span></a> and <a class="reference internal" href="typing.html#typing.Generic" title="typing.Generic"><code class="xref py py-class docutils literal notranslate"><span class="pre">typing.Generic</span></code></a></dt><dd><p>Documentation on how to implement generic classes that can be
+parameterized at runtime and understood by static type-checkers.</p>
+</dd>
+</dl>
 </div>
 <div class="versionadded">
 <p><span class="versionmodified added">在 3.9 版本新加入.</span></p>
@@ -5661,8 +5708,8 @@ element is the tuple to be formatted.</p>
 <li><a class="reference internal" href="#context-manager-types">Context Manager Types</a></li>
 <li><a class="reference internal" href="#type-annotation-types-generic-alias-union">Type Annotation Types --- <span class="xref std std-ref">Generic Alias</span>, <span class="xref std std-ref">Union</span></a><ul>
 <li><a class="reference internal" href="#generic-alias-type">Generic Alias Type</a><ul>
-<li><a class="reference internal" href="#standard-generic-collections">Standard Generic Collections</a></li>
-<li><a class="reference internal" href="#special-attributes-of-generic-alias">Special Attributes of Generic Alias</a></li>
+<li><a class="reference internal" href="#standard-generic-classes">Standard Generic Classes</a></li>
+<li><a class="reference internal" href="#special-attributes-of-genericalias-objects">Special Attributes of <code class="docutils literal notranslate"><span class="pre">GenericAlias</span></code> objects</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#union-type">Union Type</a></li>
@@ -5775,7 +5822,7 @@ element is the tuple to be formatted.</p>
 <br />
     <br />
 
-    最後更新於 1月 17, 2022。
+    最後更新於 1月 24, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 

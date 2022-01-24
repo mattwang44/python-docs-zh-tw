@@ -437,14 +437,28 @@ parameter.</p>
 overhead. If you want to explicitly set the number of statements that are cached
 for the connection, you can set the <em>cached_statements</em> parameter. The currently
 implemented default is to cache 100 statements.</p>
-<p>If <em>uri</em> is true, <em>database</em> is interpreted as a URI. This allows you
-to specify options. For example, to open a database in read-only mode
-you can use:</p>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">db</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s1">&#39;file:path/to/database?mode=ro&#39;</span><span class="p">,</span> <span class="n">uri</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<p>If <em>uri</em> is <a class="reference internal" href="constants.html#True" title="True"><code class="xref py py-const docutils literal notranslate"><span class="pre">True</span></code></a>, <em>database</em> is interpreted as a
+<abbr title="Uniform Resource Identifier">URI</abbr> with a file path and an optional
+query string.  The scheme part <em>must</em> be <code class="docutils literal notranslate"><span class="pre">&quot;file:&quot;</span></code>.  The path can be a
+relative or absolute file path.  The query string allows us to pass
+parameters to SQLite. Some useful URI tricks include:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Open a database in read-only mode.</span>
+<span class="n">con</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;file:template.db?mode=ro&quot;</span><span class="p">,</span> <span class="n">uri</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Don&#39;t implicitly create a new database file if it does not already exist.</span>
+<span class="c1"># Will raise sqlite3.OperationalError if unable to open a database file.</span>
+<span class="n">con</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;file:nosuchdb.db?mode=rw&quot;</span><span class="p">,</span> <span class="n">uri</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Create a shared named in-memory database.</span>
+<span class="n">con1</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;file:mem1?mode=memory&amp;cache=shared&quot;</span><span class="p">,</span> <span class="n">uri</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">con2</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;file:mem1?mode=memory&amp;cache=shared&quot;</span><span class="p">,</span> <span class="n">uri</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">con1</span><span class="o">.</span><span class="n">executescript</span><span class="p">(</span><span class="s2">&quot;create table t(t); insert into t values(28);&quot;</span><span class="p">)</span>
+<span class="n">rows</span> <span class="o">=</span> <span class="n">con2</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;select * from t&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>More information about this feature, including a list of recognized options, can
-be found in the <a class="reference external" href="https://www.sqlite.org/uri.html">SQLite URI documentation</a>.</p>
+<p>More information about this feature, including a list of recognized
+parameters, can be found in the
+<a class="reference external" href="https://www.sqlite.org/uri.html">SQLite URI documentation</a>.</p>
 <p class="audit-hook">Raises an <a class="reference internal" href="sys.html#auditing"><span class="std std-ref">auditing event</span></a> <code class="docutils literal notranslate"><span class="pre">sqlite3.connect</span></code> with argument <code class="docutils literal notranslate"><span class="pre">database</span></code>.</p>
 <p class="audit-hook">Raises an <a class="reference internal" href="sys.html#auditing"><span class="std std-ref">auditing event</span></a> <code class="docutils literal notranslate"><span class="pre">sqlite3.connect/handle</span></code> with argument <code class="docutils literal notranslate"><span class="pre">connection_handle</span></code>.</p>
 <div class="versionchanged">
@@ -1906,7 +1920,7 @@ extension support, you must pass the
 <br />
     <br />
 
-    最後更新於 1月 17, 2022。
+    最後更新於 1月 24, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 

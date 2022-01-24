@@ -735,8 +735,13 @@ also support the following attributes and methods:</p>
 <dt class="sig sig-object py" id="multiprocessing.Process.exitcode">
 <span class="sig-name descname"><span class="pre">exitcode</span></span><a class="headerlink" href="#multiprocessing.Process.exitcode" title="本定義的永久連結">¶</a></dt>
 <dd><p>The child's exit code.  This will be <code class="docutils literal notranslate"><span class="pre">None</span></code> if the process has not yet
-terminated.  A negative value <em>-N</em> indicates that the child was terminated
-by signal <em>N</em>.</p>
+terminated.</p>
+<p>If the child's <a class="reference internal" href="#multiprocessing.Process.run" title="multiprocessing.Process.run"><code class="xref py py-meth docutils literal notranslate"><span class="pre">run()</span></code></a> method returned normally, the exit code
+will be 0.  If it terminated via <a class="reference internal" href="sys.html#sys.exit" title="sys.exit"><code class="xref py py-func docutils literal notranslate"><span class="pre">sys.exit()</span></code></a> with an integer
+argument <em>N</em>, the exit code will be <em>N</em>.</p>
+<p>If the child terminated due to an exception not caught within
+<a class="reference internal" href="#multiprocessing.Process.run" title="multiprocessing.Process.run"><code class="xref py py-meth docutils literal notranslate"><span class="pre">run()</span></code></a>, the exit code will be 1.  If it was terminated by
+signal <em>N</em>, the exit code will be the negative value <em>-N</em>.</p>
 </dd></dl>
 
 <dl class="py attribute">
@@ -3618,7 +3623,7 @@ processes and collect the results:</p>
 <br />
     <br />
 
-    最後更新於 1月 17, 2022。
+    最後更新於 1月 24, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 
