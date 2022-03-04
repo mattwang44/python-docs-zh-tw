@@ -1,0 +1,32 @@
+name: Source to Weblate Format
+
+on:
+  push:
+    branches:
+      - "3.10"
+
+jobs:
+  transform:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+
+      - name: Transform the file structure
+        run: mkdir zh_Hant && mv ./**/*.po ./zh_Hant/
+
+      - name: Transform the file structure
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add -A
+          git commit -m "$(date +"%Y-%m-%d")"
+
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: weblate-format
+          force: true
