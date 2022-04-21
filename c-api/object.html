@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Object Protocol &#8212; Python 3.10.3 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Object Protocol &#8212; Python 3.10.4 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -20,7 +20,7 @@
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.10.3 說明文件 中搜尋"
+          title="在 Python 3.10.4 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -122,7 +122,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.3 Documentation</a> &#187;
+      <a href="../index.html">3.10.4 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python/C API 參考手冊</a> &#187;</li>
@@ -245,7 +245,7 @@ plans to remove it.</p>
 <em>v</em>. Raise an exception and return <code class="docutils literal notranslate"><span class="pre">-1</span></code> on failure;
 return <code class="docutils literal notranslate"><span class="pre">0</span></code> on success.  This is the equivalent of the Python statement
 <code class="docutils literal notranslate"><span class="pre">o.attr_name</span> <span class="pre">=</span> <span class="pre">v</span></code>.</p>
-<p>If <em>v</em> is <code class="docutils literal notranslate"><span class="pre">NULL</span></code>, the attribute is deleted, however this feature is
+<p>If <em>v</em> is <code class="docutils literal notranslate"><span class="pre">NULL</span></code>, the attribute is deleted, but this feature is
 deprecated in favour of using <a class="reference internal" href="#c.PyObject_DelAttrString" title="PyObject_DelAttrString"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyObject_DelAttrString()</span></code></a>.</p>
 </dd></dl>
 
@@ -378,7 +378,7 @@ bytes object.</p>
 The result will be <code class="docutils literal notranslate"><span class="pre">1</span></code> when at least one of the checks returns <code class="docutils literal notranslate"><span class="pre">1</span></code>,
 otherwise it will be <code class="docutils literal notranslate"><span class="pre">0</span></code>.</p>
 <p>If <em>cls</em> has a <a class="reference internal" href="../reference/datamodel.html#class.__subclasscheck__" title="class.__subclasscheck__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__subclasscheck__()</span></code></a> method, it will be called to
-determine the subclass status as described in <span class="target" id="index-4"></span><a class="pep reference external" href="https://www.python.org/dev/peps/pep-3119"><strong>PEP 3119</strong></a>.  Otherwise,
+determine the subclass status as described in <span class="target" id="index-4"></span><a class="pep reference external" href="https://peps.python.org/pep-3119/"><strong>PEP 3119</strong></a>.  Otherwise,
 <em>derived</em> is a subclass of <em>cls</em> if it is a direct or indirect subclass,
 i.e. contained in <code class="docutils literal notranslate"><span class="pre">cls.__mro__</span></code>.</p>
 <p>Normally only class objects, i.e. instances of <a class="reference internal" href="../library/functions.html#type" title="type"><code class="xref py py-class docutils literal notranslate"><span class="pre">type</span></code></a> or a derived
@@ -395,7 +395,7 @@ a <code class="xref py py-attr docutils literal notranslate"><span class="pre">_
 The result will be <code class="docutils literal notranslate"><span class="pre">1</span></code> when at least one of the checks returns <code class="docutils literal notranslate"><span class="pre">1</span></code>,
 otherwise it will be <code class="docutils literal notranslate"><span class="pre">0</span></code>.</p>
 <p>If <em>cls</em> has a <a class="reference internal" href="../reference/datamodel.html#class.__instancecheck__" title="class.__instancecheck__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__instancecheck__()</span></code></a> method, it will be called to
-determine the subclass status as described in <span class="target" id="index-5"></span><a class="pep reference external" href="https://www.python.org/dev/peps/pep-3119"><strong>PEP 3119</strong></a>.  Otherwise, <em>inst</em>
+determine the subclass status as described in <span class="target" id="index-5"></span><a class="pep reference external" href="https://peps.python.org/pep-3119/"><strong>PEP 3119</strong></a>.  Otherwise, <em>inst</em>
 is an instance of <em>cls</em> if its class is a subclass of <em>cls</em>.</p>
 <p>An instance <em>inst</em> can override what is considered its class by having a
 <code class="xref py py-attr docutils literal notranslate"><span class="pre">__class__</span></code> attribute.</p>
@@ -447,7 +447,7 @@ This is equivalent to the Python expression <code class="docutils literal notran
 of object <em>o</em>. On failure, raises <a class="reference internal" href="../library/exceptions.html#SystemError" title="SystemError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">SystemError</span></code></a> and returns <code class="docutils literal notranslate"><span class="pre">NULL</span></code>.  This
 is equivalent to the Python expression <code class="docutils literal notranslate"><span class="pre">type(o)</span></code>. This function increments the
 reference count of the return value. There's really no reason to use this
-function instead of the common expression <code class="docutils literal notranslate"><span class="pre">o-&gt;ob_type</span></code>, which returns a
+function instead of the <a class="reference internal" href="structures.html#c.Py_TYPE" title="Py_TYPE"><code class="xref c c-func docutils literal notranslate"><span class="pre">Py_TYPE()</span></code></a> function, which returns a
 pointer of type <span class="xref c c-texpr"><a class="reference internal" href="type.html#c.PyTypeObject" title="PyTypeObject"><span class="n">PyTypeObject</span></a><span class="p">*</span></span>, except when the incremented reference
 count is needed.</p>
 </dd></dl>
@@ -596,7 +596,7 @@ returns <code class="docutils literal notranslate"><span class="pre">NULL</span>
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.3 Documentation</a> &#187;
+      <a href="../index.html">3.10.4 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python/C API 參考手冊</a> &#187;</li>
@@ -633,11 +633,11 @@ returns <code class="docutils literal notranslate"><span class="pre">NULL</span>
 <br />
     <br />
 
-    最後更新於 3月 21, 2022。
+    最後更新於 4月 21, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 
-    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.4.0 建立。
+    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.5.0 建立。
     </div>
 
   </body>

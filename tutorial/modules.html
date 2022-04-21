@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>6. 模組 (Module) &#8212; Python 3.10.3 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>6. 模組 (Module) &#8212; Python 3.10.4 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -20,7 +20,7 @@
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.10.3 說明文件 中搜尋"
+          title="在 Python 3.10.4 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -145,7 +145,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.3 Documentation</a> &#187;
+      <a href="../index.html">3.10.4 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Python 教學</a> &#187;</li>
@@ -299,7 +299,7 @@
 <li><p>可以在 Python 指令上使用開關參數 (switch) <a class="reference internal" href="../using/cmdline.html#cmdoption-O"><code class="xref std std-option docutils literal notranslate"><span class="pre">-O</span></code></a> 或 <a class="reference internal" href="../using/cmdline.html#cmdoption-OO"><code class="xref std std-option docutils literal notranslate"><span class="pre">-OO</span></code></a> 來減小已編譯模組的大小。開關參數 <code class="docutils literal notranslate"><span class="pre">-O</span></code> 刪除 assert（斷言）陳述式，而 <code class="docutils literal notranslate"><span class="pre">-OO</span></code> 同時刪除 assert 陳述式和 __doc__ 字串。由於有些程式可能依賴於上述這些內容，因此只有在您知道自己在做什麼時，才應使用此參數。「已優化」模組有 <code class="docutils literal notranslate"><span class="pre">opt-</span></code> 標記，且通常較小。未來的版本可能會改變優化的效果。</p></li>
 <li><p>讀取 <code class="docutils literal notranslate"><span class="pre">.pyc</span></code> 檔案時，程式的執行速度並不會比讀取 <code class="docutils literal notranslate"><span class="pre">.py</span></code> 檔案快。唯一比較快的地方是載入的速度。</p></li>
 <li><p>模組 <a class="reference internal" href="../library/compileall.html#module-compileall" title="compileall: Tools for byte-compiling all Python source files in a directory tree."><code class="xref py py-mod docutils literal notranslate"><span class="pre">compileall</span></code></a> 可以為資料夾中的所有模組創建 .pyc 檔。</p></li>
-<li><p>更多的細節，包括決策流程圖，請參考<span class="target" id="index-16"></span><a class="pep reference external" href="https://www.python.org/dev/peps/pep-3147"><strong>PEP 3147</strong></a>。</p></li>
+<li><p>更多的細節，包括決策流程圖，請參考<span class="target" id="index-16"></span><a class="pep reference external" href="https://peps.python.org/pep-3147/"><strong>PEP 3147</strong></a>。</p></li>
 </ul>
 </section>
 </section>
@@ -462,7 +462,8 @@
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;echo&quot;</span><span class="p">,</span> <span class="s2">&quot;surround&quot;</span><span class="p">,</span> <span class="s2">&quot;reverse&quot;</span><span class="p">]</span>
 </pre></div>
 </div>
-<p>意思是，<code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">sound.effects</span> <span class="pre">import</span> <span class="pre">*</span></code> 將會 import <code class="xref py py-mod docutils literal notranslate"><span class="pre">sound</span></code> 套件中，這三個被提名的子模組。</p>
+<p>This would mean that <code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">sound.effects</span> <span class="pre">import</span> <span class="pre">*</span></code> would import the three
+named submodules of the <code class="xref py py-mod docutils literal notranslate"><span class="pre">sound.effects</span></code> package.</p>
 <p>如果 <code class="docutils literal notranslate"><span class="pre">__all__</span></code> 沒有被定義，<code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">sound.effects</span> <span class="pre">import</span> <span class="pre">*</span></code> 陳述式<em>並不會</em>把 <code class="xref py py-mod docutils literal notranslate"><span class="pre">sound.effects</span></code> 套件中所有子模組都 import 到當前的命名空間；它只保證 <code class="xref py py-mod docutils literal notranslate"><span class="pre">sound.effects</span></code> 套件有被 import（可能會運行 <code class="file docutils literal notranslate"><span class="pre">__init__.py</span></code> 中的初始化程式碼），然後 import 套件中被定義的全部名稱。這包含 <code class="file docutils literal notranslate"><span class="pre">__init__.py</span></code> 定義（以及被明確載入的子模組）的任何名稱。它也包括任何之前被 <a class="reference internal" href="../reference/simple_stmts.html#import"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">import</span></code></a> 陳述式明確載入的套件子模組。請看以下程式碼：</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sound.effects.echo</span>
 <span class="kn">import</span> <span class="nn">sound.effects.surround</span>
@@ -579,7 +580,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.3 Documentation</a> &#187;
+      <a href="../index.html">3.10.4 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 教學</a> &#187;</li>
@@ -615,11 +616,11 @@
 <br />
     <br />
 
-    最後更新於 3月 21, 2022。
+    最後更新於 4月 21, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 
-    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.4.0 建立。
+    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.5.0 建立。
     </div>
 
   </body>

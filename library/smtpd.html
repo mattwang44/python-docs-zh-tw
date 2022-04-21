@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>smtpd --- SMTP Server &#8212; Python 3.10.3 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>smtpd --- SMTP 伺服器 &#8212; Python 3.10.4 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -20,14 +20,14 @@
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.10.3 說明文件 中搜尋"
+          title="在 Python 3.10.4 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="搜尋" href="../search.html" />
     <link rel="copyright" title="版權" href="../copyright.html" />
-    <link rel="next" title="telnetlib --- Telnet client" href="telnetlib.html" />
-    <link rel="prev" title="smtplib --- SMTP protocol client" href="smtplib.html" />
+    <link rel="next" title="imghdr --- 推測音檔種類" href="sndhdr.html" />
+    <link rel="prev" title="pipes --- shell pipelines 介面" href="pipes.html" />
     <link rel="canonical" href="https://docs.python.org/3/library/smtpd.html" />
     
       
@@ -73,7 +73,7 @@
   <div>
     <h3><a href="../contents.html">目錄</a></h3>
     <ul>
-<li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">smtpd</span></code> --- SMTP Server</a><ul>
+<li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">smtpd</span></code> --- SMTP 伺服器</a><ul>
 <li><a class="reference internal" href="#smtpserver-objects">SMTPServer 物件</a></li>
 <li><a class="reference internal" href="#debuggingserver-objects">DebuggingServer 物件</a></li>
 <li><a class="reference internal" href="#pureproxy-objects">PureProxy 物件</a></li>
@@ -86,13 +86,13 @@
   </div>
   <div>
     <h4>上個主題</h4>
-    <p class="topless"><a href="smtplib.html"
-                          title="上一章"><code class="xref py py-mod docutils literal notranslate"><span class="pre">smtplib</span></code> --- SMTP protocol client</a></p>
+    <p class="topless"><a href="pipes.html"
+                          title="上一章"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pipes</span></code> --- shell pipelines 介面</a></p>
   </div>
   <div>
     <h4>下個主題</h4>
-    <p class="topless"><a href="telnetlib.html"
-                          title="下一章"><code class="xref py py-mod docutils literal notranslate"><span class="pre">telnetlib</span></code> --- Telnet client</a></p>
+    <p class="topless"><a href="sndhdr.html"
+                          title="下一章"><code class="xref py py-mod docutils literal notranslate"><span class="pre">imghdr</span></code> --- 推測音檔種類</a></p>
   </div>
   <div role="note" aria-label="source link">
     <h3>此頁面</h3>
@@ -120,10 +120,10 @@
           <a href="../py-modindex.html" title="Python 模組索引"
              >模組</a> |</li>
         <li class="right" >
-          <a href="telnetlib.html" title="telnetlib --- Telnet client"
+          <a href="sndhdr.html" title="imghdr --- 推測音檔種類"
              accesskey="N">下一頁</a> |</li>
         <li class="right" >
-          <a href="smtplib.html" title="smtplib --- SMTP protocol client"
+          <a href="pipes.html" title="pipes --- shell pipelines 介面"
              accesskey="P">上一頁</a> |</li>
 
           <li><img src="../_static/py.svg" alt="python logo" style="vertical-align: middle; margin-top: -1px"/></li>
@@ -136,12 +136,12 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.3 Documentation</a> &#187;
+      <a href="../index.html">3.10.4 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
-          <li class="nav-item nav-item-2"><a href="internet.html" accesskey="U">Internet Protocols and Support</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href=""><code class="xref py py-mod docutils literal notranslate"><span class="pre">smtpd</span></code> --- SMTP Server</a></li>
+          <li class="nav-item nav-item-2"><a href="superseded.html" accesskey="U">已被取代的模組</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><code class="xref py py-mod docutils literal notranslate"><span class="pre">smtpd</span></code> --- SMTP 伺服器</a></li>
                 <li class="right">
                     
 
@@ -165,15 +165,12 @@
           <div class="body" role="main">
             
   <section id="module-smtpd">
-<span id="smtpd-smtp-server"></span><h1><a class="reference internal" href="#module-smtpd" title="smtpd: A SMTP server implementation in Python.（已棄用）"><code class="xref py py-mod docutils literal notranslate"><span class="pre">smtpd</span></code></a> --- SMTP Server<a class="headerlink" href="#module-smtpd" title="本標題的永久連結">¶</a></h1>
+<span id="smtpd-smtp-server"></span><h1><a class="reference internal" href="#module-smtpd" title="smtpd: A SMTP server implementation in Python.（已棄用）"><code class="xref py py-mod docutils literal notranslate"><span class="pre">smtpd</span></code></a> --- SMTP 伺服器<a class="headerlink" href="#module-smtpd" title="本標題的永久連結">¶</a></h1>
 <p><strong>原始碼：</strong><a class="reference external" href="https://github.com/python/cpython/tree/3.10/Lib/smtpd.py">Lib/smtpd.py</a></p>
 <hr class="docutils" />
 <p>This module offers several classes to implement SMTP (email) servers.</p>
 <div class="deprecated">
-<p><span class="versionmodified deprecated">在 3.6 版本開始棄用: </span><a class="reference internal" href="#module-smtpd" title="smtpd: A SMTP server implementation in Python.（已棄用）"><code class="xref py py-mod docutils literal notranslate"><span class="pre">smtpd</span></code></a> will be removed in Python 3.12 (<span class="target" id="index-0"></span><a class="pep reference external" href="https://www.python.org/dev/peps/pep-0594"><strong>PEP 594</strong></a>).
-The <a class="reference external" href="https://aiosmtpd.readthedocs.io/">aiosmtpd</a> package is a recommended
-replacement for this module.  It is based on <a class="reference internal" href="asyncio.html#module-asyncio" title="asyncio: Asynchronous I/O."><code class="xref py py-mod docutils literal notranslate"><span class="pre">asyncio</span></code></a> and provides a
-more straightforward API.</p>
+<p><span class="versionmodified deprecated">在 3.6 版本開始棄用: </span><a class="reference internal" href="#module-smtpd" title="smtpd: A SMTP server implementation in Python.（已棄用）"><code class="xref py py-mod docutils literal notranslate"><span class="pre">smtpd</span></code></a> 將於 Python 3.12 中移除（<span class="target" id="index-11"></span><a class="pep reference external" href="https://peps.python.org/pep-0594/"><strong>PEP 594</strong></a>）。基於 <a class="reference internal" href="asyncio.html#module-asyncio" title="asyncio: Asynchronous I/O."><code class="xref py py-mod docutils literal notranslate"><span class="pre">asyncio</span></code></a> 且提供了更簡單易用 API 的 <a class="reference external" href="https://aiosmtpd.readthedocs.io/">aiosmtpd</a> 套件是個推薦的替代模組 (module)。</p>
 </div>
 <p>Several server implementations are present; one is a generic
 do-nothing implementation, which can be overridden, while the other two offer
@@ -487,7 +484,7 @@ from the client in <a class="reference internal" href="#smtpd.SMTPChannel.receiv
   <div>
     <h3><a href="../contents.html">目錄</a></h3>
     <ul>
-<li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">smtpd</span></code> --- SMTP Server</a><ul>
+<li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">smtpd</span></code> --- SMTP 伺服器</a><ul>
 <li><a class="reference internal" href="#smtpserver-objects">SMTPServer 物件</a></li>
 <li><a class="reference internal" href="#debuggingserver-objects">DebuggingServer 物件</a></li>
 <li><a class="reference internal" href="#pureproxy-objects">PureProxy 物件</a></li>
@@ -500,13 +497,13 @@ from the client in <a class="reference internal" href="#smtpd.SMTPChannel.receiv
   </div>
   <div>
     <h4>上個主題</h4>
-    <p class="topless"><a href="smtplib.html"
-                          title="上一章"><code class="xref py py-mod docutils literal notranslate"><span class="pre">smtplib</span></code> --- SMTP protocol client</a></p>
+    <p class="topless"><a href="pipes.html"
+                          title="上一章"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pipes</span></code> --- shell pipelines 介面</a></p>
   </div>
   <div>
     <h4>下個主題</h4>
-    <p class="topless"><a href="telnetlib.html"
-                          title="下一章"><code class="xref py py-mod docutils literal notranslate"><span class="pre">telnetlib</span></code> --- Telnet client</a></p>
+    <p class="topless"><a href="sndhdr.html"
+                          title="下一章"><code class="xref py py-mod docutils literal notranslate"><span class="pre">imghdr</span></code> --- 推測音檔種類</a></p>
   </div>
   <div role="note" aria-label="source link">
     <h3>此頁面</h3>
@@ -533,10 +530,10 @@ from the client in <a class="reference internal" href="#smtpd.SMTPChannel.receiv
           <a href="../py-modindex.html" title="Python 模組索引"
              >模組</a> |</li>
         <li class="right" >
-          <a href="telnetlib.html" title="telnetlib --- Telnet client"
+          <a href="sndhdr.html" title="imghdr --- 推測音檔種類"
              >下一頁</a> |</li>
         <li class="right" >
-          <a href="smtplib.html" title="smtplib --- SMTP protocol client"
+          <a href="pipes.html" title="pipes --- shell pipelines 介面"
              >上一頁</a> |</li>
 
           <li><img src="../_static/py.svg" alt="python logo" style="vertical-align: middle; margin-top: -1px"/></li>
@@ -549,12 +546,12 @@ from the client in <a class="reference internal" href="#smtpd.SMTPChannel.receiv
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.3 Documentation</a> &#187;
+      <a href="../index.html">3.10.4 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
-          <li class="nav-item nav-item-2"><a href="internet.html" >Internet Protocols and Support</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href=""><code class="xref py py-mod docutils literal notranslate"><span class="pre">smtpd</span></code> --- SMTP Server</a></li>
+          <li class="nav-item nav-item-2"><a href="superseded.html" >已被取代的模組</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><code class="xref py py-mod docutils literal notranslate"><span class="pre">smtpd</span></code> --- SMTP 伺服器</a></li>
                 <li class="right">
                     
 
@@ -586,11 +583,11 @@ from the client in <a class="reference internal" href="#smtpd.SMTPChannel.receiv
 <br />
     <br />
 
-    最後更新於 3月 21, 2022。
+    最後更新於 4月 21, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 
-    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.4.0 建立。
+    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.5.0 建立。
     </div>
 
   </body>
