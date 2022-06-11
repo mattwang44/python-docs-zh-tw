@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Logging Cookbook &#8212; Python 3.10.4 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logging Cookbook &#8212; Python 3.10.5 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -21,7 +21,7 @@
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.10.4 說明文件 中搜尋"
+          title="在 Python 3.10.5 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -122,6 +122,7 @@
 <li><a class="reference internal" href="#using-a-context-manager-for-selective-logging">Using a context manager for selective logging</a></li>
 <li><a class="reference internal" href="#a-cli-application-starter-template">A CLI application starter template</a></li>
 <li><a class="reference internal" href="#a-qt-gui-for-logging">A Qt GUI for logging</a></li>
+<li><a class="reference internal" href="#logging-to-syslog-with-rfc5424-support">Logging to syslog with RFC5424 support</a></li>
 <li><a class="reference internal" href="#patterns-to-avoid">Patterns to avoid</a><ul>
 <li><a class="reference internal" href="#opening-the-same-log-file-multiple-times">Opening the same log file multiple times</a></li>
 <li><a class="reference internal" href="#using-loggers-as-attributes-in-a-class-or-passing-them-as-parameters">Using loggers as attributes in a class or passing them as parameters</a></li>
@@ -186,7 +187,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.4 Documentation</a> &#187;
+      <a href="../index.html">3.10.5 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Python 如何達成任務</a> &#187;</li>
@@ -3000,6 +3001,94 @@ refer to the comments in the code snippet for more detailed information.</p>
 </pre></div>
 </div>
 </section>
+<section id="logging-to-syslog-with-rfc5424-support">
+<h2>Logging to syslog with RFC5424 support<a class="headerlink" href="#logging-to-syslog-with-rfc5424-support" title="Permalink to this heading">¶</a></h2>
+<p>Although <span class="target" id="index-4"></span><a class="rfc reference external" href="https://datatracker.ietf.org/doc/html/rfc5424.html"><strong>RFC 5424</strong></a> dates from 2009, most syslog servers are configured by detault to
+use the older <span class="target" id="index-5"></span><a class="rfc reference external" href="https://datatracker.ietf.org/doc/html/rfc3164.html"><strong>RFC 3164</strong></a>, which hails from 2001. When <code class="docutils literal notranslate"><span class="pre">logging</span></code> was added to Python
+in 2003, it supported the earlier (and only existing) protocol at the time. Since
+RFC5424 came out, as there has not been widespread deployment of it in syslog
+servers, the <a class="reference internal" href="../library/logging.handlers.html#logging.handlers.SysLogHandler" title="logging.handlers.SysLogHandler"><code class="xref py py-class docutils literal notranslate"><span class="pre">SysLogHandler</span></code></a> functionality has not been
+updated.</p>
+<p>RFC 5424 contains some useful features such as support for structured data, and if you
+need to be able to log to a syslog server with support for it, you can do so with a
+subclassed handler which looks something like this:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">datetime</span>
+<span class="kn">import</span> <span class="nn">logging.handlers</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">import</span> <span class="nn">socket</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+<span class="k">class</span> <span class="nc">SysLogHandler5424</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">handlers</span><span class="o">.</span><span class="n">SysLogHandler</span><span class="p">):</span>
+
+    <span class="n">tz_offset</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;([+-]\d</span><span class="si">{2}</span><span class="s1">)(\d</span><span class="si">{2}</span><span class="s1">)$&#39;</span><span class="p">)</span>
+    <span class="n">escaped</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;([\]&quot;</span><span class="se">\\</span><span class="s1">])&#39;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">msgid</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;msgid&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">appname</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;appname&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">format</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">record</span><span class="p">):</span>
+        <span class="n">version</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="n">asctime</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">fromtimestamp</span><span class="p">(</span><span class="n">record</span><span class="o">.</span><span class="n">created</span><span class="p">)</span><span class="o">.</span><span class="n">isoformat</span><span class="p">()</span>
+        <span class="n">m</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">tz_offset</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%z&#39;</span><span class="p">))</span>
+        <span class="n">has_offset</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="k">if</span> <span class="n">m</span> <span class="ow">and</span> <span class="n">time</span><span class="o">.</span><span class="n">timezone</span><span class="p">:</span>
+            <span class="n">hrs</span><span class="p">,</span> <span class="n">mins</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">groups</span><span class="p">()</span>
+            <span class="k">if</span> <span class="nb">int</span><span class="p">(</span><span class="n">hrs</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">int</span><span class="p">(</span><span class="n">mins</span><span class="p">):</span>
+                <span class="n">has_offset</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">has_offset</span><span class="p">:</span>
+            <span class="n">asctime</span> <span class="o">+=</span> <span class="s1">&#39;Z&#39;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">asctime</span> <span class="o">+=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">hrs</span><span class="si">}</span><span class="s1">:</span><span class="si">{</span><span class="n">mins</span><span class="si">}</span><span class="s1">&#39;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">hostname</span> <span class="o">=</span> <span class="n">socket</span><span class="o">.</span><span class="n">gethostname</span><span class="p">()</span>
+        <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+            <span class="n">hostname</span> <span class="o">=</span> <span class="s1">&#39;-&#39;</span>
+        <span class="n">appname</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">appname</span> <span class="ow">or</span> <span class="s1">&#39;-&#39;</span>
+        <span class="n">procid</span> <span class="o">=</span> <span class="n">record</span><span class="o">.</span><span class="n">process</span>
+        <span class="n">msgid</span> <span class="o">=</span> <span class="s1">&#39;-&#39;</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">record</span><span class="p">)</span>
+        <span class="n">sdata</span> <span class="o">=</span> <span class="s1">&#39;-&#39;</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">record</span><span class="p">,</span> <span class="s1">&#39;structured_data&#39;</span><span class="p">):</span>
+            <span class="n">sd</span> <span class="o">=</span> <span class="n">record</span><span class="o">.</span><span class="n">structured_data</span>
+            <span class="c1"># This should be a dict where the keys are SD-ID and the value is a</span>
+            <span class="c1"># dict mapping PARAM-NAME to PARAM-VALUE (refer to the RFC for what these</span>
+            <span class="c1"># mean)</span>
+            <span class="c1"># There&#39;s no error checking here - it&#39;s purely for illustration, and you</span>
+            <span class="c1"># can adapt this code for use in production environments</span>
+            <span class="n">parts</span> <span class="o">=</span> <span class="p">[]</span>
+
+            <span class="k">def</span> <span class="nf">replacer</span><span class="p">(</span><span class="n">m</span><span class="p">):</span>
+                <span class="n">g</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">groups</span><span class="p">()</span>
+                <span class="k">return</span> <span class="s1">&#39;</span><span class="se">\\</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="n">g</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+            <span class="k">for</span> <span class="n">sdid</span><span class="p">,</span> <span class="n">dv</span> <span class="ow">in</span> <span class="n">sd</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="n">part</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;[</span><span class="si">{</span><span class="n">sdid</span><span class="si">}</span><span class="s1">&#39;</span>
+                <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">dv</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                    <span class="n">s</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+                    <span class="n">s</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">escaped</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="n">replacer</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span>
+                    <span class="n">part</span> <span class="o">+=</span> <span class="sa">f</span><span class="s1">&#39; </span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s1">=&quot;</span><span class="si">{</span><span class="n">s</span><span class="si">}</span><span class="s1">&quot;&#39;</span>
+                <span class="n">part</span> <span class="o">+=</span> <span class="s1">&#39;]&#39;</span>
+                <span class="n">parts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">part</span><span class="p">)</span>
+            <span class="n">sdata</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">parts</span><span class="p">)</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">version</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="n">asctime</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="n">hostname</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="n">appname</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="n">procid</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="n">msgid</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="n">sdata</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="n">msg</span><span class="si">}</span><span class="s1">&#39;</span>
+</pre></div>
+</div>
+<p>You'll need to be familiar with RFC 5424 to fully understand the above code, and it
+may be that you have slightly different needs (e.g. for how you pass structural data
+to the log). Nevertheless, the above should be adaptable to your speciric needs. With
+the above handler, you'd pass structured data using something like this:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">sd</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;foo@12345&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;bar&#39;</span><span class="p">:</span> <span class="s1">&#39;baz&#39;</span><span class="p">,</span> <span class="s1">&#39;baz&#39;</span><span class="p">:</span> <span class="s1">&#39;bozz&#39;</span><span class="p">,</span> <span class="s1">&#39;fizz&#39;</span><span class="p">:</span> <span class="sa">r</span><span class="s1">&#39;buzz&#39;</span><span class="p">},</span>
+    <span class="s1">&#39;foo@54321&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;rab&#39;</span><span class="p">:</span> <span class="s1">&#39;baz&#39;</span><span class="p">,</span> <span class="s1">&#39;zab&#39;</span><span class="p">:</span> <span class="s1">&#39;bozz&#39;</span><span class="p">,</span> <span class="s1">&#39;zzif&#39;</span><span class="p">:</span> <span class="sa">r</span><span class="s1">&#39;buzz&#39;</span><span class="p">}</span>
+<span class="p">}</span>
+<span class="n">extra</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;structured_data&#39;</span><span class="p">:</span> <span class="n">sd</span><span class="p">}</span>
+<span class="n">i</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Message </span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">extra</span><span class="o">=</span><span class="n">extra</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
 <section id="patterns-to-avoid">
 <h2>Patterns to avoid<a class="headerlink" href="#patterns-to-avoid" title="Permalink to this heading">¶</a></h2>
 <p>Although the preceding sections have described ways of doing things you might
@@ -3125,6 +3214,7 @@ more fine-grained than that).</p>
 <li><a class="reference internal" href="#using-a-context-manager-for-selective-logging">Using a context manager for selective logging</a></li>
 <li><a class="reference internal" href="#a-cli-application-starter-template">A CLI application starter template</a></li>
 <li><a class="reference internal" href="#a-qt-gui-for-logging">A Qt GUI for logging</a></li>
+<li><a class="reference internal" href="#logging-to-syslog-with-rfc5424-support">Logging to syslog with RFC5424 support</a></li>
 <li><a class="reference internal" href="#patterns-to-avoid">Patterns to avoid</a><ul>
 <li><a class="reference internal" href="#opening-the-same-log-file-multiple-times">Opening the same log file multiple times</a></li>
 <li><a class="reference internal" href="#using-loggers-as-attributes-in-a-class-or-passing-them-as-parameters">Using loggers as attributes in a class or passing them as parameters</a></li>
@@ -3192,7 +3282,7 @@ more fine-grained than that).</p>
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.4 Documentation</a> &#187;
+      <a href="../index.html">3.10.5 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 如何達成任務</a> &#187;</li>
@@ -3228,11 +3318,11 @@ more fine-grained than that).</p>
 <br />
     <br />
 
-    最後更新於 6月 01, 2022。
+    最後更新於 6月 11, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 
-    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.0.0 建立。
+    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.0.1 建立。
     </div>
 
   </body>

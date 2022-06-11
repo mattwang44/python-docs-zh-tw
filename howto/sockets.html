@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Socket Programming HOWTO &#8212; Python 3.10.4 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Socket Programming HOWTO &#8212; Python 3.10.5 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -21,7 +21,7 @@
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.10.4 說明文件 中搜尋"
+          title="在 Python 3.10.5 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -149,7 +149,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.4 Documentation</a> &#187;
+      <a href="../index.html">3.10.5 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Python 如何達成任務</a> &#187;</li>
@@ -400,19 +400,23 @@ reader. Lets move on to cleaning up.</p>
 <section id="binary-data">
 <h3>Binary Data<a class="headerlink" href="#binary-data" title="Permalink to this heading">¶</a></h3>
 <p>It is perfectly possible to send binary data over a socket. The major problem is
-that not all machines use the same formats for binary data. For example, a
-Motorola chip will represent a 16 bit integer with the value 1 as the two hex
-bytes 00 01. Intel and DEC, however, are byte-reversed - that same 1 is 01 00.
-Socket libraries have calls for converting 16 and 32 bit integers - <code class="docutils literal notranslate"><span class="pre">ntohl,</span>
+that not all machines use the same formats for binary data. For example,
+<a class="reference external" href="https://en.wikipedia.org/wiki/Endianness#Networking">network byte order</a>
+is big-endian, with the most significant byte first,
+so a 16 bit integer with the value <code class="docutils literal notranslate"><span class="pre">1</span></code> would be the two hex bytes <code class="docutils literal notranslate"><span class="pre">00</span> <span class="pre">01</span></code>.
+However, most common processors (x86/AMD64, ARM, RISC-V), are little-endian,
+with the least significant byte first - that same <code class="docutils literal notranslate"><span class="pre">1</span></code> would be <code class="docutils literal notranslate"><span class="pre">01</span> <span class="pre">00</span></code>.</p>
+<p>Socket libraries have calls for converting 16 and 32 bit integers - <code class="docutils literal notranslate"><span class="pre">ntohl,</span>
 <span class="pre">htonl,</span> <span class="pre">ntohs,</span> <span class="pre">htons</span></code> where &quot;n&quot; means <em>network</em> and &quot;h&quot; means <em>host</em>, &quot;s&quot; means
 <em>short</em> and &quot;l&quot; means <em>long</em>. Where network order is host order, these do
 nothing, but where the machine is byte-reversed, these swap the bytes around
 appropriately.</p>
-<p>In these days of 32 bit machines, the ascii representation of binary data is
+<p>In these days of 64-bit machines, the ASCII representation of binary data is
 frequently smaller than the binary representation. That's because a surprising
-amount of the time, all those longs have the value 0, or maybe 1. The string &quot;0&quot;
-would be two bytes, while binary is four. Of course, this doesn't fit well with
-fixed-length messages. Decisions, decisions.</p>
+amount of the time, most integers have the value 0, or maybe 1.
+The string <code class="docutils literal notranslate"><span class="pre">&quot;0&quot;</span></code> would be two bytes, while a full 64-bit integer would be 8.
+Of course, this doesn't fit well with fixed-length messages.
+Decisions, decisions.</p>
 </section>
 </section>
 <section id="disconnecting">
@@ -601,7 +605,7 @@ very, very well) with my sockets.</p>
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.4 Documentation</a> &#187;
+      <a href="../index.html">3.10.5 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 如何達成任務</a> &#187;</li>
@@ -637,11 +641,11 @@ very, very well) with my sockets.</p>
 <br />
     <br />
 
-    最後更新於 6月 01, 2022。
+    最後更新於 6月 11, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 
-    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.0.0 建立。
+    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.0.1 建立。
     </div>
 
   </body>
