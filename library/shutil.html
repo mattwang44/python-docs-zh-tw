@@ -345,7 +345,7 @@ copy the file more efficiently. See
 also attempts to preserve file metadata.</p>
 <p>When <em>follow_symlinks</em> is false, and <em>src</em> is a symbolic
 link, <a class="reference internal" href="#shutil.copy2" title="shutil.copy2"><code class="xref py py-func docutils literal notranslate"><span class="pre">copy2()</span></code></a> attempts to copy all metadata from the
-<em>src</em> symbolic link to the newly-created <em>dst</em> symbolic link.
+<em>src</em> symbolic link to the newly created <em>dst</em> symbolic link.
 However, this functionality is not available on all platforms.
 On platforms where some or all of this functionality is
 unavailable, <a class="reference internal" href="#shutil.copy2" title="shutil.copy2"><code class="xref py py-func docutils literal notranslate"><span class="pre">copy2()</span></code></a> will preserve all the metadata
@@ -686,11 +686,18 @@ uses the current owner and group.</p>
 <p class="audit-hook">Raises an <a class="reference internal" href="sys.html#auditing"><span class="std std-ref">auditing event</span></a> <code class="docutils literal notranslate"><span class="pre">shutil.make_archive</span></code> with arguments <code class="docutils literal notranslate"><span class="pre">base_name</span></code>, <code class="docutils literal notranslate"><span class="pre">format</span></code>, <code class="docutils literal notranslate"><span class="pre">root_dir</span></code>, <code class="docutils literal notranslate"><span class="pre">base_dir</span></code>.</p>
 <div class="admonition note">
 <p class="admonition-title">備註</p>
-<p>This function is not thread-safe.</p>
+<p>This function is not thread-safe when custom archivers registered
+with <a class="reference internal" href="#shutil.register_archive_format" title="shutil.register_archive_format"><code class="xref py py-func docutils literal notranslate"><span class="pre">register_archive_format()</span></code></a> are used.  In this case it
+temporarily changes the current working directory of the process
+to perform archiving.</p>
 </div>
 <div class="versionchanged">
 <p><span class="versionmodified changed">在 3.8 版本變更: </span>The modern pax (POSIX.1-2001) format is now used instead of
 the legacy GNU format for archives created with <code class="docutils literal notranslate"><span class="pre">format=&quot;tar&quot;</span></code>.</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">在 3.10.6 版本變更: </span>This function is now made thread-safe during creation of standard
+<code class="docutils literal notranslate"><span class="pre">.zip</span></code> and tar archives.</p>
 </div>
 </dd></dl>
 
@@ -1006,11 +1013,11 @@ size used by many terminal emulators.</p>
 <br />
     <br />
 
-    最後更新於 6月 11, 2022。
+    最後更新於 7月 06, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 
-    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.0.1 建立。
+    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.0.2 建立。
     </div>
 
   </body>

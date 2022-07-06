@@ -1261,7 +1261,7 @@ initializes it to the <code class="xref py py-attr docutils literal notranslate"
 <p>Their initialization to <code class="docutils literal notranslate"><span class="pre">NULL</span></code> is taken care of by the
 <code class="docutils literal notranslate"><span class="pre">PyObject_HEAD_INIT</span></code> macro.  For <a class="reference internal" href="#static-types"><span class="std std-ref">statically allocated objects</span></a>, these fields always remain <code class="docutils literal notranslate"><span class="pre">NULL</span></code>.  For <a class="reference internal" href="#heap-types"><span class="std std-ref">dynamically
 allocated objects</span></a>, these two fields are used to link the
-object into a doubly-linked list of <em>all</em> live objects on the heap.</p>
+object into a doubly linked list of <em>all</em> live objects on the heap.</p>
 <p>This could be used for various debugging purposes; currently the only uses
 are the <code class="xref py py-func docutils literal notranslate"><span class="pre">sys.getobjects()</span></code> function and to print the objects that are
 still alive at the end of a run when the environment variable
@@ -3270,13 +3270,13 @@ The value argument is set to <code class="docutils literal notranslate"><span cl
 <dl class="c type">
 <dt class="sig sig-object c" id="c.descrgetfunc">
 <span class="k"><span class="pre">typedef</span></span><span class="w"> </span><a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="p"><span class="pre">(</span></span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">descrgetfunc</span></span></span><span class="p"><span class="pre">)</span></span><span class="p"><span class="pre">(</span></span><a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="p"><span class="pre">*</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="p"><span class="pre">*</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="p"><span class="pre">*</span></span><span class="p"><span class="pre">)</span></span><a class="headerlink" href="#c.descrgetfunc" title="本定義的永久連結">¶</a><br /></dt>
-<dd><em class="stableabi"> Part of the <a class="reference internal" href="stable.html#stable"><span class="std std-ref">Stable ABI</span></a>.</em><p>請見 <code class="xref c c-member docutils literal notranslate"><span class="pre">tp_descrget</span></code>。</p>
+<dd><em class="stableabi"> Part of the <a class="reference internal" href="stable.html#stable"><span class="std std-ref">Stable ABI</span></a>.</em><p>請見 <a class="reference internal" href="#c.PyTypeObject.tp_descr_get" title="PyTypeObject.tp_descr_get"><code class="xref c c-member docutils literal notranslate"><span class="pre">tp_descr_get</span></code></a>。</p>
 </dd></dl>
 
 <dl class="c type">
 <dt class="sig sig-object c" id="c.descrsetfunc">
 <span class="k"><span class="pre">typedef</span></span><span class="w"> </span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="p"><span class="pre">(</span></span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">descrsetfunc</span></span></span><span class="p"><span class="pre">)</span></span><span class="p"><span class="pre">(</span></span><a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="p"><span class="pre">*</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="p"><span class="pre">*</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="p"><span class="pre">*</span></span><span class="p"><span class="pre">)</span></span><a class="headerlink" href="#c.descrsetfunc" title="本定義的永久連結">¶</a><br /></dt>
-<dd><em class="stableabi"> Part of the <a class="reference internal" href="stable.html#stable"><span class="std std-ref">Stable ABI</span></a>.</em><p>請見 <code class="xref c c-member docutils literal notranslate"><span class="pre">tp_descrset</span></code>。</p>
+<dd><em class="stableabi"> Part of the <a class="reference internal" href="stable.html#stable"><span class="std std-ref">Stable ABI</span></a>.</em><p>請見 <a class="reference internal" href="#c.PyTypeObject.tp_descr_set" title="PyTypeObject.tp_descr_set"><code class="xref c c-member docutils literal notranslate"><span class="pre">tp_descr_set</span></code></a>。</p>
 </dd></dl>
 
 <dl class="c type">
@@ -3627,11 +3627,11 @@ to create instances (e.g. uses a separate factory func) using
 <br />
     <br />
 
-    最後更新於 6月 11, 2022。
+    最後更新於 7月 06, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 
-    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.0.1 建立。
+    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.0.2 建立。
     </div>
 
   </body>

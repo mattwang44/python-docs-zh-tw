@@ -194,7 +194,7 @@
 <li><a class="reference internal" href="#porting-to-python-3-7">Porting to Python 3.7</a><ul>
 <li><a class="reference internal" href="#changes-in-python-behavior">Changes in Python Behavior</a></li>
 <li><a class="reference internal" href="#changes-in-the-python-api">Changes in the Python API</a></li>
-<li><a class="reference internal" href="#changes-in-the-c-api">Changes in the C API</a></li>
+<li><a class="reference internal" href="#changes-in-the-c-api">C API 中的改動</a></li>
 <li><a class="reference internal" href="#cpython-bytecode-changes">CPython bytecode changes</a></li>
 <li><a class="reference internal" href="#id12">Windows-only Changes</a></li>
 <li><a class="reference internal" href="#id13">Other CPython implementation changes</a></li>
@@ -506,7 +506,7 @@ choice.  Set <code class="docutils literal notranslate"><span class="pre">PYTHON
 <p>While Python provides a C API for thread-local storage support; the existing
 <a class="reference internal" href="../c-api/init.html#thread-local-storage-api"><span class="std std-ref">Thread Local Storage (TLS) API</span></a> has used
 <span class="xref c c-texpr"><span class="kt">int</span></span> to represent TLS keys across all platforms.  This has not
-generally been a problem for officially-support platforms, but that is neither
+generally been a problem for officially support platforms, but that is neither
 POSIX-compliant, nor portable in any practical sense.</p>
 <p><span class="target" id="index-14"></span><a class="pep reference external" href="https://peps.python.org/pep-0539/"><strong>PEP 539</strong></a> changes this by providing a new <a class="reference internal" href="../c-api/init.html#thread-specific-storage-api"><span class="std std-ref">Thread Specific Storage (TSS)
 API</span></a> to CPython which supersedes use of the
@@ -1225,7 +1225,7 @@ callbacks to be executed at process fork.
 of <a class="reference internal" href="../library/os.html#os.writev" title="os.writev"><code class="xref py py-func docutils literal notranslate"><span class="pre">os.writev()</span></code></a> and <a class="reference internal" href="../library/os.html#os.pwrite" title="os.pwrite"><code class="xref py py-func docutils literal notranslate"><span class="pre">os.pwrite()</span></code></a>). (Contributed by Pablo Galindo in
 <a class="reference external" href="https://bugs.python.org/issue?&#64;action=redirect&amp;bpo=31368">bpo-31368</a>.)</p>
 <p>The mode argument of <a class="reference internal" href="../library/os.html#os.makedirs" title="os.makedirs"><code class="xref py py-func docutils literal notranslate"><span class="pre">os.makedirs()</span></code></a> no longer affects the file
-permission bits of newly-created intermediate-level directories.
+permission bits of newly created intermediate-level directories.
 (Contributed by Serhiy Storchaka in <a class="reference external" href="https://bugs.python.org/issue?&#64;action=redirect&amp;bpo=19930">bpo-19930</a>.)</p>
 <p><a class="reference internal" href="../library/os.html#os.dup2" title="os.dup2"><code class="xref py py-func docutils literal notranslate"><span class="pre">os.dup2()</span></code></a> now returns the new file descriptor.  Previously, <code class="docutils literal notranslate"><span class="pre">None</span></code>
 was always returned.
@@ -1976,7 +1976,7 @@ default.</p>
 <p>Debian 9 (&quot;stretch&quot;) and Ubuntu 16.04 (&quot;xenial&quot;), as well as recent releases
 of other LTS Linux releases (e.g. RHEL/CentOS 7.5, SLES 12-SP3), use OpenSSL
 1.0.2 or later, and remain supported in the default build configuration.</p>
-<p>CPython's own <a class="reference external" href="https://github.com/python/cpython/tree/3.10/.travis.yml">CI configuration file</a> provides an
+<p>CPython's own <a class="reference external" href="https://github.com/python/cpython/blob/v3.7.13/.travis.yml">CI configuration file</a> provides an
 example of using the SSL
 <a class="reference external" href="https://github.com/python/cpython/tree/3.10/Tools/ssl/multissltests.py">compatibility testing infrastructure</a> in
 CPython's test suite to build and link against OpenSSL 1.1.0 rather than an
@@ -2122,7 +2122,7 @@ Assigning to them was deprecated in Python 3.5.
 Use the <a class="reference internal" href="../library/http.cookies.html#http.cookies.Morsel.set" title="http.cookies.Morsel.set"><code class="xref py py-meth docutils literal notranslate"><span class="pre">set()</span></code></a> method for setting them.
 (Contributed by Serhiy Storchaka in <a class="reference external" href="https://bugs.python.org/issue?&#64;action=redirect&amp;bpo=29192">bpo-29192</a>.)</p></li>
 <li><p>The <em>mode</em> argument of <a class="reference internal" href="../library/os.html#os.makedirs" title="os.makedirs"><code class="xref py py-func docutils literal notranslate"><span class="pre">os.makedirs()</span></code></a> no longer affects the file
-permission bits of newly-created intermediate-level directories.
+permission bits of newly created intermediate-level directories.
 To set their file permission bits you can set the umask before invoking
 <code class="docutils literal notranslate"><span class="pre">makedirs()</span></code>.
 (Contributed by Serhiy Storchaka in <a class="reference external" href="https://bugs.python.org/issue?&#64;action=redirect&amp;bpo=19930">bpo-19930</a>.)</p></li>
@@ -2248,7 +2248,7 @@ notice, even in micro version releases.</p></li>
 </ul>
 </section>
 <section id="changes-in-the-c-api">
-<h3>Changes in the C API<a class="headerlink" href="#changes-in-the-c-api" title="Permalink to this heading">¶</a></h3>
+<h3>C API 中的改動<a class="headerlink" href="#changes-in-the-c-api" title="Permalink to this heading">¶</a></h3>
 <p>The function <a class="reference internal" href="../c-api/slice.html#c.PySlice_GetIndicesEx" title="PySlice_GetIndicesEx"><code class="xref c c-func docutils literal notranslate"><span class="pre">PySlice_GetIndicesEx()</span></code></a> is considered unsafe for
 resizable sequences.  If the slice indices are not instances of <a class="reference internal" href="../library/functions.html#int" title="int"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>,
 but objects that implement the <code class="xref py py-meth docutils literal notranslate"><span class="pre">__index__()</span></code> method, the sequence can be
@@ -2488,7 +2488,7 @@ documentation.
 <li><a class="reference internal" href="#porting-to-python-3-7">Porting to Python 3.7</a><ul>
 <li><a class="reference internal" href="#changes-in-python-behavior">Changes in Python Behavior</a></li>
 <li><a class="reference internal" href="#changes-in-the-python-api">Changes in the Python API</a></li>
-<li><a class="reference internal" href="#changes-in-the-c-api">Changes in the C API</a></li>
+<li><a class="reference internal" href="#changes-in-the-c-api">C API 中的改動</a></li>
 <li><a class="reference internal" href="#cpython-bytecode-changes">CPython bytecode changes</a></li>
 <li><a class="reference internal" href="#id12">Windows-only Changes</a></li>
 <li><a class="reference internal" href="#id13">Other CPython implementation changes</a></li>
@@ -2594,11 +2594,11 @@ documentation.
 <br />
     <br />
 
-    最後更新於 6月 11, 2022。
+    最後更新於 7月 06, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 
-    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.0.1 建立。
+    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.0.2 建立。
     </div>
 
   </body>

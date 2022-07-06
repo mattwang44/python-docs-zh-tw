@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>imghdr --- 推測音檔種類 &#8212; Python 3.10.5 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sndhdr --- 判定聲音檔案的型別 &#8212; Python 3.10.5 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -128,7 +128,7 @@
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="superseded.html" accesskey="U">已被取代的模組</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href=""><code class="xref py py-mod docutils literal notranslate"><span class="pre">imghdr</span></code> --- 推測音檔種類</a></li>
+        <li class="nav-item nav-item-this"><a href=""><code class="xref py py-mod docutils literal notranslate"><span class="pre">sndhdr</span></code> --- 判定聲音檔案的型別</a></li>
                 <li class="right">
                     
 
@@ -152,44 +152,28 @@
           <div class="body" role="main">
             
   <section id="module-sndhdr">
-<span id="sndhdr-determine-type-of-sound-file"></span><h1><a class="reference internal" href="imghdr.html#module-imghdr" title="imghdr: Determine the type of image contained in a file or byte stream.（已棄用）"><code class="xref py py-mod docutils literal notranslate"><span class="pre">imghdr</span></code></a> --- 推測音檔種類<a class="headerlink" href="#module-sndhdr" title="Permalink to this heading">¶</a></h1>
+<span id="sndhdr-determine-type-of-sound-file"></span><h1><a class="reference internal" href="#module-sndhdr" title="sndhdr: Determine type of a sound file.（已棄用）"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sndhdr</span></code></a> --- 判定聲音檔案的型別<a class="headerlink" href="#module-sndhdr" title="Permalink to this heading">¶</a></h1>
 <p><strong>原始碼：</strong><a class="reference external" href="https://github.com/python/cpython/tree/3.10/Lib/sndhdr.py">Lib/sndhdr.py</a></p>
 <div class="deprecated" id="index-0">
 <p><span class="versionmodified deprecated">在 3.11 版本開始棄用: </span><a class="reference internal" href="#module-sndhdr" title="sndhdr: Determine type of a sound file.（已棄用）"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sndhdr</span></code></a> 模組 (module) 即將被棄用（詳情與替代方案請見 <span class="target" id="index-3"></span><a class="pep reference external" href="https://peps.python.org/pep-0594/#sndhdr"><strong>PEP 594</strong></a>）。</p>
 </div>
 <hr class="docutils" />
-<p>The <a class="reference internal" href="#module-sndhdr" title="sndhdr: Determine type of a sound file.（已棄用）"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sndhdr</span></code></a> provides utility functions which attempt to determine the type
-of sound data which is in a file.  When these functions are able to determine
-what type of sound data is stored in a file, they return a
-<a class="reference internal" href="collections.html#collections.namedtuple" title="collections.namedtuple"><code class="xref py py-func docutils literal notranslate"><span class="pre">namedtuple()</span></code></a>, containing five attributes: (<code class="docutils literal notranslate"><span class="pre">filetype</span></code>,
-<code class="docutils literal notranslate"><span class="pre">framerate</span></code>, <code class="docutils literal notranslate"><span class="pre">nchannels</span></code>, <code class="docutils literal notranslate"><span class="pre">nframes</span></code>, <code class="docutils literal notranslate"><span class="pre">sampwidth</span></code>). The value for <em>type</em>
-indicates the data type and will be one of the strings <code class="docutils literal notranslate"><span class="pre">'aifc'</span></code>, <code class="docutils literal notranslate"><span class="pre">'aiff'</span></code>,
-<code class="docutils literal notranslate"><span class="pre">'au'</span></code>, <code class="docutils literal notranslate"><span class="pre">'hcom'</span></code>, <code class="docutils literal notranslate"><span class="pre">'sndr'</span></code>, <code class="docutils literal notranslate"><span class="pre">'sndt'</span></code>, <code class="docutils literal notranslate"><span class="pre">'voc'</span></code>, <code class="docutils literal notranslate"><span class="pre">'wav'</span></code>, <code class="docutils literal notranslate"><span class="pre">'8svx'</span></code>,
-<code class="docutils literal notranslate"><span class="pre">'sb'</span></code>, <code class="docutils literal notranslate"><span class="pre">'ub'</span></code>, or <code class="docutils literal notranslate"><span class="pre">'ul'</span></code>.  The <em>sampling_rate</em> will be either the actual
-value or <code class="docutils literal notranslate"><span class="pre">0</span></code> if unknown or difficult to decode.  Similarly, <em>channels</em> will be
-either the number of channels or <code class="docutils literal notranslate"><span class="pre">0</span></code> if it cannot be determined or if the
-value is difficult to decode.  The value for <em>frames</em> will be either the number
-of frames or <code class="docutils literal notranslate"><span class="pre">-1</span></code>.  The last item in the tuple, <em>bits_per_sample</em>, will either
-be the sample size in bits or <code class="docutils literal notranslate"><span class="pre">'A'</span></code> for A-LAW or <code class="docutils literal notranslate"><span class="pre">'U'</span></code> for u-LAW.</p>
+<p><a class="reference internal" href="#module-sndhdr" title="sndhdr: Determine type of a sound file.（已棄用）"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sndhdr</span></code></a> 提供了企圖猜測檔案中聲音資料型別的工具函式。當這些函式可以推測出儲存在檔案中聲音資料的型別，它們分別回傳一個 <a class="reference internal" href="collections.html#collections.namedtuple" title="collections.namedtuple"><code class="xref py py-func docutils literal notranslate"><span class="pre">collections.namedtuple()</span></code></a>，包含了五種屬性：（<code class="docutils literal notranslate"><span class="pre">filetype</span></code>、<code class="docutils literal notranslate"><span class="pre">framerate</span></code>、<code class="docutils literal notranslate"><span class="pre">nchannels</span></code>、<code class="docutils literal notranslate"><span class="pre">nframes</span></code>、<code class="docutils literal notranslate"><span class="pre">sampwidth</span></code>）。這些 <em>type</em> 的值表示資料的型別，會是以下字串之一：<code class="docutils literal notranslate"><span class="pre">'aifc'</span></code>、<code class="docutils literal notranslate"><span class="pre">'aiff'</span></code>、<code class="docutils literal notranslate"><span class="pre">'au'</span></code>、<code class="docutils literal notranslate"><span class="pre">'hcom'</span></code>、<code class="docutils literal notranslate"><span class="pre">'sndr'</span></code>、<code class="docutils literal notranslate"><span class="pre">'sndt'</span></code>、<code class="docutils literal notranslate"><span class="pre">'voc'</span></code>、<code class="docutils literal notranslate"><span class="pre">'wav'</span></code>、<code class="docutils literal notranslate"><span class="pre">'8svx'</span></code>、<code class="docutils literal notranslate"><span class="pre">'sb'</span></code>、<code class="docutils literal notranslate"><span class="pre">'ub'</span></code> 或 <code class="docutils literal notranslate"><span class="pre">'ul'</span></code>。<em>sampling_rate</em>（取樣頻率）可能是實際值、或者當未知或者難以解碼時為 <code class="docutils literal notranslate"><span class="pre">0</span></code>。同樣的，<em>channels</em>（影像通道數）也會回傳實際值或者在無法推測或難以解碼時回傳 <code class="docutils literal notranslate"><span class="pre">0</span></code>。<em>frames</em>（幀數）則是實際值或 <code class="docutils literal notranslate"><span class="pre">-1</span></code>。tuple 的最後一項，<em>bits_per_sample</em> 為位元表示的取樣大小，或者在 A-LAW 時為 <code class="docutils literal notranslate"><span class="pre">'A'</span></code>，u-LAW 時為 <code class="docutils literal notranslate"><span class="pre">'U'</span></code>。</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="sndhdr.what">
 <span class="sig-prename descclassname"><span class="pre">sndhdr.</span></span><span class="sig-name descname"><span class="pre">what</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sndhdr.what" title="本定義的永久連結">¶</a></dt>
-<dd><p>Determines the type of sound data stored in the file <em>filename</em> using
-<a class="reference internal" href="#sndhdr.whathdr" title="sndhdr.whathdr"><code class="xref py py-func docutils literal notranslate"><span class="pre">whathdr()</span></code></a>.  If it succeeds, returns a namedtuple as described above, otherwise
-<code class="docutils literal notranslate"><span class="pre">None</span></code> is returned.</p>
+<dd><p>使用 <a class="reference internal" href="#sndhdr.whathdr" title="sndhdr.whathdr"><code class="xref py py-func docutils literal notranslate"><span class="pre">whathdr()</span></code></a> 推測儲存在 <em>filename</em> 檔案中聲音資料的型別。如果成功，回傳上述的 namedtuple（附名元組），否則回傳 <code class="docutils literal notranslate"><span class="pre">None</span></code>。</p>
 <div class="versionchanged">
-<p><span class="versionmodified changed">在 3.5 版本變更: </span>Result changed from a tuple to a namedtuple.</p>
+<p><span class="versionmodified changed">在 3.5 版本變更: </span>結果從 tuple 改為 namedtuple。</p>
 </div>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="sndhdr.whathdr">
 <span class="sig-prename descclassname"><span class="pre">sndhdr.</span></span><span class="sig-name descname"><span class="pre">whathdr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sndhdr.whathdr" title="本定義的永久連結">¶</a></dt>
-<dd><p>Determines the type of sound data stored in a file based on the file  header.
-The name of the file is given by <em>filename</em>.  This function returns a namedtuple as
-described above on success, or <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+<dd><p>根據檔案標頭 (header) 推測儲存在檔案中的聲音資料型別。檔名由 <em>filename</em> 給定。這個函式在成功時回傳上述 namedtuple，或在失敗時回傳 <code class="docutils literal notranslate"><span class="pre">None</span></code>。</p>
 <div class="versionchanged">
-<p><span class="versionmodified changed">在 3.5 版本變更: </span>Result changed from a tuple to a namedtuple.</p>
+<p><span class="versionmodified changed">在 3.5 版本變更: </span>結果從 tuple 改為 namedtuple。</p>
 </div>
 </dd></dl>
 
@@ -262,7 +246,7 @@ described above on success, or <code class="docutils literal notranslate"><span 
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="superseded.html" >已被取代的模組</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href=""><code class="xref py py-mod docutils literal notranslate"><span class="pre">imghdr</span></code> --- 推測音檔種類</a></li>
+        <li class="nav-item nav-item-this"><a href=""><code class="xref py py-mod docutils literal notranslate"><span class="pre">sndhdr</span></code> --- 判定聲音檔案的型別</a></li>
                 <li class="right">
                     
 
@@ -294,11 +278,11 @@ described above on success, or <code class="docutils literal notranslate"><span 
 <br />
     <br />
 
-    最後更新於 6月 11, 2022。
+    最後更新於 7月 06, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 
-    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.0.1 建立。
+    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.0.2 建立。
     </div>
 
   </body>

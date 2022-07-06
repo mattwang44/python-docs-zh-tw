@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>內建型態 &#8212; Python 3.10.5 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>內建型別 &#8212; Python 3.10.5 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -74,8 +74,8 @@
   <div>
     <h3><a href="../contents.html">目錄</a></h3>
     <ul>
-<li><a class="reference internal" href="#">內建型態</a><ul>
-<li><a class="reference internal" href="#truth-value-testing">Truth Value Testing</a></li>
+<li><a class="reference internal" href="#">內建型別</a><ul>
+<li><a class="reference internal" href="#truth-value-testing">真值檢測</a></li>
 <li><a class="reference internal" href="#boolean-operations-and-or-not">Boolean Operations --- <code class="xref std std-keyword docutils literal notranslate"><span class="pre">and</span></code>, <code class="xref std std-keyword docutils literal notranslate"><span class="pre">or</span></code>, <code class="xref std std-keyword docutils literal notranslate"><span class="pre">not</span></code></a></li>
 <li><a class="reference internal" href="#comparisons">Comparisons</a></li>
 <li><a class="reference internal" href="#numeric-types-int-float-complex">Numeric Types --- <code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">complex</span></code></a><ul>
@@ -202,7 +202,7 @@
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Python 標準函式庫 (Standard Library)</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">內建型態</a></li>
+        <li class="nav-item nav-item-this"><a href="">內建型別</a></li>
                 <li class="right">
                     
 
@@ -226,40 +226,23 @@
           <div class="body" role="main">
             
   <section id="built-in-types">
-<span id="bltin-types"></span><h1>內建型態<a class="headerlink" href="#built-in-types" title="Permalink to this heading">¶</a></h1>
-<p>The following sections describe the standard types that are built into the
-interpreter.</p>
-<p id="index-0">The principal built-in types are numerics, sequences, mappings, classes,
-instances and exceptions.</p>
-<p>Some collection classes are mutable.  The methods that add, subtract, or
-rearrange their members in place, and don't return a specific item, never return
-the collection instance itself but <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
-<p>Some operations are supported by several object types; in particular,
-practically all objects can be compared for equality, tested for truth
-value, and converted to a string (with the <a class="reference internal" href="functions.html#repr" title="repr"><code class="xref py py-func docutils literal notranslate"><span class="pre">repr()</span></code></a> function or the
-slightly different <a class="reference internal" href="#str" title="str"><code class="xref py py-func docutils literal notranslate"><span class="pre">str()</span></code></a> function).  The latter function is implicitly
-used when an object is written by the <a class="reference internal" href="functions.html#print" title="print"><code class="xref py py-func docutils literal notranslate"><span class="pre">print()</span></code></a> function.</p>
+<span id="bltin-types"></span><h1>內建型別<a class="headerlink" href="#built-in-types" title="Permalink to this heading">¶</a></h1>
+<p>以下章節描述了直譯器中内建的標準型別。</p>
+<p id="index-0">主要內建型別為數字、序列、映射、class（類別）、實例和例外。</p>
+<p>有些集合類別是 mutable（可變的）。那些用於原地 (in-place) 加入、移除或重新排列其成員且不回傳特定項的 method（方法），也只會回傳 <code class="docutils literal notranslate"><span class="pre">None</span></code> 而非集合實例自己。</p>
+<p>某些操作已被多種物件型別支援；特別是實務上所有物件都已經可以做相等性比較、真值檢測及被轉換為字串（使用 <a class="reference internal" href="functions.html#repr" title="repr"><code class="xref py py-func docutils literal notranslate"><span class="pre">repr()</span></code></a> 函式或稍有差異的 <a class="reference internal" href="#str" title="str"><code class="xref py py-func docutils literal notranslate"><span class="pre">str()</span></code></a> 函式），後者為當物件傳入 <a class="reference internal" href="functions.html#print" title="print"><code class="xref py py-func docutils literal notranslate"><span class="pre">print()</span></code></a> 函式印出時在背後被調用的函式。</p>
 <section id="truth-value-testing">
-<span id="truth"></span><h2>Truth Value Testing<a class="headerlink" href="#truth-value-testing" title="Permalink to this heading">¶</a></h2>
-<p id="index-1">Any object can be tested for truth value, for use in an <a class="reference internal" href="../reference/compound_stmts.html#if"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">if</span></code></a> or
-<a class="reference internal" href="../reference/compound_stmts.html#while"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">while</span></code></a> condition or as operand of the Boolean operations below.</p>
-<p id="index-2">By default, an object is considered true unless its class defines either a
-<code class="xref py py-meth docutils literal notranslate"><span class="pre">__bool__()</span></code> method that returns <code class="docutils literal notranslate"><span class="pre">False</span></code> or a <code class="xref py py-meth docutils literal notranslate"><span class="pre">__len__()</span></code> method that
-returns zero, when called with the object. <a class="footnote-reference brackets" href="#id12" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>  Here are most of the built-in
-objects considered false:</p>
+<span id="truth"></span><h2>真值檢測<a class="headerlink" href="#truth-value-testing" title="Permalink to this heading">¶</a></h2>
+<p id="index-1">任何物件都可以進行檢測以判斷是否為真值，以便在 <a class="reference internal" href="../reference/compound_stmts.html#if"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">if</span></code></a> 或 <a class="reference internal" href="../reference/compound_stmts.html#while"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">while</span></code></a> 條件中使用，或是作為如下所述 boolean（布林）運算之運算元所用。</p>
+<p id="index-2">預設情況下，一個物件會被視為真值，除非它的 class 定義了會回傳 <code class="docutils literal notranslate"><span class="pre">False</span></code> 的 <code class="xref py py-meth docutils literal notranslate"><span class="pre">__bool__()</span></code> method 或是定義了會回傳零的 <code class="xref py py-meth docutils literal notranslate"><span class="pre">__len__()</span></code> method。<a class="footnote-reference brackets" href="#id12" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a> 以下列出了大部分會被視為 false 的內建物件：</p>
 <blockquote>
 <div></div></blockquote>
 <ul class="simple" id="index-3">
-<li><p>constants defined to be false: <code class="docutils literal notranslate"><span class="pre">None</span></code> and <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p></li>
-<li><p>zero of any numeric type: <code class="docutils literal notranslate"><span class="pre">0</span></code>, <code class="docutils literal notranslate"><span class="pre">0.0</span></code>, <code class="docutils literal notranslate"><span class="pre">0j</span></code>, <code class="docutils literal notranslate"><span class="pre">Decimal(0)</span></code>,
-<code class="docutils literal notranslate"><span class="pre">Fraction(0,</span> <span class="pre">1)</span></code></p></li>
-<li><p>empty sequences and collections: <code class="docutils literal notranslate"><span class="pre">''</span></code>, <code class="docutils literal notranslate"><span class="pre">()</span></code>, <code class="docutils literal notranslate"><span class="pre">[]</span></code>, <code class="docutils literal notranslate"><span class="pre">{}</span></code>, <code class="docutils literal notranslate"><span class="pre">set()</span></code>,
-<code class="docutils literal notranslate"><span class="pre">range(0)</span></code></p></li>
+<li><p>定義為 false 之常數：<code class="docutils literal notranslate"><span class="pre">None</span></code> 與 <code class="docutils literal notranslate"><span class="pre">False</span></code>。</p></li>
+<li><p>任何數值型別的零：<code class="docutils literal notranslate"><span class="pre">0</span></code>、<code class="docutils literal notranslate"><span class="pre">0.0</span></code>、<code class="docutils literal notranslate"><span class="pre">0j</span></code>、<code class="docutils literal notranslate"><span class="pre">Decimal(0)</span></code>、<code class="docutils literal notranslate"><span class="pre">Fraction(0,</span> <span class="pre">1)</span></code></p></li>
+<li><p>空的序列和集合：<code class="docutils literal notranslate"><span class="pre">''</span></code>、<code class="docutils literal notranslate"><span class="pre">()</span></code>、<code class="docutils literal notranslate"><span class="pre">[]</span></code>、<code class="docutils literal notranslate"><span class="pre">{}</span></code>、<code class="docutils literal notranslate"><span class="pre">set()</span></code>、<code class="docutils literal notranslate"><span class="pre">range(0)</span></code></p></li>
 </ul>
-<p id="index-4">Operations and built-in functions that have a Boolean result always return <code class="docutils literal notranslate"><span class="pre">0</span></code>
-or <code class="docutils literal notranslate"><span class="pre">False</span></code> for false and <code class="docutils literal notranslate"><span class="pre">1</span></code> or <code class="docutils literal notranslate"><span class="pre">True</span></code> for true, unless otherwise stated.
-(Important exception: the Boolean operations <code class="docutils literal notranslate"><span class="pre">or</span></code> and <code class="docutils literal notranslate"><span class="pre">and</span></code> always return
-one of their operands.)</p>
+<p id="index-4">除非另有特別說明，產生 boolean 結果的操作或內建函式都會回傳 <code class="docutils literal notranslate"><span class="pre">0</span></code> 或 <code class="docutils literal notranslate"><span class="pre">False</span></code> 作為假值、<code class="docutils literal notranslate"><span class="pre">1</span></code> 或 <code class="docutils literal notranslate"><span class="pre">True</span></code> 作為真值。（重要例外： boolean 運算 <code class="docutils literal notranslate"><span class="pre">or</span></code> 和 <code class="docutils literal notranslate"><span class="pre">and</span></code> 回傳的是其中一個運算元。）</p>
 </section>
 <section id="boolean-operations-and-or-not">
 <span id="boolean"></span><h2>Boolean Operations --- <code class="xref std std-keyword docutils literal notranslate"><span class="pre">and</span></code>, <code class="xref std std-keyword docutils literal notranslate"><span class="pre">or</span></code>, <code class="xref std std-keyword docutils literal notranslate"><span class="pre">not</span></code><a class="headerlink" href="#boolean-operations-and-or-not" title="Permalink to this heading">¶</a></h2>
@@ -5482,7 +5465,7 @@ false or true).  In numeric contexts (for example when used as the argument to
 an arithmetic operator), they behave like the integers 0 and 1, respectively.
 The built-in function <a class="reference internal" href="functions.html#bool" title="bool"><code class="xref py py-func docutils literal notranslate"><span class="pre">bool()</span></code></a> can be used to convert any value to a
 Boolean, if the value can be interpreted as a truth value (see section
-<a class="reference internal" href="#truth"><span class="std std-ref">Truth Value Testing</span></a> above).</p>
+<a class="reference internal" href="#truth"><span class="std std-ref">真值檢測</span></a> above).</p>
 <p id="index-66">They are written as <code class="docutils literal notranslate"><span class="pre">False</span></code> and <code class="docutils literal notranslate"><span class="pre">True</span></code>, respectively.</p>
 </section>
 <section id="internal-objects">
@@ -5599,8 +5582,8 @@ element is the tuple to be formatted.</p>
   <div>
     <h3><a href="../contents.html">目錄</a></h3>
     <ul>
-<li><a class="reference internal" href="#">內建型態</a><ul>
-<li><a class="reference internal" href="#truth-value-testing">Truth Value Testing</a></li>
+<li><a class="reference internal" href="#">內建型別</a><ul>
+<li><a class="reference internal" href="#truth-value-testing">真值檢測</a></li>
 <li><a class="reference internal" href="#boolean-operations-and-or-not">Boolean Operations --- <code class="xref std std-keyword docutils literal notranslate"><span class="pre">and</span></code>, <code class="xref std std-keyword docutils literal notranslate"><span class="pre">or</span></code>, <code class="xref std std-keyword docutils literal notranslate"><span class="pre">not</span></code></a></li>
 <li><a class="reference internal" href="#comparisons">Comparisons</a></li>
 <li><a class="reference internal" href="#numeric-types-int-float-complex">Numeric Types --- <code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">complex</span></code></a><ul>
@@ -5730,7 +5713,7 @@ element is the tuple to be formatted.</p>
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">內建型態</a></li>
+        <li class="nav-item nav-item-this"><a href="">內建型別</a></li>
                 <li class="right">
                     
 
@@ -5762,11 +5745,11 @@ element is the tuple to be formatted.</p>
 <br />
     <br />
 
-    最後更新於 6月 11, 2022。
+    最後更新於 7月 06, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 
-    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.0.1 建立。
+    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.0.2 建立。
     </div>
 
   </body>

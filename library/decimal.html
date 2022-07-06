@@ -181,7 +181,7 @@
 <span id="decimal-decimal-fixed-point-and-floating-point-arithmetic"></span><h1><a class="reference internal" href="#module-decimal" title="decimal: Implementation of the General Decimal Arithmetic  Specification."><code class="xref py py-mod docutils literal notranslate"><span class="pre">decimal</span></code></a> --- Decimal fixed point and floating point arithmetic<a class="headerlink" href="#module-decimal" title="Permalink to this heading">¶</a></h1>
 <p><strong>原始碼：</strong><a class="reference external" href="https://github.com/python/cpython/tree/3.10/Lib/decimal.py">Lib/decimal.py</a></p>
 <hr class="docutils" />
-<p>The <a class="reference internal" href="#module-decimal" title="decimal: Implementation of the General Decimal Arithmetic  Specification."><code class="xref py py-mod docutils literal notranslate"><span class="pre">decimal</span></code></a> module provides support for fast correctly-rounded
+<p>The <a class="reference internal" href="#module-decimal" title="decimal: Implementation of the General Decimal Arithmetic  Specification."><code class="xref py py-mod docutils literal notranslate"><span class="pre">decimal</span></code></a> module provides support for fast correctly rounded
 decimal floating point arithmetic. It offers several advantages over the
 <a class="reference internal" href="functions.html#float" title="float"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a> datatype:</p>
 <ul>
@@ -1602,14 +1602,14 @@ identity operation.</p>
 <p>With two arguments, compute <code class="docutils literal notranslate"><span class="pre">x**y</span></code>.  If <code class="docutils literal notranslate"><span class="pre">x</span></code> is negative then <code class="docutils literal notranslate"><span class="pre">y</span></code>
 must be integral.  The result will be inexact unless <code class="docutils literal notranslate"><span class="pre">y</span></code> is integral and
 the result is finite and can be expressed exactly in 'precision' digits.
-The rounding mode of the context is used. Results are always correctly-rounded
+The rounding mode of the context is used. Results are always correctly rounded
 in the Python version.</p>
 <p><code class="docutils literal notranslate"><span class="pre">Decimal(0)</span> <span class="pre">**</span> <span class="pre">Decimal(0)</span></code> results in <code class="docutils literal notranslate"><span class="pre">InvalidOperation</span></code>, and if <code class="docutils literal notranslate"><span class="pre">InvalidOperation</span></code>
 is not trapped, then results in <code class="docutils literal notranslate"><span class="pre">Decimal('NaN')</span></code>.</p>
 <div class="versionchanged">
-<p><span class="versionmodified changed">在 3.3 版本變更: </span>The C module computes <a class="reference internal" href="#decimal.Context.power" title="decimal.Context.power"><code class="xref py py-meth docutils literal notranslate"><span class="pre">power()</span></code></a> in terms of the correctly-rounded
+<p><span class="versionmodified changed">在 3.3 版本變更: </span>The C module computes <a class="reference internal" href="#decimal.Context.power" title="decimal.Context.power"><code class="xref py py-meth docutils literal notranslate"><span class="pre">power()</span></code></a> in terms of the correctly rounded
 <a class="reference internal" href="#decimal.Context.exp" title="decimal.Context.exp"><code class="xref py py-meth docutils literal notranslate"><span class="pre">exp()</span></code></a> and <a class="reference internal" href="#decimal.Context.ln" title="decimal.Context.ln"><code class="xref py py-meth docutils literal notranslate"><span class="pre">ln()</span></code></a> functions. The result is well-defined but
-only &quot;almost always correctly-rounded&quot;.</p>
+only &quot;almost always correctly rounded&quot;.</p>
 </div>
 <p>With three arguments, compute <code class="docutils literal notranslate"><span class="pre">(x**y)</span> <span class="pre">%</span> <span class="pre">modulo</span></code>.  For the three argument
 form, the following restrictions on the arguments hold:</p>
@@ -2387,7 +2387,7 @@ using the unary plus operation:</p>
 <p>Q. Is the CPython implementation fast for large numbers?</p>
 <p>A. Yes.  In the CPython and PyPy3 implementations, the C/CFFI versions of
 the decimal module integrate the high speed <a class="reference external" href="https://www.bytereef.org/mpdecimal/doc/libmpdec/index.html">libmpdec</a> library for
-arbitrary precision correctly-rounded decimal floating point arithmetic <a class="footnote-reference brackets" href="#id4" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>.
+arbitrary precision correctly rounded decimal floating point arithmetic <a class="footnote-reference brackets" href="#id4" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>.
 <code class="docutils literal notranslate"><span class="pre">libmpdec</span></code> uses <a class="reference external" href="https://en.wikipedia.org/wiki/Karatsuba_algorithm">Karatsuba multiplication</a>
 for medium-sized numbers and the <a class="reference external" href="https://en.wikipedia.org/wiki/Discrete_Fourier_transform_(general)#Number-theoretic_transform">Number Theoretic Transform</a>
 for very large numbers.</p>
@@ -2577,11 +2577,11 @@ are expected to be exact.</p>
 <br />
     <br />
 
-    最後更新於 6月 11, 2022。
+    最後更新於 7月 06, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 
-    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.0.1 建立。
+    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.0.2 建立。
     </div>
 
   </body>

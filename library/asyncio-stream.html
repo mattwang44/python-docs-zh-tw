@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Streams &#8212; Python 3.10.5 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>串流 &#8212; Python 3.10.5 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -74,14 +74,14 @@
   <div>
     <h3><a href="../contents.html">目錄</a></h3>
     <ul>
-<li><a class="reference internal" href="#">Streams</a><ul>
+<li><a class="reference internal" href="#">串流</a><ul>
 <li><a class="reference internal" href="#streamreader">StreamReader</a></li>
 <li><a class="reference internal" href="#streamwriter">StreamWriter</a></li>
 <li><a class="reference internal" href="#examples">範例</a><ul>
-<li><a class="reference internal" href="#tcp-echo-client-using-streams">TCP echo client using streams</a></li>
-<li><a class="reference internal" href="#tcp-echo-server-using-streams">TCP echo server using streams</a></li>
-<li><a class="reference internal" href="#get-http-headers">Get HTTP headers</a></li>
-<li><a class="reference internal" href="#register-an-open-socket-to-wait-for-data-using-streams">Register an open socket to wait for data using streams</a></li>
+<li><a class="reference internal" href="#tcp-echo-client-using-streams">使用串流的 TCP echo 客戶端</a></li>
+<li><a class="reference internal" href="#tcp-echo-server-using-streams">使用串流的 TCP echo 伺服器</a></li>
+<li><a class="reference internal" href="#get-http-headers">獲取 HTTP 標頭</a></li>
+<li><a class="reference internal" href="#register-an-open-socket-to-wait-for-data-using-streams">註冊一個使用串流來等待資料的開放 socket</a></li>
 </ul>
 </li>
 </ul>
@@ -147,7 +147,7 @@
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="ipc.html" >Networking and Interprocess Communication</a> &#187;</li>
           <li class="nav-item nav-item-3"><a href="asyncio.html" accesskey="U"><code class="xref py py-mod docutils literal notranslate"><span class="pre">asyncio</span></code> --- 非同步 I/O</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">Streams</a></li>
+        <li class="nav-item nav-item-this"><a href="">串流</a></li>
                 <li class="right">
                     
 
@@ -171,14 +171,11 @@
           <div class="body" role="main">
             
   <section id="streams">
-<span id="asyncio-streams"></span><h1>Streams<a class="headerlink" href="#streams" title="Permalink to this heading">¶</a></h1>
+<span id="asyncio-streams"></span><h1>串流<a class="headerlink" href="#streams" title="Permalink to this heading">¶</a></h1>
 <p><strong>原始碼：</strong><a class="reference external" href="https://github.com/python/cpython/tree/3.10/Lib/asyncio/streams.py">Lib/asyncio/streams.py</a></p>
 <hr class="docutils" />
-<p>Streams are high-level async/await-ready primitives to work with
-network connections.  Streams allow sending and receiving data without
-using callbacks or low-level protocols and transports.</p>
-<p id="asyncio-example-stream">Here is an example of a TCP echo client written using asyncio
-streams:</p>
+<p>串流是支援 async/await (async/await-ready) 的高階原始物件 (high-level primitive)，用於處理網路連線。串流不需要使用回呼 (callback) 或低階協定和傳輸 (transport) 就能夠傳送和接收資料。</p>
+<p id="asyncio-example-stream">這是一個使用 asyncio 串流編寫的 TCP echo 客戶端範例：</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">asyncio</span>
 
 <span class="k">async</span> <span class="k">def</span> <span class="nf">tcp_echo_client</span><span class="p">(</span><span class="n">message</span><span class="p">):</span>
@@ -199,22 +196,16 @@ streams:</p>
 <span class="n">asyncio</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">tcp_echo_client</span><span class="p">(</span><span class="s1">&#39;Hello World!&#39;</span><span class="p">))</span>
 </pre></div>
 </div>
-<p>另請參閱下方<a class="reference internal" href="#examples">Examples</a>。</p>
-<p class="rubric">Stream Functions</p>
-<p>The following top-level asyncio functions can be used to create
-and work with streams:</p>
+<p>另請參閱下方 <a class="reference internal" href="#examples">Examples</a> 段落。</p>
+<p class="rubric">串流函式</p>
+<p>下面的高階 asyncio 函式可以用來建立和處理串流：</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="asyncio.open_connection">
 <em class="property"><span class="pre">coroutine</span> </em><span class="sig-prename descclassname"><span class="pre">asyncio.</span></span><span class="sig-name descname"><span class="pre">open_connection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">host</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">port</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">limit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ssl</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">family</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">proto</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flags</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sock</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">local_addr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">server_hostname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ssl_handshake_timeout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">happy_eyeballs_delay</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">interleave</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#asyncio.open_connection" title="本定義的永久連結">¶</a></dt>
-<dd><p>Establish a network connection and return a pair of
-<code class="docutils literal notranslate"><span class="pre">(reader,</span> <span class="pre">writer)</span></code> objects.</p>
-<p>The returned <em>reader</em> and <em>writer</em> objects are instances of
-<a class="reference internal" href="#asyncio.StreamReader" title="asyncio.StreamReader"><code class="xref py py-class docutils literal notranslate"><span class="pre">StreamReader</span></code></a> and <a class="reference internal" href="#asyncio.StreamWriter" title="asyncio.StreamWriter"><code class="xref py py-class docutils literal notranslate"><span class="pre">StreamWriter</span></code></a> classes.</p>
-<p><em>limit</em> determines the buffer size limit used by the
-returned <a class="reference internal" href="#asyncio.StreamReader" title="asyncio.StreamReader"><code class="xref py py-class docutils literal notranslate"><span class="pre">StreamReader</span></code></a> instance.  By default the <em>limit</em>
-is set to 64 KiB.</p>
-<p>The rest of the arguments are passed directly to
-<a class="reference internal" href="asyncio-eventloop.html#asyncio.loop.create_connection" title="asyncio.loop.create_connection"><code class="xref py py-meth docutils literal notranslate"><span class="pre">loop.create_connection()</span></code></a>.</p>
+<dd><p>建立網路連線並回傳一對 <code class="docutils literal notranslate"><span class="pre">(reader,</span> <span class="pre">writer)</span></code> 物件。</p>
+<p>回傳的 <em>reader</em> 和 <em>writer</em> 物件是 <a class="reference internal" href="#asyncio.StreamReader" title="asyncio.StreamReader"><code class="xref py py-class docutils literal notranslate"><span class="pre">StreamReader</span></code></a> 和 <a class="reference internal" href="#asyncio.StreamWriter" title="asyncio.StreamWriter"><code class="xref py py-class docutils literal notranslate"><span class="pre">StreamWriter</span></code></a> 類別的實例。</p>
+<p><em>limit</em> 指定了回傳的 <a class="reference internal" href="#asyncio.StreamReader" title="asyncio.StreamReader"><code class="xref py py-class docutils literal notranslate"><span class="pre">StreamReader</span></code></a> 實例所使用的緩衝區 (buffer) 大小限制。<em>limit</em> 預設為 64 KiB。</p>
+<p>其餘的引數會直接傳遞到 <a class="reference internal" href="asyncio-eventloop.html#asyncio.loop.create_connection" title="asyncio.loop.create_connection"><code class="xref py py-meth docutils literal notranslate"><span class="pre">loop.create_connection()</span></code></a>。</p>
 <div class="versionchanged">
 <p><span class="versionmodified changed">在 3.7 版本變更: </span>新增 <em>ssl_handshake_timeout</em> 參數。</p>
 </div>
@@ -222,31 +213,23 @@ is set to 64 KiB.</p>
 <p><span class="versionmodified added">在 3.8 版本新加入: </span>Added <em>happy_eyeballs_delay</em> and <em>interleave</em> parameters.</p>
 </div>
 <div class="versionchanged">
-<p><span class="versionmodified changed">在 3.10 版本變更: </span>Removed the <em>loop</em> parameter.</p>
+<p><span class="versionmodified changed">在 3.10 版本變更: </span>移除 <em>loop</em> 參數。</p>
 </div>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="asyncio.start_server">
 <em class="property"><span class="pre">coroutine</span> </em><span class="sig-prename descclassname"><span class="pre">asyncio.</span></span><span class="sig-name descname"><span class="pre">start_server</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">client_connected_cb</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">host</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">port</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">limit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">family</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">socket.AF_UNSPEC</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flags</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">socket.AI_PASSIVE</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sock</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">backlog</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ssl</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reuse_address</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reuse_port</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ssl_handshake_timeout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_serving</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#asyncio.start_server" title="本定義的永久連結">¶</a></dt>
-<dd><p>Start a socket server.</p>
-<p>The <em>client_connected_cb</em> callback is called whenever a new client
-connection is established.  It receives a <code class="docutils literal notranslate"><span class="pre">(reader,</span> <span class="pre">writer)</span></code> pair
-as two arguments, instances of the <a class="reference internal" href="#asyncio.StreamReader" title="asyncio.StreamReader"><code class="xref py py-class docutils literal notranslate"><span class="pre">StreamReader</span></code></a> and
-<a class="reference internal" href="#asyncio.StreamWriter" title="asyncio.StreamWriter"><code class="xref py py-class docutils literal notranslate"><span class="pre">StreamWriter</span></code></a> classes.</p>
-<p><em>client_connected_cb</em> can be a plain callable or a
-<a class="reference internal" href="asyncio-task.html#coroutine"><span class="std std-ref">coroutine function</span></a>; if it is a coroutine function,
-it will be automatically scheduled as a <a class="reference internal" href="asyncio-task.html#asyncio.Task" title="asyncio.Task"><code class="xref py py-class docutils literal notranslate"><span class="pre">Task</span></code></a>.</p>
-<p><em>limit</em> determines the buffer size limit used by the
-returned <a class="reference internal" href="#asyncio.StreamReader" title="asyncio.StreamReader"><code class="xref py py-class docutils literal notranslate"><span class="pre">StreamReader</span></code></a> instance.  By default the <em>limit</em>
-is set to 64 KiB.</p>
-<p>The rest of the arguments are passed directly to
-<a class="reference internal" href="asyncio-eventloop.html#asyncio.loop.create_server" title="asyncio.loop.create_server"><code class="xref py py-meth docutils literal notranslate"><span class="pre">loop.create_server()</span></code></a>.</p>
+<dd><p>啟動 socket 伺服器。</p>
+<p>當一個新的客戶端連線被建立時，回呼函式 <em>client_connected_cb</em> 就會被呼叫。該函式會接收到一對引數 <code class="docutils literal notranslate"><span class="pre">(reader,</span> <span class="pre">writer)</span></code>，分別為 <a class="reference internal" href="#asyncio.StreamReader" title="asyncio.StreamReader"><code class="xref py py-class docutils literal notranslate"><span class="pre">StreamReader</span></code></a> 和 <a class="reference internal" href="#asyncio.StreamWriter" title="asyncio.StreamWriter"><code class="xref py py-class docutils literal notranslate"><span class="pre">StreamWriter</span></code></a> 的實例。</p>
+<p><em>client_connected_cb</em> 既可以是普通的可呼叫物件 (callable)，也可以是一個<a class="reference internal" href="asyncio-task.html#coroutine"><span class="std std-ref">協程函式</span></a>；如果它是一個協程函式，它將自動作為 <a class="reference internal" href="asyncio-task.html#asyncio.Task" title="asyncio.Task"><code class="xref py py-class docutils literal notranslate"><span class="pre">Task</span></code></a> 來被排程。</p>
+<p><em>limit</em> 指定了回傳的 <a class="reference internal" href="#asyncio.StreamReader" title="asyncio.StreamReader"><code class="xref py py-class docutils literal notranslate"><span class="pre">StreamReader</span></code></a> 實例所使用的緩衝區 (buffer) 大小限制。<em>limit</em> 預設為 64 KiB。</p>
+<p>剩下的引數將會直接傳遞給 <a class="reference internal" href="asyncio-eventloop.html#asyncio.loop.create_server" title="asyncio.loop.create_server"><code class="xref py py-meth docutils literal notranslate"><span class="pre">loop.create_server()</span></code></a>。</p>
 <div class="versionchanged">
 <p><span class="versionmodified changed">在 3.7 版本變更: </span>新增 <em>ssl_handshake_timeout</em> 與 <em>start_serving</em> 參數。</p>
 </div>
 <div class="versionchanged">
-<p><span class="versionmodified changed">在 3.10 版本變更: </span>Removed the <em>loop</em> parameter.</p>
+<p><span class="versionmodified changed">在 3.10 版本變更: </span>移除 <em>loop</em> 參數。</p>
 </div>
 </dd></dl>
 
@@ -254,31 +237,30 @@ is set to 64 KiB.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="asyncio.open_unix_connection">
 <em class="property"><span class="pre">coroutine</span> </em><span class="sig-prename descclassname"><span class="pre">asyncio.</span></span><span class="sig-name descname"><span class="pre">open_unix_connection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">limit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ssl</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sock</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">server_hostname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ssl_handshake_timeout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#asyncio.open_unix_connection" title="本定義的永久連結">¶</a></dt>
-<dd><p>Establish a Unix socket connection and return a pair of
-<code class="docutils literal notranslate"><span class="pre">(reader,</span> <span class="pre">writer)</span></code>.</p>
-<p>Similar to <a class="reference internal" href="#asyncio.open_connection" title="asyncio.open_connection"><code class="xref py py-func docutils literal notranslate"><span class="pre">open_connection()</span></code></a> but operates on Unix sockets.</p>
+<dd><p>建立一個 Unix socket 連線並回傳一對 <code class="docutils literal notranslate"><span class="pre">(reader,</span> <span class="pre">writer)</span></code>。</p>
+<p>與 <a class="reference internal" href="#asyncio.open_connection" title="asyncio.open_connection"><code class="xref py py-func docutils literal notranslate"><span class="pre">open_connection()</span></code></a> 相似，但是是操作 Unix sockets。</p>
 <p>另請參閱 <a class="reference internal" href="asyncio-eventloop.html#asyncio.loop.create_unix_connection" title="asyncio.loop.create_unix_connection"><code class="xref py py-meth docutils literal notranslate"><span class="pre">loop.create_unix_connection()</span></code></a> 文件。</p>
 <p class="availability"><a class="reference internal" href="intro.html#availability"><span class="std std-ref">適用</span></a>：Unix。</p>
 <div class="versionchanged">
-<p><span class="versionmodified changed">在 3.7 版本變更: </span>新增 <em>ssl_handshake_timeout</em> 參數。<em>path</em> 參數現在可以是個<a class="reference internal" href="../glossary.html#term-path-like-object"><span class="xref std std-term">path-like object</span></a></p>
+<p><span class="versionmodified changed">在 3.7 版本變更: </span>新增 <em>ssl_handshake_timeout</em> 參數。<em>path</em> 參數現在可以是個 <a class="reference internal" href="../glossary.html#term-path-like-object"><span class="xref std std-term">path-like object</span></a></p>
 </div>
 <div class="versionchanged">
-<p><span class="versionmodified changed">在 3.10 版本變更: </span>Removed the <em>loop</em> parameter.</p>
+<p><span class="versionmodified changed">在 3.10 版本變更: </span>移除 <em>loop</em> 參數。</p>
 </div>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="asyncio.start_unix_server">
 <em class="property"><span class="pre">coroutine</span> </em><span class="sig-prename descclassname"><span class="pre">asyncio.</span></span><span class="sig-name descname"><span class="pre">start_unix_server</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">client_connected_cb</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">limit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sock</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">backlog</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ssl</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ssl_handshake_timeout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_serving</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#asyncio.start_unix_server" title="本定義的永久連結">¶</a></dt>
-<dd><p>Start a Unix socket server.</p>
-<p>Similar to <a class="reference internal" href="#asyncio.start_server" title="asyncio.start_server"><code class="xref py py-func docutils literal notranslate"><span class="pre">start_server()</span></code></a> but works with Unix sockets.</p>
+<dd><p>啟動一個 Unix socket 伺服器。</p>
+<p>與 <a class="reference internal" href="#asyncio.start_server" title="asyncio.start_server"><code class="xref py py-func docutils literal notranslate"><span class="pre">start_server()</span></code></a> 相似，但會是操作 Unix sockets。</p>
 <p>另請參閱 <a class="reference internal" href="asyncio-eventloop.html#asyncio.loop.create_unix_server" title="asyncio.loop.create_unix_server"><code class="xref py py-meth docutils literal notranslate"><span class="pre">loop.create_unix_server()</span></code></a> 文件。</p>
 <p class="availability"><a class="reference internal" href="intro.html#availability"><span class="std std-ref">適用</span></a>：Unix。</p>
 <div class="versionchanged">
 <p><span class="versionmodified changed">在 3.7 版本變更: </span>新增 <em>ssl_handshake_timeout</em> 與 <em>start_serving</em> 參數。<em>path</em> 參數現在可以是個 <a class="reference internal" href="../glossary.html#term-path-like-object"><span class="xref std std-term">path-like object</span></a>。</p>
 </div>
 <div class="versionchanged">
-<p><span class="versionmodified changed">在 3.10 版本變更: </span>Removed the <em>loop</em> parameter.</p>
+<p><span class="versionmodified changed">在 3.10 版本變更: </span>移除 <em>loop</em> 參數。</p>
 </div>
 </dd></dl>
 
@@ -287,54 +269,37 @@ is set to 64 KiB.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="asyncio.StreamReader">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">asyncio.</span></span><span class="sig-name descname"><span class="pre">StreamReader</span></span><a class="headerlink" href="#asyncio.StreamReader" title="本定義的永久連結">¶</a></dt>
-<dd><p>Represents a reader object that provides APIs to read data
-from the IO stream.</p>
-<p>It is not recommended to instantiate <em>StreamReader</em> objects
-directly; use <a class="reference internal" href="#asyncio.open_connection" title="asyncio.open_connection"><code class="xref py py-func docutils literal notranslate"><span class="pre">open_connection()</span></code></a> and <a class="reference internal" href="#asyncio.start_server" title="asyncio.start_server"><code class="xref py py-func docutils literal notranslate"><span class="pre">start_server()</span></code></a>
-instead.</p>
+<dd><p>表示一個有提供 API 來從 IO 串流中讀取資料的 reader 物件。</p>
+<p>不建議直接實例化 <em>StreamReader</em> 物件；使用 <a class="reference internal" href="#asyncio.open_connection" title="asyncio.open_connection"><code class="xref py py-func docutils literal notranslate"><span class="pre">open_connection()</span></code></a> 和 <a class="reference internal" href="#asyncio.start_server" title="asyncio.start_server"><code class="xref py py-func docutils literal notranslate"><span class="pre">start_server()</span></code></a> 會是較好的做法。</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="asyncio.StreamReader.read">
 <em class="property"><span class="pre">coroutine</span> </em><span class="sig-name descname"><span class="pre">read</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-</span> <span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#asyncio.StreamReader.read" title="本定義的永久連結">¶</a></dt>
-<dd><p>Read up to <em>n</em> bytes.  If <em>n</em> is not provided, or set to <code class="docutils literal notranslate"><span class="pre">-1</span></code>,
-read until EOF and return all read bytes.</p>
-<p>If EOF was received and the internal buffer is empty,
-return an empty <code class="docutils literal notranslate"><span class="pre">bytes</span></code> object.</p>
+<dd><p>讀取至多 <em>n</em> 個位元組。如果沒有設定 <em>n</em> 或被設為 <code class="docutils literal notranslate"><span class="pre">-1</span></code>，則表示要持續讀取直到 EOF 並回傳所有已讀取的位元組。</p>
+<p>如果讀取到 EOF 且內部緩衝區是空的，則回傳一個空的 <code class="docutils literal notranslate"><span class="pre">bytes</span></code> 物件。</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="asyncio.StreamReader.readline">
 <em class="property"><span class="pre">coroutine</span> </em><span class="sig-name descname"><span class="pre">readline</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#asyncio.StreamReader.readline" title="本定義的永久連結">¶</a></dt>
-<dd><p>Read one line, where &quot;line&quot; is a sequence of bytes
-ending with <code class="docutils literal notranslate"><span class="pre">\n</span></code>.</p>
-<p>If EOF is received and <code class="docutils literal notranslate"><span class="pre">\n</span></code> was not found, the method
-returns partially read data.</p>
-<p>If EOF is received and the internal buffer is empty,
-return an empty <code class="docutils literal notranslate"><span class="pre">bytes</span></code> object.</p>
+<dd><p>讀取一行，其中&quot;行&quot;指的是以 <code class="docutils literal notranslate"><span class="pre">\n</span></code> 結尾的位元組序列。</p>
+<p>如果讀取到 EOF 而沒有找到 <code class="docutils literal notranslate"><span class="pre">\n</span></code>，該方法會回傳部分的已讀取資料。</p>
+<p>如果讀取到 EOF 且內部緩衝區是空的，則回傳一個空的 <code class="docutils literal notranslate"><span class="pre">bytes</span></code> 物件。</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="asyncio.StreamReader.readexactly">
 <em class="property"><span class="pre">coroutine</span> </em><span class="sig-name descname"><span class="pre">readexactly</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#asyncio.StreamReader.readexactly" title="本定義的永久連結">¶</a></dt>
-<dd><p>Read exactly <em>n</em> bytes.</p>
-<p>Raise an <a class="reference internal" href="asyncio-exceptions.html#asyncio.IncompleteReadError" title="asyncio.IncompleteReadError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">IncompleteReadError</span></code></a> if EOF is reached before <em>n</em>
-can be read.  Use the <a class="reference internal" href="asyncio-exceptions.html#asyncio.IncompleteReadError.partial" title="asyncio.IncompleteReadError.partial"><code class="xref py py-attr docutils literal notranslate"><span class="pre">IncompleteReadError.partial</span></code></a>
-attribute to get the partially read data.</p>
+<dd><p>讀取剛好 <em>n</em> 個位元組。</p>
+<p>如果在讀取完 <em>n</em> 個位元組之前讀取到 EOF，則會引發 <a class="reference internal" href="asyncio-exceptions.html#asyncio.IncompleteReadError" title="asyncio.IncompleteReadError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">IncompleteReadError</span></code></a>。使用 <a class="reference internal" href="asyncio-exceptions.html#asyncio.IncompleteReadError.partial" title="asyncio.IncompleteReadError.partial"><code class="xref py py-attr docutils literal notranslate"><span class="pre">IncompleteReadError.partial</span></code></a> 屬性來獲取串流結束前已讀取的部分資料。</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="asyncio.StreamReader.readuntil">
 <em class="property"><span class="pre">coroutine</span> </em><span class="sig-name descname"><span class="pre">readuntil</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">separator</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">b'\n'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#asyncio.StreamReader.readuntil" title="本定義的永久連結">¶</a></dt>
-<dd><p>Read data from the stream until <em>separator</em> is found.</p>
-<p>On success, the data and separator will be removed from the
-internal buffer (consumed). Returned data will include the
-separator at the end.</p>
-<p>If the amount of data read exceeds the configured stream limit, a
-<a class="reference internal" href="asyncio-exceptions.html#asyncio.LimitOverrunError" title="asyncio.LimitOverrunError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">LimitOverrunError</span></code></a> exception is raised, and the data
-is left in the internal buffer and can be read again.</p>
-<p>If EOF is reached before the complete separator is found,
-an <a class="reference internal" href="asyncio-exceptions.html#asyncio.IncompleteReadError" title="asyncio.IncompleteReadError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">IncompleteReadError</span></code></a> exception is raised, and the internal
-buffer is reset.  The <a class="reference internal" href="asyncio-exceptions.html#asyncio.IncompleteReadError.partial" title="asyncio.IncompleteReadError.partial"><code class="xref py py-attr docutils literal notranslate"><span class="pre">IncompleteReadError.partial</span></code></a> attribute
-may contain a portion of the separator.</p>
+<dd><p>從串流中持續讀取資料直到出現 <em>separator</em>。</p>
+<p>成功後，資料和 separator（分隔符號）會從內部緩衝區中刪除（或者說是被消費掉 (consumed)）。回傳的資料在末尾會有一個 separator。</p>
+<p>如果讀取的資料量超過了設定的串流限制，將會引發 <a class="reference internal" href="asyncio-exceptions.html#asyncio.LimitOverrunError" title="asyncio.LimitOverrunError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">LimitOverrunError</span></code></a> 例外，資料將被留在內部緩衝區中，並可以再次被讀取。</p>
+<p>如果在完整的 separator 被找到之前就讀取到 EOF，則會引發 <a class="reference internal" href="asyncio-exceptions.html#asyncio.IncompleteReadError" title="asyncio.IncompleteReadError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">IncompleteReadError</span></code></a> 例外，且內部緩衝區會被重置。<a class="reference internal" href="asyncio-exceptions.html#asyncio.IncompleteReadError.partial" title="asyncio.IncompleteReadError.partial"><code class="xref py py-attr docutils literal notranslate"><span class="pre">IncompleteReadError.partial</span></code></a> 屬性可能包含一部分的 separator。</p>
 <div class="versionadded">
 <p><span class="versionmodified added">在 3.5.2 版本新加入.</span></p>
 </div>
@@ -343,8 +308,7 @@ may contain a portion of the separator.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="asyncio.StreamReader.at_eof">
 <span class="sig-name descname"><span class="pre">at_eof</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#asyncio.StreamReader.at_eof" title="本定義的永久連結">¶</a></dt>
-<dd><p>Return <code class="docutils literal notranslate"><span class="pre">True</span></code> if the buffer is empty and <code class="xref py py-meth docutils literal notranslate"><span class="pre">feed_eof()</span></code>
-was called.</p>
+<dd><p>如果緩衝區是空的且 <code class="xref py py-meth docutils literal notranslate"><span class="pre">feed_eof()</span></code> 曾被呼叫則回傳 <code class="docutils literal notranslate"><span class="pre">True</span></code>。</p>
 </dd></dl>
 
 </dd></dl>
@@ -355,18 +319,13 @@ was called.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="asyncio.StreamWriter">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">asyncio.</span></span><span class="sig-name descname"><span class="pre">StreamWriter</span></span><a class="headerlink" href="#asyncio.StreamWriter" title="本定義的永久連結">¶</a></dt>
-<dd><p>Represents a writer object that provides APIs to write data
-to the IO stream.</p>
-<p>It is not recommended to instantiate <em>StreamWriter</em> objects
-directly; use <a class="reference internal" href="#asyncio.open_connection" title="asyncio.open_connection"><code class="xref py py-func docutils literal notranslate"><span class="pre">open_connection()</span></code></a> and <a class="reference internal" href="#asyncio.start_server" title="asyncio.start_server"><code class="xref py py-func docutils literal notranslate"><span class="pre">start_server()</span></code></a>
-instead.</p>
+<dd><p>表示一個有提供 API 來將資料寫入 IO 串流的 writer 物件。</p>
+<p>不建議直接實例化 <em>StreamWriter</em> 物件；使用 <a class="reference internal" href="#asyncio.open_connection" title="asyncio.open_connection"><code class="xref py py-func docutils literal notranslate"><span class="pre">open_connection()</span></code></a> 和 <a class="reference internal" href="#asyncio.start_server" title="asyncio.start_server"><code class="xref py py-func docutils literal notranslate"><span class="pre">start_server()</span></code></a> 會是較好的做法。</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="asyncio.StreamWriter.write">
 <span class="sig-name descname"><span class="pre">write</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#asyncio.StreamWriter.write" title="本定義的永久連結">¶</a></dt>
-<dd><p>The method attempts to write the <em>data</em> to the underlying socket immediately.
-If that fails, the data is queued in an internal write buffer until it can be
-sent.</p>
-<p>The method should be used along with the <code class="docutils literal notranslate"><span class="pre">drain()</span></code> method:</p>
+<dd><p>此方法會嘗試立即將 <em>data</em> 寫入到底層的 socket。如果失敗，資料會被放到內部寫入緩衝中排隊等待 (queue)，直到它可被發送。</p>
+<p>此方法應當與 <code class="docutils literal notranslate"><span class="pre">drain()</span></code> 方法一起使用：</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">stream</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 <span class="k">await</span> <span class="n">stream</span><span class="o">.</span><span class="n">drain</span><span class="p">()</span>
 </pre></div>
@@ -376,11 +335,8 @@ sent.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="asyncio.StreamWriter.writelines">
 <span class="sig-name descname"><span class="pre">writelines</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#asyncio.StreamWriter.writelines" title="本定義的永久連結">¶</a></dt>
-<dd><p>The method writes a list (or any iterable) of bytes to the underlying socket
-immediately.
-If that fails, the data is queued in an internal write buffer until it can be
-sent.</p>
-<p>The method should be used along with the <code class="docutils literal notranslate"><span class="pre">drain()</span></code> method:</p>
+<dd><p>此方法會立即嘗試將一個位元組 list（或任何可疊代物件 (iterable)）寫入到底層的 socket。如果失敗，資料會被放到內部寫入緩衝中排隊等待，直到它可被發送。</p>
+<p>此方法應當與 <code class="docutils literal notranslate"><span class="pre">drain()</span></code> 方法一起使用：</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">stream</span><span class="o">.</span><span class="n">writelines</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span>
 <span class="k">await</span> <span class="n">stream</span><span class="o">.</span><span class="n">drain</span><span class="p">()</span>
 </pre></div>
@@ -390,8 +346,8 @@ sent.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="asyncio.StreamWriter.close">
 <span class="sig-name descname"><span class="pre">close</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#asyncio.StreamWriter.close" title="本定義的永久連結">¶</a></dt>
-<dd><p>The method closes the stream and the underlying socket.</p>
-<p>The method should be used along with the <code class="docutils literal notranslate"><span class="pre">wait_closed()</span></code> method:</p>
+<dd><p>此方法會關閉串流以及底層的 socket。</p>
+<p>此方法應與 <code class="docutils literal notranslate"><span class="pre">wait_closed()</span></code> 方法一起使用：</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">stream</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 <span class="k">await</span> <span class="n">stream</span><span class="o">.</span><span class="n">wait_closed</span><span class="p">()</span>
 </pre></div>
@@ -401,52 +357,42 @@ sent.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="asyncio.StreamWriter.can_write_eof">
 <span class="sig-name descname"><span class="pre">can_write_eof</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#asyncio.StreamWriter.can_write_eof" title="本定義的永久連結">¶</a></dt>
-<dd><p>Return <code class="docutils literal notranslate"><span class="pre">True</span></code> if the underlying transport supports
-the <a class="reference internal" href="#asyncio.StreamWriter.write_eof" title="asyncio.StreamWriter.write_eof"><code class="xref py py-meth docutils literal notranslate"><span class="pre">write_eof()</span></code></a> method, <code class="docutils literal notranslate"><span class="pre">False</span></code> otherwise.</p>
+<dd><p>如果底層的傳輸支援 <a class="reference internal" href="#asyncio.StreamWriter.write_eof" title="asyncio.StreamWriter.write_eof"><code class="xref py py-meth docutils literal notranslate"><span class="pre">write_eof()</span></code></a> 方法就回傳 <code class="docutils literal notranslate"><span class="pre">True</span></code>，否則回傳 <code class="docutils literal notranslate"><span class="pre">False</span></code>。</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="asyncio.StreamWriter.write_eof">
 <span class="sig-name descname"><span class="pre">write_eof</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#asyncio.StreamWriter.write_eof" title="本定義的永久連結">¶</a></dt>
-<dd><p>Close the write end of the stream after the buffered write
-data is flushed.</p>
+<dd><p>在已緩衝的寫入資料被清理 (flush) 後關閉串流的寫入端。</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="asyncio.StreamWriter.transport">
 <span class="sig-name descname"><span class="pre">transport</span></span><a class="headerlink" href="#asyncio.StreamWriter.transport" title="本定義的永久連結">¶</a></dt>
-<dd><p>Return the underlying asyncio transport.</p>
+<dd><p>回傳底層的 asyncio 傳輸。</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="asyncio.StreamWriter.get_extra_info">
 <span class="sig-name descname"><span class="pre">get_extra_info</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#asyncio.StreamWriter.get_extra_info" title="本定義的永久連結">¶</a></dt>
-<dd><p>Access optional transport information; see
-<a class="reference internal" href="asyncio-protocol.html#asyncio.BaseTransport.get_extra_info" title="asyncio.BaseTransport.get_extra_info"><code class="xref py py-meth docutils literal notranslate"><span class="pre">BaseTransport.get_extra_info()</span></code></a> for details.</p>
+<dd><p>存取可選的傳輸資訊；詳情請見 <a class="reference internal" href="asyncio-protocol.html#asyncio.BaseTransport.get_extra_info" title="asyncio.BaseTransport.get_extra_info"><code class="xref py py-meth docutils literal notranslate"><span class="pre">BaseTransport.get_extra_info()</span></code></a>。</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="asyncio.StreamWriter.drain">
 <em class="property"><span class="pre">coroutine</span> </em><span class="sig-name descname"><span class="pre">drain</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#asyncio.StreamWriter.drain" title="本定義的永久連結">¶</a></dt>
-<dd><p>Wait until it is appropriate to resume writing to the stream.
-Example:</p>
+<dd><p>等待直到可以繼續寫入到串流。範例：</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">writer</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 <span class="k">await</span> <span class="n">writer</span><span class="o">.</span><span class="n">drain</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>This is a flow control method that interacts with the underlying
-IO write buffer.  When the size of the buffer reaches
-the high watermark, <em>drain()</em> blocks until the size of the
-buffer is drained down to the low watermark and writing can
-be resumed.  When there is nothing to wait for, the <a class="reference internal" href="#asyncio.StreamWriter.drain" title="asyncio.StreamWriter.drain"><code class="xref py py-meth docutils literal notranslate"><span class="pre">drain()</span></code></a>
-returns immediately.</p>
+<p>這是一個與底層 IO 寫入緩衝區互動的流程控制方法。當緩衝區大小達到最高標記位 (high watermark) 時，<em>drain()</em> 會阻塞直到緩衝區大小減少至最低標記位 (low watermark) 以便繼續寫入。當沒有要等待的資料時，<a class="reference internal" href="#asyncio.StreamWriter.drain" title="asyncio.StreamWriter.drain"><code class="xref py py-meth docutils literal notranslate"><span class="pre">drain()</span></code></a> 會立即回傳。</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="asyncio.StreamWriter.is_closing">
 <span class="sig-name descname"><span class="pre">is_closing</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#asyncio.StreamWriter.is_closing" title="本定義的永久連結">¶</a></dt>
-<dd><p>Return <code class="docutils literal notranslate"><span class="pre">True</span></code> if the stream is closed or in the process of
-being closed.</p>
+<dd><p>如果串流已被關閉或正在被關閉則回傳 <code class="docutils literal notranslate"><span class="pre">True</span></code>。</p>
 <div class="versionadded">
 <p><span class="versionmodified added">在 3.7 版本新加入.</span></p>
 </div>
@@ -455,9 +401,8 @@ being closed.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="asyncio.StreamWriter.wait_closed">
 <em class="property"><span class="pre">coroutine</span> </em><span class="sig-name descname"><span class="pre">wait_closed</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#asyncio.StreamWriter.wait_closed" title="本定義的永久連結">¶</a></dt>
-<dd><p>Wait until the stream is closed.</p>
-<p>Should be called after <a class="reference internal" href="#asyncio.StreamWriter.close" title="asyncio.StreamWriter.close"><code class="xref py py-meth docutils literal notranslate"><span class="pre">close()</span></code></a> to wait until the underlying
-connection is closed.</p>
+<dd><p>等待直到串流被關閉。</p>
+<p>應當在 <a class="reference internal" href="#asyncio.StreamWriter.close" title="asyncio.StreamWriter.close"><code class="xref py py-meth docutils literal notranslate"><span class="pre">close()</span></code></a> 之後才被呼叫，這會持續等待直到底層的連線被關閉。</p>
 <div class="versionadded">
 <p><span class="versionmodified added">在 3.7 版本新加入.</span></p>
 </div>
@@ -469,8 +414,8 @@ connection is closed.</p>
 <section id="examples">
 <h2>範例<a class="headerlink" href="#examples" title="Permalink to this heading">¶</a></h2>
 <section id="tcp-echo-client-using-streams">
-<span id="asyncio-tcp-echo-client-streams"></span><h3>TCP echo client using streams<a class="headerlink" href="#tcp-echo-client-using-streams" title="Permalink to this heading">¶</a></h3>
-<p>TCP echo client using the <a class="reference internal" href="#asyncio.open_connection" title="asyncio.open_connection"><code class="xref py py-func docutils literal notranslate"><span class="pre">asyncio.open_connection()</span></code></a> function:</p>
+<span id="asyncio-tcp-echo-client-streams"></span><h3>使用串流的 TCP echo 客戶端<a class="headerlink" href="#tcp-echo-client-using-streams" title="Permalink to this heading">¶</a></h3>
+<p>使用 <a class="reference internal" href="#asyncio.open_connection" title="asyncio.open_connection"><code class="xref py py-func docutils literal notranslate"><span class="pre">asyncio.open_connection()</span></code></a> 函式的 TCP echo 客戶端：</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">asyncio</span>
 
 <span class="k">async</span> <span class="k">def</span> <span class="nf">tcp_echo_client</span><span class="p">(</span><span class="n">message</span><span class="p">):</span>
@@ -491,13 +436,12 @@ connection is closed.</p>
 </div>
 <div class="admonition seealso">
 <p class="admonition-title">也參考</p>
-<p>The <a class="reference internal" href="asyncio-protocol.html#asyncio-example-tcp-echo-client-protocol"><span class="std std-ref">TCP echo client protocol</span></a>
-example uses the low-level <a class="reference internal" href="asyncio-eventloop.html#asyncio.loop.create_connection" title="asyncio.loop.create_connection"><code class="xref py py-meth docutils literal notranslate"><span class="pre">loop.create_connection()</span></code></a> method.</p>
+<p>使用低階 <a class="reference internal" href="asyncio-eventloop.html#asyncio.loop.create_connection" title="asyncio.loop.create_connection"><code class="xref py py-meth docutils literal notranslate"><span class="pre">loop.create_connection()</span></code></a> 方法的 <a class="reference internal" href="asyncio-protocol.html#asyncio-example-tcp-echo-client-protocol"><span class="std std-ref">TCP echo 客戶端協定</span></a>範例。</p>
 </div>
 </section>
 <section id="tcp-echo-server-using-streams">
-<span id="asyncio-tcp-echo-server-streams"></span><h3>TCP echo server using streams<a class="headerlink" href="#tcp-echo-server-using-streams" title="Permalink to this heading">¶</a></h3>
-<p>TCP echo server using the <a class="reference internal" href="#asyncio.start_server" title="asyncio.start_server"><code class="xref py py-func docutils literal notranslate"><span class="pre">asyncio.start_server()</span></code></a> function:</p>
+<span id="asyncio-tcp-echo-server-streams"></span><h3>使用串流的 TCP echo 伺服器<a class="headerlink" href="#tcp-echo-server-using-streams" title="Permalink to this heading">¶</a></h3>
+<p>TCP echo 伺服器使用 <a class="reference internal" href="#asyncio.start_server" title="asyncio.start_server"><code class="xref py py-func docutils literal notranslate"><span class="pre">asyncio.start_server()</span></code></a> 函式：</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">asyncio</span>
 
 <span class="k">async</span> <span class="k">def</span> <span class="nf">handle_echo</span><span class="p">(</span><span class="n">reader</span><span class="p">,</span> <span class="n">writer</span><span class="p">):</span>
@@ -529,13 +473,12 @@ example uses the low-level <a class="reference internal" href="asyncio-eventloop
 </div>
 <div class="admonition seealso">
 <p class="admonition-title">也參考</p>
-<p>The <a class="reference internal" href="asyncio-protocol.html#asyncio-example-tcp-echo-server-protocol"><span class="std std-ref">TCP echo server protocol</span></a>
-example uses the <a class="reference internal" href="asyncio-eventloop.html#asyncio.loop.create_server" title="asyncio.loop.create_server"><code class="xref py py-meth docutils literal notranslate"><span class="pre">loop.create_server()</span></code></a> method.</p>
+<p>使用 <a class="reference internal" href="asyncio-eventloop.html#asyncio.loop.create_server" title="asyncio.loop.create_server"><code class="xref py py-meth docutils literal notranslate"><span class="pre">loop.create_server()</span></code></a> 方法的 <a class="reference internal" href="asyncio-protocol.html#asyncio-example-tcp-echo-server-protocol"><span class="std std-ref">TCP echo 伺服器協定</span></a> 範例。</p>
 </div>
 </section>
 <section id="get-http-headers">
-<h3>Get HTTP headers<a class="headerlink" href="#get-http-headers" title="Permalink to this heading">¶</a></h3>
-<p>Simple example querying HTTP headers of the URL passed on the command line:</p>
+<h3>獲取 HTTP 標頭<a class="headerlink" href="#get-http-headers" title="Permalink to this heading">¶</a></h3>
+<p>查詢自命令列傳入之 URL 所帶有 HTTP 標頭的簡單範例：</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">asyncio</span>
 <span class="kn">import</span> <span class="nn">urllib.parse</span>
 <span class="kn">import</span> <span class="nn">sys</span>
@@ -576,15 +519,14 @@ example uses the <a class="reference internal" href="asyncio-eventloop.html#asyn
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">example</span><span class="o">.</span><span class="n">py</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">example</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">page</span><span class="o">.</span><span class="n">html</span>
 </pre></div>
 </div>
-<p>or with HTTPS:</p>
+<p>或使用 HTTPS：</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">example</span><span class="o">.</span><span class="n">py</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">example</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">page</span><span class="o">.</span><span class="n">html</span>
 </pre></div>
 </div>
 </section>
 <section id="register-an-open-socket-to-wait-for-data-using-streams">
-<span id="asyncio-example-create-connection-streams"></span><h3>Register an open socket to wait for data using streams<a class="headerlink" href="#register-an-open-socket-to-wait-for-data-using-streams" title="Permalink to this heading">¶</a></h3>
-<p>Coroutine waiting until a socket receives data using the
-<a class="reference internal" href="#asyncio.open_connection" title="asyncio.open_connection"><code class="xref py py-func docutils literal notranslate"><span class="pre">open_connection()</span></code></a> function:</p>
+<span id="asyncio-example-create-connection-streams"></span><h3>註冊一個使用串流來等待資料的開放 socket<a class="headerlink" href="#register-an-open-socket-to-wait-for-data-using-streams" title="Permalink to this heading">¶</a></h3>
+<p>等待直到 socket 透過使用 <a class="reference internal" href="#asyncio.open_connection" title="asyncio.open_connection"><code class="xref py py-func docutils literal notranslate"><span class="pre">open_connection()</span></code></a> 函式接收到資料的協程：</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">asyncio</span>
 <span class="kn">import</span> <span class="nn">socket</span>
 
@@ -617,10 +559,8 @@ example uses the <a class="reference internal" href="asyncio-eventloop.html#asyn
 </div>
 <div class="admonition seealso">
 <p class="admonition-title">也參考</p>
-<p>The <a class="reference internal" href="asyncio-protocol.html#asyncio-example-create-connection"><span class="std std-ref">register an open socket to wait for data using a protocol</span></a> example uses a low-level protocol and
-the <a class="reference internal" href="asyncio-eventloop.html#asyncio.loop.create_connection" title="asyncio.loop.create_connection"><code class="xref py py-meth docutils literal notranslate"><span class="pre">loop.create_connection()</span></code></a> method.</p>
-<p>The <a class="reference internal" href="asyncio-eventloop.html#asyncio-example-watch-fd"><span class="std std-ref">watch a file descriptor for read events</span></a> example uses the low-level
-<a class="reference internal" href="asyncio-eventloop.html#asyncio.loop.add_reader" title="asyncio.loop.add_reader"><code class="xref py py-meth docutils literal notranslate"><span class="pre">loop.add_reader()</span></code></a> method to watch a file descriptor.</p>
+<p>在<a class="reference internal" href="asyncio-protocol.html#asyncio-example-create-connection"><span class="std std-ref">註冊一個開啟的 socket 以等待有使用協定的資料</span></a>範例中，有使用了低階協定以及 <a class="reference internal" href="asyncio-eventloop.html#asyncio.loop.create_connection" title="asyncio.loop.create_connection"><code class="xref py py-meth docutils literal notranslate"><span class="pre">loop.create_connection()</span></code></a> 方法。</p>
+<p>在<a class="reference internal" href="asyncio-eventloop.html#asyncio-example-watch-fd"><span class="std std-ref">監視檔案描述器以讀取事件</span></a>範例中，有使用低階的 <a class="reference internal" href="asyncio-eventloop.html#asyncio.loop.add_reader" title="asyncio.loop.add_reader"><code class="xref py py-meth docutils literal notranslate"><span class="pre">loop.add_reader()</span></code></a> 方法來監視檔案描述器。</p>
 </div>
 </section>
 </section>
@@ -636,14 +576,14 @@ the <a class="reference internal" href="asyncio-eventloop.html#asyncio.loop.crea
   <div>
     <h3><a href="../contents.html">目錄</a></h3>
     <ul>
-<li><a class="reference internal" href="#">Streams</a><ul>
+<li><a class="reference internal" href="#">串流</a><ul>
 <li><a class="reference internal" href="#streamreader">StreamReader</a></li>
 <li><a class="reference internal" href="#streamwriter">StreamWriter</a></li>
 <li><a class="reference internal" href="#examples">範例</a><ul>
-<li><a class="reference internal" href="#tcp-echo-client-using-streams">TCP echo client using streams</a></li>
-<li><a class="reference internal" href="#tcp-echo-server-using-streams">TCP echo server using streams</a></li>
-<li><a class="reference internal" href="#get-http-headers">Get HTTP headers</a></li>
-<li><a class="reference internal" href="#register-an-open-socket-to-wait-for-data-using-streams">Register an open socket to wait for data using streams</a></li>
+<li><a class="reference internal" href="#tcp-echo-client-using-streams">使用串流的 TCP echo 客戶端</a></li>
+<li><a class="reference internal" href="#tcp-echo-server-using-streams">使用串流的 TCP echo 伺服器</a></li>
+<li><a class="reference internal" href="#get-http-headers">獲取 HTTP 標頭</a></li>
+<li><a class="reference internal" href="#register-an-open-socket-to-wait-for-data-using-streams">註冊一個使用串流來等待資料的開放 socket</a></li>
 </ul>
 </li>
 </ul>
@@ -712,7 +652,7 @@ the <a class="reference internal" href="asyncio-eventloop.html#asyncio.loop.crea
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="ipc.html" >Networking and Interprocess Communication</a> &#187;</li>
           <li class="nav-item nav-item-3"><a href="asyncio.html" ><code class="xref py py-mod docutils literal notranslate"><span class="pre">asyncio</span></code> --- 非同步 I/O</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">Streams</a></li>
+        <li class="nav-item nav-item-this"><a href="">串流</a></li>
                 <li class="right">
                     
 
@@ -744,11 +684,11 @@ the <a class="reference internal" href="asyncio-eventloop.html#asyncio.loop.crea
 <br />
     <br />
 
-    最後更新於 6月 11, 2022。
+    最後更新於 7月 06, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 
-    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.0.1 建立。
+    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.0.2 建立。
     </div>
 
   </body>

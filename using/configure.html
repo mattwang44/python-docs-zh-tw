@@ -284,7 +284,7 @@ than a coroutine-local context (default), see the <a class="reference internal" 
 <span class="sig-name descname"><span class="pre">--without-c-locale-coercion</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-without-c-locale-coercion" title="本定義的永久連結">¶</a></dt>
 <dd><p>Disable C locale coercion to a UTF-8 based locale (enabled by default).</p>
 <p>Don't define the <code class="docutils literal notranslate"><span class="pre">PY_COERCE_C_LOCALE</span></code> macro.</p>
-<p>請見 <span class="target" id="index-26"></span><a class="reference internal" href="cmdline.html#envvar-PYTHONCOERCECLOCALE"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PYTHONCOERCECLOCALE</span></code></a> 與 <span class="target" id="index-27"></span><a class="pep reference external" href="https://peps.python.org/pep-0538/"><strong>PEP 538</strong></a>。</p>
+<p>請見 <span class="target" id="index-30"></span><a class="reference internal" href="cmdline.html#envvar-PYTHONCOERCECLOCALE"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PYTHONCOERCECLOCALE</span></code></a> 與 <span class="target" id="index-31"></span><a class="pep reference external" href="https://peps.python.org/pep-0538/"><strong>PEP 538</strong></a>。</p>
 </dd></dl>
 
 <dl class="std cmdoption">
@@ -397,7 +397,7 @@ compilers).</p>
 <span class="sig-name descname"><span class="pre">--without-pymalloc</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-without-pymalloc" title="本定義的永久連結">¶</a></dt>
 <dd><p>Disable the specialized Python memory allocator <a class="reference internal" href="../c-api/memory.html#pymalloc"><span class="std std-ref">pymalloc</span></a>
 (enabled by default).</p>
-<p>另請參閱 <span class="target" id="index-28"></span><a class="reference internal" href="cmdline.html#envvar-PYTHONMALLOC"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PYTHONMALLOC</span></code></a> 環境變數。</p>
+<p>另請參閱 <span class="target" id="index-32"></span><a class="reference internal" href="cmdline.html#envvar-PYTHONMALLOC"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PYTHONMALLOC</span></code></a> 環境變數。</p>
 </dd></dl>
 
 <dl class="std cmdoption">
@@ -939,6 +939,16 @@ script.</p>
 <dd><p><span class="target" id="index-10"></span><a class="reference internal" href="#envvar-CFLAGS_NODIST"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">CFLAGS_NODIST</span></code></a> is used for building the interpreter and stdlib C
 extensions.  Use it when a compiler flag should <em>not</em> be part of the
 distutils <span class="target" id="index-11"></span><a class="reference internal" href="#envvar-CFLAGS"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">CFLAGS</span></code></a> once Python is installed (<a class="reference external" href="https://bugs.python.org/issue?&#64;action=redirect&amp;bpo=21121">bpo-21121</a>).</p>
+<p>In particular, <span class="target" id="index-12"></span><a class="reference internal" href="#envvar-CFLAGS"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">CFLAGS</span></code></a> should not contain:</p>
+<ul class="simple">
+<li><p>the compiler flag <cite>-I</cite> (for setting the search path for include files).
+The <cite>-I</cite> flags are processed from left to right, and any flags in
+<span class="target" id="index-13"></span><a class="reference internal" href="#envvar-CFLAGS"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">CFLAGS</span></code></a> would take precedence over user- and package-supplied <cite>-I</cite>
+flags.</p></li>
+<li><p>hardening flags such as <cite>-Werror</cite> because distributions cannot control
+whether packages installed by users conform to such heightened
+standards.</p></li>
+</ul>
 <div class="versionadded">
 <p><span class="versionmodified added">在 3.5 版本新加入.</span></p>
 </div>
@@ -953,7 +963,7 @@ distutils <span class="target" id="index-11"></span><a class="reference internal
 <dl class="std envvar">
 <dt class="sig sig-object std" id="envvar-CONFIGURE_CFLAGS">
 <span class="sig-name descname"><span class="pre">CONFIGURE_CFLAGS</span></span><a class="headerlink" href="#envvar-CONFIGURE_CFLAGS" title="本定義的永久連結">¶</a></dt>
-<dd><p>Value of <span class="target" id="index-12"></span><a class="reference internal" href="#envvar-CFLAGS"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">CFLAGS</span></code></a> variable passed to the <code class="docutils literal notranslate"><span class="pre">./configure</span></code>
+<dd><p>Value of <span class="target" id="index-14"></span><a class="reference internal" href="#envvar-CFLAGS"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">CFLAGS</span></code></a> variable passed to the <code class="docutils literal notranslate"><span class="pre">./configure</span></code>
 script.</p>
 <div class="versionadded">
 <p><span class="versionmodified added">在 3.2 版本新加入.</span></p>
@@ -963,7 +973,7 @@ script.</p>
 <dl class="std envvar">
 <dt class="sig sig-object std" id="envvar-CONFIGURE_CFLAGS_NODIST">
 <span class="sig-name descname"><span class="pre">CONFIGURE_CFLAGS_NODIST</span></span><a class="headerlink" href="#envvar-CONFIGURE_CFLAGS_NODIST" title="本定義的永久連結">¶</a></dt>
-<dd><p>Value of <span class="target" id="index-13"></span><a class="reference internal" href="#envvar-CFLAGS_NODIST"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">CFLAGS_NODIST</span></code></a> variable passed to the <code class="docutils literal notranslate"><span class="pre">./configure</span></code>
+<dd><p>Value of <span class="target" id="index-15"></span><a class="reference internal" href="#envvar-CFLAGS_NODIST"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">CFLAGS_NODIST</span></code></a> variable passed to the <code class="docutils literal notranslate"><span class="pre">./configure</span></code>
 script.</p>
 <div class="versionadded">
 <p><span class="versionmodified added">在 3.5 版本新加入.</span></p>
@@ -1071,8 +1081,8 @@ module, like the <a class="reference internal" href="../library/posix.html#modul
 <dl class="std envvar">
 <dt class="sig sig-object std" id="envvar-CONFIGURE_LDFLAGS">
 <span class="sig-name descname"><span class="pre">CONFIGURE_LDFLAGS</span></span><a class="headerlink" href="#envvar-CONFIGURE_LDFLAGS" title="本定義的永久連結">¶</a></dt>
-<dd><p>Value of <span class="target" id="index-14"></span><a class="reference internal" href="#envvar-LDFLAGS"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">LDFLAGS</span></code></a> variable passed to the <code class="docutils literal notranslate"><span class="pre">./configure</span></code> script.</p>
-<p>Avoid assigning <span class="target" id="index-15"></span><a class="reference internal" href="#envvar-CFLAGS"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">CFLAGS</span></code></a>, <span class="target" id="index-16"></span><a class="reference internal" href="#envvar-LDFLAGS"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">LDFLAGS</span></code></a>, etc. so users can use
+<dd><p>Value of <span class="target" id="index-16"></span><a class="reference internal" href="#envvar-LDFLAGS"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">LDFLAGS</span></code></a> variable passed to the <code class="docutils literal notranslate"><span class="pre">./configure</span></code> script.</p>
+<p>Avoid assigning <span class="target" id="index-17"></span><a class="reference internal" href="#envvar-CFLAGS"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">CFLAGS</span></code></a>, <span class="target" id="index-18"></span><a class="reference internal" href="#envvar-LDFLAGS"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">LDFLAGS</span></code></a>, etc. so users can use
 them on the command line to append to these values without stomping the
 pre-set values.</p>
 <div class="versionadded">
@@ -1083,15 +1093,22 @@ pre-set values.</p>
 <dl class="std envvar">
 <dt class="sig sig-object std" id="envvar-LDFLAGS_NODIST">
 <span class="sig-name descname"><span class="pre">LDFLAGS_NODIST</span></span><a class="headerlink" href="#envvar-LDFLAGS_NODIST" title="本定義的永久連結">¶</a></dt>
-<dd><p><span class="target" id="index-17"></span><a class="reference internal" href="#envvar-LDFLAGS_NODIST"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">LDFLAGS_NODIST</span></code></a> is used in the same manner as
-<span class="target" id="index-18"></span><a class="reference internal" href="#envvar-CFLAGS_NODIST"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">CFLAGS_NODIST</span></code></a>.  Use it when a linker flag should <em>not</em> be part of
-the distutils <span class="target" id="index-19"></span><a class="reference internal" href="#envvar-LDFLAGS"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">LDFLAGS</span></code></a> once Python is installed (<a class="reference external" href="https://bugs.python.org/issue?&#64;action=redirect&amp;bpo=35257">bpo-35257</a>).</p>
+<dd><p><span class="target" id="index-19"></span><a class="reference internal" href="#envvar-LDFLAGS_NODIST"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">LDFLAGS_NODIST</span></code></a> is used in the same manner as
+<span class="target" id="index-20"></span><a class="reference internal" href="#envvar-CFLAGS_NODIST"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">CFLAGS_NODIST</span></code></a>.  Use it when a linker flag should <em>not</em> be part of
+the distutils <span class="target" id="index-21"></span><a class="reference internal" href="#envvar-LDFLAGS"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">LDFLAGS</span></code></a> once Python is installed (<a class="reference external" href="https://bugs.python.org/issue?&#64;action=redirect&amp;bpo=35257">bpo-35257</a>).</p>
+<p>In particular, <span class="target" id="index-22"></span><a class="reference internal" href="#envvar-LDFLAGS"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">LDFLAGS</span></code></a> should not contain:</p>
+<ul class="simple">
+<li><p>the compiler flag <cite>-L</cite> (for setting the search path for libraries).
+The <cite>-L</cite> flags are processed from left to right, and any flags in
+<span class="target" id="index-23"></span><a class="reference internal" href="#envvar-LDFLAGS"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">LDFLAGS</span></code></a> would take precedence over user- and package-supplied <cite>-L</cite>
+flags.</p></li>
+</ul>
 </dd></dl>
 
 <dl class="std envvar">
 <dt class="sig sig-object std" id="envvar-CONFIGURE_LDFLAGS_NODIST">
 <span class="sig-name descname"><span class="pre">CONFIGURE_LDFLAGS_NODIST</span></span><a class="headerlink" href="#envvar-CONFIGURE_LDFLAGS_NODIST" title="本定義的永久連結">¶</a></dt>
-<dd><p>Value of <span class="target" id="index-20"></span><a class="reference internal" href="#envvar-LDFLAGS_NODIST"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">LDFLAGS_NODIST</span></code></a> variable passed to the <code class="docutils literal notranslate"><span class="pre">./configure</span></code>
+<dd><p>Value of <span class="target" id="index-24"></span><a class="reference internal" href="#envvar-LDFLAGS_NODIST"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">LDFLAGS_NODIST</span></code></a> variable passed to the <code class="docutils literal notranslate"><span class="pre">./configure</span></code>
 script.</p>
 <div class="versionadded">
 <p><span class="versionmodified added">在 3.8 版本新加入.</span></p>
@@ -1103,7 +1120,7 @@ script.</p>
 <span class="sig-name descname"><span class="pre">LDFLAGS</span></span><a class="headerlink" href="#envvar-LDFLAGS" title="本定義的永久連結">¶</a></dt>
 <dd><p>Linker flags, e.g. <code class="docutils literal notranslate"><span class="pre">-L&lt;lib</span> <span class="pre">dir&gt;</span></code> if you have libraries in a nonstandard
 directory <code class="docutils literal notranslate"><span class="pre">&lt;lib</span> <span class="pre">dir&gt;</span></code>.</p>
-<p>Both <span class="target" id="index-21"></span><a class="reference internal" href="#envvar-CPPFLAGS"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">CPPFLAGS</span></code></a> and <span class="target" id="index-22"></span><a class="reference internal" href="#envvar-LDFLAGS"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">LDFLAGS</span></code></a> need to contain the shell's
+<p>Both <span class="target" id="index-25"></span><a class="reference internal" href="#envvar-CPPFLAGS"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">CPPFLAGS</span></code></a> and <span class="target" id="index-26"></span><a class="reference internal" href="#envvar-LDFLAGS"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">LDFLAGS</span></code></a> need to contain the shell's
 value for setup.py to be able to build extension modules using the
 directories specified in the environment variables.</p>
 </dd></dl>
@@ -1290,11 +1307,11 @@ executable.</p>
 <br />
     <br />
 
-    最後更新於 6月 11, 2022。
+    最後更新於 7月 06, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 
-    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.0.1 建立。
+    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.0.2 建立。
     </div>
 
   </body>

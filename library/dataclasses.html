@@ -84,6 +84,7 @@
 <li><a class="reference internal" href="#re-ordering-of-keyword-only-parameters-in-init">Re-ordering of keyword-only parameters in <code class="xref py py-meth docutils literal notranslate"><span class="pre">__init__()</span></code></a></li>
 <li><a class="reference internal" href="#default-factory-functions">Default factory functions</a></li>
 <li><a class="reference internal" href="#mutable-default-values">Mutable default values</a></li>
+<li><a class="reference internal" href="#descriptor-typed-fields">Descriptor-typed fields</a></li>
 </ul>
 </li>
 </ul>
@@ -886,6 +887,55 @@ mutable types as default values for fields:</p>
 </div>
 </div></blockquote>
 </section>
+<section id="descriptor-typed-fields">
+<h2>Descriptor-typed fields<a class="headerlink" href="#descriptor-typed-fields" title="Permalink to this heading">¶</a></h2>
+<p>Fields that are assigned <a class="reference internal" href="../reference/datamodel.html#descriptors"><span class="std std-ref">descriptor objects</span></a> as their
+default value have the following special behaviors:</p>
+<ul class="simple">
+<li><p>The value for the field passed to the dataclass's <code class="docutils literal notranslate"><span class="pre">__init__</span></code> method is
+passed to the descriptor's <code class="docutils literal notranslate"><span class="pre">__set__</span></code> method rather than overwriting the
+descriptor object.</p></li>
+<li><p>Similarly, when getting or setting the field, the descriptor's
+<code class="docutils literal notranslate"><span class="pre">__get__</span></code> or <code class="docutils literal notranslate"><span class="pre">__set__</span></code> method is called rather than returning or
+overwriting the descriptor object.</p></li>
+<li><p>To determine whether a field contains a default value, <code class="docutils literal notranslate"><span class="pre">dataclasses</span></code>
+will call the descriptor's <code class="docutils literal notranslate"><span class="pre">__get__</span></code> method using its class access
+form (i.e. <code class="docutils literal notranslate"><span class="pre">descriptor.__get__(obj=None,</span> <span class="pre">type=cls)</span></code>.  If the
+descriptor returns a value in this case, it will be used as the
+field's default. On the other hand, if the descriptor raises
+<a class="reference internal" href="exceptions.html#AttributeError" title="AttributeError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">AttributeError</span></code></a> in this situation, no default value will be
+provided for the field.</p></li>
+</ul>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">IntConversionDescriptor</span><span class="p">:</span>
+  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">default</span><span class="p">):</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">_default</span> <span class="o">=</span> <span class="n">default</span>
+
+  <span class="k">def</span> <span class="nf">__set_name__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">owner</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">_name</span> <span class="o">=</span> <span class="s2">&quot;_&quot;</span> <span class="o">+</span> <span class="n">name</span>
+
+  <span class="k">def</span> <span class="fm">__get__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">,</span> <span class="nb">type</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">obj</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+      <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_default</span>
+
+    <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_default</span><span class="p">)</span>
+
+  <span class="k">def</span> <span class="fm">__set__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+    <span class="nb">setattr</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_name</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">value</span><span class="p">))</span>
+
+<span class="nd">@dataclass</span>
+<span class="k">class</span> <span class="nc">InventoryItem</span><span class="p">:</span>
+  <span class="n">quantity_on_hand</span><span class="p">:</span> <span class="n">IntConversionDescriptor</span> <span class="o">=</span> <span class="n">IntConversionDescriptor</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+
+<span class="n">i</span> <span class="o">=</span> <span class="n">InventoryItem</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">quantity_on_hand</span><span class="p">)</span>   <span class="c1"># 100</span>
+<span class="n">i</span><span class="o">.</span><span class="n">quantity_on_hand</span> <span class="o">=</span> <span class="mf">2.5</span>    <span class="c1"># calls __set__ with 2.5</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">quantity_on_hand</span><span class="p">)</span>   <span class="c1"># 2</span>
+</pre></div>
+</div>
+<p>Note that if a field is annotated with a descriptor type, but is not assigned
+a descriptor object as its default value, the field will act like a normal
+field.</p>
+</section>
 </section>
 
 
@@ -908,6 +958,7 @@ mutable types as default values for fields:</p>
 <li><a class="reference internal" href="#re-ordering-of-keyword-only-parameters-in-init">Re-ordering of keyword-only parameters in <code class="xref py py-meth docutils literal notranslate"><span class="pre">__init__()</span></code></a></li>
 <li><a class="reference internal" href="#default-factory-functions">Default factory functions</a></li>
 <li><a class="reference internal" href="#mutable-default-values">Mutable default values</a></li>
+<li><a class="reference internal" href="#descriptor-typed-fields">Descriptor-typed fields</a></li>
 </ul>
 </li>
 </ul>
@@ -1005,11 +1056,11 @@ mutable types as default values for fields:</p>
 <br />
     <br />
 
-    最後更新於 6月 11, 2022。
+    最後更新於 7月 06, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 
-    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.0.1 建立。
+    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.0.2 建立。
     </div>
 
   </body>

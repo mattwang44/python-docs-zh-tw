@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>tty --- Terminal control functions &#8212; Python 3.10.5 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>tty --- 終端機控制函式 &#8212; Python 3.10.5 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -128,7 +128,7 @@
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="unix.html" accesskey="U">Unix 特有服務</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href=""><code class="xref py py-mod docutils literal notranslate"><span class="pre">tty</span></code> --- Terminal control functions</a></li>
+        <li class="nav-item nav-item-this"><a href=""><code class="xref py py-mod docutils literal notranslate"><span class="pre">tty</span></code> --- 終端機控制函式</a></li>
                 <li class="right">
                     
 
@@ -152,33 +152,28 @@
           <div class="body" role="main">
             
   <section id="module-tty">
-<span id="tty-terminal-control-functions"></span><h1><a class="reference internal" href="#module-tty" title="tty: Utility functions that perform common terminal control operations. (Unix)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">tty</span></code></a> --- Terminal control functions<a class="headerlink" href="#module-tty" title="Permalink to this heading">¶</a></h1>
+<span id="tty-terminal-control-functions"></span><h1><a class="reference internal" href="#module-tty" title="tty: Utility functions that perform common terminal control operations. (Unix)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">tty</span></code></a> --- 終端機控制函式<a class="headerlink" href="#module-tty" title="Permalink to this heading">¶</a></h1>
 <p><strong>原始碼：</strong><a class="reference external" href="https://github.com/python/cpython/tree/3.10/Lib/tty.py">Lib/tty.py</a></p>
 <hr class="docutils" />
-<p>The <a class="reference internal" href="#module-tty" title="tty: Utility functions that perform common terminal control operations. (Unix)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">tty</span></code></a> module defines functions for putting the tty into cbreak and raw
-modes.</p>
-<p>Because it requires the <a class="reference internal" href="termios.html#module-termios" title="termios: POSIX style tty control. (Unix)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">termios</span></code></a> module, it will work only on Unix.</p>
-<p>The <a class="reference internal" href="#module-tty" title="tty: Utility functions that perform common terminal control operations. (Unix)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">tty</span></code></a> module defines the following functions:</p>
+<p><a class="reference internal" href="#module-tty" title="tty: Utility functions that perform common terminal control operations. (Unix)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">tty</span></code></a> 模組定義了將 tty 放入 cbreak 和 raw 模式的函式。</p>
+<p>因為它需要 <a class="reference internal" href="termios.html#module-termios" title="termios: POSIX style tty control. (Unix)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">termios</span></code></a> 模組，所以只能在 Unix 上執行。</p>
+<p><a class="reference internal" href="#module-tty" title="tty: Utility functions that perform common terminal control operations. (Unix)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">tty</span></code></a> 模組定義了以下函式：</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="tty.setraw">
 <span class="sig-prename descclassname"><span class="pre">tty.</span></span><span class="sig-name descname"><span class="pre">setraw</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fd</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">when</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">termios.TCSAFLUSH</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tty.setraw" title="本定義的永久連結">¶</a></dt>
-<dd><p>Change the mode of the file descriptor <em>fd</em> to raw. If <em>when</em> is omitted, it
-defaults to <code class="xref py py-const docutils literal notranslate"><span class="pre">termios.TCSAFLUSH</span></code>, and is passed to
-<a class="reference internal" href="termios.html#termios.tcsetattr" title="termios.tcsetattr"><code class="xref py py-func docutils literal notranslate"><span class="pre">termios.tcsetattr()</span></code></a>.</p>
+<dd><p>將檔案描述器 <em>fd</em> 的模式更改為 raw。如果 <em>when</em> 被省略，則預設為 <code class="xref py py-const docutils literal notranslate"><span class="pre">termios.TCSAFLUSH</span></code>，並傳遞給 <a class="reference internal" href="termios.html#termios.tcsetattr" title="termios.tcsetattr"><code class="xref py py-func docutils literal notranslate"><span class="pre">termios.tcsetattr()</span></code></a>。</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="tty.setcbreak">
 <span class="sig-prename descclassname"><span class="pre">tty.</span></span><span class="sig-name descname"><span class="pre">setcbreak</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fd</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">when</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">termios.TCSAFLUSH</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tty.setcbreak" title="本定義的永久連結">¶</a></dt>
-<dd><p>Change the mode of file descriptor <em>fd</em> to cbreak. If <em>when</em> is omitted, it
-defaults to <code class="xref py py-const docutils literal notranslate"><span class="pre">termios.TCSAFLUSH</span></code>, and is passed to
-<a class="reference internal" href="termios.html#termios.tcsetattr" title="termios.tcsetattr"><code class="xref py py-func docutils literal notranslate"><span class="pre">termios.tcsetattr()</span></code></a>.</p>
+<dd><p>將檔案描述器 <em>fd</em> 的模式更改為 cbreak。如果 <em>when</em> 被省略，則預設為 <code class="xref py py-const docutils literal notranslate"><span class="pre">termios.TCSAFLUSH</span></code>，並傳遞給 <a class="reference internal" href="termios.html#termios.tcsetattr" title="termios.tcsetattr"><code class="xref py py-func docutils literal notranslate"><span class="pre">termios.tcsetattr()</span></code></a>。</p>
 </dd></dl>
 
 <div class="admonition seealso">
 <p class="admonition-title">也參考</p>
 <dl class="simple">
-<dt><a class="reference internal" href="termios.html#module-termios" title="termios: POSIX style tty control. (Unix)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">termios</span></code></a> 模組</dt><dd><p>Low-level terminal control interface.</p>
+<dt><a class="reference internal" href="termios.html#module-termios" title="termios: POSIX style tty control. (Unix)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">termios</span></code></a> 模組</dt><dd><p>低階終端機控制介面。</p>
 </dd>
 </dl>
 </div>
@@ -251,7 +246,7 @@ defaults to <code class="xref py py-const docutils literal notranslate"><span cl
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="unix.html" >Unix 特有服務</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href=""><code class="xref py py-mod docutils literal notranslate"><span class="pre">tty</span></code> --- Terminal control functions</a></li>
+        <li class="nav-item nav-item-this"><a href=""><code class="xref py py-mod docutils literal notranslate"><span class="pre">tty</span></code> --- 終端機控制函式</a></li>
                 <li class="right">
                     
 
@@ -283,11 +278,11 @@ defaults to <code class="xref py py-const docutils literal notranslate"><span cl
 <br />
     <br />
 
-    最後更新於 6月 11, 2022。
+    最後更新於 7月 06, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 
-    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.0.1 建立。
+    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.0.2 建立。
     </div>
 
   </body>

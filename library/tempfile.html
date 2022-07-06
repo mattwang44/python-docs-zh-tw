@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>tempfile --- Generate temporary files and directories &#8212; Python 3.10.5 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>tempfile --- 生成臨時檔案和目錄 &#8212; Python 3.10.5 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -74,9 +74,9 @@
   <div>
     <h3><a href="../contents.html">目錄</a></h3>
     <ul>
-<li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">tempfile</span></code> --- Generate temporary files and directories</a><ul>
+<li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">tempfile</span></code> --- 生成臨時檔案和目錄</a><ul>
 <li><a class="reference internal" href="#examples">範例</a></li>
-<li><a class="reference internal" href="#deprecated-functions-and-variables">Deprecated functions and variables</a></li>
+<li><a class="reference internal" href="#deprecated-functions-and-variables">已棄用的函式和變數</a></li>
 </ul>
 </li>
 </ul>
@@ -139,7 +139,7 @@
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="filesys.html" accesskey="U">檔案與目錄存取</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href=""><code class="xref py py-mod docutils literal notranslate"><span class="pre">tempfile</span></code> --- Generate temporary files and directories</a></li>
+        <li class="nav-item nav-item-this"><a href=""><code class="xref py py-mod docutils literal notranslate"><span class="pre">tempfile</span></code> --- 生成臨時檔案和目錄</a></li>
                 <li class="right">
                     
 
@@ -163,54 +163,25 @@
           <div class="body" role="main">
             
   <section id="module-tempfile">
-<span id="tempfile-generate-temporary-files-and-directories"></span><h1><a class="reference internal" href="#module-tempfile" title="tempfile: Generate temporary files and directories."><code class="xref py py-mod docutils literal notranslate"><span class="pre">tempfile</span></code></a> --- Generate temporary files and directories<a class="headerlink" href="#module-tempfile" title="Permalink to this heading">¶</a></h1>
+<span id="tempfile-generate-temporary-files-and-directories"></span><h1><a class="reference internal" href="#module-tempfile" title="tempfile: Generate temporary files and directories."><code class="xref py py-mod docutils literal notranslate"><span class="pre">tempfile</span></code></a> --- 生成臨時檔案和目錄<a class="headerlink" href="#module-tempfile" title="Permalink to this heading">¶</a></h1>
 <p><strong>原始碼：</strong><a class="reference external" href="https://github.com/python/cpython/tree/3.10/Lib/tempfile.py">Lib/tempfile.py</a></p>
 <hr class="docutils" id="index-0" />
-<p>This module creates temporary files and directories.  It works on all
-supported platforms. <a class="reference internal" href="#tempfile.TemporaryFile" title="tempfile.TemporaryFile"><code class="xref py py-class docutils literal notranslate"><span class="pre">TemporaryFile</span></code></a>, <a class="reference internal" href="#tempfile.NamedTemporaryFile" title="tempfile.NamedTemporaryFile"><code class="xref py py-class docutils literal notranslate"><span class="pre">NamedTemporaryFile</span></code></a>,
-<a class="reference internal" href="#tempfile.TemporaryDirectory" title="tempfile.TemporaryDirectory"><code class="xref py py-class docutils literal notranslate"><span class="pre">TemporaryDirectory</span></code></a>, and <a class="reference internal" href="#tempfile.SpooledTemporaryFile" title="tempfile.SpooledTemporaryFile"><code class="xref py py-class docutils literal notranslate"><span class="pre">SpooledTemporaryFile</span></code></a> are high-level
-interfaces which provide automatic cleanup and can be used as
-context managers. <a class="reference internal" href="#tempfile.mkstemp" title="tempfile.mkstemp"><code class="xref py py-func docutils literal notranslate"><span class="pre">mkstemp()</span></code></a> and
-<a class="reference internal" href="#tempfile.mkdtemp" title="tempfile.mkdtemp"><code class="xref py py-func docutils literal notranslate"><span class="pre">mkdtemp()</span></code></a> are lower-level functions which require manual cleanup.</p>
-<p>All the user-callable functions and constructors take additional arguments which
-allow direct control over the location and name of temporary files and
-directories. Files names used by this module include a string of
-random characters which allows those files to be securely created in
-shared temporary directories.
-To maintain backward compatibility, the argument order is somewhat odd; it
-is recommended to use keyword arguments for clarity.</p>
-<p>The module defines the following user-callable items:</p>
+<p>該 module（模組）用於建立臨時檔案和目錄，它可以在所有有支援的平臺上使用。<a class="reference internal" href="#tempfile.TemporaryFile" title="tempfile.TemporaryFile"><code class="xref py py-class docutils literal notranslate"><span class="pre">TemporaryFile</span></code></a>、<a class="reference internal" href="#tempfile.NamedTemporaryFile" title="tempfile.NamedTemporaryFile"><code class="xref py py-class docutils literal notranslate"><span class="pre">NamedTemporaryFile</span></code></a>、<a class="reference internal" href="#tempfile.TemporaryDirectory" title="tempfile.TemporaryDirectory"><code class="xref py py-class docutils literal notranslate"><span class="pre">TemporaryDirectory</span></code></a> 和 <a class="reference internal" href="#tempfile.SpooledTemporaryFile" title="tempfile.SpooledTemporaryFile"><code class="xref py py-class docutils literal notranslate"><span class="pre">SpooledTemporaryFile</span></code></a> 是有自動清除功能的高階介面，可作為情境管理器 (context manager) 使用。<a class="reference internal" href="#tempfile.mkstemp" title="tempfile.mkstemp"><code class="xref py py-func docutils literal notranslate"><span class="pre">mkstemp()</span></code></a> 和 <a class="reference internal" href="#tempfile.mkdtemp" title="tempfile.mkdtemp"><code class="xref py py-func docutils literal notranslate"><span class="pre">mkdtemp()</span></code></a> 是低階函式，使用完畢後需手動清理。</p>
+<p>所有可被使用者呼叫的函式和建構函式都帶有可以設定臨時檔案和臨時目錄的路徑和名稱的引數。此 module 所使用的檔名為一個隨機字元組成的字串，這讓檔案可以更安全地在共享的臨時目錄中被建立。為了維持向後相容性，引數的順序會稍微奇怪，所以為了讓程式更容易被理解，建議使用關鍵字引數。</p>
+<p>這個 module 定義了以下可供使用者呼叫的項目：</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="tempfile.TemporaryFile">
 <span class="sig-prename descclassname"><span class="pre">tempfile.</span></span><span class="sig-name descname"><span class="pre">TemporaryFile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'w+b'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">buffering</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-</span> <span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">encoding</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">newline</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">suffix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prefix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">errors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tempfile.TemporaryFile" title="本定義的永久連結">¶</a></dt>
-<dd><p>Return a <a class="reference internal" href="../glossary.html#term-file-like-object"><span class="xref std std-term">file-like object</span></a> that can be used as a temporary storage area.
-The file is created securely, using the same rules as <a class="reference internal" href="#tempfile.mkstemp" title="tempfile.mkstemp"><code class="xref py py-func docutils literal notranslate"><span class="pre">mkstemp()</span></code></a>. It will be destroyed as soon
-as it is closed (including an implicit close when the object is garbage
-collected).  Under Unix, the directory entry for the file is either not created at all or is removed
-immediately after the file is created.  Other platforms do not support
-this; your code should not rely on a temporary file created using this
-function having or not having a visible name in the file system.</p>
-<p>The resulting object can be used as a context manager (see
-<a class="reference internal" href="#tempfile-examples"><span class="std std-ref">範例</span></a>).  On completion of the context or
-destruction of the file object the temporary file will be removed
-from the filesystem.</p>
-<p>The <em>mode</em> parameter defaults to <code class="docutils literal notranslate"><span class="pre">'w+b'</span></code> so that the file created can
-be read and written without being closed.  Binary mode is used so that it
-behaves consistently on all platforms without regard for the data that is
-stored.  <em>buffering</em>, <em>encoding</em>, <em>errors</em> and <em>newline</em> are interpreted as for
-<a class="reference internal" href="functions.html#open" title="open"><code class="xref py py-func docutils literal notranslate"><span class="pre">open()</span></code></a>.</p>
-<p>The <em>dir</em>, <em>prefix</em> and <em>suffix</em> parameters have the same meaning and
-defaults as with <a class="reference internal" href="#tempfile.mkstemp" title="tempfile.mkstemp"><code class="xref py py-func docutils literal notranslate"><span class="pre">mkstemp()</span></code></a>.</p>
-<p>The returned object is a true file object on POSIX platforms.  On other
-platforms, it is a file-like object whose <code class="xref py py-attr docutils literal notranslate"><span class="pre">file</span></code> attribute is the
-underlying true file object.</p>
-<p>The <a class="reference internal" href="os.html#os.O_TMPFILE" title="os.O_TMPFILE"><code class="xref py py-data docutils literal notranslate"><span class="pre">os.O_TMPFILE</span></code></a> flag is used if it is available and works
-(Linux-specific, requires Linux kernel 3.11 or later).</p>
-<p>On platforms that are neither Posix nor Cygwin, TemporaryFile is an alias
-for NamedTemporaryFile.</p>
-<p class="audit-hook">Raises an <a class="reference internal" href="sys.html#auditing"><span class="std std-ref">auditing event</span></a> <code class="docutils literal notranslate"><span class="pre">tempfile.mkstemp</span></code> with argument <code class="docutils literal notranslate"><span class="pre">fullpath</span></code>.</p>
+<dd><p>回傳一個可當作臨時儲存區域的 <a class="reference internal" href="../glossary.html#term-file-like-object"><span class="xref std std-term">file-like object</span></a>。建立該檔案使用了與 <a class="reference internal" href="#tempfile.mkstemp" title="tempfile.mkstemp"><code class="xref py py-func docutils literal notranslate"><span class="pre">mkstemp()</span></code></a> 相同的安全規則。它將在關閉（包括當物件被垃圾回收 (garbage collect) 時的隱式關閉）後立即銷毀。在 Unix 下，該檔案所在的目錄可能根本不被建立、或者在建立檔案後立即就被刪除，其他平臺不支援此功能；你的程式不應依賴使用此功能建立的臨時檔案名稱，因為它在檔案系統中的名稱有可能是不可見的。</p>
+<p>生成的物件可以作為情境管理器使用（參見 <a class="reference internal" href="#tempfile-examples"><span class="std std-ref">範例</span></a>）。完成情境或銷毀臨時檔案物件後，臨時檔案將從檔案系統中刪除。</p>
+<p><em>mode</em> 參數預設為 <code class="docutils literal notranslate"><span class="pre">'w+b'</span></code>，所以建立的檔案不用關閉就可以讀取或寫入。因為用的是二進位制模式，所以無論存的是什麼資料，它在所有平臺上的行為都一致。<em>buffering</em>、<em>encoding</em>、<em>errors</em> 和 <em>newline</em> 的含義與 <a class="reference internal" href="functions.html#open" title="open"><code class="xref py py-func docutils literal notranslate"><span class="pre">open()</span></code></a> 中的相同。</p>
+<p>參數 <em>dir</em>、<em>prefix</em> 和 <em>suffix</em> 的含義和預設值都與它們在 <a class="reference internal" href="#tempfile.mkstemp" title="tempfile.mkstemp"><code class="xref py py-func docutils literal notranslate"><span class="pre">mkstemp()</span></code></a> 中的相同。</p>
+<p>在 POSIX 平臺上，回傳物件是真實的檔案物件。在其他平臺上，它是一個 file-like object，它的 <code class="xref py py-attr docutils literal notranslate"><span class="pre">file</span></code> 屬性為底層的真實檔案物件。</p>
+<p>如果可用且可運作，則使用 <a class="reference internal" href="os.html#os.O_TMPFILE" title="os.O_TMPFILE"><code class="xref py py-data docutils literal notranslate"><span class="pre">os.O_TMPFILE</span></code></a> 旗標（僅限於 Linux，需要 3.11 版本以上的核心）。</p>
+<p>在不是 Posix 或 Cygwin 的平臺上，TemporaryFile 是 NamedTemporaryFile 的別名。</p>
+<p class="audit-hook">引發一個附帶引數 <code class="docutils literal notranslate"><span class="pre">fullpath</span></code> 的 <code class="docutils literal notranslate"><span class="pre">tempfile.mkstemp</span></code> <a class="reference internal" href="sys.html#auditing"><span class="std std-ref">稽核事件</span></a>。</p>
 <div class="versionchanged">
-<p><span class="versionmodified changed">在 3.5 版本變更: </span>The <a class="reference internal" href="os.html#os.O_TMPFILE" title="os.O_TMPFILE"><code class="xref py py-data docutils literal notranslate"><span class="pre">os.O_TMPFILE</span></code></a> flag is now used if available.</p>
+<p><span class="versionmodified changed">在 3.5 版本變更: </span>如果可用，自此開始使用 <a class="reference internal" href="os.html#os.O_TMPFILE" title="os.O_TMPFILE"><code class="xref py py-data docutils literal notranslate"><span class="pre">os.O_TMPFILE</span></code></a> 旗標。</p>
 </div>
 <div class="versionchanged">
 <p><span class="versionmodified changed">在 3.8 版本變更: </span>新增 <em>errors</em> 參數。</p>
@@ -220,19 +191,8 @@ for NamedTemporaryFile.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="tempfile.NamedTemporaryFile">
 <span class="sig-prename descclassname"><span class="pre">tempfile.</span></span><span class="sig-name descname"><span class="pre">NamedTemporaryFile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'w+b'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">buffering</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-</span> <span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">encoding</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">newline</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">suffix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prefix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delete</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">errors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tempfile.NamedTemporaryFile" title="本定義的永久連結">¶</a></dt>
-<dd><p>This function operates exactly as <a class="reference internal" href="#tempfile.TemporaryFile" title="tempfile.TemporaryFile"><code class="xref py py-func docutils literal notranslate"><span class="pre">TemporaryFile()</span></code></a> does, except that
-the file is guaranteed to have a visible name in the file system (on
-Unix, the directory entry is not unlinked).  That name can be retrieved
-from the <code class="xref py py-attr docutils literal notranslate"><span class="pre">name</span></code> attribute of the returned
-file-like object.  Whether the name can be
-used to open the file a second time, while the named temporary file is
-still open, varies across platforms (it can be so used on Unix; it cannot
-on Windows).  If <em>delete</em> is true (the default), the file is
-deleted as soon as it is closed.
-The returned object is always a file-like object whose <code class="xref py py-attr docutils literal notranslate"><span class="pre">file</span></code>
-attribute is the underlying true file object. This file-like object can
-be used in a <a class="reference internal" href="../reference/compound_stmts.html#with"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">with</span></code></a> statement, just like a normal file.</p>
-<p class="audit-hook">Raises an <a class="reference internal" href="sys.html#auditing"><span class="std std-ref">auditing event</span></a> <code class="docutils literal notranslate"><span class="pre">tempfile.mkstemp</span></code> with argument <code class="docutils literal notranslate"><span class="pre">fullpath</span></code>.</p>
+<dd><p>此函式執行的操作與 <a class="reference internal" href="#tempfile.TemporaryFile" title="tempfile.TemporaryFile"><code class="xref py py-func docutils literal notranslate"><span class="pre">TemporaryFile()</span></code></a> 幾乎相同，不同之處為確保該臨時檔案在檔案系統中具有可見的名稱（在 Unix 上目錄條目不會被 unlink）。檔名可以由回傳 file-like object 的 <code class="xref py py-attr docutils literal notranslate"><span class="pre">name</span></code> 屬性取得。在臨時檔案仍開啟時，是否允許用檔名第二次開啟檔案，在各個平臺上是不同的（在 Unix 上可以；在 Windows NT 版本以上不行）。如果 <em>delete</em> 為 true（預設值），則檔案會在關閉後立即被刪除。該函式回傳的物件始終是 file-like object，它的 <code class="xref py py-attr docutils literal notranslate"><span class="pre">file</span></code> 屬性是底層的真實檔案物件。file-like object 可以像普通檔案一樣在 <a class="reference internal" href="../reference/compound_stmts.html#with"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">with</span></code></a> 陳述句中使用。</p>
+<p class="audit-hook">引發一個附帶引數 <code class="docutils literal notranslate"><span class="pre">fullpath</span></code> 的 <code class="docutils literal notranslate"><span class="pre">tempfile.mkstemp</span></code> <a class="reference internal" href="sys.html#auditing"><span class="std std-ref">稽核事件</span></a>。</p>
 <div class="versionchanged">
 <p><span class="versionmodified changed">在 3.8 版本變更: </span>新增 <em>errors</em> 參數。</p>
 </div>
@@ -241,21 +201,11 @@ be used in a <a class="reference internal" href="../reference/compound_stmts.htm
 <dl class="py class">
 <dt class="sig sig-object py" id="tempfile.SpooledTemporaryFile">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tempfile.</span></span><span class="sig-name descname"><span class="pre">SpooledTemporaryFile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">max_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'w+b'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">buffering</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-</span> <span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">encoding</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">newline</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">suffix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prefix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">errors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tempfile.SpooledTemporaryFile" title="本定義的永久連結">¶</a></dt>
-<dd><p>This class operates exactly as <a class="reference internal" href="#tempfile.TemporaryFile" title="tempfile.TemporaryFile"><code class="xref py py-func docutils literal notranslate"><span class="pre">TemporaryFile()</span></code></a> does, except that
-data is spooled in memory until the file size exceeds <em>max_size</em>, or
-until the file's <code class="xref py py-func docutils literal notranslate"><span class="pre">fileno()</span></code> method is called, at which point the
-contents are written to disk and operation proceeds as with
-<a class="reference internal" href="#tempfile.TemporaryFile" title="tempfile.TemporaryFile"><code class="xref py py-func docutils literal notranslate"><span class="pre">TemporaryFile()</span></code></a>.</p>
-<p>The resulting file has one additional method, <code class="xref py py-func docutils literal notranslate"><span class="pre">rollover()</span></code>, which
-causes the file to roll over to an on-disk file regardless of its size.</p>
-<p>The returned object is a file-like object whose <code class="xref py py-attr docutils literal notranslate"><span class="pre">_file</span></code> attribute
-is either an <a class="reference internal" href="io.html#io.BytesIO" title="io.BytesIO"><code class="xref py py-class docutils literal notranslate"><span class="pre">io.BytesIO</span></code></a> or <a class="reference internal" href="io.html#io.TextIOWrapper" title="io.TextIOWrapper"><code class="xref py py-class docutils literal notranslate"><span class="pre">io.TextIOWrapper</span></code></a> object
-(depending on whether binary or text <em>mode</em> was specified) or a true file
-object, depending on whether <code class="xref py py-func docutils literal notranslate"><span class="pre">rollover()</span></code> has been called.  This
-file-like object can be used in a <a class="reference internal" href="../reference/compound_stmts.html#with"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">with</span></code></a> statement, just like
-a normal file.</p>
+<dd><p>此類別執行的操作與 <a class="reference internal" href="#tempfile.TemporaryFile" title="tempfile.TemporaryFile"><code class="xref py py-func docutils literal notranslate"><span class="pre">TemporaryFile()</span></code></a> 完全相同，但會將資料排存 (spool) 於在記憶體中，直到檔案大小超過 <em>max_size</em>，或檔案的 <code class="xref py py-func docutils literal notranslate"><span class="pre">fileno()</span></code> 方法被呼叫為止，此時資料會被寫入磁碟，並且之後的操作與 <a class="reference internal" href="#tempfile.TemporaryFile" title="tempfile.TemporaryFile"><code class="xref py py-func docutils literal notranslate"><span class="pre">TemporaryFile()</span></code></a> 相同。</p>
+<p>生成的檔案物件有一個額外的方法 <code class="xref py py-func docutils literal notranslate"><span class="pre">rollover()</span></code>，忽略檔案大小並立即將其寫入磁碟。</p>
+<p>回傳的物件是 file-like object，它的 <code class="xref py py-attr docutils literal notranslate"><span class="pre">_file</span></code> 屬性是 <a class="reference internal" href="io.html#io.BytesIO" title="io.BytesIO"><code class="xref py py-class docutils literal notranslate"><span class="pre">io.BytesIO</span></code></a> 或 <a class="reference internal" href="io.html#io.TextIOWrapper" title="io.TextIOWrapper"><code class="xref py py-class docutils literal notranslate"><span class="pre">io.TextIOWrapper</span></code></a> 物件（取決於指定的是二進位制模式還是文字模式）或真實的檔案物件（取決於是否已呼叫 <code class="xref py py-func docutils literal notranslate"><span class="pre">rollover()</span></code>）。file-like object 可以像普通檔案一樣在 <a class="reference internal" href="../reference/compound_stmts.html#with"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">with</span></code></a> 陳述式中使用。</p>
 <div class="versionchanged">
-<p><span class="versionmodified changed">在 3.3 版本變更: </span>the truncate method now accepts a <code class="docutils literal notranslate"><span class="pre">size</span></code> argument.</p>
+<p><span class="versionmodified changed">在 3.3 版本變更: </span>現在，檔案的截斷方法 (truncate method) 可接受一個 <code class="docutils literal notranslate"><span class="pre">size</span></code> 引數。</p>
 </div>
 <div class="versionchanged">
 <p><span class="versionmodified changed">在 3.8 版本變更: </span>新增 <em>errors</em> 參數。</p>
@@ -265,24 +215,10 @@ a normal file.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="tempfile.TemporaryDirectory">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tempfile.</span></span><span class="sig-name descname"><span class="pre">TemporaryDirectory</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">suffix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prefix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ignore_cleanup_errors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tempfile.TemporaryDirectory" title="本定義的永久連結">¶</a></dt>
-<dd><p>This class securely creates a temporary directory using the same rules as <a class="reference internal" href="#tempfile.mkdtemp" title="tempfile.mkdtemp"><code class="xref py py-func docutils literal notranslate"><span class="pre">mkdtemp()</span></code></a>.
-The resulting object can be used as a context manager (see
-<a class="reference internal" href="#tempfile-examples"><span class="std std-ref">範例</span></a>).  On completion of the context or destruction
-of the temporary directory object, the newly created temporary directory
-and all its contents are removed from the filesystem.</p>
-<p>The directory name can be retrieved from the <code class="xref py py-attr docutils literal notranslate"><span class="pre">name</span></code> attribute of the
-returned object.  When the returned object is used as a context manager, the
-<code class="xref py py-attr docutils literal notranslate"><span class="pre">name</span></code> will be assigned to the target of the <code class="xref std std-keyword docutils literal notranslate"><span class="pre">as</span></code> clause in
-the <a class="reference internal" href="../reference/compound_stmts.html#with"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">with</span></code></a> statement, if there is one.</p>
-<p>The directory can be explicitly cleaned up by calling the
-<code class="xref py py-func docutils literal notranslate"><span class="pre">cleanup()</span></code> method. If <em>ignore_cleanup_errors</em> is true, any unhandled
-exceptions during explicit or implicit cleanup (such as a
-<a class="reference internal" href="exceptions.html#PermissionError" title="PermissionError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">PermissionError</span></code></a> removing open files on Windows) will be ignored,
-and the remaining removable items deleted on a &quot;best-effort&quot; basis.
-Otherwise, errors will be raised in whatever context cleanup occurs
-(the <code class="xref py py-func docutils literal notranslate"><span class="pre">cleanup()</span></code> call, exiting the context manager, when the object
-is garbage-collected or during interpreter shutdown).</p>
-<p class="audit-hook">Raises an <a class="reference internal" href="sys.html#auditing"><span class="std std-ref">auditing event</span></a> <code class="docutils literal notranslate"><span class="pre">tempfile.mkdtemp</span></code> with argument <code class="docutils literal notranslate"><span class="pre">fullpath</span></code>.</p>
+<dd><p>此類別會使用與 <a class="reference internal" href="#tempfile.mkdtemp" title="tempfile.mkdtemp"><code class="xref py py-func docutils literal notranslate"><span class="pre">mkdtemp()</span></code></a> 相同安全規則來建立一個臨時目錄。回傳物件可當作情境管理器使用（參見<a class="reference internal" href="#tempfile-examples"><span class="std std-ref">範例</span></a>）。在完成情境或銷毀臨時目錄物件時，新建立的臨時目錄及其所有內容會從檔案系統中被移除。</p>
+<p>可以從回傳物件的 <code class="xref py py-attr docutils literal notranslate"><span class="pre">name</span></code> 屬性中找到的臨時目錄名稱。當回傳的物件用作情境管理器時，這個 <code class="xref py py-attr docutils literal notranslate"><span class="pre">name</span></code> 會作為 <a class="reference internal" href="../reference/compound_stmts.html#with"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">with</span></code></a> 陳述句中 <code class="xref std std-keyword docutils literal notranslate"><span class="pre">as</span></code> 子句的目標（如果有 as 的話）。</p>
+<p>此目錄可透過呼叫 <code class="xref py py-func docutils literal notranslate"><span class="pre">cleanup()</span></code> 方法來顯式地清理。如果 <em>ignore_cleanup_errors</em> 為 true，則在顯式或隱式清理期間出現的未處理例外（例如在 Windows 上移除開啟的檔案而引發的 <a class="reference internal" href="exceptions.html#PermissionError" title="PermissionError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">PermissionError</span></code></a>）將被忽略，並且剩餘的可移除條目會「儘可能」地被刪除。在其他情況下，錯誤將在任何情境清理發生時被引發（<code class="xref py py-func docutils literal notranslate"><span class="pre">cleanup()</span></code> 呼叫、退出情境管理器、物件被作為垃圾回收或直譯器關閉等）。</p>
+<p class="audit-hook">引發一個附帶引數 <code class="docutils literal notranslate"><span class="pre">fullpath</span></code> 的 <code class="docutils literal notranslate"><span class="pre">tempfile.mkdtemp</span></code> <a class="reference internal" href="sys.html#auditing"><span class="std std-ref">稽核事件</span></a>。</p>
 <div class="versionadded">
 <p><span class="versionmodified added">在 3.2 版本新加入.</span></p>
 </div>
@@ -294,108 +230,66 @@ is garbage-collected or during interpreter shutdown).</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="tempfile.mkstemp">
 <span class="sig-prename descclassname"><span class="pre">tempfile.</span></span><span class="sig-name descname"><span class="pre">mkstemp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">suffix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prefix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">text</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tempfile.mkstemp" title="本定義的永久連結">¶</a></dt>
-<dd><p>Creates a temporary file in the most secure manner possible.  There are
-no race conditions in the file's creation, assuming that the platform
-properly implements the <a class="reference internal" href="os.html#os.O_EXCL" title="os.O_EXCL"><code class="xref py py-const docutils literal notranslate"><span class="pre">os.O_EXCL</span></code></a> flag for <a class="reference internal" href="os.html#os.open" title="os.open"><code class="xref py py-func docutils literal notranslate"><span class="pre">os.open()</span></code></a>.  The
-file is readable and writable only by the creating user ID.  If the
-platform uses permission bits to indicate whether a file is executable,
-the file is executable by no one.  The file descriptor is not inherited
-by child processes.</p>
-<p>Unlike <a class="reference internal" href="#tempfile.TemporaryFile" title="tempfile.TemporaryFile"><code class="xref py py-func docutils literal notranslate"><span class="pre">TemporaryFile()</span></code></a>, the user of <a class="reference internal" href="#tempfile.mkstemp" title="tempfile.mkstemp"><code class="xref py py-func docutils literal notranslate"><span class="pre">mkstemp()</span></code></a> is responsible
-for deleting the temporary file when done with it.</p>
-<p>If <em>suffix</em> is not <code class="docutils literal notranslate"><span class="pre">None</span></code>, the file name will end with that suffix,
-otherwise there will be no suffix.  <a class="reference internal" href="#tempfile.mkstemp" title="tempfile.mkstemp"><code class="xref py py-func docutils literal notranslate"><span class="pre">mkstemp()</span></code></a> does not put a dot
-between the file name and the suffix; if you need one, put it at the
-beginning of <em>suffix</em>.</p>
-<p>If <em>prefix</em> is not <code class="docutils literal notranslate"><span class="pre">None</span></code>, the file name will begin with that prefix;
-otherwise, a default prefix is used.  The default is the return value of
-<a class="reference internal" href="#tempfile.gettempprefix" title="tempfile.gettempprefix"><code class="xref py py-func docutils literal notranslate"><span class="pre">gettempprefix()</span></code></a> or <a class="reference internal" href="#tempfile.gettempprefixb" title="tempfile.gettempprefixb"><code class="xref py py-func docutils literal notranslate"><span class="pre">gettempprefixb()</span></code></a>, as appropriate.</p>
-<p>If <em>dir</em> is not <code class="docutils literal notranslate"><span class="pre">None</span></code>, the file will be created in that directory;
-otherwise, a default directory is used.  The default directory is chosen
-from a platform-dependent list, but the user of the application can
-control the directory location by setting the <em>TMPDIR</em>, <em>TEMP</em> or <em>TMP</em>
-environment variables.  There is thus no guarantee that the generated
-filename will have any nice properties, such as not requiring quoting
-when passed to external commands via <code class="docutils literal notranslate"><span class="pre">os.popen()</span></code>.</p>
-<p>If any of <em>suffix</em>, <em>prefix</em>, and <em>dir</em> are not
-<code class="docutils literal notranslate"><span class="pre">None</span></code>, they must be the same type.
-If they are bytes, the returned name will be bytes instead of str.
-If you want to force a bytes return value with otherwise default behavior,
-pass <code class="docutils literal notranslate"><span class="pre">suffix=b''</span></code>.</p>
-<p>If <em>text</em> is specified and true, the file is opened in text mode.
-Otherwise, (the default) the file is opened in binary mode.</p>
-<p><a class="reference internal" href="#tempfile.mkstemp" title="tempfile.mkstemp"><code class="xref py py-func docutils literal notranslate"><span class="pre">mkstemp()</span></code></a> returns a tuple containing an OS-level handle to an open
-file (as would be returned by <a class="reference internal" href="os.html#os.open" title="os.open"><code class="xref py py-func docutils literal notranslate"><span class="pre">os.open()</span></code></a>) and the absolute pathname
-of that file, in that order.</p>
-<p class="audit-hook">Raises an <a class="reference internal" href="sys.html#auditing"><span class="std std-ref">auditing event</span></a> <code class="docutils literal notranslate"><span class="pre">tempfile.mkstemp</span></code> with argument <code class="docutils literal notranslate"><span class="pre">fullpath</span></code>.</p>
+<dd><p>盡可能以最安全的方式建立一個臨時檔案。假設所在平臺正確實作了 <a class="reference internal" href="os.html#os.open" title="os.open"><code class="xref py py-func docutils literal notranslate"><span class="pre">os.open()</span></code></a> 的 <a class="reference internal" href="os.html#os.O_EXCL" title="os.O_EXCL"><code class="xref py py-const docutils literal notranslate"><span class="pre">os.O_EXCL</span></code></a> 旗標，則建立檔案時不會有 race condition（競爭條件）的情況。該檔案只能由建立者讀寫，如果所在平臺用 permission bit（許可權位元）來表示檔案是否可執行，則沒有人有執行權。檔案描述器不會被子行程繼承。</p>
+<p>與 <a class="reference internal" href="#tempfile.TemporaryFile" title="tempfile.TemporaryFile"><code class="xref py py-func docutils literal notranslate"><span class="pre">TemporaryFile()</span></code></a> 不同，<a class="reference internal" href="#tempfile.mkstemp" title="tempfile.mkstemp"><code class="xref py py-func docutils literal notranslate"><span class="pre">mkstemp()</span></code></a> 使用者用完臨時檔案後需要自行將其刪除。</p>
+<p>如果 <em>suffix</em> 不是 <code class="docutils literal notranslate"><span class="pre">None</span></code> 則檔名將以該後綴結尾，若為 <code class="docutils literal notranslate"><span class="pre">None</span></code> 則沒有後綴。<a class="reference internal" href="#tempfile.mkstemp" title="tempfile.mkstemp"><code class="xref py py-func docutils literal notranslate"><span class="pre">mkstemp()</span></code></a> 不會在檔名和後綴之間加點 (dot)，如果需要加一個點號，請將其放在 <em>suffix</em> 的開頭。</p>
+<p>如果 <em>prefix</em> 不是 <code class="docutils literal notranslate"><span class="pre">None</span></code> 則檔名將以該字首開頭，若為 <code class="docutils literal notranslate"><span class="pre">None</span></code> 則使用預設前綴。預設前綴是 <a class="reference internal" href="#tempfile.gettempprefix" title="tempfile.gettempprefix"><code class="xref py py-func docutils literal notranslate"><span class="pre">gettempprefix()</span></code></a> 或 <a class="reference internal" href="#tempfile.gettempprefixb" title="tempfile.gettempprefixb"><code class="xref py py-func docutils literal notranslate"><span class="pre">gettempprefixb()</span></code></a> 函式的回傳值（自動呼叫合適的函式）。</p>
+<p>如果 <em>dir</em> 不為 <code class="docutils literal notranslate"><span class="pre">None</span></code> 則在指定的目錄建立檔案，若為 <code class="docutils literal notranslate"><span class="pre">None</span></code> 則使用預設目錄。預設目錄是從一個相依於平臺的列表中選擇出來的，但是使用者可以設定 <em>TMPDIR</em>、<em>TEMP</em> 或 <em>TMP</em> 環境變數來設定目錄的位置。因此，不能保證生成的臨時檔案路徑是使用者友善的，比如透過 <code class="docutils literal notranslate"><span class="pre">os.popen()</span></code> 將路徑傳遞給外部命令時仍需要加引號 (quoting)。</p>
+<p>如果 <em>suffix</em>、<em>prefix</em> 和 <em>dir</em> 中的任何一個不是 <code class="docutils literal notranslate"><span class="pre">None</span></code>，就要保證它們資料型別相同。如果它們是位元組串，則回傳名稱的型別就是位元組串而非字串。如果不想遵循預設行為但又想要回傳值是位元組串型別，請傳入 <code class="docutils literal notranslate"><span class="pre">suffix=b''</span></code>。</p>
+<p>如果指定了 <em>text</em> 且為真值，檔案會以文字模式開啟。否則，檔案（預設）以二進位制模式開啟。</p>
+<p><a class="reference internal" href="#tempfile.mkstemp" title="tempfile.mkstemp"><code class="xref py py-func docutils literal notranslate"><span class="pre">mkstemp()</span></code></a> 回傳一個 tuple，tuple 中，第一個元素是一個作業系統層級 (OS-level) 控制代碼，指向一個開啟的檔案（如同 <a class="reference internal" href="os.html#os.open" title="os.open"><code class="xref py py-func docutils literal notranslate"><span class="pre">os.open()</span></code></a> 的回傳值），第二元素是該檔案的絕對路徑。</p>
+<p class="audit-hook">引發一個附帶引數 <code class="docutils literal notranslate"><span class="pre">fullpath</span></code> 的 <code class="docutils literal notranslate"><span class="pre">tempfile.mkstemp</span></code> <a class="reference internal" href="sys.html#auditing"><span class="std std-ref">稽核事件</span></a>。</p>
 <div class="versionchanged">
-<p><span class="versionmodified changed">在 3.5 版本變更: </span><em>suffix</em>, <em>prefix</em>, and <em>dir</em> may now be supplied in bytes in order to
-obtain a bytes return value.  Prior to this, only str was allowed.
-<em>suffix</em> and <em>prefix</em> now accept and default to <code class="docutils literal notranslate"><span class="pre">None</span></code> to cause
-an appropriate default value to be used.</p>
+<p><span class="versionmodified changed">在 3.5 版本變更: </span>現在，<em>suffix</em>、<em>prefix</em> 和 <em>dir</em> 可以以位元組串型別按順序提供，以獲得位元組串型別的回傳值。在之前只允許使用字串。<em>suffix</em> 和 <em>prefix</em> 現在可以接受 <code class="docutils literal notranslate"><span class="pre">None</span></code>，並且預設為 <code class="docutils literal notranslate"><span class="pre">None</span></code> 以使用合適的預設值。</p>
 </div>
 <div class="versionchanged">
-<p><span class="versionmodified changed">在 3.6 版本變更: </span>The <em>dir</em> parameter now accepts a <a class="reference internal" href="../glossary.html#term-path-like-object"><span class="xref std std-term">path-like object</span></a>.</p>
+<p><span class="versionmodified changed">在 3.6 版本變更: </span><em>dir</em> 參數現在可接受一個類路徑物件 (<a class="reference internal" href="../glossary.html#term-path-like-object"><span class="xref std std-term">path-like object</span></a>)。</p>
 </div>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="tempfile.mkdtemp">
 <span class="sig-prename descclassname"><span class="pre">tempfile.</span></span><span class="sig-name descname"><span class="pre">mkdtemp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">suffix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prefix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tempfile.mkdtemp" title="本定義的永久連結">¶</a></dt>
-<dd><p>Creates a temporary directory in the most secure manner possible. There
-are no race conditions in the directory's creation.  The directory is
-readable, writable, and searchable only by the creating user ID.</p>
-<p>The user of <a class="reference internal" href="#tempfile.mkdtemp" title="tempfile.mkdtemp"><code class="xref py py-func docutils literal notranslate"><span class="pre">mkdtemp()</span></code></a> is responsible for deleting the temporary
-directory and its contents when done with it.</p>
-<p>The <em>prefix</em>, <em>suffix</em>, and <em>dir</em> arguments are the same as for
-<a class="reference internal" href="#tempfile.mkstemp" title="tempfile.mkstemp"><code class="xref py py-func docutils literal notranslate"><span class="pre">mkstemp()</span></code></a>.</p>
-<p><a class="reference internal" href="#tempfile.mkdtemp" title="tempfile.mkdtemp"><code class="xref py py-func docutils literal notranslate"><span class="pre">mkdtemp()</span></code></a> returns the absolute pathname of the new directory.</p>
-<p class="audit-hook">Raises an <a class="reference internal" href="sys.html#auditing"><span class="std std-ref">auditing event</span></a> <code class="docutils literal notranslate"><span class="pre">tempfile.mkdtemp</span></code> with argument <code class="docutils literal notranslate"><span class="pre">fullpath</span></code>.</p>
+<dd><p>盡可能以最安全的方式建立一個臨時目錄，建立該目錄時不會有 race condition 的情況，該目錄只能由建立者讀取、寫入和搜尋。</p>
+<p><a class="reference internal" href="#tempfile.mkdtemp" title="tempfile.mkdtemp"><code class="xref py py-func docutils literal notranslate"><span class="pre">mkdtemp()</span></code></a> 的使用者用完臨時目錄後需要自行將其刪除。</p>
+<p>引數 <em>prefix</em>、<em>suffix</em> 和 <em>dir</em> 的含義與它們在 <a class="reference internal" href="#tempfile.mkstemp" title="tempfile.mkstemp"><code class="xref py py-func docutils literal notranslate"><span class="pre">mkstemp()</span></code></a> 中相同。</p>
+<p><a class="reference internal" href="#tempfile.mkdtemp" title="tempfile.mkdtemp"><code class="xref py py-func docutils literal notranslate"><span class="pre">mkdtemp()</span></code></a> 回傳新目錄的絕對路徑。</p>
+<p class="audit-hook">引發一個附帶引數 <code class="docutils literal notranslate"><span class="pre">fullpath</span></code> 的 <code class="docutils literal notranslate"><span class="pre">tempfile.mkdtemp</span></code> <a class="reference internal" href="sys.html#auditing"><span class="std std-ref">稽核事件</span></a>。</p>
 <div class="versionchanged">
-<p><span class="versionmodified changed">在 3.5 版本變更: </span><em>suffix</em>, <em>prefix</em>, and <em>dir</em> may now be supplied in bytes in order to
-obtain a bytes return value.  Prior to this, only str was allowed.
-<em>suffix</em> and <em>prefix</em> now accept and default to <code class="docutils literal notranslate"><span class="pre">None</span></code> to cause
-an appropriate default value to be used.</p>
+<p><span class="versionmodified changed">在 3.5 版本變更: </span>現在，<em>suffix</em>、<em>prefix</em> 和 <em>dir</em> 可以以位元組串型別按順序提供，以獲得位元組串型別的回傳值。在之前只允許使用字串。<em>suffix</em> 和 <em>prefix</em> 現在可以接受 <code class="docutils literal notranslate"><span class="pre">None</span></code>，並且預設為 <code class="docutils literal notranslate"><span class="pre">None</span></code> 以使用合適的預設值。</p>
 </div>
 <div class="versionchanged">
-<p><span class="versionmodified changed">在 3.6 版本變更: </span>The <em>dir</em> parameter now accepts a <a class="reference internal" href="../glossary.html#term-path-like-object"><span class="xref std std-term">path-like object</span></a>.</p>
+<p><span class="versionmodified changed">在 3.6 版本變更: </span><em>dir</em> 參數現在可接受一個類路徑物件 (<a class="reference internal" href="../glossary.html#term-path-like-object"><span class="xref std std-term">path-like object</span></a>)。</p>
 </div>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="tempfile.gettempdir">
 <span class="sig-prename descclassname"><span class="pre">tempfile.</span></span><span class="sig-name descname"><span class="pre">gettempdir</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tempfile.gettempdir" title="本定義的永久連結">¶</a></dt>
-<dd><p>Return the name of the directory used for temporary files. This
-defines the default value for the <em>dir</em> argument to all functions
-in this module.</p>
-<p>Python searches a standard list of directories to find one which
-the calling user can create files in.  The list is:</p>
+<dd><p>回傳儲存臨時檔案的目錄名稱。這設定了此 module 所有函式 <em>dir</em> 引數的預設值。</p>
+<p>Python 搜尋標準目錄列表來找到呼叫者可以在其中建立檔案的目錄。這個列表是：</p>
 <ol class="arabic simple">
-<li><p>The directory named by the <span class="target" id="index-1"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">TMPDIR</span></code> environment variable.</p></li>
-<li><p>The directory named by the <span class="target" id="index-2"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">TEMP</span></code> environment variable.</p></li>
-<li><p>The directory named by the <span class="target" id="index-3"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">TMP</span></code> environment variable.</p></li>
-<li><p>A platform-specific location:</p>
+<li><p><span class="target" id="index-7"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">TMPDIR</span></code> 環境變數指向的目錄。</p></li>
+<li><p><span class="target" id="index-8"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">TEMP</span></code> 環境變數指向的目錄。</p></li>
+<li><p><span class="target" id="index-9"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">TMP</span></code> 環境變數指向的目錄。</p></li>
+<li><p>與平臺相關的位置：</p>
 <ul class="simple">
-<li><p>On Windows, the directories <code class="file docutils literal notranslate"><span class="pre">C:\TEMP</span></code>, <code class="file docutils literal notranslate"><span class="pre">C:\TMP</span></code>,
-<code class="file docutils literal notranslate"><span class="pre">\TEMP</span></code>, and <code class="file docutils literal notranslate"><span class="pre">\TMP</span></code>, in that order.</p></li>
-<li><p>On all other platforms, the directories <code class="file docutils literal notranslate"><span class="pre">/tmp</span></code>, <code class="file docutils literal notranslate"><span class="pre">/var/tmp</span></code>, and
-<code class="file docutils literal notranslate"><span class="pre">/usr/tmp</span></code>, in that order.</p></li>
+<li><p>在 Windows 上，目錄依次為 <code class="file docutils literal notranslate"><span class="pre">C:\TEMP</span></code>、<code class="file docutils literal notranslate"><span class="pre">C:\TMP</span></code>、<code class="file docutils literal notranslate"><span class="pre">\TEMP</span></code> 和 <code class="file docutils literal notranslate"><span class="pre">\TMP</span></code>。</p></li>
+<li><p>在所有其他平臺上，目錄依次為 <code class="file docutils literal notranslate"><span class="pre">/tmp</span></code>、<code class="file docutils literal notranslate"><span class="pre">/var/tmp</span></code> 和 <code class="file docutils literal notranslate"><span class="pre">/usr/tmp</span></code>。</p></li>
 </ul>
 </li>
-<li><p>As a last resort, the current working directory.</p></li>
+<li><p>不得已時，使用當前工作目錄。</p></li>
 </ol>
-<p>The result of this search is cached, see the description of
-<a class="reference internal" href="#tempfile.tempdir" title="tempfile.tempdir"><code class="xref py py-data docutils literal notranslate"><span class="pre">tempdir</span></code></a> below.</p>
+<p>搜尋的結果會被 cache（快取）起來，請見下面 <a class="reference internal" href="#tempfile.tempdir" title="tempfile.tempdir"><code class="xref py py-data docutils literal notranslate"><span class="pre">tempdir</span></code></a> 的描述。</p>
 <div class="versionchanged">
-<p><span class="versionmodified changed">在 3.10 版本變更: </span>Always returns a str.  Previously it would return any <a class="reference internal" href="#tempfile.tempdir" title="tempfile.tempdir"><code class="xref py py-data docutils literal notranslate"><span class="pre">tempdir</span></code></a>
-value regardless of type so long as it was not <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+<p><span class="versionmodified changed">在 3.10 版本變更: </span>回傳一個字串。在之前的版本中它會回傳任意 <a class="reference internal" href="#tempfile.tempdir" title="tempfile.tempdir"><code class="xref py py-data docutils literal notranslate"><span class="pre">tempdir</span></code></a> 的值而不考慮它的型別，只要它不為 <code class="docutils literal notranslate"><span class="pre">None</span></code>。</p>
 </div>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="tempfile.gettempdirb">
 <span class="sig-prename descclassname"><span class="pre">tempfile.</span></span><span class="sig-name descname"><span class="pre">gettempdirb</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tempfile.gettempdirb" title="本定義的永久連結">¶</a></dt>
-<dd><p>Same as <a class="reference internal" href="#tempfile.gettempdir" title="tempfile.gettempdir"><code class="xref py py-func docutils literal notranslate"><span class="pre">gettempdir()</span></code></a> but the return value is in bytes.</p>
+<dd><p>與 <a class="reference internal" href="#tempfile.gettempdir" title="tempfile.gettempdir"><code class="xref py py-func docutils literal notranslate"><span class="pre">gettempdir()</span></code></a> 相同，但回傳值為位元組串型別。</p>
 <div class="versionadded">
 <p><span class="versionmodified added">在 3.5 版本新加入.</span></p>
 </div>
@@ -404,50 +298,33 @@ value regardless of type so long as it was not <code class="docutils literal not
 <dl class="py function">
 <dt class="sig sig-object py" id="tempfile.gettempprefix">
 <span class="sig-prename descclassname"><span class="pre">tempfile.</span></span><span class="sig-name descname"><span class="pre">gettempprefix</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tempfile.gettempprefix" title="本定義的永久連結">¶</a></dt>
-<dd><p>Return the filename prefix used to create temporary files.  This does not
-contain the directory component.</p>
+<dd><p>回傳用於建立臨時檔案的檔名前綴，它不包含目錄部分。</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="tempfile.gettempprefixb">
 <span class="sig-prename descclassname"><span class="pre">tempfile.</span></span><span class="sig-name descname"><span class="pre">gettempprefixb</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tempfile.gettempprefixb" title="本定義的永久連結">¶</a></dt>
-<dd><p>Same as <a class="reference internal" href="#tempfile.gettempprefix" title="tempfile.gettempprefix"><code class="xref py py-func docutils literal notranslate"><span class="pre">gettempprefix()</span></code></a> but the return value is in bytes.</p>
+<dd><p>與 <a class="reference internal" href="#tempfile.gettempprefix" title="tempfile.gettempprefix"><code class="xref py py-func docutils literal notranslate"><span class="pre">gettempprefix()</span></code></a> 相同，但回傳值為位元組串型別。</p>
 <div class="versionadded">
 <p><span class="versionmodified added">在 3.5 版本新加入.</span></p>
 </div>
 </dd></dl>
 
-<p>The module uses a global variable to store the name of the directory
-used for temporary files returned by <a class="reference internal" href="#tempfile.gettempdir" title="tempfile.gettempdir"><code class="xref py py-func docutils literal notranslate"><span class="pre">gettempdir()</span></code></a>.  It can be
-set directly to override the selection process, but this is discouraged.
-All functions in this module take a <em>dir</em> argument which can be used
-to specify the directory. This is the recommended approach that does
-not surprise other unsuspecting code by changing global API behavior.</p>
+<p>此 module 使用一個全域性變數來儲存由 <a class="reference internal" href="#tempfile.gettempdir" title="tempfile.gettempdir"><code class="xref py py-func docutils literal notranslate"><span class="pre">gettempdir()</span></code></a> 回傳的臨時檔案使用的目錄路徑。它可被直接設定以覆蓋選擇過程，但不建議這樣做。此 module 中的所有函式都接受一個 <em>dir</em> 引數，它可被用於指定目錄。這是個推薦的做法，它不會透過改變全域性 API 行為而對其他不預期此行為的程式造成影響。</p>
 <dl class="py data">
 <dt class="sig sig-object py" id="tempfile.tempdir">
 <span class="sig-prename descclassname"><span class="pre">tempfile.</span></span><span class="sig-name descname"><span class="pre">tempdir</span></span><a class="headerlink" href="#tempfile.tempdir" title="本定義的永久連結">¶</a></dt>
-<dd><p>When set to a value other than <code class="docutils literal notranslate"><span class="pre">None</span></code>, this variable defines the
-default value for the <em>dir</em> argument to the functions defined in this
-module, including its type, bytes or str.  It cannot be a
-<a class="reference internal" href="../glossary.html#term-path-like-object"><span class="xref std std-term">path-like object</span></a>.</p>
-<p>If <code class="docutils literal notranslate"><span class="pre">tempdir</span></code> is <code class="docutils literal notranslate"><span class="pre">None</span></code> (the default) at any call to any of the above
-functions except <a class="reference internal" href="#tempfile.gettempprefix" title="tempfile.gettempprefix"><code class="xref py py-func docutils literal notranslate"><span class="pre">gettempprefix()</span></code></a> it is initialized following the
-algorithm described in <a class="reference internal" href="#tempfile.gettempdir" title="tempfile.gettempdir"><code class="xref py py-func docutils literal notranslate"><span class="pre">gettempdir()</span></code></a>.</p>
+<dd><p>當被設為 <code class="docutils literal notranslate"><span class="pre">None</span></code> 以外的值時，此變數會為此 module 所定義函式的引數 <em>dir</em> 定義預設值，包括確定其型別為位元組串還是字串。它不可以為 <a class="reference internal" href="../glossary.html#term-path-like-object"><span class="xref std std-term">path-like object</span></a>。</p>
+<p>如果在呼叫除 <a class="reference internal" href="#tempfile.gettempprefix" title="tempfile.gettempprefix"><code class="xref py py-func docutils literal notranslate"><span class="pre">gettempprefix()</span></code></a> 外的上述任何函式時 <code class="docutils literal notranslate"><span class="pre">tempdir</span></code> 為 <code class="docutils literal notranslate"><span class="pre">None</span></code> (預設值) 則它會按照 <a class="reference internal" href="#tempfile.gettempdir" title="tempfile.gettempdir"><code class="xref py py-func docutils literal notranslate"><span class="pre">gettempdir()</span></code></a> 中所描述的演算法來初始化。</p>
 <div class="admonition note">
 <p class="admonition-title">備註</p>
-<p>Beware that if you set <code class="docutils literal notranslate"><span class="pre">tempdir</span></code> to a bytes value, there is a
-nasty side effect: The global default return type of
-<a class="reference internal" href="#tempfile.mkstemp" title="tempfile.mkstemp"><code class="xref py py-func docutils literal notranslate"><span class="pre">mkstemp()</span></code></a> and <a class="reference internal" href="#tempfile.mkdtemp" title="tempfile.mkdtemp"><code class="xref py py-func docutils literal notranslate"><span class="pre">mkdtemp()</span></code></a> changes to bytes when no
-explicit <code class="docutils literal notranslate"><span class="pre">prefix</span></code>, <code class="docutils literal notranslate"><span class="pre">suffix</span></code>, or <code class="docutils literal notranslate"><span class="pre">dir</span></code> arguments of type
-str are supplied. Please do not write code expecting or
-depending on this. This awkward behavior is maintained for
-compatibility with the historical implementation.</p>
+<p>請注意如果你將 <code class="docutils literal notranslate"><span class="pre">tempdir</span></code> 設為位元組串值，會有一個麻煩的副作用：<a class="reference internal" href="#tempfile.mkstemp" title="tempfile.mkstemp"><code class="xref py py-func docutils literal notranslate"><span class="pre">mkstemp()</span></code></a> 和 <a class="reference internal" href="#tempfile.mkdtemp" title="tempfile.mkdtemp"><code class="xref py py-func docutils literal notranslate"><span class="pre">mkdtemp()</span></code></a> 的全域性預設回傳型別會在沒有提供明顯字串型別的 <code class="docutils literal notranslate"><span class="pre">prefix</span></code>、<code class="docutils literal notranslate"><span class="pre">suffix</span></code> 或 <code class="docutils literal notranslate"><span class="pre">dir</span></code> 時被改為位元組串。請不要編寫預期此行為或依賴於此行為的程式。這個奇怪的行為是為了維持與以往實作版本的相容性。</p>
 </div>
 </dd></dl>
 
 <section id="examples">
 <span id="tempfile-examples"></span><h2>範例<a class="headerlink" href="#examples" title="Permalink to this heading">¶</a></h2>
-<p>以下是 <a class="reference internal" href="#module-tempfile" title="tempfile: Generate temporary files and directories."><code class="xref py py-mod docutils literal notranslate"><span class="pre">tempfile</span></code></a> 模組的一些常見用法範例：</p>
+<p>以下是 <a class="reference internal" href="#module-tempfile" title="tempfile: Generate temporary files and directories."><code class="xref py py-mod docutils literal notranslate"><span class="pre">tempfile</span></code></a> module 的一些常見用法範例：</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">tempfile</span>
 
 <span class="go"># create a temporary file and write some data to it</span>
@@ -478,32 +355,18 @@ compatibility with the historical implementation.</p>
 </div>
 </section>
 <section id="deprecated-functions-and-variables">
-<span id="tempfile-mktemp-deprecated"></span><h2>Deprecated functions and variables<a class="headerlink" href="#deprecated-functions-and-variables" title="Permalink to this heading">¶</a></h2>
-<p>A historical way to create temporary files was to first generate a
-file name with the <a class="reference internal" href="#tempfile.mktemp" title="tempfile.mktemp"><code class="xref py py-func docutils literal notranslate"><span class="pre">mktemp()</span></code></a> function and then create a file
-using this name. Unfortunately this is not secure, because a different
-process may create a file with this name in the time between the call
-to <a class="reference internal" href="#tempfile.mktemp" title="tempfile.mktemp"><code class="xref py py-func docutils literal notranslate"><span class="pre">mktemp()</span></code></a> and the subsequent attempt to create the file by the
-first process. The solution is to combine the two steps and create the
-file immediately. This approach is used by <a class="reference internal" href="#tempfile.mkstemp" title="tempfile.mkstemp"><code class="xref py py-func docutils literal notranslate"><span class="pre">mkstemp()</span></code></a> and the
-other functions described above.</p>
+<span id="tempfile-mktemp-deprecated"></span><h2>已棄用的函式和變數<a class="headerlink" href="#deprecated-functions-and-variables" title="Permalink to this heading">¶</a></h2>
+<p>在過去，建立臨時檔案首先使用 <a class="reference internal" href="#tempfile.mktemp" title="tempfile.mktemp"><code class="xref py py-func docutils literal notranslate"><span class="pre">mktemp()</span></code></a> 函式生成一個檔名，然後使用該檔名建立檔案。不幸的是這並不安全的，因為在呼叫 <a class="reference internal" href="#tempfile.mktemp" title="tempfile.mktemp"><code class="xref py py-func docutils literal notranslate"><span class="pre">mktemp()</span></code></a> 與隨後嘗試建立檔案之間的時間裡，其他程式可能會使用該名稱建立檔案。解決方案是將兩個步驟結合起來，並立即建立檔案。這個方案目前被 <a class="reference internal" href="#tempfile.mkstemp" title="tempfile.mkstemp"><code class="xref py py-func docutils literal notranslate"><span class="pre">mkstemp()</span></code></a> 和上述其他函式所採用。</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="tempfile.mktemp">
 <span class="sig-prename descclassname"><span class="pre">tempfile.</span></span><span class="sig-name descname"><span class="pre">mktemp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">suffix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prefix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'tmp'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tempfile.mktemp" title="本定義的永久連結">¶</a></dt>
 <dd><div class="deprecated">
-<p><span class="versionmodified deprecated">在 2.3 版本開始棄用: </span>Use <a class="reference internal" href="#tempfile.mkstemp" title="tempfile.mkstemp"><code class="xref py py-func docutils literal notranslate"><span class="pre">mkstemp()</span></code></a> instead.</p>
+<p><span class="versionmodified deprecated">在 2.3 版本開始棄用: </span>使用 <a class="reference internal" href="#tempfile.mkstemp" title="tempfile.mkstemp"><code class="xref py py-func docutils literal notranslate"><span class="pre">mkstemp()</span></code></a> 代替。</p>
 </div>
-<p>Return an absolute pathname of a file that did not exist at the time the
-call is made.  The <em>prefix</em>, <em>suffix</em>, and <em>dir</em> arguments are similar
-to those of <a class="reference internal" href="#tempfile.mkstemp" title="tempfile.mkstemp"><code class="xref py py-func docutils literal notranslate"><span class="pre">mkstemp()</span></code></a>, except that bytes file names, <code class="docutils literal notranslate"><span class="pre">suffix=None</span></code>
-and <code class="docutils literal notranslate"><span class="pre">prefix=None</span></code> are not supported.</p>
+<p>回傳一個在呼叫本方法時不存在檔案的絕對路徑。引數 <em>prefix</em>、<em>suffix</em> 和 <em>dir</em> 與 <a class="reference internal" href="#tempfile.mkstemp" title="tempfile.mkstemp"><code class="xref py py-func docutils literal notranslate"><span class="pre">mkstemp()</span></code></a> 中所用的類似，除了在於不支援位元組串型別的檔名且不支援 <code class="docutils literal notranslate"><span class="pre">suffix=None</span></code> 和 <code class="docutils literal notranslate"><span class="pre">prefix=None</span></code>。</p>
 <div class="admonition warning">
 <p class="admonition-title">警告</p>
-<p>Use of this function may introduce a security hole in your program.  By
-the time you get around to doing anything with the file name it returns,
-someone else may have beaten you to the punch.  <a class="reference internal" href="#tempfile.mktemp" title="tempfile.mktemp"><code class="xref py py-func docutils literal notranslate"><span class="pre">mktemp()</span></code></a> usage can
-be replaced easily with <a class="reference internal" href="#tempfile.NamedTemporaryFile" title="tempfile.NamedTemporaryFile"><code class="xref py py-func docutils literal notranslate"><span class="pre">NamedTemporaryFile()</span></code></a>, passing it the
-<code class="docutils literal notranslate"><span class="pre">delete=False</span></code> parameter:</p>
+<p>使用此功能可能會在程式中引入安全漏洞。當你開始使用本方法回傳的檔案執行任何操作時，可能有人已經捷足先登了。<a class="reference internal" href="#tempfile.mktemp" title="tempfile.mktemp"><code class="xref py py-func docutils literal notranslate"><span class="pre">mktemp()</span></code></a> 的功能可以很輕鬆地用帶有 <code class="docutils literal notranslate"><span class="pre">delete=False</span></code> 參數的 <a class="reference internal" href="#tempfile.NamedTemporaryFile" title="tempfile.NamedTemporaryFile"><code class="xref py py-func docutils literal notranslate"><span class="pre">NamedTemporaryFile()</span></code></a> 代替：</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">f</span> <span class="o">=</span> <span class="n">NamedTemporaryFile</span><span class="p">(</span><span class="n">delete</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="o">.</span><span class="n">name</span>
 <span class="go">&#39;/tmp/tmptjujjt&#39;</span>
@@ -531,9 +394,9 @@ be replaced easily with <a class="reference internal" href="#tempfile.NamedTempo
   <div>
     <h3><a href="../contents.html">目錄</a></h3>
     <ul>
-<li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">tempfile</span></code> --- Generate temporary files and directories</a><ul>
+<li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">tempfile</span></code> --- 生成臨時檔案和目錄</a><ul>
 <li><a class="reference internal" href="#examples">範例</a></li>
-<li><a class="reference internal" href="#deprecated-functions-and-variables">Deprecated functions and variables</a></li>
+<li><a class="reference internal" href="#deprecated-functions-and-variables">已棄用的函式和變數</a></li>
 </ul>
 </li>
 </ul>
@@ -599,7 +462,7 @@ be replaced easily with <a class="reference internal" href="#tempfile.NamedTempo
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="filesys.html" >檔案與目錄存取</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href=""><code class="xref py py-mod docutils literal notranslate"><span class="pre">tempfile</span></code> --- Generate temporary files and directories</a></li>
+        <li class="nav-item nav-item-this"><a href=""><code class="xref py py-mod docutils literal notranslate"><span class="pre">tempfile</span></code> --- 生成臨時檔案和目錄</a></li>
                 <li class="right">
                     
 
@@ -631,11 +494,11 @@ be replaced easily with <a class="reference internal" href="#tempfile.NamedTempo
 <br />
     <br />
 
-    最後更新於 6月 11, 2022。
+    最後更新於 7月 06, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 
-    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.0.1 建立。
+    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.0.2 建立。
     </div>
 
   </body>

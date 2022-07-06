@@ -82,13 +82,14 @@
 <li><a class="reference internal" href="#exceptions">例外</a></li>
 <li><a class="reference internal" href="#sqlite-and-python-types">SQLite and Python types</a><ul>
 <li><a class="reference internal" href="#introduction">簡介</a></li>
-<li><a class="reference internal" href="#using-adapters-to-store-additional-python-types-in-sqlite-databases">Using adapters to store additional Python types in SQLite databases</a><ul>
+<li><a class="reference internal" href="#using-adapters-to-store-custom-python-types-in-sqlite-databases">Using adapters to store custom Python types in SQLite databases</a><ul>
 <li><a class="reference internal" href="#letting-your-object-adapt-itself">Letting your object adapt itself</a></li>
 <li><a class="reference internal" href="#registering-an-adapter-callable">Registering an adapter callable</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#converting-sqlite-values-to-custom-python-types">Converting SQLite values to custom Python types</a></li>
 <li><a class="reference internal" href="#default-adapters-and-converters">Default adapters and converters</a></li>
+<li><a class="reference internal" href="#adapter-and-converter-recipes">Adapter and Converter Recipes</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#controlling-transactions">Controlling Transactions</a></li>
@@ -374,30 +375,37 @@ threaded mode using the following query:</p>
 <dl class="py data">
 <dt class="sig sig-object py" id="sqlite3.PARSE_DECLTYPES">
 <span class="sig-prename descclassname"><span class="pre">sqlite3.</span></span><span class="sig-name descname"><span class="pre">PARSE_DECLTYPES</span></span><a class="headerlink" href="#sqlite3.PARSE_DECLTYPES" title="本定義的永久連結">¶</a></dt>
-<dd><p>This constant is meant to be used with the <em>detect_types</em> parameter of the
-<a class="reference internal" href="#sqlite3.connect" title="sqlite3.connect"><code class="xref py py-func docutils literal notranslate"><span class="pre">connect()</span></code></a> function.</p>
-<p>Setting it makes the <a class="reference internal" href="#module-sqlite3" title="sqlite3: A DB-API 2.0 implementation using SQLite 3.x."><code class="xref py py-mod docutils literal notranslate"><span class="pre">sqlite3</span></code></a> module parse the declared type for each
-column it returns.  It will parse out the first word of the declared type,
-i. e.  for &quot;integer primary key&quot;, it will parse out &quot;integer&quot;, or for
-&quot;number(10)&quot; it will parse out &quot;number&quot;. Then for that column, it will look
-into the converters dictionary and use the converter function registered for
-that type there.</p>
+<dd><p>Pass this flag value to the <em>detect_types</em> parameter of
+<a class="reference internal" href="#sqlite3.connect" title="sqlite3.connect"><code class="xref py py-func docutils literal notranslate"><span class="pre">connect()</span></code></a> to look up a converter function using
+the declared types for each column.
+The types are declared when the database table is created.
+<code class="docutils literal notranslate"><span class="pre">sqlite3</span></code> will look up a converter function using the first word of the
+declared type as the converter dictionary key.
+For example:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">test</span><span class="p">(</span><span class="w"></span>
+<span class="w">   </span><span class="n">i</span><span class="w"> </span><span class="nb">integer</span><span class="w"> </span><span class="k">primary</span><span class="w"> </span><span class="k">key</span><span class="p">,</span><span class="w">  </span><span class="o">!</span><span class="w"> </span><span class="n">will</span><span class="w"> </span><span class="n">look</span><span class="w"> </span><span class="n">up</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">converter</span><span class="w"> </span><span class="n">named</span><span class="w"> </span><span class="ss">&quot;integer&quot;</span><span class="w"></span>
+<span class="w">   </span><span class="n">p</span><span class="w"> </span><span class="n">point</span><span class="p">,</span><span class="w">                </span><span class="o">!</span><span class="w"> </span><span class="n">will</span><span class="w"> </span><span class="n">look</span><span class="w"> </span><span class="n">up</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">converter</span><span class="w"> </span><span class="n">named</span><span class="w"> </span><span class="ss">&quot;point&quot;</span><span class="w"></span>
+<span class="w">   </span><span class="n">n</span><span class="w"> </span><span class="nb">number</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="w">            </span><span class="o">!</span><span class="w"> </span><span class="n">will</span><span class="w"> </span><span class="n">look</span><span class="w"> </span><span class="n">up</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">converter</span><span class="w"> </span><span class="n">named</span><span class="w"> </span><span class="ss">&quot;number&quot;</span><span class="w"></span>
+<span class="w"> </span><span class="p">)</span><span class="w"></span>
+</pre></div>
+</div>
+<p>This flag may be combined with <a class="reference internal" href="#sqlite3.PARSE_COLNAMES" title="sqlite3.PARSE_COLNAMES"><code class="xref py py-const docutils literal notranslate"><span class="pre">PARSE_COLNAMES</span></code></a> using the <code class="docutils literal notranslate"><span class="pre">|</span></code>
+(bitwise or) operator.</p>
 </dd></dl>
 
 <dl class="py data">
 <dt class="sig sig-object py" id="sqlite3.PARSE_COLNAMES">
 <span class="sig-prename descclassname"><span class="pre">sqlite3.</span></span><span class="sig-name descname"><span class="pre">PARSE_COLNAMES</span></span><a class="headerlink" href="#sqlite3.PARSE_COLNAMES" title="本定義的永久連結">¶</a></dt>
-<dd><p>This constant is meant to be used with the <em>detect_types</em> parameter of the
-<a class="reference internal" href="#sqlite3.connect" title="sqlite3.connect"><code class="xref py py-func docutils literal notranslate"><span class="pre">connect()</span></code></a> function.</p>
-<p>Setting this makes the SQLite interface parse the column name for each column it
-returns.  It will look for a string formed [mytype] in there, and then decide
-that 'mytype' is the type of the column. It will try to find an entry of
-'mytype' in the converters dictionary and then use the converter function found
-there to return the value. The column name found in <a class="reference internal" href="#sqlite3.Cursor.description" title="sqlite3.Cursor.description"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Cursor.description</span></code></a>
-does not include the type, i. e. if you use something like
-<code class="docutils literal notranslate"><span class="pre">'as</span> <span class="pre">&quot;Expiration</span> <span class="pre">date</span> <span class="pre">[datetime]&quot;'</span></code> in your SQL, then we will parse out
-everything until the first <code class="docutils literal notranslate"><span class="pre">'['</span></code> for the column name and strip
-the preceding space: the column name would simply be &quot;Expiration date&quot;.</p>
+<dd><p>Pass this flag value to the <em>detect_types</em> parameter of
+<a class="reference internal" href="#sqlite3.connect" title="sqlite3.connect"><code class="xref py py-func docutils literal notranslate"><span class="pre">connect()</span></code></a> to look up a converter function by
+using the type name, parsed from the query column name,
+as the converter dictionary key.
+The type name must be wrapped in square brackets (<code class="docutils literal notranslate"><span class="pre">[]</span></code>).</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="ss">&quot;p [point]&quot;</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">test</span><span class="p">;</span><span class="w">  </span><span class="o">!</span><span class="w"> </span><span class="n">will</span><span class="w"> </span><span class="n">look</span><span class="w"> </span><span class="n">up</span><span class="w"> </span><span class="n">converter</span><span class="w"> </span><span class="ss">&quot;point&quot;</span><span class="w"></span>
+</pre></div>
+</div>
+<p>This flag may be combined with <a class="reference internal" href="#sqlite3.PARSE_DECLTYPES" title="sqlite3.PARSE_DECLTYPES"><code class="xref py py-const docutils literal notranslate"><span class="pre">PARSE_DECLTYPES</span></code></a> using the <code class="docutils literal notranslate"><span class="pre">|</span></code>
+(bitwise or) operator.</p>
 </dd></dl>
 
 <dl class="py function">
@@ -418,13 +426,16 @@ parameter is 5.0 (five seconds).</p>
 <a class="reference internal" href="#sqlite3.Connection.isolation_level" title="sqlite3.Connection.isolation_level"><code class="xref py py-attr docutils literal notranslate"><span class="pre">isolation_level</span></code></a> property of <a class="reference internal" href="#sqlite3.Connection" title="sqlite3.Connection"><code class="xref py py-class docutils literal notranslate"><span class="pre">Connection</span></code></a> objects.</p>
 <p>SQLite natively supports only the types TEXT, INTEGER, REAL, BLOB and NULL. If
 you want to use other types you must add support for them yourself. The
-<em>detect_types</em> parameter and the using custom <strong>converters</strong> registered with the
+<em>detect_types</em> parameter and using custom <strong>converters</strong> registered with the
 module-level <a class="reference internal" href="#sqlite3.register_converter" title="sqlite3.register_converter"><code class="xref py py-func docutils literal notranslate"><span class="pre">register_converter()</span></code></a> function allow you to easily do that.</p>
-<p><em>detect_types</em> defaults to 0 (i. e. off, no type detection), you can set it to
-any combination of <a class="reference internal" href="#sqlite3.PARSE_DECLTYPES" title="sqlite3.PARSE_DECLTYPES"><code class="xref py py-const docutils literal notranslate"><span class="pre">PARSE_DECLTYPES</span></code></a> and <a class="reference internal" href="#sqlite3.PARSE_COLNAMES" title="sqlite3.PARSE_COLNAMES"><code class="xref py py-const docutils literal notranslate"><span class="pre">PARSE_COLNAMES</span></code></a> to turn
-type detection on. Due to SQLite behaviour, types can't be detected for generated
-fields (for example <code class="docutils literal notranslate"><span class="pre">max(data)</span></code>), even when <em>detect_types</em> parameter is set. In
-such case, the returned type is <a class="reference internal" href="stdtypes.html#str" title="str"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>.</p>
+<p><em>detect_types</em> defaults to 0 (type detection disabled).
+Set it to any combination (using <code class="docutils literal notranslate"><span class="pre">|</span></code>, bitwise or) of
+<a class="reference internal" href="#sqlite3.PARSE_DECLTYPES" title="sqlite3.PARSE_DECLTYPES"><code class="xref py py-const docutils literal notranslate"><span class="pre">PARSE_DECLTYPES</span></code></a> and <a class="reference internal" href="#sqlite3.PARSE_COLNAMES" title="sqlite3.PARSE_COLNAMES"><code class="xref py py-const docutils literal notranslate"><span class="pre">PARSE_COLNAMES</span></code></a>
+to enable type detection.
+Column names takes precedence over declared types if both flags are set.
+Types cannot be detected for generated fields (for example <code class="docutils literal notranslate"><span class="pre">max(data)</span></code>),
+even when the <em>detect_types</em> parameter is set.
+In such cases, the returned type is <a class="reference internal" href="stdtypes.html#str" title="str"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>.</p>
 <p>By default, <em>check_same_thread</em> is <a class="reference internal" href="constants.html#True" title="True"><code class="xref py py-const docutils literal notranslate"><span class="pre">True</span></code></a> and only the creating thread may
 use the connection. If set <a class="reference internal" href="constants.html#False" title="False"><code class="xref py py-const docutils literal notranslate"><span class="pre">False</span></code></a>, the returned connection may be shared
 across multiple threads. When using multiple threads with the same connection
@@ -475,27 +486,32 @@ parameters, can be found in the
 
 <dl class="py function">
 <dt class="sig sig-object py" id="sqlite3.register_converter">
-<span class="sig-prename descclassname"><span class="pre">sqlite3.</span></span><span class="sig-name descname"><span class="pre">register_converter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">typename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">callable</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sqlite3.register_converter" title="本定義的永久連結">¶</a></dt>
-<dd><p>Registers a callable to convert a bytestring from the database into a custom
-Python type. The callable will be invoked for all database values that are of
-the type <em>typename</em>. Confer the parameter <em>detect_types</em> of the <a class="reference internal" href="#sqlite3.connect" title="sqlite3.connect"><code class="xref py py-func docutils literal notranslate"><span class="pre">connect()</span></code></a>
-function for how the type detection works. Note that <em>typename</em> and the name of
-the type in your query are matched in case-insensitive manner.</p>
+<span class="sig-prename descclassname"><span class="pre">sqlite3.</span></span><span class="sig-name descname"><span class="pre">register_converter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">typename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">converter</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sqlite3.register_converter" title="本定義的永久連結">¶</a></dt>
+<dd><p>Register the <em>converter</em> callable to convert SQLite objects of type
+<em>typename</em> into a Python object of a specific type.
+The converter is invoked for all SQLite values of type <em>typename</em>;
+it is passed a <a class="reference internal" href="stdtypes.html#bytes" title="bytes"><code class="xref py py-class docutils literal notranslate"><span class="pre">bytes</span></code></a> object and should return an object of the
+desired Python type.
+Consult the parameter <em>detect_types</em> of
+<a class="reference internal" href="#sqlite3.connect" title="sqlite3.connect"><code class="xref py py-func docutils literal notranslate"><span class="pre">connect()</span></code></a> for information regarding how type detection works.</p>
+<p>Note: <em>typename</em> and the name of the type in your query are matched
+case-insensitively.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="sqlite3.register_adapter">
-<span class="sig-prename descclassname"><span class="pre">sqlite3.</span></span><span class="sig-name descname"><span class="pre">register_adapter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">callable</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sqlite3.register_adapter" title="本定義的永久連結">¶</a></dt>
-<dd><p>Registers a callable to convert the custom Python type <em>type</em> into one of
-SQLite's supported types. The callable <em>callable</em> accepts as single parameter
-the Python value, and must return a value of the following types: int,
-float, str or bytes.</p>
+<span class="sig-prename descclassname"><span class="pre">sqlite3.</span></span><span class="sig-name descname"><span class="pre">register_adapter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">adapter</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sqlite3.register_adapter" title="本定義的永久連結">¶</a></dt>
+<dd><p>Register an <em>adapter</em> callable to adapt the Python type <em>type</em> into an
+SQLite type.
+The adapter is called with a Python object of type <em>type</em> as its sole
+argument, and must return a value of a
+<a class="reference internal" href="#sqlite3-types"><span class="std std-ref">type that SQLite natively understands</span></a>.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="sqlite3.complete_statement">
-<span class="sig-prename descclassname"><span class="pre">sqlite3.</span></span><span class="sig-name descname"><span class="pre">complete_statement</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sql</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sqlite3.complete_statement" title="本定義的永久連結">¶</a></dt>
-<dd><p>Returns <a class="reference internal" href="constants.html#True" title="True"><code class="xref py py-const docutils literal notranslate"><span class="pre">True</span></code></a> if the string <em>sql</em> contains one or more complete SQL
+<span class="sig-prename descclassname"><span class="pre">sqlite3.</span></span><span class="sig-name descname"><span class="pre">complete_statement</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">statement</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sqlite3.complete_statement" title="本定義的永久連結">¶</a></dt>
+<dd><p>Returns <a class="reference internal" href="constants.html#True" title="True"><code class="xref py py-const docutils literal notranslate"><span class="pre">True</span></code></a> if the string <em>statement</em> contains one or more complete SQL
 statements terminated by semicolons. It does not verify that the SQL is
 syntactically correct, only that there are no unclosed string literals and the
 statement is terminated by a semicolon.</p>
@@ -580,25 +596,24 @@ or its subclasses.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="sqlite3.Connection.commit">
 <span class="sig-name descname"><span class="pre">commit</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sqlite3.Connection.commit" title="本定義的永久連結">¶</a></dt>
-<dd><p>This method commits the current transaction. If you don't call this method,
-anything you did since the last call to <code class="docutils literal notranslate"><span class="pre">commit()</span></code> is not visible from
-other database connections. If you wonder why you don't see the data you've
-written to the database, please check you didn't forget to call this method.</p>
+<dd><p>Commit any pending transaction to the database.
+If there is no open transaction, this method is a no-op.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="sqlite3.Connection.rollback">
 <span class="sig-name descname"><span class="pre">rollback</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sqlite3.Connection.rollback" title="本定義的永久連結">¶</a></dt>
-<dd><p>This method rolls back any changes to the database since the last call to
-<a class="reference internal" href="#sqlite3.Connection.commit" title="sqlite3.Connection.commit"><code class="xref py py-meth docutils literal notranslate"><span class="pre">commit()</span></code></a>.</p>
+<dd><p>Roll back to the start of any pending transaction.
+If there is no open transaction, this method is a no-op.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="sqlite3.Connection.close">
 <span class="sig-name descname"><span class="pre">close</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sqlite3.Connection.close" title="本定義的永久連結">¶</a></dt>
-<dd><p>This closes the database connection. Note that this does not automatically
-call <a class="reference internal" href="#sqlite3.Connection.commit" title="sqlite3.Connection.commit"><code class="xref py py-meth docutils literal notranslate"><span class="pre">commit()</span></code></a>. If you just close your database connection without
-calling <a class="reference internal" href="#sqlite3.Connection.commit" title="sqlite3.Connection.commit"><code class="xref py py-meth docutils literal notranslate"><span class="pre">commit()</span></code></a> first, your changes will be lost!</p>
+<dd><p>Close the database connection.
+Any pending transaction is not committed implicitly;
+make sure to <a class="reference internal" href="#sqlite3.Connection.commit" title="sqlite3.Connection.commit"><code class="xref py py-meth docutils literal notranslate"><span class="pre">commit()</span></code></a> before closing
+to avoid losing pending changes.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -627,10 +642,10 @@ Return the new cursor object.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="sqlite3.Connection.create_function">
-<span class="sig-name descname"><span class="pre">create_function</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_params</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">func</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">deterministic</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sqlite3.Connection.create_function" title="本定義的永久連結">¶</a></dt>
+<span class="sig-name descname"><span class="pre">create_function</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">narg</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">func</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">deterministic</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sqlite3.Connection.create_function" title="本定義的永久連結">¶</a></dt>
 <dd><p>Creates a user-defined function that you can later use from within SQL
-statements under the function name <em>name</em>. <em>num_params</em> is the number of
-parameters the function accepts (if <em>num_params</em> is -1, the function may
+statements under the function name <em>name</em>. <em>narg</em> is the number of
+parameters the function accepts (if <em>narg</em> is -1, the function may
 take any number of arguments), and <em>func</em> is a Python callable that is
 called as the SQL function. If <em>deterministic</em> is true, the created function
 is marked as <a class="reference external" href="https://sqlite.org/deterministic.html">deterministic</a>, which
@@ -662,10 +677,10 @@ float and <code class="docutils literal notranslate"><span class="pre">None</spa
 
 <dl class="py method">
 <dt class="sig sig-object py" id="sqlite3.Connection.create_aggregate">
-<span class="sig-name descname"><span class="pre">create_aggregate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_params</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">aggregate_class</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sqlite3.Connection.create_aggregate" title="本定義的永久連結">¶</a></dt>
+<span class="sig-name descname"><span class="pre">create_aggregate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_arg</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">aggregate_class</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sqlite3.Connection.create_aggregate" title="本定義的永久連結">¶</a></dt>
 <dd><p>Creates a user-defined aggregate function.</p>
 <p>The aggregate class must implement a <code class="docutils literal notranslate"><span class="pre">step</span></code> method, which accepts the number
-of parameters <em>num_params</em> (if <em>num_params</em> is -1, the function may take
+of parameters <em>n_arg</em> (if <em>n_arg</em> is -1, the function may take
 any number of arguments), and a <code class="docutils literal notranslate"><span class="pre">finalize</span></code> method which will return the
 final result of the aggregate.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">finalize</span></code> method can return any of the types supported by SQLite:
@@ -764,13 +779,13 @@ one. All necessary constants are available in the <a class="reference internal" 
 
 <dl class="py method">
 <dt class="sig sig-object py" id="sqlite3.Connection.set_progress_handler">
-<span class="sig-name descname"><span class="pre">set_progress_handler</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">handler</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sqlite3.Connection.set_progress_handler" title="本定義的永久連結">¶</a></dt>
+<span class="sig-name descname"><span class="pre">set_progress_handler</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">progress_handler</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sqlite3.Connection.set_progress_handler" title="本定義的永久連結">¶</a></dt>
 <dd><p>This routine registers a callback. The callback is invoked for every <em>n</em>
 instructions of the SQLite virtual machine. This is useful if you want to
 get called from SQLite during long-running operations, for example to update
 a GUI.</p>
 <p>If you want to clear any previously installed progress handler, call the
-method with <a class="reference internal" href="constants.html#None" title="None"><code class="xref py py-const docutils literal notranslate"><span class="pre">None</span></code></a> for <em>handler</em>.</p>
+method with <a class="reference internal" href="constants.html#None" title="None"><code class="xref py py-const docutils literal notranslate"><span class="pre">None</span></code></a> for <em>progress_handler</em>.</p>
 <p>Returning a non-zero value from the handler function will terminate the
 currently executing query and cause it to raise an <a class="reference internal" href="#sqlite3.OperationalError" title="sqlite3.OperationalError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">OperationalError</span></code></a>
 exception.</p>
@@ -891,7 +906,7 @@ that can also access columns by name.</p>
 </div>
 <p>If returning a tuple doesn't suffice and you want name-based access to
 columns, you should consider setting <a class="reference internal" href="#sqlite3.Connection.row_factory" title="sqlite3.Connection.row_factory"><code class="xref py py-attr docutils literal notranslate"><span class="pre">row_factory</span></code></a> to the
-highly-optimized <a class="reference internal" href="#sqlite3.Row" title="sqlite3.Row"><code class="xref py py-class docutils literal notranslate"><span class="pre">sqlite3.Row</span></code></a> type. <a class="reference internal" href="#sqlite3.Row" title="sqlite3.Row"><code class="xref py py-class docutils literal notranslate"><span class="pre">Row</span></code></a> provides both
+highly optimized <a class="reference internal" href="#sqlite3.Row" title="sqlite3.Row"><code class="xref py py-class docutils literal notranslate"><span class="pre">sqlite3.Row</span></code></a> type. <a class="reference internal" href="#sqlite3.Row" title="sqlite3.Row"><code class="xref py py-class docutils literal notranslate"><span class="pre">Row</span></code></a> provides both
 index-based and case-insensitive name-based access to columns with almost no
 memory overhead. It will probably be better than your own custom
 dictionary-based approach or even a db_row based solution.</p>
@@ -1031,7 +1046,7 @@ integer or a floating point value.</p>
 <dd><p>Executes an SQL statement. Values may be bound to the statement using
 <a class="reference internal" href="#sqlite3-placeholders"><span class="std std-ref">placeholders</span></a>.</p>
 <p><a class="reference internal" href="#sqlite3.Cursor.execute" title="sqlite3.Cursor.execute"><code class="xref py py-meth docutils literal notranslate"><span class="pre">execute()</span></code></a> will only execute a single SQL statement. If you try to execute
-more than one statement with it, it will raise a <a class="reference internal" href="#sqlite3.Warning" title="sqlite3.Warning"><code class="xref py py-exc docutils literal notranslate"><span class="pre">Warning</span></code></a>. Use
+more than one statement with it, it will raise a <a class="reference internal" href="exceptions.html#Warning" title="Warning"><code class="xref py py-exc docutils literal notranslate"><span class="pre">Warning</span></code></a>. Use
 <a class="reference internal" href="#sqlite3.Cursor.executescript" title="sqlite3.Cursor.executescript"><code class="xref py py-meth docutils literal notranslate"><span class="pre">executescript()</span></code></a> if you want to execute multiple SQL statements with one
 call.</p>
 </dd></dl>
@@ -1316,23 +1331,57 @@ it is the first member of each tuple in <a class="reference internal" href="#sql
 </section>
 <section id="exceptions">
 <span id="sqlite3-exceptions"></span><h2>例外<a class="headerlink" href="#exceptions" title="Permalink to this heading">¶</a></h2>
+<p>The exception hierarchy is defined by the DB-API 2.0 (<span class="target" id="index-4"></span><a class="pep reference external" href="https://peps.python.org/pep-0249/"><strong>PEP 249</strong></a>).</p>
 <dl class="py exception">
 <dt class="sig sig-object py" id="sqlite3.Warning">
 <em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sqlite3.</span></span><span class="sig-name descname"><span class="pre">Warning</span></span><a class="headerlink" href="#sqlite3.Warning" title="本定義的永久連結">¶</a></dt>
-<dd><p>A subclass of <a class="reference internal" href="exceptions.html#Exception" title="Exception"><code class="xref py py-exc docutils literal notranslate"><span class="pre">Exception</span></code></a>.</p>
+<dd><p>This exception is raised by <code class="docutils literal notranslate"><span class="pre">sqlite3</span></code> if an SQL query is not a
+<a class="reference internal" href="stdtypes.html#str" title="str"><code class="xref py py-class docutils literal notranslate"><span class="pre">string</span></code></a>, or if multiple statements are passed to
+<a class="reference internal" href="#sqlite3.Cursor.execute" title="sqlite3.Cursor.execute"><code class="xref py py-meth docutils literal notranslate"><span class="pre">execute()</span></code></a> or <a class="reference internal" href="#sqlite3.Cursor.executemany" title="sqlite3.Cursor.executemany"><code class="xref py py-meth docutils literal notranslate"><span class="pre">executemany()</span></code></a>.
+<code class="docutils literal notranslate"><span class="pre">Warning</span></code> is a subclass of <a class="reference internal" href="exceptions.html#Exception" title="Exception"><code class="xref py py-exc docutils literal notranslate"><span class="pre">Exception</span></code></a>.</p>
 </dd></dl>
 
 <dl class="py exception">
 <dt class="sig sig-object py" id="sqlite3.Error">
 <em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sqlite3.</span></span><span class="sig-name descname"><span class="pre">Error</span></span><a class="headerlink" href="#sqlite3.Error" title="本定義的永久連結">¶</a></dt>
-<dd><p>The base class of the other exceptions in this module.  It is a subclass
-of <a class="reference internal" href="exceptions.html#Exception" title="Exception"><code class="xref py py-exc docutils literal notranslate"><span class="pre">Exception</span></code></a>.</p>
+<dd><p>The base class of the other exceptions in this module.
+Use this to catch all errors with one single <a class="reference internal" href="../reference/compound_stmts.html#except"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">except</span></code></a> statement.
+<code class="docutils literal notranslate"><span class="pre">Error</span></code> is a subclass of <a class="reference internal" href="exceptions.html#Exception" title="Exception"><code class="xref py py-exc docutils literal notranslate"><span class="pre">Exception</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="sqlite3.InterfaceError">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sqlite3.</span></span><span class="sig-name descname"><span class="pre">InterfaceError</span></span><a class="headerlink" href="#sqlite3.InterfaceError" title="本定義的永久連結">¶</a></dt>
+<dd><p>This exception is raised by <code class="docutils literal notranslate"><span class="pre">sqlite3</span></code> for fetch across rollback,
+or if <code class="docutils literal notranslate"><span class="pre">sqlite3</span></code> is unable to bind parameters.
+<code class="docutils literal notranslate"><span class="pre">InterfaceError</span></code> is a subclass of <a class="reference internal" href="#sqlite3.Error" title="sqlite3.Error"><code class="xref py py-exc docutils literal notranslate"><span class="pre">Error</span></code></a>.</p>
 </dd></dl>
 
 <dl class="py exception">
 <dt class="sig sig-object py" id="sqlite3.DatabaseError">
 <em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sqlite3.</span></span><span class="sig-name descname"><span class="pre">DatabaseError</span></span><a class="headerlink" href="#sqlite3.DatabaseError" title="本定義的永久連結">¶</a></dt>
-<dd><p>Exception raised for errors that are related to the database.</p>
+<dd><p>Exception raised for errors that are related to the database.
+This serves as the base exception for several types of database errors.
+It is only raised implicitly through the specialised subclasses.
+<code class="docutils literal notranslate"><span class="pre">DatabaseError</span></code> is a subclass of <a class="reference internal" href="#sqlite3.Error" title="sqlite3.Error"><code class="xref py py-exc docutils literal notranslate"><span class="pre">Error</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="sqlite3.DataError">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sqlite3.</span></span><span class="sig-name descname"><span class="pre">DataError</span></span><a class="headerlink" href="#sqlite3.DataError" title="本定義的永久連結">¶</a></dt>
+<dd><p>Exception raised for errors caused by problems with the processed data,
+like numeric values out of range, and strings which are too long.
+<code class="docutils literal notranslate"><span class="pre">DataError</span></code> is a subclass of <a class="reference internal" href="#sqlite3.DatabaseError" title="sqlite3.DatabaseError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">DatabaseError</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="sqlite3.OperationalError">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sqlite3.</span></span><span class="sig-name descname"><span class="pre">OperationalError</span></span><a class="headerlink" href="#sqlite3.OperationalError" title="本定義的永久連結">¶</a></dt>
+<dd><p>Exception raised for errors that are related to the database's operation,
+and not necessarily under the control of the programmer.
+For example, the database path is not found,
+or a transaction could not be processed.
+<code class="docutils literal notranslate"><span class="pre">OperationalError</span></code> is a subclass of <a class="reference internal" href="#sqlite3.DatabaseError" title="sqlite3.DatabaseError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">DatabaseError</span></code></a>.</p>
 </dd></dl>
 
 <dl class="py exception">
@@ -1343,29 +1392,31 @@ e.g. a foreign key check fails.  It is a subclass of <a class="reference interna
 </dd></dl>
 
 <dl class="py exception">
-<dt class="sig sig-object py" id="sqlite3.ProgrammingError">
-<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sqlite3.</span></span><span class="sig-name descname"><span class="pre">ProgrammingError</span></span><a class="headerlink" href="#sqlite3.ProgrammingError" title="本定義的永久連結">¶</a></dt>
-<dd><p>Exception raised for programming errors, e.g. table not found or already
-exists, syntax error in the SQL statement, wrong number of parameters
-specified, etc.  It is a subclass of <a class="reference internal" href="#sqlite3.DatabaseError" title="sqlite3.DatabaseError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">DatabaseError</span></code></a>.</p>
+<dt class="sig sig-object py" id="sqlite3.InternalError">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sqlite3.</span></span><span class="sig-name descname"><span class="pre">InternalError</span></span><a class="headerlink" href="#sqlite3.InternalError" title="本定義的永久連結">¶</a></dt>
+<dd><p>Exception raised when SQLite encounters an internal error.
+If this is raised, it may indicate that there is a problem with the runtime
+SQLite library.
+<code class="docutils literal notranslate"><span class="pre">InternalError</span></code> is a subclass of <a class="reference internal" href="#sqlite3.DatabaseError" title="sqlite3.DatabaseError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">DatabaseError</span></code></a>.</p>
 </dd></dl>
 
 <dl class="py exception">
-<dt class="sig sig-object py" id="sqlite3.OperationalError">
-<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sqlite3.</span></span><span class="sig-name descname"><span class="pre">OperationalError</span></span><a class="headerlink" href="#sqlite3.OperationalError" title="本定義的永久連結">¶</a></dt>
-<dd><p>Exception raised for errors that are related to the database's operation
-and not necessarily under the control of the programmer, e.g. an unexpected
-disconnect occurs, the data source name is not found, a transaction could
-not be processed, etc.  It is a subclass of <a class="reference internal" href="#sqlite3.DatabaseError" title="sqlite3.DatabaseError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">DatabaseError</span></code></a>.</p>
+<dt class="sig sig-object py" id="sqlite3.ProgrammingError">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sqlite3.</span></span><span class="sig-name descname"><span class="pre">ProgrammingError</span></span><a class="headerlink" href="#sqlite3.ProgrammingError" title="本定義的永久連結">¶</a></dt>
+<dd><p>Exception raised for <code class="docutils literal notranslate"><span class="pre">sqlite3</span></code> API programming errors,
+for example trying to operate on a closed <a class="reference internal" href="#sqlite3.Connection" title="sqlite3.Connection"><code class="xref py py-class docutils literal notranslate"><span class="pre">Connection</span></code></a>,
+or trying to execute non-DML statements with <a class="reference internal" href="#sqlite3.Cursor.executemany" title="sqlite3.Cursor.executemany"><code class="xref py py-meth docutils literal notranslate"><span class="pre">executemany()</span></code></a>.
+<code class="docutils literal notranslate"><span class="pre">ProgrammingError</span></code> is a subclass of <a class="reference internal" href="#sqlite3.DatabaseError" title="sqlite3.DatabaseError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">DatabaseError</span></code></a>.</p>
 </dd></dl>
 
 <dl class="py exception">
 <dt class="sig sig-object py" id="sqlite3.NotSupportedError">
 <em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sqlite3.</span></span><span class="sig-name descname"><span class="pre">NotSupportedError</span></span><a class="headerlink" href="#sqlite3.NotSupportedError" title="本定義的永久連結">¶</a></dt>
-<dd><p>Exception raised in case a method or database API was used which is not
-supported by the database, e.g. calling the <a class="reference internal" href="#sqlite3.Connection.rollback" title="sqlite3.Connection.rollback"><code class="xref py py-meth docutils literal notranslate"><span class="pre">rollback()</span></code></a>
-method on a connection that does not support transaction or has
-transactions turned off.  It is a subclass of <a class="reference internal" href="#sqlite3.DatabaseError" title="sqlite3.DatabaseError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">DatabaseError</span></code></a>.</p>
+<dd><p>Exception raised in case a method or database API is not supported by the
+underlying SQLite library. For example, setting <em>deterministic</em> to
+<a class="reference internal" href="constants.html#True" title="True"><code class="xref py py-const docutils literal notranslate"><span class="pre">True</span></code></a> in <a class="reference internal" href="#sqlite3.Connection.create_function" title="sqlite3.Connection.create_function"><code class="xref py py-meth docutils literal notranslate"><span class="pre">create_function()</span></code></a>, if the underlying SQLite library
+does not support deterministic functions.
+<code class="docutils literal notranslate"><span class="pre">NotSupportedError</span></code> is a subclass of <a class="reference internal" href="#sqlite3.DatabaseError" title="sqlite3.DatabaseError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">DatabaseError</span></code></a>.</p>
 </dd></dl>
 
 </section>
@@ -1431,28 +1482,27 @@ store additional Python types in an SQLite database via object adaptation, and
 you can let the <a class="reference internal" href="#module-sqlite3" title="sqlite3: A DB-API 2.0 implementation using SQLite 3.x."><code class="xref py py-mod docutils literal notranslate"><span class="pre">sqlite3</span></code></a> module convert SQLite types to different Python
 types via converters.</p>
 </section>
-<section id="using-adapters-to-store-additional-python-types-in-sqlite-databases">
-<h3>Using adapters to store additional Python types in SQLite databases<a class="headerlink" href="#using-adapters-to-store-additional-python-types-in-sqlite-databases" title="Permalink to this heading">¶</a></h3>
-<p>As described before, SQLite supports only a limited set of types natively. To
-use other Python types with SQLite, you must <strong>adapt</strong> them to one of the
-sqlite3 module's supported types for SQLite: one of NoneType, int, float,
-str, bytes.</p>
-<p>There are two ways to enable the <a class="reference internal" href="#module-sqlite3" title="sqlite3: A DB-API 2.0 implementation using SQLite 3.x."><code class="xref py py-mod docutils literal notranslate"><span class="pre">sqlite3</span></code></a> module to adapt a custom Python
-type to one of the supported ones.</p>
+<section id="using-adapters-to-store-custom-python-types-in-sqlite-databases">
+<h3>Using adapters to store custom Python types in SQLite databases<a class="headerlink" href="#using-adapters-to-store-custom-python-types-in-sqlite-databases" title="Permalink to this heading">¶</a></h3>
+<p>SQLite supports only a limited set of data types natively.
+To store custom Python types in SQLite databases, <em>adapt</em> them to one of the
+<a class="reference internal" href="#sqlite3-types"><span class="std std-ref">Python types SQLite natively understands</span></a>.</p>
+<p>There are two ways to adapt Python objects to SQLite types:
+letting your object adapt itself, or using an <em>adapter callable</em>.
+The latter will take precedence above the former.
+For a library that exports a custom type,
+it may make sense to enable that type to adapt itself.
+As an application developer, it may make more sense to take direct control by
+registering custom adapter functions.</p>
 <section id="letting-your-object-adapt-itself">
 <h4>Letting your object adapt itself<a class="headerlink" href="#letting-your-object-adapt-itself" title="Permalink to this heading">¶</a></h4>
-<p>This is a good approach if you write the class yourself. Let's suppose you have
-a class like this:</p>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Point</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span>
-</pre></div>
-</div>
-<p>Now you want to store the point in a single SQLite column.  First you'll have to
-choose one of the supported types to be used for representing the point.
-Let's just use str and separate the coordinates using a semicolon. Then you need
-to give your class a method <code class="docutils literal notranslate"><span class="pre">__conform__(self,</span> <span class="pre">protocol)</span></code> which must return
-the converted value. The parameter <em>protocol</em> will be <code class="xref py py-class docutils literal notranslate"><span class="pre">PrepareProtocol</span></code>.</p>
+<p>Suppose we have a <code class="docutils literal notranslate"><span class="pre">Point</span></code> class that represents a pair of coordinates,
+<code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code>, in a Cartesian coordinate system.
+The coordinate pair will be stored as a text string in the database,
+using a semicolon to separate the coordinates.
+This can be implemented by adding a <code class="docutils literal notranslate"><span class="pre">__conform__(self,</span> <span class="pre">protocol)</span></code>
+method which returns the adapted value.
+The object passed to <em>protocol</em> will be of type <code class="xref py py-class docutils literal notranslate"><span class="pre">PrepareProtocol</span></code>.</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sqlite3</span>
 
 <span class="k">class</span> <span class="nc">Point</span><span class="p">:</span>
@@ -1476,8 +1526,9 @@ the converted value. The parameter <em>protocol</em> will be <code class="xref p
 </section>
 <section id="registering-an-adapter-callable">
 <h4>Registering an adapter callable<a class="headerlink" href="#registering-an-adapter-callable" title="Permalink to this heading">¶</a></h4>
-<p>The other possibility is to create a function that converts the type to the
-string representation and register the function with <a class="reference internal" href="#sqlite3.register_adapter" title="sqlite3.register_adapter"><code class="xref py py-meth docutils literal notranslate"><span class="pre">register_adapter()</span></code></a>.</p>
+<p>The other possibility is to create a function that converts the Python object
+to an SQLite-compatible type.
+This function can then be registered using <a class="reference internal" href="#sqlite3.register_adapter" title="sqlite3.register_adapter"><code class="xref py py-func docutils literal notranslate"><span class="pre">register_adapter()</span></code></a>.</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sqlite3</span>
 
 <span class="k">class</span> <span class="nc">Point</span><span class="p">:</span>
@@ -1499,59 +1550,39 @@ string representation and register the function with <a class="reference interna
 <span class="n">con</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>The <a class="reference internal" href="#module-sqlite3" title="sqlite3: A DB-API 2.0 implementation using SQLite 3.x."><code class="xref py py-mod docutils literal notranslate"><span class="pre">sqlite3</span></code></a> module has two default adapters for Python's built-in
-<a class="reference internal" href="datetime.html#datetime.date" title="datetime.date"><code class="xref py py-class docutils literal notranslate"><span class="pre">datetime.date</span></code></a> and <a class="reference internal" href="datetime.html#datetime.datetime" title="datetime.datetime"><code class="xref py py-class docutils literal notranslate"><span class="pre">datetime.datetime</span></code></a> types.  Now let's suppose
-we want to store <a class="reference internal" href="datetime.html#datetime.datetime" title="datetime.datetime"><code class="xref py py-class docutils literal notranslate"><span class="pre">datetime.datetime</span></code></a> objects not in ISO representation,
-but as a Unix timestamp.</p>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sqlite3</span>
-<span class="kn">import</span> <span class="nn">datetime</span>
-<span class="kn">import</span> <span class="nn">time</span>
-
-<span class="k">def</span> <span class="nf">adapt_datetime</span><span class="p">(</span><span class="n">ts</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">time</span><span class="o">.</span><span class="n">mktime</span><span class="p">(</span><span class="n">ts</span><span class="o">.</span><span class="n">timetuple</span><span class="p">())</span>
-
-<span class="n">sqlite3</span><span class="o">.</span><span class="n">register_adapter</span><span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">,</span> <span class="n">adapt_datetime</span><span class="p">)</span>
-
-<span class="n">con</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;:memory:&quot;</span><span class="p">)</span>
-<span class="n">cur</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
-
-<span class="n">now</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
-<span class="n">cur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;select ?&quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">now</span><span class="p">,))</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">cur</span><span class="o">.</span><span class="n">fetchone</span><span class="p">()[</span><span class="mi">0</span><span class="p">])</span>
-
-<span class="n">con</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-</pre></div>
-</div>
 </section>
 </section>
 <section id="converting-sqlite-values-to-custom-python-types">
 <h3>Converting SQLite values to custom Python types<a class="headerlink" href="#converting-sqlite-values-to-custom-python-types" title="Permalink to this heading">¶</a></h3>
-<p>Writing an adapter lets you send custom Python types to SQLite. But to make it
-really useful we need to make the Python to SQLite to Python roundtrip work.</p>
-<p>Enter converters.</p>
+<p>Writing an adapter lets you convert <em>from</em> custom Python types <em>to</em> SQLite
+values.
+To be able to convert <em>from</em> SQLite values <em>to</em> custom Python types,
+we use <em>converters</em>.</p>
 <p>Let's go back to the <code class="xref py py-class docutils literal notranslate"><span class="pre">Point</span></code> class. We stored the x and y coordinates
 separated via semicolons as strings in SQLite.</p>
 <p>First, we'll define a converter function that accepts the string as a parameter
 and constructs a <code class="xref py py-class docutils literal notranslate"><span class="pre">Point</span></code> object from it.</p>
 <div class="admonition note">
 <p class="admonition-title">備註</p>
-<p>Converter functions <strong>always</strong> get called with a <a class="reference internal" href="stdtypes.html#bytes" title="bytes"><code class="xref py py-class docutils literal notranslate"><span class="pre">bytes</span></code></a> object, no
-matter under which data type you sent the value to SQLite.</p>
+<p>Converter functions are <strong>always</strong> passed a <a class="reference internal" href="stdtypes.html#bytes" title="bytes"><code class="xref py py-class docutils literal notranslate"><span class="pre">bytes</span></code></a> object,
+no matter the underlying SQLite data type.</p>
 </div>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">convert_point</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
     <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="nb">float</span><span class="p">,</span> <span class="n">s</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="sa">b</span><span class="s2">&quot;;&quot;</span><span class="p">))</span>
     <span class="k">return</span> <span class="n">Point</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Now you need to make the <a class="reference internal" href="#module-sqlite3" title="sqlite3: A DB-API 2.0 implementation using SQLite 3.x."><code class="xref py py-mod docutils literal notranslate"><span class="pre">sqlite3</span></code></a> module know that what you select from
-the database is actually a point. There are two ways of doing this:</p>
+<p>We now need to tell <code class="docutils literal notranslate"><span class="pre">sqlite3</span></code> when it should convert a given SQLite value.
+This is done when connecting to a database, using the <em>detect_types</em> parameter
+of <a class="reference internal" href="#sqlite3.connect" title="sqlite3.connect"><code class="xref py py-func docutils literal notranslate"><span class="pre">connect()</span></code></a>. There are three options:</p>
 <ul class="simple">
-<li><p>Implicitly via the declared type</p></li>
-<li><p>Explicitly via the column name</p></li>
+<li><p>Implicit: set <em>detect_types</em> to <a class="reference internal" href="#sqlite3.PARSE_DECLTYPES" title="sqlite3.PARSE_DECLTYPES"><code class="xref py py-const docutils literal notranslate"><span class="pre">PARSE_DECLTYPES</span></code></a></p></li>
+<li><p>Explicit: set <em>detect_types</em> to <a class="reference internal" href="#sqlite3.PARSE_COLNAMES" title="sqlite3.PARSE_COLNAMES"><code class="xref py py-const docutils literal notranslate"><span class="pre">PARSE_COLNAMES</span></code></a></p></li>
+<li><p>Both: set <em>detect_types</em> to
+<code class="docutils literal notranslate"><span class="pre">sqlite3.PARSE_DECLTYPES</span> <span class="pre">|</span> <span class="pre">sqlite3.PARSE_COLNAMES</span></code>.
+Colum names take precedence over declared types.</p></li>
 </ul>
-<p>Both ways are described in section <a class="reference internal" href="#sqlite3-module-contents"><span class="std std-ref">Module functions and constants</span></a>, in the entries
-for the constants <a class="reference internal" href="#sqlite3.PARSE_DECLTYPES" title="sqlite3.PARSE_DECLTYPES"><code class="xref py py-const docutils literal notranslate"><span class="pre">PARSE_DECLTYPES</span></code></a> and <a class="reference internal" href="#sqlite3.PARSE_COLNAMES" title="sqlite3.PARSE_COLNAMES"><code class="xref py py-const docutils literal notranslate"><span class="pre">PARSE_COLNAMES</span></code></a>.</p>
-<p>The following example illustrates both approaches.</p>
+<p>The following example illustrates the implicit and explicit approaches:</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sqlite3</span>
 
 <span class="k">class</span> <span class="nc">Point</span><span class="p">:</span>
@@ -1559,28 +1590,23 @@ for the constants <a class="reference internal" href="#sqlite3.PARSE_DECLTYPES" 
         <span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span>
 
     <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="s2">&quot;(</span><span class="si">%f</span><span class="s2">;</span><span class="si">%f</span><span class="s2">)&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;Point(</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="si">}</span><span class="s2">)&quot;</span>
 
 <span class="k">def</span> <span class="nf">adapt_point</span><span class="p">(</span><span class="n">point</span><span class="p">):</span>
-    <span class="k">return</span> <span class="p">(</span><span class="s2">&quot;</span><span class="si">%f</span><span class="s2">;</span><span class="si">%f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">point</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">point</span><span class="o">.</span><span class="n">y</span><span class="p">))</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;ascii&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">point</span><span class="o">.</span><span class="n">x</span><span class="si">}</span><span class="s2">;</span><span class="si">{</span><span class="n">point</span><span class="o">.</span><span class="n">y</span><span class="si">}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">convert_point</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
     <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">float</span><span class="p">,</span> <span class="n">s</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="sa">b</span><span class="s2">&quot;;&quot;</span><span class="p">)))</span>
     <span class="k">return</span> <span class="n">Point</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
 
-<span class="c1"># Register the adapter</span>
+<span class="c1"># Register the adapter and converter</span>
 <span class="n">sqlite3</span><span class="o">.</span><span class="n">register_adapter</span><span class="p">(</span><span class="n">Point</span><span class="p">,</span> <span class="n">adapt_point</span><span class="p">)</span>
-
-<span class="c1"># Register the converter</span>
 <span class="n">sqlite3</span><span class="o">.</span><span class="n">register_converter</span><span class="p">(</span><span class="s2">&quot;point&quot;</span><span class="p">,</span> <span class="n">convert_point</span><span class="p">)</span>
 
+<span class="c1"># 1) Parse using declared types</span>
 <span class="n">p</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="mf">4.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">3.2</span><span class="p">)</span>
-
-<span class="c1">#########################</span>
-<span class="c1"># 1) Using declared types</span>
 <span class="n">con</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;:memory:&quot;</span><span class="p">,</span> <span class="n">detect_types</span><span class="o">=</span><span class="n">sqlite3</span><span class="o">.</span><span class="n">PARSE_DECLTYPES</span><span class="p">)</span>
-<span class="n">cur</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
-<span class="n">cur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;create table test(p point)&quot;</span><span class="p">)</span>
+<span class="n">cur</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;create table test(p point)&quot;</span><span class="p">)</span>
 
 <span class="n">cur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;insert into test(p) values (?)&quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">p</span><span class="p">,))</span>
 <span class="n">cur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;select p from test&quot;</span><span class="p">)</span>
@@ -1588,11 +1614,9 @@ for the constants <a class="reference internal" href="#sqlite3.PARSE_DECLTYPES" 
 <span class="n">cur</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 <span class="n">con</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 
-<span class="c1">#######################</span>
-<span class="c1"># 1) Using column names</span>
+<span class="c1"># 2) Parse using column names</span>
 <span class="n">con</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;:memory:&quot;</span><span class="p">,</span> <span class="n">detect_types</span><span class="o">=</span><span class="n">sqlite3</span><span class="o">.</span><span class="n">PARSE_COLNAMES</span><span class="p">)</span>
-<span class="n">cur</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
-<span class="n">cur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;create table test(p)&quot;</span><span class="p">)</span>
+<span class="n">cur</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;create table test(p)&quot;</span><span class="p">)</span>
 
 <span class="n">cur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;insert into test(p) values (?)&quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">p</span><span class="p">,))</span>
 <span class="n">cur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s1">&#39;select p as &quot;p [point]&quot; from test&#39;</span><span class="p">)</span>
@@ -1646,6 +1670,46 @@ timestamp converter.</p>
 always returns a naive <a class="reference internal" href="datetime.html#datetime.datetime" title="datetime.datetime"><code class="xref py py-class docutils literal notranslate"><span class="pre">datetime.datetime</span></code></a> object. To preserve UTC
 offsets in timestamps, either leave converters disabled, or register an
 offset-aware converter with <a class="reference internal" href="#sqlite3.register_converter" title="sqlite3.register_converter"><code class="xref py py-func docutils literal notranslate"><span class="pre">register_converter()</span></code></a>.</p>
+</div>
+</section>
+<section id="adapter-and-converter-recipes">
+<span id="sqlite3-adapter-converter-recipes"></span><h3>Adapter and Converter Recipes<a class="headerlink" href="#adapter-and-converter-recipes" title="Permalink to this heading">¶</a></h3>
+<p>This section shows recipes for common adapters and converters.</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">datetime</span>
+<span class="kn">import</span> <span class="nn">sqlite3</span>
+
+<span class="k">def</span> <span class="nf">adapt_date_iso</span><span class="p">(</span><span class="n">val</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Adapt datetime.date to ISO 8601 date.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">val</span><span class="o">.</span><span class="n">isoformat</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">adapt_datetime_iso</span><span class="p">(</span><span class="n">val</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Adapt datetime.datetime to timezone-naive ISO 8601 date.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">val</span><span class="o">.</span><span class="n">isoformat</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">adapt_datetime_epoch</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
+    <span class="sd">&quot;&quot;&quot;Adapt datetime.datetime to Unix timestamp.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">val</span><span class="o">.</span><span class="n">timestamp</span><span class="p">())</span>
+
+<span class="n">sqlite3</span><span class="o">.</span><span class="n">register_adapter</span><span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">date</span><span class="p">,</span> <span class="n">adapt_date_iso</span><span class="p">)</span>
+<span class="n">sqlite3</span><span class="o">.</span><span class="n">register_adapter</span><span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">,</span> <span class="n">adapt_datetime_iso</span><span class="p">)</span>
+<span class="n">sqlite3</span><span class="o">.</span><span class="n">register_adapter</span><span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">,</span> <span class="n">adapt_datetime_epoch</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">convert_date</span><span class="p">(</span><span class="n">val</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Convert ISO 8601 date to datetime.date object.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">datetime</span><span class="o">.</span><span class="n">date</span><span class="o">.</span><span class="n">fromisoformat</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">convert_datetime</span><span class="p">(</span><span class="n">val</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Convert ISO 8601 datetime to datetime.datetime object.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">fromisoformat</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">convert_timestamp</span><span class="p">(</span><span class="n">val</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Convert Unix epoch timestamp to datetime.datetime object.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">fromtimestamp</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
+
+<span class="n">sqlite3</span><span class="o">.</span><span class="n">register_converter</span><span class="p">(</span><span class="s2">&quot;date&quot;</span><span class="p">,</span> <span class="n">convert_date</span><span class="p">)</span>
+<span class="n">sqlite3</span><span class="o">.</span><span class="n">register_converter</span><span class="p">(</span><span class="s2">&quot;datetime&quot;</span><span class="p">,</span> <span class="n">convert_datetime</span><span class="p">)</span>
+<span class="n">sqlite3</span><span class="o">.</span><span class="n">register_converter</span><span class="p">(</span><span class="s2">&quot;timestamp&quot;</span><span class="p">,</span> <span class="n">convert_timestamp</span><span class="p">)</span>
+</pre></div>
 </div>
 </section>
 </section>
@@ -1740,11 +1804,22 @@ case-insensitively by name:</p>
 </div>
 </section>
 <section id="using-the-connection-as-a-context-manager">
-<h3>Using the connection as a context manager<a class="headerlink" href="#using-the-connection-as-a-context-manager" title="Permalink to this heading">¶</a></h3>
-<p>Connection objects can be used as context managers
-that automatically commit or rollback transactions.  In the event of an
-exception, the transaction is rolled back; otherwise, the transaction is
-committed:</p>
+<span id="sqlite3-connection-context-manager"></span><h3>Using the connection as a context manager<a class="headerlink" href="#using-the-connection-as-a-context-manager" title="Permalink to this heading">¶</a></h3>
+<p>A <a class="reference internal" href="#sqlite3.Connection" title="sqlite3.Connection"><code class="xref py py-class docutils literal notranslate"><span class="pre">Connection</span></code></a> object can be used as a context manager that
+automatically commits or rolls back open transactions when leaving the body of
+the context manager.
+If the body of the <a class="reference internal" href="../reference/compound_stmts.html#with"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">with</span></code></a> statement finishes without exceptions,
+the transaction is committed.
+If this commit fails,
+or if the body of the <code class="docutils literal notranslate"><span class="pre">with</span></code> statement raises an uncaught exception,
+the transaction is rolled back.</p>
+<p>If there is no open transaction upon leaving the body of the <code class="docutils literal notranslate"><span class="pre">with</span></code> statement,
+the context manager is a no-op.</p>
+<div class="admonition note">
+<p class="admonition-title">備註</p>
+<p>The context manager neither implicitly opens a new transaction
+nor closes the connection.</p>
+</div>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sqlite3</span>
 
 <span class="n">con</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;:memory:&quot;</span><span class="p">)</span>
@@ -1799,13 +1874,14 @@ extension support, you must pass the
 <li><a class="reference internal" href="#exceptions">例外</a></li>
 <li><a class="reference internal" href="#sqlite-and-python-types">SQLite and Python types</a><ul>
 <li><a class="reference internal" href="#introduction">簡介</a></li>
-<li><a class="reference internal" href="#using-adapters-to-store-additional-python-types-in-sqlite-databases">Using adapters to store additional Python types in SQLite databases</a><ul>
+<li><a class="reference internal" href="#using-adapters-to-store-custom-python-types-in-sqlite-databases">Using adapters to store custom Python types in SQLite databases</a><ul>
 <li><a class="reference internal" href="#letting-your-object-adapt-itself">Letting your object adapt itself</a></li>
 <li><a class="reference internal" href="#registering-an-adapter-callable">Registering an adapter callable</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#converting-sqlite-values-to-custom-python-types">Converting SQLite values to custom Python types</a></li>
 <li><a class="reference internal" href="#default-adapters-and-converters">Default adapters and converters</a></li>
+<li><a class="reference internal" href="#adapter-and-converter-recipes">Adapter and Converter Recipes</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#controlling-transactions">Controlling Transactions</a></li>
@@ -1912,11 +1988,11 @@ extension support, you must pass the
 <br />
     <br />
 
-    最後更新於 6月 11, 2022。
+    最後更新於 7月 06, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 
-    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.0.1 建立。
+    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.0.2 建立。
     </div>
 
   </body>

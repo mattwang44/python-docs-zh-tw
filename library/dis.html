@@ -393,13 +393,15 @@ object.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="dis.findlinestarts">
 <span class="sig-prename descclassname"><span class="pre">dis.</span></span><span class="sig-name descname"><span class="pre">findlinestarts</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">code</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dis.findlinestarts" title="本定義的永久連結">¶</a></dt>
-<dd><p>This generator function uses the <code class="docutils literal notranslate"><span class="pre">co_firstlineno</span></code> and <code class="docutils literal notranslate"><span class="pre">co_lnotab</span></code>
-attributes of the code object <em>code</em> to find the offsets which are starts of
-lines in the source code.  They are generated as <code class="docutils literal notranslate"><span class="pre">(offset,</span> <span class="pre">lineno)</span></code> pairs.
-See <a class="reference external" href="https://github.com/python/cpython/tree/3.10/Objects/lnotab_notes.txt">Objects/lnotab_notes.txt</a> for the <code class="docutils literal notranslate"><span class="pre">co_lnotab</span></code> format and
-how to decode it.</p>
+<dd><p>This generator function uses the <code class="docutils literal notranslate"><span class="pre">co_lines</span></code> method
+of the code object <em>code</em> to find the offsets which are starts of
+lines in the source code.  They are generated as <code class="docutils literal notranslate"><span class="pre">(offset,</span> <span class="pre">lineno)</span></code> pairs.</p>
 <div class="versionchanged">
 <p><span class="versionmodified changed">在 3.6 版本變更: </span>Line numbers can be decreasing. Before, they were always increasing.</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">在 3.10 版本變更: </span>The <span class="target" id="index-0"></span><a class="pep reference external" href="https://peps.python.org/pep-0626/"><strong>PEP 626</strong></a> <code class="docutils literal notranslate"><span class="pre">co_lines</span></code> method is used instead of the <code class="docutils literal notranslate"><span class="pre">co_firstlineno</span></code>
+and <code class="docutils literal notranslate"><span class="pre">co_lnotab</span></code> attributes of the code object.</p>
 </div>
 </dd></dl>
 
@@ -806,8 +808,8 @@ supported.</p>
 <dl class="std opcode">
 <dt class="sig sig-object std" id="opcode-GET_ANEXT">
 <span class="sig-name descname"><span class="pre">GET_ANEXT</span></span><a class="headerlink" href="#opcode-GET_ANEXT" title="本定義的永久連結">¶</a></dt>
-<dd><p>Implements <code class="docutils literal notranslate"><span class="pre">PUSH(get_awaitable(TOS.__anext__()))</span></code>.  See <code class="docutils literal notranslate"><span class="pre">GET_AWAITABLE</span></code>
-for details about <code class="docutils literal notranslate"><span class="pre">get_awaitable</span></code></p>
+<dd><p>Pushes <code class="docutils literal notranslate"><span class="pre">get_awaitable(TOS.__anext__())</span></code> to the stack.  See
+<code class="docutils literal notranslate"><span class="pre">GET_AWAITABLE</span></code> for details about <code class="docutils literal notranslate"><span class="pre">get_awaitable</span></code>.</p>
 <div class="versionadded">
 <p><span class="versionmodified added">在 3.5 版本新加入.</span></p>
 </div>
@@ -1528,7 +1530,7 @@ positional-or-keyword parameters in positional order</p></li>
 <dl class="std opcode">
 <dt class="sig sig-object std" id="opcode-BUILD_SLICE">
 <span class="sig-name descname"><span class="pre">BUILD_SLICE</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">argc</span></em><span class="sig-paren">)</span><a class="headerlink" href="#opcode-BUILD_SLICE" title="本定義的永久連結">¶</a></dt>
-<dd><p id="index-0">Pushes a slice object on the stack.  <em>argc</em> must be 2 or 3.  If it is 2,
+<dd><p id="index-1">Pushes a slice object on the stack.  <em>argc</em> must be 2 or 3.  If it is 2,
 <code class="docutils literal notranslate"><span class="pre">slice(TOS1,</span> <span class="pre">TOS)</span></code> is pushed; if it is 3, <code class="docutils literal notranslate"><span class="pre">slice(TOS2,</span> <span class="pre">TOS1,</span> <span class="pre">TOS)</span></code> is
 pushed. See the <a class="reference internal" href="functions.html#slice" title="slice"><code class="xref py py-func docutils literal notranslate"><span class="pre">slice()</span></code></a> built-in function for more information.</p>
 </dd></dl>
@@ -1798,11 +1800,11 @@ scopes or names in outer scopes that are referenced from this scope.  It does
 <br />
     <br />
 
-    最後更新於 6月 11, 2022。
+    最後更新於 7月 06, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 
-    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.0.1 建立。
+    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.0.2 建立。
     </div>
 
   </body>

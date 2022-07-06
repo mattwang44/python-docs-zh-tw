@@ -348,7 +348,10 @@ Python startup by the <code class="xref c c-func docutils literal notranslate"><
 <dt id="term-GIL">GIL<a class="headerlink" href="#term-GIL" title="本術語的永久連結">¶</a></dt><dd><p>請參閱 <a class="reference internal" href="#term-global-interpreter-lock"><span class="xref std std-term">global interpreter lock</span></a>（全域直譯器鎖）。</p>
 </dd>
 <dt id="term-global-interpreter-lock">global interpreter lock（全域直譯器鎖）<a class="headerlink" href="#term-global-interpreter-lock" title="本術語的永久連結">¶</a></dt><dd><p><a class="reference internal" href="#term-CPython"><span class="xref std std-term">CPython</span></a> 直譯器所使用的機制，用以確保每次都只有一個執行緒能執行 Python 的 <a class="reference internal" href="#term-bytecode"><span class="xref std std-term">bytecode</span></a>（位元組碼）。透過使物件模型（包括關鍵的內建型別，如 <a class="reference internal" href="library/stdtypes.html#dict" title="dict"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>）自動地避免並行存取 (concurrent access) 的危險，此機制可以簡化 CPython 的實作。鎖定整個直譯器，會使直譯器更容易成為多執行緒 (multi-threaded)，但代價是會犧牲掉多處理器的機器能夠提供的一大部分平行性 (parallelism)。</p>
-<p>然而，有些擴充模組，無論是標準的或是第三方的，它們被設計成在執行壓縮或雜湊等計算密集 (computationally-intensive) 的任務時，可以解除 GIL。另外，在執行 I/O 時，GIL 總是會被解除。</p>
+<p>However, some extension modules, either standard or third-party,
+are designed so as to release the GIL when doing computationally intensive
+tasks such as compression or hashing.  Also, the GIL is always released
+when doing I/O.</p>
 <p>過去對於建立「無限制執行緒」直譯器（以更高的精細度鎖定共享資料的直譯器）的努力並未成功，因為在一般的單一處理器情況下，效能會有所損失。一般認為，若要克服這個效能問題，會使實作變得複雜許多，進而付出更高的維護成本。</p>
 </dd>
 <dt id="term-hash-based-pyc">hash-based pyc（雜湊架構的 pyc）<a class="headerlink" href="#term-hash-based-pyc" title="本術語的永久連結">¶</a></dt><dd><p>一個位元組碼 (bytecode) 暫存檔，它使用雜湊值而不是對應原始檔案的最後修改時間，來確定其有效性。請參閱<a class="reference internal" href="reference/import.html#pyc-invalidation"><span class="std std-ref">Cached bytecode invalidation</span></a>。</p>
@@ -736,11 +739,11 @@ recreating the string from the sequence of bytes is known as &quot;decoding&quot
 <br />
     <br />
 
-    最後更新於 6月 11, 2022。
+    最後更新於 7月 06, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 
-    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.0.1 建立。
+    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.0.2 建立。
     </div>
 
   </body>

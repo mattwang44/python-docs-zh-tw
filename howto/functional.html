@@ -473,9 +473,15 @@ line of a file like this:</p>
 </div>
 <p>Sets can take their contents from an iterable and let you iterate over the set's
 elements:</p>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">S</span> <span class="o">=</span> <span class="p">{</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">13</span><span class="p">}</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">S</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">S</span> <span class="o">=</span> <span class="p">{</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">13</span><span class="p">}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">S</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+<span class="go">2</span>
+<span class="go">3</span>
+<span class="go">5</span>
+<span class="go">7</span>
+<span class="go">11</span>
+<span class="go">13</span>
 </pre></div>
 </div>
 </section>
@@ -491,18 +497,18 @@ substring.</p>
 &quot;genexps&quot;) are a concise notation for such operations, borrowed from the
 functional programming language Haskell (<a class="reference external" href="https://www.haskell.org/">https://www.haskell.org/</a>).  You can strip
 all the whitespace from a stream of strings with the following code:</p>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">line_list</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;  line 1</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;line 2  </span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">line_list</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;  line 1</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;line 2  </span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39; </span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">]</span>
 
-<span class="c1"># Generator expression -- returns iterator</span>
-<span class="n">stripped_iter</span> <span class="o">=</span> <span class="p">(</span><span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">line_list</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Generator expression -- returns iterator</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">stripped_iter</span> <span class="o">=</span> <span class="p">(</span><span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">line_list</span><span class="p">)</span>
 
-<span class="c1"># List comprehension -- returns list</span>
-<span class="n">stripped_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">line_list</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># List comprehension -- returns list</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">stripped_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">line_list</span><span class="p">]</span>
 </pre></div>
 </div>
 <p>You can select only certain elements by adding an <code class="docutils literal notranslate"><span class="pre">&quot;if&quot;</span></code> condition:</p>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">stripped_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">line_list</span>
-                 <span class="k">if</span> <span class="n">line</span> <span class="o">!=</span> <span class="s2">&quot;&quot;</span><span class="p">]</span>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">stripped_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">line_list</span>
+<span class="gp">... </span>                 <span class="k">if</span> <span class="n">line</span> <span class="o">!=</span> <span class="s2">&quot;&quot;</span><span class="p">]</span>
 </pre></div>
 </div>
 <p>With a list comprehension, you get back a Python list; <code class="docutils literal notranslate"><span class="pre">stripped_list</span></code> is a
@@ -518,7 +524,8 @@ have the form:</p>
              <span class="k">if</span> <span class="n">condition1</span>
              <span class="k">for</span> <span class="n">expr2</span> <span class="ow">in</span> <span class="n">sequence2</span>
              <span class="k">if</span> <span class="n">condition2</span>
-             <span class="k">for</span> <span class="n">expr3</span> <span class="ow">in</span> <span class="n">sequence3</span> <span class="o">...</span>
+             <span class="k">for</span> <span class="n">expr3</span> <span class="ow">in</span> <span class="n">sequence3</span>
+             <span class="o">...</span>
              <span class="k">if</span> <span class="n">condition3</span>
              <span class="k">for</span> <span class="n">exprN</span> <span class="ow">in</span> <span class="n">sequenceN</span>
              <span class="k">if</span> <span class="n">conditionN</span> <span class="p">)</span>
@@ -856,7 +863,7 @@ further because you risk skipping a discarded element.</p>
 </section>
 <section id="the-itertools-module">
 <h2>The itertools module<a class="headerlink" href="#the-itertools-module" title="Permalink to this heading">¶</a></h2>
-<p>The <a class="reference internal" href="../library/itertools.html#module-itertools" title="itertools: Functions creating iterators for efficient looping."><code class="xref py py-mod docutils literal notranslate"><span class="pre">itertools</span></code></a> module contains a number of commonly-used iterators as well
+<p>The <a class="reference internal" href="../library/itertools.html#module-itertools" title="itertools: Functions creating iterators for efficient looping."><code class="xref py py-mod docutils literal notranslate"><span class="pre">itertools</span></code></a> module contains a number of commonly used iterators as well
 as functions for combining several iterators.  This section will introduce the
 module's contents by showing small examples.</p>
 <p>The module's functions fall into a few broad classes:</p>
@@ -1468,11 +1475,11 @@ features in Python 2.5.</p>
 <br />
     <br />
 
-    最後更新於 6月 11, 2022。
+    最後更新於 7月 06, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 
-    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.0.1 建立。
+    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.0.2 建立。
     </div>
 
   </body>

@@ -1283,8 +1283,12 @@ error. This can result in the record silently being dropped (if
 <dd><p>Prepares a record for queuing. The object returned by this
 method is enqueued.</p>
 <p>The base implementation formats the record to merge the message,
-arguments, and exception information, if present.  It also
-removes unpickleable items from the record in-place.</p>
+arguments, exception and stack information, if present.  It also removes
+unpickleable items from the record in-place. Specifically, it overwrites
+the record's <code class="xref py py-attr docutils literal notranslate"><span class="pre">msg</span></code> and <code class="xref py py-attr docutils literal notranslate"><span class="pre">message</span></code> attributes with the merged
+message (obtained by calling the handler's <a class="reference internal" href="functions.html#format" title="format"><code class="xref py py-meth docutils literal notranslate"><span class="pre">format()</span></code></a> method), and
+sets the <code class="xref py py-attr docutils literal notranslate"><span class="pre">args</span></code>, <code class="xref py py-attr docutils literal notranslate"><span class="pre">exc_info</span></code> and <code class="xref py py-attr docutils literal notranslate"><span class="pre">exc_text</span></code> attributes
+to <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
 <p>You might want to override this method if you want to convert
 the record to a dict or JSON string, or send a modified copy
 of the record while leaving the original intact.</p>
@@ -1296,6 +1300,17 @@ of the record while leaving the original intact.</p>
 <dd><p>Enqueues the record on the queue using <code class="docutils literal notranslate"><span class="pre">put_nowait()</span></code>; you may
 want to override this if you want to use blocking behaviour, or a
 timeout, or a customized queue implementation.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="logging.handlers.QueueHandler.listener">
+<span class="sig-name descname"><span class="pre">listener</span></span><a class="headerlink" href="#logging.handlers.QueueHandler.listener" title="本定義的永久連結">¶</a></dt>
+<dd><p>When created via configuration using <a class="reference internal" href="logging.config.html#logging.config.dictConfig" title="logging.config.dictConfig"><code class="xref py py-func docutils literal notranslate"><span class="pre">dictConfig()</span></code></a>, this
+attribute will contain a <a class="reference internal" href="#logging.handlers.QueueListener" title="logging.handlers.QueueListener"><code class="xref py py-class docutils literal notranslate"><span class="pre">QueueListener</span></code></a> instance for use with this
+handler. Otherwise, it will be <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">在 3.12 版本新加入.</span></p>
+</div>
 </dd></dl>
 
 </dd></dl>
@@ -1530,11 +1545,11 @@ implementations.</p>
 <br />
     <br />
 
-    最後更新於 6月 11, 2022。
+    最後更新於 7月 06, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 
-    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.0.1 建立。
+    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.0.2 建立。
     </div>
 
   </body>
