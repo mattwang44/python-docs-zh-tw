@@ -200,10 +200,7 @@
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">fibo</span>
 </pre></div>
 </div>
-<p>This does not add the names of the functions defined in <code class="docutils literal notranslate"><span class="pre">fibo</span></code>  directly to
-the current <a class="reference internal" href="../glossary.html#term-namespace"><span class="xref std std-term">namespace</span></a> (see <a class="reference internal" href="classes.html#tut-scopes"><span class="std std-ref">Python 作用域 (Scope) 及命名空間 (Namespace)</span></a> for more details);
-it only adds the module name <code class="docutils literal notranslate"><span class="pre">fibo</span></code> there. Using
-the module name you can access the functions:</p>
+<p>這並不會將 <code class="docutils literal notranslate"><span class="pre">fibo</span></code> 中定義的函式名稱直接加入當前的 <a class="reference internal" href="../glossary.html#term-namespace"><span class="xref std std-term">namespace</span></a> 中（詳情請見 <a class="reference internal" href="classes.html#tut-scopes"><span class="std std-ref">Python 作用域 (Scope) 及命名空間 (Namespace)</span></a>）；它只會加入 <code class="docutils literal notranslate"><span class="pre">fibo</span></code> 的模組名稱。使用此模組名稱，就可以存取函式：</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">fibo</span><span class="o">.</span><span class="n">fib</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
 <span class="go">0 1 1 2 3 5 8 13 21 34 55 89 144 233 377 610 987</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">fibo</span><span class="o">.</span><span class="n">fib2</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
@@ -221,25 +218,15 @@ the module name you can access the functions:</p>
 <section id="more-on-modules">
 <span id="tut-moremodules"></span><h2><span class="section-number">6.1. </span>深入了解模組<a class="headerlink" href="#more-on-modules" title="Permalink to this heading">¶</a></h2>
 <p>模組可以包含可執行的陳述式以及函式的定義。這些陳述式是作為模組的初始化，它們只會在<em>第一次</em>被 import 時才會執行。<a class="footnote-reference brackets" href="#id3" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>（如果檔案被當成腳本執行，也會執行它們）。</p>
-<p>Each module has its own private namespace, which is used as the global namespace
-by all functions defined in the module. Thus, the author of a module can
-use global variables in the module without worrying about accidental clashes
-with a user's global variables. On the other hand, if you know what you are
-doing you can touch a module's global variables with the same notation used to
-refer to its functions, <code class="docutils literal notranslate"><span class="pre">modname.itemname</span></code>.</p>
-<p>Modules can import other modules.  It is customary but not required to place all
-<a class="reference internal" href="../reference/simple_stmts.html#import"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">import</span></code></a> statements at the beginning of a module (or script, for that
-matter).  The imported module names, if placed at the top level of a module
-(outside any functions or classes), are added to the module's global namespace.</p>
-<p>There is a variant of the <a class="reference internal" href="../reference/simple_stmts.html#import"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">import</span></code></a> statement that imports names from a
-module directly into the importing module's namespace.  For example:</p>
+<p>每個模組都有它自己的私有命名空間 (namespace)，模組內定義的函式會把該模組的私有符號表當成全域命名空間使用。因此，模組的作者可以在模組中使用全域變數，而不必擔心和使用者的全域變數發生意外的名稱衝突。另一方面，如果你知道自己在做什麼，你可以用這個方式取用模組的全域變數，以和引用函式一樣的寫法，<code class="docutils literal notranslate"><span class="pre">modname.itemname</span></code>。</p>
+<p>在一個模組中可以 import 其他模組。把所有的 <a class="reference internal" href="../reference/simple_stmts.html#import"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">import</span></code></a> 陳述式放在模組（就這邊來說，腳本也是一樣）的最開頭是個慣例，但並沒有強制。如放置在模組的最高層（不在任何函式或 class 中），被 import 的模組名稱將被加入全域命名空間中。</p>
+<p><a class="reference internal" href="../reference/simple_stmts.html#import"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">import</span></code></a> 陳述式有另一種變形寫法，可以直接將名稱從欲 import 的模組，直接 import 至原模組的命名空間中。例如：</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">fibo</span> <span class="kn">import</span> <span class="n">fib</span><span class="p">,</span> <span class="n">fib2</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">fib</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span>
 <span class="go">0 1 1 2 3 5 8 13 21 34 55 89 144 233 377</span>
 </pre></div>
 </div>
-<p>This does not introduce the module name from which the imports are taken in the
-local namespace (so in the example, <code class="docutils literal notranslate"><span class="pre">fibo</span></code> is not defined).</p>
+<p>在 import 之後的名稱會被導入，但定義該函式的整個模組名稱並不會被引入在區域命名空間中（因此，示例中的 <code class="docutils literal notranslate"><span class="pre">fibo</span></code> 未被定義）。</p>
 <p>甚至還有另一種變形寫法，可以 import 模組定義的所有名稱：</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">fibo</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">fib</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span>
@@ -505,9 +492,7 @@ local namespace (so in the example, <code class="docutils literal notranslate"><
 <p class="rubric">註解</p>
 <aside class="footnote brackets" id="id3" role="note">
 <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
-<p>In fact function definitions are also 'statements' that are 'executed'; the
-execution of a module-level function definition adds the function name to
-the module's global namespace.</p>
+<p>實際上，函式定義也是「被執行」的「陳述式」；在執行模組階層的函式定義時，會將函式名稱加到模組的全域命名空間。</p>
 </aside>
 </section>
 </section>
