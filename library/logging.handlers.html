@@ -1266,6 +1266,11 @@ queue-like object; it's used as-is by the <a class="reference internal" href="#l
 needs to know how to send messages to it. The queue is not <em>required</em> to
 have the task tracking API, which means that you can use
 <a class="reference internal" href="queue.html#queue.SimpleQueue" title="queue.SimpleQueue"><code class="xref py py-class docutils literal notranslate"><span class="pre">SimpleQueue</span></code></a> instances for <em>queue</em>.</p>
+<div class="admonition note">
+<p class="admonition-title">備註</p>
+<p>If you are using <a class="reference internal" href="multiprocessing.html#module-multiprocessing" title="multiprocessing: Process-based parallelism."><code class="xref py py-mod docutils literal notranslate"><span class="pre">multiprocessing</span></code></a>, you should avoid using
+<a class="reference internal" href="queue.html#queue.SimpleQueue" title="queue.SimpleQueue"><code class="xref py py-class docutils literal notranslate"><span class="pre">SimpleQueue</span></code></a> and instead use <a class="reference internal" href="multiprocessing.html#multiprocessing.Queue" title="multiprocessing.Queue"><code class="xref py py-class docutils literal notranslate"><span class="pre">multiprocessing.Queue</span></code></a>.</p>
+</div>
 <dl class="py method">
 <dt class="sig sig-object py" id="logging.handlers.QueueHandler.emit">
 <span class="sig-name descname"><span class="pre">emit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">record</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#logging.handlers.QueueHandler.emit" title="本定義的永久連結">¶</a></dt>
@@ -1344,6 +1349,11 @@ object; it's passed as-is to the <a class="reference internal" href="#logging.ha
 to know how to get messages from it. The queue is not <em>required</em> to have the
 task tracking API (though it's used if available), which means that you can
 use <a class="reference internal" href="queue.html#queue.SimpleQueue" title="queue.SimpleQueue"><code class="xref py py-class docutils literal notranslate"><span class="pre">SimpleQueue</span></code></a> instances for <em>queue</em>.</p>
+<div class="admonition note">
+<p class="admonition-title">備註</p>
+<p>If you are using <a class="reference internal" href="multiprocessing.html#module-multiprocessing" title="multiprocessing: Process-based parallelism."><code class="xref py py-mod docutils literal notranslate"><span class="pre">multiprocessing</span></code></a>, you should avoid using
+<a class="reference internal" href="queue.html#queue.SimpleQueue" title="queue.SimpleQueue"><code class="xref py py-class docutils literal notranslate"><span class="pre">SimpleQueue</span></code></a> and instead use <a class="reference internal" href="multiprocessing.html#multiprocessing.Queue" title="multiprocessing.Queue"><code class="xref py py-class docutils literal notranslate"><span class="pre">multiprocessing.Queue</span></code></a>.</p>
+</div>
 <p>If <code class="docutils literal notranslate"><span class="pre">respect_handler_level</span></code> is <code class="docutils literal notranslate"><span class="pre">True</span></code>, a handler's level is respected
 (compared with the level for the message) when deciding whether to pass
 messages to that handler; otherwise, the behaviour is as in previous Python
@@ -1545,7 +1555,7 @@ implementations.</p>
 <br />
     <br />
 
-    最後更新於 7月 06, 2022。
+    最後更新於 7月 23, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 

@@ -423,7 +423,7 @@ messages should not. Here's how you can achieve this:</p>
 <span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">,</span>
                     <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">%(asctime)s</span><span class="s1"> </span><span class="si">%(name)-12s</span><span class="s1"> </span><span class="si">%(levelname)-8s</span><span class="s1"> </span><span class="si">%(message)s</span><span class="s1">&#39;</span><span class="p">,</span>
                     <span class="n">datefmt</span><span class="o">=</span><span class="s1">&#39;%m-</span><span class="si">%d</span><span class="s1"> %H:%M&#39;</span><span class="p">,</span>
-                    <span class="n">filename</span><span class="o">=</span><span class="s1">&#39;/temp/myapp.log&#39;</span><span class="p">,</span>
+                    <span class="n">filename</span><span class="o">=</span><span class="s1">&#39;/tmp/myapp.log&#39;</span><span class="p">,</span>
                     <span class="n">filemode</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">)</span>
 <span class="c1"># define a Handler which writes INFO messages or higher to the sys.stderr</span>
 <span class="n">console</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">StreamHandler</span><span class="p">()</span>
@@ -469,6 +469,10 @@ myapp.area2 : ERROR    The five boxing wizards jump quickly.
 are sent to both destinations.</p>
 <p>This example uses console and file handlers, but you can use any number and
 combination of handlers you choose.</p>
+<p>Note that the above choice of log filename <code class="docutils literal notranslate"><span class="pre">/tmp/myapp.log</span></code> implies use of a
+standard location for temporary files on POSIX systems. On Windows, you may need to
+choose a different directory name for the log - just ensure that the directory exists
+and that you have the permissions to create and update files in it.</p>
 </section>
 <section id="configuration-server-example">
 <h2>Configuration server example<a class="headerlink" href="#configuration-server-example" title="Permalink to this heading">¶</a></h2>
@@ -3576,7 +3580,7 @@ more fine-grained than that).</p>
 <br />
     <br />
 
-    最後更新於 7月 06, 2022。
+    最後更新於 7月 23, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 

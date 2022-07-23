@@ -189,6 +189,34 @@ currently unsupported.  Collections with a mix of types are also undefined
 and implementation-dependent.  If your input data consists of mixed types,
 you may be able to use <a class="reference internal" href="functions.html#map" title="map"><code class="xref py py-func docutils literal notranslate"><span class="pre">map()</span></code></a> to ensure a consistent result, for
 example: <code class="docutils literal notranslate"><span class="pre">map(float,</span> <span class="pre">input_data)</span></code>.</p>
+<p>Some datasets use <code class="docutils literal notranslate"><span class="pre">NaN</span></code> (not a number) values to represent missing data.
+Since NaNs have unusual comparison semantics, they cause surprising or
+undefined behaviors in the statistics functions that sort data or that count
+occurrences.  The functions affected are <code class="docutils literal notranslate"><span class="pre">median()</span></code>, <code class="docutils literal notranslate"><span class="pre">median_low()</span></code>,
+<code class="docutils literal notranslate"><span class="pre">median_high()</span></code>, <code class="docutils literal notranslate"><span class="pre">median_grouped()</span></code>, <code class="docutils literal notranslate"><span class="pre">mode()</span></code>, <code class="docutils literal notranslate"><span class="pre">multimode()</span></code>, and
+<code class="docutils literal notranslate"><span class="pre">quantiles()</span></code>.  The <code class="docutils literal notranslate"><span class="pre">NaN</span></code> values should be stripped before calling these
+functions:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">statistics</span> <span class="kn">import</span> <span class="n">median</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">isnan</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">filterfalse</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="mf">20.7</span><span class="p">,</span> <span class="nb">float</span><span class="p">(</span><span class="s1">&#39;NaN&#39;</span><span class="p">),</span><span class="mf">19.2</span><span class="p">,</span> <span class="mf">18.3</span><span class="p">,</span> <span class="nb">float</span><span class="p">(</span><span class="s1">&#39;NaN&#39;</span><span class="p">),</span> <span class="mf">14.4</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">sorted</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>  <span class="c1"># This has surprising behavior</span>
+<span class="go">[20.7, nan, 14.4, 18.3, 19.2, nan]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">median</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>  <span class="c1"># This result is unexpected</span>
+<span class="go">16.35</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">sum</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">isnan</span><span class="p">,</span> <span class="n">data</span><span class="p">))</span>    <span class="c1"># Number of missing values</span>
+<span class="go">2</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">clean</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">filterfalse</span><span class="p">(</span><span class="n">isnan</span><span class="p">,</span> <span class="n">data</span><span class="p">))</span>  <span class="c1"># Strip NaN values</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">clean</span>
+<span class="go">[20.7, 19.2, 18.3, 14.4]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">sorted</span><span class="p">(</span><span class="n">clean</span><span class="p">)</span>  <span class="c1"># Sorting now works as expected</span>
+<span class="go">[14.4, 18.3, 19.2, 20.7]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">median</span><span class="p">(</span><span class="n">clean</span><span class="p">)</span>       <span class="c1"># This result is now well defined</span>
+<span class="go">18.75</span>
+</pre></div>
+</div>
 <section id="averages-and-measures-of-central-location">
 <h2>平均值與中央位置量數<a class="headerlink" href="#averages-and-measures-of-central-location" title="Permalink to this heading">¶</a></h2>
 <p>這些函式計算來自一個母體或樣本的平均值或代表值。</p>
@@ -1197,7 +1225,7 @@ feature measurements given the gender:</p>
 <br />
     <br />
 
-    最後更新於 7月 06, 2022。
+    最後更新於 7月 23, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 

@@ -84,7 +84,10 @@
 </ul>
 </li>
 <li><a class="reference internal" href="#the-microsoft-store-package">4.2. The Microsoft Store package</a><ul>
-<li><a class="reference internal" href="#known-issues">4.2.1. Known Issues</a></li>
+<li><a class="reference internal" href="#known-issues">4.2.1. Known issues</a><ul>
+<li><a class="reference internal" href="#redirection-of-local-data-registry-and-temporary-paths">4.2.1.1. Redirection of local data, registry, and temporary paths</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a class="reference internal" href="#the-nuget-org-packages">4.3. The nuget.org packages</a></li>
@@ -231,7 +234,7 @@ certain benefits and downsides.</p>
 developers using Python for any kind of project.</p>
 <p><a class="reference internal" href="#windows-store"><span class="std std-ref">The Microsoft Store package</span></a> is a simple installation of Python that is suitable for
 running scripts and packages, and using IDLE or other development environments.
-It requires Windows 10, but can be safely installed without corrupting other
+It requires Windows 10 and above, but can be safely installed without corrupting other
 programs. It also provides many convenient commands for launching Python and
 its tools.</p>
 <p><a class="reference internal" href="#windows-nuget"><span class="std std-ref">The nuget.org packages</span></a> are lightweight installations intended for continuous
@@ -261,7 +264,7 @@ users)</p></li>
 <li><p>The <a class="reference internal" href="#launcher"><span class="std std-ref">Python Launcher for Windows</span></a> will be installed according to the option at the bottom
 of the first page</p></li>
 <li><p>The standard library, test suite, launcher and pip will be installed</p></li>
-<li><p>如果選擇，安裝目錄將被加入到你的 <span class="target" id="index-29"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PATH</span></code></p></li>
+<li><p>如果選擇，安裝目錄將被加入到你的 <span class="target" id="index-31"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PATH</span></code></p></li>
 <li><p>安裝捷徑將只能被目前使用者所看見</p></li>
 </ul>
 <p>選擇「客製化安裝」將允許你選擇所需的項目進行安裝，安裝位置與其他選擇或安裝後的所需進行的動作。你將需要使用此選項「除錯特徵」或「二進位方式」進行安裝。</p>
@@ -529,14 +532,38 @@ Python in Start and right-click to select Uninstall. Uninstalling will
 remove all packages you installed directly into this Python installation, but
 will not remove any virtual environments</p>
 <section id="known-issues">
-<h3><span class="section-number">4.2.1. </span>Known Issues<a class="headerlink" href="#known-issues" title="Permalink to this heading">¶</a></h3>
+<h3><span class="section-number">4.2.1. </span>Known issues<a class="headerlink" href="#known-issues" title="Permalink to this heading">¶</a></h3>
+<section id="redirection-of-local-data-registry-and-temporary-paths">
+<h4><span class="section-number">4.2.1.1. </span>Redirection of local data, registry, and temporary paths<a class="headerlink" href="#redirection-of-local-data-registry-and-temporary-paths" title="Permalink to this heading">¶</a></h4>
 <p>Because of restrictions on Microsoft Store apps, Python scripts may not have
-full write access to shared locations such as <code class="docutils literal notranslate"><span class="pre">TEMP</span></code> and the registry.
+full write access to shared locations such as <span class="target" id="index-5"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">TEMP</span></code> and the registry.
 Instead, it will write to a private copy. If your scripts must modify the
 shared locations, you will need to install the full installer.</p>
+<p>At runtime, Python will use a private copy of well-known Windows folders and the registry.
+For example, if the environment variable <span class="target" id="index-6"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">%APPDATA%</span></code> is <code class="file docutils literal notranslate"><span class="pre">c:\Users\&lt;user&gt;\AppData\</span></code>,
+then when writing to <code class="file docutils literal notranslate"><span class="pre">C:\Users\&lt;user&gt;\AppData\Local</span></code> will write to
+<code class="file docutils literal notranslate"><span class="pre">C:\Users\&lt;user&gt;\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.8_qbz5n2kfra8p0\LocalCache\Local\</span></code>.</p>
+<p>When reading files, Windows will return the file from the private folder, or if that does not exist, the
+real Windows directory. For example reading <code class="file docutils literal notranslate"><span class="pre">C:\Windows\System32</span></code> returns the contents of <code class="file docutils literal notranslate"><span class="pre">C:\Windows\System32</span></code>
+plus the contents of <code class="file docutils literal notranslate"><span class="pre">C:\Program</span> <span class="pre">Files\WindowsApps\package_name\VFS\SystemX86</span></code>.</p>
+<p>You can find the real path of any existing file using <a class="reference internal" href="../library/os.path.html#os.path.realpath" title="os.path.realpath"><code class="xref py py-func docutils literal notranslate"><span class="pre">os.path.realpath()</span></code></a>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">os</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">test_file</span> <span class="o">=</span> <span class="s1">&#39;C:</span><span class="se">\\</span><span class="s1">Users</span><span class="se">\\</span><span class="s1">example</span><span class="se">\\</span><span class="s1">AppData</span><span class="se">\\</span><span class="s1">Local</span><span class="se">\\</span><span class="s1">test.txt&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">realpath</span><span class="p">(</span><span class="n">test_file</span><span class="p">)</span>
+<span class="go">&#39;C:\\Users\\example\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.8_qbz5n2kfra8p0\\LocalCache\\Local\\test.txt&#39;</span>
+</pre></div>
+</div>
+<p>When writing to the Windows Registry, the following behaviors exist:</p>
+<ul class="simple">
+<li><p>Reading from <code class="docutils literal notranslate"><span class="pre">HKLM\\Software</span></code> is allowed and results are merged with the <code class="file docutils literal notranslate"><span class="pre">registry.dat</span></code> file in the package.</p></li>
+<li><p>Writing to <code class="docutils literal notranslate"><span class="pre">HKLM\\Software</span></code> is not allowed if the corresponding key/value exists, i.e. modifying existing keys.</p></li>
+<li><p>Writing to <code class="docutils literal notranslate"><span class="pre">HKLM\\Software</span></code> is allowed as long as a corresponding key/value does not exist in the package
+and the user has the correct access permissions.</p></li>
+</ul>
 <p>For more detail on the technical basis for these limitations, please consult
 Microsoft's documentation on packaged full-trust apps, currently available at
 <a class="reference external" href="https://docs.microsoft.com/en-us/windows/msix/desktop/desktop-to-uwp-behind-the-scenes">docs.microsoft.com/en-us/windows/msix/desktop/desktop-to-uwp-behind-the-scenes</a></p>
+</section>
 </section>
 </section>
 <section id="the-nuget-org-packages">
@@ -696,7 +723,7 @@ User level and the System level, or temporarily in a command prompt.</p>
 will be inherited by any applications started from the console.</p>
 <p>Including the variable name within percent signs will expand to the existing
 value, allowing you to add your new value at either the start or the end.
-Modifying <span class="target" id="index-5"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PATH</span></code> by adding the directory containing
+Modifying <span class="target" id="index-7"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PATH</span></code> by adding the directory containing
 <strong class="program">python.exe</strong> to the start is a common way to ensure the correct version
 of Python is launched.</p>
 <p>To permanently modify the default environment variables, click Start and search
@@ -708,8 +735,8 @@ System variables, you need non-restricted access to your machine
 <div class="admonition note">
 <p class="admonition-title">備註</p>
 <p>Windows will concatenate User variables <em>after</em> System variables, which may
-cause unexpected results when modifying <span class="target" id="index-6"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PATH</span></code>.</p>
-<p>The <span class="target" id="index-7"></span><a class="reference internal" href="cmdline.html#envvar-PYTHONPATH"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PYTHONPATH</span></code></a> variable is used by all versions of Python,
+cause unexpected results when modifying <span class="target" id="index-8"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PATH</span></code>.</p>
+<p>The <span class="target" id="index-9"></span><a class="reference internal" href="cmdline.html#envvar-PYTHONPATH"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PYTHONPATH</span></code></a> variable is used by all versions of Python,
 so you should not permanently configure it unless the listed paths
 only include code that is compatible with all of your installed Python
 versions.</p>
@@ -736,14 +763,14 @@ interpreter, you might want to start Python in the command prompt. The
 installer has an option to set that up for you.</p>
 <p>On the first page of the installer, an option labelled &quot;Add Python to PATH&quot;
 may be selected to have the installer add the install location into the
-<span class="target" id="index-8"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PATH</span></code>.  The location of the <code class="file docutils literal notranslate"><span class="pre">Scripts\</span></code> folder is also added.
+<span class="target" id="index-10"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PATH</span></code>.  The location of the <code class="file docutils literal notranslate"><span class="pre">Scripts\</span></code> folder is also added.
 This allows you to type <strong class="command">python</strong> to run the interpreter, and
 <strong class="command">pip</strong> for the package installer. Thus, you can also execute your
 scripts with command line options, see <a class="reference internal" href="cmdline.html#using-on-cmdline"><span class="std std-ref">Command line</span></a> documentation.</p>
 <p>If you don't enable this option at install time, you can always re-run the
 installer, select Modify, and enable it.  Alternatively, you can manually
-modify the <span class="target" id="index-9"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PATH</span></code> using the directions in <a class="reference internal" href="#setting-envvars"><span class="std std-ref">Excursus: Setting environment variables</span></a>.  You
-need to set your <span class="target" id="index-10"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PATH</span></code> environment variable to include the directory
+modify the <span class="target" id="index-11"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PATH</span></code> using the directions in <a class="reference internal" href="#setting-envvars"><span class="std std-ref">Excursus: Setting environment variables</span></a>.  You
+need to set your <span class="target" id="index-12"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PATH</span></code> environment variable to include the directory
 of your Python installation, delimited by a semicolon from other entries.  An
 example variable could look like this (assuming the first two entries already
 existed):</p>
@@ -765,7 +792,7 @@ and most Unix systems, including WSL (Windows Subsystem for Linux).</p>
 <p>You can use the <a class="reference internal" href="../library/os.html#utf8-mode"><span class="std std-ref">Python UTF-8 Mode</span></a> to change the default text
 encoding to UTF-8. You can enable the <a class="reference internal" href="../library/os.html#utf8-mode"><span class="std std-ref">Python UTF-8 Mode</span></a> via
 the <code class="docutils literal notranslate"><span class="pre">-X</span> <span class="pre">utf8</span></code> command line option, or the <code class="docutils literal notranslate"><span class="pre">PYTHONUTF8=1</span></code> environment
-variable.  See <span class="target" id="index-11"></span><a class="reference internal" href="cmdline.html#envvar-PYTHONUTF8"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PYTHONUTF8</span></code></a> for enabling UTF-8 mode, and
+variable.  See <span class="target" id="index-13"></span><a class="reference internal" href="cmdline.html#envvar-PYTHONUTF8"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PYTHONUTF8</span></code></a> for enabling UTF-8 mode, and
 <a class="reference internal" href="#setting-envvars"><span class="std std-ref">Excursus: Setting environment variables</span></a> for how to modify environment variables.</p>
 <p>When the <a class="reference internal" href="../library/os.html#utf8-mode"><span class="std std-ref">Python UTF-8 Mode</span></a> is enabled, you can still use the
 system encoding (the ANSI Code Page) via the &quot;mbcs&quot; codec.</p>
@@ -779,9 +806,9 @@ temporarily or use the <code class="docutils literal notranslate"><span class="p
 <p>Even when UTF-8 mode is disabled, Python uses UTF-8 by default
 on Windows for:</p>
 <ul class="simple">
-<li><p>Console I/O including standard I/O (see <span class="target" id="index-12"></span><a class="pep reference external" href="https://peps.python.org/pep-0528/"><strong>PEP 528</strong></a> for details).</p></li>
+<li><p>Console I/O including standard I/O (see <span class="target" id="index-14"></span><a class="pep reference external" href="https://peps.python.org/pep-0528/"><strong>PEP 528</strong></a> for details).</p></li>
 <li><p>The <a class="reference internal" href="../glossary.html#term-filesystem-encoding-and-error-handler"><span class="xref std std-term">filesystem encoding</span></a>
-(see <span class="target" id="index-13"></span><a class="pep reference external" href="https://peps.python.org/pep-0529/"><strong>PEP 529</strong></a> for details).</p></li>
+(see <span class="target" id="index-15"></span><a class="pep reference external" href="https://peps.python.org/pep-0529/"><strong>PEP 529</strong></a> for details).</p></li>
 </ul>
 </div>
 </section>
@@ -794,11 +821,11 @@ on Windows for:</p>
 executing of different Python versions.  It allows scripts (or the
 command-line) to indicate a preference for a specific Python version, and
 will locate and execute that version.</p>
-<p>Unlike the <span class="target" id="index-14"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PATH</span></code> variable, the launcher will correctly select the most
+<p>Unlike the <span class="target" id="index-16"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PATH</span></code> variable, the launcher will correctly select the most
 appropriate version of Python. It will prefer per-user installations over
 system-wide ones, and orders by language version rather than using the most
 recently installed version.</p>
-<p>The launcher was originally specified in <span class="target" id="index-15"></span><a class="pep reference external" href="https://peps.python.org/pep-0397/"><strong>PEP 397</strong></a>.</p>
+<p>The launcher was originally specified in <span class="target" id="index-17"></span><a class="pep reference external" href="https://peps.python.org/pep-0397/"><strong>PEP 397</strong></a>.</p>
 <section id="getting-started">
 <h3><span class="section-number">4.8.1. </span>開始<a class="headerlink" href="#getting-started" title="Permalink to this heading">¶</a></h3>
 <section id="from-the-command-line">
@@ -807,7 +834,7 @@ recently installed version.</p>
 <p><span class="versionmodified changed">在 3.6 版本變更.</span></p>
 </div>
 <p>System-wide installations of Python 3.3 and later will put the launcher on your
-<span class="target" id="index-16"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PATH</span></code>. The launcher is compatible with all available versions of
+<span class="target" id="index-18"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PATH</span></code>. The launcher is compatible with all available versions of
 Python, so it does not matter which version is installed. To check that the
 launcher is available, execute the following command in Command Prompt:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>py
@@ -833,7 +860,7 @@ command:</p>
 operable program or batch file.
 </pre></div>
 </div>
-<p>Per-user installations of Python do not add the launcher to <span class="target" id="index-17"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PATH</span></code>
+<p>Per-user installations of Python do not add the launcher to <span class="target" id="index-19"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PATH</span></code>
 unless the option was selected on installation.</p>
 <p>The command:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>py --list
@@ -930,8 +957,8 @@ architecture without minor (i.e. <code class="docutils literal notranslate"><spa
 </div>
 <p>The <code class="docutils literal notranslate"><span class="pre">/usr/bin/env</span></code> form of shebang line has one further special property.
 Before looking for installed Python interpreters, this form will search the
-executable <span class="target" id="index-18"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PATH</span></code> for a Python executable. This corresponds to the
-behaviour of the Unix <code class="docutils literal notranslate"><span class="pre">env</span></code> program, which performs a <span class="target" id="index-19"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PATH</span></code> search.</p>
+executable <span class="target" id="index-20"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PATH</span></code> for a Python executable. This corresponds to the
+behaviour of the Unix <code class="docutils literal notranslate"><span class="pre">env</span></code> program, which performs a <span class="target" id="index-21"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PATH</span></code> search.</p>
 </section>
 <section id="arguments-in-shebang-lines">
 <h3><span class="section-number">4.8.3. </span>Arguments in shebang lines<a class="headerlink" href="#arguments-in-shebang-lines" title="Permalink to this heading">¶</a></h3>
@@ -966,7 +993,7 @@ if a 32 or 64 bit implementation shall be requested by adding &quot;-32&quot; or
 <p>For example, a shebang line of <code class="docutils literal notranslate"><span class="pre">#!python</span></code> has no version qualifier, while
 <code class="docutils literal notranslate"><span class="pre">#!python3</span></code> has a version qualifier which specifies only a major version.</p>
 <p>If no version qualifiers are found in a command, the environment
-variable <span class="target" id="index-20"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PY_PYTHON</span></code> can be set to specify the default version
+variable <span class="target" id="index-22"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PY_PYTHON</span></code> can be set to specify the default version
 qualifier. If it is not set, the default is &quot;3&quot;. The variable can
 specify any value that may be passed on the command line, such as &quot;3&quot;,
 &quot;3.7&quot;, &quot;3.7-32&quot; or &quot;3.7-64&quot;. (Note that the &quot;-64&quot; option is only
@@ -1064,7 +1091,7 @@ Windows:</p>
 <ul class="simple">
 <li><p>An empty entry is added at the start, which corresponds to the current
 directory.</p></li>
-<li><p>If the environment variable <span class="target" id="index-21"></span><a class="reference internal" href="cmdline.html#envvar-PYTHONPATH"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PYTHONPATH</span></code></a> exists, as described in
+<li><p>If the environment variable <span class="target" id="index-23"></span><a class="reference internal" href="cmdline.html#envvar-PYTHONPATH"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PYTHONPATH</span></code></a> exists, as described in
 <a class="reference internal" href="cmdline.html#using-on-envvars"><span class="std std-ref">Environment variables</span></a>, its entries are added next.  Note that on Windows,
 paths in this variable must be separated by semicolons, to distinguish them
 from the colon used in drive identifiers (<code class="docutils literal notranslate"><span class="pre">C:\</span></code> etc.).</p></li>
@@ -1074,21 +1101,21 @@ from the colon used in drive identifiers (<code class="docutils literal notransl
 semicolon-delimited path strings as their default value will cause each path
 to be added to <a class="reference internal" href="../library/sys.html#sys.path" title="sys.path"><code class="xref py py-data docutils literal notranslate"><span class="pre">sys.path</span></code></a>.  (Note that all known installers only use
 HKLM, so HKCU is typically empty.)</p></li>
-<li><p>If the environment variable <span class="target" id="index-22"></span><a class="reference internal" href="cmdline.html#envvar-PYTHONHOME"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PYTHONHOME</span></code></a> is set, it is assumed as
+<li><p>If the environment variable <span class="target" id="index-24"></span><a class="reference internal" href="cmdline.html#envvar-PYTHONHOME"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PYTHONHOME</span></code></a> is set, it is assumed as
 &quot;Python Home&quot;.  Otherwise, the path of the main Python executable is used to
 locate a &quot;landmark file&quot; (either <code class="docutils literal notranslate"><span class="pre">Lib\os.py</span></code> or <code class="docutils literal notranslate"><span class="pre">pythonXY.zip</span></code>) to deduce
 the &quot;Python Home&quot;.  If a Python home is found, the relevant sub-directories
 added to <a class="reference internal" href="../library/sys.html#sys.path" title="sys.path"><code class="xref py py-data docutils literal notranslate"><span class="pre">sys.path</span></code></a> (<code class="docutils literal notranslate"><span class="pre">Lib</span></code>, <code class="docutils literal notranslate"><span class="pre">plat-win</span></code>, etc) are based on that
 folder.  Otherwise, the core Python path is constructed from the PythonPath
 stored in the registry.</p></li>
-<li><p>If the Python Home cannot be located, no <span class="target" id="index-23"></span><a class="reference internal" href="cmdline.html#envvar-PYTHONPATH"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PYTHONPATH</span></code></a> is specified in
+<li><p>If the Python Home cannot be located, no <span class="target" id="index-25"></span><a class="reference internal" href="cmdline.html#envvar-PYTHONPATH"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PYTHONPATH</span></code></a> is specified in
 the environment, and no registry entries can be found, a default path with
 relative entries is used (e.g. <code class="docutils literal notranslate"><span class="pre">.\Lib;.\plat-win</span></code>, etc).</p></li>
 </ul>
 <p>If a <code class="docutils literal notranslate"><span class="pre">pyvenv.cfg</span></code> file is found alongside the main executable or in the
 directory one level above the executable, the following variations apply:</p>
 <ul class="simple">
-<li><p>If <code class="docutils literal notranslate"><span class="pre">home</span></code> is an absolute path and <span class="target" id="index-24"></span><a class="reference internal" href="cmdline.html#envvar-PYTHONHOME"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PYTHONHOME</span></code></a> is not set, this
+<li><p>If <code class="docutils literal notranslate"><span class="pre">home</span></code> is an absolute path and <span class="target" id="index-26"></span><a class="reference internal" href="cmdline.html#envvar-PYTHONHOME"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PYTHONHOME</span></code></a> is not set, this
 path is used instead of the path to the main executable when deducing the
 home location.</p></li>
 </ul>
@@ -1115,7 +1142,7 @@ listed.</p></li>
 <li><p>If you are loading <code class="file docutils literal notranslate"><span class="pre">python3.dll</span></code> or <code class="file docutils literal notranslate"><span class="pre">python37.dll</span></code> in your own
 executable, explicitly call <a class="reference internal" href="../c-api/init.html#c.Py_SetPath" title="Py_SetPath"><code class="xref c c-func docutils literal notranslate"><span class="pre">Py_SetPath()</span></code></a> or (at least)
 <a class="reference internal" href="../c-api/init.html#c.Py_SetProgramName" title="Py_SetProgramName"><code class="xref c c-func docutils literal notranslate"><span class="pre">Py_SetProgramName()</span></code></a> before <a class="reference internal" href="../c-api/init.html#c.Py_Initialize" title="Py_Initialize"><code class="xref c c-func docutils literal notranslate"><span class="pre">Py_Initialize()</span></code></a>.</p></li>
-<li><p>Clear and/or overwrite <span class="target" id="index-25"></span><a class="reference internal" href="cmdline.html#envvar-PYTHONPATH"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PYTHONPATH</span></code></a> and set <span class="target" id="index-26"></span><a class="reference internal" href="cmdline.html#envvar-PYTHONHOME"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PYTHONHOME</span></code></a>
+<li><p>Clear and/or overwrite <span class="target" id="index-27"></span><a class="reference internal" href="cmdline.html#envvar-PYTHONPATH"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PYTHONPATH</span></code></a> and set <span class="target" id="index-28"></span><a class="reference internal" href="cmdline.html#envvar-PYTHONHOME"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PYTHONHOME</span></code></a>
 before launching <code class="file docutils literal notranslate"><span class="pre">python.exe</span></code> from your application.</p></li>
 <li><p>If you cannot use the previous suggestions (for example, you are a
 distribution that allows people to run <code class="file docutils literal notranslate"><span class="pre">python.exe</span></code> directly), ensure
@@ -1206,7 +1233,7 @@ releases. These files are in the <code class="file docutils literal notranslate"
 <h2><span class="section-number">4.12. </span>其他平台<a class="headerlink" href="#other-platforms" title="Permalink to this heading">¶</a></h2>
 <p>With ongoing development of Python, some platforms that used to be supported
 earlier are no longer supported (due to the lack of users or developers).
-Check <span class="target" id="index-27"></span><a class="pep reference external" href="https://peps.python.org/pep-0011/"><strong>PEP 11</strong></a> for details on all unsupported platforms.</p>
+Check <span class="target" id="index-29"></span><a class="pep reference external" href="https://peps.python.org/pep-0011/"><strong>PEP 11</strong></a> for details on all unsupported platforms.</p>
 <ul class="simple">
 <li><p><a class="reference external" href="http://pythonce.sourceforge.net/">Windows CE</a> is
 <a class="reference external" href="https://github.com/python/cpython/issues/71542">no longer supported</a>
@@ -1240,7 +1267,10 @@ for detailed information about platforms with pre-compiled installers.</p>
 </ul>
 </li>
 <li><a class="reference internal" href="#the-microsoft-store-package">4.2. The Microsoft Store package</a><ul>
-<li><a class="reference internal" href="#known-issues">4.2.1. Known Issues</a></li>
+<li><a class="reference internal" href="#known-issues">4.2.1. Known issues</a><ul>
+<li><a class="reference internal" href="#redirection-of-local-data-registry-and-temporary-paths">4.2.1.1. Redirection of local data, registry, and temporary paths</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a class="reference internal" href="#the-nuget-org-packages">4.3. The nuget.org packages</a></li>
@@ -1378,7 +1408,7 @@ for detailed information about platforms with pre-compiled installers.</p>
 <br />
     <br />
 
-    最後更新於 7月 06, 2022。
+    最後更新於 7月 23, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 
