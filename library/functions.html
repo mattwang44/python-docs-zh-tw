@@ -4,9 +4,9 @@
 <html lang="zh-TW">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>內建函式 &#8212; Python 3.10.5 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>內建函式 &#8212; Python 3.10.7 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -21,7 +21,7 @@
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.10.5 說明文件 中搜尋"
+          title="在 Python 3.10.7 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -123,7 +123,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.5 Documentation</a> &#187;
+      <a href="../index.html">3.10.7 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -151,7 +151,7 @@
           <div class="body" role="main">
             
   <section id="built-in-functions">
-<span id="built-in-funcs"></span><h1>內建函式<a class="headerlink" href="#built-in-functions" title="Permalink to this heading">¶</a></h1>
+<span id="built-in-funcs"></span><h1>內建函式<a class="headerlink" href="#built-in-functions" title="本標頭的永久連結">¶</a></h1>
 <p>Python 直譯器有內建多個可隨時使用的函式和型別。以下按照英文字母排序列出。</p>
 <table class="docutils align-default">
 <thead>
@@ -391,7 +391,9 @@ purely a convenience function so you don't have to explicitly import
 <a class="reference internal" href="pdb.html#module-pdb" title="pdb: The Python debugger for interactive interpreters."><code class="xref py py-mod docutils literal notranslate"><span class="pre">pdb</span></code></a> or type as much code to enter the debugger.  However,
 <a class="reference internal" href="sys.html#sys.breakpointhook" title="sys.breakpointhook"><code class="xref py py-func docutils literal notranslate"><span class="pre">sys.breakpointhook()</span></code></a> can be set to some other function and
 <a class="reference internal" href="#breakpoint" title="breakpoint"><code class="xref py py-func docutils literal notranslate"><span class="pre">breakpoint()</span></code></a> will automatically call that, allowing you to drop into
-the debugger of choice.</p>
+the debugger of choice.
+If <a class="reference internal" href="sys.html#sys.breakpointhook" title="sys.breakpointhook"><code class="xref py py-func docutils literal notranslate"><span class="pre">sys.breakpointhook()</span></code></a> is not accessible, this function will
+raise <a class="reference internal" href="exceptions.html#RuntimeError" title="RuntimeError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">RuntimeError</span></code></a>.</p>
 <p class="audit-hook">Raises an <a class="reference internal" href="sys.html#auditing"><span class="std std-ref">auditing event</span></a> <code class="docutils literal notranslate"><span class="pre">builtins.breakpoint</span></code> with argument <code class="docutils literal notranslate"><span class="pre">breakpointhook</span></code>.</p>
 <div class="versionadded">
 <p><span class="versionmodified added">在 3.7 版本新加入.</span></p>
@@ -464,7 +466,7 @@ have a new <code class="docutils literal notranslate"><span class="pre">__wrappe
 
 <dl class="py function">
 <dt class="sig sig-object py" id="compile">
-<span class="sig-name descname"><span class="pre">compile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flags</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dont_inherit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">optimize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-</span> <span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#compile" title="本定義的永久連結">¶</a></dt>
+<span class="sig-name descname"><span class="pre">compile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flags</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dont_inherit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">optimize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#compile" title="本定義的永久連結">¶</a></dt>
 <dd><p>將 <em>source</em> 編譯成程式碼或 AST 物件。程式碼物件可以被 <a class="reference internal" href="#exec" title="exec"><code class="xref py py-func docutils literal notranslate"><span class="pre">exec()</span></code></a> 或 <a class="reference internal" href="#eval" title="eval"><code class="xref py py-func docutils literal notranslate"><span class="pre">eval()</span></code></a> 執行。<em>source</em> 可以是一般的字串、bytes 字串、或者 AST 物件。參見 <a class="reference internal" href="ast.html#module-ast" title="ast: Abstract Syntax Tree classes and manipulation."><code class="xref py py-mod docutils literal notranslate"><span class="pre">ast</span></code></a> module（模組）的文件瞭解如何使用 AST 物件。</p>
 <p><em>filename</em> 引數必須是程式碼的檔名；如果程式碼不是從檔案中讀取，可以傳入一些可辨識的值（經常會使用 <code class="docutils literal notranslate"><span class="pre">'&lt;string&gt;'</span></code> 來替代）。</p>
 <p><em>mode</em> 引數指定了編譯程式碼時必須用的模式。如果 <em>source</em> 是一系列的陳述式，可以是 <code class="docutils literal notranslate"><span class="pre">'exec'</span></code>；如果是單一運算式，可以是 <code class="docutils literal notranslate"><span class="pre">'eval'</span></code>；如果是單個互動式陳述式，可以是 <code class="docutils literal notranslate"><span class="pre">'single'``（在最後一種情況下，如果運算式執行結果不是</span> <span class="pre">``None</span></code> 則會被印出來）。</p>
@@ -840,6 +842,13 @@ with the result after successfully reading input.</p>
 <div class="versionchanged">
 <p><span class="versionmodified changed">在 3.8 版本變更: </span>Falls back to <code class="xref py py-meth docutils literal notranslate"><span class="pre">__index__()</span></code> if <code class="xref py py-meth docutils literal notranslate"><span class="pre">__int__()</span></code> is not defined.</p>
 </div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">在 3.10.7 版本變更: </span><a class="reference internal" href="#int" title="int"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a> string inputs and string representations can be limited to
+help avoid denial of service attacks. A <a class="reference internal" href="exceptions.html#ValueError" title="ValueError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code></a> is raised when
+the limit is exceeded while converting a string <em>x</em> to an <a class="reference internal" href="#int" title="int"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a> or
+when converting an <a class="reference internal" href="#int" title="int"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a> into a string would exceed the limit.
+See the <a class="reference internal" href="stdtypes.html#int-max-str-digits"><span class="std std-ref">integer string conversion length limitation</span></a> documentation.</p>
+</div>
 </dd></dl>
 
 <dl class="py function">
@@ -990,7 +999,7 @@ database file until the end of file is reached:</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="open">
-<span class="sig-name descname"><span class="pre">open</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'r'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">buffering</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-</span> <span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">encoding</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">errors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">newline</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">closefd</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">opener</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#open" title="本定義的永久連結">¶</a></dt>
+<span class="sig-name descname"><span class="pre">open</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'r'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">buffering</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">encoding</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">errors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">newline</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">closefd</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">opener</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#open" title="本定義的永久連結">¶</a></dt>
 <dd><p>開啟 <em>file</em> 並回傳對應的 <a class="reference internal" href="../glossary.html#term-file-object"><span class="xref std std-term">file object</span></a>。如果該檔案不能開啟，則觸發 <a class="reference internal" href="exceptions.html#OSError" title="OSError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">OSError</span></code></a>。關於使用此函式的更多方法請參閱<a class="reference internal" href="../tutorial/inputoutput.html#tut-files"><span class="std std-ref">讀寫檔案</span></a>。</p>
 <p><em>file</em> 是一個 <a class="reference internal" href="../glossary.html#term-path-like-object"><span class="xref std std-term">path-like object</span></a>，是將被開啟之檔案的路徑（絕對路徑或者當前工作目錄的相當路徑），或是被封裝的整數檔案描述器 (file descriptor)。（如果有提供檔案描述器，它會隨著回傳的 I/O 物件關閉而關閉，除非 <em>closefd</em> 被設為 <code class="docutils literal notranslate"><span class="pre">False</span></code>。）</p>
 <p><em>mode</em> 是一個選擇性字串，用於指定開啟檔案的模式。預設值是 <code class="docutils literal notranslate"><span class="pre">'r'</span></code>，這意味著它以文字模式開啟並讀取。其他常見模式有：寫入 <code class="docutils literal notranslate"><span class="pre">'w'</span></code>（會捨去已經存在的檔案）、唯一性創建 <code class="docutils literal notranslate"><span class="pre">'x'</span></code>、追加寫入 <code class="docutils literal notranslate"><span class="pre">'a'</span></code>（在<em>一些</em> Unix 系統上，無論當前的檔案指標在什麼位置，<em>所有</em> 寫入都會追加到檔案末尾）。在文字模式，如果沒有指定 <em>encoding</em>，則根據電腦平臺來決定使用的編碼：呼叫 <code class="docutils literal notranslate"><span class="pre">locale.getpreferredencoding(False)</span></code> 來獲取當前的本地編碼。（要讀取和寫入原始 bytes，請使用二進位制模式且不要指定 <em>encoding</em>。）可用的模式有：</p>
@@ -1348,7 +1357,9 @@ object with the same value when passed to <a class="reference internal" href="#e
 representation is a string enclosed in angle brackets that contains the name
 of the type of the object together with additional information often
 including the name and address of the object.  A class can control what this
-function returns for its instances by defining a <code class="xref py py-meth docutils literal notranslate"><span class="pre">__repr__()</span></code> method.</p>
+function returns for its instances by defining a <code class="xref py py-meth docutils literal notranslate"><span class="pre">__repr__()</span></code> method.
+If <a class="reference internal" href="sys.html#sys.displayhook" title="sys.displayhook"><code class="xref py py-func docutils literal notranslate"><span class="pre">sys.displayhook()</span></code></a> is not accessible, this function will raise
+<a class="reference internal" href="exceptions.html#RuntimeError" title="RuntimeError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">RuntimeError</span></code></a>.</p>
 </dd></dl>
 
 <dl class="py function">
@@ -1790,9 +1801,11 @@ the environment variable <span class="target" id="index-15"></span><a class="ref
 </dd></dl>
 
 <p class="rubric">註解</p>
+<aside class="footnote-list brackets">
 <aside class="footnote brackets" id="id2" role="note">
 <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
 <p>剖析器只接受 Unix 風格的行結束符。如果您從檔案中讀取程式碼，請確保用換行符轉換模式轉換 Windows 或 Mac 風格的換行符。</p>
+</aside>
 </aside>
 </section>
 
@@ -1858,7 +1871,7 @@ the environment variable <span class="target" id="index-15"></span><a class="ref
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.5 Documentation</a> &#187;
+      <a href="../index.html">3.10.7 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -1894,11 +1907,11 @@ the environment variable <span class="target" id="index-15"></span><a class="ref
 <br />
     <br />
 
-    最後更新於 7月 23, 2022。
+    最後更新於 9月 16, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 
-    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.0.2 建立。
+    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1 建立。
     </div>
 
   </body>

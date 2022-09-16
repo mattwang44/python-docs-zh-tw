@@ -4,9 +4,9 @@
 <html lang="zh-TW">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>術語表 &#8212; Python 3.10.5 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>術語表 &#8212; Python 3.10.7 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/pydoctheme.css?2022.1" />
@@ -21,7 +21,7 @@
     <script src="_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.10.5 說明文件 中搜尋"
+          title="在 Python 3.10.7 說明文件 中搜尋"
           href="_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="about.html" />
     <link rel="index" title="索引" href="genindex.html" />
@@ -123,7 +123,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="index.html">3.10.5 Documentation</a> &#187;
+      <a href="index.html">3.10.7 Documentation</a> &#187;
     </li>
 
         <li class="nav-item nav-item-this"><a href="">術語表</a></li>
@@ -150,7 +150,7 @@
           <div class="body" role="main">
             
   <section id="glossary">
-<span id="id1"></span><h1>術語表<a class="headerlink" href="#glossary" title="Permalink to this heading">¶</a></h1>
+<span id="id1"></span><h1>術語表<a class="headerlink" href="#glossary" title="本標頭的永久連結">¶</a></h1>
 <dl class="glossary">
 <dt id="term-0"><code class="docutils literal notranslate"><span class="pre">&gt;&gt;&gt;</span></code><a class="headerlink" href="#term-0" title="本術語的永久連結">¶</a></dt><dd><p>互動式 shell 的預設 Python 提示字元。常見於能在直譯器中以互動方式被執行的程式碼範例。</p>
 </dd>
@@ -333,10 +333,7 @@
 <dt id="term-GIL">GIL<a class="headerlink" href="#term-GIL" title="本術語的永久連結">¶</a></dt><dd><p>請參閱 <a class="reference internal" href="#term-global-interpreter-lock"><span class="xref std std-term">global interpreter lock</span></a>（全域直譯器鎖）。</p>
 </dd>
 <dt id="term-global-interpreter-lock">global interpreter lock（全域直譯器鎖）<a class="headerlink" href="#term-global-interpreter-lock" title="本術語的永久連結">¶</a></dt><dd><p><a class="reference internal" href="#term-CPython"><span class="xref std std-term">CPython</span></a> 直譯器所使用的機制，用以確保每次都只有一個執行緒能執行 Python 的 <a class="reference internal" href="#term-bytecode"><span class="xref std std-term">bytecode</span></a>（位元組碼）。透過使物件模型（包括關鍵的內建型別，如 <a class="reference internal" href="library/stdtypes.html#dict" title="dict"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>）自動地避免並行存取 (concurrent access) 的危險，此機制可以簡化 CPython 的實作。鎖定整個直譯器，會使直譯器更容易成為多執行緒 (multi-threaded)，但代價是會犧牲掉多處理器的機器能夠提供的一大部分平行性 (parallelism)。</p>
-<p>However, some extension modules, either standard or third-party,
-are designed so as to release the GIL when doing computationally intensive
-tasks such as compression or hashing.  Also, the GIL is always released
-when doing I/O.</p>
+<p>然而，有些擴充模組，無論是標準的或是第三方的，它們被設計成在執行壓縮或雜湊等計算密集 (computationally intensive) 的任務時，可以解除 GIL。另外，在執行 I/O 時，GIL 總是會被解除。</p>
 <p>過去對於建立「無限制執行緒」直譯器（以更高的精細度鎖定共享資料的直譯器）的努力並未成功，因為在一般的單一處理器情況下，效能會有所損失。一般認為，若要克服這個效能問題，會使實作變得複雜許多，進而付出更高的維護成本。</p>
 </dd>
 <dt id="term-hash-based-pyc">hash-based pyc（雜湊架構的 pyc）<a class="headerlink" href="#term-hash-based-pyc" title="本術語的永久連結">¶</a></dt><dd><p>一個位元組碼 (bytecode) 暫存檔，它使用雜湊值而不是對應原始檔案的最後修改時間，來確定其有效性。請參閱<a class="reference internal" href="reference/import.html#pyc-invalidation"><span class="std std-ref">Cached bytecode invalidation</span></a>。</p>
@@ -345,7 +342,7 @@ when doing I/O.</p>
 <p>可雜湊性 (hashability) 使一個物件可用作 dictionary（字典）的鍵和 set（集合）的成員，因為這些資料結構都在其內部使用了雜湊值。</p>
 <p>大多數的 Python 不可變內建物件都是可雜湊的；可變的容器（例如 list 或 dictionary）並不是；而不可變的容器（例如 tuple（元組）和 frozenset），只有當它們的元素是可雜湊的，它們本身才是可雜湊的。若物件是使用者自定 class 的實例，則這些物件會被預設為可雜湊的。它們在互相比較時都是不相等的（除非它們與自己比較），而它們的雜湊值則是衍生自它們的 <a class="reference internal" href="library/functions.html#id" title="id"><code class="xref py py-func docutils literal notranslate"><span class="pre">id()</span></code></a>。</p>
 </dd>
-<dt id="term-IDLE">IDLE<a class="headerlink" href="#term-IDLE" title="本術語的永久連結">¶</a></dt><dd><p>Python 的 Integrated Development Environment（整合開發環境）。IDLE 是一個基本的編輯器和直譯器環境，它和 Python 的標準發行版本一起被提供。</p>
+<dt id="term-IDLE">IDLE<a class="headerlink" href="#term-IDLE" title="本術語的永久連結">¶</a></dt><dd><p>Python 的 Integrated Development and Learning Environment（整合開發與學習環境）。<a class="reference internal" href="library/idle.html#idle"><span class="std std-ref">IDLE</span></a> 是一個基本的編輯器和直譯器環境，它和 Python 的標準發行版本一起被提供。</p>
 </dd>
 <dt id="term-immutable">immutable（不可變物件）<a class="headerlink" href="#term-immutable" title="本術語的永久連結">¶</a></dt><dd><p>一個具有固定值的物件。不可變物件包括數字、字串和 tuple（元組）。這類物件是不能被改變的。如果一個不同的值必須被儲存，則必須建立一個新的物件。它們在需要恆定雜湊值的地方，扮演重要的角色，例如 dictionary（字典）中的一個鍵。</p>
 </dd>
@@ -377,7 +374,7 @@ when doing I/O.</p>
 </dd>
 <dt id="term-keyword-argument">keyword argument（關鍵字引數）<a class="headerlink" href="#term-keyword-argument" title="本術語的永久連結">¶</a></dt><dd><p>請參閱 <a class="reference internal" href="#term-argument"><span class="xref std std-term">argument</span></a>（引數）。</p>
 </dd>
-<dt id="term-lambda">lambda<a class="headerlink" href="#term-lambda" title="本術語的永久連結">¶</a></dt><dd><p>由單一 <a class="reference internal" href="#term-expression"><span class="xref std std-term">expression</span></a>（運算式）所組成的一個匿名行內函式 (inline function)，於該函式被呼叫時求值。建立 lambda 函式的語法是 <code class="docutils literal notranslate"><span class="pre">lambda</span> <span class="pre">[parameters]:</span> <span class="pre">expression</span></code>。</p>
+<dt id="term-lambda">lambda<a class="headerlink" href="#term-lambda" title="本術語的永久連結">¶</a></dt><dd><p>由單一 <a class="reference internal" href="#term-expression"><span class="xref std std-term">expression</span></a>（運算式）所組成的一個匿名行內函式 (inline function)，於該函式被呼叫時求值。建立 lambda 函式的語法是 <code class="docutils literal notranslate"><span class="pre">lambda</span> <span class="pre">[parameters]:</span> <span class="pre">expression</span></code></p>
 </dd>
 <dt id="term-LBYL">LBYL<a class="headerlink" href="#term-LBYL" title="本術語的永久連結">¶</a></dt><dd><p>Look before you leap.（三思而後行。）這種編碼風格會在進行呼叫或查找之前，明確地測試先決條件。這種風格與 <a class="reference internal" href="#term-EAFP"><span class="xref std std-term">EAFP</span></a> 方式形成對比，且它的特色是會有許多 <a class="reference internal" href="reference/compound_stmts.html#if"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">if</span></code></a> 陳述式的存在。</p>
 <p>在一個多執行緒環境中，LBYL 方式有在「三思」和「後行」之間引入了競爭條件 (race condition) 的風險。例如以下程式碼 <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">key</span> <span class="pre">in</span> <span class="pre">mapping:</span> <span class="pre">return</span> <span class="pre">mapping[key]</span></code>，如果另一個執行緒在測試之後但在查找之前，從 <em>mapping</em> 中移除了 <em>key</em>，則該程式碼就會失效。這個問題可以用鎖 (lock) 或使用 EAFP 編碼方式來解決。</p>
@@ -675,7 +672,7 @@ when doing I/O.</p>
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="index.html">3.10.5 Documentation</a> &#187;
+      <a href="index.html">3.10.7 Documentation</a> &#187;
     </li>
 
         <li class="nav-item nav-item-this"><a href="">術語表</a></li>
@@ -710,11 +707,11 @@ when doing I/O.</p>
 <br />
     <br />
 
-    最後更新於 7月 23, 2022。
+    最後更新於 9月 16, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 
-    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.0.2 建立。
+    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1 建立。
     </div>
 
   </body>

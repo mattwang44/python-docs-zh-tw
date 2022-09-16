@@ -4,9 +4,9 @@
 <html lang="zh-TW">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>C API Stability &#8212; Python 3.10.5 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C API Stability &#8212; Python 3.10.7 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -21,7 +21,7 @@
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.10.5 說明文件 中搜尋"
+          title="在 Python 3.10.7 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -139,7 +139,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.5 Documentation</a> &#187;
+      <a href="../index.html">3.10.7 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Python/C API 參考手冊</a> &#187;</li>
@@ -167,7 +167,7 @@
           <div class="body" role="main">
             
   <section id="c-api-stability">
-<span id="stable"></span><h1>C API Stability<a class="headerlink" href="#c-api-stability" title="Permalink to this heading">¶</a></h1>
+<span id="stable"></span><h1>C API Stability<a class="headerlink" href="#c-api-stability" title="本標頭的永久連結">¶</a></h1>
 <p>Python's C API is covered by the Backwards Compatibility Policy, <span class="target" id="index-0"></span><a class="pep reference external" href="https://peps.python.org/pep-0387/"><strong>PEP 387</strong></a>.
 While the C API will change with every minor release (e.g. from 3.9 to 3.10),
 most changes will be source-compatible, typically by only adding new API.
@@ -181,7 +181,7 @@ but will need to be compiled separately for 3.9.x and 3.10.x.</p>
 <p>Names prefixed by an underscore, such as <code class="docutils literal notranslate"><span class="pre">_Py_InternalState</span></code>,
 are private API that can change without notice even in patch releases.</p>
 <section id="stable-application-binary-interface">
-<h2>Stable Application Binary Interface<a class="headerlink" href="#stable-application-binary-interface" title="Permalink to this heading">¶</a></h2>
+<h2>Stable Application Binary Interface<a class="headerlink" href="#stable-application-binary-interface" title="本標頭的永久連結">¶</a></h2>
 <p>Python 3.2 introduced the <em>Limited API</em>, a subset of Python's C API.
 Extensions that only use the Limited API can be
 compiled once and work with multiple versions of Python.
@@ -223,7 +223,7 @@ versions of Python.</p>
 library, not solely as macros. This makes them usable from languages that don't
 use the C preprocessor.</p>
 <section id="limited-api-scope-and-performance">
-<h3>Limited API Scope and Performance<a class="headerlink" href="#limited-api-scope-and-performance" title="Permalink to this heading">¶</a></h3>
+<h3>Limited API Scope and Performance<a class="headerlink" href="#limited-api-scope-and-performance" title="本標頭的永久連結">¶</a></h3>
 <p>The goal for the Limited API is to allow everything that is possible with the
 full C API, but possibly with a performance penalty.</p>
 <p>For example, while <a class="reference internal" href="list.html#c.PyList_GetItem" title="PyList_GetItem"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyList_GetItem()</span></code></a> is available, its “unsafe” macro
@@ -242,7 +242,7 @@ distributed where a version-specific one is not available – for example,
 for prereleases of an upcoming Python version.</p>
 </section>
 <section id="limited-api-caveats">
-<h3>Limited API Caveats<a class="headerlink" href="#limited-api-caveats" title="Permalink to this heading">¶</a></h3>
+<h3>Limited API Caveats<a class="headerlink" href="#limited-api-caveats" title="本標頭的永久連結">¶</a></h3>
 <p>Note that compiling with <code class="docutils literal notranslate"><span class="pre">Py_LIMITED_API</span></code> is <em>not</em> a complete guarantee that
 code conforms to the Limited API or the Stable ABI. <code class="docutils literal notranslate"><span class="pre">Py_LIMITED_API</span></code> only
 covers definitions, but an API also includes other issues, such as expected
@@ -269,7 +269,7 @@ provided that the Stable ABI stays stable.</p>
 </section>
 </section>
 <section id="platform-considerations">
-<span id="stable-abi-platform"></span><h2>Platform Considerations<a class="headerlink" href="#platform-considerations" title="Permalink to this heading">¶</a></h2>
+<span id="stable-abi-platform"></span><h2>Platform Considerations<a class="headerlink" href="#platform-considerations" title="本標頭的永久連結">¶</a></h2>
 <p>ABI stability depends not only on Python, but also on the compiler used,
 lower-level libraries and compiler options. For the purposes of the Stable ABI,
 these details define a “platform”. They usually depend on the OS
@@ -281,7 +281,7 @@ This is the case with Windows and macOS releases from <code class="docutils lite
 third-party distributors.</p>
 </section>
 <section id="contents-of-limited-api">
-<span id="stable-abi-list"></span><h2>Contents of Limited API<a class="headerlink" href="#contents-of-limited-api" title="Permalink to this heading">¶</a></h2>
+<span id="stable-abi-list"></span><h2>Contents of Limited API<a class="headerlink" href="#contents-of-limited-api" title="本標頭的永久連結">¶</a></h2>
 <p>Currently, the Limited API includes the following items:</p>
 <p><ul class="simple">
 <li><p><a class="reference internal" href="iter.html#c.PyAIter_Check" title="PyAIter_Check"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyAIter_Check()</span></code></a></p></li>
@@ -746,6 +746,8 @@ third-party distributors.</p>
 <li><p><code class="xref c c-func docutils literal notranslate"><span class="pre">PyOS_strtoul()</span></code></p></li>
 <li><p><a class="reference internal" href="conversion.html#c.PyOS_vsnprintf" title="PyOS_vsnprintf"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyOS_vsnprintf()</span></code></a></p></li>
 <li><p><a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><code class="xref c c-type docutils literal notranslate"><span class="pre">PyObject</span></code></a></p></li>
+<li><p><a class="reference internal" href="typeobj.html#c.PyObject.ob_refcnt" title="PyObject.ob_refcnt"><code class="xref c c-member docutils literal notranslate"><span class="pre">PyObject.ob_refcnt</span></code></a></p></li>
+<li><p><a class="reference internal" href="typeobj.html#c.PyObject.ob_type" title="PyObject.ob_type"><code class="xref c c-member docutils literal notranslate"><span class="pre">PyObject.ob_type</span></code></a></p></li>
 <li><p><a class="reference internal" href="object.html#c.PyObject_ASCII" title="PyObject_ASCII"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyObject_ASCII()</span></code></a></p></li>
 <li><p><a class="reference internal" href="objbuffer.html#c.PyObject_AsCharBuffer" title="PyObject_AsCharBuffer"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyObject_AsCharBuffer()</span></code></a></p></li>
 <li><p><a class="reference internal" href="file.html#c.PyObject_AsFileDescriptor" title="PyObject_AsFileDescriptor"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyObject_AsFileDescriptor()</span></code></a></p></li>
@@ -1047,6 +1049,8 @@ third-party distributors.</p>
 <li><p><a class="reference internal" href="unicode.html#c.PyUnicode_Type" title="PyUnicode_Type"><code class="xref c c-data docutils literal notranslate"><span class="pre">PyUnicode_Type</span></code></a></p></li>
 <li><p><a class="reference internal" href="unicode.html#c.PyUnicode_WriteChar" title="PyUnicode_WriteChar"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyUnicode_WriteChar()</span></code></a></p></li>
 <li><p><a class="reference internal" href="structures.html#c.PyVarObject" title="PyVarObject"><code class="xref c c-type docutils literal notranslate"><span class="pre">PyVarObject</span></code></a></p></li>
+<li><p><code class="xref c c-member docutils literal notranslate"><span class="pre">PyVarObject.ob_base</span></code></p></li>
+<li><p><a class="reference internal" href="typeobj.html#c.PyVarObject.ob_size" title="PyVarObject.ob_size"><code class="xref c c-member docutils literal notranslate"><span class="pre">PyVarObject.ob_size</span></code></a></p></li>
 <li><p><code class="xref c c-type docutils literal notranslate"><span class="pre">PyWeakReference</span></code></p></li>
 <li><p><a class="reference internal" href="weakref.html#c.PyWeakref_GetObject" title="PyWeakref_GetObject"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyWeakref_GetObject()</span></code></a></p></li>
 <li><p><a class="reference internal" href="weakref.html#c.PyWeakref_NewProxy" title="PyWeakref_NewProxy"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyWeakref_NewProxy()</span></code></a></p></li>
@@ -1229,7 +1233,7 @@ third-party distributors.</p>
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.5 Documentation</a> &#187;
+      <a href="../index.html">3.10.7 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python/C API 參考手冊</a> &#187;</li>
@@ -1265,11 +1269,11 @@ third-party distributors.</p>
 <br />
     <br />
 
-    最後更新於 7月 23, 2022。
+    最後更新於 9月 16, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 
-    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.0.2 建立。
+    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1 建立。
     </div>
 
   </body>

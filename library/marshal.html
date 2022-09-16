@@ -4,9 +4,9 @@
 <html lang="zh-TW">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>marshal --- 内部 Python 物件序列化 &#8212; Python 3.10.5 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>marshal --- 内部 Python 物件序列化 &#8212; Python 3.10.7 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -21,7 +21,7 @@
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.10.5 說明文件 中搜尋"
+          title="在 Python 3.10.7 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -123,7 +123,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.5 Documentation</a> &#187;
+      <a href="../index.html">3.10.7 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -152,7 +152,7 @@
           <div class="body" role="main">
             
   <section id="module-marshal">
-<span id="marshal-internal-python-object-serialization"></span><h1><a class="reference internal" href="#module-marshal" title="marshal: Convert Python objects to streams of bytes and back (with different constraints)."><code class="xref py py-mod docutils literal notranslate"><span class="pre">marshal</span></code></a> --- 内部 Python 物件序列化<a class="headerlink" href="#module-marshal" title="Permalink to this heading">¶</a></h1>
+<span id="marshal-internal-python-object-serialization"></span><h1><a class="reference internal" href="#module-marshal" title="marshal: Convert Python objects to streams of bytes and back (with different constraints)."><code class="xref py py-mod docutils literal notranslate"><span class="pre">marshal</span></code></a> --- 内部 Python 物件序列化<a class="headerlink" href="#module-marshal" title="本標頭的永久連結">¶</a></h1>
 <hr class="docutils" />
 <p>此 module（模組）包含一個能以二進位制格式來讀寫 Python 值的函式。這種格式是 Python 專屬但獨立於機器架構的（例如，你可以在一臺 PC 上寫入某個 Python 值，再將檔案傳到一臺 Sun 上並在那裡讀取它）。這種格式的細節是有意地不在文件上說明的；它可能在不同 Python 版本中被改變（雖然這種情況極少發生）。<a class="footnote-reference brackets" href="#id2" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a></p>
 <p id="index-0">這不是一個通用「持續性 (persistence)」module 。關於通用持續性以及透過 RPC 呼叫傳遞 Python 物件，請參閱 <a class="reference internal" href="pickle.html#module-pickle" title="pickle: Convert Python objects to streams of bytes and back."><code class="xref py py-mod docutils literal notranslate"><span class="pre">pickle</span></code></a> 和 <a class="reference internal" href="shelve.html#module-shelve" title="shelve: Python object persistence."><code class="xref py py-mod docutils literal notranslate"><span class="pre">shelve</span></code></a> 等 module 。<a class="reference internal" href="#module-marshal" title="marshal: Convert Python objects to streams of bytes and back (with different constraints)."><code class="xref py py-mod docutils literal notranslate"><span class="pre">marshal</span></code></a> module 主要是為了支援用來讀寫「偽編譯 (pseudo-compiled)」 <code class="file docutils literal notranslate"><span class="pre">.pyc</span></code> 檔案的 Python module。因此，Python 維護者保留了在必要時以不向後相容的方式修改 marshal 格式的權利。如果你要序列化和反序列化 Python 物件，請改用 <a class="reference internal" href="pickle.html#module-pickle" title="pickle: Convert Python objects to streams of bytes and back."><code class="xref py py-mod docutils literal notranslate"><span class="pre">pickle</span></code></a> module  -- 其執行效率相當、有保證版本獨立性，且實質上 pickle 還支援比 marshal 更多樣的物件。</p>
@@ -212,9 +212,11 @@
 </dd></dl>
 
 <p class="rubric">註解</p>
+<aside class="footnote-list brackets">
 <aside class="footnote brackets" id="id2" role="note">
 <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
 <p>此 module 的名稱來源於 Modula-3 (及其他語言) 的設計者所使用的術語，他們使用 &quot;marshal&quot; 來表示自包含 (self-contained) 形式資料的傳輸。嚴格來說，將資料從內部形式轉換為外部形式 (例如用於 RPC 緩衝區) 稱為 &quot;marshal&quot;，而其反向過程則稱為 &quot;unmarshal&quot;。</p>
+</aside>
 </aside>
 </section>
 
@@ -280,7 +282,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.5 Documentation</a> &#187;
+      <a href="../index.html">3.10.7 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -317,11 +319,11 @@
 <br />
     <br />
 
-    最後更新於 7月 23, 2022。
+    最後更新於 9月 16, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 
-    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.0.2 建立。
+    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1 建立。
     </div>
 
   </body>

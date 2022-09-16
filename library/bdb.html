@@ -4,9 +4,9 @@
 <html lang="zh-TW">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>bdb --- Debugger framework &#8212; Python 3.10.5 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>bdb --- Debugger framework &#8212; Python 3.10.7 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -21,7 +21,7 @@
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.10.5 說明文件 中搜尋"
+          title="在 Python 3.10.7 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -123,7 +123,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.5 Documentation</a> &#187;
+      <a href="../index.html">3.10.7 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -152,7 +152,7 @@
           <div class="body" role="main">
             
   <section id="module-bdb">
-<span id="bdb-debugger-framework"></span><h1><a class="reference internal" href="#module-bdb" title="bdb: Debugger framework."><code class="xref py py-mod docutils literal notranslate"><span class="pre">bdb</span></code></a> --- Debugger framework<a class="headerlink" href="#module-bdb" title="Permalink to this heading">¶</a></h1>
+<span id="bdb-debugger-framework"></span><h1><a class="reference internal" href="#module-bdb" title="bdb: Debugger framework."><code class="xref py py-mod docutils literal notranslate"><span class="pre">bdb</span></code></a> --- Debugger framework<a class="headerlink" href="#module-bdb" title="本標頭的永久連結">¶</a></h1>
 <p><strong>原始碼：</strong><a class="reference external" href="https://github.com/python/cpython/tree/3.10/Lib/bdb.py">Lib/bdb.py</a></p>
 <hr class="docutils" />
 <p>The <a class="reference internal" href="#module-bdb" title="bdb: Debugger framework."><code class="xref py py-mod docutils literal notranslate"><span class="pre">bdb</span></code></a> module handles basic debugger functions, like setting breakpoints
@@ -167,17 +167,18 @@ or managing execution via the debugger.</p>
 <p>The <a class="reference internal" href="#module-bdb" title="bdb: Debugger framework."><code class="xref py py-mod docutils literal notranslate"><span class="pre">bdb</span></code></a> module also defines two classes:</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="bdb.Breakpoint">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">bdb.</span></span><span class="sig-name descname"><span class="pre">Breakpoint</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">line</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">temporary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cond</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">funcname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#bdb.Breakpoint" title="本定義的永久連結">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">bdb.</span></span><span class="sig-name descname"><span class="pre">Breakpoint</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">line</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">temporary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cond</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">funcname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#bdb.Breakpoint" title="本定義的永久連結">¶</a></dt>
 <dd><p>This class implements temporary breakpoints, ignore counts, disabling and
 (re-)enabling, and conditionals.</p>
-<p>Breakpoints are indexed by number through a list called <code class="xref py py-attr docutils literal notranslate"><span class="pre">bpbynumber</span></code>
-and by <code class="docutils literal notranslate"><span class="pre">(file,</span> <span class="pre">line)</span></code> pairs through <code class="xref py py-attr docutils literal notranslate"><span class="pre">bplist</span></code>.  The former points to a
-single instance of class <a class="reference internal" href="#bdb.Breakpoint" title="bdb.Breakpoint"><code class="xref py py-class docutils literal notranslate"><span class="pre">Breakpoint</span></code></a>.  The latter points to a list of
-such instances since there may be more than one breakpoint per line.</p>
-<p>When creating a breakpoint, its associated filename should be in canonical
-form.  If a <em>funcname</em> is defined, a breakpoint hit will be counted when the
-first line of that function is executed.  A conditional breakpoint always
-counts a hit.</p>
+<p>Breakpoints are indexed by number through a list called <a class="reference internal" href="#bdb.Breakpoint.bpbynumber" title="bdb.Breakpoint.bpbynumber"><code class="xref py py-attr docutils literal notranslate"><span class="pre">bpbynumber</span></code></a>
+and by <code class="docutils literal notranslate"><span class="pre">(file,</span> <span class="pre">line)</span></code> pairs through <a class="reference internal" href="#bdb.Breakpoint.bplist" title="bdb.Breakpoint.bplist"><code class="xref py py-attr docutils literal notranslate"><span class="pre">bplist</span></code></a>.  The former points to
+a single instance of class <a class="reference internal" href="#bdb.Breakpoint" title="bdb.Breakpoint"><code class="xref py py-class docutils literal notranslate"><span class="pre">Breakpoint</span></code></a>.  The latter points to a list
+of such instances since there may be more than one breakpoint per line.</p>
+<p>When creating a breakpoint, its associated <a class="reference internal" href="#bdb.Breakpoint.file" title="bdb.Breakpoint.file"><code class="xref py py-attr docutils literal notranslate"><span class="pre">file</span> <span class="pre">name</span></code></a> should
+be in canonical form.  If a <a class="reference internal" href="#bdb.Breakpoint.funcname" title="bdb.Breakpoint.funcname"><code class="xref py py-attr docutils literal notranslate"><span class="pre">funcname</span></code></a> is defined, a breakpoint
+<a class="reference internal" href="#bdb.Breakpoint.hits" title="bdb.Breakpoint.hits"><code class="xref py py-attr docutils literal notranslate"><span class="pre">hit</span></code></a> will be counted when the first line of that function is
+executed.  A <a class="reference internal" href="#bdb.Breakpoint.cond" title="bdb.Breakpoint.cond"><code class="xref py py-attr docutils literal notranslate"><span class="pre">conditional</span></code></a> breakpoint always counts a
+<a class="reference internal" href="#bdb.Breakpoint.hits" title="bdb.Breakpoint.hits"><code class="xref py py-attr docutils literal notranslate"><span class="pre">hit</span></code></a>.</p>
 <p><a class="reference internal" href="#bdb.Breakpoint" title="bdb.Breakpoint"><code class="xref py py-class docutils literal notranslate"><span class="pre">Breakpoint</span></code></a> instances have the following methods:</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="bdb.Breakpoint.deleteMe">
@@ -205,12 +206,12 @@ file/line.</p>
 <dd><p>Return a string with all the information about the breakpoint, nicely
 formatted:</p>
 <ul class="simple">
-<li><p>The breakpoint number.</p></li>
-<li><p>If it is temporary or not.</p></li>
-<li><p>Its file,line position.</p></li>
-<li><p>The condition that causes a break.</p></li>
-<li><p>If it must be ignored the next N times.</p></li>
-<li><p>The breakpoint hit count.</p></li>
+<li><p>Breakpoint number.</p></li>
+<li><p>Temporary status (del or keep).</p></li>
+<li><p>File/line position.</p></li>
+<li><p>Break condition.</p></li>
+<li><p>Number of times to ignore.</p></li>
+<li><p>Number of times hit.</p></li>
 </ul>
 <div class="versionadded">
 <p><span class="versionmodified added">在 3.2 版本新加入.</span></p>
@@ -222,6 +223,69 @@ formatted:</p>
 <span class="sig-name descname"><span class="pre">bpprint</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#bdb.Breakpoint.bpprint" title="本定義的永久連結">¶</a></dt>
 <dd><p>Print the output of <a class="reference internal" href="#bdb.Breakpoint.bpformat" title="bdb.Breakpoint.bpformat"><code class="xref py py-meth docutils literal notranslate"><span class="pre">bpformat()</span></code></a> to the file <em>out</em>, or if it is
 <code class="docutils literal notranslate"><span class="pre">None</span></code>, to standard output.</p>
+</dd></dl>
+
+<p><a class="reference internal" href="#bdb.Breakpoint" title="bdb.Breakpoint"><code class="xref py py-class docutils literal notranslate"><span class="pre">Breakpoint</span></code></a> instances have the following attributes:</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bdb.Breakpoint.file">
+<span class="sig-name descname"><span class="pre">file</span></span><a class="headerlink" href="#bdb.Breakpoint.file" title="本定義的永久連結">¶</a></dt>
+<dd><p>File name of the <a class="reference internal" href="#bdb.Breakpoint" title="bdb.Breakpoint"><code class="xref py py-class docutils literal notranslate"><span class="pre">Breakpoint</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bdb.Breakpoint.line">
+<span class="sig-name descname"><span class="pre">line</span></span><a class="headerlink" href="#bdb.Breakpoint.line" title="本定義的永久連結">¶</a></dt>
+<dd><p>Line number of the <a class="reference internal" href="#bdb.Breakpoint" title="bdb.Breakpoint"><code class="xref py py-class docutils literal notranslate"><span class="pre">Breakpoint</span></code></a> within <a class="reference internal" href="#bdb.Breakpoint.file" title="bdb.Breakpoint.file"><code class="xref py py-attr docutils literal notranslate"><span class="pre">file</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bdb.Breakpoint.temporary">
+<span class="sig-name descname"><span class="pre">temporary</span></span><a class="headerlink" href="#bdb.Breakpoint.temporary" title="本定義的永久連結">¶</a></dt>
+<dd><p>True if a <a class="reference internal" href="#bdb.Breakpoint" title="bdb.Breakpoint"><code class="xref py py-class docutils literal notranslate"><span class="pre">Breakpoint</span></code></a> at (file, line) is temporary.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bdb.Breakpoint.cond">
+<span class="sig-name descname"><span class="pre">cond</span></span><a class="headerlink" href="#bdb.Breakpoint.cond" title="本定義的永久連結">¶</a></dt>
+<dd><p>Condition for evaluating a <a class="reference internal" href="#bdb.Breakpoint" title="bdb.Breakpoint"><code class="xref py py-class docutils literal notranslate"><span class="pre">Breakpoint</span></code></a> at (file, line).</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bdb.Breakpoint.funcname">
+<span class="sig-name descname"><span class="pre">funcname</span></span><a class="headerlink" href="#bdb.Breakpoint.funcname" title="本定義的永久連結">¶</a></dt>
+<dd><p>Function name that defines whether a <a class="reference internal" href="#bdb.Breakpoint" title="bdb.Breakpoint"><code class="xref py py-class docutils literal notranslate"><span class="pre">Breakpoint</span></code></a> is hit upon
+entering the function.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bdb.Breakpoint.enabled">
+<span class="sig-name descname"><span class="pre">enabled</span></span><a class="headerlink" href="#bdb.Breakpoint.enabled" title="本定義的永久連結">¶</a></dt>
+<dd><p>True if <a class="reference internal" href="#bdb.Breakpoint" title="bdb.Breakpoint"><code class="xref py py-class docutils literal notranslate"><span class="pre">Breakpoint</span></code></a> is enabled.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bdb.Breakpoint.bpbynumber">
+<span class="sig-name descname"><span class="pre">bpbynumber</span></span><a class="headerlink" href="#bdb.Breakpoint.bpbynumber" title="本定義的永久連結">¶</a></dt>
+<dd><p>Numeric index for a single instance of a <a class="reference internal" href="#bdb.Breakpoint" title="bdb.Breakpoint"><code class="xref py py-class docutils literal notranslate"><span class="pre">Breakpoint</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bdb.Breakpoint.bplist">
+<span class="sig-name descname"><span class="pre">bplist</span></span><a class="headerlink" href="#bdb.Breakpoint.bplist" title="本定義的永久連結">¶</a></dt>
+<dd><p>Dictionary of <a class="reference internal" href="#bdb.Breakpoint" title="bdb.Breakpoint"><code class="xref py py-class docutils literal notranslate"><span class="pre">Breakpoint</span></code></a> instances indexed by
+(<a class="reference internal" href="#bdb.Breakpoint.file" title="bdb.Breakpoint.file"><code class="xref py py-attr docutils literal notranslate"><span class="pre">file</span></code></a>, <a class="reference internal" href="#bdb.Breakpoint.line" title="bdb.Breakpoint.line"><code class="xref py py-attr docutils literal notranslate"><span class="pre">line</span></code></a>) tuples.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bdb.Breakpoint.ignore">
+<span class="sig-name descname"><span class="pre">ignore</span></span><a class="headerlink" href="#bdb.Breakpoint.ignore" title="本定義的永久連結">¶</a></dt>
+<dd><p>Number of times to ignore a <a class="reference internal" href="#bdb.Breakpoint" title="bdb.Breakpoint"><code class="xref py py-class docutils literal notranslate"><span class="pre">Breakpoint</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bdb.Breakpoint.hits">
+<span class="sig-name descname"><span class="pre">hits</span></span><a class="headerlink" href="#bdb.Breakpoint.hits" title="本定義的永久連結">¶</a></dt>
+<dd><p>Count of the number of times a <a class="reference internal" href="#bdb.Breakpoint" title="bdb.Breakpoint"><code class="xref py py-class docutils literal notranslate"><span class="pre">Breakpoint</span></code></a> has been hit.</p>
 </dd></dl>
 
 </dd></dl>
@@ -245,9 +309,10 @@ by the <code class="docutils literal notranslate"><span class="pre">__name__</sp
 <dl class="py method">
 <dt class="sig sig-object py" id="bdb.Bdb.canonic">
 <span class="sig-name descname"><span class="pre">canonic</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#bdb.Bdb.canonic" title="本定義的永久連結">¶</a></dt>
-<dd><p>Auxiliary method for getting a filename in a canonical form, that is, as a
-case-normalized (on case-insensitive filesystems) absolute path, stripped
-of surrounding angle brackets.</p>
+<dd><p>Return canonical form of <em>filename</em>.</p>
+<p>For real file names, the canonical form is an operating-system-dependent,
+<a class="reference internal" href="os.path.html#os.path.normcase" title="os.path.normcase"><code class="xref py py-func docutils literal notranslate"><span class="pre">case-normalized</span></code></a> <a class="reference internal" href="os.path.html#os.path.abspath" title="os.path.abspath"><code class="xref py py-func docutils literal notranslate"><span class="pre">absolute</span> <span class="pre">path</span></code></a>. A <em>filename</em> with angle brackets, such as <cite>&quot;&lt;stdin&gt;&quot;</cite>
+generated in interactive mode, is returned unchanged.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -326,25 +391,29 @@ Raise a <a class="reference internal" href="#bdb.BdbQuit" title="bdb.BdbQuit"><c
 <p>Normally derived classes don't override the following methods, but they may
 if they want to redefine the definition of stopping and breakpoints.</p>
 <dl class="py method">
+<dt class="sig sig-object py" id="bdb.Bdb.is_skipped_line">
+<span class="sig-name descname"><span class="pre">is_skipped_line</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">module_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#bdb.Bdb.is_skipped_line" title="本定義的永久連結">¶</a></dt>
+<dd><p>Return True if <em>module_name</em> matches any skip pattern.</p>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="bdb.Bdb.stop_here">
 <span class="sig-name descname"><span class="pre">stop_here</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">frame</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#bdb.Bdb.stop_here" title="本定義的永久連結">¶</a></dt>
-<dd><p>This method checks if the <em>frame</em> is somewhere below <code class="xref py py-attr docutils literal notranslate"><span class="pre">botframe</span></code> in
-the call stack.  <code class="xref py py-attr docutils literal notranslate"><span class="pre">botframe</span></code> is the frame in which debugging started.</p>
+<dd><p>Return True if <em>frame</em> is below the starting frame in the stack.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="bdb.Bdb.break_here">
 <span class="sig-name descname"><span class="pre">break_here</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">frame</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#bdb.Bdb.break_here" title="本定義的永久連結">¶</a></dt>
-<dd><p>This method checks if there is a breakpoint in the filename and line
-belonging to <em>frame</em> or, at least, in the current function.  If the
-breakpoint is a temporary one, this method deletes it.</p>
+<dd><p>Return True if there is an effective breakpoint for this line.</p>
+<p>Check whether a line or function breakpoint exists and is in effect.  Delete temporary
+breakpoints based on information from <a class="reference internal" href="#bdb.effective" title="bdb.effective"><code class="xref py py-func docutils literal notranslate"><span class="pre">effective()</span></code></a>.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="bdb.Bdb.break_anywhere">
 <span class="sig-name descname"><span class="pre">break_anywhere</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">frame</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#bdb.Bdb.break_anywhere" title="本定義的永久連結">¶</a></dt>
-<dd><p>This method checks if there is a breakpoint in the filename of the current
-frame.</p>
+<dd><p>Return True if any breakpoint exists for <em>frame</em>'s filename.</p>
 </dd></dl>
 
 <p>Derived classes should override these methods to gain control over debugger
@@ -352,30 +421,28 @@ operation.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="bdb.Bdb.user_call">
 <span class="sig-name descname"><span class="pre">user_call</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">frame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">argument_list</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#bdb.Bdb.user_call" title="本定義的永久連結">¶</a></dt>
-<dd><p>This method is called from <a class="reference internal" href="#bdb.Bdb.dispatch_call" title="bdb.Bdb.dispatch_call"><code class="xref py py-meth docutils literal notranslate"><span class="pre">dispatch_call()</span></code></a> when there is the
-possibility that a break might be necessary anywhere inside the called
-function.</p>
+<dd><p>Called from <a class="reference internal" href="#bdb.Bdb.dispatch_call" title="bdb.Bdb.dispatch_call"><code class="xref py py-meth docutils literal notranslate"><span class="pre">dispatch_call()</span></code></a> if a break might stop inside the
+called function.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="bdb.Bdb.user_line">
 <span class="sig-name descname"><span class="pre">user_line</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">frame</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#bdb.Bdb.user_line" title="本定義的永久連結">¶</a></dt>
-<dd><p>This method is called from <a class="reference internal" href="#bdb.Bdb.dispatch_line" title="bdb.Bdb.dispatch_line"><code class="xref py py-meth docutils literal notranslate"><span class="pre">dispatch_line()</span></code></a> when either
-<a class="reference internal" href="#bdb.Bdb.stop_here" title="bdb.Bdb.stop_here"><code class="xref py py-meth docutils literal notranslate"><span class="pre">stop_here()</span></code></a> or <a class="reference internal" href="#bdb.Bdb.break_here" title="bdb.Bdb.break_here"><code class="xref py py-meth docutils literal notranslate"><span class="pre">break_here()</span></code></a> yields <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p>
+<dd><p>Called from <a class="reference internal" href="#bdb.Bdb.dispatch_line" title="bdb.Bdb.dispatch_line"><code class="xref py py-meth docutils literal notranslate"><span class="pre">dispatch_line()</span></code></a> when either <a class="reference internal" href="#bdb.Bdb.stop_here" title="bdb.Bdb.stop_here"><code class="xref py py-meth docutils literal notranslate"><span class="pre">stop_here()</span></code></a> or
+<a class="reference internal" href="#bdb.Bdb.break_here" title="bdb.Bdb.break_here"><code class="xref py py-meth docutils literal notranslate"><span class="pre">break_here()</span></code></a> returns <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="bdb.Bdb.user_return">
 <span class="sig-name descname"><span class="pre">user_return</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">frame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#bdb.Bdb.user_return" title="本定義的永久連結">¶</a></dt>
-<dd><p>This method is called from <a class="reference internal" href="#bdb.Bdb.dispatch_return" title="bdb.Bdb.dispatch_return"><code class="xref py py-meth docutils literal notranslate"><span class="pre">dispatch_return()</span></code></a> when <a class="reference internal" href="#bdb.Bdb.stop_here" title="bdb.Bdb.stop_here"><code class="xref py py-meth docutils literal notranslate"><span class="pre">stop_here()</span></code></a>
-yields <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p>
+<dd><p>Called from <a class="reference internal" href="#bdb.Bdb.dispatch_return" title="bdb.Bdb.dispatch_return"><code class="xref py py-meth docutils literal notranslate"><span class="pre">dispatch_return()</span></code></a> when <a class="reference internal" href="#bdb.Bdb.stop_here" title="bdb.Bdb.stop_here"><code class="xref py py-meth docutils literal notranslate"><span class="pre">stop_here()</span></code></a> returns <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="bdb.Bdb.user_exception">
 <span class="sig-name descname"><span class="pre">user_exception</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">frame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exc_info</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#bdb.Bdb.user_exception" title="本定義的永久連結">¶</a></dt>
-<dd><p>This method is called from <a class="reference internal" href="#bdb.Bdb.dispatch_exception" title="bdb.Bdb.dispatch_exception"><code class="xref py py-meth docutils literal notranslate"><span class="pre">dispatch_exception()</span></code></a> when
-<a class="reference internal" href="#bdb.Bdb.stop_here" title="bdb.Bdb.stop_here"><code class="xref py py-meth docutils literal notranslate"><span class="pre">stop_here()</span></code></a> yields <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p>
+<dd><p>Called from <a class="reference internal" href="#bdb.Bdb.dispatch_exception" title="bdb.Bdb.dispatch_exception"><code class="xref py py-meth docutils literal notranslate"><span class="pre">dispatch_exception()</span></code></a> when <a class="reference internal" href="#bdb.Bdb.stop_here" title="bdb.Bdb.stop_here"><code class="xref py py-meth docutils literal notranslate"><span class="pre">stop_here()</span></code></a>
+returns <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -407,8 +474,8 @@ stepping state.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="bdb.Bdb.set_until">
-<span class="sig-name descname"><span class="pre">set_until</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">frame</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#bdb.Bdb.set_until" title="本定義的永久連結">¶</a></dt>
-<dd><p>Stop when the line with the line no greater than the current one is
+<span class="sig-name descname"><span class="pre">set_until</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">frame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lineno</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#bdb.Bdb.set_until" title="本定義的永久連結">¶</a></dt>
+<dd><p>Stop when the line with the <em>lineno</em> greater than the current one is
 reached or when returning from current frame.</p>
 </dd></dl>
 
@@ -438,7 +505,7 @@ breakpoints.  These methods return a string containing an error message if
 something went wrong, or <code class="docutils literal notranslate"><span class="pre">None</span></code> if all is well.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="bdb.Bdb.set_break">
-<span class="sig-name descname"><span class="pre">set_break</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lineno</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">temporary=0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cond</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">funcname</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#bdb.Bdb.set_break" title="本定義的永久連結">¶</a></dt>
+<span class="sig-name descname"><span class="pre">set_break</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lineno</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">temporary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cond</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">funcname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#bdb.Bdb.set_break" title="本定義的永久連結">¶</a></dt>
 <dd><p>Set a new breakpoint.  If the <em>lineno</em> line doesn't exist for the
 <em>filename</em> passed as argument, return an error message.  The <em>filename</em>
 should be in canonical form, as described in the <a class="reference internal" href="#bdb.Bdb.canonic" title="bdb.Bdb.canonic"><code class="xref py py-meth docutils literal notranslate"><span class="pre">canonic()</span></code></a> method.</p>
@@ -447,29 +514,30 @@ should be in canonical form, as described in the <a class="reference internal" h
 <dl class="py method">
 <dt class="sig sig-object py" id="bdb.Bdb.clear_break">
 <span class="sig-name descname"><span class="pre">clear_break</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lineno</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#bdb.Bdb.clear_break" title="本定義的永久連結">¶</a></dt>
-<dd><p>Delete the breakpoints in <em>filename</em> and <em>lineno</em>.  If none were set, an
-error message is returned.</p>
+<dd><p>Delete the breakpoints in <em>filename</em> and <em>lineno</em>.  If none were set,
+return an error message.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="bdb.Bdb.clear_bpbynumber">
 <span class="sig-name descname"><span class="pre">clear_bpbynumber</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arg</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#bdb.Bdb.clear_bpbynumber" title="本定義的永久連結">¶</a></dt>
 <dd><p>Delete the breakpoint which has the index <em>arg</em> in the
-<code class="xref py py-attr docutils literal notranslate"><span class="pre">Breakpoint.bpbynumber</span></code>.  If <em>arg</em> is not numeric or out of range,
+<a class="reference internal" href="#bdb.Breakpoint.bpbynumber" title="bdb.Breakpoint.bpbynumber"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Breakpoint.bpbynumber</span></code></a>.  If <em>arg</em> is not numeric or out of range,
 return an error message.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="bdb.Bdb.clear_all_file_breaks">
 <span class="sig-name descname"><span class="pre">clear_all_file_breaks</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#bdb.Bdb.clear_all_file_breaks" title="本定義的永久連結">¶</a></dt>
-<dd><p>Delete all breakpoints in <em>filename</em>.  If none were set, an error message
-is returned.</p>
+<dd><p>Delete all breakpoints in <em>filename</em>.  If none were set, return an error
+message.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="bdb.Bdb.clear_all_breaks">
 <span class="sig-name descname"><span class="pre">clear_all_breaks</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#bdb.Bdb.clear_all_breaks" title="本定義的永久連結">¶</a></dt>
-<dd><p>Delete all existing breakpoints.</p>
+<dd><p>Delete all existing breakpoints.  If none were set, return an error
+message.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -487,7 +555,7 @@ the given breakpoint never existed or has been deleted, a
 <dl class="py method">
 <dt class="sig sig-object py" id="bdb.Bdb.get_break">
 <span class="sig-name descname"><span class="pre">get_break</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lineno</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#bdb.Bdb.get_break" title="本定義的永久連結">¶</a></dt>
-<dd><p>Check if there is a breakpoint for <em>lineno</em> of <em>filename</em>.</p>
+<dd><p>Return True if there is a breakpoint for <em>lineno</em> in <em>filename</em>.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -514,18 +582,19 @@ structure representing a stack trace.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="bdb.Bdb.get_stack">
 <span class="sig-name descname"><span class="pre">get_stack</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">f</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#bdb.Bdb.get_stack" title="本定義的永久連結">¶</a></dt>
-<dd><p>Get a list of records for a frame and all higher (calling) and lower
-frames, and the size of the higher part.</p>
+<dd><p>Return a list of (frame, lineno) tuples in a stack trace, and a size.</p>
+<p>The most recently called frame is last in the list. The size is the number
+of frames below the frame where the debugger was invoked.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="bdb.Bdb.format_stack_entry">
 <span class="sig-name descname"><span class="pre">format_stack_entry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">frame_lineno</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lprefix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">':</span> <span class="pre">'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#bdb.Bdb.format_stack_entry" title="本定義的永久連結">¶</a></dt>
-<dd><p>Return a string with information about a stack entry, identified by a
-<code class="docutils literal notranslate"><span class="pre">(frame,</span> <span class="pre">lineno)</span></code> tuple:</p>
+<dd><p>Return a string with information about a stack entry, which is a
+<code class="docutils literal notranslate"><span class="pre">(frame,</span> <span class="pre">lineno)</span></code> tuple.  The return string contains:</p>
 <ul class="simple">
-<li><p>The canonical form of the filename which contains the frame.</p></li>
-<li><p>The function name, or <code class="docutils literal notranslate"><span class="pre">&quot;&lt;lambda&gt;&quot;</span></code>.</p></li>
+<li><p>The canonical filename which contains the frame.</p></li>
+<li><p>The function name or <code class="docutils literal notranslate"><span class="pre">&quot;&lt;lambda&gt;&quot;</span></code>.</p></li>
 <li><p>The input arguments.</p></li>
 <li><p>The return value.</p></li>
 <li><p>The line of code (if it exists).</p></li>
@@ -566,21 +635,32 @@ defaults to <code class="xref py py-attr docutils literal notranslate"><span cla
 <dl class="py function">
 <dt class="sig sig-object py" id="bdb.checkfuncname">
 <span class="sig-prename descclassname"><span class="pre">bdb.</span></span><span class="sig-name descname"><span class="pre">checkfuncname</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">b</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frame</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#bdb.checkfuncname" title="本定義的永久連結">¶</a></dt>
-<dd><p>Check whether we should break here, depending on the way the breakpoint <em>b</em>
-was set.</p>
-<p>If it was set via line number, it checks if <code class="docutils literal notranslate"><span class="pre">b.line</span></code> is the same as the one
-in the frame also passed as argument.  If the breakpoint was set via function
-name, we have to check we are in the right frame (the right function) and if
-we are in its first executable line.</p>
+<dd><p>Return True if we should break here, depending on the way the
+<a class="reference internal" href="#bdb.Breakpoint" title="bdb.Breakpoint"><code class="xref py py-class docutils literal notranslate"><span class="pre">Breakpoint</span></code></a> <em>b</em> was set.</p>
+<p>If it was set via line number, it checks if
+<a class="reference internal" href="#bdb.Breakpoint.line" title="bdb.Breakpoint.line"><code class="xref py py-attr docutils literal notranslate"><span class="pre">b.line</span></code></a> is the same as the one in <em>frame</em>.
+If the breakpoint was set via
+<a class="reference internal" href="#bdb.Breakpoint.funcname" title="bdb.Breakpoint.funcname"><code class="xref py py-attr docutils literal notranslate"><span class="pre">function</span> <span class="pre">name</span></code></a>, we have to check we are in
+the right <em>frame</em> (the right function) and if we are on its first executable
+line.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="bdb.effective">
 <span class="sig-prename descclassname"><span class="pre">bdb.</span></span><span class="sig-name descname"><span class="pre">effective</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">line</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frame</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#bdb.effective" title="本定義的永久連結">¶</a></dt>
-<dd><p>Determine if there is an effective (active) breakpoint at this line of code.
-Return a tuple of the breakpoint and a boolean that indicates if it is ok
-to delete a temporary breakpoint.  Return <code class="docutils literal notranslate"><span class="pre">(None,</span> <span class="pre">None)</span></code> if there is no
-matching breakpoint.</p>
+<dd><p>Return <code class="docutils literal notranslate"><span class="pre">(active</span> <span class="pre">breakpoint,</span> <span class="pre">delete</span> <span class="pre">temporary</span> <span class="pre">flag)</span></code> or <code class="docutils literal notranslate"><span class="pre">(None,</span> <span class="pre">None)</span></code> as the
+breakpoint to act upon.</p>
+<p>The <em>active breakpoint</em> is the first entry in
+<a class="reference internal" href="#bdb.Breakpoint.bplist" title="bdb.Breakpoint.bplist"><code class="xref py py-attr docutils literal notranslate"><span class="pre">bplist</span></code></a> for the
+(<a class="reference internal" href="#bdb.Breakpoint.file" title="bdb.Breakpoint.file"><code class="xref py py-attr docutils literal notranslate"><span class="pre">file</span></code></a>, <a class="reference internal" href="#bdb.Breakpoint.line" title="bdb.Breakpoint.line"><code class="xref py py-attr docutils literal notranslate"><span class="pre">line</span></code></a>)
+(which must exist) that is <a class="reference internal" href="#bdb.Breakpoint.enabled" title="bdb.Breakpoint.enabled"><code class="xref py py-attr docutils literal notranslate"><span class="pre">enabled</span></code></a>, for
+which <a class="reference internal" href="#bdb.checkfuncname" title="bdb.checkfuncname"><code class="xref py py-func docutils literal notranslate"><span class="pre">checkfuncname()</span></code></a> is True, and that has neither a False
+<a class="reference internal" href="#bdb.Breakpoint.cond" title="bdb.Breakpoint.cond"><code class="xref py py-attr docutils literal notranslate"><span class="pre">condition</span></code></a> nor positive
+<a class="reference internal" href="#bdb.Breakpoint.ignore" title="bdb.Breakpoint.ignore"><code class="xref py py-attr docutils literal notranslate"><span class="pre">ignore</span></code></a> count.  The <em>flag</em>, meaning that a
+temporary breakpoint should be deleted, is False only when the
+<a class="reference internal" href="#bdb.Breakpoint.cond" title="bdb.Breakpoint.cond"><code class="xref py py-attr docutils literal notranslate"><span class="pre">cond</span></code></a> cannot be evaluated (in which case,
+<a class="reference internal" href="#bdb.Breakpoint.ignore" title="bdb.Breakpoint.ignore"><code class="xref py py-attr docutils literal notranslate"><span class="pre">ignore</span></code></a> count is ignored).</p>
+<p>If no such entry exists, then (None, None) is returned.</p>
 </dd></dl>
 
 <dl class="py function">
@@ -653,7 +733,7 @@ matching breakpoint.</p>
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.5 Documentation</a> &#187;
+      <a href="../index.html">3.10.7 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -690,11 +770,11 @@ matching breakpoint.</p>
 <br />
     <br />
 
-    最後更新於 7月 23, 2022。
+    最後更新於 9月 16, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 
-    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.0.2 建立。
+    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1 建立。
     </div>
 
   </body>

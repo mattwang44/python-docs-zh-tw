@@ -4,9 +4,9 @@
 <html lang="zh-TW">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>configparser --- Configuration file parser &#8212; Python 3.10.5 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>configparser --- Configuration file parser &#8212; Python 3.10.7 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -21,7 +21,7 @@
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.10.5 說明文件 中搜尋"
+          title="在 Python 3.10.7 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -143,7 +143,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.5 Documentation</a> &#187;
+      <a href="../index.html">3.10.7 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -172,7 +172,7 @@
           <div class="body" role="main">
             
   <section id="module-configparser">
-<span id="configparser-configuration-file-parser"></span><h1><a class="reference internal" href="#module-configparser" title="configparser: Configuration file parser."><code class="xref py py-mod docutils literal notranslate"><span class="pre">configparser</span></code></a> --- Configuration file parser<a class="headerlink" href="#module-configparser" title="Permalink to this heading">¶</a></h1>
+<span id="configparser-configuration-file-parser"></span><h1><a class="reference internal" href="#module-configparser" title="configparser: Configuration file parser."><code class="xref py py-mod docutils literal notranslate"><span class="pre">configparser</span></code></a> --- Configuration file parser<a class="headerlink" href="#module-configparser" title="本標頭的永久連結">¶</a></h1>
 <p><strong>原始碼：</strong><a class="reference external" href="https://github.com/python/cpython/tree/3.10/Lib/configparser.py">Lib/configparser.py</a></p>
 <hr class="docutils" id="index-0" />
 <p>This module provides the <a class="reference internal" href="#configparser.ConfigParser" title="configparser.ConfigParser"><code class="xref py py-class docutils literal notranslate"><span class="pre">ConfigParser</span></code></a> class which implements a basic
@@ -196,7 +196,7 @@ be used for this purpose.</p>
 </dl>
 </div>
 <section id="quick-start">
-<h2>Quick Start<a class="headerlink" href="#quick-start" title="Permalink to this heading">¶</a></h2>
+<h2>Quick Start<a class="headerlink" href="#quick-start" title="本標頭的永久連結">¶</a></h2>
 <p>Let's take a very basic configuration file that looks like this:</p>
 <div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[DEFAULT]</span><span class="w"></span>
 <span class="na">ServerAliveInterval</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">45</span><span class="w"></span>
@@ -296,7 +296,7 @@ configuration while the previously existing keys are retained.</p>
 files passed to the <em>filenames</em> parameter.</p>
 </section>
 <section id="supported-datatypes">
-<h2>Supported Datatypes<a class="headerlink" href="#supported-datatypes" title="Permalink to this heading">¶</a></h2>
+<h2>Supported Datatypes<a class="headerlink" href="#supported-datatypes" title="本標頭的永久連結">¶</a></h2>
 <p>Config parsers do not guess datatypes of values in configuration files, always
 storing them internally as strings.  This means that if you need other
 datatypes, you should convert on your own:</p>
@@ -327,7 +327,7 @@ provide equivalent <a class="reference internal" href="#configparser.ConfigParse
 converters and customize the provided ones. <a class="footnote-reference brackets" href="#id15" id="id4" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a></p>
 </section>
 <section id="fallback-values">
-<h2>Fallback Values<a class="headerlink" href="#fallback-values" title="Permalink to this heading">¶</a></h2>
+<h2>Fallback Values<a class="headerlink" href="#fallback-values" title="本標頭的永久連結">¶</a></h2>
 <p>As with a dictionary, you can use a section's <code class="xref py py-meth docutils literal notranslate"><span class="pre">get()</span></code> method to
 provide fallback values:</p>
 <div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">topsecret</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;Port&#39;</span><span class="p">)</span>
@@ -371,7 +371,7 @@ the <code class="docutils literal notranslate"><span class="pre">fallback</span>
 </div>
 </section>
 <section id="supported-ini-file-structure">
-<h2>Supported INI File Structure<a class="headerlink" href="#supported-ini-file-structure" title="Permalink to this heading">¶</a></h2>
+<h2>Supported INI File Structure<a class="headerlink" href="#supported-ini-file-structure" title="本標頭的永久連結">¶</a></h2>
 <p>A configuration file consists of sections, each led by a <code class="docutils literal notranslate"><span class="pre">[section]</span></code> header,
 followed by key/value entries separated by a specific string (<code class="docutils literal notranslate"><span class="pre">=</span></code> or <code class="docutils literal notranslate"><span class="pre">:</span></code> by
 default <a class="footnote-reference brackets" href="#id15" id="id5" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>).  By default, section names are case sensitive but keys are not
@@ -432,7 +432,7 @@ their own on an otherwise empty line, possibly indented. <a class="footnote-refe
 </div>
 </section>
 <section id="interpolation-of-values">
-<h2>Interpolation of values<a class="headerlink" href="#interpolation-of-values" title="Permalink to this heading">¶</a></h2>
+<h2>Interpolation of values<a class="headerlink" href="#interpolation-of-values" title="本標頭的永久連結">¶</a></h2>
 <p>On top of the core functionality, <a class="reference internal" href="#configparser.ConfigParser" title="configparser.ConfigParser"><code class="xref py py-class docutils literal notranslate"><span class="pre">ConfigParser</span></code></a> supports
 interpolation.  This means values can be preprocessed before returning them
 from <code class="docutils literal notranslate"><span class="pre">get()</span></code> calls.</p>
@@ -509,7 +509,7 @@ would look like this with extended interpolation:</p>
 
 </section>
 <section id="mapping-protocol-access">
-<h2>Mapping Protocol Access<a class="headerlink" href="#mapping-protocol-access" title="Permalink to this heading">¶</a></h2>
+<h2>Mapping Protocol Access<a class="headerlink" href="#mapping-protocol-access" title="本標頭的永久連結">¶</a></h2>
 <div class="versionadded">
 <p><span class="versionmodified added">在 3.2 版本新加入.</span></p>
 </div>
@@ -564,7 +564,7 @@ subclasses overriding the original interface still should have mappings working
 as expected.</p>
 </section>
 <section id="customizing-parser-behaviour">
-<h2>Customizing Parser Behaviour<a class="headerlink" href="#customizing-parser-behaviour" title="Permalink to this heading">¶</a></h2>
+<h2>Customizing Parser Behaviour<a class="headerlink" href="#customizing-parser-behaviour" title="本標頭的永久連結">¶</a></h2>
 <p>There are nearly as many INI format variants as there are applications using it.
 <a class="reference internal" href="#module-configparser" title="configparser: Configuration file parser."><code class="xref py py-mod docutils literal notranslate"><span class="pre">configparser</span></code></a> goes a long way to provide support for the largest sensible
 set of INI styles available.  The default functionality is mainly dictated by
@@ -879,7 +879,7 @@ interfere with constructor options <em>allow_no_value</em> and <em>delimiters</e
 
 </section>
 <section id="legacy-api-examples">
-<h2>Legacy API Examples<a class="headerlink" href="#legacy-api-examples" title="Permalink to this heading">¶</a></h2>
+<h2>Legacy API Examples<a class="headerlink" href="#legacy-api-examples" title="本標頭的永久連結">¶</a></h2>
 <p>Mainly because of backwards compatibility concerns, <a class="reference internal" href="#module-configparser" title="configparser: Configuration file parser."><code class="xref py py-mod docutils literal notranslate"><span class="pre">configparser</span></code></a>
 provides also a legacy API with explicit <code class="docutils literal notranslate"><span class="pre">get</span></code>/<code class="docutils literal notranslate"><span class="pre">set</span></code> methods.  While there
 are valid use cases for the methods outlined below, mapping protocol access is
@@ -975,7 +975,7 @@ interpolation if an option used is not defined elsewhere.</p>
 </div>
 </section>
 <section id="configparser-objects">
-<span id="id12"></span><h2>ConfigParser 物件<a class="headerlink" href="#configparser-objects" title="Permalink to this heading">¶</a></h2>
+<span id="id12"></span><h2>ConfigParser 物件<a class="headerlink" href="#configparser-objects" title="本標頭的永久連結">¶</a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="configparser.ConfigParser">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">configparser.</span></span><span class="sig-name descname"><span class="pre">ConfigParser</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">defaults</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dict_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">allow_no_value</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delimiters</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">('=',</span> <span class="pre">':')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comment_prefixes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">('#',</span> <span class="pre">';')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inline_comment_prefixes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">strict</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">empty_lines_in_values</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default_section</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">configparser.DEFAULTSECT</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">interpolation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">BasicInterpolation()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">converters</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#configparser.ConfigParser" title="本定義的永久連結">¶</a></dt>
@@ -1321,7 +1321,7 @@ is used.</p>
 
 </section>
 <section id="rawconfigparser-objects">
-<span id="id14"></span><h2>RawConfigParser 物件<a class="headerlink" href="#rawconfigparser-objects" title="Permalink to this heading">¶</a></h2>
+<span id="id14"></span><h2>RawConfigParser 物件<a class="headerlink" href="#rawconfigparser-objects" title="本標頭的永久連結">¶</a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="configparser.RawConfigParser">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">configparser.</span></span><span class="sig-name descname"><span class="pre">RawConfigParser</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">defaults=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dict_type=dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">allow_no_value=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delimiters=('='</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">':')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comment_prefixes=('#'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">';')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inline_comment_prefixes=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">strict=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">empty_lines_in_values=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default_section=configparser.DEFAULTSECT</span></span></em><span class="optional">[</span>, <em class="sig-param"><span class="n"><span class="pre">interpolation</span></span></em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#configparser.RawConfigParser" title="本定義的永久連結">¶</a></dt>
@@ -1368,7 +1368,7 @@ which does not allow such assignments to take place.</p>
 
 </section>
 <section id="exceptions">
-<h2>例外<a class="headerlink" href="#exceptions" title="Permalink to this heading">¶</a></h2>
+<h2>例外<a class="headerlink" href="#exceptions" title="本標頭的永久連結">¶</a></h2>
 <dl class="py exception">
 <dt class="sig sig-object py" id="configparser.Error">
 <em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">configparser.</span></span><span class="sig-name descname"><span class="pre">Error</span></span><a class="headerlink" href="#configparser.Error" title="本定義的永久連結">¶</a></dt>
@@ -1456,12 +1456,14 @@ headers.</p>
 </dd></dl>
 
 <p class="rubric">註解</p>
+<aside class="footnote-list brackets">
 <aside class="footnote brackets" id="id15" role="note">
 <span class="label"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></span>
 <span class="backrefs">(<a role="doc-backlink" href="#id1">1</a>,<a role="doc-backlink" href="#id2">2</a>,<a role="doc-backlink" href="#id3">3</a>,<a role="doc-backlink" href="#id4">4</a>,<a role="doc-backlink" href="#id5">5</a>,<a role="doc-backlink" href="#id6">6</a>,<a role="doc-backlink" href="#id7">7</a>,<a role="doc-backlink" href="#id8">8</a>,<a role="doc-backlink" href="#id9">9</a>,<a role="doc-backlink" href="#id10">10</a>,<a role="doc-backlink" href="#id11">11</a>)</span>
 <p>Config parsers allow for heavy customization.  If you are interested in
 changing the behaviour outlined by the footnote reference, consult the
 <a class="reference internal" href="#customizing-parser-behaviour">Customizing Parser Behaviour</a> section.</p>
+</aside>
 </aside>
 </section>
 </section>
@@ -1548,7 +1550,7 @@ changing the behaviour outlined by the footnote reference, consult the
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.5 Documentation</a> &#187;
+      <a href="../index.html">3.10.7 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -1585,11 +1587,11 @@ changing the behaviour outlined by the footnote reference, consult the
 <br />
     <br />
 
-    最後更新於 7月 23, 2022。
+    最後更新於 9月 16, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 
-    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.0.2 建立。
+    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1 建立。
     </div>
 
   </body>

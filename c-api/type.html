@@ -4,9 +4,9 @@
 <html lang="zh-TW">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>Type Objects &#8212; Python 3.10.5 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Type Objects &#8212; Python 3.10.7 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -21,7 +21,7 @@
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.10.5 說明文件 中搜尋"
+          title="在 Python 3.10.7 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -133,7 +133,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.5 Documentation</a> &#187;
+      <a href="../index.html">3.10.7 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python/C API 參考手冊</a> &#187;</li>
@@ -162,11 +162,11 @@
           <div class="body" role="main">
             
   <section id="type-objects">
-<span id="typeobjects"></span><h1>Type Objects<a class="headerlink" href="#type-objects" title="Permalink to this heading">¶</a></h1>
+<span id="typeobjects"></span><h1>Type Objects<a class="headerlink" href="#type-objects" title="本標頭的永久連結">¶</a></h1>
 <span class="target" id="index-0"></span><dl class="c type">
 <dt class="sig sig-object c" id="c.PyTypeObject">
 <span class="k"><span class="pre">type</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PyTypeObject</span></span></span><a class="headerlink" href="#c.PyTypeObject" title="本定義的永久連結">¶</a><br /></dt>
-<dd><em class="stableabi"> Part of the <a class="reference internal" href="stable.html#stable"><span class="std std-ref">Stable ABI</span></a>.</em><p>The C structure of the objects used to describe built-in types.</p>
+<dd><em class="stableabi"> Part of the <a class="reference internal" href="stable.html#stable"><span class="std std-ref">Limited API</span></a> (as an opaque struct).</em><p>The C structure of the objects used to describe built-in types.</p>
 </dd></dl>
 
 <dl class="c var">
@@ -331,7 +331,7 @@ returns <code class="docutils literal notranslate"><span class="pre">NULL</span>
 </dd></dl>
 
 <section id="creating-heap-allocated-types">
-<h2>Creating Heap-Allocated Types<a class="headerlink" href="#creating-heap-allocated-types" title="Permalink to this heading">¶</a></h2>
+<h2>Creating Heap-Allocated Types<a class="headerlink" href="#creating-heap-allocated-types" title="本標頭的永久連結">¶</a></h2>
 <p>The following functions and structs are used to create
 <a class="reference internal" href="typeobj.html#heap-types"><span class="std std-ref">heap types</span></a>.</p>
 <dl class="c function">
@@ -378,7 +378,7 @@ for each class individually.</p>
 <dl class="c type">
 <dt class="sig sig-object c" id="c.PyType_Spec">
 <span class="k"><span class="pre">type</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PyType_Spec</span></span></span><a class="headerlink" href="#c.PyType_Spec" title="本定義的永久連結">¶</a><br /></dt>
-<dd><em class="stableabi"> Part of the <a class="reference internal" href="stable.html#stable"><span class="std std-ref">Stable ABI</span></a>.</em><p>Structure defining a type's behavior.</p>
+<dd><em class="stableabi"> Part of the <a class="reference internal" href="stable.html#stable"><span class="std std-ref">Stable ABI</span></a> (including all members).</em><p>Structure defining a type's behavior.</p>
 <dl class="c member">
 <dt class="sig sig-object c" id="c.PyType_Spec.PyType_Spec.name">
 <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-prename descclassname"><span class="n"><span class="pre">PyType_Spec</span></span><span class="p"><span class="pre">.</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">name</span></span></span><a class="headerlink" href="#c.PyType_Spec.PyType_Spec.name" title="本定義的永久連結">¶</a><br /></dt>
@@ -418,7 +418,7 @@ Terminated by the special slot value <code class="docutils literal notranslate">
 <dl class="c type">
 <dt class="sig sig-object c" id="c.PyType_Slot">
 <span class="k"><span class="pre">type</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PyType_Slot</span></span></span><a class="headerlink" href="#c.PyType_Slot" title="本定義的永久連結">¶</a><br /></dt>
-<dd><em class="stableabi"> Part of the <a class="reference internal" href="stable.html#stable"><span class="std std-ref">Stable ABI</span></a>.</em><p>Structure defining optional functionality of a type, containing a slot ID
+<dd><em class="stableabi"> Part of the <a class="reference internal" href="stable.html#stable"><span class="std std-ref">Stable ABI</span></a> (including all members).</em><p>Structure defining optional functionality of a type, containing a slot ID
 and a value pointer.</p>
 <dl class="c member">
 <dt class="sig sig-object c" id="c.PyType_Slot.PyType_Slot.slot">
@@ -552,7 +552,7 @@ to a function.</p>
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.5 Documentation</a> &#187;
+      <a href="../index.html">3.10.7 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python/C API 參考手冊</a> &#187;</li>
@@ -589,11 +589,11 @@ to a function.</p>
 <br />
     <br />
 
-    最後更新於 7月 23, 2022。
+    最後更新於 9月 16, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 
-    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.0.2 建立。
+    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1 建立。
     </div>
 
   </body>

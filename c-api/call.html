@@ -4,9 +4,9 @@
 <html lang="zh-TW">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>呼叫協定 (Call Protocol) &#8212; Python 3.10.5 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>呼叫協定 (Call Protocol) &#8212; Python 3.10.7 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -21,7 +21,7 @@
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.10.5 說明文件 中搜尋"
+          title="在 Python 3.10.7 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -140,7 +140,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.5 Documentation</a> &#187;
+      <a href="../index.html">3.10.7 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python/C API 參考手冊</a> &#187;</li>
@@ -169,10 +169,10 @@
           <div class="body" role="main">
             
   <section id="call-protocol">
-<span id="call"></span><h1>呼叫協定 (Call Protocol)<a class="headerlink" href="#call-protocol" title="Permalink to this heading">¶</a></h1>
+<span id="call"></span><h1>呼叫協定 (Call Protocol)<a class="headerlink" href="#call-protocol" title="本標頭的永久連結">¶</a></h1>
 <p>CPython 支援兩種不同的呼叫協定：<em>tp_call</em> 和 vectorcall（向量呼叫）。</p>
 <section id="the-tp-call-protocol">
-<h2><em>tp_call</em> 協定<a class="headerlink" href="#the-tp-call-protocol" title="Permalink to this heading">¶</a></h2>
+<h2><em>tp_call</em> 協定<a class="headerlink" href="#the-tp-call-protocol" title="本標頭的永久連結">¶</a></h2>
 <p>設定 <a class="reference internal" href="typeobj.html#c.PyTypeObject.tp_call" title="PyTypeObject.tp_call"><code class="xref c c-member docutils literal notranslate"><span class="pre">tp_call</span></code></a> 的類別之實例都是可呼叫的。該擴充槽 (slot) 的簽章為：</p>
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">PyObject</span><span class="w"> </span><span class="o">*</span><span class="nf">tp_call</span><span class="p">(</span><span class="n">PyObject</span><span class="w"> </span><span class="o">*</span><span class="n">callable</span><span class="p">,</span><span class="w"> </span><span class="n">PyObject</span><span class="w"> </span><span class="o">*</span><span class="n">args</span><span class="p">,</span><span class="w"> </span><span class="n">PyObject</span><span class="w"> </span><span class="o">*</span><span class="n">kwargs</span><span class="p">);</span><span class="w"></span>
 </pre></div>
@@ -182,7 +182,7 @@
 <p>使用 <a class="reference internal" href="#c.PyObject_Call" title="PyObject_Call"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyObject_Call()</span></code></a> 或其他<a class="reference internal" href="#capi-call"><span class="std std-ref">呼叫 API</span></a> 來呼叫一個物件。</p>
 </section>
 <section id="the-vectorcall-protocol">
-<span id="vectorcall"></span><h2>Vectorcall 協定<a class="headerlink" href="#the-vectorcall-protocol" title="Permalink to this heading">¶</a></h2>
+<span id="vectorcall"></span><h2>Vectorcall 協定<a class="headerlink" href="#the-vectorcall-protocol" title="本標頭的永久連結">¶</a></h2>
 <div class="versionadded">
 <p><span class="versionmodified added">在 3.9 版本新加入.</span></p>
 </div>
@@ -231,12 +231,12 @@
 <p>在 CPython 3.8 中，vectorcall API 和相關函式暫定以帶開頭底線的名稱提供：<code class="docutils literal notranslate"><span class="pre">_PyObject_Vectorcall</span></code>、<code class="docutils literal notranslate"><span class="pre">_Py_TPFLAGS_HAVE_VECTORCALL</span></code>、<code class="docutils literal notranslate"><span class="pre">_PyObject_VectorcallMethod</span></code>、<code class="docutils literal notranslate"><span class="pre">_PyVectorcall_Function</span></code>、<code class="docutils literal notranslate"><span class="pre">_PyObject_CallOneArg</span></code>、<code class="docutils literal notranslate"><span class="pre">_PyObject_CallMethodNoArgs</span></code>、<code class="docutils literal notranslate"><span class="pre">_PyObject_CallMethodOneArg</span></code>。此外，<code class="docutils literal notranslate"><span class="pre">PyObject_VectorcallDict</span></code> 也以 <code class="docutils literal notranslate"><span class="pre">_PyObject_FastCallDict</span></code> 名稱提供。這些舊名稱仍有被定義，做為不帶底線的新名稱的別名。</p>
 </div>
 <section id="recursion-control">
-<h3>遞迴控制<a class="headerlink" href="#recursion-control" title="Permalink to this heading">¶</a></h3>
+<h3>遞迴控制<a class="headerlink" href="#recursion-control" title="本標頭的永久連結">¶</a></h3>
 <p>在使用 <em>tp_call</em> 時，被呼叫者不必擔心<a class="reference internal" href="exceptions.html#recursion"><span class="std std-ref">遞迴</span></a>：CPython 對於使用 <em>tp_call</em> 的呼叫會使用 <a class="reference internal" href="exceptions.html#c.Py_EnterRecursiveCall" title="Py_EnterRecursiveCall"><code class="xref c c-func docutils literal notranslate"><span class="pre">Py_EnterRecursiveCall()</span></code></a> 和 <a class="reference internal" href="exceptions.html#c.Py_LeaveRecursiveCall" title="Py_LeaveRecursiveCall"><code class="xref c c-func docutils literal notranslate"><span class="pre">Py_LeaveRecursiveCall()</span></code></a>。</p>
 <p>為保證效率，這不適用於使用 vectorcall 的呼叫：被呼叫方在需要時應當使用 <em>Py_EnterRecursiveCall</em> 和 <em>Py_LeaveRecursiveCall</em>。</p>
 </section>
 <section id="vectorcall-support-api">
-<h3>Vectorcall 支援 API<a class="headerlink" href="#vectorcall-support-api" title="Permalink to this heading">¶</a></h3>
+<h3>Vectorcall 支援 API<a class="headerlink" href="#vectorcall-support-api" title="本標頭的永久連結">¶</a></h3>
 <dl class="c function">
 <dt class="sig sig-object c" id="c.PyVectorcall_NARGS">
 <a class="reference internal" href="intro.html#c.Py_ssize_t" title="Py_ssize_t"><span class="n"><span class="pre">Py_ssize_t</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PyVectorcall_NARGS</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="n"><span class="pre">nargsf</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.PyVectorcall_NARGS" title="本定義的永久連結">¶</a><br /></dt>
@@ -273,7 +273,7 @@
 </section>
 </section>
 <section id="object-calling-api">
-<span id="capi-call"></span><h2>物件呼叫 API<a class="headerlink" href="#object-calling-api" title="Permalink to this heading">¶</a></h2>
+<span id="capi-call"></span><h2>物件呼叫 API<a class="headerlink" href="#object-calling-api" title="本標頭的永久連結">¶</a></h2>
 <p>有多個函式可被用來呼叫 Python 物件。各個函式會將其引數轉換為被呼叫物件所支援的慣用形式 – 可以是 <em>tp_call</em> 或 vectorcall。為了儘可能減少轉換的進行，請選擇一個適合你所擁有資料格式的函式。</p>
 <p>下表總結了可用的函式；請參閱各個說明文件以瞭解詳情。</p>
 <table class="docutils align-default">
@@ -482,7 +482,7 @@
 
 </section>
 <section id="call-support-api">
-<h2>呼叫支援 API<a class="headerlink" href="#call-support-api" title="Permalink to this heading">¶</a></h2>
+<h2>呼叫支援 API<a class="headerlink" href="#call-support-api" title="本標頭的永久連結">¶</a></h2>
 <dl class="c function">
 <dt class="sig sig-object c" id="c.PyCallable_Check">
 <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PyCallable_Check</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">o</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.PyCallable_Check" title="本定義的永久連結">¶</a><br /></dt>
@@ -571,7 +571,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.5 Documentation</a> &#187;
+      <a href="../index.html">3.10.7 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python/C API 參考手冊</a> &#187;</li>
@@ -608,11 +608,11 @@
 <br />
     <br />
 
-    最後更新於 7月 23, 2022。
+    最後更新於 9月 16, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 
-    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.0.2 建立。
+    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1 建立。
     </div>
 
   </body>

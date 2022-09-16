@@ -4,9 +4,9 @@
 <html lang="zh-TW">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>syslog --- Unix syslog library routines &#8212; Python 3.10.5 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>syslog --- Unix syslog library routines &#8212; Python 3.10.7 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -21,7 +21,7 @@
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.10.5 說明文件 中搜尋"
+          title="在 Python 3.10.7 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -136,7 +136,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.5 Documentation</a> &#187;
+      <a href="../index.html">3.10.7 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -165,7 +165,7 @@
           <div class="body" role="main">
             
   <section id="module-syslog">
-<span id="syslog-unix-syslog-library-routines"></span><h1><a class="reference internal" href="#module-syslog" title="syslog: An interface to the Unix syslog library routines. (Unix)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">syslog</span></code></a> --- Unix syslog library routines<a class="headerlink" href="#module-syslog" title="Permalink to this heading">¶</a></h1>
+<span id="syslog-unix-syslog-library-routines"></span><h1><a class="reference internal" href="#module-syslog" title="syslog: An interface to the Unix syslog library routines. (Unix)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">syslog</span></code></a> --- Unix syslog library routines<a class="headerlink" href="#module-syslog" title="本標頭的永久連結">¶</a></h1>
 <hr class="docutils" />
 <p>This module provides an interface to the Unix <code class="docutils literal notranslate"><span class="pre">syslog</span></code> library routines.
 Refer to the Unix manual pages for a detailed description of the <code class="docutils literal notranslate"><span class="pre">syslog</span></code>
@@ -186,8 +186,13 @@ to <code class="xref py py-const docutils literal notranslate"><span class="pre"
 not encoded in <em>priority</em> using logical-or (<code class="docutils literal notranslate"><span class="pre">LOG_INFO</span> <span class="pre">|</span> <span class="pre">LOG_USER</span></code>), the
 value given in the <a class="reference internal" href="#syslog.openlog" title="syslog.openlog"><code class="xref py py-func docutils literal notranslate"><span class="pre">openlog()</span></code></a> call is used.</p>
 <p>If <a class="reference internal" href="#syslog.openlog" title="syslog.openlog"><code class="xref py py-func docutils literal notranslate"><span class="pre">openlog()</span></code></a> has not been called prior to the call to <a class="reference internal" href="#module-syslog" title="syslog: An interface to the Unix syslog library routines. (Unix)"><code class="xref py py-func docutils literal notranslate"><span class="pre">syslog()</span></code></a>,
-<code class="docutils literal notranslate"><span class="pre">openlog()</span></code> will be called with no arguments.</p>
+<a class="reference internal" href="#syslog.openlog" title="syslog.openlog"><code class="xref py py-func docutils literal notranslate"><span class="pre">openlog()</span></code></a> will be called with no arguments.</p>
 <p class="audit-hook">Raises an <a class="reference internal" href="sys.html#auditing"><span class="std std-ref">auditing event</span></a> <code class="docutils literal notranslate"><span class="pre">syslog.syslog</span></code> with arguments <code class="docutils literal notranslate"><span class="pre">priority</span></code>, <code class="docutils literal notranslate"><span class="pre">message</span></code>.</p>
+<div class="versionchanged">
+<p><span class="versionmodified changed">在 3.2 版本變更: </span>In previous versions, <a class="reference internal" href="#syslog.openlog" title="syslog.openlog"><code class="xref py py-func docutils literal notranslate"><span class="pre">openlog()</span></code></a> would not be called automatically if
+it wasn't called prior to the call to <a class="reference internal" href="#module-syslog" title="syslog: An interface to the Unix syslog library routines. (Unix)"><code class="xref py py-func docutils literal notranslate"><span class="pre">syslog()</span></code></a>, deferring to the syslog
+implementation to call <code class="docutils literal notranslate"><span class="pre">openlog()</span></code>.</p>
+</div>
 </dd></dl>
 
 <dl class="py function">
@@ -205,8 +210,7 @@ messages which do not have a facility explicitly encoded.</p>
 <p class="audit-hook">Raises an <a class="reference internal" href="sys.html#auditing"><span class="std std-ref">auditing event</span></a> <code class="docutils literal notranslate"><span class="pre">syslog.openlog</span></code> with arguments <code class="docutils literal notranslate"><span class="pre">ident</span></code>, <code class="docutils literal notranslate"><span class="pre">logoption</span></code>, <code class="docutils literal notranslate"><span class="pre">facility</span></code>.</p>
 <div class="versionchanged">
 <p><span class="versionmodified changed">在 3.2 版本變更: </span>In previous versions, keyword arguments were not allowed, and <em>ident</em> was
-required.  The default for <em>ident</em> was dependent on the system libraries,
-and often was <code class="docutils literal notranslate"><span class="pre">python</span></code> instead of the name of the Python program file.</p>
+required.</p>
 </div>
 </dd></dl>
 
@@ -251,9 +255,9 @@ in <code class="docutils literal notranslate"><span class="pre">&lt;syslog.h&gt;
 </dd>
 </dl>
 <section id="examples">
-<h2>範例<a class="headerlink" href="#examples" title="Permalink to this heading">¶</a></h2>
+<h2>範例<a class="headerlink" href="#examples" title="本標頭的永久連結">¶</a></h2>
 <section id="simple-example">
-<h3>簡單範例<a class="headerlink" href="#simple-example" title="Permalink to this heading">¶</a></h3>
+<h3>簡單範例<a class="headerlink" href="#simple-example" title="本標頭的永久連結">¶</a></h3>
 <p>一組簡單範例：</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">syslog</span>
 
@@ -348,7 +352,7 @@ mail logging:</p>
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.5 Documentation</a> &#187;
+      <a href="../index.html">3.10.7 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -385,11 +389,11 @@ mail logging:</p>
 <br />
     <br />
 
-    最後更新於 7月 23, 2022。
+    最後更新於 9月 16, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 
-    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.0.2 建立。
+    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1 建立。
     </div>
 
   </body>

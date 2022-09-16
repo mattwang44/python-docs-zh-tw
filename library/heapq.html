@@ -4,9 +4,9 @@
 <html lang="zh-TW">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>heapq --- 堆積佇列 (heap queue) 演算法 &#8212; Python 3.10.5 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>heapq --- 堆積佇列 (heap queue) 演算法 &#8212; Python 3.10.7 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -21,7 +21,7 @@
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.10.5 說明文件 中搜尋"
+          title="在 Python 3.10.7 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -135,7 +135,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.5 Documentation</a> &#187;
+      <a href="../index.html">3.10.7 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -164,7 +164,7 @@
           <div class="body" role="main">
             
   <section id="module-heapq">
-<span id="heapq-heap-queue-algorithm"></span><h1><a class="reference internal" href="#module-heapq" title="heapq: Heap queue algorithm (a.k.a. priority queue)."><code class="xref py py-mod docutils literal notranslate"><span class="pre">heapq</span></code></a> --- 堆積佇列 (heap queue) 演算法<a class="headerlink" href="#module-heapq" title="Permalink to this heading">¶</a></h1>
+<span id="heapq-heap-queue-algorithm"></span><h1><a class="reference internal" href="#module-heapq" title="heapq: Heap queue algorithm (a.k.a. priority queue)."><code class="xref py py-mod docutils literal notranslate"><span class="pre">heapq</span></code></a> --- 堆積佇列 (heap queue) 演算法<a class="headerlink" href="#module-heapq" title="本標頭的永久連結">¶</a></h1>
 <p><strong>原始碼：</strong><a class="reference external" href="https://github.com/python/cpython/tree/3.10/Lib/heapq.py">Lib/heapq.py</a></p>
 <hr class="docutils" />
 <p>這個模組實作了堆積佇列 (heap queue) 演算法，亦被稱為優先佇列 (priority queue) 演算法。</p>
@@ -243,7 +243,7 @@ used to extract a comparison key from each element in <em>iterable</em> (for exa
 
 <p>後兩個函式在 <em>n</em> 值比較小時有最好的表現。對於較大的 <em>n</em> 值，只用 <a class="reference internal" href="functions.html#sorted" title="sorted"><code class="xref py py-func docutils literal notranslate"><span class="pre">sorted()</span></code></a> 函式會更有效率。同樣地，當 <code class="docutils literal notranslate"><span class="pre">n==1</span></code> 時，使用內建函式 <a class="reference internal" href="functions.html#min" title="min"><code class="xref py py-func docutils literal notranslate"><span class="pre">min()</span></code></a> 和 <a class="reference internal" href="functions.html#max" title="max"><code class="xref py py-func docutils literal notranslate"><span class="pre">max()</span></code></a> 會有更好的效率。如果需要重複使用這些函式，可以考慮將 iterable 轉成真正的 heap 。</p>
 <section id="basic-examples">
-<h2>基礎範例<a class="headerlink" href="#basic-examples" title="Permalink to this heading">¶</a></h2>
+<h2>基礎範例<a class="headerlink" href="#basic-examples" title="本標頭的永久連結">¶</a></h2>
 <p>A <a class="reference external" href="https://en.wikipedia.org/wiki/Heapsort">heapsort</a> can be implemented by
 pushing all values onto a heap and then popping off the smallest values one at a
 time:</p>
@@ -270,7 +270,7 @@ time:</p>
 </div>
 </section>
 <section id="priority-queue-implementation-notes">
-<h2>優先佇列  (Priority Queue) 實作細節<a class="headerlink" href="#priority-queue-implementation-notes" title="Permalink to this heading">¶</a></h2>
+<h2>優先佇列  (Priority Queue) 實作細節<a class="headerlink" href="#priority-queue-implementation-notes" title="本標頭的永久連結">¶</a></h2>
 <p>A <a class="reference external" href="https://en.wikipedia.org/wiki/Priority_queue">priority queue</a> is common use
 for a heap, and it presents several implementation challenges:</p>
 <ul class="simple">
@@ -324,7 +324,7 @@ class that ignores the task item and only compares the priority field:</p>
 </div>
 </section>
 <section id="theory">
-<h2>原理<a class="headerlink" href="#theory" title="Permalink to this heading">¶</a></h2>
+<h2>原理<a class="headerlink" href="#theory" title="本標頭的永久連結">¶</a></h2>
 <p>Heap 是一個陣列對於所有從0開始的 index <em>k</em> 都存在性質 <code class="docutils literal notranslate"><span class="pre">a[k]</span> <span class="pre">&lt;=</span> <span class="pre">a[2*k+1]</span></code> 和 <code class="docutils literal notranslate"><span class="pre">a[k]</span> <span class="pre">&lt;=</span> <span class="pre">a[2*k+2]</span></code> 。為了方便比較，不存在的元素被視為無限大。一個有趣的 heap 性質是 <code class="docutils literal notranslate"><span class="pre">a[0]</span></code> 永遠是最小的元素。</p>
 <p>The strange invariant above is meant to be an efficient memory representation
 for a tournament.  The numbers below are <em>k</em>, not <code class="docutils literal notranslate"><span class="pre">a[k]</span></code>:</p>
@@ -385,6 +385,7 @@ quite effective!</p>
 <p>In a word, heaps are useful memory structures to know.  I use them in a few
 applications, and I think it is good to keep a 'heap' module around. :-)</p>
 <p class="rubric">註解</p>
+<aside class="footnote-list brackets">
 <aside class="footnote brackets" id="id2" role="note">
 <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
 <p>The disk balancing algorithms which are current, nowadays, are more annoying
@@ -396,6 +397,7 @@ participate at &quot;progressing&quot; the merge).  Some tapes were even able to
 backwards, and this was also used to avoid the rewinding time. Believe me, real
 good tape sorts were quite spectacular to watch! From all times, sorting has
 always been a Great Art! :-)</p>
+</aside>
 </aside>
 </section>
 </section>
@@ -474,7 +476,7 @@ always been a Great Art! :-)</p>
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.5 Documentation</a> &#187;
+      <a href="../index.html">3.10.7 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -511,11 +513,11 @@ always been a Great Art! :-)</p>
 <br />
     <br />
 
-    最後更新於 7月 23, 2022。
+    最後更新於 9月 16, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 
-    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.0.2 建立。
+    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1 建立。
     </div>
 
   </body>

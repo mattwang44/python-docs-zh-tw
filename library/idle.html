@@ -4,9 +4,9 @@
 <html lang="zh-TW">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>IDLE &#8212; Python 3.10.5 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IDLE &#8212; Python 3.10.7 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -21,7 +21,7 @@
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.10.5 說明文件 中搜尋"
+          title="在 Python 3.10.7 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -92,6 +92,7 @@
 <li><a class="reference internal" href="#editor-windows">Editor windows</a></li>
 <li><a class="reference internal" href="#key-bindings">Key bindings</a></li>
 <li><a class="reference internal" href="#automatic-indentation">Automatic indentation</a></li>
+<li><a class="reference internal" href="#search-and-replace">Search and Replace</a></li>
 <li><a class="reference internal" href="#completions">Completions</a></li>
 <li><a class="reference internal" href="#calltips">Calltips</a></li>
 <li><a class="reference internal" href="#code-context">Code Context</a></li>
@@ -115,6 +116,7 @@
 <li><a class="reference internal" href="#extensions">Extensions</a></li>
 </ul>
 </li>
+<li><a class="reference internal" href="#module-idlelib">idlelib</a></li>
 </ul>
 </li>
 </ul>
@@ -172,7 +174,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.5 Documentation</a> &#187;
+      <a href="../index.html">3.10.7 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -201,7 +203,7 @@
           <div class="body" role="main">
             
   <section id="idle">
-<span id="id1"></span><h1>IDLE<a class="headerlink" href="#idle" title="Permalink to this heading">¶</a></h1>
+<span id="id1"></span><h1>IDLE<a class="headerlink" href="#idle" title="本標頭的永久連結">¶</a></h1>
 <p><strong>原始碼：</strong><a class="reference external" href="https://github.com/python/cpython/tree/3.10/Lib/idlelib/">Lib/idlelib/</a></p>
 <hr class="docutils" id="index-0" />
 <p>IDLE is Python's Integrated Development and Learning Environment.</p>
@@ -220,7 +222,7 @@ of global and local namespaces</p></li>
 <li><p>configuration, browsers, and other dialogs</p></li>
 </ul>
 <section id="menus">
-<h2>目錄<a class="headerlink" href="#menus" title="Permalink to this heading">¶</a></h2>
+<h2>目錄<a class="headerlink" href="#menus" title="本標頭的永久連結">¶</a></h2>
 <p>IDLE has two main window types, the Shell window and the Editor window.  It is
 possible to have multiple editor windows simultaneously.  On Windows and
 Linux, each has its own top menu.  Each menu documented below indicates
@@ -232,19 +234,19 @@ default title and context menu.</p>
 to the window currently selected.  It has an IDLE menu, and some entries
 described below are moved around to conform to Apple guidelines.</p>
 <section id="file-menu-shell-and-editor">
-<h3>File menu (Shell and Editor)<a class="headerlink" href="#file-menu-shell-and-editor" title="Permalink to this heading">¶</a></h3>
+<h3>File menu (Shell and Editor)<a class="headerlink" href="#file-menu-shell-and-editor" title="本標頭的永久連結">¶</a></h3>
 <dl class="simple">
 <dt>新增檔案</dt><dd><p>Create a new file editing window.</p>
 </dd>
 <dt>Open...</dt><dd><p>Open an existing file with an Open dialog.</p>
 </dd>
-<dt>Recent Files</dt><dd><p>Open a list of recent files.  Click one to open it.</p>
-</dd>
 <dt>Open Module...</dt><dd><p>Open an existing module (searches sys.path).</p>
+</dd>
+<dt>Recent Files</dt><dd><p>Open a list of recent files.  Click one to open it.</p>
 </dd>
 </dl>
 <dl class="simple" id="index-1">
-<dt>Class Browser</dt><dd><p>Show functions, classes, and methods in the current Editor file in a
+<dt>Module Browser</dt><dd><p>Show functions, classes, and methods in the current Editor file in a
 tree structure.  In the shell, open a module first.</p>
 </dd>
 <dt>Path Browser</dt><dd><p>Show sys.path directories, modules, functions, classes and methods in a
@@ -256,10 +258,13 @@ and after the window title.  If there is no associated file,
 do Save As instead.</p>
 </dd>
 <dt>Save As...</dt><dd><p>Save the current window with a Save As dialog.  The file saved becomes the
-new associated file for the window.</p>
+new associated file for the window. (If your file namager is set to hide
+extensions, the current extension will be omitted in the file name box.
+If the new filename has no '.', '.py' and '.txt' will be added for Python
+and text files, except that on macOS Aqua,'.py' is added for all files.)</p>
 </dd>
 <dt>Save Copy As...</dt><dd><p>Save the current window to different file without changing the associated
-file.</p>
+file.  (See Save As note above about filename extensions.)</p>
 </dd>
 <dt>Print Window</dt><dd><p>Print the current window to the default printer.</p>
 </dd>
@@ -272,12 +277,14 @@ window also closes Shell.  If this is the only window, also exit IDLE.</p>
 </dl>
 </section>
 <section id="edit-menu-shell-and-editor">
-<h3>Edit menu (Shell and Editor)<a class="headerlink" href="#edit-menu-shell-and-editor" title="Permalink to this heading">¶</a></h3>
+<h3>Edit menu (Shell and Editor)<a class="headerlink" href="#edit-menu-shell-and-editor" title="本標頭的永久連結">¶</a></h3>
 <dl class="simple">
 <dt>Undo</dt><dd><p>Undo the last change to the current window.  A maximum of 1000 changes may
 be undone.</p>
 </dd>
 <dt>Redo</dt><dd><p>Redo the last undone change to the current window.</p>
+</dd>
+<dt>選擇全部</dt><dd><p>Select the entire contents of the current window.</p>
 </dd>
 <dt>剪下</dt><dd><p>Copy selection into the system-wide clipboard; then delete the selection.</p>
 </dd>
@@ -288,8 +295,6 @@ be undone.</p>
 </dl>
 <p>The clipboard functions are also available in context menus.</p>
 <dl class="simple">
-<dt>選擇全部</dt><dd><p>Select the entire contents of the current window.</p>
-</dd>
 <dt>Find...</dt><dd><p>Open a search dialog with many options</p>
 </dd>
 <dt>Find Again</dt><dd><p>Repeat the last search, if there is one.</p>
@@ -310,17 +315,21 @@ Clear any selection and update the line and column status.</p>
 <dt>Expand Word</dt><dd><p>Expand a prefix you have typed to match a full word in the same window;
 repeat to get a different expansion.</p>
 </dd>
-<dt>Show call tip</dt><dd><p>After an unclosed parenthesis for a function, open a small window with
+<dt>Show Call Tip</dt><dd><p>After an unclosed parenthesis for a function, open a small window with
 function parameter hints.  See <a class="reference internal" href="#calltips"><span class="std std-ref">Calltips</span></a> in the
 Editing and navigation section below.</p>
 </dd>
-<dt>Show surrounding parens</dt><dd><p>Highlight the surrounding parenthesis.</p>
+<dt>Show Surrounding Parens</dt><dd><p>Highlight the surrounding parenthesis.</p>
 </dd>
 </dl>
 </section>
 <section id="format-menu-editor-window-only">
-<span id="format-menu"></span><h3>Format menu (Editor window only)<a class="headerlink" href="#format-menu-editor-window-only" title="Permalink to this heading">¶</a></h3>
+<span id="format-menu"></span><h3>Format menu (Editor window only)<a class="headerlink" href="#format-menu-editor-window-only" title="本標頭的永久連結">¶</a></h3>
 <dl class="simple">
+<dt>Format Paragraph</dt><dd><p>Reformat the current blank-line-delimited paragraph in comment block or
+multiline string or selected line in a string.  All lines in the
+paragraph will be formatted to less than N columns, where N defaults to 72.</p>
+</dd>
 <dt>Indent Region</dt><dd><p>Shift selected lines right by the indent width (default 4 spaces).</p>
 </dd>
 <dt>Dedent Region</dt><dd><p>Shift selected lines left by the indent width (default 4 spaces).</p>
@@ -339,11 +348,7 @@ Editing and navigation section below.</p>
 <dt>New Indent Width</dt><dd><p>Open a dialog to change indent width. The accepted default by the Python
 community is 4 spaces.</p>
 </dd>
-<dt>Format Paragraph</dt><dd><p>Reformat the current blank-line-delimited paragraph in comment block or
-multiline string or selected line in a string.  All lines in the
-paragraph will be formatted to less than N columns, where N defaults to 72.</p>
-</dd>
-<dt>Strip trailing whitespace</dt><dd><p>Remove trailing space and other whitespace characters after the last
+<dt>Strip Trailing Chitespace</dt><dd><p>Remove trailing space and other whitespace characters after the last
 non-whitespace character of a line by applying str.rstrip to each line,
 including lines within multiline strings.  Except for Shell windows,
 remove extra newlines at the end of the file.</p>
@@ -351,7 +356,7 @@ remove extra newlines at the end of the file.</p>
 </dl>
 </section>
 <section id="run-menu-editor-window-only">
-<span id="index-2"></span><h3>Run menu (Editor window only)<a class="headerlink" href="#run-menu-editor-window-only" title="Permalink to this heading">¶</a></h3>
+<span id="index-2"></span><h3>Run menu (Editor window only)<a class="headerlink" href="#run-menu-editor-window-only" title="本標頭的永久連結">¶</a></h3>
 <dl class="simple" id="run-module">
 <dt>Run Module</dt><dd><p>Do <a class="reference internal" href="#check-module"><span class="std std-ref">Check Module</span></a>.  If no error, restart the shell to clean the
 environment, then execute the module.  Output is displayed in the Shell
@@ -382,7 +387,7 @@ Editor window.</p>
 </dl>
 </section>
 <section id="shell-menu-shell-window-only">
-<h3>Shell menu (Shell window only)<a class="headerlink" href="#shell-menu-shell-window-only" title="Permalink to this heading">¶</a></h3>
+<h3>Shell menu (Shell window only)<a class="headerlink" href="#shell-menu-shell-window-only" title="本標頭的永久連結">¶</a></h3>
 <dl class="simple">
 <dt>View Last Restart</dt><dd><p>Scroll the shell window to the last Shell restart.</p>
 </dd>
@@ -397,7 +402,7 @@ Editor window.</p>
 </dl>
 </section>
 <section id="debug-menu-shell-window-only">
-<h3>Debug menu (Shell window only)<a class="headerlink" href="#debug-menu-shell-window-only" title="Permalink to this heading">¶</a></h3>
+<h3>Debug menu (Shell window only)<a class="headerlink" href="#debug-menu-shell-window-only" title="本標頭的永久連結">¶</a></h3>
 <dl class="simple">
 <dt>Go to File/Line</dt><dd><p>Look on the current line. with the cursor, and the line above for a filename
 and line number.  If found, open the file if not already open, and show the
@@ -419,7 +424,7 @@ access to locals and globals.</p>
 </dl>
 </section>
 <section id="options-menu-shell-and-editor">
-<h3>Options menu (Shell and Editor)<a class="headerlink" href="#options-menu-shell-and-editor" title="Permalink to this heading">¶</a></h3>
+<h3>Options menu (Shell and Editor)<a class="headerlink" href="#options-menu-shell-and-editor" title="本標頭的永久連結">¶</a></h3>
 <dl class="simple">
 <dt>Configure IDLE</dt><dd><p>Open a configuration dialog and change preferences for the following:
 fonts, indentation, keybindings, text color themes, startup windows and
@@ -451,12 +456,12 @@ no effect when a window is maximized.</p>
 </dl>
 </section>
 <section id="window-menu-shell-and-editor">
-<h3>Window menu (Shell and Editor)<a class="headerlink" href="#window-menu-shell-and-editor" title="Permalink to this heading">¶</a></h3>
+<h3>Window menu (Shell and Editor)<a class="headerlink" href="#window-menu-shell-and-editor" title="本標頭的永久連結">¶</a></h3>
 <p>Lists the names of all open windows; select one to bring it to the foreground
 (deiconifying it if necessary).</p>
 </section>
 <section id="help-menu-shell-and-editor">
-<h3>Help menu (Shell and Editor)<a class="headerlink" href="#help-menu-shell-and-editor" title="Permalink to this heading">¶</a></h3>
+<h3>Help menu (Shell and Editor)<a class="headerlink" href="#help-menu-shell-and-editor" title="本標頭的永久連結">¶</a></h3>
 <dl class="simple">
 <dt>About IDLE</dt><dd><p>Display version, copyright, license, credits, and more.</p>
 </dd>
@@ -474,7 +479,7 @@ the General tab. See the <a class="reference internal" href="#help-sources"><spa
 for more on Help menu choices.</p>
 </section>
 <section id="context-menus">
-<span id="index-4"></span><h3>Context menus<a class="headerlink" href="#context-menus" title="Permalink to this heading">¶</a></h3>
+<span id="index-4"></span><h3>Context menus<a class="headerlink" href="#context-menus" title="本標頭的永久連結">¶</a></h3>
 <p>Open a context menu by right-clicking in a window (Control-click on macOS).
 Context menus have the standard clipboard functions also on the Edit menu.</p>
 <dl class="simple">
@@ -510,9 +515,9 @@ the code above and the prompt below down to a 'Squeezed text' label.</p>
 </section>
 </section>
 <section id="editing-and-navigation">
-<span id="id2"></span><h2>Editing and Navigation<a class="headerlink" href="#editing-and-navigation" title="Permalink to this heading">¶</a></h2>
+<span id="id2"></span><h2>Editing and Navigation<a class="headerlink" href="#editing-and-navigation" title="本標頭的永久連結">¶</a></h2>
 <section id="editor-windows">
-<h3>Editor windows<a class="headerlink" href="#editor-windows" title="Permalink to this heading">¶</a></h3>
+<h3>Editor windows<a class="headerlink" href="#editor-windows" title="本標頭的永久連結">¶</a></h3>
 <p>IDLE may open editor windows when it starts, depending on settings
 and how you start IDLE.  Thereafter, use the File menu.  There can be only
 one open editor window for a given file.</p>
@@ -524,7 +529,7 @@ column numbers with 0.</p>
 and that other files do not.  Run Python code with the Run menu.</p>
 </section>
 <section id="key-bindings">
-<h3>Key bindings<a class="headerlink" href="#key-bindings" title="Permalink to this heading">¶</a></h3>
+<h3>Key bindings<a class="headerlink" href="#key-bindings" title="本標頭的永久連結">¶</a></h3>
 <p>In this section, 'C' refers to the <kbd class="kbd docutils literal notranslate">Control</kbd> key on Windows and Unix and
 the <kbd class="kbd docutils literal notranslate">Command</kbd> key on macOS.</p>
 <ul>
@@ -556,7 +561,7 @@ this)</p></li>
 may work.  Keybindings are selected in the Configure IDLE dialog.</p>
 </section>
 <section id="automatic-indentation">
-<h3>Automatic indentation<a class="headerlink" href="#automatic-indentation" title="Permalink to this heading">¶</a></h3>
+<h3>Automatic indentation<a class="headerlink" href="#automatic-indentation" title="本標頭的永久連結">¶</a></h3>
 <p>After a block-opening statement, the next line is indented by 4 spaces (in the
 Python Shell window by one tab).  After certain keywords (break, return etc.)
 the next line is dedented.  In leading indentation, <kbd class="kbd docutils literal notranslate">Backspace</kbd> deletes up
@@ -566,8 +571,15 @@ are restricted to four spaces due to Tcl/Tk limitations.</p>
 <p>See also the indent/dedent region commands on the
 <a class="reference internal" href="#format-menu"><span class="std std-ref">Format menu</span></a>.</p>
 </section>
+<section id="search-and-replace">
+<h3>Search and Replace<a class="headerlink" href="#search-and-replace" title="本標頭的永久連結">¶</a></h3>
+<p>Any selection becomes a search target.  However, only selections within
+a line work because searches are only performed within lines with the
+terminal newline removed.  If <code class="docutils literal notranslate"><span class="pre">[x]</span> <span class="pre">Regular</span> <span class="pre">expresion</span></code> is checked, the
+target is interpreted according to the Python re module.</p>
+</section>
 <section id="completions">
-<span id="id3"></span><h3>Completions<a class="headerlink" href="#completions" title="Permalink to this heading">¶</a></h3>
+<span id="id3"></span><h3>Completions<a class="headerlink" href="#completions" title="本標頭的永久連結">¶</a></h3>
 <p>Completions are supplied, when requested and available, for module
 names, attributes of classes or functions, or filenames.  Each request
 method displays a completion box with existing names.  (See tab
@@ -611,7 +623,7 @@ modules, not included in '__all__'.  The hidden names can be accessed
 by typing '_' after '.', either before or after the box is opened.</p>
 </section>
 <section id="calltips">
-<span id="id4"></span><h3>Calltips<a class="headerlink" href="#calltips" title="Permalink to this heading">¶</a></h3>
+<span id="id4"></span><h3>Calltips<a class="headerlink" href="#calltips" title="本標頭的永久連結">¶</a></h3>
 <p>A calltip is shown automatically when one types <kbd class="kbd docutils literal notranslate">(</kbd> after the name
 of an <em>accessible</em> function.  A function name expression may include
 dots and subscripts.  A calltip remains until it is clicked, the cursor
@@ -637,7 +649,7 @@ One might want to run a file after writing import statements, after
 adding function definitions, or after opening an existing file.</p>
 </section>
 <section id="code-context">
-<span id="id5"></span><h3>Code Context<a class="headerlink" href="#code-context" title="Permalink to this heading">¶</a></h3>
+<span id="id5"></span><h3>Code Context<a class="headerlink" href="#code-context" title="本標頭的永久連結">¶</a></h3>
 <p>Within an editor window containing Python code, code context can be toggled
 in order to show or hide a pane at the top of the window.  When shown, this
 pane freezes the opening lines for block code, such as those beginning with
@@ -652,7 +664,7 @@ line to the top of the editor.</p>
 the Highlights tab in the Configure IDLE dialog.</p>
 </section>
 <section id="shell-window">
-<h3>Shell window<a class="headerlink" href="#shell-window" title="Permalink to this heading">¶</a></h3>
+<h3>Shell window<a class="headerlink" href="#shell-window" title="本標頭的永久連結">¶</a></h3>
 <p>In IDLE's Shell, enter, edit, and recall complete statements. (Most
 consoles and terminals only work with a single physical line at a time).</p>
 <p>Submit a single-line statement for execution by hitting <kbd class="kbd docutils literal notranslate">Return</kbd>
@@ -687,7 +699,7 @@ retrieves that command</p></li>
 </ul>
 </section>
 <section id="text-colors">
-<h3>Text colors<a class="headerlink" href="#text-colors" title="Permalink to this heading">¶</a></h3>
+<h3>Text colors<a class="headerlink" href="#text-colors" title="本標頭的永久連結">¶</a></h3>
 <p>Idle defaults to black on white text, but colors text with special meanings.
 For the shell, these are shell output, shell error, user output, and
 user error.  For Python code, at the shell prompt or in an editor, these are
@@ -706,7 +718,7 @@ text in popups and dialogs is not user-configurable.</p>
 </section>
 </section>
 <section id="startup-and-code-execution">
-<h2>Startup and Code Execution<a class="headerlink" href="#startup-and-code-execution" title="Permalink to this heading">¶</a></h2>
+<h2>Startup and Code Execution<a class="headerlink" href="#startup-and-code-execution" title="本標頭的永久連結">¶</a></h2>
 <p>Upon startup with the <code class="docutils literal notranslate"><span class="pre">-s</span></code> option, IDLE will execute the file referenced by
 the environment variables <span class="target" id="index-5"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">IDLESTARTUP</span></code> or <span class="target" id="index-6"></span><a class="reference internal" href="../using/cmdline.html#envvar-PYTHONSTARTUP"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PYTHONSTARTUP</span></code></a>.
 IDLE first checks for <code class="docutils literal notranslate"><span class="pre">IDLESTARTUP</span></code>; if <code class="docutils literal notranslate"><span class="pre">IDLESTARTUP</span></code> is present the file
@@ -720,7 +732,7 @@ looked for in the user's home directory.  Statements in this file will be
 executed in the Tk namespace, so this file is not useful for importing
 functions to be used from IDLE's Python shell.</p>
 <section id="command-line-usage">
-<h3>Command line usage<a class="headerlink" href="#command-line-usage" title="Permalink to this heading">¶</a></h3>
+<h3>Command line usage<a class="headerlink" href="#command-line-usage" title="本標頭的永久連結">¶</a></h3>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>idle.py [-c command] [-d] [-e] [-h] [-i] [-r file] [-s] [-t title] [-] [arg] ...
 
 -c command  run command in the shell window
@@ -745,7 +757,7 @@ set in the Options dialog.</p></li>
 </ul>
 </section>
 <section id="startup-failure">
-<h3>Startup failure<a class="headerlink" href="#startup-failure" title="Permalink to this heading">¶</a></h3>
+<h3>Startup failure<a class="headerlink" href="#startup-failure" title="本標頭的永久連結">¶</a></h3>
 <p>IDLE uses a socket to communicate between the IDLE GUI process and the user
 code execution process.  A connection must be established whenever the Shell
 starts or restarts.  (The latter is indicated by a divider line that says
@@ -797,7 +809,7 @@ when entering such a character.  If one cannot upgrade tcl/tk,
 then re-configure IDLE to use a font that works better.</p>
 </section>
 <section id="running-user-code">
-<h3>Running user code<a class="headerlink" href="#running-user-code" title="Permalink to this heading">¶</a></h3>
+<h3>Running user code<a class="headerlink" href="#running-user-code" title="本標頭的永久連結">¶</a></h3>
 <p>With rare exceptions, the result of executing Python code with IDLE is
 intended to be the same as executing the same code by the default method,
 directly with Python in a text-mode system console or terminal window.
@@ -841,7 +853,7 @@ frames.</p>
 IDLE returns to a Shell prompt instead of exiting.</p>
 </section>
 <section id="user-output-in-shell">
-<h3>User output in Shell<a class="headerlink" href="#user-output-in-shell" title="Permalink to this heading">¶</a></h3>
+<h3>User output in Shell<a class="headerlink" href="#user-output-in-shell" title="本標頭的永久連結">¶</a></h3>
 <p>When a program outputs text, the result is determined by the
 corresponding output device.  When IDLE executes user code, <code class="docutils literal notranslate"><span class="pre">sys.stdout</span></code>
 and <code class="docutils literal notranslate"><span class="pre">sys.stderr</span></code> are connected to the display area of IDLE's Shell.  Some of
@@ -895,7 +907,7 @@ It can also be sent to the clipboard or a separate view window by
 right-clicking the label.</p>
 </section>
 <section id="developing-tkinter-applications">
-<h3>Developing tkinter applications<a class="headerlink" href="#developing-tkinter-applications" title="Permalink to this heading">¶</a></h3>
+<h3>Developing tkinter applications<a class="headerlink" href="#developing-tkinter-applications" title="本標頭的永久連結">¶</a></h3>
 <p>IDLE is intentionally different from standard Python in order to
 facilitate development of tkinter programs.  Enter <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">tkinter</span> <span class="pre">as</span> <span class="pre">tk;</span>
 <span class="pre">root</span> <span class="pre">=</span> <span class="pre">tk.Tk()</span></code> in standard Python and nothing appears.  Enter the same
@@ -915,7 +927,7 @@ interact with the live application.  One just has to remember to
 re-enable the mainloop call when running in standard Python.</p>
 </section>
 <section id="running-without-a-subprocess">
-<h3>Running without a subprocess<a class="headerlink" href="#running-without-a-subprocess" title="Permalink to this heading">¶</a></h3>
+<h3>Running without a subprocess<a class="headerlink" href="#running-without-a-subprocess" title="本標頭的永久連結">¶</a></h3>
 <p>By default, IDLE executes user code in a separate subprocess via a socket,
 which uses the internal loopback interface.  This connection is not
 externally visible and no data is sent to or received from the internet.
@@ -941,9 +953,9 @@ with the default subprocess if at all possible.</p>
 </section>
 </section>
 <section id="help-and-preferences">
-<h2>Help and Preferences<a class="headerlink" href="#help-and-preferences" title="Permalink to this heading">¶</a></h2>
+<h2>Help and Preferences<a class="headerlink" href="#help-and-preferences" title="本標頭的永久連結">¶</a></h2>
 <section id="help-sources">
-<span id="id6"></span><h3>Help sources<a class="headerlink" href="#help-sources" title="Permalink to this heading">¶</a></h3>
+<span id="id6"></span><h3>Help sources<a class="headerlink" href="#help-sources" title="本標頭的永久連結">¶</a></h3>
 <p>Help menu entry &quot;IDLE Help&quot; displays a formatted html version of the
 IDLE chapter of the Library Reference.  The result, in a read-only
 tkinter text window, is close to what one sees in a web browser.
@@ -960,7 +972,7 @@ that will be opened instead.</p>
 General tab of the Configure IDLE dialog.</p>
 </section>
 <section id="setting-preferences">
-<span id="preferences"></span><h3>Setting preferences<a class="headerlink" href="#setting-preferences" title="Permalink to this heading">¶</a></h3>
+<span id="preferences"></span><h3>Setting preferences<a class="headerlink" href="#setting-preferences" title="本標頭的永久連結">¶</a></h3>
 <p>The font preferences, highlighting, keys, and general preferences can be
 changed via Configure IDLE on the Option menu.
 Non-default user settings are saved in a <code class="docutils literal notranslate"><span class="pre">.idlerc</span></code> directory in the user's
@@ -978,19 +990,31 @@ IDLEs, save it as a new custom theme or key set and it well be accessible
 to older IDLEs.</p>
 </section>
 <section id="idle-on-macos">
-<h3>IDLE on macOS<a class="headerlink" href="#idle-on-macos" title="Permalink to this heading">¶</a></h3>
+<h3>IDLE on macOS<a class="headerlink" href="#idle-on-macos" title="本標頭的永久連結">¶</a></h3>
 <p>Under System Preferences: Dock, one can set &quot;Prefer tabs when opening
 documents&quot; to &quot;Always&quot;.  This setting is not compatible with the tk/tkinter
 GUI framework used by IDLE, and it breaks a few IDLE features.</p>
 </section>
 <section id="extensions">
-<h3>Extensions<a class="headerlink" href="#extensions" title="Permalink to this heading">¶</a></h3>
+<h3>Extensions<a class="headerlink" href="#extensions" title="本標頭的永久連結">¶</a></h3>
 <p>IDLE contains an extension facility.  Preferences for extensions can be
 changed with the Extensions tab of the preferences dialog. See the
 beginning of config-extensions.def in the idlelib directory for further
 information.  The only current default extension is zzdummy, an example
 also used for testing.</p>
 </section>
+</section>
+<section id="module-idlelib">
+<span id="idlelib"></span><h2>idlelib<a class="headerlink" href="#module-idlelib" title="本標頭的永久連結">¶</a></h2>
+<p><strong>原始碼：</strong><a class="reference external" href="https://github.com/python/cpython/tree/3.10/Lib/idlelib/">Lib/idlelib/</a></p>
+<hr class="docutils" />
+<p>The Lib/idlelib package implements the IDLE application.  See the rest
+of this page for how to use IDLE.</p>
+<p>The files in idlelib are described in idlelib/README.txt.  Access it
+either in idlelib or click Help =&gt; About IDLE on the IDLE menu.  This
+file also maps IDLE menu items to the code that implements the item.
+Except for files listed under 'Startup', the idlelib code is 'private' in
+sense that feature changes can be backported (see <span class="target" id="index-7"></span><a class="pep reference external" href="https://peps.python.org/pep-0434/"><strong>PEP 434</strong></a>).</p>
 </section>
 </section>
 
@@ -1022,6 +1046,7 @@ also used for testing.</p>
 <li><a class="reference internal" href="#editor-windows">Editor windows</a></li>
 <li><a class="reference internal" href="#key-bindings">Key bindings</a></li>
 <li><a class="reference internal" href="#automatic-indentation">Automatic indentation</a></li>
+<li><a class="reference internal" href="#search-and-replace">Search and Replace</a></li>
 <li><a class="reference internal" href="#completions">Completions</a></li>
 <li><a class="reference internal" href="#calltips">Calltips</a></li>
 <li><a class="reference internal" href="#code-context">Code Context</a></li>
@@ -1045,6 +1070,7 @@ also used for testing.</p>
 <li><a class="reference internal" href="#extensions">Extensions</a></li>
 </ul>
 </li>
+<li><a class="reference internal" href="#module-idlelib">idlelib</a></li>
 </ul>
 </li>
 </ul>
@@ -1105,7 +1131,7 @@ also used for testing.</p>
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.5 Documentation</a> &#187;
+      <a href="../index.html">3.10.7 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -1142,11 +1168,11 @@ also used for testing.</p>
 <br />
     <br />
 
-    最後更新於 7月 23, 2022。
+    最後更新於 9月 16, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 
-    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.0.2 建立。
+    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1 建立。
     </div>
 
   </body>

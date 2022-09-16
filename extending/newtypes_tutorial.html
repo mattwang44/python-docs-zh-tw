@@ -4,9 +4,9 @@
 <html lang="zh-TW">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>2. Defining Extension Types: Tutorial &#8212; Python 3.10.5 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2. Defining Extension Types: Tutorial &#8212; Python 3.10.7 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -21,7 +21,7 @@
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.10.5 說明文件 中搜尋"
+          title="在 Python 3.10.7 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -137,7 +137,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.5 Documentation</a> &#187;
+      <a href="../index.html">3.10.7 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">擴充和嵌入 Python 直譯器</a> &#187;</li>
@@ -165,14 +165,14 @@
           <div class="body" role="main">
             
   <section id="defining-extension-types-tutorial">
-<span id="defining-new-types"></span><h1><span class="section-number">2. </span>Defining Extension Types: Tutorial<a class="headerlink" href="#defining-extension-types-tutorial" title="Permalink to this heading">¶</a></h1>
+<span id="defining-new-types"></span><h1><span class="section-number">2. </span>Defining Extension Types: Tutorial<a class="headerlink" href="#defining-extension-types-tutorial" title="本標頭的永久連結">¶</a></h1>
 <p>Python allows the writer of a C extension module to define new types that
 can be manipulated from Python code, much like the built-in <a class="reference internal" href="../library/stdtypes.html#str" title="str"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>
 and <a class="reference internal" href="../library/stdtypes.html#list" title="list"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a> types.  The code for all extension types follows a
 pattern, but there are some details that you need to understand before you
 can get started.  This document is a gentle introduction to the topic.</p>
 <section id="the-basics">
-<span id="dnt-basics"></span><h2><span class="section-number">2.1. </span>The Basics<a class="headerlink" href="#the-basics" title="Permalink to this heading">¶</a></h2>
+<span id="dnt-basics"></span><h2><span class="section-number">2.1. </span>The Basics<a class="headerlink" href="#the-basics" title="本標頭的永久連結">¶</a></h2>
 <p>The <a class="reference internal" href="../glossary.html#term-CPython"><span class="xref std std-term">CPython</span></a> runtime sees all Python objects as variables of type
 <span class="xref c c-texpr"><a class="reference internal" href="../c-api/structures.html#c.PyObject" title="PyObject"><span class="n">PyObject</span></a><span class="p">*</span></span>, which serves as a &quot;base type&quot; for all Python objects.
 The <a class="reference internal" href="../c-api/structures.html#c.PyObject" title="PyObject"><code class="xref c c-type docutils literal notranslate"><span class="pre">PyObject</span></code></a> structure itself only contains the object's
@@ -408,7 +408,7 @@ the <a class="reference external" href="https://packaging.python.org/tutorials/d
 </div>
 </section>
 <section id="adding-data-and-methods-to-the-basic-example">
-<h2><span class="section-number">2.2. </span>Adding data and methods to the Basic example<a class="headerlink" href="#adding-data-and-methods-to-the-basic-example" title="Permalink to this heading">¶</a></h2>
+<h2><span class="section-number">2.2. </span>Adding data and methods to the Basic example<a class="headerlink" href="#adding-data-and-methods-to-the-basic-example" title="本標頭的永久連結">¶</a></h2>
 <p>Let's extend the basic example to add some data and methods.  Let's also make
 the type usable as a base class. We'll create a new module, <code class="xref py py-mod docutils literal notranslate"><span class="pre">custom2</span></code> that
 adds these capabilities:</p>
@@ -835,7 +835,7 @@ name in the <a class="reference internal" href="../c-api/type.html#c.PyTypeObjec
 </div>
 </section>
 <section id="providing-finer-control-over-data-attributes">
-<h2><span class="section-number">2.3. </span>Providing finer control over data attributes<a class="headerlink" href="#providing-finer-control-over-data-attributes" title="Permalink to this heading">¶</a></h2>
+<h2><span class="section-number">2.3. </span>Providing finer control over data attributes<a class="headerlink" href="#providing-finer-control-over-data-attributes" title="本標頭的永久連結">¶</a></h2>
 <p>In this section, we'll provide finer control over how the <code class="xref py py-attr docutils literal notranslate"><span class="pre">first</span></code> and
 <code class="xref py py-attr docutils literal notranslate"><span class="pre">last</span></code> attributes are set in the <code class="xref py py-class docutils literal notranslate"><span class="pre">Custom</span></code> example. In the previous
 version of our module, the instance variables <code class="xref py py-attr docutils literal notranslate"><span class="pre">first</span></code> and <code class="xref py py-attr docutils literal notranslate"><span class="pre">last</span></code>
@@ -1136,7 +1136,7 @@ initialization function, as we did before, and we add an extra definition to the
 <code class="file docutils literal notranslate"><span class="pre">setup.py</span></code> file.</p>
 </section>
 <section id="supporting-cyclic-garbage-collection">
-<h2><span class="section-number">2.4. </span>Supporting cyclic garbage collection<a class="headerlink" href="#supporting-cyclic-garbage-collection" title="Permalink to this heading">¶</a></h2>
+<h2><span class="section-number">2.4. </span>Supporting cyclic garbage collection<a class="headerlink" href="#supporting-cyclic-garbage-collection" title="本標頭的永久連結">¶</a></h2>
 <p>Python has a <a class="reference internal" href="../glossary.html#term-garbage-collection"><span class="xref std std-term">cyclic garbage collector (GC)</span></a> that
 can identify unneeded objects even when their reference counts are not zero.
 This can happen when objects are involved in cycles.  For example, consider:</p>
@@ -1465,7 +1465,7 @@ and <code class="docutils literal notranslate"><span class="pre">Custom_clear</s
 garbage collection.  Most extensions will use the versions automatically provided.</p>
 </section>
 <section id="subclassing-other-types">
-<h2><span class="section-number">2.5. </span>Subclassing other types<a class="headerlink" href="#subclassing-other-types" title="Permalink to this heading">¶</a></h2>
+<h2><span class="section-number">2.5. </span>Subclassing other types<a class="headerlink" href="#subclassing-other-types" title="本標頭的永久連結">¶</a></h2>
 <p>It is possible to create new extension types that are derived from existing
 types. It is easiest to inherit from the built in types, since an extension can
 easily use the <a class="reference internal" href="../c-api/type.html#c.PyTypeObject" title="PyTypeObject"><code class="xref c c-type docutils literal notranslate"><span class="pre">PyTypeObject</span></code></a> it needs. It can be difficult to share
@@ -1622,6 +1622,7 @@ type will be inherited.</p>
 <p>After that, calling <a class="reference internal" href="../c-api/type.html#c.PyType_Ready" title="PyType_Ready"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyType_Ready()</span></code></a> and adding the type object to the
 module is the same as with the basic <code class="xref py py-class docutils literal notranslate"><span class="pre">Custom</span></code> examples.</p>
 <p class="rubric">註解</p>
+<aside class="footnote-list brackets">
 <aside class="footnote brackets" id="id5" role="note">
 <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
 <p>This is true when we know that the object is a basic type, like a string or a
@@ -1645,6 +1646,7 @@ an instance of a string subclass won't call back into our objects.</p>
 <p>Also, even with our attributes restricted to strings instances, the user
 could pass arbitrary <a class="reference internal" href="../library/stdtypes.html#str" title="str"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a> subclasses and therefore still create
 reference cycles.</p>
+</aside>
 </aside>
 </section>
 </section>
@@ -1725,7 +1727,7 @@ reference cycles.</p>
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.5 Documentation</a> &#187;
+      <a href="../index.html">3.10.7 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >擴充和嵌入 Python 直譯器</a> &#187;</li>
@@ -1761,11 +1763,11 @@ reference cycles.</p>
 <br />
     <br />
 
-    最後更新於 7月 23, 2022。
+    最後更新於 9月 16, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 
-    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.0.2 建立。
+    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1 建立。
     </div>
 
   </body>

@@ -4,9 +4,9 @@
 <html lang="zh-TW">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>operator --- 標準運算子替代函式 &#8212; Python 3.10.5 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>operator --- 標準運算子替代函式 &#8212; Python 3.10.7 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -21,7 +21,7 @@
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.10.5 說明文件 中搜尋"
+          title="在 Python 3.10.7 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -134,7 +134,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.5 Documentation</a> &#187;
+      <a href="../index.html">3.10.7 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -163,7 +163,7 @@
           <div class="body" role="main">
             
   <section id="module-operator">
-<span id="operator-standard-operators-as-functions"></span><h1><a class="reference internal" href="#module-operator" title="operator: Functions corresponding to the standard operators."><code class="xref py py-mod docutils literal notranslate"><span class="pre">operator</span></code></a> --- 標準運算子替代函式<a class="headerlink" href="#module-operator" title="Permalink to this heading">¶</a></h1>
+<span id="operator-standard-operators-as-functions"></span><h1><a class="reference internal" href="#module-operator" title="operator: Functions corresponding to the standard operators."><code class="xref py py-mod docutils literal notranslate"><span class="pre">operator</span></code></a> --- 標準運算子替代函式<a class="headerlink" href="#module-operator" title="本標頭的永久連結">¶</a></h1>
 <p><strong>原始碼：</strong><a class="reference external" href="https://github.com/python/cpython/tree/3.10/Lib/operator.py">Lib/operator.py</a></p>
 <hr class="docutils" />
 <p><a class="reference internal" href="#module-operator" title="operator: Functions corresponding to the standard operators."><code class="xref py py-mod docutils literal notranslate"><span class="pre">operator</span></code></a> module（模組）提供了一套與 Python 原生運算子對應的高效率函式。例如，<code class="docutils literal notranslate"><span class="pre">operator.add(x,</span> <span class="pre">y)</span></code> 與表示式 <code class="docutils literal notranslate"><span class="pre">x+y</span></code> 相同。許多函式名與特殊方法名相同，只是沒有雙底線。為了向後相容，許多包含雙底線的函式被保留了下來，但為了易於表達，建議使用沒有雙底線的函式。</p>
@@ -537,7 +537,7 @@
 </dd></dl>
 
 <section id="mapping-operators-to-functions">
-<span id="operator-map"></span><h2>運算子與函式間的對映<a class="headerlink" href="#mapping-operators-to-functions" title="Permalink to this heading">¶</a></h2>
+<span id="operator-map"></span><h2>運算子與函式間的對映<a class="headerlink" href="#mapping-operators-to-functions" title="本標頭的永久連結">¶</a></h2>
 <p>以下表格表示了抽象運算是如何對應於 Python 語法中的運算子和 <a class="reference internal" href="#module-operator" title="operator: Functions corresponding to the standard operators."><code class="xref py py-mod docutils literal notranslate"><span class="pre">operator</span></code></a> module中的函式。</p>
 <table class="docutils align-default">
 <thead>
@@ -691,7 +691,7 @@
 </table>
 </section>
 <section id="in-place-operators">
-<h2>原地 (in-place) 運算子<a class="headerlink" href="#in-place-operators" title="Permalink to this heading">¶</a></h2>
+<h2>原地 (in-place) 運算子<a class="headerlink" href="#in-place-operators" title="本標頭的永久連結">¶</a></h2>
 <p>許多運算都有「原地」版本。以下列出的是提供對原地運算子（與一般語法相比）更底層存取的函式，例如 <a class="reference internal" href="../glossary.html#term-statement"><span class="xref std std-term">statement</span></a> <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">+=</span> <span class="pre">y</span></code> 相當於 <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">=</span> <span class="pre">operator.iadd(x,</span> <span class="pre">y)</span></code>。換一種方式來講就是 <code class="docutils literal notranslate"><span class="pre">z</span> <span class="pre">=</span> <span class="pre">operator.iadd(x,</span> <span class="pre">y)</span></code> 等價於複合陳述式 <code class="docutils literal notranslate"><span class="pre">z</span> <span class="pre">=</span> <span class="pre">x;</span> <span class="pre">z</span> <span class="pre">+=</span> <span class="pre">y</span></code>。</p>
 <p>在這些例子中，請注意當呼叫一個原地方法時，運算和賦值是分成兩個步驟來執行的。下面列出的原地函式只執行第一步，即呼叫原地方法，第二步賦值則不加處理。</p>
 <p>對於不可變 (immutable) 的目標例如字串、數字和 tupple，更新的值會被計算，但不會被再被賦值給輸入變數：</p>
@@ -901,7 +901,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.5 Documentation</a> &#187;
+      <a href="../index.html">3.10.7 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -938,11 +938,11 @@
 <br />
     <br />
 
-    最後更新於 7月 23, 2022。
+    最後更新於 9月 16, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 
-    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.0.2 建立。
+    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1 建立。
     </div>
 
   </body>
