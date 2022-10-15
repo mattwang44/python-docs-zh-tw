@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>cmath --- Mathematical functions for complex numbers &#8212; Python 3.10.7 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cmath --- Mathematical functions for complex numbers &#8212; Python 3.10.8 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -16,12 +16,13 @@
     <script src="../_static/underscore.js"></script>
     <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/translations.js"></script>
     
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.10.7 說明文件 中搜尋"
+          title="在 Python 3.10.8 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -75,12 +76,54 @@
     <h3><a href="../contents.html">目錄</a></h3>
     <ul>
 <li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">cmath</span></code> --- Mathematical functions for complex numbers</a><ul>
-<li><a class="reference internal" href="#conversions-to-and-from-polar-coordinates">Conversions to and from polar coordinates</a></li>
-<li><a class="reference internal" href="#power-and-logarithmic-functions">Power and logarithmic functions</a></li>
-<li><a class="reference internal" href="#trigonometric-functions">Trigonometric functions</a></li>
-<li><a class="reference internal" href="#hyperbolic-functions">Hyperbolic functions</a></li>
-<li><a class="reference internal" href="#classification-functions">Classification functions</a></li>
-<li><a class="reference internal" href="#constants">常數</a></li>
+<li><a class="reference internal" href="#conversions-to-and-from-polar-coordinates">Conversions to and from polar coordinates</a><ul>
+<li><a class="reference internal" href="#cmath.phase"><code class="docutils literal notranslate"><span class="pre">phase()</span></code></a></li>
+<li><a class="reference internal" href="#cmath.polar"><code class="docutils literal notranslate"><span class="pre">polar()</span></code></a></li>
+<li><a class="reference internal" href="#cmath.rect"><code class="docutils literal notranslate"><span class="pre">rect()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#power-and-logarithmic-functions">Power and logarithmic functions</a><ul>
+<li><a class="reference internal" href="#cmath.exp"><code class="docutils literal notranslate"><span class="pre">exp()</span></code></a></li>
+<li><a class="reference internal" href="#cmath.log"><code class="docutils literal notranslate"><span class="pre">log()</span></code></a></li>
+<li><a class="reference internal" href="#cmath.log10"><code class="docutils literal notranslate"><span class="pre">log10()</span></code></a></li>
+<li><a class="reference internal" href="#cmath.sqrt"><code class="docutils literal notranslate"><span class="pre">sqrt()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#trigonometric-functions">Trigonometric functions</a><ul>
+<li><a class="reference internal" href="#cmath.acos"><code class="docutils literal notranslate"><span class="pre">acos()</span></code></a></li>
+<li><a class="reference internal" href="#cmath.asin"><code class="docutils literal notranslate"><span class="pre">asin()</span></code></a></li>
+<li><a class="reference internal" href="#cmath.atan"><code class="docutils literal notranslate"><span class="pre">atan()</span></code></a></li>
+<li><a class="reference internal" href="#cmath.cos"><code class="docutils literal notranslate"><span class="pre">cos()</span></code></a></li>
+<li><a class="reference internal" href="#cmath.sin"><code class="docutils literal notranslate"><span class="pre">sin()</span></code></a></li>
+<li><a class="reference internal" href="#cmath.tan"><code class="docutils literal notranslate"><span class="pre">tan()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#hyperbolic-functions">Hyperbolic functions</a><ul>
+<li><a class="reference internal" href="#cmath.acosh"><code class="docutils literal notranslate"><span class="pre">acosh()</span></code></a></li>
+<li><a class="reference internal" href="#cmath.asinh"><code class="docutils literal notranslate"><span class="pre">asinh()</span></code></a></li>
+<li><a class="reference internal" href="#cmath.atanh"><code class="docutils literal notranslate"><span class="pre">atanh()</span></code></a></li>
+<li><a class="reference internal" href="#cmath.cosh"><code class="docutils literal notranslate"><span class="pre">cosh()</span></code></a></li>
+<li><a class="reference internal" href="#cmath.sinh"><code class="docutils literal notranslate"><span class="pre">sinh()</span></code></a></li>
+<li><a class="reference internal" href="#cmath.tanh"><code class="docutils literal notranslate"><span class="pre">tanh()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#classification-functions">Classification functions</a><ul>
+<li><a class="reference internal" href="#cmath.isfinite"><code class="docutils literal notranslate"><span class="pre">isfinite()</span></code></a></li>
+<li><a class="reference internal" href="#cmath.isinf"><code class="docutils literal notranslate"><span class="pre">isinf()</span></code></a></li>
+<li><a class="reference internal" href="#cmath.isnan"><code class="docutils literal notranslate"><span class="pre">isnan()</span></code></a></li>
+<li><a class="reference internal" href="#cmath.isclose"><code class="docutils literal notranslate"><span class="pre">isclose()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#constants">常數</a><ul>
+<li><a class="reference internal" href="#cmath.pi"><code class="docutils literal notranslate"><span class="pre">pi</span></code></a></li>
+<li><a class="reference internal" href="#cmath.e"><code class="docutils literal notranslate"><span class="pre">e</span></code></a></li>
+<li><a class="reference internal" href="#cmath.tau"><code class="docutils literal notranslate"><span class="pre">tau</span></code></a></li>
+<li><a class="reference internal" href="#cmath.inf"><code class="docutils literal notranslate"><span class="pre">inf</span></code></a></li>
+<li><a class="reference internal" href="#cmath.infj"><code class="docutils literal notranslate"><span class="pre">infj</span></code></a></li>
+<li><a class="reference internal" href="#cmath.nan"><code class="docutils literal notranslate"><span class="pre">nan</span></code></a></li>
+<li><a class="reference internal" href="#cmath.nanj"><code class="docutils literal notranslate"><span class="pre">nanj</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -138,7 +181,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.7 Documentation</a> &#187;
+      <a href="../index.html">3.10.8 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -514,12 +557,54 @@ in numerical analysis. Clarendon Press (1987) pp165--211.</p>
     <h3><a href="../contents.html">目錄</a></h3>
     <ul>
 <li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">cmath</span></code> --- Mathematical functions for complex numbers</a><ul>
-<li><a class="reference internal" href="#conversions-to-and-from-polar-coordinates">Conversions to and from polar coordinates</a></li>
-<li><a class="reference internal" href="#power-and-logarithmic-functions">Power and logarithmic functions</a></li>
-<li><a class="reference internal" href="#trigonometric-functions">Trigonometric functions</a></li>
-<li><a class="reference internal" href="#hyperbolic-functions">Hyperbolic functions</a></li>
-<li><a class="reference internal" href="#classification-functions">Classification functions</a></li>
-<li><a class="reference internal" href="#constants">常數</a></li>
+<li><a class="reference internal" href="#conversions-to-and-from-polar-coordinates">Conversions to and from polar coordinates</a><ul>
+<li><a class="reference internal" href="#cmath.phase"><code class="docutils literal notranslate"><span class="pre">phase()</span></code></a></li>
+<li><a class="reference internal" href="#cmath.polar"><code class="docutils literal notranslate"><span class="pre">polar()</span></code></a></li>
+<li><a class="reference internal" href="#cmath.rect"><code class="docutils literal notranslate"><span class="pre">rect()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#power-and-logarithmic-functions">Power and logarithmic functions</a><ul>
+<li><a class="reference internal" href="#cmath.exp"><code class="docutils literal notranslate"><span class="pre">exp()</span></code></a></li>
+<li><a class="reference internal" href="#cmath.log"><code class="docutils literal notranslate"><span class="pre">log()</span></code></a></li>
+<li><a class="reference internal" href="#cmath.log10"><code class="docutils literal notranslate"><span class="pre">log10()</span></code></a></li>
+<li><a class="reference internal" href="#cmath.sqrt"><code class="docutils literal notranslate"><span class="pre">sqrt()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#trigonometric-functions">Trigonometric functions</a><ul>
+<li><a class="reference internal" href="#cmath.acos"><code class="docutils literal notranslate"><span class="pre">acos()</span></code></a></li>
+<li><a class="reference internal" href="#cmath.asin"><code class="docutils literal notranslate"><span class="pre">asin()</span></code></a></li>
+<li><a class="reference internal" href="#cmath.atan"><code class="docutils literal notranslate"><span class="pre">atan()</span></code></a></li>
+<li><a class="reference internal" href="#cmath.cos"><code class="docutils literal notranslate"><span class="pre">cos()</span></code></a></li>
+<li><a class="reference internal" href="#cmath.sin"><code class="docutils literal notranslate"><span class="pre">sin()</span></code></a></li>
+<li><a class="reference internal" href="#cmath.tan"><code class="docutils literal notranslate"><span class="pre">tan()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#hyperbolic-functions">Hyperbolic functions</a><ul>
+<li><a class="reference internal" href="#cmath.acosh"><code class="docutils literal notranslate"><span class="pre">acosh()</span></code></a></li>
+<li><a class="reference internal" href="#cmath.asinh"><code class="docutils literal notranslate"><span class="pre">asinh()</span></code></a></li>
+<li><a class="reference internal" href="#cmath.atanh"><code class="docutils literal notranslate"><span class="pre">atanh()</span></code></a></li>
+<li><a class="reference internal" href="#cmath.cosh"><code class="docutils literal notranslate"><span class="pre">cosh()</span></code></a></li>
+<li><a class="reference internal" href="#cmath.sinh"><code class="docutils literal notranslate"><span class="pre">sinh()</span></code></a></li>
+<li><a class="reference internal" href="#cmath.tanh"><code class="docutils literal notranslate"><span class="pre">tanh()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#classification-functions">Classification functions</a><ul>
+<li><a class="reference internal" href="#cmath.isfinite"><code class="docutils literal notranslate"><span class="pre">isfinite()</span></code></a></li>
+<li><a class="reference internal" href="#cmath.isinf"><code class="docutils literal notranslate"><span class="pre">isinf()</span></code></a></li>
+<li><a class="reference internal" href="#cmath.isnan"><code class="docutils literal notranslate"><span class="pre">isnan()</span></code></a></li>
+<li><a class="reference internal" href="#cmath.isclose"><code class="docutils literal notranslate"><span class="pre">isclose()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#constants">常數</a><ul>
+<li><a class="reference internal" href="#cmath.pi"><code class="docutils literal notranslate"><span class="pre">pi</span></code></a></li>
+<li><a class="reference internal" href="#cmath.e"><code class="docutils literal notranslate"><span class="pre">e</span></code></a></li>
+<li><a class="reference internal" href="#cmath.tau"><code class="docutils literal notranslate"><span class="pre">tau</span></code></a></li>
+<li><a class="reference internal" href="#cmath.inf"><code class="docutils literal notranslate"><span class="pre">inf</span></code></a></li>
+<li><a class="reference internal" href="#cmath.infj"><code class="docutils literal notranslate"><span class="pre">infj</span></code></a></li>
+<li><a class="reference internal" href="#cmath.nan"><code class="docutils literal notranslate"><span class="pre">nan</span></code></a></li>
+<li><a class="reference internal" href="#cmath.nanj"><code class="docutils literal notranslate"><span class="pre">nanj</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -580,7 +665,7 @@ in numerical analysis. Clarendon Press (1987) pp165--211.</p>
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.7 Documentation</a> &#187;
+      <a href="../index.html">3.10.8 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -617,11 +702,11 @@ in numerical analysis. Clarendon Press (1987) pp165--211.</p>
 <br />
     <br />
 
-    最後更新於 9月 16, 2022。
+    最後更新於 10月 15, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 
-    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1 建立。
+    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.2.3 建立。
     </div>
 
   </body>

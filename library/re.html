@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>re --- Regular expression operations &#8212; Python 3.10.7 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>re --- Regular expression operations &#8212; Python 3.10.8 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -16,12 +16,13 @@
     <script src="../_static/underscore.js"></script>
     <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/translations.js"></script>
     
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.10.7 說明文件 中搜尋"
+          title="在 Python 3.10.8 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -77,13 +78,81 @@
 <li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">re</span></code> --- Regular expression operations</a><ul>
 <li><a class="reference internal" href="#regular-expression-syntax">Regular Expression Syntax</a></li>
 <li><a class="reference internal" href="#module-contents">模組內容</a><ul>
-<li><a class="reference internal" href="#flags">Flags</a></li>
-<li><a class="reference internal" href="#functions">Functions</a></li>
-<li><a class="reference internal" href="#exceptions">Exceptions</a></li>
+<li><a class="reference internal" href="#flags">Flags</a><ul>
+<li><a class="reference internal" href="#re.A"><code class="docutils literal notranslate"><span class="pre">A</span></code></a></li>
+<li><a class="reference internal" href="#re.ASCII"><code class="docutils literal notranslate"><span class="pre">ASCII</span></code></a></li>
+<li><a class="reference internal" href="#re.DEBUG"><code class="docutils literal notranslate"><span class="pre">DEBUG</span></code></a></li>
+<li><a class="reference internal" href="#re.I"><code class="docutils literal notranslate"><span class="pre">I</span></code></a></li>
+<li><a class="reference internal" href="#re.IGNORECASE"><code class="docutils literal notranslate"><span class="pre">IGNORECASE</span></code></a></li>
+<li><a class="reference internal" href="#re.L"><code class="docutils literal notranslate"><span class="pre">L</span></code></a></li>
+<li><a class="reference internal" href="#re.LOCALE"><code class="docutils literal notranslate"><span class="pre">LOCALE</span></code></a></li>
+<li><a class="reference internal" href="#re.M"><code class="docutils literal notranslate"><span class="pre">M</span></code></a></li>
+<li><a class="reference internal" href="#re.MULTILINE"><code class="docutils literal notranslate"><span class="pre">MULTILINE</span></code></a></li>
+<li><a class="reference internal" href="#re.S"><code class="docutils literal notranslate"><span class="pre">S</span></code></a></li>
+<li><a class="reference internal" href="#re.DOTALL"><code class="docutils literal notranslate"><span class="pre">DOTALL</span></code></a></li>
+<li><a class="reference internal" href="#re.X"><code class="docutils literal notranslate"><span class="pre">X</span></code></a></li>
+<li><a class="reference internal" href="#re.VERBOSE"><code class="docutils literal notranslate"><span class="pre">VERBOSE</span></code></a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#regular-expression-objects">Regular Expression Objects</a></li>
-<li><a class="reference internal" href="#match-objects">Match Objects</a></li>
+<li><a class="reference internal" href="#functions">Functions</a><ul>
+<li><a class="reference internal" href="#re.compile"><code class="docutils literal notranslate"><span class="pre">compile()</span></code></a></li>
+<li><a class="reference internal" href="#re.search"><code class="docutils literal notranslate"><span class="pre">search()</span></code></a></li>
+<li><a class="reference internal" href="#re.match"><code class="docutils literal notranslate"><span class="pre">match()</span></code></a></li>
+<li><a class="reference internal" href="#re.fullmatch"><code class="docutils literal notranslate"><span class="pre">fullmatch()</span></code></a></li>
+<li><a class="reference internal" href="#re.split"><code class="docutils literal notranslate"><span class="pre">split()</span></code></a></li>
+<li><a class="reference internal" href="#re.findall"><code class="docutils literal notranslate"><span class="pre">findall()</span></code></a></li>
+<li><a class="reference internal" href="#re.finditer"><code class="docutils literal notranslate"><span class="pre">finditer()</span></code></a></li>
+<li><a class="reference internal" href="#re.sub"><code class="docutils literal notranslate"><span class="pre">sub()</span></code></a></li>
+<li><a class="reference internal" href="#re.subn"><code class="docutils literal notranslate"><span class="pre">subn()</span></code></a></li>
+<li><a class="reference internal" href="#re.escape"><code class="docutils literal notranslate"><span class="pre">escape()</span></code></a></li>
+<li><a class="reference internal" href="#re.purge"><code class="docutils literal notranslate"><span class="pre">purge()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#exceptions">Exceptions</a><ul>
+<li><a class="reference internal" href="#re.error"><code class="docutils literal notranslate"><span class="pre">error</span></code></a><ul>
+<li><a class="reference internal" href="#re.error.msg"><code class="docutils literal notranslate"><span class="pre">error.msg</span></code></a></li>
+<li><a class="reference internal" href="#re.error.pattern"><code class="docutils literal notranslate"><span class="pre">error.pattern</span></code></a></li>
+<li><a class="reference internal" href="#re.error.pos"><code class="docutils literal notranslate"><span class="pre">error.pos</span></code></a></li>
+<li><a class="reference internal" href="#re.error.lineno"><code class="docutils literal notranslate"><span class="pre">error.lineno</span></code></a></li>
+<li><a class="reference internal" href="#re.error.colno"><code class="docutils literal notranslate"><span class="pre">error.colno</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#regular-expression-objects">Regular Expression Objects</a><ul>
+<li><a class="reference internal" href="#re.Pattern.search"><code class="docutils literal notranslate"><span class="pre">Pattern.search()</span></code></a></li>
+<li><a class="reference internal" href="#re.Pattern.match"><code class="docutils literal notranslate"><span class="pre">Pattern.match()</span></code></a></li>
+<li><a class="reference internal" href="#re.Pattern.fullmatch"><code class="docutils literal notranslate"><span class="pre">Pattern.fullmatch()</span></code></a></li>
+<li><a class="reference internal" href="#re.Pattern.split"><code class="docutils literal notranslate"><span class="pre">Pattern.split()</span></code></a></li>
+<li><a class="reference internal" href="#re.Pattern.findall"><code class="docutils literal notranslate"><span class="pre">Pattern.findall()</span></code></a></li>
+<li><a class="reference internal" href="#re.Pattern.finditer"><code class="docutils literal notranslate"><span class="pre">Pattern.finditer()</span></code></a></li>
+<li><a class="reference internal" href="#re.Pattern.sub"><code class="docutils literal notranslate"><span class="pre">Pattern.sub()</span></code></a></li>
+<li><a class="reference internal" href="#re.Pattern.subn"><code class="docutils literal notranslate"><span class="pre">Pattern.subn()</span></code></a></li>
+<li><a class="reference internal" href="#re.Pattern.flags"><code class="docutils literal notranslate"><span class="pre">Pattern.flags</span></code></a></li>
+<li><a class="reference internal" href="#re.Pattern.groups"><code class="docutils literal notranslate"><span class="pre">Pattern.groups</span></code></a></li>
+<li><a class="reference internal" href="#re.Pattern.groupindex"><code class="docutils literal notranslate"><span class="pre">Pattern.groupindex</span></code></a></li>
+<li><a class="reference internal" href="#re.Pattern.pattern"><code class="docutils literal notranslate"><span class="pre">Pattern.pattern</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#match-objects">Match Objects</a><ul>
+<li><a class="reference internal" href="#re.Match.expand"><code class="docutils literal notranslate"><span class="pre">Match.expand()</span></code></a></li>
+<li><a class="reference internal" href="#re.Match.group"><code class="docutils literal notranslate"><span class="pre">Match.group()</span></code></a></li>
+<li><a class="reference internal" href="#re.Match.__getitem__"><code class="docutils literal notranslate"><span class="pre">Match.__getitem__()</span></code></a></li>
+<li><a class="reference internal" href="#re.Match.groups"><code class="docutils literal notranslate"><span class="pre">Match.groups()</span></code></a></li>
+<li><a class="reference internal" href="#re.Match.groupdict"><code class="docutils literal notranslate"><span class="pre">Match.groupdict()</span></code></a></li>
+<li><a class="reference internal" href="#re.Match.start"><code class="docutils literal notranslate"><span class="pre">Match.start()</span></code></a></li>
+<li><a class="reference internal" href="#re.Match.end"><code class="docutils literal notranslate"><span class="pre">Match.end()</span></code></a></li>
+<li><a class="reference internal" href="#re.Match.span"><code class="docutils literal notranslate"><span class="pre">Match.span()</span></code></a></li>
+<li><a class="reference internal" href="#re.Match.pos"><code class="docutils literal notranslate"><span class="pre">Match.pos</span></code></a></li>
+<li><a class="reference internal" href="#re.Match.endpos"><code class="docutils literal notranslate"><span class="pre">Match.endpos</span></code></a></li>
+<li><a class="reference internal" href="#re.Match.lastindex"><code class="docutils literal notranslate"><span class="pre">Match.lastindex</span></code></a></li>
+<li><a class="reference internal" href="#re.Match.lastgroup"><code class="docutils literal notranslate"><span class="pre">Match.lastgroup</span></code></a></li>
+<li><a class="reference internal" href="#re.Match.re"><code class="docutils literal notranslate"><span class="pre">Match.re</span></code></a></li>
+<li><a class="reference internal" href="#re.Match.string"><code class="docutils literal notranslate"><span class="pre">Match.string</span></code></a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#regular-expression-examples">Regular Expression Examples</a><ul>
 <li><a class="reference internal" href="#checking-for-a-pair">Checking for a Pair</a></li>
 <li><a class="reference internal" href="#simulating-scanf">Simulating scanf()</a></li>
@@ -153,7 +222,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.7 Documentation</a> &#187;
+      <a href="../index.html">3.10.8 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -808,7 +877,8 @@ Corresponds to the inline flag <code class="docutils literal notranslate"><span 
 more readable by allowing you to visually separate logical sections of the
 pattern and add comments. Whitespace within the pattern is ignored, except
 when in a character class, or when preceded by an unescaped backslash,
-or within tokens like <code class="docutils literal notranslate"><span class="pre">*?</span></code>, <code class="docutils literal notranslate"><span class="pre">(?:</span></code> or <code class="docutils literal notranslate"><span class="pre">(?P&lt;...&gt;</span></code>.
+or within tokens like <code class="docutils literal notranslate"><span class="pre">*?</span></code>, <code class="docutils literal notranslate"><span class="pre">(?:</span></code> or <code class="docutils literal notranslate"><span class="pre">(?P&lt;...&gt;</span></code>. For example, <code class="docutils literal notranslate"><span class="pre">(?</span> <span class="pre">:</span></code>
+and <code class="docutils literal notranslate"><span class="pre">*</span> <span class="pre">?</span></code> are not allowed.
 When a line contains a <code class="docutils literal notranslate"><span class="pre">#</span></code> that is not in a character class and is not
 preceded by an unescaped backslash, all characters from the leftmost such
 <code class="docutils literal notranslate"><span class="pre">#</span></code> through the end of the line are ignored.</p>
@@ -1641,7 +1711,7 @@ easily read and modified by Python as demonstrated in the following example that
 creates a phonebook.</p>
 <p>First, here is the input.  Normally it may come from a file, here we are using
 triple-quoted string syntax</p>
-<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;Ross McFluff: 834.345.1254 155 Elm Street</span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;Ross McFluff: 834.345.1254 155 Elm Street</span>
 <span class="gp">...</span><span class="s2"></span>
 <span class="gp">... </span><span class="s2">Ronald Heathmore: 892.345.3428 436 Finley Avenue</span>
 <span class="gp">... </span><span class="s2">Frank Burger: 925.541.7625 662 South Dogwood Way</span>
@@ -1652,7 +1722,7 @@ triple-quoted string syntax</p>
 </div>
 <p>The entries are separated by one or more newlines. Now we convert the string
 into a list with each nonempty line having its own entry:</p>
-<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">entries</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">+&quot;</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">entries</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">+&quot;</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">entries</span>
 <span class="go">[&#39;Ross McFluff: 834.345.1254 155 Elm Street&#39;,</span>
 <span class="go">&#39;Ronald Heathmore: 892.345.3428 436 Finley Avenue&#39;,</span>
@@ -1663,7 +1733,7 @@ into a list with each nonempty line having its own entry:</p>
 <p>Finally, split each entry into a list with first name, last name, telephone
 number, and address.  We use the <code class="docutils literal notranslate"><span class="pre">maxsplit</span></code> parameter of <a class="reference internal" href="#re.split" title="re.split"><code class="xref py py-func docutils literal notranslate"><span class="pre">split()</span></code></a>
 because the address has spaces, our splitting pattern, in it:</p>
-<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">re</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;:? &quot;</span><span class="p">,</span> <span class="n">entry</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span> <span class="k">for</span> <span class="n">entry</span> <span class="ow">in</span> <span class="n">entries</span><span class="p">]</span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">re</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;:? &quot;</span><span class="p">,</span> <span class="n">entry</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span> <span class="k">for</span> <span class="n">entry</span> <span class="ow">in</span> <span class="n">entries</span><span class="p">]</span>
 <span class="go">[[&#39;Ross&#39;, &#39;McFluff&#39;, &#39;834.345.1254&#39;, &#39;155 Elm Street&#39;],</span>
 <span class="go">[&#39;Ronald&#39;, &#39;Heathmore&#39;, &#39;892.345.3428&#39;, &#39;436 Finley Avenue&#39;],</span>
 <span class="go">[&#39;Frank&#39;, &#39;Burger&#39;, &#39;925.541.7625&#39;, &#39;662 South Dogwood Way&#39;],</span>
@@ -1673,7 +1743,7 @@ because the address has spaces, our splitting pattern, in it:</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">:?</span></code> pattern matches the colon after the last name, so that it does not
 occur in the result list.  With a <code class="docutils literal notranslate"><span class="pre">maxsplit</span></code> of <code class="docutils literal notranslate"><span class="pre">4</span></code>, we could separate the
 house number from the street name:</p>
-<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">re</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;:? &quot;</span><span class="p">,</span> <span class="n">entry</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span> <span class="k">for</span> <span class="n">entry</span> <span class="ow">in</span> <span class="n">entries</span><span class="p">]</span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">re</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;:? &quot;</span><span class="p">,</span> <span class="n">entry</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span> <span class="k">for</span> <span class="n">entry</span> <span class="ow">in</span> <span class="n">entries</span><span class="p">]</span>
 <span class="go">[[&#39;Ross&#39;, &#39;McFluff&#39;, &#39;834.345.1254&#39;, &#39;155&#39;, &#39;Elm Street&#39;],</span>
 <span class="go">[&#39;Ronald&#39;, &#39;Heathmore&#39;, &#39;892.345.3428&#39;, &#39;436&#39;, &#39;Finley Avenue&#39;],</span>
 <span class="go">[&#39;Frank&#39;, &#39;Burger&#39;, &#39;925.541.7625&#39;, &#39;662&#39;, &#39;South Dogwood Way&#39;],</span>
@@ -1857,13 +1927,81 @@ great detail.</p>
 <li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">re</span></code> --- Regular expression operations</a><ul>
 <li><a class="reference internal" href="#regular-expression-syntax">Regular Expression Syntax</a></li>
 <li><a class="reference internal" href="#module-contents">模組內容</a><ul>
-<li><a class="reference internal" href="#flags">Flags</a></li>
-<li><a class="reference internal" href="#functions">Functions</a></li>
-<li><a class="reference internal" href="#exceptions">Exceptions</a></li>
+<li><a class="reference internal" href="#flags">Flags</a><ul>
+<li><a class="reference internal" href="#re.A"><code class="docutils literal notranslate"><span class="pre">A</span></code></a></li>
+<li><a class="reference internal" href="#re.ASCII"><code class="docutils literal notranslate"><span class="pre">ASCII</span></code></a></li>
+<li><a class="reference internal" href="#re.DEBUG"><code class="docutils literal notranslate"><span class="pre">DEBUG</span></code></a></li>
+<li><a class="reference internal" href="#re.I"><code class="docutils literal notranslate"><span class="pre">I</span></code></a></li>
+<li><a class="reference internal" href="#re.IGNORECASE"><code class="docutils literal notranslate"><span class="pre">IGNORECASE</span></code></a></li>
+<li><a class="reference internal" href="#re.L"><code class="docutils literal notranslate"><span class="pre">L</span></code></a></li>
+<li><a class="reference internal" href="#re.LOCALE"><code class="docutils literal notranslate"><span class="pre">LOCALE</span></code></a></li>
+<li><a class="reference internal" href="#re.M"><code class="docutils literal notranslate"><span class="pre">M</span></code></a></li>
+<li><a class="reference internal" href="#re.MULTILINE"><code class="docutils literal notranslate"><span class="pre">MULTILINE</span></code></a></li>
+<li><a class="reference internal" href="#re.S"><code class="docutils literal notranslate"><span class="pre">S</span></code></a></li>
+<li><a class="reference internal" href="#re.DOTALL"><code class="docutils literal notranslate"><span class="pre">DOTALL</span></code></a></li>
+<li><a class="reference internal" href="#re.X"><code class="docutils literal notranslate"><span class="pre">X</span></code></a></li>
+<li><a class="reference internal" href="#re.VERBOSE"><code class="docutils literal notranslate"><span class="pre">VERBOSE</span></code></a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#regular-expression-objects">Regular Expression Objects</a></li>
-<li><a class="reference internal" href="#match-objects">Match Objects</a></li>
+<li><a class="reference internal" href="#functions">Functions</a><ul>
+<li><a class="reference internal" href="#re.compile"><code class="docutils literal notranslate"><span class="pre">compile()</span></code></a></li>
+<li><a class="reference internal" href="#re.search"><code class="docutils literal notranslate"><span class="pre">search()</span></code></a></li>
+<li><a class="reference internal" href="#re.match"><code class="docutils literal notranslate"><span class="pre">match()</span></code></a></li>
+<li><a class="reference internal" href="#re.fullmatch"><code class="docutils literal notranslate"><span class="pre">fullmatch()</span></code></a></li>
+<li><a class="reference internal" href="#re.split"><code class="docutils literal notranslate"><span class="pre">split()</span></code></a></li>
+<li><a class="reference internal" href="#re.findall"><code class="docutils literal notranslate"><span class="pre">findall()</span></code></a></li>
+<li><a class="reference internal" href="#re.finditer"><code class="docutils literal notranslate"><span class="pre">finditer()</span></code></a></li>
+<li><a class="reference internal" href="#re.sub"><code class="docutils literal notranslate"><span class="pre">sub()</span></code></a></li>
+<li><a class="reference internal" href="#re.subn"><code class="docutils literal notranslate"><span class="pre">subn()</span></code></a></li>
+<li><a class="reference internal" href="#re.escape"><code class="docutils literal notranslate"><span class="pre">escape()</span></code></a></li>
+<li><a class="reference internal" href="#re.purge"><code class="docutils literal notranslate"><span class="pre">purge()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#exceptions">Exceptions</a><ul>
+<li><a class="reference internal" href="#re.error"><code class="docutils literal notranslate"><span class="pre">error</span></code></a><ul>
+<li><a class="reference internal" href="#re.error.msg"><code class="docutils literal notranslate"><span class="pre">error.msg</span></code></a></li>
+<li><a class="reference internal" href="#re.error.pattern"><code class="docutils literal notranslate"><span class="pre">error.pattern</span></code></a></li>
+<li><a class="reference internal" href="#re.error.pos"><code class="docutils literal notranslate"><span class="pre">error.pos</span></code></a></li>
+<li><a class="reference internal" href="#re.error.lineno"><code class="docutils literal notranslate"><span class="pre">error.lineno</span></code></a></li>
+<li><a class="reference internal" href="#re.error.colno"><code class="docutils literal notranslate"><span class="pre">error.colno</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#regular-expression-objects">Regular Expression Objects</a><ul>
+<li><a class="reference internal" href="#re.Pattern.search"><code class="docutils literal notranslate"><span class="pre">Pattern.search()</span></code></a></li>
+<li><a class="reference internal" href="#re.Pattern.match"><code class="docutils literal notranslate"><span class="pre">Pattern.match()</span></code></a></li>
+<li><a class="reference internal" href="#re.Pattern.fullmatch"><code class="docutils literal notranslate"><span class="pre">Pattern.fullmatch()</span></code></a></li>
+<li><a class="reference internal" href="#re.Pattern.split"><code class="docutils literal notranslate"><span class="pre">Pattern.split()</span></code></a></li>
+<li><a class="reference internal" href="#re.Pattern.findall"><code class="docutils literal notranslate"><span class="pre">Pattern.findall()</span></code></a></li>
+<li><a class="reference internal" href="#re.Pattern.finditer"><code class="docutils literal notranslate"><span class="pre">Pattern.finditer()</span></code></a></li>
+<li><a class="reference internal" href="#re.Pattern.sub"><code class="docutils literal notranslate"><span class="pre">Pattern.sub()</span></code></a></li>
+<li><a class="reference internal" href="#re.Pattern.subn"><code class="docutils literal notranslate"><span class="pre">Pattern.subn()</span></code></a></li>
+<li><a class="reference internal" href="#re.Pattern.flags"><code class="docutils literal notranslate"><span class="pre">Pattern.flags</span></code></a></li>
+<li><a class="reference internal" href="#re.Pattern.groups"><code class="docutils literal notranslate"><span class="pre">Pattern.groups</span></code></a></li>
+<li><a class="reference internal" href="#re.Pattern.groupindex"><code class="docutils literal notranslate"><span class="pre">Pattern.groupindex</span></code></a></li>
+<li><a class="reference internal" href="#re.Pattern.pattern"><code class="docutils literal notranslate"><span class="pre">Pattern.pattern</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#match-objects">Match Objects</a><ul>
+<li><a class="reference internal" href="#re.Match.expand"><code class="docutils literal notranslate"><span class="pre">Match.expand()</span></code></a></li>
+<li><a class="reference internal" href="#re.Match.group"><code class="docutils literal notranslate"><span class="pre">Match.group()</span></code></a></li>
+<li><a class="reference internal" href="#re.Match.__getitem__"><code class="docutils literal notranslate"><span class="pre">Match.__getitem__()</span></code></a></li>
+<li><a class="reference internal" href="#re.Match.groups"><code class="docutils literal notranslate"><span class="pre">Match.groups()</span></code></a></li>
+<li><a class="reference internal" href="#re.Match.groupdict"><code class="docutils literal notranslate"><span class="pre">Match.groupdict()</span></code></a></li>
+<li><a class="reference internal" href="#re.Match.start"><code class="docutils literal notranslate"><span class="pre">Match.start()</span></code></a></li>
+<li><a class="reference internal" href="#re.Match.end"><code class="docutils literal notranslate"><span class="pre">Match.end()</span></code></a></li>
+<li><a class="reference internal" href="#re.Match.span"><code class="docutils literal notranslate"><span class="pre">Match.span()</span></code></a></li>
+<li><a class="reference internal" href="#re.Match.pos"><code class="docutils literal notranslate"><span class="pre">Match.pos</span></code></a></li>
+<li><a class="reference internal" href="#re.Match.endpos"><code class="docutils literal notranslate"><span class="pre">Match.endpos</span></code></a></li>
+<li><a class="reference internal" href="#re.Match.lastindex"><code class="docutils literal notranslate"><span class="pre">Match.lastindex</span></code></a></li>
+<li><a class="reference internal" href="#re.Match.lastgroup"><code class="docutils literal notranslate"><span class="pre">Match.lastgroup</span></code></a></li>
+<li><a class="reference internal" href="#re.Match.re"><code class="docutils literal notranslate"><span class="pre">Match.re</span></code></a></li>
+<li><a class="reference internal" href="#re.Match.string"><code class="docutils literal notranslate"><span class="pre">Match.string</span></code></a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#regular-expression-examples">Regular Expression Examples</a><ul>
 <li><a class="reference internal" href="#checking-for-a-pair">Checking for a Pair</a></li>
 <li><a class="reference internal" href="#simulating-scanf">Simulating scanf()</a></li>
@@ -1936,7 +2074,7 @@ great detail.</p>
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.7 Documentation</a> &#187;
+      <a href="../index.html">3.10.8 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -1973,11 +2111,11 @@ great detail.</p>
 <br />
     <br />
 
-    最後更新於 9月 16, 2022。
+    最後更新於 10月 15, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 
-    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1 建立。
+    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.2.3 建立。
     </div>
 
   </body>

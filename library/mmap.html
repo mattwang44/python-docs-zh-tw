@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>mmap --- Memory-mapped file support &#8212; Python 3.10.7 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mmap --- Memory-mapped file support &#8212; Python 3.10.8 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -16,12 +16,13 @@
     <script src="../_static/underscore.js"></script>
     <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/translations.js"></script>
     
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.10.7 說明文件 中搜尋"
+          title="在 Python 3.10.8 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -75,8 +76,62 @@
     <h3><a href="../contents.html">目錄</a></h3>
     <ul>
 <li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">mmap</span></code> --- Memory-mapped file support</a><ul>
-<li><a class="reference internal" href="#madv-constants">MADV_* Constants</a></li>
-<li><a class="reference internal" href="#map-constants">MAP_* Constants</a></li>
+<li><a class="reference internal" href="#mmap.mmap"><code class="docutils literal notranslate"><span class="pre">mmap</span></code></a><ul>
+<li><a class="reference internal" href="#mmap.mmap.close"><code class="docutils literal notranslate"><span class="pre">mmap.close()</span></code></a></li>
+<li><a class="reference internal" href="#mmap.mmap.closed"><code class="docutils literal notranslate"><span class="pre">mmap.closed</span></code></a></li>
+<li><a class="reference internal" href="#mmap.mmap.find"><code class="docutils literal notranslate"><span class="pre">mmap.find()</span></code></a></li>
+<li><a class="reference internal" href="#mmap.mmap.flush"><code class="docutils literal notranslate"><span class="pre">mmap.flush()</span></code></a></li>
+<li><a class="reference internal" href="#mmap.mmap.madvise"><code class="docutils literal notranslate"><span class="pre">mmap.madvise()</span></code></a></li>
+<li><a class="reference internal" href="#mmap.mmap.move"><code class="docutils literal notranslate"><span class="pre">mmap.move()</span></code></a></li>
+<li><a class="reference internal" href="#mmap.mmap.read"><code class="docutils literal notranslate"><span class="pre">mmap.read()</span></code></a></li>
+<li><a class="reference internal" href="#mmap.mmap.read_byte"><code class="docutils literal notranslate"><span class="pre">mmap.read_byte()</span></code></a></li>
+<li><a class="reference internal" href="#mmap.mmap.readline"><code class="docutils literal notranslate"><span class="pre">mmap.readline()</span></code></a></li>
+<li><a class="reference internal" href="#mmap.mmap.resize"><code class="docutils literal notranslate"><span class="pre">mmap.resize()</span></code></a></li>
+<li><a class="reference internal" href="#mmap.mmap.rfind"><code class="docutils literal notranslate"><span class="pre">mmap.rfind()</span></code></a></li>
+<li><a class="reference internal" href="#mmap.mmap.seek"><code class="docutils literal notranslate"><span class="pre">mmap.seek()</span></code></a></li>
+<li><a class="reference internal" href="#mmap.mmap.size"><code class="docutils literal notranslate"><span class="pre">mmap.size()</span></code></a></li>
+<li><a class="reference internal" href="#mmap.mmap.tell"><code class="docutils literal notranslate"><span class="pre">mmap.tell()</span></code></a></li>
+<li><a class="reference internal" href="#mmap.mmap.write"><code class="docutils literal notranslate"><span class="pre">mmap.write()</span></code></a></li>
+<li><a class="reference internal" href="#mmap.mmap.write_byte"><code class="docutils literal notranslate"><span class="pre">mmap.write_byte()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#madv-constants">MADV_* Constants</a><ul>
+<li><a class="reference internal" href="#mmap.MADV_NORMAL"><code class="docutils literal notranslate"><span class="pre">MADV_NORMAL</span></code></a></li>
+<li><a class="reference internal" href="#mmap.MADV_RANDOM"><code class="docutils literal notranslate"><span class="pre">MADV_RANDOM</span></code></a></li>
+<li><a class="reference internal" href="#mmap.MADV_SEQUENTIAL"><code class="docutils literal notranslate"><span class="pre">MADV_SEQUENTIAL</span></code></a></li>
+<li><a class="reference internal" href="#mmap.MADV_WILLNEED"><code class="docutils literal notranslate"><span class="pre">MADV_WILLNEED</span></code></a></li>
+<li><a class="reference internal" href="#mmap.MADV_DONTNEED"><code class="docutils literal notranslate"><span class="pre">MADV_DONTNEED</span></code></a></li>
+<li><a class="reference internal" href="#mmap.MADV_REMOVE"><code class="docutils literal notranslate"><span class="pre">MADV_REMOVE</span></code></a></li>
+<li><a class="reference internal" href="#mmap.MADV_DONTFORK"><code class="docutils literal notranslate"><span class="pre">MADV_DONTFORK</span></code></a></li>
+<li><a class="reference internal" href="#mmap.MADV_DOFORK"><code class="docutils literal notranslate"><span class="pre">MADV_DOFORK</span></code></a></li>
+<li><a class="reference internal" href="#mmap.MADV_HWPOISON"><code class="docutils literal notranslate"><span class="pre">MADV_HWPOISON</span></code></a></li>
+<li><a class="reference internal" href="#mmap.MADV_MERGEABLE"><code class="docutils literal notranslate"><span class="pre">MADV_MERGEABLE</span></code></a></li>
+<li><a class="reference internal" href="#mmap.MADV_UNMERGEABLE"><code class="docutils literal notranslate"><span class="pre">MADV_UNMERGEABLE</span></code></a></li>
+<li><a class="reference internal" href="#mmap.MADV_SOFT_OFFLINE"><code class="docutils literal notranslate"><span class="pre">MADV_SOFT_OFFLINE</span></code></a></li>
+<li><a class="reference internal" href="#mmap.MADV_HUGEPAGE"><code class="docutils literal notranslate"><span class="pre">MADV_HUGEPAGE</span></code></a></li>
+<li><a class="reference internal" href="#mmap.MADV_NOHUGEPAGE"><code class="docutils literal notranslate"><span class="pre">MADV_NOHUGEPAGE</span></code></a></li>
+<li><a class="reference internal" href="#mmap.MADV_DONTDUMP"><code class="docutils literal notranslate"><span class="pre">MADV_DONTDUMP</span></code></a></li>
+<li><a class="reference internal" href="#mmap.MADV_DODUMP"><code class="docutils literal notranslate"><span class="pre">MADV_DODUMP</span></code></a></li>
+<li><a class="reference internal" href="#mmap.MADV_FREE"><code class="docutils literal notranslate"><span class="pre">MADV_FREE</span></code></a></li>
+<li><a class="reference internal" href="#mmap.MADV_NOSYNC"><code class="docutils literal notranslate"><span class="pre">MADV_NOSYNC</span></code></a></li>
+<li><a class="reference internal" href="#mmap.MADV_AUTOSYNC"><code class="docutils literal notranslate"><span class="pre">MADV_AUTOSYNC</span></code></a></li>
+<li><a class="reference internal" href="#mmap.MADV_NOCORE"><code class="docutils literal notranslate"><span class="pre">MADV_NOCORE</span></code></a></li>
+<li><a class="reference internal" href="#mmap.MADV_CORE"><code class="docutils literal notranslate"><span class="pre">MADV_CORE</span></code></a></li>
+<li><a class="reference internal" href="#mmap.MADV_PROTECT"><code class="docutils literal notranslate"><span class="pre">MADV_PROTECT</span></code></a></li>
+<li><a class="reference internal" href="#mmap.MADV_FREE_REUSABLE"><code class="docutils literal notranslate"><span class="pre">MADV_FREE_REUSABLE</span></code></a></li>
+<li><a class="reference internal" href="#mmap.MADV_FREE_REUSE"><code class="docutils literal notranslate"><span class="pre">MADV_FREE_REUSE</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#map-constants">MAP_* Constants</a><ul>
+<li><a class="reference internal" href="#mmap.MAP_SHARED"><code class="docutils literal notranslate"><span class="pre">MAP_SHARED</span></code></a></li>
+<li><a class="reference internal" href="#mmap.MAP_PRIVATE"><code class="docutils literal notranslate"><span class="pre">MAP_PRIVATE</span></code></a></li>
+<li><a class="reference internal" href="#mmap.MAP_DENYWRITE"><code class="docutils literal notranslate"><span class="pre">MAP_DENYWRITE</span></code></a></li>
+<li><a class="reference internal" href="#mmap.MAP_EXECUTABLE"><code class="docutils literal notranslate"><span class="pre">MAP_EXECUTABLE</span></code></a></li>
+<li><a class="reference internal" href="#mmap.MAP_ANON"><code class="docutils literal notranslate"><span class="pre">MAP_ANON</span></code></a></li>
+<li><a class="reference internal" href="#mmap.MAP_ANONYMOUS"><code class="docutils literal notranslate"><span class="pre">MAP_ANONYMOUS</span></code></a></li>
+<li><a class="reference internal" href="#mmap.MAP_POPULATE"><code class="docutils literal notranslate"><span class="pre">MAP_POPULATE</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -134,7 +189,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.7 Documentation</a> &#187;
+      <a href="../index.html">3.10.8 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -572,8 +627,62 @@ be present on every system.</p>
     <h3><a href="../contents.html">目錄</a></h3>
     <ul>
 <li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">mmap</span></code> --- Memory-mapped file support</a><ul>
-<li><a class="reference internal" href="#madv-constants">MADV_* Constants</a></li>
-<li><a class="reference internal" href="#map-constants">MAP_* Constants</a></li>
+<li><a class="reference internal" href="#mmap.mmap"><code class="docutils literal notranslate"><span class="pre">mmap</span></code></a><ul>
+<li><a class="reference internal" href="#mmap.mmap.close"><code class="docutils literal notranslate"><span class="pre">mmap.close()</span></code></a></li>
+<li><a class="reference internal" href="#mmap.mmap.closed"><code class="docutils literal notranslate"><span class="pre">mmap.closed</span></code></a></li>
+<li><a class="reference internal" href="#mmap.mmap.find"><code class="docutils literal notranslate"><span class="pre">mmap.find()</span></code></a></li>
+<li><a class="reference internal" href="#mmap.mmap.flush"><code class="docutils literal notranslate"><span class="pre">mmap.flush()</span></code></a></li>
+<li><a class="reference internal" href="#mmap.mmap.madvise"><code class="docutils literal notranslate"><span class="pre">mmap.madvise()</span></code></a></li>
+<li><a class="reference internal" href="#mmap.mmap.move"><code class="docutils literal notranslate"><span class="pre">mmap.move()</span></code></a></li>
+<li><a class="reference internal" href="#mmap.mmap.read"><code class="docutils literal notranslate"><span class="pre">mmap.read()</span></code></a></li>
+<li><a class="reference internal" href="#mmap.mmap.read_byte"><code class="docutils literal notranslate"><span class="pre">mmap.read_byte()</span></code></a></li>
+<li><a class="reference internal" href="#mmap.mmap.readline"><code class="docutils literal notranslate"><span class="pre">mmap.readline()</span></code></a></li>
+<li><a class="reference internal" href="#mmap.mmap.resize"><code class="docutils literal notranslate"><span class="pre">mmap.resize()</span></code></a></li>
+<li><a class="reference internal" href="#mmap.mmap.rfind"><code class="docutils literal notranslate"><span class="pre">mmap.rfind()</span></code></a></li>
+<li><a class="reference internal" href="#mmap.mmap.seek"><code class="docutils literal notranslate"><span class="pre">mmap.seek()</span></code></a></li>
+<li><a class="reference internal" href="#mmap.mmap.size"><code class="docutils literal notranslate"><span class="pre">mmap.size()</span></code></a></li>
+<li><a class="reference internal" href="#mmap.mmap.tell"><code class="docutils literal notranslate"><span class="pre">mmap.tell()</span></code></a></li>
+<li><a class="reference internal" href="#mmap.mmap.write"><code class="docutils literal notranslate"><span class="pre">mmap.write()</span></code></a></li>
+<li><a class="reference internal" href="#mmap.mmap.write_byte"><code class="docutils literal notranslate"><span class="pre">mmap.write_byte()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#madv-constants">MADV_* Constants</a><ul>
+<li><a class="reference internal" href="#mmap.MADV_NORMAL"><code class="docutils literal notranslate"><span class="pre">MADV_NORMAL</span></code></a></li>
+<li><a class="reference internal" href="#mmap.MADV_RANDOM"><code class="docutils literal notranslate"><span class="pre">MADV_RANDOM</span></code></a></li>
+<li><a class="reference internal" href="#mmap.MADV_SEQUENTIAL"><code class="docutils literal notranslate"><span class="pre">MADV_SEQUENTIAL</span></code></a></li>
+<li><a class="reference internal" href="#mmap.MADV_WILLNEED"><code class="docutils literal notranslate"><span class="pre">MADV_WILLNEED</span></code></a></li>
+<li><a class="reference internal" href="#mmap.MADV_DONTNEED"><code class="docutils literal notranslate"><span class="pre">MADV_DONTNEED</span></code></a></li>
+<li><a class="reference internal" href="#mmap.MADV_REMOVE"><code class="docutils literal notranslate"><span class="pre">MADV_REMOVE</span></code></a></li>
+<li><a class="reference internal" href="#mmap.MADV_DONTFORK"><code class="docutils literal notranslate"><span class="pre">MADV_DONTFORK</span></code></a></li>
+<li><a class="reference internal" href="#mmap.MADV_DOFORK"><code class="docutils literal notranslate"><span class="pre">MADV_DOFORK</span></code></a></li>
+<li><a class="reference internal" href="#mmap.MADV_HWPOISON"><code class="docutils literal notranslate"><span class="pre">MADV_HWPOISON</span></code></a></li>
+<li><a class="reference internal" href="#mmap.MADV_MERGEABLE"><code class="docutils literal notranslate"><span class="pre">MADV_MERGEABLE</span></code></a></li>
+<li><a class="reference internal" href="#mmap.MADV_UNMERGEABLE"><code class="docutils literal notranslate"><span class="pre">MADV_UNMERGEABLE</span></code></a></li>
+<li><a class="reference internal" href="#mmap.MADV_SOFT_OFFLINE"><code class="docutils literal notranslate"><span class="pre">MADV_SOFT_OFFLINE</span></code></a></li>
+<li><a class="reference internal" href="#mmap.MADV_HUGEPAGE"><code class="docutils literal notranslate"><span class="pre">MADV_HUGEPAGE</span></code></a></li>
+<li><a class="reference internal" href="#mmap.MADV_NOHUGEPAGE"><code class="docutils literal notranslate"><span class="pre">MADV_NOHUGEPAGE</span></code></a></li>
+<li><a class="reference internal" href="#mmap.MADV_DONTDUMP"><code class="docutils literal notranslate"><span class="pre">MADV_DONTDUMP</span></code></a></li>
+<li><a class="reference internal" href="#mmap.MADV_DODUMP"><code class="docutils literal notranslate"><span class="pre">MADV_DODUMP</span></code></a></li>
+<li><a class="reference internal" href="#mmap.MADV_FREE"><code class="docutils literal notranslate"><span class="pre">MADV_FREE</span></code></a></li>
+<li><a class="reference internal" href="#mmap.MADV_NOSYNC"><code class="docutils literal notranslate"><span class="pre">MADV_NOSYNC</span></code></a></li>
+<li><a class="reference internal" href="#mmap.MADV_AUTOSYNC"><code class="docutils literal notranslate"><span class="pre">MADV_AUTOSYNC</span></code></a></li>
+<li><a class="reference internal" href="#mmap.MADV_NOCORE"><code class="docutils literal notranslate"><span class="pre">MADV_NOCORE</span></code></a></li>
+<li><a class="reference internal" href="#mmap.MADV_CORE"><code class="docutils literal notranslate"><span class="pre">MADV_CORE</span></code></a></li>
+<li><a class="reference internal" href="#mmap.MADV_PROTECT"><code class="docutils literal notranslate"><span class="pre">MADV_PROTECT</span></code></a></li>
+<li><a class="reference internal" href="#mmap.MADV_FREE_REUSABLE"><code class="docutils literal notranslate"><span class="pre">MADV_FREE_REUSABLE</span></code></a></li>
+<li><a class="reference internal" href="#mmap.MADV_FREE_REUSE"><code class="docutils literal notranslate"><span class="pre">MADV_FREE_REUSE</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#map-constants">MAP_* Constants</a><ul>
+<li><a class="reference internal" href="#mmap.MAP_SHARED"><code class="docutils literal notranslate"><span class="pre">MAP_SHARED</span></code></a></li>
+<li><a class="reference internal" href="#mmap.MAP_PRIVATE"><code class="docutils literal notranslate"><span class="pre">MAP_PRIVATE</span></code></a></li>
+<li><a class="reference internal" href="#mmap.MAP_DENYWRITE"><code class="docutils literal notranslate"><span class="pre">MAP_DENYWRITE</span></code></a></li>
+<li><a class="reference internal" href="#mmap.MAP_EXECUTABLE"><code class="docutils literal notranslate"><span class="pre">MAP_EXECUTABLE</span></code></a></li>
+<li><a class="reference internal" href="#mmap.MAP_ANON"><code class="docutils literal notranslate"><span class="pre">MAP_ANON</span></code></a></li>
+<li><a class="reference internal" href="#mmap.MAP_ANONYMOUS"><code class="docutils literal notranslate"><span class="pre">MAP_ANONYMOUS</span></code></a></li>
+<li><a class="reference internal" href="#mmap.MAP_POPULATE"><code class="docutils literal notranslate"><span class="pre">MAP_POPULATE</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -634,7 +743,7 @@ be present on every system.</p>
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.7 Documentation</a> &#187;
+      <a href="../index.html">3.10.8 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -671,11 +780,11 @@ be present on every system.</p>
 <br />
     <br />
 
-    最後更新於 9月 16, 2022。
+    最後更新於 10月 15, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 
-    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1 建立。
+    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.2.3 建立。
     </div>
 
   </body>

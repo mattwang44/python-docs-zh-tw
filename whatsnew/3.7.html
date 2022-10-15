@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>Python 3.7 有什麼新功能 &#8212; Python 3.10.7 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python 3.7 有什麼新功能 &#8212; Python 3.10.8 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -16,12 +16,13 @@
     <script src="../_static/underscore.js"></script>
     <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/translations.js"></script>
     
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.10.7 說明文件 中搜尋"
+          title="在 Python 3.10.8 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -261,7 +262,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.7 Documentation</a> &#187;
+      <a href="../index.html">3.10.8 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Python 有什麼新功能？</a> &#187;</li>
@@ -505,19 +506,19 @@ choice.  Set <code class="docutils literal notranslate"><span class="pre">PYTHON
 <span id="whatsnew37-pep539"></span><h3>PEP 539: New C API for Thread-Local Storage<a class="headerlink" href="#pep-539-new-c-api-for-thread-local-storage" title="本標頭的永久連結">¶</a></h3>
 <p>While Python provides a C API for thread-local storage support; the existing
 <a class="reference internal" href="../c-api/init.html#thread-local-storage-api"><span class="std std-ref">Thread Local Storage (TLS) API</span></a> has used
-<span class="xref c c-texpr"><span class="kt">int</span></span> to represent TLS keys across all platforms.  This has not
+<span class="c-expr sig sig-inline c"><span class="kt">int</span></span> to represent TLS keys across all platforms.  This has not
 generally been a problem for officially support platforms, but that is neither
 POSIX-compliant, nor portable in any practical sense.</p>
 <p><span class="target" id="index-14"></span><a class="pep reference external" href="https://peps.python.org/pep-0539/"><strong>PEP 539</strong></a> changes this by providing a new <a class="reference internal" href="../c-api/init.html#thread-specific-storage-api"><span class="std std-ref">Thread Specific Storage (TSS)
 API</span></a> to CPython which supersedes use of the
 existing TLS API within the CPython interpreter, while deprecating the existing
-API.  The TSS API uses a new type <a class="reference internal" href="../c-api/init.html#c.Py_tss_t" title="Py_tss_t"><code class="xref c c-type docutils literal notranslate"><span class="pre">Py_tss_t</span></code></a> instead of <span class="xref c c-texpr"><span class="kt">int</span></span>
+API.  The TSS API uses a new type <a class="reference internal" href="../c-api/init.html#c.Py_tss_t" title="Py_tss_t"><code class="xref c c-type docutils literal notranslate"><span class="pre">Py_tss_t</span></code></a> instead of <span class="c-expr sig sig-inline c"><span class="kt">int</span></span>
 to represent TSS keys--an opaque type the definition of which may depend on
 the underlying TLS implementation.  Therefore, this will allow to build CPython
 on platforms where the native TLS key is defined in a way that cannot be safely
-cast to <span class="xref c c-texpr"><span class="kt">int</span></span>.</p>
+cast to <span class="c-expr sig sig-inline c"><span class="kt">int</span></span>.</p>
 <p>Note that on platforms where the native TLS key is defined in a way that cannot
-be safely cast to <span class="xref c c-texpr"><span class="kt">int</span></span>, all functions of the existing TLS API will be
+be safely cast to <span class="c-expr sig sig-inline c"><span class="kt">int</span></span>, all functions of the existing TLS API will be
 no-op and immediately return failure. This indicates clearly that the old API
 is not supported on platforms where it cannot be used reliably, and that no
 effort will be made to add such support.</p>
@@ -1492,7 +1493,7 @@ dynamically as specified by <span class="target" id="index-33"></span><a class="
 </section>
 <section id="unicodedata">
 <h3>unicodedata<a class="headerlink" href="#unicodedata" title="本標頭的永久連結">¶</a></h3>
-<p>The internal <a class="reference internal" href="../library/unicodedata.html#module-unicodedata" title="unicodedata: Access the Unicode Database."><code class="xref py py-mod docutils literal notranslate"><span class="pre">unicodedata</span></code></a> database has been upgraded to use <a class="reference external" href="http://www.unicode.org/versions/Unicode11.0.0/">Unicode 11</a>. (Contributed by Benjamin
+<p>The internal <a class="reference internal" href="../library/unicodedata.html#module-unicodedata" title="unicodedata: Access the Unicode Database."><code class="xref py py-mod docutils literal notranslate"><span class="pre">unicodedata</span></code></a> database has been upgraded to use <a class="reference external" href="https://www.unicode.org/versions/Unicode11.0.0/">Unicode 11</a>. (Contributed by Benjamin
 Peterson.)</p>
 </section>
 <section id="unittest">
@@ -1655,11 +1656,11 @@ and access to the UTC singleton with <a class="reference internal" href="../c-ap
 Contributed by Paul Ganssle in <a class="reference external" href="https://bugs.python.org/issue?&#64;action=redirect&amp;bpo=10381">bpo-10381</a>.</p>
 <p>The type of results of <code class="xref c c-func docutils literal notranslate"><span class="pre">PyThread_start_new_thread()</span></code> and
 <code class="xref c c-func docutils literal notranslate"><span class="pre">PyThread_get_thread_ident()</span></code>, and the <em>id</em> parameter of
-<a class="reference internal" href="../c-api/init.html#c.PyThreadState_SetAsyncExc" title="PyThreadState_SetAsyncExc"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyThreadState_SetAsyncExc()</span></code></a> changed from <span class="xref c c-texpr"><span class="kt">long</span></span> to
-<span class="xref c c-texpr"><span class="kt">unsigned</span><span class="w"> </span><span class="kt">long</span></span>.
+<a class="reference internal" href="../c-api/init.html#c.PyThreadState_SetAsyncExc" title="PyThreadState_SetAsyncExc"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyThreadState_SetAsyncExc()</span></code></a> changed from <span class="c-expr sig sig-inline c"><span class="kt">long</span></span> to
+<span class="c-expr sig sig-inline c"><span class="kt">unsigned</span><span class="w"> </span><span class="kt">long</span></span>.
 (Contributed by Serhiy Storchaka in <a class="reference external" href="https://bugs.python.org/issue?&#64;action=redirect&amp;bpo=6532">bpo-6532</a>.)</p>
 <p><a class="reference internal" href="../c-api/unicode.html#c.PyUnicode_AsWideCharString" title="PyUnicode_AsWideCharString"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyUnicode_AsWideCharString()</span></code></a> now raises a <a class="reference internal" href="../library/exceptions.html#ValueError" title="ValueError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code></a> if the
-second argument is <code class="docutils literal notranslate"><span class="pre">NULL</span></code> and the <span class="xref c c-texpr"><span class="n">wchar_t</span><span class="p">*</span></span> string contains null
+second argument is <code class="docutils literal notranslate"><span class="pre">NULL</span></code> and the <span class="c-expr sig sig-inline c"><span class="n">wchar_t</span><span class="p">*</span></span> string contains null
 characters.  (Contributed by Serhiy Storchaka in <a class="reference external" href="https://bugs.python.org/issue?&#64;action=redirect&amp;bpo=30708">bpo-30708</a>.)</p>
 <p>Changes to the startup sequence and the management of dynamic memory
 allocators mean that the long documented requirement to call
@@ -2252,7 +2253,7 @@ notice, even in micro version releases.</p></li>
 <p>The function <a class="reference internal" href="../c-api/slice.html#c.PySlice_GetIndicesEx" title="PySlice_GetIndicesEx"><code class="xref c c-func docutils literal notranslate"><span class="pre">PySlice_GetIndicesEx()</span></code></a> is considered unsafe for
 resizable sequences.  If the slice indices are not instances of <a class="reference internal" href="../library/functions.html#int" title="int"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>,
 but objects that implement the <code class="xref py py-meth docutils literal notranslate"><span class="pre">__index__()</span></code> method, the sequence can be
-resized after passing its length to <span class="xref c c-texpr"><span class="o">!</span><a class="reference internal" href="../c-api/slice.html#c.PySlice_GetIndicesEx" title="PySlice_GetIndicesEx"><span class="n">PySlice_GetIndicesEx</span></a></span>.  This
+resized after passing its length to <code class="xref c c-func docutils literal notranslate"><span class="pre">PySlice_GetIndicesEx()</span></code>.  This
 can lead to returning indices out of the length of the sequence.  For
 avoiding possible problems use new functions <a class="reference internal" href="../c-api/slice.html#c.PySlice_Unpack" title="PySlice_Unpack"><code class="xref c c-func docutils literal notranslate"><span class="pre">PySlice_Unpack()</span></code></a> and
 <a class="reference internal" href="../c-api/slice.html#c.PySlice_AdjustIndices" title="PySlice_AdjustIndices"><code class="xref c c-func docutils literal notranslate"><span class="pre">PySlice_AdjustIndices()</span></code></a>.
@@ -2558,7 +2559,7 @@ documentation.
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.7 Documentation</a> &#187;
+      <a href="../index.html">3.10.8 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 有什麼新功能？</a> &#187;</li>
@@ -2594,11 +2595,11 @@ documentation.
 <br />
     <br />
 
-    最後更新於 9月 16, 2022。
+    最後更新於 10月 15, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 
-    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1 建立。
+    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.2.3 建立。
     </div>
 
   </body>

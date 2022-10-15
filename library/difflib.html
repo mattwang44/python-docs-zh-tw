@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>difflib --- Helpers for computing deltas &#8212; Python 3.10.7 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>difflib --- Helpers for computing deltas &#8212; Python 3.10.8 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -16,12 +16,13 @@
     <script src="../_static/underscore.js"></script>
     <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/translations.js"></script>
     
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.10.7 說明文件 中搜尋"
+          title="在 Python 3.10.8 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -75,9 +76,42 @@
     <h3><a href="../contents.html">目錄</a></h3>
     <ul>
 <li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">difflib</span></code> --- Helpers for computing deltas</a><ul>
-<li><a class="reference internal" href="#sequencematcher-objects">SequenceMatcher 物件</a></li>
+<li><a class="reference internal" href="#difflib.Differ"><code class="docutils literal notranslate"><span class="pre">Differ</span></code></a></li>
+<li><a class="reference internal" href="#difflib.HtmlDiff"><code class="docutils literal notranslate"><span class="pre">HtmlDiff</span></code></a><ul>
+<li><a class="reference internal" href="#difflib.HtmlDiff.__init__"><code class="docutils literal notranslate"><span class="pre">HtmlDiff.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#difflib.HtmlDiff.make_file"><code class="docutils literal notranslate"><span class="pre">HtmlDiff.make_file()</span></code></a></li>
+<li><a class="reference internal" href="#difflib.HtmlDiff.make_table"><code class="docutils literal notranslate"><span class="pre">HtmlDiff.make_table()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#difflib.context_diff"><code class="docutils literal notranslate"><span class="pre">context_diff()</span></code></a></li>
+<li><a class="reference internal" href="#difflib.get_close_matches"><code class="docutils literal notranslate"><span class="pre">get_close_matches()</span></code></a></li>
+<li><a class="reference internal" href="#difflib.ndiff"><code class="docutils literal notranslate"><span class="pre">ndiff()</span></code></a></li>
+<li><a class="reference internal" href="#difflib.restore"><code class="docutils literal notranslate"><span class="pre">restore()</span></code></a></li>
+<li><a class="reference internal" href="#difflib.unified_diff"><code class="docutils literal notranslate"><span class="pre">unified_diff()</span></code></a></li>
+<li><a class="reference internal" href="#difflib.diff_bytes"><code class="docutils literal notranslate"><span class="pre">diff_bytes()</span></code></a></li>
+<li><a class="reference internal" href="#difflib.IS_LINE_JUNK"><code class="docutils literal notranslate"><span class="pre">IS_LINE_JUNK()</span></code></a></li>
+<li><a class="reference internal" href="#difflib.IS_CHARACTER_JUNK"><code class="docutils literal notranslate"><span class="pre">IS_CHARACTER_JUNK()</span></code></a></li>
+<li><a class="reference internal" href="#sequencematcher-objects">SequenceMatcher 物件</a><ul>
+<li><a class="reference internal" href="#difflib.SequenceMatcher"><code class="docutils literal notranslate"><span class="pre">SequenceMatcher</span></code></a><ul>
+<li><a class="reference internal" href="#difflib.SequenceMatcher.set_seqs"><code class="docutils literal notranslate"><span class="pre">SequenceMatcher.set_seqs()</span></code></a></li>
+<li><a class="reference internal" href="#difflib.SequenceMatcher.set_seq1"><code class="docutils literal notranslate"><span class="pre">SequenceMatcher.set_seq1()</span></code></a></li>
+<li><a class="reference internal" href="#difflib.SequenceMatcher.set_seq2"><code class="docutils literal notranslate"><span class="pre">SequenceMatcher.set_seq2()</span></code></a></li>
+<li><a class="reference internal" href="#difflib.SequenceMatcher.find_longest_match"><code class="docutils literal notranslate"><span class="pre">SequenceMatcher.find_longest_match()</span></code></a></li>
+<li><a class="reference internal" href="#difflib.SequenceMatcher.get_matching_blocks"><code class="docutils literal notranslate"><span class="pre">SequenceMatcher.get_matching_blocks()</span></code></a></li>
+<li><a class="reference internal" href="#difflib.SequenceMatcher.get_opcodes"><code class="docutils literal notranslate"><span class="pre">SequenceMatcher.get_opcodes()</span></code></a></li>
+<li><a class="reference internal" href="#difflib.SequenceMatcher.get_grouped_opcodes"><code class="docutils literal notranslate"><span class="pre">SequenceMatcher.get_grouped_opcodes()</span></code></a></li>
+<li><a class="reference internal" href="#difflib.SequenceMatcher.ratio"><code class="docutils literal notranslate"><span class="pre">SequenceMatcher.ratio()</span></code></a></li>
+<li><a class="reference internal" href="#difflib.SequenceMatcher.quick_ratio"><code class="docutils literal notranslate"><span class="pre">SequenceMatcher.quick_ratio()</span></code></a></li>
+<li><a class="reference internal" href="#difflib.SequenceMatcher.real_quick_ratio"><code class="docutils literal notranslate"><span class="pre">SequenceMatcher.real_quick_ratio()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li><a class="reference internal" href="#sequencematcher-examples">SequenceMatcher 範例</a></li>
-<li><a class="reference internal" href="#differ-objects">Differ Objects</a></li>
+<li><a class="reference internal" href="#differ-objects">Differ Objects</a><ul>
+<li><a class="reference internal" href="#difflib.Differ.compare"><code class="docutils literal notranslate"><span class="pre">Differ.compare()</span></code></a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#differ-example">Differ Example</a></li>
 <li><a class="reference internal" href="#a-command-line-interface-to-difflib">A command-line interface to difflib</a></li>
 </ul>
@@ -137,7 +171,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.7 Documentation</a> &#187;
+      <a href="../index.html">3.10.8 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -615,7 +649,7 @@ is the only triple with <code class="docutils literal notranslate"><span class="
 are adjacent triples in the list, and the second is not the last triple in
 the list, then <code class="docutils literal notranslate"><span class="pre">i+n</span> <span class="pre">&lt;</span> <span class="pre">i'</span></code> or <code class="docutils literal notranslate"><span class="pre">j+n</span> <span class="pre">&lt;</span> <span class="pre">j'</span></code>; in other words, adjacent
 triples always describe non-adjacent equal blocks.</p>
-<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="n">SequenceMatcher</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;abxcd&quot;</span><span class="p">,</span> <span class="s2">&quot;abcd&quot;</span><span class="p">)</span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="n">SequenceMatcher</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;abxcd&quot;</span><span class="p">,</span> <span class="s2">&quot;abcd&quot;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">get_matching_blocks</span><span class="p">()</span>
 <span class="go">[Match(a=0, b=0, size=2), Match(a=3, b=2, size=2), Match(a=5, b=4, size=0)]</span>
 </pre></div>
@@ -966,9 +1000,42 @@ It is also contained in the Python source distribution, as
     <h3><a href="../contents.html">目錄</a></h3>
     <ul>
 <li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">difflib</span></code> --- Helpers for computing deltas</a><ul>
-<li><a class="reference internal" href="#sequencematcher-objects">SequenceMatcher 物件</a></li>
+<li><a class="reference internal" href="#difflib.Differ"><code class="docutils literal notranslate"><span class="pre">Differ</span></code></a></li>
+<li><a class="reference internal" href="#difflib.HtmlDiff"><code class="docutils literal notranslate"><span class="pre">HtmlDiff</span></code></a><ul>
+<li><a class="reference internal" href="#difflib.HtmlDiff.__init__"><code class="docutils literal notranslate"><span class="pre">HtmlDiff.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#difflib.HtmlDiff.make_file"><code class="docutils literal notranslate"><span class="pre">HtmlDiff.make_file()</span></code></a></li>
+<li><a class="reference internal" href="#difflib.HtmlDiff.make_table"><code class="docutils literal notranslate"><span class="pre">HtmlDiff.make_table()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#difflib.context_diff"><code class="docutils literal notranslate"><span class="pre">context_diff()</span></code></a></li>
+<li><a class="reference internal" href="#difflib.get_close_matches"><code class="docutils literal notranslate"><span class="pre">get_close_matches()</span></code></a></li>
+<li><a class="reference internal" href="#difflib.ndiff"><code class="docutils literal notranslate"><span class="pre">ndiff()</span></code></a></li>
+<li><a class="reference internal" href="#difflib.restore"><code class="docutils literal notranslate"><span class="pre">restore()</span></code></a></li>
+<li><a class="reference internal" href="#difflib.unified_diff"><code class="docutils literal notranslate"><span class="pre">unified_diff()</span></code></a></li>
+<li><a class="reference internal" href="#difflib.diff_bytes"><code class="docutils literal notranslate"><span class="pre">diff_bytes()</span></code></a></li>
+<li><a class="reference internal" href="#difflib.IS_LINE_JUNK"><code class="docutils literal notranslate"><span class="pre">IS_LINE_JUNK()</span></code></a></li>
+<li><a class="reference internal" href="#difflib.IS_CHARACTER_JUNK"><code class="docutils literal notranslate"><span class="pre">IS_CHARACTER_JUNK()</span></code></a></li>
+<li><a class="reference internal" href="#sequencematcher-objects">SequenceMatcher 物件</a><ul>
+<li><a class="reference internal" href="#difflib.SequenceMatcher"><code class="docutils literal notranslate"><span class="pre">SequenceMatcher</span></code></a><ul>
+<li><a class="reference internal" href="#difflib.SequenceMatcher.set_seqs"><code class="docutils literal notranslate"><span class="pre">SequenceMatcher.set_seqs()</span></code></a></li>
+<li><a class="reference internal" href="#difflib.SequenceMatcher.set_seq1"><code class="docutils literal notranslate"><span class="pre">SequenceMatcher.set_seq1()</span></code></a></li>
+<li><a class="reference internal" href="#difflib.SequenceMatcher.set_seq2"><code class="docutils literal notranslate"><span class="pre">SequenceMatcher.set_seq2()</span></code></a></li>
+<li><a class="reference internal" href="#difflib.SequenceMatcher.find_longest_match"><code class="docutils literal notranslate"><span class="pre">SequenceMatcher.find_longest_match()</span></code></a></li>
+<li><a class="reference internal" href="#difflib.SequenceMatcher.get_matching_blocks"><code class="docutils literal notranslate"><span class="pre">SequenceMatcher.get_matching_blocks()</span></code></a></li>
+<li><a class="reference internal" href="#difflib.SequenceMatcher.get_opcodes"><code class="docutils literal notranslate"><span class="pre">SequenceMatcher.get_opcodes()</span></code></a></li>
+<li><a class="reference internal" href="#difflib.SequenceMatcher.get_grouped_opcodes"><code class="docutils literal notranslate"><span class="pre">SequenceMatcher.get_grouped_opcodes()</span></code></a></li>
+<li><a class="reference internal" href="#difflib.SequenceMatcher.ratio"><code class="docutils literal notranslate"><span class="pre">SequenceMatcher.ratio()</span></code></a></li>
+<li><a class="reference internal" href="#difflib.SequenceMatcher.quick_ratio"><code class="docutils literal notranslate"><span class="pre">SequenceMatcher.quick_ratio()</span></code></a></li>
+<li><a class="reference internal" href="#difflib.SequenceMatcher.real_quick_ratio"><code class="docutils literal notranslate"><span class="pre">SequenceMatcher.real_quick_ratio()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li><a class="reference internal" href="#sequencematcher-examples">SequenceMatcher 範例</a></li>
-<li><a class="reference internal" href="#differ-objects">Differ Objects</a></li>
+<li><a class="reference internal" href="#differ-objects">Differ Objects</a><ul>
+<li><a class="reference internal" href="#difflib.Differ.compare"><code class="docutils literal notranslate"><span class="pre">Differ.compare()</span></code></a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#differ-example">Differ Example</a></li>
 <li><a class="reference internal" href="#a-command-line-interface-to-difflib">A command-line interface to difflib</a></li>
 </ul>
@@ -1031,7 +1098,7 @@ It is also contained in the Python source distribution, as
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.7 Documentation</a> &#187;
+      <a href="../index.html">3.10.8 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -1068,11 +1135,11 @@ It is also contained in the Python source distribution, as
 <br />
     <br />
 
-    最後更新於 9月 16, 2022。
+    最後更新於 10月 15, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 
-    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1 建立。
+    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.2.3 建立。
     </div>
 
   </body>

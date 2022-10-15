@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>xml.dom.pulldom --- Support for building partial DOM trees &#8212; Python 3.10.7 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>xml.dom.pulldom --- Support for building partial DOM trees &#8212; Python 3.10.8 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -16,12 +16,13 @@
     <script src="../_static/underscore.js"></script>
     <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/translations.js"></script>
     
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.10.7 說明文件 中搜尋"
+          title="在 Python 3.10.8 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -75,7 +76,20 @@
     <h3><a href="../contents.html">目錄</a></h3>
     <ul>
 <li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">xml.dom.pulldom</span></code> --- Support for building partial DOM trees</a><ul>
-<li><a class="reference internal" href="#domeventstream-objects">DOMEventStream 物件</a></li>
+<li><a class="reference internal" href="#xml.dom.pulldom.PullDom"><code class="docutils literal notranslate"><span class="pre">PullDom</span></code></a></li>
+<li><a class="reference internal" href="#xml.dom.pulldom.SAX2DOM"><code class="docutils literal notranslate"><span class="pre">SAX2DOM</span></code></a></li>
+<li><a class="reference internal" href="#xml.dom.pulldom.parse"><code class="docutils literal notranslate"><span class="pre">parse()</span></code></a></li>
+<li><a class="reference internal" href="#xml.dom.pulldom.parseString"><code class="docutils literal notranslate"><span class="pre">parseString()</span></code></a></li>
+<li><a class="reference internal" href="#xml.dom.pulldom.default_bufsize"><code class="docutils literal notranslate"><span class="pre">default_bufsize</span></code></a></li>
+<li><a class="reference internal" href="#domeventstream-objects">DOMEventStream 物件</a><ul>
+<li><a class="reference internal" href="#xml.dom.pulldom.DOMEventStream"><code class="docutils literal notranslate"><span class="pre">DOMEventStream</span></code></a><ul>
+<li><a class="reference internal" href="#xml.dom.pulldom.DOMEventStream.getEvent"><code class="docutils literal notranslate"><span class="pre">DOMEventStream.getEvent()</span></code></a></li>
+<li><a class="reference internal" href="#xml.dom.pulldom.DOMEventStream.expandNode"><code class="docutils literal notranslate"><span class="pre">DOMEventStream.expandNode()</span></code></a></li>
+<li><a class="reference internal" href="#xml.dom.pulldom.DOMEventStream.reset"><code class="docutils literal notranslate"><span class="pre">DOMEventStream.reset()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -133,7 +147,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.7 Documentation</a> &#187;
+      <a href="../index.html">3.10.8 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -322,7 +336,20 @@ The current node does not contain information about its children, unless
     <h3><a href="../contents.html">目錄</a></h3>
     <ul>
 <li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">xml.dom.pulldom</span></code> --- Support for building partial DOM trees</a><ul>
-<li><a class="reference internal" href="#domeventstream-objects">DOMEventStream 物件</a></li>
+<li><a class="reference internal" href="#xml.dom.pulldom.PullDom"><code class="docutils literal notranslate"><span class="pre">PullDom</span></code></a></li>
+<li><a class="reference internal" href="#xml.dom.pulldom.SAX2DOM"><code class="docutils literal notranslate"><span class="pre">SAX2DOM</span></code></a></li>
+<li><a class="reference internal" href="#xml.dom.pulldom.parse"><code class="docutils literal notranslate"><span class="pre">parse()</span></code></a></li>
+<li><a class="reference internal" href="#xml.dom.pulldom.parseString"><code class="docutils literal notranslate"><span class="pre">parseString()</span></code></a></li>
+<li><a class="reference internal" href="#xml.dom.pulldom.default_bufsize"><code class="docutils literal notranslate"><span class="pre">default_bufsize</span></code></a></li>
+<li><a class="reference internal" href="#domeventstream-objects">DOMEventStream 物件</a><ul>
+<li><a class="reference internal" href="#xml.dom.pulldom.DOMEventStream"><code class="docutils literal notranslate"><span class="pre">DOMEventStream</span></code></a><ul>
+<li><a class="reference internal" href="#xml.dom.pulldom.DOMEventStream.getEvent"><code class="docutils literal notranslate"><span class="pre">DOMEventStream.getEvent()</span></code></a></li>
+<li><a class="reference internal" href="#xml.dom.pulldom.DOMEventStream.expandNode"><code class="docutils literal notranslate"><span class="pre">DOMEventStream.expandNode()</span></code></a></li>
+<li><a class="reference internal" href="#xml.dom.pulldom.DOMEventStream.reset"><code class="docutils literal notranslate"><span class="pre">DOMEventStream.reset()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -383,7 +410,7 @@ The current node does not contain information about its children, unless
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.7 Documentation</a> &#187;
+      <a href="../index.html">3.10.8 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -420,11 +447,11 @@ The current node does not contain information about its children, unless
 <br />
     <br />
 
-    最後更新於 9月 16, 2022。
+    最後更新於 10月 15, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 
-    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1 建立。
+    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.2.3 建立。
     </div>
 
   </body>

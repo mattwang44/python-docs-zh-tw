@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>bisect --- 陣列二分演算法 (Array bisection algorithm) &#8212; Python 3.10.7 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>bisect --- 陣列二分演算法 (Array bisection algorithm) &#8212; Python 3.10.8 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -16,12 +16,13 @@
     <script src="../_static/underscore.js"></script>
     <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/translations.js"></script>
     
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.10.7 說明文件 中搜尋"
+          title="在 Python 3.10.8 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -75,6 +76,12 @@
     <h3><a href="../contents.html">目錄</a></h3>
     <ul>
 <li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">bisect</span></code> --- 陣列二分演算法 (Array bisection algorithm)</a><ul>
+<li><a class="reference internal" href="#bisect.bisect_left"><code class="docutils literal notranslate"><span class="pre">bisect_left()</span></code></a></li>
+<li><a class="reference internal" href="#bisect.bisect_right"><code class="docutils literal notranslate"><span class="pre">bisect_right()</span></code></a></li>
+<li><a class="reference internal" href="#bisect.bisect"><code class="docutils literal notranslate"><span class="pre">bisect()</span></code></a></li>
+<li><a class="reference internal" href="#bisect.insort_left"><code class="docutils literal notranslate"><span class="pre">insort_left()</span></code></a></li>
+<li><a class="reference internal" href="#bisect.insort_right"><code class="docutils literal notranslate"><span class="pre">insort_right()</span></code></a></li>
+<li><a class="reference internal" href="#bisect.insort"><code class="docutils literal notranslate"><span class="pre">insort()</span></code></a></li>
 <li><a class="reference internal" href="#performance-notes">效能考量</a></li>
 <li><a class="reference internal" href="#searching-sorted-lists">搜尋一個已排序的 list</a></li>
 <li><a class="reference internal" href="#examples">範例</a></li>
@@ -135,7 +142,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.7 Documentation</a> &#187;
+      <a href="../index.html">3.10.8 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -241,7 +248,7 @@ point (as shown in the examples section below).</p></li>
 <div class="admonition seealso">
 <p class="admonition-title">也參考</p>
 <ul class="simple">
-<li><p><a class="reference external" href="http://www.grantjenks.com/docs/sortedcollections/">Sorted Collections</a> is a high performance
+<li><p><a class="reference external" href="https://grantjenks.com/docs/sortedcollections/">Sorted Collections</a> is a high performance
 module that uses <em>bisect</em> to managed sorted collections of data.</p></li>
 <li><p>The <a class="reference external" href="https://code.activestate.com/recipes/577197-sortedcollection/">SortedCollection recipe</a> uses
 bisect to build a full-featured collection class with straight-forward search
@@ -370,6 +377,12 @@ calls by searching a list of precomputed keys to find the index of a record:</p>
     <h3><a href="../contents.html">目錄</a></h3>
     <ul>
 <li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">bisect</span></code> --- 陣列二分演算法 (Array bisection algorithm)</a><ul>
+<li><a class="reference internal" href="#bisect.bisect_left"><code class="docutils literal notranslate"><span class="pre">bisect_left()</span></code></a></li>
+<li><a class="reference internal" href="#bisect.bisect_right"><code class="docutils literal notranslate"><span class="pre">bisect_right()</span></code></a></li>
+<li><a class="reference internal" href="#bisect.bisect"><code class="docutils literal notranslate"><span class="pre">bisect()</span></code></a></li>
+<li><a class="reference internal" href="#bisect.insort_left"><code class="docutils literal notranslate"><span class="pre">insort_left()</span></code></a></li>
+<li><a class="reference internal" href="#bisect.insort_right"><code class="docutils literal notranslate"><span class="pre">insort_right()</span></code></a></li>
+<li><a class="reference internal" href="#bisect.insort"><code class="docutils literal notranslate"><span class="pre">insort()</span></code></a></li>
 <li><a class="reference internal" href="#performance-notes">效能考量</a></li>
 <li><a class="reference internal" href="#searching-sorted-lists">搜尋一個已排序的 list</a></li>
 <li><a class="reference internal" href="#examples">範例</a></li>
@@ -433,7 +446,7 @@ calls by searching a list of precomputed keys to find the index of a record:</p>
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.7 Documentation</a> &#187;
+      <a href="../index.html">3.10.8 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -470,11 +483,11 @@ calls by searching a list of precomputed keys to find the index of a record:</p>
 <br />
     <br />
 
-    最後更新於 9月 16, 2022。
+    最後更新於 10月 15, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 
-    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1 建立。
+    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.2.3 建立。
     </div>
 
   </body>

@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>xml.parsers.expat --- Fast XML parsing using Expat &#8212; Python 3.10.7 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>xml.parsers.expat --- Fast XML parsing using Expat &#8212; Python 3.10.8 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -16,12 +16,13 @@
     <script src="../_static/underscore.js"></script>
     <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/translations.js"></script>
     
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.10.7 說明文件 中搜尋"
+          title="在 Python 3.10.8 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -75,11 +76,105 @@
     <h3><a href="../contents.html">目錄</a></h3>
     <ul>
 <li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">xml.parsers.expat</span></code> --- Fast XML parsing using Expat</a><ul>
-<li><a class="reference internal" href="#xmlparser-objects">XMLParser 物件</a></li>
-<li><a class="reference internal" href="#expaterror-exceptions">ExpatError 例外</a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.ExpatError"><code class="docutils literal notranslate"><span class="pre">ExpatError</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.error"><code class="docutils literal notranslate"><span class="pre">error</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.XMLParserType"><code class="docutils literal notranslate"><span class="pre">XMLParserType</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.ErrorString"><code class="docutils literal notranslate"><span class="pre">ErrorString()</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.ParserCreate"><code class="docutils literal notranslate"><span class="pre">ParserCreate()</span></code></a></li>
+<li><a class="reference internal" href="#xmlparser-objects">XMLParser 物件</a><ul>
+<li><a class="reference internal" href="#xml.parsers.expat.xmlparser.Parse"><code class="docutils literal notranslate"><span class="pre">xmlparser.Parse()</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.xmlparser.ParseFile"><code class="docutils literal notranslate"><span class="pre">xmlparser.ParseFile()</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.xmlparser.SetBase"><code class="docutils literal notranslate"><span class="pre">xmlparser.SetBase()</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.xmlparser.GetBase"><code class="docutils literal notranslate"><span class="pre">xmlparser.GetBase()</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.xmlparser.GetInputContext"><code class="docutils literal notranslate"><span class="pre">xmlparser.GetInputContext()</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.xmlparser.ExternalEntityParserCreate"><code class="docutils literal notranslate"><span class="pre">xmlparser.ExternalEntityParserCreate()</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.xmlparser.SetParamEntityParsing"><code class="docutils literal notranslate"><span class="pre">xmlparser.SetParamEntityParsing()</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.xmlparser.UseForeignDTD"><code class="docutils literal notranslate"><span class="pre">xmlparser.UseForeignDTD()</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.xmlparser.buffer_size"><code class="docutils literal notranslate"><span class="pre">xmlparser.buffer_size</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.xmlparser.buffer_text"><code class="docutils literal notranslate"><span class="pre">xmlparser.buffer_text</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.xmlparser.buffer_used"><code class="docutils literal notranslate"><span class="pre">xmlparser.buffer_used</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.xmlparser.ordered_attributes"><code class="docutils literal notranslate"><span class="pre">xmlparser.ordered_attributes</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.xmlparser.specified_attributes"><code class="docutils literal notranslate"><span class="pre">xmlparser.specified_attributes</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.xmlparser.ErrorByteIndex"><code class="docutils literal notranslate"><span class="pre">xmlparser.ErrorByteIndex</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.xmlparser.ErrorCode"><code class="docutils literal notranslate"><span class="pre">xmlparser.ErrorCode</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.xmlparser.ErrorColumnNumber"><code class="docutils literal notranslate"><span class="pre">xmlparser.ErrorColumnNumber</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.xmlparser.ErrorLineNumber"><code class="docutils literal notranslate"><span class="pre">xmlparser.ErrorLineNumber</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.xmlparser.CurrentByteIndex"><code class="docutils literal notranslate"><span class="pre">xmlparser.CurrentByteIndex</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.xmlparser.CurrentColumnNumber"><code class="docutils literal notranslate"><span class="pre">xmlparser.CurrentColumnNumber</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.xmlparser.CurrentLineNumber"><code class="docutils literal notranslate"><span class="pre">xmlparser.CurrentLineNumber</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.xmlparser.XmlDeclHandler"><code class="docutils literal notranslate"><span class="pre">xmlparser.XmlDeclHandler()</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.xmlparser.StartDoctypeDeclHandler"><code class="docutils literal notranslate"><span class="pre">xmlparser.StartDoctypeDeclHandler()</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.xmlparser.EndDoctypeDeclHandler"><code class="docutils literal notranslate"><span class="pre">xmlparser.EndDoctypeDeclHandler()</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.xmlparser.ElementDeclHandler"><code class="docutils literal notranslate"><span class="pre">xmlparser.ElementDeclHandler()</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.xmlparser.AttlistDeclHandler"><code class="docutils literal notranslate"><span class="pre">xmlparser.AttlistDeclHandler()</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.xmlparser.StartElementHandler"><code class="docutils literal notranslate"><span class="pre">xmlparser.StartElementHandler()</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.xmlparser.EndElementHandler"><code class="docutils literal notranslate"><span class="pre">xmlparser.EndElementHandler()</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.xmlparser.ProcessingInstructionHandler"><code class="docutils literal notranslate"><span class="pre">xmlparser.ProcessingInstructionHandler()</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.xmlparser.CharacterDataHandler"><code class="docutils literal notranslate"><span class="pre">xmlparser.CharacterDataHandler()</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.xmlparser.UnparsedEntityDeclHandler"><code class="docutils literal notranslate"><span class="pre">xmlparser.UnparsedEntityDeclHandler()</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.xmlparser.EntityDeclHandler"><code class="docutils literal notranslate"><span class="pre">xmlparser.EntityDeclHandler()</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.xmlparser.NotationDeclHandler"><code class="docutils literal notranslate"><span class="pre">xmlparser.NotationDeclHandler()</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.xmlparser.StartNamespaceDeclHandler"><code class="docutils literal notranslate"><span class="pre">xmlparser.StartNamespaceDeclHandler()</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.xmlparser.EndNamespaceDeclHandler"><code class="docutils literal notranslate"><span class="pre">xmlparser.EndNamespaceDeclHandler()</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.xmlparser.CommentHandler"><code class="docutils literal notranslate"><span class="pre">xmlparser.CommentHandler()</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.xmlparser.StartCdataSectionHandler"><code class="docutils literal notranslate"><span class="pre">xmlparser.StartCdataSectionHandler()</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.xmlparser.EndCdataSectionHandler"><code class="docutils literal notranslate"><span class="pre">xmlparser.EndCdataSectionHandler()</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.xmlparser.DefaultHandler"><code class="docutils literal notranslate"><span class="pre">xmlparser.DefaultHandler()</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.xmlparser.DefaultHandlerExpand"><code class="docutils literal notranslate"><span class="pre">xmlparser.DefaultHandlerExpand()</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.xmlparser.NotStandaloneHandler"><code class="docutils literal notranslate"><span class="pre">xmlparser.NotStandaloneHandler()</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.xmlparser.ExternalEntityRefHandler"><code class="docutils literal notranslate"><span class="pre">xmlparser.ExternalEntityRefHandler()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#expaterror-exceptions">ExpatError 例外</a><ul>
+<li><a class="reference internal" href="#xml.parsers.expat.ExpatError.code"><code class="docutils literal notranslate"><span class="pre">ExpatError.code</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.ExpatError.lineno"><code class="docutils literal notranslate"><span class="pre">ExpatError.lineno</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.ExpatError.offset"><code class="docutils literal notranslate"><span class="pre">ExpatError.offset</span></code></a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#example">範例</a></li>
 <li><a class="reference internal" href="#module-xml.parsers.expat.model">Content Model Descriptions</a></li>
-<li><a class="reference internal" href="#module-xml.parsers.expat.errors">Expat error constants</a></li>
+<li><a class="reference internal" href="#module-xml.parsers.expat.errors">Expat error constants</a><ul>
+<li><a class="reference internal" href="#xml.parsers.expat.errors.codes"><code class="docutils literal notranslate"><span class="pre">codes</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.errors.messages"><code class="docutils literal notranslate"><span class="pre">messages</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.errors.XML_ERROR_ASYNC_ENTITY"><code class="docutils literal notranslate"><span class="pre">XML_ERROR_ASYNC_ENTITY</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.errors.XML_ERROR_ATTRIBUTE_EXTERNAL_ENTITY_REF"><code class="docutils literal notranslate"><span class="pre">XML_ERROR_ATTRIBUTE_EXTERNAL_ENTITY_REF</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.errors.XML_ERROR_BAD_CHAR_REF"><code class="docutils literal notranslate"><span class="pre">XML_ERROR_BAD_CHAR_REF</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.errors.XML_ERROR_BINARY_ENTITY_REF"><code class="docutils literal notranslate"><span class="pre">XML_ERROR_BINARY_ENTITY_REF</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.errors.XML_ERROR_DUPLICATE_ATTRIBUTE"><code class="docutils literal notranslate"><span class="pre">XML_ERROR_DUPLICATE_ATTRIBUTE</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.errors.XML_ERROR_INCORRECT_ENCODING"><code class="docutils literal notranslate"><span class="pre">XML_ERROR_INCORRECT_ENCODING</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.errors.XML_ERROR_INVALID_TOKEN"><code class="docutils literal notranslate"><span class="pre">XML_ERROR_INVALID_TOKEN</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.errors.XML_ERROR_JUNK_AFTER_DOC_ELEMENT"><code class="docutils literal notranslate"><span class="pre">XML_ERROR_JUNK_AFTER_DOC_ELEMENT</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.errors.XML_ERROR_MISPLACED_XML_PI"><code class="docutils literal notranslate"><span class="pre">XML_ERROR_MISPLACED_XML_PI</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.errors.XML_ERROR_NO_ELEMENTS"><code class="docutils literal notranslate"><span class="pre">XML_ERROR_NO_ELEMENTS</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.errors.XML_ERROR_NO_MEMORY"><code class="docutils literal notranslate"><span class="pre">XML_ERROR_NO_MEMORY</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.errors.XML_ERROR_PARAM_ENTITY_REF"><code class="docutils literal notranslate"><span class="pre">XML_ERROR_PARAM_ENTITY_REF</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.errors.XML_ERROR_PARTIAL_CHAR"><code class="docutils literal notranslate"><span class="pre">XML_ERROR_PARTIAL_CHAR</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.errors.XML_ERROR_RECURSIVE_ENTITY_REF"><code class="docutils literal notranslate"><span class="pre">XML_ERROR_RECURSIVE_ENTITY_REF</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.errors.XML_ERROR_SYNTAX"><code class="docutils literal notranslate"><span class="pre">XML_ERROR_SYNTAX</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.errors.XML_ERROR_TAG_MISMATCH"><code class="docutils literal notranslate"><span class="pre">XML_ERROR_TAG_MISMATCH</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.errors.XML_ERROR_UNCLOSED_TOKEN"><code class="docutils literal notranslate"><span class="pre">XML_ERROR_UNCLOSED_TOKEN</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.errors.XML_ERROR_UNDEFINED_ENTITY"><code class="docutils literal notranslate"><span class="pre">XML_ERROR_UNDEFINED_ENTITY</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.errors.XML_ERROR_UNKNOWN_ENCODING"><code class="docutils literal notranslate"><span class="pre">XML_ERROR_UNKNOWN_ENCODING</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.errors.XML_ERROR_UNCLOSED_CDATA_SECTION"><code class="docutils literal notranslate"><span class="pre">XML_ERROR_UNCLOSED_CDATA_SECTION</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.errors.XML_ERROR_EXTERNAL_ENTITY_HANDLING"><code class="docutils literal notranslate"><span class="pre">XML_ERROR_EXTERNAL_ENTITY_HANDLING</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.errors.XML_ERROR_NOT_STANDALONE"><code class="docutils literal notranslate"><span class="pre">XML_ERROR_NOT_STANDALONE</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.errors.XML_ERROR_UNEXPECTED_STATE"><code class="docutils literal notranslate"><span class="pre">XML_ERROR_UNEXPECTED_STATE</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.errors.XML_ERROR_ENTITY_DECLARED_IN_PE"><code class="docutils literal notranslate"><span class="pre">XML_ERROR_ENTITY_DECLARED_IN_PE</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.errors.XML_ERROR_FEATURE_REQUIRES_XML_DTD"><code class="docutils literal notranslate"><span class="pre">XML_ERROR_FEATURE_REQUIRES_XML_DTD</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.errors.XML_ERROR_CANT_CHANGE_FEATURE_ONCE_PARSING"><code class="docutils literal notranslate"><span class="pre">XML_ERROR_CANT_CHANGE_FEATURE_ONCE_PARSING</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.errors.XML_ERROR_UNBOUND_PREFIX"><code class="docutils literal notranslate"><span class="pre">XML_ERROR_UNBOUND_PREFIX</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.errors.XML_ERROR_UNDECLARING_PREFIX"><code class="docutils literal notranslate"><span class="pre">XML_ERROR_UNDECLARING_PREFIX</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.errors.XML_ERROR_INCOMPLETE_PE"><code class="docutils literal notranslate"><span class="pre">XML_ERROR_INCOMPLETE_PE</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.errors.XML_ERROR_XML_DECL"><code class="docutils literal notranslate"><span class="pre">XML_ERROR_XML_DECL</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.errors.XML_ERROR_TEXT_DECL"><code class="docutils literal notranslate"><span class="pre">XML_ERROR_TEXT_DECL</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.errors.XML_ERROR_PUBLICID"><code class="docutils literal notranslate"><span class="pre">XML_ERROR_PUBLICID</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.errors.XML_ERROR_SUSPENDED"><code class="docutils literal notranslate"><span class="pre">XML_ERROR_SUSPENDED</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.errors.XML_ERROR_NOT_SUSPENDED"><code class="docutils literal notranslate"><span class="pre">XML_ERROR_NOT_SUSPENDED</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.errors.XML_ERROR_ABORTED"><code class="docutils literal notranslate"><span class="pre">XML_ERROR_ABORTED</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.errors.XML_ERROR_FINISHED"><code class="docutils literal notranslate"><span class="pre">XML_ERROR_FINISHED</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.errors.XML_ERROR_SUSPEND_PE"><code class="docutils literal notranslate"><span class="pre">XML_ERROR_SUSPEND_PE</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -137,7 +232,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.7 Documentation</a> &#187;
+      <a href="../index.html">3.10.8 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -1089,11 +1184,105 @@ and <a class="reference external" href="https://www.iana.org/assignments/charact
     <h3><a href="../contents.html">目錄</a></h3>
     <ul>
 <li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">xml.parsers.expat</span></code> --- Fast XML parsing using Expat</a><ul>
-<li><a class="reference internal" href="#xmlparser-objects">XMLParser 物件</a></li>
-<li><a class="reference internal" href="#expaterror-exceptions">ExpatError 例外</a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.ExpatError"><code class="docutils literal notranslate"><span class="pre">ExpatError</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.error"><code class="docutils literal notranslate"><span class="pre">error</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.XMLParserType"><code class="docutils literal notranslate"><span class="pre">XMLParserType</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.ErrorString"><code class="docutils literal notranslate"><span class="pre">ErrorString()</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.ParserCreate"><code class="docutils literal notranslate"><span class="pre">ParserCreate()</span></code></a></li>
+<li><a class="reference internal" href="#xmlparser-objects">XMLParser 物件</a><ul>
+<li><a class="reference internal" href="#xml.parsers.expat.xmlparser.Parse"><code class="docutils literal notranslate"><span class="pre">xmlparser.Parse()</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.xmlparser.ParseFile"><code class="docutils literal notranslate"><span class="pre">xmlparser.ParseFile()</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.xmlparser.SetBase"><code class="docutils literal notranslate"><span class="pre">xmlparser.SetBase()</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.xmlparser.GetBase"><code class="docutils literal notranslate"><span class="pre">xmlparser.GetBase()</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.xmlparser.GetInputContext"><code class="docutils literal notranslate"><span class="pre">xmlparser.GetInputContext()</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.xmlparser.ExternalEntityParserCreate"><code class="docutils literal notranslate"><span class="pre">xmlparser.ExternalEntityParserCreate()</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.xmlparser.SetParamEntityParsing"><code class="docutils literal notranslate"><span class="pre">xmlparser.SetParamEntityParsing()</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.xmlparser.UseForeignDTD"><code class="docutils literal notranslate"><span class="pre">xmlparser.UseForeignDTD()</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.xmlparser.buffer_size"><code class="docutils literal notranslate"><span class="pre">xmlparser.buffer_size</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.xmlparser.buffer_text"><code class="docutils literal notranslate"><span class="pre">xmlparser.buffer_text</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.xmlparser.buffer_used"><code class="docutils literal notranslate"><span class="pre">xmlparser.buffer_used</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.xmlparser.ordered_attributes"><code class="docutils literal notranslate"><span class="pre">xmlparser.ordered_attributes</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.xmlparser.specified_attributes"><code class="docutils literal notranslate"><span class="pre">xmlparser.specified_attributes</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.xmlparser.ErrorByteIndex"><code class="docutils literal notranslate"><span class="pre">xmlparser.ErrorByteIndex</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.xmlparser.ErrorCode"><code class="docutils literal notranslate"><span class="pre">xmlparser.ErrorCode</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.xmlparser.ErrorColumnNumber"><code class="docutils literal notranslate"><span class="pre">xmlparser.ErrorColumnNumber</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.xmlparser.ErrorLineNumber"><code class="docutils literal notranslate"><span class="pre">xmlparser.ErrorLineNumber</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.xmlparser.CurrentByteIndex"><code class="docutils literal notranslate"><span class="pre">xmlparser.CurrentByteIndex</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.xmlparser.CurrentColumnNumber"><code class="docutils literal notranslate"><span class="pre">xmlparser.CurrentColumnNumber</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.xmlparser.CurrentLineNumber"><code class="docutils literal notranslate"><span class="pre">xmlparser.CurrentLineNumber</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.xmlparser.XmlDeclHandler"><code class="docutils literal notranslate"><span class="pre">xmlparser.XmlDeclHandler()</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.xmlparser.StartDoctypeDeclHandler"><code class="docutils literal notranslate"><span class="pre">xmlparser.StartDoctypeDeclHandler()</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.xmlparser.EndDoctypeDeclHandler"><code class="docutils literal notranslate"><span class="pre">xmlparser.EndDoctypeDeclHandler()</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.xmlparser.ElementDeclHandler"><code class="docutils literal notranslate"><span class="pre">xmlparser.ElementDeclHandler()</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.xmlparser.AttlistDeclHandler"><code class="docutils literal notranslate"><span class="pre">xmlparser.AttlistDeclHandler()</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.xmlparser.StartElementHandler"><code class="docutils literal notranslate"><span class="pre">xmlparser.StartElementHandler()</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.xmlparser.EndElementHandler"><code class="docutils literal notranslate"><span class="pre">xmlparser.EndElementHandler()</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.xmlparser.ProcessingInstructionHandler"><code class="docutils literal notranslate"><span class="pre">xmlparser.ProcessingInstructionHandler()</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.xmlparser.CharacterDataHandler"><code class="docutils literal notranslate"><span class="pre">xmlparser.CharacterDataHandler()</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.xmlparser.UnparsedEntityDeclHandler"><code class="docutils literal notranslate"><span class="pre">xmlparser.UnparsedEntityDeclHandler()</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.xmlparser.EntityDeclHandler"><code class="docutils literal notranslate"><span class="pre">xmlparser.EntityDeclHandler()</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.xmlparser.NotationDeclHandler"><code class="docutils literal notranslate"><span class="pre">xmlparser.NotationDeclHandler()</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.xmlparser.StartNamespaceDeclHandler"><code class="docutils literal notranslate"><span class="pre">xmlparser.StartNamespaceDeclHandler()</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.xmlparser.EndNamespaceDeclHandler"><code class="docutils literal notranslate"><span class="pre">xmlparser.EndNamespaceDeclHandler()</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.xmlparser.CommentHandler"><code class="docutils literal notranslate"><span class="pre">xmlparser.CommentHandler()</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.xmlparser.StartCdataSectionHandler"><code class="docutils literal notranslate"><span class="pre">xmlparser.StartCdataSectionHandler()</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.xmlparser.EndCdataSectionHandler"><code class="docutils literal notranslate"><span class="pre">xmlparser.EndCdataSectionHandler()</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.xmlparser.DefaultHandler"><code class="docutils literal notranslate"><span class="pre">xmlparser.DefaultHandler()</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.xmlparser.DefaultHandlerExpand"><code class="docutils literal notranslate"><span class="pre">xmlparser.DefaultHandlerExpand()</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.xmlparser.NotStandaloneHandler"><code class="docutils literal notranslate"><span class="pre">xmlparser.NotStandaloneHandler()</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.xmlparser.ExternalEntityRefHandler"><code class="docutils literal notranslate"><span class="pre">xmlparser.ExternalEntityRefHandler()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#expaterror-exceptions">ExpatError 例外</a><ul>
+<li><a class="reference internal" href="#xml.parsers.expat.ExpatError.code"><code class="docutils literal notranslate"><span class="pre">ExpatError.code</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.ExpatError.lineno"><code class="docutils literal notranslate"><span class="pre">ExpatError.lineno</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.ExpatError.offset"><code class="docutils literal notranslate"><span class="pre">ExpatError.offset</span></code></a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#example">範例</a></li>
 <li><a class="reference internal" href="#module-xml.parsers.expat.model">Content Model Descriptions</a></li>
-<li><a class="reference internal" href="#module-xml.parsers.expat.errors">Expat error constants</a></li>
+<li><a class="reference internal" href="#module-xml.parsers.expat.errors">Expat error constants</a><ul>
+<li><a class="reference internal" href="#xml.parsers.expat.errors.codes"><code class="docutils literal notranslate"><span class="pre">codes</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.errors.messages"><code class="docutils literal notranslate"><span class="pre">messages</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.errors.XML_ERROR_ASYNC_ENTITY"><code class="docutils literal notranslate"><span class="pre">XML_ERROR_ASYNC_ENTITY</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.errors.XML_ERROR_ATTRIBUTE_EXTERNAL_ENTITY_REF"><code class="docutils literal notranslate"><span class="pre">XML_ERROR_ATTRIBUTE_EXTERNAL_ENTITY_REF</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.errors.XML_ERROR_BAD_CHAR_REF"><code class="docutils literal notranslate"><span class="pre">XML_ERROR_BAD_CHAR_REF</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.errors.XML_ERROR_BINARY_ENTITY_REF"><code class="docutils literal notranslate"><span class="pre">XML_ERROR_BINARY_ENTITY_REF</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.errors.XML_ERROR_DUPLICATE_ATTRIBUTE"><code class="docutils literal notranslate"><span class="pre">XML_ERROR_DUPLICATE_ATTRIBUTE</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.errors.XML_ERROR_INCORRECT_ENCODING"><code class="docutils literal notranslate"><span class="pre">XML_ERROR_INCORRECT_ENCODING</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.errors.XML_ERROR_INVALID_TOKEN"><code class="docutils literal notranslate"><span class="pre">XML_ERROR_INVALID_TOKEN</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.errors.XML_ERROR_JUNK_AFTER_DOC_ELEMENT"><code class="docutils literal notranslate"><span class="pre">XML_ERROR_JUNK_AFTER_DOC_ELEMENT</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.errors.XML_ERROR_MISPLACED_XML_PI"><code class="docutils literal notranslate"><span class="pre">XML_ERROR_MISPLACED_XML_PI</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.errors.XML_ERROR_NO_ELEMENTS"><code class="docutils literal notranslate"><span class="pre">XML_ERROR_NO_ELEMENTS</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.errors.XML_ERROR_NO_MEMORY"><code class="docutils literal notranslate"><span class="pre">XML_ERROR_NO_MEMORY</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.errors.XML_ERROR_PARAM_ENTITY_REF"><code class="docutils literal notranslate"><span class="pre">XML_ERROR_PARAM_ENTITY_REF</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.errors.XML_ERROR_PARTIAL_CHAR"><code class="docutils literal notranslate"><span class="pre">XML_ERROR_PARTIAL_CHAR</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.errors.XML_ERROR_RECURSIVE_ENTITY_REF"><code class="docutils literal notranslate"><span class="pre">XML_ERROR_RECURSIVE_ENTITY_REF</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.errors.XML_ERROR_SYNTAX"><code class="docutils literal notranslate"><span class="pre">XML_ERROR_SYNTAX</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.errors.XML_ERROR_TAG_MISMATCH"><code class="docutils literal notranslate"><span class="pre">XML_ERROR_TAG_MISMATCH</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.errors.XML_ERROR_UNCLOSED_TOKEN"><code class="docutils literal notranslate"><span class="pre">XML_ERROR_UNCLOSED_TOKEN</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.errors.XML_ERROR_UNDEFINED_ENTITY"><code class="docutils literal notranslate"><span class="pre">XML_ERROR_UNDEFINED_ENTITY</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.errors.XML_ERROR_UNKNOWN_ENCODING"><code class="docutils literal notranslate"><span class="pre">XML_ERROR_UNKNOWN_ENCODING</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.errors.XML_ERROR_UNCLOSED_CDATA_SECTION"><code class="docutils literal notranslate"><span class="pre">XML_ERROR_UNCLOSED_CDATA_SECTION</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.errors.XML_ERROR_EXTERNAL_ENTITY_HANDLING"><code class="docutils literal notranslate"><span class="pre">XML_ERROR_EXTERNAL_ENTITY_HANDLING</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.errors.XML_ERROR_NOT_STANDALONE"><code class="docutils literal notranslate"><span class="pre">XML_ERROR_NOT_STANDALONE</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.errors.XML_ERROR_UNEXPECTED_STATE"><code class="docutils literal notranslate"><span class="pre">XML_ERROR_UNEXPECTED_STATE</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.errors.XML_ERROR_ENTITY_DECLARED_IN_PE"><code class="docutils literal notranslate"><span class="pre">XML_ERROR_ENTITY_DECLARED_IN_PE</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.errors.XML_ERROR_FEATURE_REQUIRES_XML_DTD"><code class="docutils literal notranslate"><span class="pre">XML_ERROR_FEATURE_REQUIRES_XML_DTD</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.errors.XML_ERROR_CANT_CHANGE_FEATURE_ONCE_PARSING"><code class="docutils literal notranslate"><span class="pre">XML_ERROR_CANT_CHANGE_FEATURE_ONCE_PARSING</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.errors.XML_ERROR_UNBOUND_PREFIX"><code class="docutils literal notranslate"><span class="pre">XML_ERROR_UNBOUND_PREFIX</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.errors.XML_ERROR_UNDECLARING_PREFIX"><code class="docutils literal notranslate"><span class="pre">XML_ERROR_UNDECLARING_PREFIX</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.errors.XML_ERROR_INCOMPLETE_PE"><code class="docutils literal notranslate"><span class="pre">XML_ERROR_INCOMPLETE_PE</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.errors.XML_ERROR_XML_DECL"><code class="docutils literal notranslate"><span class="pre">XML_ERROR_XML_DECL</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.errors.XML_ERROR_TEXT_DECL"><code class="docutils literal notranslate"><span class="pre">XML_ERROR_TEXT_DECL</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.errors.XML_ERROR_PUBLICID"><code class="docutils literal notranslate"><span class="pre">XML_ERROR_PUBLICID</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.errors.XML_ERROR_SUSPENDED"><code class="docutils literal notranslate"><span class="pre">XML_ERROR_SUSPENDED</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.errors.XML_ERROR_NOT_SUSPENDED"><code class="docutils literal notranslate"><span class="pre">XML_ERROR_NOT_SUSPENDED</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.errors.XML_ERROR_ABORTED"><code class="docutils literal notranslate"><span class="pre">XML_ERROR_ABORTED</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.errors.XML_ERROR_FINISHED"><code class="docutils literal notranslate"><span class="pre">XML_ERROR_FINISHED</span></code></a></li>
+<li><a class="reference internal" href="#xml.parsers.expat.errors.XML_ERROR_SUSPEND_PE"><code class="docutils literal notranslate"><span class="pre">XML_ERROR_SUSPEND_PE</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -1154,7 +1343,7 @@ and <a class="reference external" href="https://www.iana.org/assignments/charact
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.7 Documentation</a> &#187;
+      <a href="../index.html">3.10.8 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -1191,11 +1380,11 @@ and <a class="reference external" href="https://www.iana.org/assignments/charact
 <br />
     <br />
 
-    最後更新於 9月 16, 2022。
+    最後更新於 10月 15, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 
-    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1 建立。
+    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.2.3 建立。
     </div>
 
   </body>

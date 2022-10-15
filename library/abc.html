@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>abc --- Abstract Base Classes &#8212; Python 3.10.7 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>abc --- Abstract Base Classes &#8212; Python 3.10.8 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -16,12 +16,13 @@
     <script src="../_static/underscore.js"></script>
     <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/translations.js"></script>
     
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.10.7 說明文件 中搜尋"
+          title="在 Python 3.10.8 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -71,6 +72,27 @@
     <div class="menu-wrapper">
         <nav class="menu" role="navigation" aria-label="main navigation">
             <div class="language_switcher_placeholder"></div>
+  <div>
+    <h3><a href="../contents.html">目錄</a></h3>
+    <ul>
+<li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">abc</span></code> --- Abstract Base Classes</a><ul>
+<li><a class="reference internal" href="#abc.ABC"><code class="docutils literal notranslate"><span class="pre">ABC</span></code></a></li>
+<li><a class="reference internal" href="#abc.ABCMeta"><code class="docutils literal notranslate"><span class="pre">ABCMeta</span></code></a><ul>
+<li><a class="reference internal" href="#abc.ABCMeta.register"><code class="docutils literal notranslate"><span class="pre">ABCMeta.register()</span></code></a></li>
+<li><a class="reference internal" href="#abc.ABCMeta.__subclasshook__"><code class="docutils literal notranslate"><span class="pre">ABCMeta.__subclasshook__()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#abc.abstractmethod"><code class="docutils literal notranslate"><span class="pre">abstractmethod()</span></code></a></li>
+<li><a class="reference internal" href="#abc.abstractclassmethod"><code class="docutils literal notranslate"><span class="pre">abstractclassmethod()</span></code></a></li>
+<li><a class="reference internal" href="#abc.abstractstaticmethod"><code class="docutils literal notranslate"><span class="pre">abstractstaticmethod()</span></code></a></li>
+<li><a class="reference internal" href="#abc.abstractproperty"><code class="docutils literal notranslate"><span class="pre">abstractproperty()</span></code></a></li>
+<li><a class="reference internal" href="#abc.get_cache_token"><code class="docutils literal notranslate"><span class="pre">get_cache_token()</span></code></a></li>
+<li><a class="reference internal" href="#abc.update_abstractmethods"><code class="docutils literal notranslate"><span class="pre">update_abstractmethods()</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
   <div>
     <h4>上個主題</h4>
     <p class="topless"><a href="contextlib.html"
@@ -123,7 +145,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.7 Documentation</a> &#187;
+      <a href="../index.html">3.10.8 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -513,6 +535,27 @@ concept is not the same as C++'s.</p>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
   <div>
+    <h3><a href="../contents.html">目錄</a></h3>
+    <ul>
+<li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">abc</span></code> --- Abstract Base Classes</a><ul>
+<li><a class="reference internal" href="#abc.ABC"><code class="docutils literal notranslate"><span class="pre">ABC</span></code></a></li>
+<li><a class="reference internal" href="#abc.ABCMeta"><code class="docutils literal notranslate"><span class="pre">ABCMeta</span></code></a><ul>
+<li><a class="reference internal" href="#abc.ABCMeta.register"><code class="docutils literal notranslate"><span class="pre">ABCMeta.register()</span></code></a></li>
+<li><a class="reference internal" href="#abc.ABCMeta.__subclasshook__"><code class="docutils literal notranslate"><span class="pre">ABCMeta.__subclasshook__()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#abc.abstractmethod"><code class="docutils literal notranslate"><span class="pre">abstractmethod()</span></code></a></li>
+<li><a class="reference internal" href="#abc.abstractclassmethod"><code class="docutils literal notranslate"><span class="pre">abstractclassmethod()</span></code></a></li>
+<li><a class="reference internal" href="#abc.abstractstaticmethod"><code class="docutils literal notranslate"><span class="pre">abstractstaticmethod()</span></code></a></li>
+<li><a class="reference internal" href="#abc.abstractproperty"><code class="docutils literal notranslate"><span class="pre">abstractproperty()</span></code></a></li>
+<li><a class="reference internal" href="#abc.get_cache_token"><code class="docutils literal notranslate"><span class="pre">get_cache_token()</span></code></a></li>
+<li><a class="reference internal" href="#abc.update_abstractmethods"><code class="docutils literal notranslate"><span class="pre">update_abstractmethods()</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
     <h4>上個主題</h4>
     <p class="topless"><a href="contextlib.html"
                           title="上一章"><code class="xref py py-mod docutils literal notranslate"><span class="pre">contextlib</span></code> --- Utilities for <code class="xref std std-keyword docutils literal notranslate"><span class="pre">with</span></code>-statement contexts</a></p>
@@ -567,7 +610,7 @@ concept is not the same as C++'s.</p>
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.7 Documentation</a> &#187;
+      <a href="../index.html">3.10.8 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -604,11 +647,11 @@ concept is not the same as C++'s.</p>
 <br />
     <br />
 
-    最後更新於 9月 16, 2022。
+    最後更新於 10月 15, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 
-    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1 建立。
+    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.2.3 建立。
     </div>
 
   </body>

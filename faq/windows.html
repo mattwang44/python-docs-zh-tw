@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>在 Windows 使用 Python 的常見問答集 &#8212; Python 3.10.7 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>在 Windows 使用 Python 的常見問答集 &#8212; Python 3.10.8 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -16,12 +16,13 @@
     <script src="../_static/underscore.js"></script>
     <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/translations.js"></script>
     
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.10.7 說明文件 中搜尋"
+          title="在 Python 3.10.8 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -83,6 +84,7 @@
 <li><a class="reference internal" href="#how-can-i-embed-python-into-a-windows-application">如何將 Python 嵌入 Windows 應用程式中？</a></li>
 <li><a class="reference internal" href="#how-do-i-keep-editors-from-inserting-tabs-into-my-python-source">如何防止編輯器在我的 Python 原始碼中插入 tab？</a></li>
 <li><a class="reference internal" href="#how-do-i-check-for-a-keypress-without-blocking">如何在不阻塞的情況下檢查 keypress？</a></li>
+<li><a class="reference internal" href="#how-do-i-solve-the-missing-api-ms-win-crt-runtime-l1-1-0-dll-error">如何解決遺漏 api-ms-win-crt-runtime-l1-1-0.dll 的錯誤？</a></li>
 </ul>
 </li>
 </ul>
@@ -140,7 +142,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.7 Documentation</a> &#187;
+      <a href="../index.html">3.10.8 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Python 常見問題</a> &#187;</li>
@@ -182,6 +184,7 @@
 <li><p><a class="reference internal" href="#how-can-i-embed-python-into-a-windows-application" id="id8">如何將 Python 嵌入 Windows 應用程式中？</a></p></li>
 <li><p><a class="reference internal" href="#how-do-i-keep-editors-from-inserting-tabs-into-my-python-source" id="id9">如何防止編輯器在我的 Python 原始碼中插入 tab？</a></p></li>
 <li><p><a class="reference internal" href="#how-do-i-check-for-a-keypress-without-blocking" id="id10">如何在不阻塞的情況下檢查 keypress？</a></p></li>
+<li><p><a class="reference internal" href="#how-do-i-solve-the-missing-api-ms-win-crt-runtime-l1-1-0-dll-error" id="id11">如何解決遺漏 api-ms-win-crt-runtime-l1-1-0.dll 的錯誤？</a></p></li>
 </ul>
 </li>
 </ul>
@@ -294,6 +297,10 @@ hello
 <h2><a class="toc-backref" href="#id10" role="doc-backlink">如何在不阻塞的情況下檢查 keypress？</a><a class="headerlink" href="#how-do-i-check-for-a-keypress-without-blocking" title="本標頭的永久連結">¶</a></h2>
 <p>使用 <a class="reference internal" href="../library/msvcrt.html#module-msvcrt" title="msvcrt: Miscellaneous useful routines from the MS VC++ runtime. (Windows)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">msvcrt</span></code></a> 模組。這是一個標準的 Windows 專用擴充模組。它定義了一個函式 <code class="docutils literal notranslate"><span class="pre">kbhit()</span></code>，該函式會檢查是否出現鍵盤打擊 (keyboard hit)，以及函式 <code class="docutils literal notranslate"><span class="pre">getch()</span></code>，該函式會取得一個字元且不會將其印出。</p>
 </section>
+<section id="how-do-i-solve-the-missing-api-ms-win-crt-runtime-l1-1-0-dll-error">
+<h2><a class="toc-backref" href="#id11" role="doc-backlink">如何解決遺漏 api-ms-win-crt-runtime-l1-1-0.dll 的錯誤？</a><a class="headerlink" href="#how-do-i-solve-the-missing-api-ms-win-crt-runtime-l1-1-0-dll-error" title="本標頭的永久連結">¶</a></h2>
+<p>使用 Windows 8.1 或更早版本時，若尚未安裝所有的更新，則可能會在 Python 3.5 以上的版本發生這種情況。首先要確保你的作業系統仍受支援並且是最新的，如果這無法解決問題，請造訪  <a class="reference external" href="https://support.microsoft.com/en-us/help/3118401/">Microsoft 支援頁面</a>以取得關於手動安裝 C Runtime 更新的指南。</p>
+</section>
 </section>
 
 
@@ -315,6 +322,7 @@ hello
 <li><a class="reference internal" href="#how-can-i-embed-python-into-a-windows-application">如何將 Python 嵌入 Windows 應用程式中？</a></li>
 <li><a class="reference internal" href="#how-do-i-keep-editors-from-inserting-tabs-into-my-python-source">如何防止編輯器在我的 Python 原始碼中插入 tab？</a></li>
 <li><a class="reference internal" href="#how-do-i-check-for-a-keypress-without-blocking">如何在不阻塞的情況下檢查 keypress？</a></li>
+<li><a class="reference internal" href="#how-do-i-solve-the-missing-api-ms-win-crt-runtime-l1-1-0-dll-error">如何解決遺漏 api-ms-win-crt-runtime-l1-1-0.dll 的錯誤？</a></li>
 </ul>
 </li>
 </ul>
@@ -375,7 +383,7 @@ hello
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.7 Documentation</a> &#187;
+      <a href="../index.html">3.10.8 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 常見問題</a> &#187;</li>
@@ -411,11 +419,11 @@ hello
 <br />
     <br />
 
-    最後更新於 9月 16, 2022。
+    最後更新於 10月 15, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 
-    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1 建立。
+    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.2.3 建立。
     </div>
 
   </body>

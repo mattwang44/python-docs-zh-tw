@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>reprlib --- Alternate repr() implementation &#8212; Python 3.10.7 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>reprlib --- Alternate repr() implementation &#8212; Python 3.10.8 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -16,12 +16,13 @@
     <script src="../_static/underscore.js"></script>
     <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/translations.js"></script>
     
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.10.7 說明文件 中搜尋"
+          title="在 Python 3.10.8 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -75,7 +76,26 @@
     <h3><a href="../contents.html">目錄</a></h3>
     <ul>
 <li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">reprlib</span></code> --- Alternate <code class="xref py py-func docutils literal notranslate"><span class="pre">repr()</span></code> implementation</a><ul>
-<li><a class="reference internal" href="#repr-objects">Repr 物件</a></li>
+<li><a class="reference internal" href="#reprlib.Repr"><code class="docutils literal notranslate"><span class="pre">Repr</span></code></a></li>
+<li><a class="reference internal" href="#reprlib.aRepr"><code class="docutils literal notranslate"><span class="pre">aRepr</span></code></a></li>
+<li><a class="reference internal" href="#reprlib.repr"><code class="docutils literal notranslate"><span class="pre">repr()</span></code></a></li>
+<li><a class="reference internal" href="#reprlib.recursive_repr"><code class="docutils literal notranslate"><span class="pre">recursive_repr()</span></code></a></li>
+<li><a class="reference internal" href="#repr-objects">Repr 物件</a><ul>
+<li><a class="reference internal" href="#reprlib.Repr.maxlevel"><code class="docutils literal notranslate"><span class="pre">Repr.maxlevel</span></code></a></li>
+<li><a class="reference internal" href="#reprlib.Repr.maxdict"><code class="docutils literal notranslate"><span class="pre">Repr.maxdict</span></code></a></li>
+<li><a class="reference internal" href="#reprlib.Repr.maxlist"><code class="docutils literal notranslate"><span class="pre">Repr.maxlist</span></code></a></li>
+<li><a class="reference internal" href="#reprlib.Repr.maxtuple"><code class="docutils literal notranslate"><span class="pre">Repr.maxtuple</span></code></a></li>
+<li><a class="reference internal" href="#reprlib.Repr.maxset"><code class="docutils literal notranslate"><span class="pre">Repr.maxset</span></code></a></li>
+<li><a class="reference internal" href="#reprlib.Repr.maxfrozenset"><code class="docutils literal notranslate"><span class="pre">Repr.maxfrozenset</span></code></a></li>
+<li><a class="reference internal" href="#reprlib.Repr.maxdeque"><code class="docutils literal notranslate"><span class="pre">Repr.maxdeque</span></code></a></li>
+<li><a class="reference internal" href="#reprlib.Repr.maxarray"><code class="docutils literal notranslate"><span class="pre">Repr.maxarray</span></code></a></li>
+<li><a class="reference internal" href="#reprlib.Repr.maxlong"><code class="docutils literal notranslate"><span class="pre">Repr.maxlong</span></code></a></li>
+<li><a class="reference internal" href="#reprlib.Repr.maxstring"><code class="docutils literal notranslate"><span class="pre">Repr.maxstring</span></code></a></li>
+<li><a class="reference internal" href="#reprlib.Repr.maxother"><code class="docutils literal notranslate"><span class="pre">Repr.maxother</span></code></a></li>
+<li><a class="reference internal" href="#reprlib.Repr.repr"><code class="docutils literal notranslate"><span class="pre">Repr.repr()</span></code></a></li>
+<li><a class="reference internal" href="#reprlib.Repr.repr1"><code class="docutils literal notranslate"><span class="pre">Repr.repr1()</span></code></a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#subclassing-repr-objects">Subclassing Repr Objects</a></li>
 </ul>
 </li>
@@ -134,7 +154,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.7 Documentation</a> &#187;
+      <a href="../index.html">3.10.8 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -338,7 +358,26 @@ for file objects could be added:</p>
     <h3><a href="../contents.html">目錄</a></h3>
     <ul>
 <li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">reprlib</span></code> --- Alternate <code class="xref py py-func docutils literal notranslate"><span class="pre">repr()</span></code> implementation</a><ul>
-<li><a class="reference internal" href="#repr-objects">Repr 物件</a></li>
+<li><a class="reference internal" href="#reprlib.Repr"><code class="docutils literal notranslate"><span class="pre">Repr</span></code></a></li>
+<li><a class="reference internal" href="#reprlib.aRepr"><code class="docutils literal notranslate"><span class="pre">aRepr</span></code></a></li>
+<li><a class="reference internal" href="#reprlib.repr"><code class="docutils literal notranslate"><span class="pre">repr()</span></code></a></li>
+<li><a class="reference internal" href="#reprlib.recursive_repr"><code class="docutils literal notranslate"><span class="pre">recursive_repr()</span></code></a></li>
+<li><a class="reference internal" href="#repr-objects">Repr 物件</a><ul>
+<li><a class="reference internal" href="#reprlib.Repr.maxlevel"><code class="docutils literal notranslate"><span class="pre">Repr.maxlevel</span></code></a></li>
+<li><a class="reference internal" href="#reprlib.Repr.maxdict"><code class="docutils literal notranslate"><span class="pre">Repr.maxdict</span></code></a></li>
+<li><a class="reference internal" href="#reprlib.Repr.maxlist"><code class="docutils literal notranslate"><span class="pre">Repr.maxlist</span></code></a></li>
+<li><a class="reference internal" href="#reprlib.Repr.maxtuple"><code class="docutils literal notranslate"><span class="pre">Repr.maxtuple</span></code></a></li>
+<li><a class="reference internal" href="#reprlib.Repr.maxset"><code class="docutils literal notranslate"><span class="pre">Repr.maxset</span></code></a></li>
+<li><a class="reference internal" href="#reprlib.Repr.maxfrozenset"><code class="docutils literal notranslate"><span class="pre">Repr.maxfrozenset</span></code></a></li>
+<li><a class="reference internal" href="#reprlib.Repr.maxdeque"><code class="docutils literal notranslate"><span class="pre">Repr.maxdeque</span></code></a></li>
+<li><a class="reference internal" href="#reprlib.Repr.maxarray"><code class="docutils literal notranslate"><span class="pre">Repr.maxarray</span></code></a></li>
+<li><a class="reference internal" href="#reprlib.Repr.maxlong"><code class="docutils literal notranslate"><span class="pre">Repr.maxlong</span></code></a></li>
+<li><a class="reference internal" href="#reprlib.Repr.maxstring"><code class="docutils literal notranslate"><span class="pre">Repr.maxstring</span></code></a></li>
+<li><a class="reference internal" href="#reprlib.Repr.maxother"><code class="docutils literal notranslate"><span class="pre">Repr.maxother</span></code></a></li>
+<li><a class="reference internal" href="#reprlib.Repr.repr"><code class="docutils literal notranslate"><span class="pre">Repr.repr()</span></code></a></li>
+<li><a class="reference internal" href="#reprlib.Repr.repr1"><code class="docutils literal notranslate"><span class="pre">Repr.repr1()</span></code></a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#subclassing-repr-objects">Subclassing Repr Objects</a></li>
 </ul>
 </li>
@@ -400,7 +439,7 @@ for file objects could be added:</p>
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.7 Documentation</a> &#187;
+      <a href="../index.html">3.10.8 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -437,11 +476,11 @@ for file objects could be added:</p>
 <br />
     <br />
 
-    最後更新於 9月 16, 2022。
+    最後更新於 10月 15, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 
-    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1 建立。
+    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.2.3 建立。
     </div>
 
   </body>

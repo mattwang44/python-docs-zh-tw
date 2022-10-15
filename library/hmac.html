@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>hmac --- 基於金鑰雜湊的訊息驗證 &#8212; Python 3.10.7 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hmac --- 基於金鑰雜湊的訊息驗證 &#8212; Python 3.10.8 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -16,12 +16,13 @@
     <script src="../_static/underscore.js"></script>
     <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/translations.js"></script>
     
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.10.7 說明文件 中搜尋"
+          title="在 Python 3.10.8 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -71,6 +72,25 @@
     <div class="menu-wrapper">
         <nav class="menu" role="navigation" aria-label="main navigation">
             <div class="language_switcher_placeholder"></div>
+  <div>
+    <h3><a href="../contents.html">目錄</a></h3>
+    <ul>
+<li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">hmac</span></code> --- 基於金鑰雜湊的訊息驗證</a><ul>
+<li><a class="reference internal" href="#hmac.new"><code class="docutils literal notranslate"><span class="pre">new()</span></code></a></li>
+<li><a class="reference internal" href="#hmac.digest"><code class="docutils literal notranslate"><span class="pre">digest()</span></code></a></li>
+<li><a class="reference internal" href="#hmac.HMAC.update"><code class="docutils literal notranslate"><span class="pre">HMAC.update()</span></code></a></li>
+<li><a class="reference internal" href="#hmac.HMAC.digest"><code class="docutils literal notranslate"><span class="pre">HMAC.digest()</span></code></a></li>
+<li><a class="reference internal" href="#hmac.HMAC.hexdigest"><code class="docutils literal notranslate"><span class="pre">HMAC.hexdigest()</span></code></a></li>
+<li><a class="reference internal" href="#hmac.HMAC.copy"><code class="docutils literal notranslate"><span class="pre">HMAC.copy()</span></code></a></li>
+<li><a class="reference internal" href="#hmac.HMAC.digest_size"><code class="docutils literal notranslate"><span class="pre">HMAC.digest_size</span></code></a></li>
+<li><a class="reference internal" href="#hmac.HMAC.block_size"><code class="docutils literal notranslate"><span class="pre">HMAC.block_size</span></code></a></li>
+<li><a class="reference internal" href="#hmac.HMAC.name"><code class="docutils literal notranslate"><span class="pre">HMAC.name</span></code></a></li>
+<li><a class="reference internal" href="#hmac.compare_digest"><code class="docutils literal notranslate"><span class="pre">compare_digest()</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
   <div>
     <h4>上個主題</h4>
     <p class="topless"><a href="hashlib.html"
@@ -123,7 +143,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.7 Documentation</a> &#187;
+      <a href="../index.html">3.10.8 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -276,6 +296,25 @@
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
   <div>
+    <h3><a href="../contents.html">目錄</a></h3>
+    <ul>
+<li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">hmac</span></code> --- 基於金鑰雜湊的訊息驗證</a><ul>
+<li><a class="reference internal" href="#hmac.new"><code class="docutils literal notranslate"><span class="pre">new()</span></code></a></li>
+<li><a class="reference internal" href="#hmac.digest"><code class="docutils literal notranslate"><span class="pre">digest()</span></code></a></li>
+<li><a class="reference internal" href="#hmac.HMAC.update"><code class="docutils literal notranslate"><span class="pre">HMAC.update()</span></code></a></li>
+<li><a class="reference internal" href="#hmac.HMAC.digest"><code class="docutils literal notranslate"><span class="pre">HMAC.digest()</span></code></a></li>
+<li><a class="reference internal" href="#hmac.HMAC.hexdigest"><code class="docutils literal notranslate"><span class="pre">HMAC.hexdigest()</span></code></a></li>
+<li><a class="reference internal" href="#hmac.HMAC.copy"><code class="docutils literal notranslate"><span class="pre">HMAC.copy()</span></code></a></li>
+<li><a class="reference internal" href="#hmac.HMAC.digest_size"><code class="docutils literal notranslate"><span class="pre">HMAC.digest_size</span></code></a></li>
+<li><a class="reference internal" href="#hmac.HMAC.block_size"><code class="docutils literal notranslate"><span class="pre">HMAC.block_size</span></code></a></li>
+<li><a class="reference internal" href="#hmac.HMAC.name"><code class="docutils literal notranslate"><span class="pre">HMAC.name</span></code></a></li>
+<li><a class="reference internal" href="#hmac.compare_digest"><code class="docutils literal notranslate"><span class="pre">compare_digest()</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
     <h4>上個主題</h4>
     <p class="topless"><a href="hashlib.html"
                           title="上一章"><code class="xref py py-mod docutils literal notranslate"><span class="pre">hashlib</span></code> --- Secure hashes and message digests</a></p>
@@ -330,7 +369,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.7 Documentation</a> &#187;
+      <a href="../index.html">3.10.8 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -367,11 +406,11 @@
 <br />
     <br />
 
-    最後更新於 9月 16, 2022。
+    最後更新於 10月 15, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 
-    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1 建立。
+    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.2.3 建立。
     </div>
 
   </body>

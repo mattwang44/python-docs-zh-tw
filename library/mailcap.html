@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>mailcap --- Mailcap file handling &#8212; Python 3.10.7 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mailcap --- Mailcap file handling &#8212; Python 3.10.8 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -16,12 +16,13 @@
     <script src="../_static/underscore.js"></script>
     <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/translations.js"></script>
     
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.10.7 說明文件 中搜尋"
+          title="在 Python 3.10.8 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -71,6 +72,17 @@
     <div class="menu-wrapper">
         <nav class="menu" role="navigation" aria-label="main navigation">
             <div class="language_switcher_placeholder"></div>
+  <div>
+    <h3><a href="../contents.html">目錄</a></h3>
+    <ul>
+<li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">mailcap</span></code> --- Mailcap file handling</a><ul>
+<li><a class="reference internal" href="#mailcap.findmatch"><code class="docutils literal notranslate"><span class="pre">findmatch()</span></code></a></li>
+<li><a class="reference internal" href="#mailcap.getcaps"><code class="docutils literal notranslate"><span class="pre">getcaps()</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
   <div>
     <h4>上個主題</h4>
     <p class="topless"><a href="imp.html"
@@ -123,7 +135,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.7 Documentation</a> &#187;
+      <a href="../index.html">3.10.8 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -199,6 +211,17 @@ of the parameter named 'foo'.  For example, if the command line <code class="doc
 external condition (such as the machine architecture, or the window system in
 use) to determine whether or not the mailcap line applies.  <a class="reference internal" href="#mailcap.findmatch" title="mailcap.findmatch"><code class="xref py py-func docutils literal notranslate"><span class="pre">findmatch()</span></code></a>
 will automatically check such conditions and skip the entry if the check fails.</p>
+<div class="versionchanged">
+<p><span class="versionmodified changed">在 3.10.8 版本變更: </span>To prevent security issues with shell metacharacters (symbols that have
+special effects in a shell command line), <code class="docutils literal notranslate"><span class="pre">findmatch</span></code> will refuse
+to inject ASCII characters other than alphanumerics and <code class="docutils literal notranslate"><span class="pre">&#64;+=:,./-_</span></code>
+into the returned command line.</p>
+<p>If a disallowed character appears in <em>filename</em>, <code class="docutils literal notranslate"><span class="pre">findmatch</span></code> will always
+return <code class="docutils literal notranslate"><span class="pre">(None,</span> <span class="pre">None)</span></code> as if no entry was found.
+If such a character appears elsewhere (a value in <em>plist</em> or in <em>MIMEtype</em>),
+<code class="docutils literal notranslate"><span class="pre">findmatch</span></code> will ignore all mailcap entries which use that value.
+A <a class="reference internal" href="warnings.html#module-warnings" title="warnings: Issue warning messages and control their disposition."><code class="xref py py-mod docutils literal notranslate"><span class="pre">warning</span></code></a> will be raised in either case.</p>
+</div>
 </dd></dl>
 
 <dl class="py function">
@@ -230,6 +253,17 @@ settings in the system mailcap files <code class="file docutils literal notransl
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../contents.html">目錄</a></h3>
+    <ul>
+<li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">mailcap</span></code> --- Mailcap file handling</a><ul>
+<li><a class="reference internal" href="#mailcap.findmatch"><code class="docutils literal notranslate"><span class="pre">findmatch()</span></code></a></li>
+<li><a class="reference internal" href="#mailcap.getcaps"><code class="docutils literal notranslate"><span class="pre">getcaps()</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
   <div>
     <h4>上個主題</h4>
     <p class="topless"><a href="imp.html"
@@ -285,7 +319,7 @@ settings in the system mailcap files <code class="file docutils literal notransl
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.7 Documentation</a> &#187;
+      <a href="../index.html">3.10.8 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -322,11 +356,11 @@ settings in the system mailcap files <code class="file docutils literal notransl
 <br />
     <br />
 
-    最後更新於 9月 16, 2022。
+    最後更新於 10月 15, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 
-    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1 建立。
+    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.2.3 建立。
     </div>
 
   </body>

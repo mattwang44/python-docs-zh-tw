@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>filecmp --- File and Directory Comparisons &#8212; Python 3.10.7 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>filecmp --- File and Directory Comparisons &#8212; Python 3.10.8 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -16,12 +16,13 @@
     <script src="../_static/underscore.js"></script>
     <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/translations.js"></script>
     
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.10.7 說明文件 中搜尋"
+          title="在 Python 3.10.8 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -75,7 +76,33 @@
     <h3><a href="../contents.html">目錄</a></h3>
     <ul>
 <li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">filecmp</span></code> --- File and Directory Comparisons</a><ul>
-<li><a class="reference internal" href="#the-dircmp-class">The <code class="xref py py-class docutils literal notranslate"><span class="pre">dircmp</span></code> class</a></li>
+<li><a class="reference internal" href="#filecmp.cmp"><code class="docutils literal notranslate"><span class="pre">cmp()</span></code></a></li>
+<li><a class="reference internal" href="#filecmp.cmpfiles"><code class="docutils literal notranslate"><span class="pre">cmpfiles()</span></code></a></li>
+<li><a class="reference internal" href="#filecmp.clear_cache"><code class="docutils literal notranslate"><span class="pre">clear_cache()</span></code></a></li>
+<li><a class="reference internal" href="#the-dircmp-class">The <code class="xref py py-class docutils literal notranslate"><span class="pre">dircmp</span></code> class</a><ul>
+<li><a class="reference internal" href="#filecmp.dircmp"><code class="docutils literal notranslate"><span class="pre">dircmp</span></code></a><ul>
+<li><a class="reference internal" href="#filecmp.dircmp.report"><code class="docutils literal notranslate"><span class="pre">dircmp.report()</span></code></a></li>
+<li><a class="reference internal" href="#filecmp.dircmp.report_partial_closure"><code class="docutils literal notranslate"><span class="pre">dircmp.report_partial_closure()</span></code></a></li>
+<li><a class="reference internal" href="#filecmp.dircmp.report_full_closure"><code class="docutils literal notranslate"><span class="pre">dircmp.report_full_closure()</span></code></a></li>
+<li><a class="reference internal" href="#filecmp.dircmp.left"><code class="docutils literal notranslate"><span class="pre">dircmp.left</span></code></a></li>
+<li><a class="reference internal" href="#filecmp.dircmp.right"><code class="docutils literal notranslate"><span class="pre">dircmp.right</span></code></a></li>
+<li><a class="reference internal" href="#filecmp.dircmp.left_list"><code class="docutils literal notranslate"><span class="pre">dircmp.left_list</span></code></a></li>
+<li><a class="reference internal" href="#filecmp.dircmp.right_list"><code class="docutils literal notranslate"><span class="pre">dircmp.right_list</span></code></a></li>
+<li><a class="reference internal" href="#filecmp.dircmp.common"><code class="docutils literal notranslate"><span class="pre">dircmp.common</span></code></a></li>
+<li><a class="reference internal" href="#filecmp.dircmp.left_only"><code class="docutils literal notranslate"><span class="pre">dircmp.left_only</span></code></a></li>
+<li><a class="reference internal" href="#filecmp.dircmp.right_only"><code class="docutils literal notranslate"><span class="pre">dircmp.right_only</span></code></a></li>
+<li><a class="reference internal" href="#filecmp.dircmp.common_dirs"><code class="docutils literal notranslate"><span class="pre">dircmp.common_dirs</span></code></a></li>
+<li><a class="reference internal" href="#filecmp.dircmp.common_files"><code class="docutils literal notranslate"><span class="pre">dircmp.common_files</span></code></a></li>
+<li><a class="reference internal" href="#filecmp.dircmp.common_funny"><code class="docutils literal notranslate"><span class="pre">dircmp.common_funny</span></code></a></li>
+<li><a class="reference internal" href="#filecmp.dircmp.same_files"><code class="docutils literal notranslate"><span class="pre">dircmp.same_files</span></code></a></li>
+<li><a class="reference internal" href="#filecmp.dircmp.diff_files"><code class="docutils literal notranslate"><span class="pre">dircmp.diff_files</span></code></a></li>
+<li><a class="reference internal" href="#filecmp.dircmp.funny_files"><code class="docutils literal notranslate"><span class="pre">dircmp.funny_files</span></code></a></li>
+<li><a class="reference internal" href="#filecmp.dircmp.subdirs"><code class="docutils literal notranslate"><span class="pre">dircmp.subdirs</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#filecmp.DEFAULT_IGNORES"><code class="docutils literal notranslate"><span class="pre">DEFAULT_IGNORES</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -133,7 +160,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.7 Documentation</a> &#187;
+      <a href="../index.html">3.10.8 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -385,7 +412,33 @@ recursively through two directories to show common different files:</p>
     <h3><a href="../contents.html">目錄</a></h3>
     <ul>
 <li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">filecmp</span></code> --- File and Directory Comparisons</a><ul>
-<li><a class="reference internal" href="#the-dircmp-class">The <code class="xref py py-class docutils literal notranslate"><span class="pre">dircmp</span></code> class</a></li>
+<li><a class="reference internal" href="#filecmp.cmp"><code class="docutils literal notranslate"><span class="pre">cmp()</span></code></a></li>
+<li><a class="reference internal" href="#filecmp.cmpfiles"><code class="docutils literal notranslate"><span class="pre">cmpfiles()</span></code></a></li>
+<li><a class="reference internal" href="#filecmp.clear_cache"><code class="docutils literal notranslate"><span class="pre">clear_cache()</span></code></a></li>
+<li><a class="reference internal" href="#the-dircmp-class">The <code class="xref py py-class docutils literal notranslate"><span class="pre">dircmp</span></code> class</a><ul>
+<li><a class="reference internal" href="#filecmp.dircmp"><code class="docutils literal notranslate"><span class="pre">dircmp</span></code></a><ul>
+<li><a class="reference internal" href="#filecmp.dircmp.report"><code class="docutils literal notranslate"><span class="pre">dircmp.report()</span></code></a></li>
+<li><a class="reference internal" href="#filecmp.dircmp.report_partial_closure"><code class="docutils literal notranslate"><span class="pre">dircmp.report_partial_closure()</span></code></a></li>
+<li><a class="reference internal" href="#filecmp.dircmp.report_full_closure"><code class="docutils literal notranslate"><span class="pre">dircmp.report_full_closure()</span></code></a></li>
+<li><a class="reference internal" href="#filecmp.dircmp.left"><code class="docutils literal notranslate"><span class="pre">dircmp.left</span></code></a></li>
+<li><a class="reference internal" href="#filecmp.dircmp.right"><code class="docutils literal notranslate"><span class="pre">dircmp.right</span></code></a></li>
+<li><a class="reference internal" href="#filecmp.dircmp.left_list"><code class="docutils literal notranslate"><span class="pre">dircmp.left_list</span></code></a></li>
+<li><a class="reference internal" href="#filecmp.dircmp.right_list"><code class="docutils literal notranslate"><span class="pre">dircmp.right_list</span></code></a></li>
+<li><a class="reference internal" href="#filecmp.dircmp.common"><code class="docutils literal notranslate"><span class="pre">dircmp.common</span></code></a></li>
+<li><a class="reference internal" href="#filecmp.dircmp.left_only"><code class="docutils literal notranslate"><span class="pre">dircmp.left_only</span></code></a></li>
+<li><a class="reference internal" href="#filecmp.dircmp.right_only"><code class="docutils literal notranslate"><span class="pre">dircmp.right_only</span></code></a></li>
+<li><a class="reference internal" href="#filecmp.dircmp.common_dirs"><code class="docutils literal notranslate"><span class="pre">dircmp.common_dirs</span></code></a></li>
+<li><a class="reference internal" href="#filecmp.dircmp.common_files"><code class="docutils literal notranslate"><span class="pre">dircmp.common_files</span></code></a></li>
+<li><a class="reference internal" href="#filecmp.dircmp.common_funny"><code class="docutils literal notranslate"><span class="pre">dircmp.common_funny</span></code></a></li>
+<li><a class="reference internal" href="#filecmp.dircmp.same_files"><code class="docutils literal notranslate"><span class="pre">dircmp.same_files</span></code></a></li>
+<li><a class="reference internal" href="#filecmp.dircmp.diff_files"><code class="docutils literal notranslate"><span class="pre">dircmp.diff_files</span></code></a></li>
+<li><a class="reference internal" href="#filecmp.dircmp.funny_files"><code class="docutils literal notranslate"><span class="pre">dircmp.funny_files</span></code></a></li>
+<li><a class="reference internal" href="#filecmp.dircmp.subdirs"><code class="docutils literal notranslate"><span class="pre">dircmp.subdirs</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#filecmp.DEFAULT_IGNORES"><code class="docutils literal notranslate"><span class="pre">DEFAULT_IGNORES</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -446,7 +499,7 @@ recursively through two directories to show common different files:</p>
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.7 Documentation</a> &#187;
+      <a href="../index.html">3.10.8 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -483,11 +536,11 @@ recursively through two directories to show common different files:</p>
 <br />
     <br />
 
-    最後更新於 9月 16, 2022。
+    最後更新於 10月 15, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 
-    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1 建立。
+    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.2.3 建立。
     </div>
 
   </body>

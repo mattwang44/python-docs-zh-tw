@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>Transports and Protocols &#8212; Python 3.10.7 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transports and Protocols &#8212; Python 3.10.8 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -16,12 +16,13 @@
     <script src="../_static/underscore.js"></script>
     <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/translations.js"></script>
     
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.10.7 說明文件 中搜尋"
+          title="在 Python 3.10.8 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -76,21 +77,95 @@
     <ul>
 <li><a class="reference internal" href="#">Transports and Protocols</a><ul>
 <li><a class="reference internal" href="#transports">Transports</a><ul>
-<li><a class="reference internal" href="#transports-hierarchy">Transports Hierarchy</a></li>
-<li><a class="reference internal" href="#base-transport">Base Transport</a></li>
-<li><a class="reference internal" href="#read-only-transports">Read-only Transports</a></li>
-<li><a class="reference internal" href="#write-only-transports">Write-only Transports</a></li>
-<li><a class="reference internal" href="#datagram-transports">Datagram Transports</a></li>
-<li><a class="reference internal" href="#subprocess-transports">Subprocess Transports</a></li>
+<li><a class="reference internal" href="#transports-hierarchy">Transports Hierarchy</a><ul>
+<li><a class="reference internal" href="#asyncio.BaseTransport"><code class="docutils literal notranslate"><span class="pre">BaseTransport</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.WriteTransport"><code class="docutils literal notranslate"><span class="pre">WriteTransport</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.ReadTransport"><code class="docutils literal notranslate"><span class="pre">ReadTransport</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.Transport"><code class="docutils literal notranslate"><span class="pre">Transport</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.DatagramTransport"><code class="docutils literal notranslate"><span class="pre">DatagramTransport</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.SubprocessTransport"><code class="docutils literal notranslate"><span class="pre">SubprocessTransport</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#base-transport">Base Transport</a><ul>
+<li><a class="reference internal" href="#asyncio.BaseTransport.close"><code class="docutils literal notranslate"><span class="pre">BaseTransport.close()</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.BaseTransport.is_closing"><code class="docutils literal notranslate"><span class="pre">BaseTransport.is_closing()</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.BaseTransport.get_extra_info"><code class="docutils literal notranslate"><span class="pre">BaseTransport.get_extra_info()</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.BaseTransport.set_protocol"><code class="docutils literal notranslate"><span class="pre">BaseTransport.set_protocol()</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.BaseTransport.get_protocol"><code class="docutils literal notranslate"><span class="pre">BaseTransport.get_protocol()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#read-only-transports">Read-only Transports</a><ul>
+<li><a class="reference internal" href="#asyncio.ReadTransport.is_reading"><code class="docutils literal notranslate"><span class="pre">ReadTransport.is_reading()</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.ReadTransport.pause_reading"><code class="docutils literal notranslate"><span class="pre">ReadTransport.pause_reading()</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.ReadTransport.resume_reading"><code class="docutils literal notranslate"><span class="pre">ReadTransport.resume_reading()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#write-only-transports">Write-only Transports</a><ul>
+<li><a class="reference internal" href="#asyncio.WriteTransport.abort"><code class="docutils literal notranslate"><span class="pre">WriteTransport.abort()</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.WriteTransport.can_write_eof"><code class="docutils literal notranslate"><span class="pre">WriteTransport.can_write_eof()</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.WriteTransport.get_write_buffer_size"><code class="docutils literal notranslate"><span class="pre">WriteTransport.get_write_buffer_size()</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.WriteTransport.get_write_buffer_limits"><code class="docutils literal notranslate"><span class="pre">WriteTransport.get_write_buffer_limits()</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.WriteTransport.set_write_buffer_limits"><code class="docutils literal notranslate"><span class="pre">WriteTransport.set_write_buffer_limits()</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.WriteTransport.write"><code class="docutils literal notranslate"><span class="pre">WriteTransport.write()</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.WriteTransport.writelines"><code class="docutils literal notranslate"><span class="pre">WriteTransport.writelines()</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.WriteTransport.write_eof"><code class="docutils literal notranslate"><span class="pre">WriteTransport.write_eof()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#datagram-transports">Datagram Transports</a><ul>
+<li><a class="reference internal" href="#asyncio.DatagramTransport.sendto"><code class="docutils literal notranslate"><span class="pre">DatagramTransport.sendto()</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.DatagramTransport.abort"><code class="docutils literal notranslate"><span class="pre">DatagramTransport.abort()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#subprocess-transports">Subprocess Transports</a><ul>
+<li><a class="reference internal" href="#asyncio.SubprocessTransport.get_pid"><code class="docutils literal notranslate"><span class="pre">SubprocessTransport.get_pid()</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.SubprocessTransport.get_pipe_transport"><code class="docutils literal notranslate"><span class="pre">SubprocessTransport.get_pipe_transport()</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.SubprocessTransport.get_returncode"><code class="docutils literal notranslate"><span class="pre">SubprocessTransport.get_returncode()</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.SubprocessTransport.kill"><code class="docutils literal notranslate"><span class="pre">SubprocessTransport.kill()</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.SubprocessTransport.send_signal"><code class="docutils literal notranslate"><span class="pre">SubprocessTransport.send_signal()</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.SubprocessTransport.terminate"><code class="docutils literal notranslate"><span class="pre">SubprocessTransport.terminate()</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.SubprocessTransport.close"><code class="docutils literal notranslate"><span class="pre">SubprocessTransport.close()</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a class="reference internal" href="#protocols">Protocols</a><ul>
-<li><a class="reference internal" href="#base-protocols">Base Protocols</a></li>
-<li><a class="reference internal" href="#base-protocol">Base Protocol</a></li>
-<li><a class="reference internal" href="#streaming-protocols">Streaming Protocols</a></li>
-<li><a class="reference internal" href="#buffered-streaming-protocols">Buffered Streaming Protocols</a></li>
-<li><a class="reference internal" href="#datagram-protocols">Datagram Protocols</a></li>
-<li><a class="reference internal" href="#subprocess-protocols">Subprocess Protocols</a></li>
+<li><a class="reference internal" href="#base-protocols">Base Protocols</a><ul>
+<li><a class="reference internal" href="#asyncio.BaseProtocol"><code class="docutils literal notranslate"><span class="pre">BaseProtocol</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.Protocol"><code class="docutils literal notranslate"><span class="pre">Protocol</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.BufferedProtocol"><code class="docutils literal notranslate"><span class="pre">BufferedProtocol</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.DatagramProtocol"><code class="docutils literal notranslate"><span class="pre">DatagramProtocol</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.SubprocessProtocol"><code class="docutils literal notranslate"><span class="pre">SubprocessProtocol</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#base-protocol">Base Protocol</a><ul>
+<li><a class="reference internal" href="#asyncio.BaseProtocol.connection_made"><code class="docutils literal notranslate"><span class="pre">BaseProtocol.connection_made()</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.BaseProtocol.connection_lost"><code class="docutils literal notranslate"><span class="pre">BaseProtocol.connection_lost()</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.BaseProtocol.pause_writing"><code class="docutils literal notranslate"><span class="pre">BaseProtocol.pause_writing()</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.BaseProtocol.resume_writing"><code class="docutils literal notranslate"><span class="pre">BaseProtocol.resume_writing()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#streaming-protocols">Streaming Protocols</a><ul>
+<li><a class="reference internal" href="#asyncio.Protocol.data_received"><code class="docutils literal notranslate"><span class="pre">Protocol.data_received()</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.Protocol.eof_received"><code class="docutils literal notranslate"><span class="pre">Protocol.eof_received()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#buffered-streaming-protocols">Buffered Streaming Protocols</a><ul>
+<li><a class="reference internal" href="#asyncio.BufferedProtocol.get_buffer"><code class="docutils literal notranslate"><span class="pre">BufferedProtocol.get_buffer()</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.BufferedProtocol.buffer_updated"><code class="docutils literal notranslate"><span class="pre">BufferedProtocol.buffer_updated()</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.BufferedProtocol.eof_received"><code class="docutils literal notranslate"><span class="pre">BufferedProtocol.eof_received()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#datagram-protocols">Datagram Protocols</a><ul>
+<li><a class="reference internal" href="#asyncio.DatagramProtocol.datagram_received"><code class="docutils literal notranslate"><span class="pre">DatagramProtocol.datagram_received()</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.DatagramProtocol.error_received"><code class="docutils literal notranslate"><span class="pre">DatagramProtocol.error_received()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#subprocess-protocols">Subprocess Protocols</a><ul>
+<li><a class="reference internal" href="#asyncio.SubprocessProtocol.pipe_data_received"><code class="docutils literal notranslate"><span class="pre">SubprocessProtocol.pipe_data_received()</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.SubprocessProtocol.pipe_connection_lost"><code class="docutils literal notranslate"><span class="pre">SubprocessProtocol.pipe_connection_lost()</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.SubprocessProtocol.process_exited"><code class="docutils literal notranslate"><span class="pre">SubprocessProtocol.process_exited()</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a class="reference internal" href="#examples">範例</a><ul>
@@ -159,7 +234,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.7 Documentation</a> &#187;
+      <a href="../index.html">3.10.8 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -1206,21 +1281,95 @@ written using high-level APIs.</p>
     <ul>
 <li><a class="reference internal" href="#">Transports and Protocols</a><ul>
 <li><a class="reference internal" href="#transports">Transports</a><ul>
-<li><a class="reference internal" href="#transports-hierarchy">Transports Hierarchy</a></li>
-<li><a class="reference internal" href="#base-transport">Base Transport</a></li>
-<li><a class="reference internal" href="#read-only-transports">Read-only Transports</a></li>
-<li><a class="reference internal" href="#write-only-transports">Write-only Transports</a></li>
-<li><a class="reference internal" href="#datagram-transports">Datagram Transports</a></li>
-<li><a class="reference internal" href="#subprocess-transports">Subprocess Transports</a></li>
+<li><a class="reference internal" href="#transports-hierarchy">Transports Hierarchy</a><ul>
+<li><a class="reference internal" href="#asyncio.BaseTransport"><code class="docutils literal notranslate"><span class="pre">BaseTransport</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.WriteTransport"><code class="docutils literal notranslate"><span class="pre">WriteTransport</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.ReadTransport"><code class="docutils literal notranslate"><span class="pre">ReadTransport</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.Transport"><code class="docutils literal notranslate"><span class="pre">Transport</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.DatagramTransport"><code class="docutils literal notranslate"><span class="pre">DatagramTransport</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.SubprocessTransport"><code class="docutils literal notranslate"><span class="pre">SubprocessTransport</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#base-transport">Base Transport</a><ul>
+<li><a class="reference internal" href="#asyncio.BaseTransport.close"><code class="docutils literal notranslate"><span class="pre">BaseTransport.close()</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.BaseTransport.is_closing"><code class="docutils literal notranslate"><span class="pre">BaseTransport.is_closing()</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.BaseTransport.get_extra_info"><code class="docutils literal notranslate"><span class="pre">BaseTransport.get_extra_info()</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.BaseTransport.set_protocol"><code class="docutils literal notranslate"><span class="pre">BaseTransport.set_protocol()</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.BaseTransport.get_protocol"><code class="docutils literal notranslate"><span class="pre">BaseTransport.get_protocol()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#read-only-transports">Read-only Transports</a><ul>
+<li><a class="reference internal" href="#asyncio.ReadTransport.is_reading"><code class="docutils literal notranslate"><span class="pre">ReadTransport.is_reading()</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.ReadTransport.pause_reading"><code class="docutils literal notranslate"><span class="pre">ReadTransport.pause_reading()</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.ReadTransport.resume_reading"><code class="docutils literal notranslate"><span class="pre">ReadTransport.resume_reading()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#write-only-transports">Write-only Transports</a><ul>
+<li><a class="reference internal" href="#asyncio.WriteTransport.abort"><code class="docutils literal notranslate"><span class="pre">WriteTransport.abort()</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.WriteTransport.can_write_eof"><code class="docutils literal notranslate"><span class="pre">WriteTransport.can_write_eof()</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.WriteTransport.get_write_buffer_size"><code class="docutils literal notranslate"><span class="pre">WriteTransport.get_write_buffer_size()</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.WriteTransport.get_write_buffer_limits"><code class="docutils literal notranslate"><span class="pre">WriteTransport.get_write_buffer_limits()</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.WriteTransport.set_write_buffer_limits"><code class="docutils literal notranslate"><span class="pre">WriteTransport.set_write_buffer_limits()</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.WriteTransport.write"><code class="docutils literal notranslate"><span class="pre">WriteTransport.write()</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.WriteTransport.writelines"><code class="docutils literal notranslate"><span class="pre">WriteTransport.writelines()</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.WriteTransport.write_eof"><code class="docutils literal notranslate"><span class="pre">WriteTransport.write_eof()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#datagram-transports">Datagram Transports</a><ul>
+<li><a class="reference internal" href="#asyncio.DatagramTransport.sendto"><code class="docutils literal notranslate"><span class="pre">DatagramTransport.sendto()</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.DatagramTransport.abort"><code class="docutils literal notranslate"><span class="pre">DatagramTransport.abort()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#subprocess-transports">Subprocess Transports</a><ul>
+<li><a class="reference internal" href="#asyncio.SubprocessTransport.get_pid"><code class="docutils literal notranslate"><span class="pre">SubprocessTransport.get_pid()</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.SubprocessTransport.get_pipe_transport"><code class="docutils literal notranslate"><span class="pre">SubprocessTransport.get_pipe_transport()</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.SubprocessTransport.get_returncode"><code class="docutils literal notranslate"><span class="pre">SubprocessTransport.get_returncode()</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.SubprocessTransport.kill"><code class="docutils literal notranslate"><span class="pre">SubprocessTransport.kill()</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.SubprocessTransport.send_signal"><code class="docutils literal notranslate"><span class="pre">SubprocessTransport.send_signal()</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.SubprocessTransport.terminate"><code class="docutils literal notranslate"><span class="pre">SubprocessTransport.terminate()</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.SubprocessTransport.close"><code class="docutils literal notranslate"><span class="pre">SubprocessTransport.close()</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a class="reference internal" href="#protocols">Protocols</a><ul>
-<li><a class="reference internal" href="#base-protocols">Base Protocols</a></li>
-<li><a class="reference internal" href="#base-protocol">Base Protocol</a></li>
-<li><a class="reference internal" href="#streaming-protocols">Streaming Protocols</a></li>
-<li><a class="reference internal" href="#buffered-streaming-protocols">Buffered Streaming Protocols</a></li>
-<li><a class="reference internal" href="#datagram-protocols">Datagram Protocols</a></li>
-<li><a class="reference internal" href="#subprocess-protocols">Subprocess Protocols</a></li>
+<li><a class="reference internal" href="#base-protocols">Base Protocols</a><ul>
+<li><a class="reference internal" href="#asyncio.BaseProtocol"><code class="docutils literal notranslate"><span class="pre">BaseProtocol</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.Protocol"><code class="docutils literal notranslate"><span class="pre">Protocol</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.BufferedProtocol"><code class="docutils literal notranslate"><span class="pre">BufferedProtocol</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.DatagramProtocol"><code class="docutils literal notranslate"><span class="pre">DatagramProtocol</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.SubprocessProtocol"><code class="docutils literal notranslate"><span class="pre">SubprocessProtocol</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#base-protocol">Base Protocol</a><ul>
+<li><a class="reference internal" href="#asyncio.BaseProtocol.connection_made"><code class="docutils literal notranslate"><span class="pre">BaseProtocol.connection_made()</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.BaseProtocol.connection_lost"><code class="docutils literal notranslate"><span class="pre">BaseProtocol.connection_lost()</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.BaseProtocol.pause_writing"><code class="docutils literal notranslate"><span class="pre">BaseProtocol.pause_writing()</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.BaseProtocol.resume_writing"><code class="docutils literal notranslate"><span class="pre">BaseProtocol.resume_writing()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#streaming-protocols">Streaming Protocols</a><ul>
+<li><a class="reference internal" href="#asyncio.Protocol.data_received"><code class="docutils literal notranslate"><span class="pre">Protocol.data_received()</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.Protocol.eof_received"><code class="docutils literal notranslate"><span class="pre">Protocol.eof_received()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#buffered-streaming-protocols">Buffered Streaming Protocols</a><ul>
+<li><a class="reference internal" href="#asyncio.BufferedProtocol.get_buffer"><code class="docutils literal notranslate"><span class="pre">BufferedProtocol.get_buffer()</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.BufferedProtocol.buffer_updated"><code class="docutils literal notranslate"><span class="pre">BufferedProtocol.buffer_updated()</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.BufferedProtocol.eof_received"><code class="docutils literal notranslate"><span class="pre">BufferedProtocol.eof_received()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#datagram-protocols">Datagram Protocols</a><ul>
+<li><a class="reference internal" href="#asyncio.DatagramProtocol.datagram_received"><code class="docutils literal notranslate"><span class="pre">DatagramProtocol.datagram_received()</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.DatagramProtocol.error_received"><code class="docutils literal notranslate"><span class="pre">DatagramProtocol.error_received()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#subprocess-protocols">Subprocess Protocols</a><ul>
+<li><a class="reference internal" href="#asyncio.SubprocessProtocol.pipe_data_received"><code class="docutils literal notranslate"><span class="pre">SubprocessProtocol.pipe_data_received()</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.SubprocessProtocol.pipe_connection_lost"><code class="docutils literal notranslate"><span class="pre">SubprocessProtocol.pipe_connection_lost()</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.SubprocessProtocol.process_exited"><code class="docutils literal notranslate"><span class="pre">SubprocessProtocol.process_exited()</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a class="reference internal" href="#examples">範例</a><ul>
@@ -1292,7 +1441,7 @@ written using high-level APIs.</p>
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.7 Documentation</a> &#187;
+      <a href="../index.html">3.10.8 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -1330,11 +1479,11 @@ written using high-level APIs.</p>
 <br />
     <br />
 
-    最後更新於 9月 16, 2022。
+    最後更新於 10月 15, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 
-    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1 建立。
+    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.2.3 建立。
     </div>
 
   </body>

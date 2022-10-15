@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>作業系統工具 &#8212; Python 3.10.7 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>作業系統工具 &#8212; Python 3.10.8 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -16,12 +16,13 @@
     <script src="../_static/underscore.js"></script>
     <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/translations.js"></script>
     
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.10.7 說明文件 中搜尋"
+          title="在 Python 3.10.8 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -132,7 +133,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.7 Documentation</a> &#187;
+      <a href="../index.html">3.10.8 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python/C API 參考手冊</a> &#187;</li>
@@ -278,7 +279,7 @@ own code.</p>
 <span class="n"><span class="pre">PyOS_sighandler_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PyOS_getsig</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n"><span class="pre">i</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.PyOS_getsig" title="本定義的永久連結">¶</a><br /></dt>
 <dd><em class="stableabi"> Part of the <a class="reference internal" href="stable.html#stable"><span class="std std-ref">Stable ABI</span></a>.</em><p>Return the current signal handler for signal <em>i</em>.  This is a thin wrapper around
 either <code class="xref c c-func docutils literal notranslate"><span class="pre">sigaction()</span></code> or <code class="xref c c-func docutils literal notranslate"><span class="pre">signal()</span></code>.  Do not call those functions
-directly! <code class="xref c c-type docutils literal notranslate"><span class="pre">PyOS_sighandler_t</span></code> is a typedef alias for <span class="xref c c-texpr"><span class="kt">void</span><span class="w"> </span><span class="p">(</span><span class="p">*</span><span class="p">)</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span></span>.</p>
+directly! <code class="xref c c-type docutils literal notranslate"><span class="pre">PyOS_sighandler_t</span></code> is a typedef alias for <span class="c-expr sig sig-inline c"><span class="kt">void</span><span class="w"> </span><span class="p">(</span><span class="p">*</span><span class="p">)</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span></span>.</p>
 </dd></dl>
 
 <dl class="c function">
@@ -287,7 +288,7 @@ directly! <code class="xref c c-type docutils literal notranslate"><span class="
 <dd><em class="stableabi"> Part of the <a class="reference internal" href="stable.html#stable"><span class="std std-ref">Stable ABI</span></a>.</em><p>Set the signal handler for signal <em>i</em> to be <em>h</em>; return the old signal handler.
 This is a thin wrapper around either <code class="xref c c-func docutils literal notranslate"><span class="pre">sigaction()</span></code> or <code class="xref c c-func docutils literal notranslate"><span class="pre">signal()</span></code>.  Do
 not call those functions directly!  <code class="xref c c-type docutils literal notranslate"><span class="pre">PyOS_sighandler_t</span></code> is a typedef
-alias for <span class="xref c c-texpr"><span class="kt">void</span><span class="w"> </span><span class="p">(</span><span class="p">*</span><span class="p">)</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span></span>.</p>
+alias for <span class="c-expr sig sig-inline c"><span class="kt">void</span><span class="w"> </span><span class="p">(</span><span class="p">*</span><span class="p">)</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span></span>.</p>
 </dd></dl>
 
 <dl class="c function">
@@ -533,7 +534,7 @@ refer directly to Python state.</p>
 after runtime initialization, existing audit hooks are notified and may
 silently abort the operation by raising an error subclassed from
 <a class="reference internal" href="../library/exceptions.html#Exception" title="Exception"><code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></a> (other errors will not be silenced).</p>
-<p>The hook function is of type <span class="xref c c-texpr"><span class="kt">int</span><span class="w"> </span><span class="p">(</span><span class="p">*</span><span class="p">)</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="p">*</span><span class="n">event</span><span class="p">,</span><span class="w"> </span><a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n">PyObject</span></a><span class="w"> </span><span class="p">*</span><span class="n">args</span><span class="p">,</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="p">*</span><span class="n">userData</span><span class="p">)</span></span>, where <em>args</em> is guaranteed to be a
+<p>The hook function is of type <span class="c-expr sig sig-inline c"><span class="kt">int</span><span class="w"> </span><span class="p">(</span><span class="p">*</span><span class="p">)</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="p">*</span><span class="n">event</span><span class="p">,</span><span class="w"> </span><a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n">PyObject</span></a><span class="w"> </span><span class="p">*</span><span class="n">args</span><span class="p">,</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="p">*</span><span class="n">userData</span><span class="p">)</span></span>, where <em>args</em> is guaranteed to be a
 <a class="reference internal" href="tuple.html#c.PyTupleObject" title="PyTupleObject"><code class="xref c c-type docutils literal notranslate"><span class="pre">PyTupleObject</span></code></a>. The hook function is always called with the GIL
 held by the Python interpreter that raised the event.</p>
 <p>See <span class="target" id="index-0"></span><a class="pep reference external" href="https://peps.python.org/pep-0578/"><strong>PEP 578</strong></a> for a detailed description of auditing.  Functions in the
@@ -667,7 +668,7 @@ the cleanup function, no Python APIs should be called by <em>func</em>.</p>
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.7 Documentation</a> &#187;
+      <a href="../index.html">3.10.8 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python/C API 參考手冊</a> &#187;</li>
@@ -704,11 +705,11 @@ the cleanup function, no Python APIs should be called by <em>func</em>.</p>
 <br />
     <br />
 
-    最後更新於 9月 16, 2022。
+    最後更新於 10月 15, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 
-    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1 建立。
+    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.2.3 建立。
     </div>
 
   </body>

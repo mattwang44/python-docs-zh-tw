@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>collections --- 容器資料型態 &#8212; Python 3.10.7 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>collections --- 容器資料型態 &#8212; Python 3.10.8 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -16,12 +16,13 @@
     <script src="../_static/underscore.js"></script>
     <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/translations.js"></script>
     
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.10.7 說明文件 中搜尋"
+          title="在 Python 3.10.8 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -76,26 +77,97 @@
     <ul>
 <li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">collections</span></code> --- 容器資料型態</a><ul>
 <li><a class="reference internal" href="#chainmap-objects"><code class="xref py py-class docutils literal notranslate"><span class="pre">ChainMap</span></code> 物件</a><ul>
+<li><a class="reference internal" href="#collections.ChainMap"><code class="docutils literal notranslate"><span class="pre">ChainMap</span></code></a><ul>
+<li><a class="reference internal" href="#collections.ChainMap.maps"><code class="docutils literal notranslate"><span class="pre">ChainMap.maps</span></code></a></li>
+<li><a class="reference internal" href="#collections.ChainMap.new_child"><code class="docutils literal notranslate"><span class="pre">ChainMap.new_child()</span></code></a></li>
+<li><a class="reference internal" href="#collections.ChainMap.parents"><code class="docutils literal notranslate"><span class="pre">ChainMap.parents</span></code></a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#chainmap-examples-and-recipes"><code class="xref py py-class docutils literal notranslate"><span class="pre">ChainMap</span></code> 範例和用法</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#counter-objects"><code class="xref py py-class docutils literal notranslate"><span class="pre">Counter</span></code> 物件</a></li>
+<li><a class="reference internal" href="#counter-objects"><code class="xref py py-class docutils literal notranslate"><span class="pre">Counter</span></code> 物件</a><ul>
+<li><a class="reference internal" href="#collections.Counter"><code class="docutils literal notranslate"><span class="pre">Counter</span></code></a><ul>
+<li><a class="reference internal" href="#collections.Counter.elements"><code class="docutils literal notranslate"><span class="pre">Counter.elements()</span></code></a></li>
+<li><a class="reference internal" href="#collections.Counter.most_common"><code class="docutils literal notranslate"><span class="pre">Counter.most_common()</span></code></a></li>
+<li><a class="reference internal" href="#collections.Counter.subtract"><code class="docutils literal notranslate"><span class="pre">Counter.subtract()</span></code></a></li>
+<li><a class="reference internal" href="#collections.Counter.total"><code class="docutils literal notranslate"><span class="pre">Counter.total()</span></code></a></li>
+<li><a class="reference internal" href="#collections.Counter.fromkeys"><code class="docutils literal notranslate"><span class="pre">Counter.fromkeys()</span></code></a></li>
+<li><a class="reference internal" href="#collections.Counter.update"><code class="docutils literal notranslate"><span class="pre">Counter.update()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li><a class="reference internal" href="#deque-objects"><code class="xref py py-class docutils literal notranslate"><span class="pre">deque</span></code> 物件</a><ul>
+<li><a class="reference internal" href="#collections.deque"><code class="docutils literal notranslate"><span class="pre">deque</span></code></a><ul>
+<li><a class="reference internal" href="#collections.deque.append"><code class="docutils literal notranslate"><span class="pre">deque.append()</span></code></a></li>
+<li><a class="reference internal" href="#collections.deque.appendleft"><code class="docutils literal notranslate"><span class="pre">deque.appendleft()</span></code></a></li>
+<li><a class="reference internal" href="#collections.deque.clear"><code class="docutils literal notranslate"><span class="pre">deque.clear()</span></code></a></li>
+<li><a class="reference internal" href="#collections.deque.copy"><code class="docutils literal notranslate"><span class="pre">deque.copy()</span></code></a></li>
+<li><a class="reference internal" href="#collections.deque.count"><code class="docutils literal notranslate"><span class="pre">deque.count()</span></code></a></li>
+<li><a class="reference internal" href="#collections.deque.extend"><code class="docutils literal notranslate"><span class="pre">deque.extend()</span></code></a></li>
+<li><a class="reference internal" href="#collections.deque.extendleft"><code class="docutils literal notranslate"><span class="pre">deque.extendleft()</span></code></a></li>
+<li><a class="reference internal" href="#collections.deque.index"><code class="docutils literal notranslate"><span class="pre">deque.index()</span></code></a></li>
+<li><a class="reference internal" href="#collections.deque.insert"><code class="docutils literal notranslate"><span class="pre">deque.insert()</span></code></a></li>
+<li><a class="reference internal" href="#collections.deque.pop"><code class="docutils literal notranslate"><span class="pre">deque.pop()</span></code></a></li>
+<li><a class="reference internal" href="#collections.deque.popleft"><code class="docutils literal notranslate"><span class="pre">deque.popleft()</span></code></a></li>
+<li><a class="reference internal" href="#collections.deque.remove"><code class="docutils literal notranslate"><span class="pre">deque.remove()</span></code></a></li>
+<li><a class="reference internal" href="#collections.deque.reverse"><code class="docutils literal notranslate"><span class="pre">deque.reverse()</span></code></a></li>
+<li><a class="reference internal" href="#collections.deque.rotate"><code class="docutils literal notranslate"><span class="pre">deque.rotate()</span></code></a></li>
+<li><a class="reference internal" href="#collections.deque.maxlen"><code class="docutils literal notranslate"><span class="pre">deque.maxlen</span></code></a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#deque-recipes"><code class="xref py py-class docutils literal notranslate"><span class="pre">deque</span></code> 用法</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#defaultdict-objects"><code class="xref py py-class docutils literal notranslate"><span class="pre">defaultdict</span></code> 物件</a><ul>
+<li><a class="reference internal" href="#collections.defaultdict"><code class="docutils literal notranslate"><span class="pre">defaultdict</span></code></a><ul>
+<li><a class="reference internal" href="#collections.defaultdict.__missing__"><code class="docutils literal notranslate"><span class="pre">defaultdict.__missing__()</span></code></a></li>
+<li><a class="reference internal" href="#collections.defaultdict.default_factory"><code class="docutils literal notranslate"><span class="pre">defaultdict.default_factory</span></code></a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#defaultdict-examples"><code class="xref py py-class docutils literal notranslate"><span class="pre">defaultdict</span></code> 範例</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#namedtuple-factory-function-for-tuples-with-named-fields"><code class="xref py py-func docutils literal notranslate"><span class="pre">namedtuple()</span></code> 擁有具名欄位之 tuple 的工廠函式</a></li>
+<li><a class="reference internal" href="#namedtuple-factory-function-for-tuples-with-named-fields"><code class="xref py py-func docutils literal notranslate"><span class="pre">namedtuple()</span></code> 擁有具名欄位之 tuple 的工廠函式</a><ul>
+<li><a class="reference internal" href="#collections.namedtuple"><code class="docutils literal notranslate"><span class="pre">namedtuple()</span></code></a></li>
+<li><a class="reference internal" href="#collections.somenamedtuple._make"><code class="docutils literal notranslate"><span class="pre">somenamedtuple._make()</span></code></a></li>
+<li><a class="reference internal" href="#collections.somenamedtuple._asdict"><code class="docutils literal notranslate"><span class="pre">somenamedtuple._asdict()</span></code></a></li>
+<li><a class="reference internal" href="#collections.somenamedtuple._replace"><code class="docutils literal notranslate"><span class="pre">somenamedtuple._replace()</span></code></a></li>
+<li><a class="reference internal" href="#collections.somenamedtuple._fields"><code class="docutils literal notranslate"><span class="pre">somenamedtuple._fields</span></code></a></li>
+<li><a class="reference internal" href="#collections.somenamedtuple._field_defaults"><code class="docutils literal notranslate"><span class="pre">somenamedtuple._field_defaults</span></code></a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#ordereddict-objects"><code class="xref py py-class docutils literal notranslate"><span class="pre">OrderedDict</span></code> 物件</a><ul>
+<li><a class="reference internal" href="#collections.OrderedDict"><code class="docutils literal notranslate"><span class="pre">OrderedDict</span></code></a><ul>
+<li><a class="reference internal" href="#collections.OrderedDict.popitem"><code class="docutils literal notranslate"><span class="pre">OrderedDict.popitem()</span></code></a></li>
+<li><a class="reference internal" href="#collections.OrderedDict.move_to_end"><code class="docutils literal notranslate"><span class="pre">OrderedDict.move_to_end()</span></code></a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#ordereddict-examples-and-recipes"><code class="xref py py-class docutils literal notranslate"><span class="pre">OrderedDict</span></code> 範例與用法</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#userdict-objects"><code class="xref py py-class docutils literal notranslate"><span class="pre">UserDict</span></code> 物件</a></li>
-<li><a class="reference internal" href="#userlist-objects"><code class="xref py py-class docutils literal notranslate"><span class="pre">UserList</span></code> 物件</a></li>
-<li><a class="reference internal" href="#userstring-objects"><code class="xref py py-class docutils literal notranslate"><span class="pre">UserString</span></code> 物件</a></li>
+<li><a class="reference internal" href="#userdict-objects"><code class="xref py py-class docutils literal notranslate"><span class="pre">UserDict</span></code> 物件</a><ul>
+<li><a class="reference internal" href="#collections.UserDict"><code class="docutils literal notranslate"><span class="pre">UserDict</span></code></a><ul>
+<li><a class="reference internal" href="#collections.UserDict.data"><code class="docutils literal notranslate"><span class="pre">UserDict.data</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#userlist-objects"><code class="xref py py-class docutils literal notranslate"><span class="pre">UserList</span></code> 物件</a><ul>
+<li><a class="reference internal" href="#collections.UserList"><code class="docutils literal notranslate"><span class="pre">UserList</span></code></a><ul>
+<li><a class="reference internal" href="#collections.UserList.data"><code class="docutils literal notranslate"><span class="pre">UserList.data</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#userstring-objects"><code class="xref py py-class docutils literal notranslate"><span class="pre">UserString</span></code> 物件</a><ul>
+<li><a class="reference internal" href="#collections.UserString"><code class="docutils literal notranslate"><span class="pre">UserString</span></code></a><ul>
+<li><a class="reference internal" href="#collections.UserString.data"><code class="docutils literal notranslate"><span class="pre">UserString.data</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -153,7 +225,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.7 Documentation</a> &#187;
+      <a href="../index.html">3.10.8 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -487,7 +559,7 @@
 </pre></div>
 </div>
 <p>為結合多個 <a class="reference internal" href="#collections.Counter" title="collections.Counter"><code class="xref py py-class docutils literal notranslate"><span class="pre">Counter</span></code></a> 物件以產生 multiset（多重集合，擁有大於 0 計數元素的計數器），有提供了幾種數學操作。加法和減法是根據各個對應元素分別將 Counter 加上和減去計數，交集和聯集分別回傳各個元素最小和最大計數，相等性與包含性運算則會比較對應的計數。每一個操作都可以接受輸入帶有正負號的計數，但輸出的 Counter 則會將擁有小於或等於 0 計數的元素剔除。</p>
-<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">c</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">c</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">d</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">c</span> <span class="o">+</span> <span class="n">d</span>                       <span class="c1"># add two counters together:  c[x] + d[x]</span>
 <span class="go">Counter({&#39;a&#39;: 4, &#39;b&#39;: 3})</span>
@@ -666,7 +738,7 @@
 <p>除了以上使用方式，deque 亦支援了疊代、pickle、<code class="docutils literal notranslate"><span class="pre">len(d)</span></code>、<code class="docutils literal notranslate"><span class="pre">reversed(d)</span></code>、<code class="docutils literal notranslate"><span class="pre">copy.copy(d)</span></code>、<code class="docutils literal notranslate"><span class="pre">copy.deepcopy(d)</span></code>、用 <a class="reference internal" href="../reference/expressions.html#in"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">in</span></code></a> 運算子來作成員檢測以及像是 <code class="docutils literal notranslate"><span class="pre">d[0]</span></code> 的標號引用來取得第一個元素。在兩端做索引存取的複雜度為 O(1) 但越靠近中間則減慢至 O(n)。若想要隨機而快速的存取，使用 list 會較為合適。</p>
 <p>自從 3.5 版本起，deque 開始支援 <code class="docutils literal notranslate"><span class="pre">__add__()</span></code>、<code class="docutils literal notranslate"><span class="pre">__mul__()</span></code> 和 <code class="docutils literal notranslate"><span class="pre">__imul__()</span></code>。</p>
 <p>範例：</p>
-<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">deque</span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">deque</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">d</span> <span class="o">=</span> <span class="n">deque</span><span class="p">(</span><span class="s1">&#39;ghi&#39;</span><span class="p">)</span>                 <span class="c1"># make a new deque with three items</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">elem</span> <span class="ow">in</span> <span class="n">d</span><span class="p">:</span>                   <span class="c1"># iterate over the deque&#39;s elements</span>
 <span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="n">elem</span><span class="o">.</span><span class="n">upper</span><span class="p">())</span>
@@ -880,7 +952,7 @@
 </div>
 </dd></dl>
 
-<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Basic example</span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Basic example</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">Point</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s1">&#39;Point&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">p</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="mi">11</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">22</span><span class="p">)</span>     <span class="c1"># instantiate with positional or keyword arguments</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>             <span class="c1"># indexable like the plain tuple (11, 22)</span>
@@ -914,7 +986,7 @@
 <dt class="sig sig-object py" id="collections.somenamedtuple._make">
 <em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">somenamedtuple.</span></span><span class="sig-name descname"><span class="pre">_make</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">iterable</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#collections.somenamedtuple._make" title="本定義的永久連結">¶</a></dt>
 <dd><p>從已存在的序列或可疊代物件建立一個新實例的類別方法。</p>
-<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">t</span> <span class="o">=</span> <span class="p">[</span><span class="mi">11</span><span class="p">,</span> <span class="mi">22</span><span class="p">]</span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">t</span> <span class="o">=</span> <span class="p">[</span><span class="mi">11</span><span class="p">,</span> <span class="mi">22</span><span class="p">]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">Point</span><span class="o">.</span><span class="n">_make</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
 <span class="go">Point(x=11, y=22)</span>
 </pre></div>
@@ -925,7 +997,7 @@
 <dt class="sig sig-object py" id="collections.somenamedtuple._asdict">
 <span class="sig-prename descclassname"><span class="pre">somenamedtuple.</span></span><span class="sig-name descname"><span class="pre">_asdict</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#collections.somenamedtuple._asdict" title="本定義的永久連結">¶</a></dt>
 <dd><p>回傳一個將欄位名稱對映至對應值的 <a class="reference internal" href="stdtypes.html#dict" title="dict"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>：</p>
-<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">p</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">11</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">22</span><span class="p">)</span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">p</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">11</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">22</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">p</span><span class="o">.</span><span class="n">_asdict</span><span class="p">()</span>
 <span class="go">{&#39;x&#39;: 11, &#39;y&#39;: 22}</span>
 </pre></div>
@@ -956,7 +1028,7 @@
 <dt class="sig sig-object py" id="collections.somenamedtuple._fields">
 <span class="sig-prename descclassname"><span class="pre">somenamedtuple.</span></span><span class="sig-name descname"><span class="pre">_fields</span></span><a class="headerlink" href="#collections.somenamedtuple._fields" title="本定義的永久連結">¶</a></dt>
 <dd><p>列出 tuple 欄位名稱的字串，用於自我檢查或是從現有 named tuple 建立一個新的 named tuple 型別。</p>
-<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">p</span><span class="o">.</span><span class="n">_fields</span>            <span class="c1"># view the field names</span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">p</span><span class="o">.</span><span class="n">_fields</span>            <span class="c1"># view the field names</span>
 <span class="go">(&#39;x&#39;, &#39;y&#39;)</span>
 
 <span class="gp">&gt;&gt;&gt; </span><span class="n">Color</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s1">&#39;Color&#39;</span><span class="p">,</span> <span class="s1">&#39;red green blue&#39;</span><span class="p">)</span>
@@ -971,7 +1043,7 @@
 <dt class="sig sig-object py" id="collections.somenamedtuple._field_defaults">
 <span class="sig-prename descclassname"><span class="pre">somenamedtuple.</span></span><span class="sig-name descname"><span class="pre">_field_defaults</span></span><a class="headerlink" href="#collections.somenamedtuple._field_defaults" title="本定義的永久連結">¶</a></dt>
 <dd><p>將欄位名稱對映至預設值的字典。</p>
-<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">Account</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s1">&#39;Account&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;type&#39;</span><span class="p">,</span> <span class="s1">&#39;balance&#39;</span><span class="p">],</span> <span class="n">defaults</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">Account</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s1">&#39;Account&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;type&#39;</span><span class="p">,</span> <span class="s1">&#39;balance&#39;</span><span class="p">],</span> <span class="n">defaults</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">Account</span><span class="o">.</span><span class="n">_field_defaults</span>
 <span class="go">{&#39;balance&#39;: 0}</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">Account</span><span class="p">(</span><span class="s1">&#39;premium&#39;</span><span class="p">)</span>
@@ -992,7 +1064,7 @@
 </pre></div>
 </div>
 <p>因為一個 named tuple 是一個常規的 Python 類別，我們可以很容易的透過子類別來新增或更改功能，以下是如何新增一個計算得到的欄位和固定寬度的輸出列印格式：</p>
-<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">Point</span><span class="p">(</span><span class="n">namedtuple</span><span class="p">(</span><span class="s1">&#39;Point&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">])):</span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">Point</span><span class="p">(</span><span class="n">namedtuple</span><span class="p">(</span><span class="s1">&#39;Point&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">])):</span>
 <span class="gp">... </span>    <span class="vm">__slots__</span> <span class="o">=</span> <span class="p">()</span>
 <span class="gp">... </span>    <span class="nd">@property</span>
 <span class="gp">... </span>    <span class="k">def</span> <span class="nf">hypot</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -1076,7 +1148,7 @@
 <dt class="sig sig-object py" id="collections.OrderedDict.move_to_end">
 <span class="sig-name descname"><span class="pre">move_to_end</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">last</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#collections.OrderedDict.move_to_end" title="本定義的永久連結">¶</a></dt>
 <dd><p>將現有的 <em>key</em> 移動到 ordered dictionary 的任一端。如果 <em>last</em> 為真值（此為預設值）則將元素移至右端；如果 <em>last</em> 為假值則將元素移至左端。如果 <em>key</em> 不存在則會引發 <a class="reference internal" href="exceptions.html#KeyError" title="KeyError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">KeyError</span></code></a>：</p>
-<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">d</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="o">.</span><span class="n">fromkeys</span><span class="p">(</span><span class="s1">&#39;abcde&#39;</span><span class="p">)</span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">d</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="o">.</span><span class="n">fromkeys</span><span class="p">(</span><span class="s1">&#39;abcde&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">d</span><span class="o">.</span><span class="n">move_to_end</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
 <span class="go">&#39;acdeb&#39;</span>
@@ -1115,7 +1187,7 @@
 </pre></div>
 </div>
 <p><a class="reference internal" href="#collections.OrderedDict" title="collections.OrderedDict"><code class="xref py py-class docutils literal notranslate"><span class="pre">OrderedDict</span></code></a> 在實現一個 <a class="reference internal" href="functools.html#functools.lru_cache" title="functools.lru_cache"><code class="xref py py-func docutils literal notranslate"><span class="pre">functools.lru_cache()</span></code></a> 的變形版本時也非常有用：</p>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">time</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">time</span>
 
 <span class="k">class</span> <span class="nc">TimeBoundedLRU</span><span class="p">:</span>
     <span class="s2">&quot;LRU Cache that invalidates and refreshes old entries.&quot;</span>
@@ -1139,7 +1211,7 @@
         <span class="k">return</span> <span class="n">result</span>
 </pre></div>
 </div>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MultiHitLRUCache</span><span class="p">:</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MultiHitLRUCache</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot; LRU cache that defers caching a result until</span>
 <span class="sd">        it has been requested multiple times.</span>
 
@@ -1247,26 +1319,97 @@
     <ul>
 <li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">collections</span></code> --- 容器資料型態</a><ul>
 <li><a class="reference internal" href="#chainmap-objects"><code class="xref py py-class docutils literal notranslate"><span class="pre">ChainMap</span></code> 物件</a><ul>
+<li><a class="reference internal" href="#collections.ChainMap"><code class="docutils literal notranslate"><span class="pre">ChainMap</span></code></a><ul>
+<li><a class="reference internal" href="#collections.ChainMap.maps"><code class="docutils literal notranslate"><span class="pre">ChainMap.maps</span></code></a></li>
+<li><a class="reference internal" href="#collections.ChainMap.new_child"><code class="docutils literal notranslate"><span class="pre">ChainMap.new_child()</span></code></a></li>
+<li><a class="reference internal" href="#collections.ChainMap.parents"><code class="docutils literal notranslate"><span class="pre">ChainMap.parents</span></code></a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#chainmap-examples-and-recipes"><code class="xref py py-class docutils literal notranslate"><span class="pre">ChainMap</span></code> 範例和用法</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#counter-objects"><code class="xref py py-class docutils literal notranslate"><span class="pre">Counter</span></code> 物件</a></li>
+<li><a class="reference internal" href="#counter-objects"><code class="xref py py-class docutils literal notranslate"><span class="pre">Counter</span></code> 物件</a><ul>
+<li><a class="reference internal" href="#collections.Counter"><code class="docutils literal notranslate"><span class="pre">Counter</span></code></a><ul>
+<li><a class="reference internal" href="#collections.Counter.elements"><code class="docutils literal notranslate"><span class="pre">Counter.elements()</span></code></a></li>
+<li><a class="reference internal" href="#collections.Counter.most_common"><code class="docutils literal notranslate"><span class="pre">Counter.most_common()</span></code></a></li>
+<li><a class="reference internal" href="#collections.Counter.subtract"><code class="docutils literal notranslate"><span class="pre">Counter.subtract()</span></code></a></li>
+<li><a class="reference internal" href="#collections.Counter.total"><code class="docutils literal notranslate"><span class="pre">Counter.total()</span></code></a></li>
+<li><a class="reference internal" href="#collections.Counter.fromkeys"><code class="docutils literal notranslate"><span class="pre">Counter.fromkeys()</span></code></a></li>
+<li><a class="reference internal" href="#collections.Counter.update"><code class="docutils literal notranslate"><span class="pre">Counter.update()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li><a class="reference internal" href="#deque-objects"><code class="xref py py-class docutils literal notranslate"><span class="pre">deque</span></code> 物件</a><ul>
+<li><a class="reference internal" href="#collections.deque"><code class="docutils literal notranslate"><span class="pre">deque</span></code></a><ul>
+<li><a class="reference internal" href="#collections.deque.append"><code class="docutils literal notranslate"><span class="pre">deque.append()</span></code></a></li>
+<li><a class="reference internal" href="#collections.deque.appendleft"><code class="docutils literal notranslate"><span class="pre">deque.appendleft()</span></code></a></li>
+<li><a class="reference internal" href="#collections.deque.clear"><code class="docutils literal notranslate"><span class="pre">deque.clear()</span></code></a></li>
+<li><a class="reference internal" href="#collections.deque.copy"><code class="docutils literal notranslate"><span class="pre">deque.copy()</span></code></a></li>
+<li><a class="reference internal" href="#collections.deque.count"><code class="docutils literal notranslate"><span class="pre">deque.count()</span></code></a></li>
+<li><a class="reference internal" href="#collections.deque.extend"><code class="docutils literal notranslate"><span class="pre">deque.extend()</span></code></a></li>
+<li><a class="reference internal" href="#collections.deque.extendleft"><code class="docutils literal notranslate"><span class="pre">deque.extendleft()</span></code></a></li>
+<li><a class="reference internal" href="#collections.deque.index"><code class="docutils literal notranslate"><span class="pre">deque.index()</span></code></a></li>
+<li><a class="reference internal" href="#collections.deque.insert"><code class="docutils literal notranslate"><span class="pre">deque.insert()</span></code></a></li>
+<li><a class="reference internal" href="#collections.deque.pop"><code class="docutils literal notranslate"><span class="pre">deque.pop()</span></code></a></li>
+<li><a class="reference internal" href="#collections.deque.popleft"><code class="docutils literal notranslate"><span class="pre">deque.popleft()</span></code></a></li>
+<li><a class="reference internal" href="#collections.deque.remove"><code class="docutils literal notranslate"><span class="pre">deque.remove()</span></code></a></li>
+<li><a class="reference internal" href="#collections.deque.reverse"><code class="docutils literal notranslate"><span class="pre">deque.reverse()</span></code></a></li>
+<li><a class="reference internal" href="#collections.deque.rotate"><code class="docutils literal notranslate"><span class="pre">deque.rotate()</span></code></a></li>
+<li><a class="reference internal" href="#collections.deque.maxlen"><code class="docutils literal notranslate"><span class="pre">deque.maxlen</span></code></a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#deque-recipes"><code class="xref py py-class docutils literal notranslate"><span class="pre">deque</span></code> 用法</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#defaultdict-objects"><code class="xref py py-class docutils literal notranslate"><span class="pre">defaultdict</span></code> 物件</a><ul>
+<li><a class="reference internal" href="#collections.defaultdict"><code class="docutils literal notranslate"><span class="pre">defaultdict</span></code></a><ul>
+<li><a class="reference internal" href="#collections.defaultdict.__missing__"><code class="docutils literal notranslate"><span class="pre">defaultdict.__missing__()</span></code></a></li>
+<li><a class="reference internal" href="#collections.defaultdict.default_factory"><code class="docutils literal notranslate"><span class="pre">defaultdict.default_factory</span></code></a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#defaultdict-examples"><code class="xref py py-class docutils literal notranslate"><span class="pre">defaultdict</span></code> 範例</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#namedtuple-factory-function-for-tuples-with-named-fields"><code class="xref py py-func docutils literal notranslate"><span class="pre">namedtuple()</span></code> 擁有具名欄位之 tuple 的工廠函式</a></li>
+<li><a class="reference internal" href="#namedtuple-factory-function-for-tuples-with-named-fields"><code class="xref py py-func docutils literal notranslate"><span class="pre">namedtuple()</span></code> 擁有具名欄位之 tuple 的工廠函式</a><ul>
+<li><a class="reference internal" href="#collections.namedtuple"><code class="docutils literal notranslate"><span class="pre">namedtuple()</span></code></a></li>
+<li><a class="reference internal" href="#collections.somenamedtuple._make"><code class="docutils literal notranslate"><span class="pre">somenamedtuple._make()</span></code></a></li>
+<li><a class="reference internal" href="#collections.somenamedtuple._asdict"><code class="docutils literal notranslate"><span class="pre">somenamedtuple._asdict()</span></code></a></li>
+<li><a class="reference internal" href="#collections.somenamedtuple._replace"><code class="docutils literal notranslate"><span class="pre">somenamedtuple._replace()</span></code></a></li>
+<li><a class="reference internal" href="#collections.somenamedtuple._fields"><code class="docutils literal notranslate"><span class="pre">somenamedtuple._fields</span></code></a></li>
+<li><a class="reference internal" href="#collections.somenamedtuple._field_defaults"><code class="docutils literal notranslate"><span class="pre">somenamedtuple._field_defaults</span></code></a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#ordereddict-objects"><code class="xref py py-class docutils literal notranslate"><span class="pre">OrderedDict</span></code> 物件</a><ul>
+<li><a class="reference internal" href="#collections.OrderedDict"><code class="docutils literal notranslate"><span class="pre">OrderedDict</span></code></a><ul>
+<li><a class="reference internal" href="#collections.OrderedDict.popitem"><code class="docutils literal notranslate"><span class="pre">OrderedDict.popitem()</span></code></a></li>
+<li><a class="reference internal" href="#collections.OrderedDict.move_to_end"><code class="docutils literal notranslate"><span class="pre">OrderedDict.move_to_end()</span></code></a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#ordereddict-examples-and-recipes"><code class="xref py py-class docutils literal notranslate"><span class="pre">OrderedDict</span></code> 範例與用法</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#userdict-objects"><code class="xref py py-class docutils literal notranslate"><span class="pre">UserDict</span></code> 物件</a></li>
-<li><a class="reference internal" href="#userlist-objects"><code class="xref py py-class docutils literal notranslate"><span class="pre">UserList</span></code> 物件</a></li>
-<li><a class="reference internal" href="#userstring-objects"><code class="xref py py-class docutils literal notranslate"><span class="pre">UserString</span></code> 物件</a></li>
+<li><a class="reference internal" href="#userdict-objects"><code class="xref py py-class docutils literal notranslate"><span class="pre">UserDict</span></code> 物件</a><ul>
+<li><a class="reference internal" href="#collections.UserDict"><code class="docutils literal notranslate"><span class="pre">UserDict</span></code></a><ul>
+<li><a class="reference internal" href="#collections.UserDict.data"><code class="docutils literal notranslate"><span class="pre">UserDict.data</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#userlist-objects"><code class="xref py py-class docutils literal notranslate"><span class="pre">UserList</span></code> 物件</a><ul>
+<li><a class="reference internal" href="#collections.UserList"><code class="docutils literal notranslate"><span class="pre">UserList</span></code></a><ul>
+<li><a class="reference internal" href="#collections.UserList.data"><code class="docutils literal notranslate"><span class="pre">UserList.data</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#userstring-objects"><code class="xref py py-class docutils literal notranslate"><span class="pre">UserString</span></code> 物件</a><ul>
+<li><a class="reference internal" href="#collections.UserString"><code class="docutils literal notranslate"><span class="pre">UserString</span></code></a><ul>
+<li><a class="reference internal" href="#collections.UserString.data"><code class="docutils literal notranslate"><span class="pre">UserString.data</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -1327,7 +1470,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.7 Documentation</a> &#187;
+      <a href="../index.html">3.10.8 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -1364,11 +1507,11 @@
 <br />
     <br />
 
-    最後更新於 9月 16, 2022。
+    最後更新於 10月 15, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 
-    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1 建立。
+    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.2.3 建立。
     </div>
 
   </body>

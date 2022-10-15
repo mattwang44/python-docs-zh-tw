@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>pyclbr --- Python module browser support &#8212; Python 3.10.7 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pyclbr --- Python module browser support &#8212; Python 3.10.8 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -16,12 +16,13 @@
     <script src="../_static/underscore.js"></script>
     <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/translations.js"></script>
     
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.10.7 說明文件 中搜尋"
+          title="在 Python 3.10.8 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -75,8 +76,29 @@
     <h3><a href="../contents.html">目錄</a></h3>
     <ul>
 <li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pyclbr</span></code> --- Python module browser support</a><ul>
-<li><a class="reference internal" href="#function-objects">函式物件</a></li>
-<li><a class="reference internal" href="#class-objects">Class Objects</a></li>
+<li><a class="reference internal" href="#pyclbr.readmodule"><code class="docutils literal notranslate"><span class="pre">readmodule()</span></code></a></li>
+<li><a class="reference internal" href="#pyclbr.readmodule_ex"><code class="docutils literal notranslate"><span class="pre">readmodule_ex()</span></code></a></li>
+<li><a class="reference internal" href="#function-objects">函式物件</a><ul>
+<li><a class="reference internal" href="#pyclbr.Function.file"><code class="docutils literal notranslate"><span class="pre">Function.file</span></code></a></li>
+<li><a class="reference internal" href="#pyclbr.Function.module"><code class="docutils literal notranslate"><span class="pre">Function.module</span></code></a></li>
+<li><a class="reference internal" href="#pyclbr.Function.name"><code class="docutils literal notranslate"><span class="pre">Function.name</span></code></a></li>
+<li><a class="reference internal" href="#pyclbr.Function.lineno"><code class="docutils literal notranslate"><span class="pre">Function.lineno</span></code></a></li>
+<li><a class="reference internal" href="#pyclbr.Function.parent"><code class="docutils literal notranslate"><span class="pre">Function.parent</span></code></a></li>
+<li><a class="reference internal" href="#pyclbr.Function.children"><code class="docutils literal notranslate"><span class="pre">Function.children</span></code></a></li>
+<li><a class="reference internal" href="#pyclbr.Function.is_async"><code class="docutils literal notranslate"><span class="pre">Function.is_async</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#class-objects">Class Objects</a><ul>
+<li><a class="reference internal" href="#pyclbr.Class.file"><code class="docutils literal notranslate"><span class="pre">Class.file</span></code></a></li>
+<li><a class="reference internal" href="#pyclbr.Class.module"><code class="docutils literal notranslate"><span class="pre">Class.module</span></code></a></li>
+<li><a class="reference internal" href="#pyclbr.Class.name"><code class="docutils literal notranslate"><span class="pre">Class.name</span></code></a></li>
+<li><a class="reference internal" href="#pyclbr.Class.lineno"><code class="docutils literal notranslate"><span class="pre">Class.lineno</span></code></a></li>
+<li><a class="reference internal" href="#pyclbr.Class.parent"><code class="docutils literal notranslate"><span class="pre">Class.parent</span></code></a></li>
+<li><a class="reference internal" href="#pyclbr.Class.children"><code class="docutils literal notranslate"><span class="pre">Class.children</span></code></a></li>
+<li><a class="reference internal" href="#pyclbr.Class.super"><code class="docutils literal notranslate"><span class="pre">Class.super</span></code></a></li>
+<li><a class="reference internal" href="#pyclbr.Class.methods"><code class="docutils literal notranslate"><span class="pre">Class.methods</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -134,7 +156,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.7 Documentation</a> &#187;
+      <a href="../index.html">3.10.8 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -344,8 +366,29 @@ back-compatibility.</p>
     <h3><a href="../contents.html">目錄</a></h3>
     <ul>
 <li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pyclbr</span></code> --- Python module browser support</a><ul>
-<li><a class="reference internal" href="#function-objects">函式物件</a></li>
-<li><a class="reference internal" href="#class-objects">Class Objects</a></li>
+<li><a class="reference internal" href="#pyclbr.readmodule"><code class="docutils literal notranslate"><span class="pre">readmodule()</span></code></a></li>
+<li><a class="reference internal" href="#pyclbr.readmodule_ex"><code class="docutils literal notranslate"><span class="pre">readmodule_ex()</span></code></a></li>
+<li><a class="reference internal" href="#function-objects">函式物件</a><ul>
+<li><a class="reference internal" href="#pyclbr.Function.file"><code class="docutils literal notranslate"><span class="pre">Function.file</span></code></a></li>
+<li><a class="reference internal" href="#pyclbr.Function.module"><code class="docutils literal notranslate"><span class="pre">Function.module</span></code></a></li>
+<li><a class="reference internal" href="#pyclbr.Function.name"><code class="docutils literal notranslate"><span class="pre">Function.name</span></code></a></li>
+<li><a class="reference internal" href="#pyclbr.Function.lineno"><code class="docutils literal notranslate"><span class="pre">Function.lineno</span></code></a></li>
+<li><a class="reference internal" href="#pyclbr.Function.parent"><code class="docutils literal notranslate"><span class="pre">Function.parent</span></code></a></li>
+<li><a class="reference internal" href="#pyclbr.Function.children"><code class="docutils literal notranslate"><span class="pre">Function.children</span></code></a></li>
+<li><a class="reference internal" href="#pyclbr.Function.is_async"><code class="docutils literal notranslate"><span class="pre">Function.is_async</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#class-objects">Class Objects</a><ul>
+<li><a class="reference internal" href="#pyclbr.Class.file"><code class="docutils literal notranslate"><span class="pre">Class.file</span></code></a></li>
+<li><a class="reference internal" href="#pyclbr.Class.module"><code class="docutils literal notranslate"><span class="pre">Class.module</span></code></a></li>
+<li><a class="reference internal" href="#pyclbr.Class.name"><code class="docutils literal notranslate"><span class="pre">Class.name</span></code></a></li>
+<li><a class="reference internal" href="#pyclbr.Class.lineno"><code class="docutils literal notranslate"><span class="pre">Class.lineno</span></code></a></li>
+<li><a class="reference internal" href="#pyclbr.Class.parent"><code class="docutils literal notranslate"><span class="pre">Class.parent</span></code></a></li>
+<li><a class="reference internal" href="#pyclbr.Class.children"><code class="docutils literal notranslate"><span class="pre">Class.children</span></code></a></li>
+<li><a class="reference internal" href="#pyclbr.Class.super"><code class="docutils literal notranslate"><span class="pre">Class.super</span></code></a></li>
+<li><a class="reference internal" href="#pyclbr.Class.methods"><code class="docutils literal notranslate"><span class="pre">Class.methods</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -406,7 +449,7 @@ back-compatibility.</p>
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.7 Documentation</a> &#187;
+      <a href="../index.html">3.10.8 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -443,11 +486,11 @@ back-compatibility.</p>
 <br />
     <br />
 
-    最後更新於 9月 16, 2022。
+    最後更新於 10月 15, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 
-    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1 建立。
+    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.2.3 建立。
     </div>
 
   </body>

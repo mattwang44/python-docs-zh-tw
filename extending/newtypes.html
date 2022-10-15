@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>3. Defining Extension Types: Assorted Topics &#8212; Python 3.10.7 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3. Defining Extension Types: Assorted Topics &#8212; Python 3.10.8 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -16,12 +16,13 @@
     <script src="../_static/underscore.js"></script>
     <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/translations.js"></script>
     
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.10.7 說明文件 中搜尋"
+          title="在 Python 3.10.8 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -143,7 +144,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.7 Documentation</a> &#187;
+      <a href="../index.html">3.10.8 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">擴充和嵌入 Python 直譯器</a> &#187;</li>
@@ -425,8 +426,8 @@ to set attributes (if setting attributes is allowed).  Removing an attribute is
 a special case, for which the new value passed to the handler is <code class="docutils literal notranslate"><span class="pre">NULL</span></code>.</p>
 <p>Python supports two pairs of attribute handlers; a type that supports attributes
 only needs to implement the functions for one pair.  The difference is that one
-pair takes the name of the attribute as a <span class="xref c c-texpr"><span class="kt">char</span><span class="p">*</span></span>, while the other
-accepts a <span class="xref c c-texpr"><a class="reference internal" href="../c-api/structures.html#c.PyObject" title="PyObject"><span class="n">PyObject</span></a><span class="p">*</span></span>.  Each type can use whichever pair makes more
+pair takes the name of the attribute as a <span class="c-expr sig sig-inline c"><span class="kt">char</span><span class="p">*</span></span>, while the other
+accepts a <span class="c-expr sig sig-inline c"><a class="reference internal" href="../c-api/structures.html#c.PyObject" title="PyObject"><span class="n">PyObject</span></a><span class="p">*</span></span>.  Each type can use whichever pair makes more
 sense for the implementation's convenience.</p>
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">getattrfunc</span><span class="w">  </span><span class="n">tp_getattr</span><span class="p">;</span><span class="w">        </span><span class="cm">/* char * version */</span><span class="w"></span>
 <span class="n">setattrfunc</span><span class="w">  </span><span class="n">tp_setattr</span><span class="p">;</span><span class="w"></span>
@@ -437,7 +438,7 @@ sense for the implementation's convenience.</p>
 </div>
 <p>If accessing attributes of an object is always a simple operation (this will be
 explained shortly), there are generic implementations which can be used to
-provide the <span class="xref c c-texpr"><a class="reference internal" href="../c-api/structures.html#c.PyObject" title="PyObject"><span class="n">PyObject</span></a><span class="p">*</span></span> version of the attribute management functions.
+provide the <span class="c-expr sig sig-inline c"><a class="reference internal" href="../c-api/structures.html#c.PyObject" title="PyObject"><span class="n">PyObject</span></a><span class="p">*</span></span> version of the attribute management functions.
 The actual need for type-specific attribute handlers almost completely
 disappeared starting with Python 2.2, though there are many examples which have
 not been updated to use some of the new generic mechanism that is available.</p>
@@ -534,9 +535,9 @@ of <code class="docutils literal notranslate"><span class="pre">NULL</span></cod
 </section>
 <section id="type-specific-attribute-management">
 <h3><span class="section-number">3.3.2. </span>Type-specific Attribute Management<a class="headerlink" href="#type-specific-attribute-management" title="本標頭的永久連結">¶</a></h3>
-<p>For simplicity, only the <span class="xref c c-texpr"><span class="kt">char</span><span class="p">*</span></span> version will be demonstrated here; the
-type of the name parameter is the only difference between the <span class="xref c c-texpr"><span class="kt">char</span><span class="p">*</span></span>
-and <span class="xref c c-texpr"><a class="reference internal" href="../c-api/structures.html#c.PyObject" title="PyObject"><span class="n">PyObject</span></a><span class="p">*</span></span> flavors of the interface. This example effectively does
+<p>For simplicity, only the <span class="c-expr sig sig-inline c"><span class="kt">char</span><span class="p">*</span></span> version will be demonstrated here; the
+type of the name parameter is the only difference between the <span class="c-expr sig sig-inline c"><span class="kt">char</span><span class="p">*</span></span>
+and <span class="c-expr sig sig-inline c"><a class="reference internal" href="../c-api/structures.html#c.PyObject" title="PyObject"><span class="n">PyObject</span></a><span class="p">*</span></span> flavors of the interface. This example effectively does
 the same thing as the generic example above, but does not use the generic
 support added in Python 2.2.  It explains how the handler functions are
 called, so that if you do need to extend their functionality, you'll understand
@@ -749,7 +750,7 @@ performance-critical objects (such as numbers).</p>
 </div>
 <p>For an object to be weakly referencable, the extension type must do two things:</p>
 <ol class="arabic simple">
-<li><p>Include a <span class="xref c c-texpr"><a class="reference internal" href="../c-api/structures.html#c.PyObject" title="PyObject"><span class="n">PyObject</span></a><span class="p">*</span></span> field in the C object structure dedicated to
+<li><p>Include a <span class="c-expr sig sig-inline c"><a class="reference internal" href="../c-api/structures.html#c.PyObject" title="PyObject"><span class="n">PyObject</span></a><span class="p">*</span></span> field in the C object structure dedicated to
 the weak reference mechanism.  The object's constructor should leave it
 <code class="docutils literal notranslate"><span class="pre">NULL</span></code> (which is automatic when using the default
 <a class="reference internal" href="../c-api/typeobj.html#c.PyTypeObject.tp_alloc" title="PyTypeObject.tp_alloc"><code class="xref c c-member docutils literal notranslate"><span class="pre">tp_alloc</span></code></a>).</p></li>
@@ -898,7 +899,7 @@ its use might be something like the following:</p>
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.7 Documentation</a> &#187;
+      <a href="../index.html">3.10.8 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >擴充和嵌入 Python 直譯器</a> &#187;</li>
@@ -934,11 +935,11 @@ its use might be something like the following:</p>
 <br />
     <br />
 
-    最後更新於 9月 16, 2022。
+    最後更新於 10月 15, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 
-    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1 建立。
+    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.2.3 建立。
     </div>
 
   </body>

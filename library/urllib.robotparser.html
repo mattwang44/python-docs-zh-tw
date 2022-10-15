@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>urllib.robotparser --- robots.txt 的剖析器 &#8212; Python 3.10.7 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>urllib.robotparser --- robots.txt 的剖析器 &#8212; Python 3.10.8 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -16,12 +16,13 @@
     <script src="../_static/underscore.js"></script>
     <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/translations.js"></script>
     
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.10.7 說明文件 中搜尋"
+          title="在 Python 3.10.8 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -71,6 +72,27 @@
     <div class="menu-wrapper">
         <nav class="menu" role="navigation" aria-label="main navigation">
             <div class="language_switcher_placeholder"></div>
+  <div>
+    <h3><a href="../contents.html">目錄</a></h3>
+    <ul>
+<li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">urllib.robotparser</span></code> --- robots.txt 的剖析器</a><ul>
+<li><a class="reference internal" href="#urllib.robotparser.RobotFileParser"><code class="docutils literal notranslate"><span class="pre">RobotFileParser</span></code></a><ul>
+<li><a class="reference internal" href="#urllib.robotparser.RobotFileParser.set_url"><code class="docutils literal notranslate"><span class="pre">RobotFileParser.set_url()</span></code></a></li>
+<li><a class="reference internal" href="#urllib.robotparser.RobotFileParser.read"><code class="docutils literal notranslate"><span class="pre">RobotFileParser.read()</span></code></a></li>
+<li><a class="reference internal" href="#urllib.robotparser.RobotFileParser.parse"><code class="docutils literal notranslate"><span class="pre">RobotFileParser.parse()</span></code></a></li>
+<li><a class="reference internal" href="#urllib.robotparser.RobotFileParser.can_fetch"><code class="docutils literal notranslate"><span class="pre">RobotFileParser.can_fetch()</span></code></a></li>
+<li><a class="reference internal" href="#urllib.robotparser.RobotFileParser.mtime"><code class="docutils literal notranslate"><span class="pre">RobotFileParser.mtime()</span></code></a></li>
+<li><a class="reference internal" href="#urllib.robotparser.RobotFileParser.modified"><code class="docutils literal notranslate"><span class="pre">RobotFileParser.modified()</span></code></a></li>
+<li><a class="reference internal" href="#urllib.robotparser.RobotFileParser.crawl_delay"><code class="docutils literal notranslate"><span class="pre">RobotFileParser.crawl_delay()</span></code></a></li>
+<li><a class="reference internal" href="#urllib.robotparser.RobotFileParser.request_rate"><code class="docutils literal notranslate"><span class="pre">RobotFileParser.request_rate()</span></code></a></li>
+<li><a class="reference internal" href="#urllib.robotparser.RobotFileParser.site_maps"><code class="docutils literal notranslate"><span class="pre">RobotFileParser.site_maps()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
   <div>
     <h4>上個主題</h4>
     <p class="topless"><a href="urllib.error.html"
@@ -123,7 +145,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.7 Documentation</a> &#187;
+      <a href="../index.html">3.10.8 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -253,6 +275,27 @@
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
   <div>
+    <h3><a href="../contents.html">目錄</a></h3>
+    <ul>
+<li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">urllib.robotparser</span></code> --- robots.txt 的剖析器</a><ul>
+<li><a class="reference internal" href="#urllib.robotparser.RobotFileParser"><code class="docutils literal notranslate"><span class="pre">RobotFileParser</span></code></a><ul>
+<li><a class="reference internal" href="#urllib.robotparser.RobotFileParser.set_url"><code class="docutils literal notranslate"><span class="pre">RobotFileParser.set_url()</span></code></a></li>
+<li><a class="reference internal" href="#urllib.robotparser.RobotFileParser.read"><code class="docutils literal notranslate"><span class="pre">RobotFileParser.read()</span></code></a></li>
+<li><a class="reference internal" href="#urllib.robotparser.RobotFileParser.parse"><code class="docutils literal notranslate"><span class="pre">RobotFileParser.parse()</span></code></a></li>
+<li><a class="reference internal" href="#urllib.robotparser.RobotFileParser.can_fetch"><code class="docutils literal notranslate"><span class="pre">RobotFileParser.can_fetch()</span></code></a></li>
+<li><a class="reference internal" href="#urllib.robotparser.RobotFileParser.mtime"><code class="docutils literal notranslate"><span class="pre">RobotFileParser.mtime()</span></code></a></li>
+<li><a class="reference internal" href="#urllib.robotparser.RobotFileParser.modified"><code class="docutils literal notranslate"><span class="pre">RobotFileParser.modified()</span></code></a></li>
+<li><a class="reference internal" href="#urllib.robotparser.RobotFileParser.crawl_delay"><code class="docutils literal notranslate"><span class="pre">RobotFileParser.crawl_delay()</span></code></a></li>
+<li><a class="reference internal" href="#urllib.robotparser.RobotFileParser.request_rate"><code class="docutils literal notranslate"><span class="pre">RobotFileParser.request_rate()</span></code></a></li>
+<li><a class="reference internal" href="#urllib.robotparser.RobotFileParser.site_maps"><code class="docutils literal notranslate"><span class="pre">RobotFileParser.site_maps()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
     <h4>上個主題</h4>
     <p class="topless"><a href="urllib.error.html"
                           title="上一章"><code class="xref py py-mod docutils literal notranslate"><span class="pre">urllib.error</span></code> --- urllib.request 引發的例外類別</a></p>
@@ -307,7 +350,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.7 Documentation</a> &#187;
+      <a href="../index.html">3.10.8 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -344,11 +387,11 @@
 <br />
     <br />
 
-    最後更新於 9月 16, 2022。
+    最後更新於 10月 15, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 
-    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1 建立。
+    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.2.3 建立。
     </div>
 
   </body>

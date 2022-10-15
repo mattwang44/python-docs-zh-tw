@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>random --- 生成偽隨機數 &#8212; Python 3.10.7 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>random --- 生成偽隨機數 &#8212; Python 3.10.8 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -16,12 +16,13 @@
     <script src="../_static/underscore.js"></script>
     <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/translations.js"></script>
     
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.10.7 說明文件 中搜尋"
+          title="在 Python 3.10.8 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -75,12 +76,49 @@
     <h3><a href="../contents.html">目錄</a></h3>
     <ul>
 <li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">random</span></code> --- 生成偽隨機數</a><ul>
-<li><a class="reference internal" href="#bookkeeping-functions">簿記函式 (bookkeeping functions)</a></li>
-<li><a class="reference internal" href="#functions-for-bytes">回傳位元組的函式</a></li>
-<li><a class="reference internal" href="#functions-for-integers">回傳整數的函式</a></li>
-<li><a class="reference internal" href="#functions-for-sequences">回傳序列的函式</a></li>
-<li><a class="reference internal" href="#real-valued-distributions">實數分布</a></li>
-<li><a class="reference internal" href="#alternative-generator">替代產生器</a></li>
+<li><a class="reference internal" href="#bookkeeping-functions">簿記函式 (bookkeeping functions)</a><ul>
+<li><a class="reference internal" href="#random.seed"><code class="docutils literal notranslate"><span class="pre">seed()</span></code></a></li>
+<li><a class="reference internal" href="#random.getstate"><code class="docutils literal notranslate"><span class="pre">getstate()</span></code></a></li>
+<li><a class="reference internal" href="#random.setstate"><code class="docutils literal notranslate"><span class="pre">setstate()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#functions-for-bytes">回傳位元組的函式</a><ul>
+<li><a class="reference internal" href="#random.randbytes"><code class="docutils literal notranslate"><span class="pre">randbytes()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#functions-for-integers">回傳整數的函式</a><ul>
+<li><a class="reference internal" href="#random.randrange"><code class="docutils literal notranslate"><span class="pre">randrange()</span></code></a></li>
+<li><a class="reference internal" href="#random.randint"><code class="docutils literal notranslate"><span class="pre">randint()</span></code></a></li>
+<li><a class="reference internal" href="#random.getrandbits"><code class="docutils literal notranslate"><span class="pre">getrandbits()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#functions-for-sequences">回傳序列的函式</a><ul>
+<li><a class="reference internal" href="#random.choice"><code class="docutils literal notranslate"><span class="pre">choice()</span></code></a></li>
+<li><a class="reference internal" href="#random.choices"><code class="docutils literal notranslate"><span class="pre">choices()</span></code></a></li>
+<li><a class="reference internal" href="#random.shuffle"><code class="docutils literal notranslate"><span class="pre">shuffle()</span></code></a></li>
+<li><a class="reference internal" href="#random.sample"><code class="docutils literal notranslate"><span class="pre">sample()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#real-valued-distributions">實數分布</a><ul>
+<li><a class="reference internal" href="#random.random"><code class="docutils literal notranslate"><span class="pre">random()</span></code></a></li>
+<li><a class="reference internal" href="#random.uniform"><code class="docutils literal notranslate"><span class="pre">uniform()</span></code></a></li>
+<li><a class="reference internal" href="#random.triangular"><code class="docutils literal notranslate"><span class="pre">triangular()</span></code></a></li>
+<li><a class="reference internal" href="#random.betavariate"><code class="docutils literal notranslate"><span class="pre">betavariate()</span></code></a></li>
+<li><a class="reference internal" href="#random.expovariate"><code class="docutils literal notranslate"><span class="pre">expovariate()</span></code></a></li>
+<li><a class="reference internal" href="#random.gammavariate"><code class="docutils literal notranslate"><span class="pre">gammavariate()</span></code></a></li>
+<li><a class="reference internal" href="#random.gauss"><code class="docutils literal notranslate"><span class="pre">gauss()</span></code></a></li>
+<li><a class="reference internal" href="#random.lognormvariate"><code class="docutils literal notranslate"><span class="pre">lognormvariate()</span></code></a></li>
+<li><a class="reference internal" href="#random.normalvariate"><code class="docutils literal notranslate"><span class="pre">normalvariate()</span></code></a></li>
+<li><a class="reference internal" href="#random.vonmisesvariate"><code class="docutils literal notranslate"><span class="pre">vonmisesvariate()</span></code></a></li>
+<li><a class="reference internal" href="#random.paretovariate"><code class="docutils literal notranslate"><span class="pre">paretovariate()</span></code></a></li>
+<li><a class="reference internal" href="#random.weibullvariate"><code class="docutils literal notranslate"><span class="pre">weibullvariate()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#alternative-generator">替代產生器</a><ul>
+<li><a class="reference internal" href="#random.Random"><code class="docutils literal notranslate"><span class="pre">Random</span></code></a></li>
+<li><a class="reference internal" href="#random.SystemRandom"><code class="docutils literal notranslate"><span class="pre">SystemRandom</span></code></a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#notes-on-reproducibility">關於 Reproducibility（復現性）的注意事項</a></li>
 <li><a class="reference internal" href="#examples">範例</a></li>
 <li><a class="reference internal" href="#recipes">使用方案</a></li>
@@ -141,7 +179,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.7 Documentation</a> &#187;
+      <a href="../index.html">3.10.8 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -558,8 +596,8 @@ Modeling and Computer Simulation Vol. 8, No. 1, January pp.3--30 1998.</p>
 <div class="admonition seealso">
 <p class="admonition-title">也參考</p>
 <p><a class="reference external" href="https://www.youtube.com/watch?v=Iq9DzN6mvYA">Statistics for Hackers</a> 是由 <a class="reference external" href="https://us.pycon.org/2016/speaker/profile/295/">Jake Vanderplas</a> 製作的教學影片，僅使用幾個基本概念（包括模擬、取樣、洗牌、交叉驗證）進行統計分析。</p>
-<p><a class="reference external" href="http://nbviewer.jupyter.org/url/norvig.com/ipython/Economics.ipynb">Economics Simulation</a>是由 <a class="reference external" href="http://norvig.com/bio.html">Peter Norvig</a> 對市場進行的模擬，顯示了該模組提供的許多工具和分佈（高斯、均勻、樣本、 beta 變數、選擇，三角形、隨機數）的有效使用。</p>
-<p><a class="reference external" href="http://nbviewer.jupyter.org/url/norvig.com/ipython/Probability.ipynb">機率的具體介紹（使用Python）</a>為 <a class="reference external" href="http://norvig.com/bio.html">Peter Norvig</a> 的教學課程，涵蓋了機率理論的基礎知識與如何模擬以及使用 Python 執行數據分析。</p>
+<p><a class="reference external" href="https://nbviewer.jupyter.org/url/norvig.com/ipython/Economics.ipynb">Economics Simulation</a>是由 <a class="reference external" href="https://norvig.com/bio.html">Peter Norvig</a> 對市場進行的模擬，顯示了該模組提供的許多工具和分佈（高斯、均勻、樣本、 beta 變數、選擇，三角形、隨機數）的有效使用。</p>
+<p><a class="reference external" href="https://nbviewer.jupyter.org/url/norvig.com/ipython/Probability.ipynb">機率的具體介紹（使用Python）</a>為 <a class="reference external" href="https://norvig.com/bio.html">Peter Norvig</a> 的教學課程，涵蓋了機率理論的基礎知識與如何模擬以及使用 Python 執行數據分析。</p>
 </div>
 </section>
 <section id="recipes">
@@ -608,12 +646,49 @@ Modeling and Computer Simulation Vol. 8, No. 1, January pp.3--30 1998.</p>
     <h3><a href="../contents.html">目錄</a></h3>
     <ul>
 <li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">random</span></code> --- 生成偽隨機數</a><ul>
-<li><a class="reference internal" href="#bookkeeping-functions">簿記函式 (bookkeeping functions)</a></li>
-<li><a class="reference internal" href="#functions-for-bytes">回傳位元組的函式</a></li>
-<li><a class="reference internal" href="#functions-for-integers">回傳整數的函式</a></li>
-<li><a class="reference internal" href="#functions-for-sequences">回傳序列的函式</a></li>
-<li><a class="reference internal" href="#real-valued-distributions">實數分布</a></li>
-<li><a class="reference internal" href="#alternative-generator">替代產生器</a></li>
+<li><a class="reference internal" href="#bookkeeping-functions">簿記函式 (bookkeeping functions)</a><ul>
+<li><a class="reference internal" href="#random.seed"><code class="docutils literal notranslate"><span class="pre">seed()</span></code></a></li>
+<li><a class="reference internal" href="#random.getstate"><code class="docutils literal notranslate"><span class="pre">getstate()</span></code></a></li>
+<li><a class="reference internal" href="#random.setstate"><code class="docutils literal notranslate"><span class="pre">setstate()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#functions-for-bytes">回傳位元組的函式</a><ul>
+<li><a class="reference internal" href="#random.randbytes"><code class="docutils literal notranslate"><span class="pre">randbytes()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#functions-for-integers">回傳整數的函式</a><ul>
+<li><a class="reference internal" href="#random.randrange"><code class="docutils literal notranslate"><span class="pre">randrange()</span></code></a></li>
+<li><a class="reference internal" href="#random.randint"><code class="docutils literal notranslate"><span class="pre">randint()</span></code></a></li>
+<li><a class="reference internal" href="#random.getrandbits"><code class="docutils literal notranslate"><span class="pre">getrandbits()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#functions-for-sequences">回傳序列的函式</a><ul>
+<li><a class="reference internal" href="#random.choice"><code class="docutils literal notranslate"><span class="pre">choice()</span></code></a></li>
+<li><a class="reference internal" href="#random.choices"><code class="docutils literal notranslate"><span class="pre">choices()</span></code></a></li>
+<li><a class="reference internal" href="#random.shuffle"><code class="docutils literal notranslate"><span class="pre">shuffle()</span></code></a></li>
+<li><a class="reference internal" href="#random.sample"><code class="docutils literal notranslate"><span class="pre">sample()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#real-valued-distributions">實數分布</a><ul>
+<li><a class="reference internal" href="#random.random"><code class="docutils literal notranslate"><span class="pre">random()</span></code></a></li>
+<li><a class="reference internal" href="#random.uniform"><code class="docutils literal notranslate"><span class="pre">uniform()</span></code></a></li>
+<li><a class="reference internal" href="#random.triangular"><code class="docutils literal notranslate"><span class="pre">triangular()</span></code></a></li>
+<li><a class="reference internal" href="#random.betavariate"><code class="docutils literal notranslate"><span class="pre">betavariate()</span></code></a></li>
+<li><a class="reference internal" href="#random.expovariate"><code class="docutils literal notranslate"><span class="pre">expovariate()</span></code></a></li>
+<li><a class="reference internal" href="#random.gammavariate"><code class="docutils literal notranslate"><span class="pre">gammavariate()</span></code></a></li>
+<li><a class="reference internal" href="#random.gauss"><code class="docutils literal notranslate"><span class="pre">gauss()</span></code></a></li>
+<li><a class="reference internal" href="#random.lognormvariate"><code class="docutils literal notranslate"><span class="pre">lognormvariate()</span></code></a></li>
+<li><a class="reference internal" href="#random.normalvariate"><code class="docutils literal notranslate"><span class="pre">normalvariate()</span></code></a></li>
+<li><a class="reference internal" href="#random.vonmisesvariate"><code class="docutils literal notranslate"><span class="pre">vonmisesvariate()</span></code></a></li>
+<li><a class="reference internal" href="#random.paretovariate"><code class="docutils literal notranslate"><span class="pre">paretovariate()</span></code></a></li>
+<li><a class="reference internal" href="#random.weibullvariate"><code class="docutils literal notranslate"><span class="pre">weibullvariate()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#alternative-generator">替代產生器</a><ul>
+<li><a class="reference internal" href="#random.Random"><code class="docutils literal notranslate"><span class="pre">Random</span></code></a></li>
+<li><a class="reference internal" href="#random.SystemRandom"><code class="docutils literal notranslate"><span class="pre">SystemRandom</span></code></a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#notes-on-reproducibility">關於 Reproducibility（復現性）的注意事項</a></li>
 <li><a class="reference internal" href="#examples">範例</a></li>
 <li><a class="reference internal" href="#recipes">使用方案</a></li>
@@ -677,7 +752,7 @@ Modeling and Computer Simulation Vol. 8, No. 1, January pp.3--30 1998.</p>
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.7 Documentation</a> &#187;
+      <a href="../index.html">3.10.8 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -714,11 +789,11 @@ Modeling and Computer Simulation Vol. 8, No. 1, January pp.3--30 1998.</p>
 <br />
     <br />
 
-    最後更新於 9月 16, 2022。
+    最後更新於 10月 15, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 
-    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1 建立。
+    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.2.3 建立。
     </div>
 
   </body>

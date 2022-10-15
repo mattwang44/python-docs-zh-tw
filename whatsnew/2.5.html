@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>Python 2.5 有什麼新功能 &#8212; Python 3.10.7 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python 2.5 有什麼新功能 &#8212; Python 3.10.8 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -16,12 +16,13 @@
     <script src="../_static/underscore.js"></script>
     <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/translations.js"></script>
     
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.10.7 說明文件 中搜尋"
+          title="在 Python 3.10.8 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -166,7 +167,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.7 Documentation</a> &#187;
+      <a href="../index.html">3.10.8 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Python 有什麼新功能？</a> &#187;</li>
@@ -947,17 +948,17 @@ to be able to remove the string-exception feature in a few releases.</p>
 <section id="pep-353-using-ssize-t-as-the-index-type">
 <span id="pep-353"></span><h2>PEP 353: Using ssize_t as the index type<a class="headerlink" href="#pep-353-using-ssize-t-as-the-index-type" title="本標頭的永久連結">¶</a></h2>
 <p>A wide-ranging change to Python's C API, using a new  <a class="reference internal" href="../c-api/intro.html#c.Py_ssize_t" title="Py_ssize_t"><code class="xref c c-type docutils literal notranslate"><span class="pre">Py_ssize_t</span></code></a> type
-definition instead of <span class="xref c c-texpr"><span class="kt">int</span></span>,  will permit the interpreter to handle more
+definition instead of <span class="c-expr sig sig-inline c"><span class="kt">int</span></span>,  will permit the interpreter to handle more
 data on 64-bit platforms. This change doesn't affect Python's capacity on 32-bit
 platforms.</p>
-<p>Various pieces of the Python interpreter used C's <span class="xref c c-texpr"><span class="kt">int</span></span> type to store
+<p>Various pieces of the Python interpreter used C's <span class="c-expr sig sig-inline c"><span class="kt">int</span></span> type to store
 sizes or counts; for example, the number of items in a list or tuple were stored
-in an <span class="xref c c-texpr"><span class="kt">int</span></span>.  The C compilers for most 64-bit platforms still define
-<span class="xref c c-texpr"><span class="kt">int</span></span> as a 32-bit type, so that meant that lists could only hold up to
+in an <span class="c-expr sig sig-inline c"><span class="kt">int</span></span>.  The C compilers for most 64-bit platforms still define
+<span class="c-expr sig sig-inline c"><span class="kt">int</span></span> as a 32-bit type, so that meant that lists could only hold up to
 <code class="docutils literal notranslate"><span class="pre">2**31</span> <span class="pre">-</span> <span class="pre">1</span></code> = 2147483647 items. (There are actually a few different
 programming models that 64-bit C compilers can use -- see
 <a class="reference external" href="https://unix.org/version2/whatsnew/lp64_wp.html">https://unix.org/version2/whatsnew/lp64_wp.html</a> for a discussion -- but the
-most commonly available model leaves <span class="xref c c-texpr"><span class="kt">int</span></span> as 32 bits.)</p>
+most commonly available model leaves <span class="c-expr sig sig-inline c"><span class="kt">int</span></span> as 32 bits.)</p>
 <p>A limit of 2147483647 items doesn't really matter on a 32-bit platform because
 you'll run out of memory before hitting the length limit. Each list item
 requires space for a pointer, which is 4 bytes, plus space for a
@@ -967,7 +968,7 @@ than a 32-bit address space can contain.</p>
 pointers for a list that size would only require 16 GiB of space, so it's not
 unreasonable that Python programmers might construct lists that large.
 Therefore, the Python interpreter had to be changed to use some type other than
-<span class="xref c c-texpr"><span class="kt">int</span></span>, and this will be a 64-bit type on 64-bit platforms.  The change
+<span class="c-expr sig sig-inline c"><span class="kt">int</span></span>, and this will be a 64-bit type on 64-bit platforms.  The change
 will cause incompatibilities on 64-bit machines, so it was deemed worth making
 the transition now, while the number of 64-bit users is still relatively small.
 (In 5 or 10 years, we may <em>all</em> be on 64-bit machines, and the transition would
@@ -979,7 +980,7 @@ strings and container types such as lists and tuples  now use
 may therefore need to have some variables changed to <a class="reference internal" href="../c-api/intro.html#c.Py_ssize_t" title="Py_ssize_t"><code class="xref c c-type docutils literal notranslate"><span class="pre">Py_ssize_t</span></code></a>.</p>
 <p>The <a class="reference internal" href="../c-api/arg.html#c.PyArg_ParseTuple" title="PyArg_ParseTuple"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyArg_ParseTuple()</span></code></a> and <a class="reference internal" href="../c-api/arg.html#c.Py_BuildValue" title="Py_BuildValue"><code class="xref c c-func docutils literal notranslate"><span class="pre">Py_BuildValue()</span></code></a> functions have a new
 conversion code, <code class="docutils literal notranslate"><span class="pre">n</span></code>, for <a class="reference internal" href="../c-api/intro.html#c.Py_ssize_t" title="Py_ssize_t"><code class="xref c c-type docutils literal notranslate"><span class="pre">Py_ssize_t</span></code></a>.   <a class="reference internal" href="../c-api/arg.html#c.PyArg_ParseTuple" title="PyArg_ParseTuple"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyArg_ParseTuple()</span></code></a>'s
-<code class="docutils literal notranslate"><span class="pre">s#</span></code> and <code class="docutils literal notranslate"><span class="pre">t#</span></code> still output <span class="xref c c-texpr"><span class="kt">int</span></span> by default, but you can define the
+<code class="docutils literal notranslate"><span class="pre">s#</span></code> and <code class="docutils literal notranslate"><span class="pre">t#</span></code> still output <span class="c-expr sig sig-inline c"><span class="kt">int</span></span> by default, but you can define the
 macro  <code class="xref c c-macro docutils literal notranslate"><span class="pre">PY_SSIZE_T_CLEAN</span></code> before including <code class="file docutils literal notranslate"><span class="pre">Python.h</span></code>  to make
 them return <a class="reference internal" href="../c-api/intro.html#c.Py_ssize_t" title="Py_ssize_t"><code class="xref c c-type docutils literal notranslate"><span class="pre">Py_ssize_t</span></code></a>.</p>
 <p><span class="target" id="index-16"></span><a class="pep reference external" href="https://peps.python.org/pep-0353/"><strong>PEP 353</strong></a> has a section on conversion guidelines that  extension authors should
@@ -1638,7 +1639,7 @@ attributes of the <code class="xref py py-class docutils literal notranslate"><s
 </pre></div>
 </div>
 <p>Type constructors for the various C types are provided: <code class="xref py py-func docutils literal notranslate"><span class="pre">c_int()</span></code>,
-<code class="xref py py-func docutils literal notranslate"><span class="pre">c_float()</span></code>, <code class="xref py py-func docutils literal notranslate"><span class="pre">c_double()</span></code>, <code class="xref py py-func docutils literal notranslate"><span class="pre">c_char_p()</span></code> (equivalent to <span class="xref c c-texpr"><span class="kt">char</span><span class="p">*</span></span>), and so forth.  Unlike Python's types, the C versions are all mutable; you
+<code class="xref py py-func docutils literal notranslate"><span class="pre">c_float()</span></code>, <code class="xref py py-func docutils literal notranslate"><span class="pre">c_double()</span></code>, <code class="xref py py-func docutils literal notranslate"><span class="pre">c_char_p()</span></code> (equivalent to <span class="c-expr sig sig-inline c"><span class="kt">char</span><span class="p">*</span></span>), and so forth.  Unlike Python's types, the C versions are all mutable; you
 can assign to their <code class="xref py py-attr docutils literal notranslate"><span class="pre">value</span></code> attribute to change the wrapped value.  Python
 integers and strings will be automatically converted to the corresponding C
 types, but for other types you  must call the correct type constructor.  (And I
@@ -1666,7 +1667,7 @@ attribute of the function object to  change this:</p>
 <code class="docutils literal notranslate"><span class="pre">ctypes.pythonapi</span></code> object.  This object does <em>not</em>  release the global
 interpreter lock before calling a function, because the lock must be held when
 calling into the interpreter's code.   There's a <code class="xref py py-class docutils literal notranslate"><span class="pre">py_object()</span></code> type
-constructor that will create a  <span class="xref c c-texpr"><a class="reference internal" href="../c-api/structures.html#c.PyObject" title="PyObject"><span class="n">PyObject</span></a><span class="p">*</span></span> pointer.  A simple usage:</p>
+constructor that will create a  <span class="c-expr sig sig-inline c"><a class="reference internal" href="../c-api/structures.html#c.PyObject" title="PyObject"><span class="n">PyObject</span></a><span class="p">*</span></span> pointer.  A simple usage:</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">ctypes</span>
 
 <span class="n">d</span> <span class="o">=</span> <span class="p">{}</span>
@@ -2000,7 +2001,7 @@ refcounting problems, often occurring in error-handling code.  See
 <a class="reference external" href="https://scan.coverity.com">https://scan.coverity.com</a> for the statistics.</p></li>
 <li><p>The largest change to the C API came from <span class="target" id="index-29"></span><a class="pep reference external" href="https://peps.python.org/pep-0353/"><strong>PEP 353</strong></a>, which modifies the
 interpreter to use a <a class="reference internal" href="../c-api/intro.html#c.Py_ssize_t" title="Py_ssize_t"><code class="xref c c-type docutils literal notranslate"><span class="pre">Py_ssize_t</span></code></a> type definition instead of
-<span class="xref c c-texpr"><span class="kt">int</span></span>.  See the earlier section <a class="reference internal" href="#pep-353"><span class="std std-ref">PEP 353: Using ssize_t as the index type</span></a> for a discussion of this
+<span class="c-expr sig sig-inline c"><span class="kt">int</span></span>.  See the earlier section <a class="reference internal" href="#pep-353"><span class="std std-ref">PEP 353: Using ssize_t as the index type</span></a> for a discussion of this
 change.</p></li>
 <li><p>The design of the bytecode compiler has changed a great deal,  no longer
 generating bytecode by traversing the parse tree.  Instead the parse tree is
@@ -2141,14 +2142,14 @@ have a <code class="xref py py-attr docutils literal notranslate"><span class="p
 limited set of URL paths; the default is to allow only <code class="docutils literal notranslate"><span class="pre">'/'</span></code> and <code class="docutils literal notranslate"><span class="pre">'/RPC2'</span></code>.
 Setting  <code class="xref py py-attr docutils literal notranslate"><span class="pre">rpc_paths</span></code> to <code class="docutils literal notranslate"><span class="pre">None</span></code> or an empty tuple disables  this path
 checking.</p></li>
-<li><p>C API: Many functions now use <a class="reference internal" href="../c-api/intro.html#c.Py_ssize_t" title="Py_ssize_t"><code class="xref c c-type docutils literal notranslate"><span class="pre">Py_ssize_t</span></code></a>  instead of <span class="xref c c-texpr"><span class="kt">int</span></span> to
+<li><p>C API: Many functions now use <a class="reference internal" href="../c-api/intro.html#c.Py_ssize_t" title="Py_ssize_t"><code class="xref c c-type docutils literal notranslate"><span class="pre">Py_ssize_t</span></code></a>  instead of <span class="c-expr sig sig-inline c"><span class="kt">int</span></span> to
 allow processing more data on 64-bit machines.  Extension code may need to make
 the same change to avoid warnings and to support 64-bit machines.  See the
 earlier section <a class="reference internal" href="#pep-353"><span class="std std-ref">PEP 353: Using ssize_t as the index type</span></a> for a discussion of this change.</p></li>
 <li><p>C API:  The obmalloc changes mean that  you must be careful to not mix usage
-of the <span class="xref c c-texpr"><span class="n">PyMem_</span><span class="p">*</span></span> and <span class="xref c c-texpr"><span class="n">PyObject_</span><span class="p">*</span></span> families of functions. Memory
-allocated with  one family's <span class="xref c c-texpr"><span class="o">*</span><span class="n">_Malloc</span></span> must be  freed with the
-corresponding family's <span class="xref c c-texpr"><span class="o">*</span><span class="n">_Free</span></span> function.</p></li>
+of the <code class="docutils literal notranslate"><span class="pre">PyMem_*</span></code> and <code class="docutils literal notranslate"><span class="pre">PyObject_*</span></code> families of functions. Memory
+allocated with  one family's <code class="docutils literal notranslate"><span class="pre">*_Malloc</span></code> must be  freed with the
+corresponding family's <code class="docutils literal notranslate"><span class="pre">*_Free</span></code> function.</p></li>
 </ul>
 </section>
 <section id="acknowledgements">
@@ -2267,7 +2268,7 @@ Rovner, Scott Weikart, Barry Warsaw, Thomas Wouters.</p>
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.7 Documentation</a> &#187;
+      <a href="../index.html">3.10.8 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 有什麼新功能？</a> &#187;</li>
@@ -2303,11 +2304,11 @@ Rovner, Scott Weikart, Barry Warsaw, Thomas Wouters.</p>
 <br />
     <br />
 
-    最後更新於 9月 16, 2022。
+    最後更新於 10月 15, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 
-    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1 建立。
+    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.2.3 建立。
     </div>
 
   </body>

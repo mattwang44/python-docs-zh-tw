@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>串流 &#8212; Python 3.10.7 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>串流 &#8212; Python 3.10.8 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -16,12 +16,13 @@
     <script src="../_static/underscore.js"></script>
     <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/translations.js"></script>
     
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.10.7 說明文件 中搜尋"
+          title="在 Python 3.10.8 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -75,8 +76,37 @@
     <h3><a href="../contents.html">目錄</a></h3>
     <ul>
 <li><a class="reference internal" href="#">串流</a><ul>
-<li><a class="reference internal" href="#streamreader">StreamReader</a></li>
-<li><a class="reference internal" href="#streamwriter">StreamWriter</a></li>
+<li><a class="reference internal" href="#asyncio.open_connection"><code class="docutils literal notranslate"><span class="pre">open_connection()</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.start_server"><code class="docutils literal notranslate"><span class="pre">start_server()</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.open_unix_connection"><code class="docutils literal notranslate"><span class="pre">open_unix_connection()</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.start_unix_server"><code class="docutils literal notranslate"><span class="pre">start_unix_server()</span></code></a></li>
+<li><a class="reference internal" href="#streamreader">StreamReader</a><ul>
+<li><a class="reference internal" href="#asyncio.StreamReader"><code class="docutils literal notranslate"><span class="pre">StreamReader</span></code></a><ul>
+<li><a class="reference internal" href="#asyncio.StreamReader.read"><code class="docutils literal notranslate"><span class="pre">StreamReader.read()</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.StreamReader.readline"><code class="docutils literal notranslate"><span class="pre">StreamReader.readline()</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.StreamReader.readexactly"><code class="docutils literal notranslate"><span class="pre">StreamReader.readexactly()</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.StreamReader.readuntil"><code class="docutils literal notranslate"><span class="pre">StreamReader.readuntil()</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.StreamReader.at_eof"><code class="docutils literal notranslate"><span class="pre">StreamReader.at_eof()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#streamwriter">StreamWriter</a><ul>
+<li><a class="reference internal" href="#asyncio.StreamWriter"><code class="docutils literal notranslate"><span class="pre">StreamWriter</span></code></a><ul>
+<li><a class="reference internal" href="#asyncio.StreamWriter.write"><code class="docutils literal notranslate"><span class="pre">StreamWriter.write()</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.StreamWriter.writelines"><code class="docutils literal notranslate"><span class="pre">StreamWriter.writelines()</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.StreamWriter.close"><code class="docutils literal notranslate"><span class="pre">StreamWriter.close()</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.StreamWriter.can_write_eof"><code class="docutils literal notranslate"><span class="pre">StreamWriter.can_write_eof()</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.StreamWriter.write_eof"><code class="docutils literal notranslate"><span class="pre">StreamWriter.write_eof()</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.StreamWriter.transport"><code class="docutils literal notranslate"><span class="pre">StreamWriter.transport</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.StreamWriter.get_extra_info"><code class="docutils literal notranslate"><span class="pre">StreamWriter.get_extra_info()</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.StreamWriter.drain"><code class="docutils literal notranslate"><span class="pre">StreamWriter.drain()</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.StreamWriter.is_closing"><code class="docutils literal notranslate"><span class="pre">StreamWriter.is_closing()</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.StreamWriter.wait_closed"><code class="docutils literal notranslate"><span class="pre">StreamWriter.wait_closed()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li><a class="reference internal" href="#examples">範例</a><ul>
 <li><a class="reference internal" href="#tcp-echo-client-using-streams">使用串流的 TCP echo 客戶端</a></li>
 <li><a class="reference internal" href="#tcp-echo-server-using-streams">使用串流的 TCP echo 伺服器</a></li>
@@ -141,7 +171,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.7 Documentation</a> &#187;
+      <a href="../index.html">3.10.8 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -206,6 +236,12 @@
 <p>回傳的 <em>reader</em> 和 <em>writer</em> 物件是 <a class="reference internal" href="#asyncio.StreamReader" title="asyncio.StreamReader"><code class="xref py py-class docutils literal notranslate"><span class="pre">StreamReader</span></code></a> 和 <a class="reference internal" href="#asyncio.StreamWriter" title="asyncio.StreamWriter"><code class="xref py py-class docutils literal notranslate"><span class="pre">StreamWriter</span></code></a> 類別的實例。</p>
 <p><em>limit</em> 指定了回傳的 <a class="reference internal" href="#asyncio.StreamReader" title="asyncio.StreamReader"><code class="xref py py-class docutils literal notranslate"><span class="pre">StreamReader</span></code></a> 實例所使用的緩衝區 (buffer) 大小限制。<em>limit</em> 預設為 64 KiB。</p>
 <p>其餘的引數會直接傳遞到 <a class="reference internal" href="asyncio-eventloop.html#asyncio.loop.create_connection" title="asyncio.loop.create_connection"><code class="xref py py-meth docutils literal notranslate"><span class="pre">loop.create_connection()</span></code></a>。</p>
+<div class="admonition note">
+<p class="admonition-title">備註</p>
+<p>The <em>sock</em> argument transfers ownership of the socket to the
+<a class="reference internal" href="#asyncio.StreamWriter" title="asyncio.StreamWriter"><code class="xref py py-class docutils literal notranslate"><span class="pre">StreamWriter</span></code></a> created. To close the socket, call its
+<a class="reference internal" href="#asyncio.StreamWriter.close" title="asyncio.StreamWriter.close"><code class="xref py py-meth docutils literal notranslate"><span class="pre">close()</span></code></a> method.</p>
+</div>
 <div class="versionchanged">
 <p><span class="versionmodified changed">在 3.7 版本變更: </span>新增 <em>ssl_handshake_timeout</em> 參數。</p>
 </div>
@@ -225,6 +261,12 @@
 <p><em>client_connected_cb</em> 既可以是普通的可呼叫物件 (callable)，也可以是一個<a class="reference internal" href="asyncio-task.html#coroutine"><span class="std std-ref">協程函式</span></a>；如果它是一個協程函式，它將自動作為 <a class="reference internal" href="asyncio-task.html#asyncio.Task" title="asyncio.Task"><code class="xref py py-class docutils literal notranslate"><span class="pre">Task</span></code></a> 來被排程。</p>
 <p><em>limit</em> 指定了回傳的 <a class="reference internal" href="#asyncio.StreamReader" title="asyncio.StreamReader"><code class="xref py py-class docutils literal notranslate"><span class="pre">StreamReader</span></code></a> 實例所使用的緩衝區 (buffer) 大小限制。<em>limit</em> 預設為 64 KiB。</p>
 <p>剩下的引數將會直接傳遞給 <a class="reference internal" href="asyncio-eventloop.html#asyncio.loop.create_server" title="asyncio.loop.create_server"><code class="xref py py-meth docutils literal notranslate"><span class="pre">loop.create_server()</span></code></a>。</p>
+<div class="admonition note">
+<p class="admonition-title">備註</p>
+<p>The <em>sock</em> argument transfers ownership of the socket to the
+server created. To close the socket, call the server's
+<a class="reference internal" href="asyncio-eventloop.html#asyncio.Server.close" title="asyncio.Server.close"><code class="xref py py-meth docutils literal notranslate"><span class="pre">close()</span></code></a> method.</p>
+</div>
 <div class="versionchanged">
 <p><span class="versionmodified changed">在 3.7 版本變更: </span>新增 <em>ssl_handshake_timeout</em> 與 <em>start_serving</em> 參數。</p>
 </div>
@@ -240,6 +282,12 @@
 <dd><p>建立一個 Unix socket 連線並回傳一對 <code class="docutils literal notranslate"><span class="pre">(reader,</span> <span class="pre">writer)</span></code>。</p>
 <p>與 <a class="reference internal" href="#asyncio.open_connection" title="asyncio.open_connection"><code class="xref py py-func docutils literal notranslate"><span class="pre">open_connection()</span></code></a> 相似，但是是操作 Unix sockets。</p>
 <p>另請參閱 <a class="reference internal" href="asyncio-eventloop.html#asyncio.loop.create_unix_connection" title="asyncio.loop.create_unix_connection"><code class="xref py py-meth docutils literal notranslate"><span class="pre">loop.create_unix_connection()</span></code></a> 文件。</p>
+<div class="admonition note">
+<p class="admonition-title">備註</p>
+<p>The <em>sock</em> argument transfers ownership of the socket to the
+<a class="reference internal" href="#asyncio.StreamWriter" title="asyncio.StreamWriter"><code class="xref py py-class docutils literal notranslate"><span class="pre">StreamWriter</span></code></a> created. To close the socket, call its
+<a class="reference internal" href="#asyncio.StreamWriter.close" title="asyncio.StreamWriter.close"><code class="xref py py-meth docutils literal notranslate"><span class="pre">close()</span></code></a> method.</p>
+</div>
 <p class="availability"><a class="reference internal" href="intro.html#availability"><span class="std std-ref">適用</span></a>：Unix。</p>
 <div class="versionchanged">
 <p><span class="versionmodified changed">在 3.7 版本變更: </span>新增 <em>ssl_handshake_timeout</em> 參數。<em>path</em> 參數現在可以是個 <a class="reference internal" href="../glossary.html#term-path-like-object"><span class="xref std std-term">path-like object</span></a></p>
@@ -255,6 +303,12 @@
 <dd><p>啟動一個 Unix socket 伺服器。</p>
 <p>與 <a class="reference internal" href="#asyncio.start_server" title="asyncio.start_server"><code class="xref py py-func docutils literal notranslate"><span class="pre">start_server()</span></code></a> 相似，但會是操作 Unix sockets。</p>
 <p>另請參閱 <a class="reference internal" href="asyncio-eventloop.html#asyncio.loop.create_unix_server" title="asyncio.loop.create_unix_server"><code class="xref py py-meth docutils literal notranslate"><span class="pre">loop.create_unix_server()</span></code></a> 文件。</p>
+<div class="admonition note">
+<p class="admonition-title">備註</p>
+<p>The <em>sock</em> argument transfers ownership of the socket to the
+server created. To close the socket, call the server's
+<a class="reference internal" href="asyncio-eventloop.html#asyncio.Server.close" title="asyncio.Server.close"><code class="xref py py-meth docutils literal notranslate"><span class="pre">close()</span></code></a> method.</p>
+</div>
 <p class="availability"><a class="reference internal" href="intro.html#availability"><span class="std std-ref">適用</span></a>：Unix。</p>
 <div class="versionchanged">
 <p><span class="versionmodified changed">在 3.7 版本變更: </span>新增 <em>ssl_handshake_timeout</em> 與 <em>start_serving</em> 參數。<em>path</em> 參數現在可以是個 <a class="reference internal" href="../glossary.html#term-path-like-object"><span class="xref std std-term">path-like object</span></a>。</p>
@@ -577,8 +631,37 @@
     <h3><a href="../contents.html">目錄</a></h3>
     <ul>
 <li><a class="reference internal" href="#">串流</a><ul>
-<li><a class="reference internal" href="#streamreader">StreamReader</a></li>
-<li><a class="reference internal" href="#streamwriter">StreamWriter</a></li>
+<li><a class="reference internal" href="#asyncio.open_connection"><code class="docutils literal notranslate"><span class="pre">open_connection()</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.start_server"><code class="docutils literal notranslate"><span class="pre">start_server()</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.open_unix_connection"><code class="docutils literal notranslate"><span class="pre">open_unix_connection()</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.start_unix_server"><code class="docutils literal notranslate"><span class="pre">start_unix_server()</span></code></a></li>
+<li><a class="reference internal" href="#streamreader">StreamReader</a><ul>
+<li><a class="reference internal" href="#asyncio.StreamReader"><code class="docutils literal notranslate"><span class="pre">StreamReader</span></code></a><ul>
+<li><a class="reference internal" href="#asyncio.StreamReader.read"><code class="docutils literal notranslate"><span class="pre">StreamReader.read()</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.StreamReader.readline"><code class="docutils literal notranslate"><span class="pre">StreamReader.readline()</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.StreamReader.readexactly"><code class="docutils literal notranslate"><span class="pre">StreamReader.readexactly()</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.StreamReader.readuntil"><code class="docutils literal notranslate"><span class="pre">StreamReader.readuntil()</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.StreamReader.at_eof"><code class="docutils literal notranslate"><span class="pre">StreamReader.at_eof()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#streamwriter">StreamWriter</a><ul>
+<li><a class="reference internal" href="#asyncio.StreamWriter"><code class="docutils literal notranslate"><span class="pre">StreamWriter</span></code></a><ul>
+<li><a class="reference internal" href="#asyncio.StreamWriter.write"><code class="docutils literal notranslate"><span class="pre">StreamWriter.write()</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.StreamWriter.writelines"><code class="docutils literal notranslate"><span class="pre">StreamWriter.writelines()</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.StreamWriter.close"><code class="docutils literal notranslate"><span class="pre">StreamWriter.close()</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.StreamWriter.can_write_eof"><code class="docutils literal notranslate"><span class="pre">StreamWriter.can_write_eof()</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.StreamWriter.write_eof"><code class="docutils literal notranslate"><span class="pre">StreamWriter.write_eof()</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.StreamWriter.transport"><code class="docutils literal notranslate"><span class="pre">StreamWriter.transport</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.StreamWriter.get_extra_info"><code class="docutils literal notranslate"><span class="pre">StreamWriter.get_extra_info()</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.StreamWriter.drain"><code class="docutils literal notranslate"><span class="pre">StreamWriter.drain()</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.StreamWriter.is_closing"><code class="docutils literal notranslate"><span class="pre">StreamWriter.is_closing()</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.StreamWriter.wait_closed"><code class="docutils literal notranslate"><span class="pre">StreamWriter.wait_closed()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li><a class="reference internal" href="#examples">範例</a><ul>
 <li><a class="reference internal" href="#tcp-echo-client-using-streams">使用串流的 TCP echo 客戶端</a></li>
 <li><a class="reference internal" href="#tcp-echo-server-using-streams">使用串流的 TCP echo 伺服器</a></li>
@@ -646,7 +729,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.7 Documentation</a> &#187;
+      <a href="../index.html">3.10.8 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -684,11 +767,11 @@
 <br />
     <br />
 
-    最後更新於 9月 16, 2022。
+    最後更新於 10月 15, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 
-    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1 建立。
+    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.2.3 建立。
     </div>
 
   </body>

@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>string --- Common string operations &#8212; Python 3.10.7 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>string --- Common string operations &#8212; Python 3.10.8 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -16,12 +16,13 @@
     <script src="../_static/underscore.js"></script>
     <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/translations.js"></script>
     
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.10.7 說明文件 中搜尋"
+          title="在 Python 3.10.8 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -75,15 +76,50 @@
     <h3><a href="../contents.html">目錄</a></h3>
     <ul>
 <li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">string</span></code> --- Common string operations</a><ul>
-<li><a class="reference internal" href="#string-constants">String constants</a></li>
-<li><a class="reference internal" href="#custom-string-formatting">Custom String Formatting</a></li>
+<li><a class="reference internal" href="#string-constants">String constants</a><ul>
+<li><a class="reference internal" href="#string.ascii_letters"><code class="docutils literal notranslate"><span class="pre">ascii_letters</span></code></a></li>
+<li><a class="reference internal" href="#string.ascii_lowercase"><code class="docutils literal notranslate"><span class="pre">ascii_lowercase</span></code></a></li>
+<li><a class="reference internal" href="#string.ascii_uppercase"><code class="docutils literal notranslate"><span class="pre">ascii_uppercase</span></code></a></li>
+<li><a class="reference internal" href="#string.digits"><code class="docutils literal notranslate"><span class="pre">digits</span></code></a></li>
+<li><a class="reference internal" href="#string.hexdigits"><code class="docutils literal notranslate"><span class="pre">hexdigits</span></code></a></li>
+<li><a class="reference internal" href="#string.octdigits"><code class="docutils literal notranslate"><span class="pre">octdigits</span></code></a></li>
+<li><a class="reference internal" href="#string.punctuation"><code class="docutils literal notranslate"><span class="pre">punctuation</span></code></a></li>
+<li><a class="reference internal" href="#string.printable"><code class="docutils literal notranslate"><span class="pre">printable</span></code></a></li>
+<li><a class="reference internal" href="#string.whitespace"><code class="docutils literal notranslate"><span class="pre">whitespace</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#custom-string-formatting">Custom String Formatting</a><ul>
+<li><a class="reference internal" href="#string.Formatter"><code class="docutils literal notranslate"><span class="pre">Formatter</span></code></a><ul>
+<li><a class="reference internal" href="#string.Formatter.format"><code class="docutils literal notranslate"><span class="pre">Formatter.format()</span></code></a></li>
+<li><a class="reference internal" href="#string.Formatter.vformat"><code class="docutils literal notranslate"><span class="pre">Formatter.vformat()</span></code></a></li>
+<li><a class="reference internal" href="#string.Formatter.parse"><code class="docutils literal notranslate"><span class="pre">Formatter.parse()</span></code></a></li>
+<li><a class="reference internal" href="#string.Formatter.get_field"><code class="docutils literal notranslate"><span class="pre">Formatter.get_field()</span></code></a></li>
+<li><a class="reference internal" href="#string.Formatter.get_value"><code class="docutils literal notranslate"><span class="pre">Formatter.get_value()</span></code></a></li>
+<li><a class="reference internal" href="#string.Formatter.check_unused_args"><code class="docutils literal notranslate"><span class="pre">Formatter.check_unused_args()</span></code></a></li>
+<li><a class="reference internal" href="#string.Formatter.format_field"><code class="docutils literal notranslate"><span class="pre">Formatter.format_field()</span></code></a></li>
+<li><a class="reference internal" href="#string.Formatter.convert_field"><code class="docutils literal notranslate"><span class="pre">Formatter.convert_field()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li><a class="reference internal" href="#format-string-syntax">Format String Syntax</a><ul>
 <li><a class="reference internal" href="#format-specification-mini-language">Format Specification Mini-Language</a></li>
 <li><a class="reference internal" href="#format-examples">Format examples</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#template-strings">Template strings</a></li>
-<li><a class="reference internal" href="#helper-functions">Helper functions</a></li>
+<li><a class="reference internal" href="#template-strings">Template strings</a><ul>
+<li><a class="reference internal" href="#string.Template"><code class="docutils literal notranslate"><span class="pre">Template</span></code></a><ul>
+<li><a class="reference internal" href="#string.Template.substitute"><code class="docutils literal notranslate"><span class="pre">Template.substitute()</span></code></a></li>
+<li><a class="reference internal" href="#string.Template.safe_substitute"><code class="docutils literal notranslate"><span class="pre">Template.safe_substitute()</span></code></a></li>
+<li><a class="reference internal" href="#string.Template.template"><code class="docutils literal notranslate"><span class="pre">Template.template</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#helper-functions">Helper functions</a><ul>
+<li><a class="reference internal" href="#string.capwords"><code class="docutils literal notranslate"><span class="pre">capwords()</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -141,7 +177,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.7 Documentation</a> &#187;
+      <a href="../index.html">3.10.8 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -1058,15 +1094,50 @@ split and join the words.</p>
     <h3><a href="../contents.html">目錄</a></h3>
     <ul>
 <li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">string</span></code> --- Common string operations</a><ul>
-<li><a class="reference internal" href="#string-constants">String constants</a></li>
-<li><a class="reference internal" href="#custom-string-formatting">Custom String Formatting</a></li>
+<li><a class="reference internal" href="#string-constants">String constants</a><ul>
+<li><a class="reference internal" href="#string.ascii_letters"><code class="docutils literal notranslate"><span class="pre">ascii_letters</span></code></a></li>
+<li><a class="reference internal" href="#string.ascii_lowercase"><code class="docutils literal notranslate"><span class="pre">ascii_lowercase</span></code></a></li>
+<li><a class="reference internal" href="#string.ascii_uppercase"><code class="docutils literal notranslate"><span class="pre">ascii_uppercase</span></code></a></li>
+<li><a class="reference internal" href="#string.digits"><code class="docutils literal notranslate"><span class="pre">digits</span></code></a></li>
+<li><a class="reference internal" href="#string.hexdigits"><code class="docutils literal notranslate"><span class="pre">hexdigits</span></code></a></li>
+<li><a class="reference internal" href="#string.octdigits"><code class="docutils literal notranslate"><span class="pre">octdigits</span></code></a></li>
+<li><a class="reference internal" href="#string.punctuation"><code class="docutils literal notranslate"><span class="pre">punctuation</span></code></a></li>
+<li><a class="reference internal" href="#string.printable"><code class="docutils literal notranslate"><span class="pre">printable</span></code></a></li>
+<li><a class="reference internal" href="#string.whitespace"><code class="docutils literal notranslate"><span class="pre">whitespace</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#custom-string-formatting">Custom String Formatting</a><ul>
+<li><a class="reference internal" href="#string.Formatter"><code class="docutils literal notranslate"><span class="pre">Formatter</span></code></a><ul>
+<li><a class="reference internal" href="#string.Formatter.format"><code class="docutils literal notranslate"><span class="pre">Formatter.format()</span></code></a></li>
+<li><a class="reference internal" href="#string.Formatter.vformat"><code class="docutils literal notranslate"><span class="pre">Formatter.vformat()</span></code></a></li>
+<li><a class="reference internal" href="#string.Formatter.parse"><code class="docutils literal notranslate"><span class="pre">Formatter.parse()</span></code></a></li>
+<li><a class="reference internal" href="#string.Formatter.get_field"><code class="docutils literal notranslate"><span class="pre">Formatter.get_field()</span></code></a></li>
+<li><a class="reference internal" href="#string.Formatter.get_value"><code class="docutils literal notranslate"><span class="pre">Formatter.get_value()</span></code></a></li>
+<li><a class="reference internal" href="#string.Formatter.check_unused_args"><code class="docutils literal notranslate"><span class="pre">Formatter.check_unused_args()</span></code></a></li>
+<li><a class="reference internal" href="#string.Formatter.format_field"><code class="docutils literal notranslate"><span class="pre">Formatter.format_field()</span></code></a></li>
+<li><a class="reference internal" href="#string.Formatter.convert_field"><code class="docutils literal notranslate"><span class="pre">Formatter.convert_field()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li><a class="reference internal" href="#format-string-syntax">Format String Syntax</a><ul>
 <li><a class="reference internal" href="#format-specification-mini-language">Format Specification Mini-Language</a></li>
 <li><a class="reference internal" href="#format-examples">Format examples</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#template-strings">Template strings</a></li>
-<li><a class="reference internal" href="#helper-functions">Helper functions</a></li>
+<li><a class="reference internal" href="#template-strings">Template strings</a><ul>
+<li><a class="reference internal" href="#string.Template"><code class="docutils literal notranslate"><span class="pre">Template</span></code></a><ul>
+<li><a class="reference internal" href="#string.Template.substitute"><code class="docutils literal notranslate"><span class="pre">Template.substitute()</span></code></a></li>
+<li><a class="reference internal" href="#string.Template.safe_substitute"><code class="docutils literal notranslate"><span class="pre">Template.safe_substitute()</span></code></a></li>
+<li><a class="reference internal" href="#string.Template.template"><code class="docutils literal notranslate"><span class="pre">Template.template</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#helper-functions">Helper functions</a><ul>
+<li><a class="reference internal" href="#string.capwords"><code class="docutils literal notranslate"><span class="pre">capwords()</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -1127,7 +1198,7 @@ split and join the words.</p>
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.7 Documentation</a> &#187;
+      <a href="../index.html">3.10.8 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -1164,11 +1235,11 @@ split and join the words.</p>
 <br />
     <br />
 
-    最後更新於 9月 16, 2022。
+    最後更新於 10月 15, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 
-    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1 建立。
+    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.2.3 建立。
     </div>
 
   </body>

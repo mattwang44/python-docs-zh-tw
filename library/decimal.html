@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>decimal --- Decimal fixed point and floating point arithmetic &#8212; Python 3.10.7 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>decimal --- Decimal fixed point and floating point arithmetic &#8212; Python 3.10.8 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -16,12 +16,13 @@
     <script src="../_static/underscore.js"></script>
     <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/translations.js"></script>
     
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.10.7 說明文件 中搜尋"
+          title="在 Python 3.10.8 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -77,13 +78,176 @@
 <li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">decimal</span></code> --- Decimal fixed point and floating point arithmetic</a><ul>
 <li><a class="reference internal" href="#quick-start-tutorial">Quick-start Tutorial</a></li>
 <li><a class="reference internal" href="#decimal-objects">Decimal objects</a><ul>
+<li><a class="reference internal" href="#decimal.Decimal"><code class="docutils literal notranslate"><span class="pre">Decimal</span></code></a><ul>
+<li><a class="reference internal" href="#decimal.Decimal.adjusted"><code class="docutils literal notranslate"><span class="pre">Decimal.adjusted()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Decimal.as_integer_ratio"><code class="docutils literal notranslate"><span class="pre">Decimal.as_integer_ratio()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Decimal.as_tuple"><code class="docutils literal notranslate"><span class="pre">Decimal.as_tuple()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Decimal.canonical"><code class="docutils literal notranslate"><span class="pre">Decimal.canonical()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Decimal.compare"><code class="docutils literal notranslate"><span class="pre">Decimal.compare()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Decimal.compare_signal"><code class="docutils literal notranslate"><span class="pre">Decimal.compare_signal()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Decimal.compare_total"><code class="docutils literal notranslate"><span class="pre">Decimal.compare_total()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Decimal.compare_total_mag"><code class="docutils literal notranslate"><span class="pre">Decimal.compare_total_mag()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Decimal.conjugate"><code class="docutils literal notranslate"><span class="pre">Decimal.conjugate()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Decimal.copy_abs"><code class="docutils literal notranslate"><span class="pre">Decimal.copy_abs()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Decimal.copy_negate"><code class="docutils literal notranslate"><span class="pre">Decimal.copy_negate()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Decimal.copy_sign"><code class="docutils literal notranslate"><span class="pre">Decimal.copy_sign()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Decimal.exp"><code class="docutils literal notranslate"><span class="pre">Decimal.exp()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Decimal.from_float"><code class="docutils literal notranslate"><span class="pre">Decimal.from_float()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Decimal.fma"><code class="docutils literal notranslate"><span class="pre">Decimal.fma()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Decimal.is_canonical"><code class="docutils literal notranslate"><span class="pre">Decimal.is_canonical()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Decimal.is_finite"><code class="docutils literal notranslate"><span class="pre">Decimal.is_finite()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Decimal.is_infinite"><code class="docutils literal notranslate"><span class="pre">Decimal.is_infinite()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Decimal.is_nan"><code class="docutils literal notranslate"><span class="pre">Decimal.is_nan()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Decimal.is_normal"><code class="docutils literal notranslate"><span class="pre">Decimal.is_normal()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Decimal.is_qnan"><code class="docutils literal notranslate"><span class="pre">Decimal.is_qnan()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Decimal.is_signed"><code class="docutils literal notranslate"><span class="pre">Decimal.is_signed()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Decimal.is_snan"><code class="docutils literal notranslate"><span class="pre">Decimal.is_snan()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Decimal.is_subnormal"><code class="docutils literal notranslate"><span class="pre">Decimal.is_subnormal()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Decimal.is_zero"><code class="docutils literal notranslate"><span class="pre">Decimal.is_zero()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Decimal.ln"><code class="docutils literal notranslate"><span class="pre">Decimal.ln()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Decimal.log10"><code class="docutils literal notranslate"><span class="pre">Decimal.log10()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Decimal.logb"><code class="docutils literal notranslate"><span class="pre">Decimal.logb()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Decimal.logical_and"><code class="docutils literal notranslate"><span class="pre">Decimal.logical_and()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Decimal.logical_invert"><code class="docutils literal notranslate"><span class="pre">Decimal.logical_invert()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Decimal.logical_or"><code class="docutils literal notranslate"><span class="pre">Decimal.logical_or()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Decimal.logical_xor"><code class="docutils literal notranslate"><span class="pre">Decimal.logical_xor()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Decimal.max"><code class="docutils literal notranslate"><span class="pre">Decimal.max()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Decimal.max_mag"><code class="docutils literal notranslate"><span class="pre">Decimal.max_mag()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Decimal.min"><code class="docutils literal notranslate"><span class="pre">Decimal.min()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Decimal.min_mag"><code class="docutils literal notranslate"><span class="pre">Decimal.min_mag()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Decimal.next_minus"><code class="docutils literal notranslate"><span class="pre">Decimal.next_minus()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Decimal.next_plus"><code class="docutils literal notranslate"><span class="pre">Decimal.next_plus()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Decimal.next_toward"><code class="docutils literal notranslate"><span class="pre">Decimal.next_toward()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Decimal.normalize"><code class="docutils literal notranslate"><span class="pre">Decimal.normalize()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Decimal.number_class"><code class="docutils literal notranslate"><span class="pre">Decimal.number_class()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Decimal.quantize"><code class="docutils literal notranslate"><span class="pre">Decimal.quantize()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Decimal.radix"><code class="docutils literal notranslate"><span class="pre">Decimal.radix()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Decimal.remainder_near"><code class="docutils literal notranslate"><span class="pre">Decimal.remainder_near()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Decimal.rotate"><code class="docutils literal notranslate"><span class="pre">Decimal.rotate()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Decimal.same_quantum"><code class="docutils literal notranslate"><span class="pre">Decimal.same_quantum()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Decimal.scaleb"><code class="docutils literal notranslate"><span class="pre">Decimal.scaleb()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Decimal.shift"><code class="docutils literal notranslate"><span class="pre">Decimal.shift()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Decimal.sqrt"><code class="docutils literal notranslate"><span class="pre">Decimal.sqrt()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Decimal.to_eng_string"><code class="docutils literal notranslate"><span class="pre">Decimal.to_eng_string()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Decimal.to_integral"><code class="docutils literal notranslate"><span class="pre">Decimal.to_integral()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Decimal.to_integral_exact"><code class="docutils literal notranslate"><span class="pre">Decimal.to_integral_exact()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Decimal.to_integral_value"><code class="docutils literal notranslate"><span class="pre">Decimal.to_integral_value()</span></code></a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#logical-operands">Logical operands</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#context-objects">Context objects</a></li>
-<li><a class="reference internal" href="#constants">常數</a></li>
-<li><a class="reference internal" href="#rounding-modes">Rounding modes</a></li>
-<li><a class="reference internal" href="#signals">Signals</a></li>
+<li><a class="reference internal" href="#context-objects">Context objects</a><ul>
+<li><a class="reference internal" href="#decimal.getcontext"><code class="docutils literal notranslate"><span class="pre">getcontext()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.setcontext"><code class="docutils literal notranslate"><span class="pre">setcontext()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.localcontext"><code class="docutils literal notranslate"><span class="pre">localcontext()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.BasicContext"><code class="docutils literal notranslate"><span class="pre">BasicContext</span></code></a></li>
+<li><a class="reference internal" href="#decimal.ExtendedContext"><code class="docutils literal notranslate"><span class="pre">ExtendedContext</span></code></a></li>
+<li><a class="reference internal" href="#decimal.DefaultContext"><code class="docutils literal notranslate"><span class="pre">DefaultContext</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Context"><code class="docutils literal notranslate"><span class="pre">Context</span></code></a><ul>
+<li><a class="reference internal" href="#decimal.Context.clear_flags"><code class="docutils literal notranslate"><span class="pre">Context.clear_flags()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Context.clear_traps"><code class="docutils literal notranslate"><span class="pre">Context.clear_traps()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Context.copy"><code class="docutils literal notranslate"><span class="pre">Context.copy()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Context.copy_decimal"><code class="docutils literal notranslate"><span class="pre">Context.copy_decimal()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Context.create_decimal"><code class="docutils literal notranslate"><span class="pre">Context.create_decimal()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Context.create_decimal_from_float"><code class="docutils literal notranslate"><span class="pre">Context.create_decimal_from_float()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Context.Etiny"><code class="docutils literal notranslate"><span class="pre">Context.Etiny()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Context.Etop"><code class="docutils literal notranslate"><span class="pre">Context.Etop()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Context.abs"><code class="docutils literal notranslate"><span class="pre">Context.abs()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Context.add"><code class="docutils literal notranslate"><span class="pre">Context.add()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Context.canonical"><code class="docutils literal notranslate"><span class="pre">Context.canonical()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Context.compare"><code class="docutils literal notranslate"><span class="pre">Context.compare()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Context.compare_signal"><code class="docutils literal notranslate"><span class="pre">Context.compare_signal()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Context.compare_total"><code class="docutils literal notranslate"><span class="pre">Context.compare_total()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Context.compare_total_mag"><code class="docutils literal notranslate"><span class="pre">Context.compare_total_mag()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Context.copy_abs"><code class="docutils literal notranslate"><span class="pre">Context.copy_abs()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Context.copy_negate"><code class="docutils literal notranslate"><span class="pre">Context.copy_negate()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Context.copy_sign"><code class="docutils literal notranslate"><span class="pre">Context.copy_sign()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Context.divide"><code class="docutils literal notranslate"><span class="pre">Context.divide()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Context.divide_int"><code class="docutils literal notranslate"><span class="pre">Context.divide_int()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Context.divmod"><code class="docutils literal notranslate"><span class="pre">Context.divmod()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Context.exp"><code class="docutils literal notranslate"><span class="pre">Context.exp()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Context.fma"><code class="docutils literal notranslate"><span class="pre">Context.fma()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Context.is_canonical"><code class="docutils literal notranslate"><span class="pre">Context.is_canonical()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Context.is_finite"><code class="docutils literal notranslate"><span class="pre">Context.is_finite()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Context.is_infinite"><code class="docutils literal notranslate"><span class="pre">Context.is_infinite()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Context.is_nan"><code class="docutils literal notranslate"><span class="pre">Context.is_nan()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Context.is_normal"><code class="docutils literal notranslate"><span class="pre">Context.is_normal()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Context.is_qnan"><code class="docutils literal notranslate"><span class="pre">Context.is_qnan()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Context.is_signed"><code class="docutils literal notranslate"><span class="pre">Context.is_signed()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Context.is_snan"><code class="docutils literal notranslate"><span class="pre">Context.is_snan()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Context.is_subnormal"><code class="docutils literal notranslate"><span class="pre">Context.is_subnormal()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Context.is_zero"><code class="docutils literal notranslate"><span class="pre">Context.is_zero()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Context.ln"><code class="docutils literal notranslate"><span class="pre">Context.ln()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Context.log10"><code class="docutils literal notranslate"><span class="pre">Context.log10()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Context.logb"><code class="docutils literal notranslate"><span class="pre">Context.logb()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Context.logical_and"><code class="docutils literal notranslate"><span class="pre">Context.logical_and()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Context.logical_invert"><code class="docutils literal notranslate"><span class="pre">Context.logical_invert()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Context.logical_or"><code class="docutils literal notranslate"><span class="pre">Context.logical_or()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Context.logical_xor"><code class="docutils literal notranslate"><span class="pre">Context.logical_xor()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Context.max"><code class="docutils literal notranslate"><span class="pre">Context.max()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Context.max_mag"><code class="docutils literal notranslate"><span class="pre">Context.max_mag()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Context.min"><code class="docutils literal notranslate"><span class="pre">Context.min()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Context.min_mag"><code class="docutils literal notranslate"><span class="pre">Context.min_mag()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Context.minus"><code class="docutils literal notranslate"><span class="pre">Context.minus()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Context.multiply"><code class="docutils literal notranslate"><span class="pre">Context.multiply()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Context.next_minus"><code class="docutils literal notranslate"><span class="pre">Context.next_minus()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Context.next_plus"><code class="docutils literal notranslate"><span class="pre">Context.next_plus()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Context.next_toward"><code class="docutils literal notranslate"><span class="pre">Context.next_toward()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Context.normalize"><code class="docutils literal notranslate"><span class="pre">Context.normalize()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Context.number_class"><code class="docutils literal notranslate"><span class="pre">Context.number_class()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Context.plus"><code class="docutils literal notranslate"><span class="pre">Context.plus()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Context.power"><code class="docutils literal notranslate"><span class="pre">Context.power()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Context.quantize"><code class="docutils literal notranslate"><span class="pre">Context.quantize()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Context.radix"><code class="docutils literal notranslate"><span class="pre">Context.radix()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Context.remainder"><code class="docutils literal notranslate"><span class="pre">Context.remainder()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Context.remainder_near"><code class="docutils literal notranslate"><span class="pre">Context.remainder_near()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Context.rotate"><code class="docutils literal notranslate"><span class="pre">Context.rotate()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Context.same_quantum"><code class="docutils literal notranslate"><span class="pre">Context.same_quantum()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Context.scaleb"><code class="docutils literal notranslate"><span class="pre">Context.scaleb()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Context.shift"><code class="docutils literal notranslate"><span class="pre">Context.shift()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Context.sqrt"><code class="docutils literal notranslate"><span class="pre">Context.sqrt()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Context.subtract"><code class="docutils literal notranslate"><span class="pre">Context.subtract()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Context.to_eng_string"><code class="docutils literal notranslate"><span class="pre">Context.to_eng_string()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Context.to_integral_exact"><code class="docutils literal notranslate"><span class="pre">Context.to_integral_exact()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Context.to_sci_string"><code class="docutils literal notranslate"><span class="pre">Context.to_sci_string()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#constants">常數</a><ul>
+<li><a class="reference internal" href="#decimal.MAX_PREC"><code class="docutils literal notranslate"><span class="pre">MAX_PREC</span></code></a></li>
+<li><a class="reference internal" href="#decimal.MAX_EMAX"><code class="docutils literal notranslate"><span class="pre">MAX_EMAX</span></code></a></li>
+<li><a class="reference internal" href="#decimal.MIN_EMIN"><code class="docutils literal notranslate"><span class="pre">MIN_EMIN</span></code></a></li>
+<li><a class="reference internal" href="#decimal.MIN_ETINY"><code class="docutils literal notranslate"><span class="pre">MIN_ETINY</span></code></a></li>
+<li><a class="reference internal" href="#decimal.HAVE_THREADS"><code class="docutils literal notranslate"><span class="pre">HAVE_THREADS</span></code></a></li>
+<li><a class="reference internal" href="#decimal.HAVE_CONTEXTVAR"><code class="docutils literal notranslate"><span class="pre">HAVE_CONTEXTVAR</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#rounding-modes">Rounding modes</a><ul>
+<li><a class="reference internal" href="#decimal.ROUND_CEILING"><code class="docutils literal notranslate"><span class="pre">ROUND_CEILING</span></code></a></li>
+<li><a class="reference internal" href="#decimal.ROUND_DOWN"><code class="docutils literal notranslate"><span class="pre">ROUND_DOWN</span></code></a></li>
+<li><a class="reference internal" href="#decimal.ROUND_FLOOR"><code class="docutils literal notranslate"><span class="pre">ROUND_FLOOR</span></code></a></li>
+<li><a class="reference internal" href="#decimal.ROUND_HALF_DOWN"><code class="docutils literal notranslate"><span class="pre">ROUND_HALF_DOWN</span></code></a></li>
+<li><a class="reference internal" href="#decimal.ROUND_HALF_EVEN"><code class="docutils literal notranslate"><span class="pre">ROUND_HALF_EVEN</span></code></a></li>
+<li><a class="reference internal" href="#decimal.ROUND_HALF_UP"><code class="docutils literal notranslate"><span class="pre">ROUND_HALF_UP</span></code></a></li>
+<li><a class="reference internal" href="#decimal.ROUND_UP"><code class="docutils literal notranslate"><span class="pre">ROUND_UP</span></code></a></li>
+<li><a class="reference internal" href="#decimal.ROUND_05UP"><code class="docutils literal notranslate"><span class="pre">ROUND_05UP</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#signals">Signals</a><ul>
+<li><a class="reference internal" href="#decimal.Clamped"><code class="docutils literal notranslate"><span class="pre">Clamped</span></code></a></li>
+<li><a class="reference internal" href="#decimal.DecimalException"><code class="docutils literal notranslate"><span class="pre">DecimalException</span></code></a></li>
+<li><a class="reference internal" href="#decimal.DivisionByZero"><code class="docutils literal notranslate"><span class="pre">DivisionByZero</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Inexact"><code class="docutils literal notranslate"><span class="pre">Inexact</span></code></a></li>
+<li><a class="reference internal" href="#decimal.InvalidOperation"><code class="docutils literal notranslate"><span class="pre">InvalidOperation</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Overflow"><code class="docutils literal notranslate"><span class="pre">Overflow</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Rounded"><code class="docutils literal notranslate"><span class="pre">Rounded</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Subnormal"><code class="docutils literal notranslate"><span class="pre">Subnormal</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Underflow"><code class="docutils literal notranslate"><span class="pre">Underflow</span></code></a></li>
+<li><a class="reference internal" href="#decimal.FloatOperation"><code class="docutils literal notranslate"><span class="pre">FloatOperation</span></code></a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#floating-point-notes">Floating Point Notes</a><ul>
 <li><a class="reference internal" href="#mitigating-round-off-error-with-increased-precision">Mitigating round-off error with increased precision</a></li>
 <li><a class="reference internal" href="#special-values">Special values</a></li>
@@ -149,7 +313,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.7 Documentation</a> &#187;
+      <a href="../index.html">3.10.8 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -255,7 +419,7 @@ reset them before monitoring a calculation.</p>
 <div class="admonition seealso">
 <p class="admonition-title">也參考</p>
 <ul class="simple">
-<li><p>IBM's General Decimal Arithmetic Specification, <a class="reference external" href="http://speleotrove.com/decimal/decarith.html">The General Decimal Arithmetic
+<li><p>IBM's General Decimal Arithmetic Specification, <a class="reference external" href="https://speleotrove.com/decimal/decarith.html">The General Decimal Arithmetic
 Specification</a>.</p></li>
 </ul>
 </div>
@@ -320,7 +484,7 @@ an exception:</p>
 <p>The significance of a new Decimal is determined solely by the number of digits
 input.  Context precision and rounding only come into play during arithmetic
 operations.</p>
-<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">getcontext</span><span class="p">()</span><span class="o">.</span><span class="n">prec</span> <span class="o">=</span> <span class="mi">6</span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">getcontext</span><span class="p">()</span><span class="o">.</span><span class="n">prec</span> <span class="o">=</span> <span class="mi">6</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;3.0&#39;</span><span class="p">)</span>
 <span class="go">Decimal(&#39;3.0&#39;)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;3.1415926535&#39;</span><span class="p">)</span>
@@ -345,7 +509,7 @@ a decimal raises <a class="reference internal" href="#decimal.InvalidOperation" 
 </div>
 <p>Decimals interact well with much of the rest of Python.  Here is a small decimal
 floating point flying circus:</p>
-<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">Decimal</span><span class="p">,</span> <span class="s1">&#39;1.34 1.87 3.45 2.35 1.00 0.03 9.25&#39;</span><span class="o">.</span><span class="n">split</span><span class="p">()))</span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">Decimal</span><span class="p">,</span> <span class="s1">&#39;1.34 1.87 3.45 2.35 1.00 0.03 9.25&#39;</span><span class="o">.</span><span class="n">split</span><span class="p">()))</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">max</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 <span class="go">Decimal(&#39;9.25&#39;)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">min</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
@@ -403,7 +567,7 @@ function.</p>
 use standard contexts, <a class="reference internal" href="#decimal.BasicContext" title="decimal.BasicContext"><code class="xref py py-const docutils literal notranslate"><span class="pre">BasicContext</span></code></a> and <a class="reference internal" href="#decimal.ExtendedContext" title="decimal.ExtendedContext"><code class="xref py py-const docutils literal notranslate"><span class="pre">ExtendedContext</span></code></a>. The
 former is especially useful for debugging because many of the traps are
 enabled:</p>
-<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">myothercontext</span> <span class="o">=</span> <span class="n">Context</span><span class="p">(</span><span class="n">prec</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span> <span class="n">rounding</span><span class="o">=</span><span class="n">ROUND_HALF_DOWN</span><span class="p">)</span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">myothercontext</span> <span class="o">=</span> <span class="n">Context</span><span class="p">(</span><span class="n">prec</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span> <span class="n">rounding</span><span class="o">=</span><span class="n">ROUND_HALF_DOWN</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">setcontext</span><span class="p">(</span><span class="n">myothercontext</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">Decimal</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="n">Decimal</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span>
 <span class="go">Decimal(&#39;0.142857142857142857142857142857142857142857142857142857142857&#39;)</span>
@@ -443,7 +607,7 @@ rounded (digits beyond the context precision were thrown away) and that the
 result is inexact (some of the discarded digits were non-zero).</p>
 <p>Individual traps are set using the dictionary in the <code class="xref py py-attr docutils literal notranslate"><span class="pre">traps</span></code> field of a
 context:</p>
-<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">setcontext</span><span class="p">(</span><span class="n">ExtendedContext</span><span class="p">)</span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">setcontext</span><span class="p">(</span><span class="n">ExtendedContext</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">Decimal</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="n">Decimal</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 <span class="go">Decimal(&#39;Infinity&#39;)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">getcontext</span><span class="p">()</span><span class="o">.</span><span class="n">traps</span><span class="p">[</span><span class="n">DivisionByZero</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
@@ -720,7 +884,7 @@ value is stored as the nearest representable value which is
 <p>From Python 3.2 onwards, a <a class="reference internal" href="#decimal.Decimal" title="decimal.Decimal"><code class="xref py py-class docutils literal notranslate"><span class="pre">Decimal</span></code></a> instance
 can also be constructed directly from a <a class="reference internal" href="functions.html#float" title="float"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>.</p>
 </div>
-<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">Decimal</span><span class="o">.</span><span class="n">from_float</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">Decimal</span><span class="o">.</span><span class="n">from_float</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
 <span class="go">Decimal(&#39;0.1000000000000000055511151231257827021181583404541015625&#39;)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">Decimal</span><span class="o">.</span><span class="n">from_float</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="s1">&#39;nan&#39;</span><span class="p">))</span>
 <span class="go">Decimal(&#39;NaN&#39;)</span>
@@ -1275,7 +1439,7 @@ than is needed by the application.  Another benefit is that rounding
 immediately eliminates unintended effects from digits beyond the current
 precision. In the following example, using unrounded inputs means that
 adding zero to a sum can change the result:</p>
-<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">getcontext</span><span class="p">()</span><span class="o">.</span><span class="n">prec</span> <span class="o">=</span> <span class="mi">3</span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">getcontext</span><span class="p">()</span><span class="o">.</span><span class="n">prec</span> <span class="o">=</span> <span class="mi">3</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;3.4445&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;1.0023&#39;</span><span class="p">)</span>
 <span class="go">Decimal(&#39;4.45&#39;)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;3.4445&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="n">Decimal</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;1.0023&#39;</span><span class="p">)</span>
@@ -1294,7 +1458,7 @@ underscores are permitted.</p>
 as the context.  Unlike the <a class="reference internal" href="#decimal.Decimal.from_float" title="decimal.Decimal.from_float"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Decimal.from_float()</span></code></a> class method,
 the context precision, rounding method, flags, and traps are applied to
 the conversion.</p>
-<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">context</span> <span class="o">=</span> <span class="n">Context</span><span class="p">(</span><span class="n">prec</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">rounding</span><span class="o">=</span><span class="n">ROUND_DOWN</span><span class="p">)</span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">context</span> <span class="o">=</span> <span class="n">Context</span><span class="p">(</span><span class="n">prec</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">rounding</span><span class="o">=</span><span class="n">ROUND_DOWN</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">context</span><span class="o">.</span><span class="n">create_decimal_from_float</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>
 <span class="go">Decimal(&#39;3.1415&#39;)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">context</span> <span class="o">=</span> <span class="n">Context</span><span class="p">(</span><span class="n">prec</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">traps</span><span class="o">=</span><span class="p">[</span><span class="n">Inexact</span><span class="p">])</span>
@@ -1983,7 +2147,7 @@ of nearly offsetting quantities resulting in loss of significance.  Knuth
 provides two instructive examples where rounded floating point arithmetic with
 insufficient precision causes the breakdown of the associative and distributive
 properties of addition:</p>
-<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="go"># Examples from Seminumerical Algorithms, Section 4.2.2.</span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="go"># Examples from Seminumerical Algorithms, Section 4.2.2.</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">decimal</span> <span class="kn">import</span> <span class="n">Decimal</span><span class="p">,</span> <span class="n">getcontext</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">getcontext</span><span class="p">()</span><span class="o">.</span><span class="n">prec</span> <span class="o">=</span> <span class="mi">8</span>
 
@@ -2002,7 +2166,7 @@ properties of addition:</p>
 </div>
 <p>The <a class="reference internal" href="#module-decimal" title="decimal: Implementation of the General Decimal Arithmetic  Specification."><code class="xref py py-mod docutils literal notranslate"><span class="pre">decimal</span></code></a> module makes it possible to restore the identities by
 expanding the precision sufficiently to avoid loss of significance:</p>
-<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">getcontext</span><span class="p">()</span><span class="o">.</span><span class="n">prec</span> <span class="o">=</span> <span class="mi">20</span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">getcontext</span><span class="p">()</span><span class="o">.</span><span class="n">prec</span> <span class="o">=</span> <span class="mi">20</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">w</span> <span class="o">=</span> <span class="n">Decimal</span><span class="p">(</span><span class="mi">11111113</span><span class="p">),</span> <span class="n">Decimal</span><span class="p">(</span><span class="o">-</span><span class="mi">11111111</span><span class="p">),</span> <span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;7.51111111&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="p">(</span><span class="n">u</span> <span class="o">+</span> <span class="n">v</span><span class="p">)</span> <span class="o">+</span> <span class="n">w</span>
 <span class="go">Decimal(&#39;9.51111111&#39;)</span>
@@ -2347,7 +2511,7 @@ value unchanged:</p>
 <p>A. Yes, any binary floating point number can be exactly expressed as a
 Decimal though an exact conversion may take more precision than intuition would
 suggest:</p>
-<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">Decimal</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">Decimal</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>
 <span class="go">Decimal(&#39;3.141592653589793115997963468544185161590576171875&#39;)</span>
 </pre></div>
 </div>
@@ -2364,7 +2528,7 @@ different precisions?</p>
 the arithmetic on those values.  Only the results are rounded.  The advantage
 for inputs is that &quot;what you type is what you get&quot;.  A disadvantage is that the
 results can look odd if you forget that the inputs haven't been rounded:</p>
-<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">getcontext</span><span class="p">()</span><span class="o">.</span><span class="n">prec</span> <span class="o">=</span> <span class="mi">3</span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">getcontext</span><span class="p">()</span><span class="o">.</span><span class="n">prec</span> <span class="o">=</span> <span class="mi">3</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;3.104&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;2.104&#39;</span><span class="p">)</span>
 <span class="go">Decimal(&#39;5.21&#39;)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;3.104&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;0.000&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;2.104&#39;</span><span class="p">)</span>
@@ -2373,7 +2537,7 @@ results can look odd if you forget that the inputs haven't been rounded:</p>
 </div>
 <p>The solution is either to increase precision or to force rounding of inputs
 using the unary plus operation:</p>
-<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">getcontext</span><span class="p">()</span><span class="o">.</span><span class="n">prec</span> <span class="o">=</span> <span class="mi">3</span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">getcontext</span><span class="p">()</span><span class="o">.</span><span class="n">prec</span> <span class="o">=</span> <span class="mi">3</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="o">+</span><span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;1.23456789&#39;</span><span class="p">)</span>      <span class="c1"># unary plus triggers rounding</span>
 <span class="go">Decimal(&#39;1.23&#39;)</span>
 </pre></div>
@@ -2467,13 +2631,176 @@ are expected to be exact.</p>
 <li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">decimal</span></code> --- Decimal fixed point and floating point arithmetic</a><ul>
 <li><a class="reference internal" href="#quick-start-tutorial">Quick-start Tutorial</a></li>
 <li><a class="reference internal" href="#decimal-objects">Decimal objects</a><ul>
+<li><a class="reference internal" href="#decimal.Decimal"><code class="docutils literal notranslate"><span class="pre">Decimal</span></code></a><ul>
+<li><a class="reference internal" href="#decimal.Decimal.adjusted"><code class="docutils literal notranslate"><span class="pre">Decimal.adjusted()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Decimal.as_integer_ratio"><code class="docutils literal notranslate"><span class="pre">Decimal.as_integer_ratio()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Decimal.as_tuple"><code class="docutils literal notranslate"><span class="pre">Decimal.as_tuple()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Decimal.canonical"><code class="docutils literal notranslate"><span class="pre">Decimal.canonical()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Decimal.compare"><code class="docutils literal notranslate"><span class="pre">Decimal.compare()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Decimal.compare_signal"><code class="docutils literal notranslate"><span class="pre">Decimal.compare_signal()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Decimal.compare_total"><code class="docutils literal notranslate"><span class="pre">Decimal.compare_total()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Decimal.compare_total_mag"><code class="docutils literal notranslate"><span class="pre">Decimal.compare_total_mag()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Decimal.conjugate"><code class="docutils literal notranslate"><span class="pre">Decimal.conjugate()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Decimal.copy_abs"><code class="docutils literal notranslate"><span class="pre">Decimal.copy_abs()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Decimal.copy_negate"><code class="docutils literal notranslate"><span class="pre">Decimal.copy_negate()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Decimal.copy_sign"><code class="docutils literal notranslate"><span class="pre">Decimal.copy_sign()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Decimal.exp"><code class="docutils literal notranslate"><span class="pre">Decimal.exp()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Decimal.from_float"><code class="docutils literal notranslate"><span class="pre">Decimal.from_float()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Decimal.fma"><code class="docutils literal notranslate"><span class="pre">Decimal.fma()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Decimal.is_canonical"><code class="docutils literal notranslate"><span class="pre">Decimal.is_canonical()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Decimal.is_finite"><code class="docutils literal notranslate"><span class="pre">Decimal.is_finite()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Decimal.is_infinite"><code class="docutils literal notranslate"><span class="pre">Decimal.is_infinite()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Decimal.is_nan"><code class="docutils literal notranslate"><span class="pre">Decimal.is_nan()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Decimal.is_normal"><code class="docutils literal notranslate"><span class="pre">Decimal.is_normal()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Decimal.is_qnan"><code class="docutils literal notranslate"><span class="pre">Decimal.is_qnan()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Decimal.is_signed"><code class="docutils literal notranslate"><span class="pre">Decimal.is_signed()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Decimal.is_snan"><code class="docutils literal notranslate"><span class="pre">Decimal.is_snan()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Decimal.is_subnormal"><code class="docutils literal notranslate"><span class="pre">Decimal.is_subnormal()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Decimal.is_zero"><code class="docutils literal notranslate"><span class="pre">Decimal.is_zero()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Decimal.ln"><code class="docutils literal notranslate"><span class="pre">Decimal.ln()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Decimal.log10"><code class="docutils literal notranslate"><span class="pre">Decimal.log10()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Decimal.logb"><code class="docutils literal notranslate"><span class="pre">Decimal.logb()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Decimal.logical_and"><code class="docutils literal notranslate"><span class="pre">Decimal.logical_and()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Decimal.logical_invert"><code class="docutils literal notranslate"><span class="pre">Decimal.logical_invert()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Decimal.logical_or"><code class="docutils literal notranslate"><span class="pre">Decimal.logical_or()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Decimal.logical_xor"><code class="docutils literal notranslate"><span class="pre">Decimal.logical_xor()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Decimal.max"><code class="docutils literal notranslate"><span class="pre">Decimal.max()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Decimal.max_mag"><code class="docutils literal notranslate"><span class="pre">Decimal.max_mag()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Decimal.min"><code class="docutils literal notranslate"><span class="pre">Decimal.min()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Decimal.min_mag"><code class="docutils literal notranslate"><span class="pre">Decimal.min_mag()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Decimal.next_minus"><code class="docutils literal notranslate"><span class="pre">Decimal.next_minus()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Decimal.next_plus"><code class="docutils literal notranslate"><span class="pre">Decimal.next_plus()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Decimal.next_toward"><code class="docutils literal notranslate"><span class="pre">Decimal.next_toward()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Decimal.normalize"><code class="docutils literal notranslate"><span class="pre">Decimal.normalize()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Decimal.number_class"><code class="docutils literal notranslate"><span class="pre">Decimal.number_class()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Decimal.quantize"><code class="docutils literal notranslate"><span class="pre">Decimal.quantize()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Decimal.radix"><code class="docutils literal notranslate"><span class="pre">Decimal.radix()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Decimal.remainder_near"><code class="docutils literal notranslate"><span class="pre">Decimal.remainder_near()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Decimal.rotate"><code class="docutils literal notranslate"><span class="pre">Decimal.rotate()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Decimal.same_quantum"><code class="docutils literal notranslate"><span class="pre">Decimal.same_quantum()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Decimal.scaleb"><code class="docutils literal notranslate"><span class="pre">Decimal.scaleb()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Decimal.shift"><code class="docutils literal notranslate"><span class="pre">Decimal.shift()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Decimal.sqrt"><code class="docutils literal notranslate"><span class="pre">Decimal.sqrt()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Decimal.to_eng_string"><code class="docutils literal notranslate"><span class="pre">Decimal.to_eng_string()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Decimal.to_integral"><code class="docutils literal notranslate"><span class="pre">Decimal.to_integral()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Decimal.to_integral_exact"><code class="docutils literal notranslate"><span class="pre">Decimal.to_integral_exact()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Decimal.to_integral_value"><code class="docutils literal notranslate"><span class="pre">Decimal.to_integral_value()</span></code></a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#logical-operands">Logical operands</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#context-objects">Context objects</a></li>
-<li><a class="reference internal" href="#constants">常數</a></li>
-<li><a class="reference internal" href="#rounding-modes">Rounding modes</a></li>
-<li><a class="reference internal" href="#signals">Signals</a></li>
+<li><a class="reference internal" href="#context-objects">Context objects</a><ul>
+<li><a class="reference internal" href="#decimal.getcontext"><code class="docutils literal notranslate"><span class="pre">getcontext()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.setcontext"><code class="docutils literal notranslate"><span class="pre">setcontext()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.localcontext"><code class="docutils literal notranslate"><span class="pre">localcontext()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.BasicContext"><code class="docutils literal notranslate"><span class="pre">BasicContext</span></code></a></li>
+<li><a class="reference internal" href="#decimal.ExtendedContext"><code class="docutils literal notranslate"><span class="pre">ExtendedContext</span></code></a></li>
+<li><a class="reference internal" href="#decimal.DefaultContext"><code class="docutils literal notranslate"><span class="pre">DefaultContext</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Context"><code class="docutils literal notranslate"><span class="pre">Context</span></code></a><ul>
+<li><a class="reference internal" href="#decimal.Context.clear_flags"><code class="docutils literal notranslate"><span class="pre">Context.clear_flags()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Context.clear_traps"><code class="docutils literal notranslate"><span class="pre">Context.clear_traps()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Context.copy"><code class="docutils literal notranslate"><span class="pre">Context.copy()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Context.copy_decimal"><code class="docutils literal notranslate"><span class="pre">Context.copy_decimal()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Context.create_decimal"><code class="docutils literal notranslate"><span class="pre">Context.create_decimal()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Context.create_decimal_from_float"><code class="docutils literal notranslate"><span class="pre">Context.create_decimal_from_float()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Context.Etiny"><code class="docutils literal notranslate"><span class="pre">Context.Etiny()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Context.Etop"><code class="docutils literal notranslate"><span class="pre">Context.Etop()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Context.abs"><code class="docutils literal notranslate"><span class="pre">Context.abs()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Context.add"><code class="docutils literal notranslate"><span class="pre">Context.add()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Context.canonical"><code class="docutils literal notranslate"><span class="pre">Context.canonical()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Context.compare"><code class="docutils literal notranslate"><span class="pre">Context.compare()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Context.compare_signal"><code class="docutils literal notranslate"><span class="pre">Context.compare_signal()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Context.compare_total"><code class="docutils literal notranslate"><span class="pre">Context.compare_total()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Context.compare_total_mag"><code class="docutils literal notranslate"><span class="pre">Context.compare_total_mag()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Context.copy_abs"><code class="docutils literal notranslate"><span class="pre">Context.copy_abs()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Context.copy_negate"><code class="docutils literal notranslate"><span class="pre">Context.copy_negate()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Context.copy_sign"><code class="docutils literal notranslate"><span class="pre">Context.copy_sign()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Context.divide"><code class="docutils literal notranslate"><span class="pre">Context.divide()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Context.divide_int"><code class="docutils literal notranslate"><span class="pre">Context.divide_int()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Context.divmod"><code class="docutils literal notranslate"><span class="pre">Context.divmod()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Context.exp"><code class="docutils literal notranslate"><span class="pre">Context.exp()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Context.fma"><code class="docutils literal notranslate"><span class="pre">Context.fma()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Context.is_canonical"><code class="docutils literal notranslate"><span class="pre">Context.is_canonical()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Context.is_finite"><code class="docutils literal notranslate"><span class="pre">Context.is_finite()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Context.is_infinite"><code class="docutils literal notranslate"><span class="pre">Context.is_infinite()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Context.is_nan"><code class="docutils literal notranslate"><span class="pre">Context.is_nan()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Context.is_normal"><code class="docutils literal notranslate"><span class="pre">Context.is_normal()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Context.is_qnan"><code class="docutils literal notranslate"><span class="pre">Context.is_qnan()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Context.is_signed"><code class="docutils literal notranslate"><span class="pre">Context.is_signed()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Context.is_snan"><code class="docutils literal notranslate"><span class="pre">Context.is_snan()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Context.is_subnormal"><code class="docutils literal notranslate"><span class="pre">Context.is_subnormal()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Context.is_zero"><code class="docutils literal notranslate"><span class="pre">Context.is_zero()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Context.ln"><code class="docutils literal notranslate"><span class="pre">Context.ln()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Context.log10"><code class="docutils literal notranslate"><span class="pre">Context.log10()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Context.logb"><code class="docutils literal notranslate"><span class="pre">Context.logb()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Context.logical_and"><code class="docutils literal notranslate"><span class="pre">Context.logical_and()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Context.logical_invert"><code class="docutils literal notranslate"><span class="pre">Context.logical_invert()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Context.logical_or"><code class="docutils literal notranslate"><span class="pre">Context.logical_or()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Context.logical_xor"><code class="docutils literal notranslate"><span class="pre">Context.logical_xor()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Context.max"><code class="docutils literal notranslate"><span class="pre">Context.max()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Context.max_mag"><code class="docutils literal notranslate"><span class="pre">Context.max_mag()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Context.min"><code class="docutils literal notranslate"><span class="pre">Context.min()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Context.min_mag"><code class="docutils literal notranslate"><span class="pre">Context.min_mag()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Context.minus"><code class="docutils literal notranslate"><span class="pre">Context.minus()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Context.multiply"><code class="docutils literal notranslate"><span class="pre">Context.multiply()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Context.next_minus"><code class="docutils literal notranslate"><span class="pre">Context.next_minus()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Context.next_plus"><code class="docutils literal notranslate"><span class="pre">Context.next_plus()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Context.next_toward"><code class="docutils literal notranslate"><span class="pre">Context.next_toward()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Context.normalize"><code class="docutils literal notranslate"><span class="pre">Context.normalize()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Context.number_class"><code class="docutils literal notranslate"><span class="pre">Context.number_class()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Context.plus"><code class="docutils literal notranslate"><span class="pre">Context.plus()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Context.power"><code class="docutils literal notranslate"><span class="pre">Context.power()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Context.quantize"><code class="docutils literal notranslate"><span class="pre">Context.quantize()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Context.radix"><code class="docutils literal notranslate"><span class="pre">Context.radix()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Context.remainder"><code class="docutils literal notranslate"><span class="pre">Context.remainder()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Context.remainder_near"><code class="docutils literal notranslate"><span class="pre">Context.remainder_near()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Context.rotate"><code class="docutils literal notranslate"><span class="pre">Context.rotate()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Context.same_quantum"><code class="docutils literal notranslate"><span class="pre">Context.same_quantum()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Context.scaleb"><code class="docutils literal notranslate"><span class="pre">Context.scaleb()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Context.shift"><code class="docutils literal notranslate"><span class="pre">Context.shift()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Context.sqrt"><code class="docutils literal notranslate"><span class="pre">Context.sqrt()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Context.subtract"><code class="docutils literal notranslate"><span class="pre">Context.subtract()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Context.to_eng_string"><code class="docutils literal notranslate"><span class="pre">Context.to_eng_string()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Context.to_integral_exact"><code class="docutils literal notranslate"><span class="pre">Context.to_integral_exact()</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Context.to_sci_string"><code class="docutils literal notranslate"><span class="pre">Context.to_sci_string()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#constants">常數</a><ul>
+<li><a class="reference internal" href="#decimal.MAX_PREC"><code class="docutils literal notranslate"><span class="pre">MAX_PREC</span></code></a></li>
+<li><a class="reference internal" href="#decimal.MAX_EMAX"><code class="docutils literal notranslate"><span class="pre">MAX_EMAX</span></code></a></li>
+<li><a class="reference internal" href="#decimal.MIN_EMIN"><code class="docutils literal notranslate"><span class="pre">MIN_EMIN</span></code></a></li>
+<li><a class="reference internal" href="#decimal.MIN_ETINY"><code class="docutils literal notranslate"><span class="pre">MIN_ETINY</span></code></a></li>
+<li><a class="reference internal" href="#decimal.HAVE_THREADS"><code class="docutils literal notranslate"><span class="pre">HAVE_THREADS</span></code></a></li>
+<li><a class="reference internal" href="#decimal.HAVE_CONTEXTVAR"><code class="docutils literal notranslate"><span class="pre">HAVE_CONTEXTVAR</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#rounding-modes">Rounding modes</a><ul>
+<li><a class="reference internal" href="#decimal.ROUND_CEILING"><code class="docutils literal notranslate"><span class="pre">ROUND_CEILING</span></code></a></li>
+<li><a class="reference internal" href="#decimal.ROUND_DOWN"><code class="docutils literal notranslate"><span class="pre">ROUND_DOWN</span></code></a></li>
+<li><a class="reference internal" href="#decimal.ROUND_FLOOR"><code class="docutils literal notranslate"><span class="pre">ROUND_FLOOR</span></code></a></li>
+<li><a class="reference internal" href="#decimal.ROUND_HALF_DOWN"><code class="docutils literal notranslate"><span class="pre">ROUND_HALF_DOWN</span></code></a></li>
+<li><a class="reference internal" href="#decimal.ROUND_HALF_EVEN"><code class="docutils literal notranslate"><span class="pre">ROUND_HALF_EVEN</span></code></a></li>
+<li><a class="reference internal" href="#decimal.ROUND_HALF_UP"><code class="docutils literal notranslate"><span class="pre">ROUND_HALF_UP</span></code></a></li>
+<li><a class="reference internal" href="#decimal.ROUND_UP"><code class="docutils literal notranslate"><span class="pre">ROUND_UP</span></code></a></li>
+<li><a class="reference internal" href="#decimal.ROUND_05UP"><code class="docutils literal notranslate"><span class="pre">ROUND_05UP</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#signals">Signals</a><ul>
+<li><a class="reference internal" href="#decimal.Clamped"><code class="docutils literal notranslate"><span class="pre">Clamped</span></code></a></li>
+<li><a class="reference internal" href="#decimal.DecimalException"><code class="docutils literal notranslate"><span class="pre">DecimalException</span></code></a></li>
+<li><a class="reference internal" href="#decimal.DivisionByZero"><code class="docutils literal notranslate"><span class="pre">DivisionByZero</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Inexact"><code class="docutils literal notranslate"><span class="pre">Inexact</span></code></a></li>
+<li><a class="reference internal" href="#decimal.InvalidOperation"><code class="docutils literal notranslate"><span class="pre">InvalidOperation</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Overflow"><code class="docutils literal notranslate"><span class="pre">Overflow</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Rounded"><code class="docutils literal notranslate"><span class="pre">Rounded</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Subnormal"><code class="docutils literal notranslate"><span class="pre">Subnormal</span></code></a></li>
+<li><a class="reference internal" href="#decimal.Underflow"><code class="docutils literal notranslate"><span class="pre">Underflow</span></code></a></li>
+<li><a class="reference internal" href="#decimal.FloatOperation"><code class="docutils literal notranslate"><span class="pre">FloatOperation</span></code></a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#floating-point-notes">Floating Point Notes</a><ul>
 <li><a class="reference internal" href="#mitigating-round-off-error-with-increased-precision">Mitigating round-off error with increased precision</a></li>
 <li><a class="reference internal" href="#special-values">Special values</a></li>
@@ -2542,7 +2869,7 @@ are expected to be exact.</p>
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.7 Documentation</a> &#187;
+      <a href="../index.html">3.10.8 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -2579,11 +2906,11 @@ are expected to be exact.</p>
 <br />
     <br />
 
-    最後更新於 9月 16, 2022。
+    最後更新於 10月 15, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 
-    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1 建立。
+    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.2.3 建立。
     </div>
 
   </body>

@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>sched --- Event scheduler &#8212; Python 3.10.7 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sched --- Event scheduler &#8212; Python 3.10.8 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -16,18 +16,19 @@
     <script src="../_static/underscore.js"></script>
     <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/translations.js"></script>
     
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.10.7 說明文件 中搜尋"
+          title="在 Python 3.10.8 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="搜尋" href="../search.html" />
     <link rel="copyright" title="版權" href="../copyright.html" />
-    <link rel="next" title="queue --- A synchronized queue class" href="queue.html" />
+    <link rel="next" title="queue --- 同步佇列 (queue) class（類別）" href="queue.html" />
     <link rel="prev" title="subprocess --- Subprocess management" href="subprocess.html" />
     <link rel="canonical" href="https://docs.python.org/3/library/sched.html" />
     
@@ -75,7 +76,16 @@
     <h3><a href="../contents.html">目錄</a></h3>
     <ul>
 <li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sched</span></code> --- Event scheduler</a><ul>
-<li><a class="reference internal" href="#scheduler-objects">Scheduler Objects</a></li>
+<li><a class="reference internal" href="#sched.scheduler"><code class="docutils literal notranslate"><span class="pre">scheduler</span></code></a></li>
+<li><a class="reference internal" href="#scheduler-objects">Scheduler Objects</a><ul>
+<li><a class="reference internal" href="#sched.scheduler.enterabs"><code class="docutils literal notranslate"><span class="pre">scheduler.enterabs()</span></code></a></li>
+<li><a class="reference internal" href="#sched.scheduler.enter"><code class="docutils literal notranslate"><span class="pre">scheduler.enter()</span></code></a></li>
+<li><a class="reference internal" href="#sched.scheduler.cancel"><code class="docutils literal notranslate"><span class="pre">scheduler.cancel()</span></code></a></li>
+<li><a class="reference internal" href="#sched.scheduler.empty"><code class="docutils literal notranslate"><span class="pre">scheduler.empty()</span></code></a></li>
+<li><a class="reference internal" href="#sched.scheduler.run"><code class="docutils literal notranslate"><span class="pre">scheduler.run()</span></code></a></li>
+<li><a class="reference internal" href="#sched.scheduler.queue"><code class="docutils literal notranslate"><span class="pre">scheduler.queue</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -89,7 +99,7 @@
   <div>
     <h4>下個主題</h4>
     <p class="topless"><a href="queue.html"
-                          title="下一章"><code class="xref py py-mod docutils literal notranslate"><span class="pre">queue</span></code> --- A synchronized queue class</a></p>
+                          title="下一章"><code class="xref py py-mod docutils literal notranslate"><span class="pre">queue</span></code> --- 同步佇列 (queue) class（類別）</a></p>
   </div>
   <div role="note" aria-label="source link">
     <h3>此頁面</h3>
@@ -117,7 +127,7 @@
           <a href="../py-modindex.html" title="Python 模組索引"
              >模組</a> |</li>
         <li class="right" >
-          <a href="queue.html" title="queue --- A synchronized queue class"
+          <a href="queue.html" title="queue --- 同步佇列 (queue) class（類別）"
              accesskey="N">下一頁</a> |</li>
         <li class="right" >
           <a href="subprocess.html" title="subprocess --- Subprocess management"
@@ -133,7 +143,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.7 Documentation</a> &#187;
+      <a href="../index.html">3.10.8 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -303,7 +313,16 @@ following fields:  time, priority, action, argument, kwargs.</p>
     <h3><a href="../contents.html">目錄</a></h3>
     <ul>
 <li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sched</span></code> --- Event scheduler</a><ul>
-<li><a class="reference internal" href="#scheduler-objects">Scheduler Objects</a></li>
+<li><a class="reference internal" href="#sched.scheduler"><code class="docutils literal notranslate"><span class="pre">scheduler</span></code></a></li>
+<li><a class="reference internal" href="#scheduler-objects">Scheduler Objects</a><ul>
+<li><a class="reference internal" href="#sched.scheduler.enterabs"><code class="docutils literal notranslate"><span class="pre">scheduler.enterabs()</span></code></a></li>
+<li><a class="reference internal" href="#sched.scheduler.enter"><code class="docutils literal notranslate"><span class="pre">scheduler.enter()</span></code></a></li>
+<li><a class="reference internal" href="#sched.scheduler.cancel"><code class="docutils literal notranslate"><span class="pre">scheduler.cancel()</span></code></a></li>
+<li><a class="reference internal" href="#sched.scheduler.empty"><code class="docutils literal notranslate"><span class="pre">scheduler.empty()</span></code></a></li>
+<li><a class="reference internal" href="#sched.scheduler.run"><code class="docutils literal notranslate"><span class="pre">scheduler.run()</span></code></a></li>
+<li><a class="reference internal" href="#sched.scheduler.queue"><code class="docutils literal notranslate"><span class="pre">scheduler.queue</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -317,7 +336,7 @@ following fields:  time, priority, action, argument, kwargs.</p>
   <div>
     <h4>下個主題</h4>
     <p class="topless"><a href="queue.html"
-                          title="下一章"><code class="xref py py-mod docutils literal notranslate"><span class="pre">queue</span></code> --- A synchronized queue class</a></p>
+                          title="下一章"><code class="xref py py-mod docutils literal notranslate"><span class="pre">queue</span></code> --- 同步佇列 (queue) class（類別）</a></p>
   </div>
   <div role="note" aria-label="source link">
     <h3>此頁面</h3>
@@ -348,7 +367,7 @@ following fields:  time, priority, action, argument, kwargs.</p>
           <a href="../py-modindex.html" title="Python 模組索引"
              >模組</a> |</li>
         <li class="right" >
-          <a href="queue.html" title="queue --- A synchronized queue class"
+          <a href="queue.html" title="queue --- 同步佇列 (queue) class（類別）"
              >下一頁</a> |</li>
         <li class="right" >
           <a href="subprocess.html" title="subprocess --- Subprocess management"
@@ -364,7 +383,7 @@ following fields:  time, priority, action, argument, kwargs.</p>
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.7 Documentation</a> &#187;
+      <a href="../index.html">3.10.8 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -401,11 +420,11 @@ following fields:  time, priority, action, argument, kwargs.</p>
 <br />
     <br />
 
-    最後更新於 9月 16, 2022。
+    最後更新於 10月 15, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 
-    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1 建立。
+    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.2.3 建立。
     </div>
 
   </body>

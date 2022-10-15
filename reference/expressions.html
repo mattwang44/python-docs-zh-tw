@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>6. Expressions &#8212; Python 3.10.7 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>6. Expressions &#8212; Python 3.10.8 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -16,12 +16,13 @@
     <script src="../_static/underscore.js"></script>
     <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/translations.js"></script>
     
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.10.7 說明文件 中搜尋"
+          title="在 Python 3.10.8 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -86,10 +87,22 @@
 <li><a class="reference internal" href="#dictionary-displays">6.2.7. Dictionary displays</a></li>
 <li><a class="reference internal" href="#generator-expressions">6.2.8. Generator expressions</a></li>
 <li><a class="reference internal" href="#yield-expressions">6.2.9. Yield expressions</a><ul>
-<li><a class="reference internal" href="#generator-iterator-methods">6.2.9.1. Generator-iterator methods</a></li>
+<li><a class="reference internal" href="#generator-iterator-methods">6.2.9.1. Generator-iterator methods</a><ul>
+<li><a class="reference internal" href="#generator.__next__"><code class="docutils literal notranslate"><span class="pre">generator.__next__()</span></code></a></li>
+<li><a class="reference internal" href="#generator.send"><code class="docutils literal notranslate"><span class="pre">generator.send()</span></code></a></li>
+<li><a class="reference internal" href="#generator.throw"><code class="docutils literal notranslate"><span class="pre">generator.throw()</span></code></a></li>
+<li><a class="reference internal" href="#generator.close"><code class="docutils literal notranslate"><span class="pre">generator.close()</span></code></a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#examples">6.2.9.2. 模組</a></li>
 <li><a class="reference internal" href="#asynchronous-generator-functions">6.2.9.3. Asynchronous generator functions</a></li>
-<li><a class="reference internal" href="#asynchronous-generator-iterator-methods">6.2.9.4. Asynchronous generator-iterator methods</a></li>
+<li><a class="reference internal" href="#asynchronous-generator-iterator-methods">6.2.9.4. Asynchronous generator-iterator methods</a><ul>
+<li><a class="reference internal" href="#agen.__anext__"><code class="docutils literal notranslate"><span class="pre">agen.__anext__()</span></code></a></li>
+<li><a class="reference internal" href="#agen.asend"><code class="docutils literal notranslate"><span class="pre">agen.asend()</span></code></a></li>
+<li><a class="reference internal" href="#agen.athrow"><code class="docutils literal notranslate"><span class="pre">agen.athrow()</span></code></a></li>
+<li><a class="reference internal" href="#agen.aclose"><code class="docutils literal notranslate"><span class="pre">agen.aclose()</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -177,7 +190,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.7 Documentation</a> &#187;
+      <a href="../index.html">3.10.8 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Python 語言參考手冊</a> &#187;</li>
@@ -954,9 +967,18 @@ keyword arguments (and any <code class="docutils literal notranslate"><span clas
 used in the same call, so in practice this confusion does not arise.</p>
 <p id="index-50">If the syntax <code class="docutils literal notranslate"><span class="pre">**expression</span></code> appears in the function call, <code class="docutils literal notranslate"><span class="pre">expression</span></code> must
 evaluate to a <a class="reference internal" href="../glossary.html#term-mapping"><span class="xref std std-term">mapping</span></a>, the contents of which are treated as
-additional keyword arguments.  If a keyword is already present
-(as an explicit keyword argument, or from another unpacking),
+additional keyword arguments. If a parameter matching a key has already been
+given a value (by an explicit keyword argument, or from another unpacking),
 a <a class="reference internal" href="../library/exceptions.html#TypeError" title="TypeError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">TypeError</span></code></a> exception is raised.</p>
+<p>When <code class="docutils literal notranslate"><span class="pre">**expression</span></code> is used, each key in this mapping must be
+a string.
+Each value from the mapping is assigned to the first formal parameter
+eligible for keyword assignment whose name is equal to the key.
+A key need not be a Python identifier (e.g. <code class="docutils literal notranslate"><span class="pre">&quot;max-temp</span> <span class="pre">°F&quot;</span></code> is acceptable,
+although it will not match any formal parameter that could be declared).
+If there is no match to a formal parameter
+the key-value pair is collected by the <code class="docutils literal notranslate"><span class="pre">**</span></code> parameter, if there is one,
+or if there is not, a <a class="reference internal" href="../library/exceptions.html#TypeError" title="TypeError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">TypeError</span></code></a> exception is raised.</p>
 <p>Formal parameters using the syntax <code class="docutils literal notranslate"><span class="pre">*identifier</span></code> or <code class="docutils literal notranslate"><span class="pre">**identifier</span></code> cannot be
 used as positional argument slots or as keyword argument names.</p>
 <div class="versionchanged">
@@ -1366,7 +1388,7 @@ returns a boolean value regardless of the type of its argument
 (for example, <code class="docutils literal notranslate"><span class="pre">not</span> <span class="pre">'foo'</span></code> produces <code class="docutils literal notranslate"><span class="pre">False</span></code> rather than <code class="docutils literal notranslate"><span class="pre">''</span></code>.)</p>
 </section>
 <section id="assignment-expressions">
-<h2><span class="section-number">6.12. </span>Assignment expressions<a class="headerlink" href="#assignment-expressions" title="本標頭的永久連結">¶</a></h2>
+<span id="index-86"></span><h2><span class="section-number">6.12. </span>Assignment expressions<a class="headerlink" href="#assignment-expressions" title="本標頭的永久連結">¶</a></h2>
 <pre>
 <strong id="grammar-token-python-grammar-assignment_expression">assignment_expression</strong> ::=  [<a class="reference internal" href="lexical_analysis.html#grammar-token-python-grammar-identifier"><code class="xref docutils literal notranslate"><span class="pre">identifier</span></code></a> &quot;:=&quot;] <a class="reference internal" href="#grammar-token-python-grammar-expression"><code class="xref docutils literal notranslate"><span class="pre">expression</span></code></a>
 </pre>
@@ -1384,13 +1406,19 @@ returns a boolean value regardless of the type of its argument
     <span class="n">process</span><span class="p">(</span><span class="n">chunk</span><span class="p">)</span>
 </pre></div>
 </div>
+<p>Assignment expressions must be surrounded by parentheses when used
+as sub-expressions in slicing, conditional, lambda,
+keyword-argument, and comprehension-if expressions
+and in <code class="docutils literal notranslate"><span class="pre">assert</span></code> and <code class="docutils literal notranslate"><span class="pre">with</span></code> statements.
+In all other places where they can be used, parentheses are not required,
+including in <code class="docutils literal notranslate"><span class="pre">if</span></code> and <code class="docutils literal notranslate"><span class="pre">while</span></code> statements.</p>
 <div class="versionadded">
-<p><span class="versionmodified added">在 3.8 版本新加入: </span>See <span class="target" id="index-86"></span><a class="pep reference external" href="https://peps.python.org/pep-0572/"><strong>PEP 572</strong></a> for more details about assignment expressions.</p>
+<p><span class="versionmodified added">在 3.8 版本新加入: </span>See <span class="target" id="index-87"></span><a class="pep reference external" href="https://peps.python.org/pep-0572/"><strong>PEP 572</strong></a> for more details about assignment expressions.</p>
 </div>
 </section>
 <section id="conditional-expressions">
 <span id="if-expr"></span><h2><span class="section-number">6.13. </span>Conditional expressions<a class="headerlink" href="#conditional-expressions" title="本標頭的永久連結">¶</a></h2>
-<pre id="index-87">
+<pre id="index-88">
 <strong id="grammar-token-python-grammar-conditional_expression">conditional_expression</strong> ::=  <a class="reference internal" href="#grammar-token-python-grammar-or_test"><code class="xref docutils literal notranslate"><span class="pre">or_test</span></code></a> [&quot;if&quot; <a class="reference internal" href="#grammar-token-python-grammar-or_test"><code class="xref docutils literal notranslate"><span class="pre">or_test</span></code></a> &quot;else&quot; <a class="reference internal" href="#grammar-token-python-grammar-expression"><code class="xref docutils literal notranslate"><span class="pre">expression</span></code></a>]
 <strong id="grammar-token-python-grammar-expression">expression            </strong> ::=  <a class="reference internal" href="#grammar-token-python-grammar-conditional_expression"><code class="xref docutils literal notranslate"><span class="pre">conditional_expression</span></code></a> | <a class="reference internal" href="#grammar-token-python-grammar-lambda_expr"><code class="xref docutils literal notranslate"><span class="pre">lambda_expr</span></code></a>
 </pre>
@@ -1399,11 +1427,11 @@ priority of all Python operations.</p>
 <p>The expression <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">if</span> <span class="pre">C</span> <span class="pre">else</span> <span class="pre">y</span></code> first evaluates the condition, <em>C</em> rather than <em>x</em>.
 If <em>C</em> is true, <em>x</em> is evaluated and its value is returned; otherwise, <em>y</em> is
 evaluated and its value is returned.</p>
-<p>See <span class="target" id="index-88"></span><a class="pep reference external" href="https://peps.python.org/pep-0308/"><strong>PEP 308</strong></a> for more details about conditional expressions.</p>
+<p>See <span class="target" id="index-89"></span><a class="pep reference external" href="https://peps.python.org/pep-0308/"><strong>PEP 308</strong></a> for more details about conditional expressions.</p>
 </section>
 <section id="lambda">
 <span id="lambdas"></span><span id="id14"></span><h2><span class="section-number">6.14. </span>Lambdas<a class="headerlink" href="#lambda" title="本標頭的永久連結">¶</a></h2>
-<pre id="index-89">
+<pre id="index-90">
 <strong id="grammar-token-python-grammar-lambda_expr">lambda_expr</strong> ::=  &quot;lambda&quot; [<a class="reference internal" href="compound_stmts.html#grammar-token-python-grammar-parameter_list"><code class="xref docutils literal notranslate"><span class="pre">parameter_list</span></code></a>] &quot;:&quot; <a class="reference internal" href="#grammar-token-python-grammar-expression"><code class="xref docutils literal notranslate"><span class="pre">expression</span></code></a>
 </pre>
 <p>Lambda expressions (sometimes called lambda forms) are used to create anonymous
@@ -1419,24 +1447,24 @@ annotations.</p>
 </section>
 <section id="expression-lists">
 <span id="exprlists"></span><h2><span class="section-number">6.15. </span>Expression lists<a class="headerlink" href="#expression-lists" title="本標頭的永久連結">¶</a></h2>
-<pre id="index-90">
+<pre id="index-91">
 <strong id="grammar-token-python-grammar-expression_list">expression_list   </strong> ::=  <a class="reference internal" href="#grammar-token-python-grammar-expression"><code class="xref docutils literal notranslate"><span class="pre">expression</span></code></a> (&quot;,&quot; <a class="reference internal" href="#grammar-token-python-grammar-expression"><code class="xref docutils literal notranslate"><span class="pre">expression</span></code></a>)* [&quot;,&quot;]
 <strong id="grammar-token-python-grammar-starred_list">starred_list      </strong> ::=  <a class="reference internal" href="#grammar-token-python-grammar-starred_item"><code class="xref docutils literal notranslate"><span class="pre">starred_item</span></code></a> (&quot;,&quot; <a class="reference internal" href="#grammar-token-python-grammar-starred_item"><code class="xref docutils literal notranslate"><span class="pre">starred_item</span></code></a>)* [&quot;,&quot;]
 <strong id="grammar-token-python-grammar-starred_expression">starred_expression</strong> ::=  <a class="reference internal" href="#grammar-token-python-grammar-expression"><code class="xref docutils literal notranslate"><span class="pre">expression</span></code></a> | (<a class="reference internal" href="#grammar-token-python-grammar-starred_item"><code class="xref docutils literal notranslate"><span class="pre">starred_item</span></code></a> &quot;,&quot;)* [<a class="reference internal" href="#grammar-token-python-grammar-starred_item"><code class="xref docutils literal notranslate"><span class="pre">starred_item</span></code></a>]
 <strong id="grammar-token-python-grammar-starred_item">starred_item      </strong> ::=  <a class="reference internal" href="#grammar-token-python-grammar-assignment_expression"><code class="xref docutils literal notranslate"><span class="pre">assignment_expression</span></code></a> | &quot;*&quot; <a class="reference internal" href="#grammar-token-python-grammar-or_expr"><code class="xref docutils literal notranslate"><span class="pre">or_expr</span></code></a>
 </pre>
-<p id="index-91">Except when part of a list or set display, an expression list
+<p id="index-92">Except when part of a list or set display, an expression list
 containing at least one comma yields a tuple.  The length of
 the tuple is the number of expressions in the list.  The expressions are
 evaluated from left to right.</p>
-<p id="index-92">An asterisk <code class="docutils literal notranslate"><span class="pre">*</span></code> denotes <em class="dfn">iterable unpacking</em>.  Its operand must be
+<p id="index-93">An asterisk <code class="docutils literal notranslate"><span class="pre">*</span></code> denotes <em class="dfn">iterable unpacking</em>.  Its operand must be
 an <a class="reference internal" href="../glossary.html#term-iterable"><span class="xref std std-term">iterable</span></a>.  The iterable is expanded into a sequence of items,
 which are included in the new tuple, list, or set, at the site of
 the unpacking.</p>
 <div class="versionadded">
-<p><span class="versionmodified added">在 3.5 版本新加入: </span>Iterable unpacking in expression lists, originally proposed by <span class="target" id="index-93"></span><a class="pep reference external" href="https://peps.python.org/pep-0448/"><strong>PEP 448</strong></a>.</p>
+<p><span class="versionmodified added">在 3.5 版本新加入: </span>Iterable unpacking in expression lists, originally proposed by <span class="target" id="index-94"></span><a class="pep reference external" href="https://peps.python.org/pep-0448/"><strong>PEP 448</strong></a>.</p>
 </div>
-<p id="index-94">The trailing comma is required only to create a single tuple (a.k.a. a
+<p id="index-95">The trailing comma is required only to create a single tuple (a.k.a. a
 <em>singleton</em>); it is optional in all other cases.  A single expression without a
 trailing comma doesn't create a tuple, but rather yields the value of that
 expression. (To create an empty tuple, use an empty pair of parentheses:
@@ -1444,7 +1472,7 @@ expression. (To create an empty tuple, use an empty pair of parentheses:
 </section>
 <section id="evaluation-order">
 <span id="evalorder"></span><h2><span class="section-number">6.16. </span>Evaluation order<a class="headerlink" href="#evaluation-order" title="本標頭的永久連結">¶</a></h2>
-<p id="index-95">Python evaluates expressions from left to right.  Notice that while evaluating
+<p id="index-96">Python evaluates expressions from left to right.  Notice that while evaluating
 an assignment, the right-hand side is evaluated before the left-hand side.</p>
 <p>In the following lines, expressions will be evaluated in the arithmetic order of
 their suffixes:</p>
@@ -1459,7 +1487,7 @@ their suffixes:</p>
 </section>
 <section id="operator-precedence">
 <span id="operator-summary"></span><h2><span class="section-number">6.17. </span>Operator precedence<a class="headerlink" href="#operator-precedence" title="本標頭的永久連結">¶</a></h2>
-<p id="index-96">The following table summarizes the operator precedence in Python, from highest
+<p id="index-97">The following table summarizes the operator precedence in Python, from highest
 precedence (most binding) to lowest precedence (least binding).  Operators in
 the same box have the same precedence.  Unless the syntax is explicitly given,
 operators are binary.  Operators in the same box group left to right (except for
@@ -1627,10 +1655,22 @@ precedence applies.</p>
 <li><a class="reference internal" href="#dictionary-displays">6.2.7. Dictionary displays</a></li>
 <li><a class="reference internal" href="#generator-expressions">6.2.8. Generator expressions</a></li>
 <li><a class="reference internal" href="#yield-expressions">6.2.9. Yield expressions</a><ul>
-<li><a class="reference internal" href="#generator-iterator-methods">6.2.9.1. Generator-iterator methods</a></li>
+<li><a class="reference internal" href="#generator-iterator-methods">6.2.9.1. Generator-iterator methods</a><ul>
+<li><a class="reference internal" href="#generator.__next__"><code class="docutils literal notranslate"><span class="pre">generator.__next__()</span></code></a></li>
+<li><a class="reference internal" href="#generator.send"><code class="docutils literal notranslate"><span class="pre">generator.send()</span></code></a></li>
+<li><a class="reference internal" href="#generator.throw"><code class="docutils literal notranslate"><span class="pre">generator.throw()</span></code></a></li>
+<li><a class="reference internal" href="#generator.close"><code class="docutils literal notranslate"><span class="pre">generator.close()</span></code></a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#examples">6.2.9.2. 模組</a></li>
 <li><a class="reference internal" href="#asynchronous-generator-functions">6.2.9.3. Asynchronous generator functions</a></li>
-<li><a class="reference internal" href="#asynchronous-generator-iterator-methods">6.2.9.4. Asynchronous generator-iterator methods</a></li>
+<li><a class="reference internal" href="#asynchronous-generator-iterator-methods">6.2.9.4. Asynchronous generator-iterator methods</a><ul>
+<li><a class="reference internal" href="#agen.__anext__"><code class="docutils literal notranslate"><span class="pre">agen.__anext__()</span></code></a></li>
+<li><a class="reference internal" href="#agen.asend"><code class="docutils literal notranslate"><span class="pre">agen.asend()</span></code></a></li>
+<li><a class="reference internal" href="#agen.athrow"><code class="docutils literal notranslate"><span class="pre">agen.athrow()</span></code></a></li>
+<li><a class="reference internal" href="#agen.aclose"><code class="docutils literal notranslate"><span class="pre">agen.aclose()</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -1721,7 +1761,7 @@ precedence applies.</p>
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.7 Documentation</a> &#187;
+      <a href="../index.html">3.10.8 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 語言參考手冊</a> &#187;</li>
@@ -1757,11 +1797,11 @@ precedence applies.</p>
 <br />
     <br />
 
-    最後更新於 9月 16, 2022。
+    最後更新於 10月 15, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 
-    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1 建立。
+    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.2.3 建立。
     </div>
 
   </body>

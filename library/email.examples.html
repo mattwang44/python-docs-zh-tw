@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>email: Examples &#8212; Python 3.10.7 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>email: Examples &#8212; Python 3.10.8 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -16,12 +16,13 @@
     <script src="../_static/underscore.js"></script>
     <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/translations.js"></script>
     
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.10.7 說明文件 中搜尋"
+          title="在 Python 3.10.8 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -123,7 +124,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.7 Documentation</a> &#187;
+      <a href="../index.html">3.10.8 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -455,8 +456,15 @@ process it:</p>
 <span class="kn">from</span> <span class="nn">email</span> <span class="kn">import</span> <span class="n">policy</span>
 <span class="kn">from</span> <span class="nn">email.parser</span> <span class="kn">import</span> <span class="n">BytesParser</span>
 
-<span class="c1"># An imaginary module that would make this work and be safe.</span>
-<span class="kn">from</span> <span class="nn">imaginary</span> <span class="kn">import</span> <span class="n">magic_html_parser</span>
+
+<span class="k">def</span> <span class="nf">magic_html_parser</span><span class="p">(</span><span class="n">html_text</span><span class="p">,</span> <span class="n">partfiles</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Return safety-sanitized html linked to partfiles.</span>
+
+<span class="sd">    Rewrite the href=&quot;cid:....&quot; attributes to point to the filenames in partfiles.</span>
+<span class="sd">    Though not trivial, this should be possible using html.parser.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;Add the magic needed&quot;</span><span class="p">)</span>
+
 
 <span class="c1"># In a real program you&#39;d get the filename from the arguments.</span>
 <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;outgoing.msg&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fp</span><span class="p">:</span>
@@ -509,9 +517,6 @@ process it:</p>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Don&#39;t know how to display </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">richest</span><span class="o">.</span><span class="n">get_content_type</span><span class="p">()))</span>
     <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span>
 <span class="k">with</span> <span class="n">tempfile</span><span class="o">.</span><span class="n">NamedTemporaryFile</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">delete</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-    <span class="c1"># The magic_html_parser has to rewrite the href=&quot;cid:....&quot; attributes to</span>
-    <span class="c1"># point to the filenames in partfiles.  It also has to do a safety-sanitize</span>
-    <span class="c1"># of the html.  It could be written using html.parser.</span>
     <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">magic_html_parser</span><span class="p">(</span><span class="n">body</span><span class="o">.</span><span class="n">get_content</span><span class="p">(),</span> <span class="n">partfiles</span><span class="p">))</span>
 <span class="n">webbrowser</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
 <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
@@ -603,7 +608,7 @@ Cela ressemble à un excellent recipie[1] déjeuner.
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.7 Documentation</a> &#187;
+      <a href="../index.html">3.10.8 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -641,11 +646,11 @@ Cela ressemble à un excellent recipie[1] déjeuner.
 <br />
     <br />
 
-    最後更新於 9月 16, 2022。
+    最後更新於 10月 15, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 
-    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1 建立。
+    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.2.3 建立。
     </div>
 
   </body>

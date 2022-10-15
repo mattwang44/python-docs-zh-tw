@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>Custom Python Interpreters &#8212; Python 3.10.7 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Python Interpreters &#8212; Python 3.10.8 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -16,12 +16,13 @@
     <script src="../_static/underscore.js"></script>
     <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/translations.js"></script>
     
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.10.7 說明文件 中搜尋"
+          title="在 Python 3.10.8 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -123,7 +124,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.7 Documentation</a> &#187;
+      <a href="../index.html">3.10.8 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -161,11 +162,33 @@ to support compiling a possibly incomplete chunk of Python code.)</p>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="code.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">code</span></code> --- Interpreter base classes</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="code.html#interactive-interpreter-objects">Interactive Interpreter Objects</a></li>
-<li class="toctree-l2"><a class="reference internal" href="code.html#interactive-console-objects">Interactive Console Objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="code.html#code.InteractiveInterpreter"><code class="docutils literal notranslate"><span class="pre">InteractiveInterpreter</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="code.html#code.InteractiveConsole"><code class="docutils literal notranslate"><span class="pre">InteractiveConsole</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="code.html#code.interact"><code class="docutils literal notranslate"><span class="pre">interact()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="code.html#code.compile_command"><code class="docutils literal notranslate"><span class="pre">compile_command()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="code.html#interactive-interpreter-objects">Interactive Interpreter Objects</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="code.html#code.InteractiveInterpreter.runsource"><code class="docutils literal notranslate"><span class="pre">InteractiveInterpreter.runsource()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="code.html#code.InteractiveInterpreter.runcode"><code class="docutils literal notranslate"><span class="pre">InteractiveInterpreter.runcode()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="code.html#code.InteractiveInterpreter.showsyntaxerror"><code class="docutils literal notranslate"><span class="pre">InteractiveInterpreter.showsyntaxerror()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="code.html#code.InteractiveInterpreter.showtraceback"><code class="docutils literal notranslate"><span class="pre">InteractiveInterpreter.showtraceback()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="code.html#code.InteractiveInterpreter.write"><code class="docutils literal notranslate"><span class="pre">InteractiveInterpreter.write()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="codeop.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">codeop</span></code> --- Compile Python code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="code.html#interactive-console-objects">Interactive Console Objects</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="code.html#code.InteractiveConsole.interact"><code class="docutils literal notranslate"><span class="pre">InteractiveConsole.interact()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="code.html#code.InteractiveConsole.push"><code class="docutils literal notranslate"><span class="pre">InteractiveConsole.push()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="code.html#code.InteractiveConsole.resetbuffer"><code class="docutils literal notranslate"><span class="pre">InteractiveConsole.resetbuffer()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="code.html#code.InteractiveConsole.raw_input"><code class="docutils literal notranslate"><span class="pre">InteractiveConsole.raw_input()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="codeop.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">codeop</span></code> --- Compile Python code</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="codeop.html#codeop.compile_command"><code class="docutils literal notranslate"><span class="pre">compile_command()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="codeop.html#codeop.Compile"><code class="docutils literal notranslate"><span class="pre">Compile</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="codeop.html#codeop.CommandCompiler"><code class="docutils literal notranslate"><span class="pre">CommandCompiler</span></code></a></li>
+</ul>
+</li>
 </ul>
 </div>
 </section>
@@ -232,7 +255,7 @@ to support compiling a possibly incomplete chunk of Python code.)</p>
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.7 Documentation</a> &#187;
+      <a href="../index.html">3.10.8 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -268,11 +291,11 @@ to support compiling a possibly incomplete chunk of Python code.)</p>
 <br />
     <br />
 
-    最後更新於 9月 16, 2022。
+    最後更新於 10月 15, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 
-    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1 建立。
+    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.2.3 建立。
     </div>
 
   </body>

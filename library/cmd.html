@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>cmd --- Support for line-oriented command interpreters &#8212; Python 3.10.7 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cmd --- Support for line-oriented command interpreters &#8212; Python 3.10.8 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -16,12 +16,13 @@
     <script src="../_static/underscore.js"></script>
     <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/translations.js"></script>
     
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.10.7 說明文件 中搜尋"
+          title="在 Python 3.10.8 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -75,7 +76,29 @@
     <h3><a href="../contents.html">目錄</a></h3>
     <ul>
 <li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">cmd</span></code> --- Support for line-oriented command interpreters</a><ul>
-<li><a class="reference internal" href="#cmd-objects">Cmd 物件</a></li>
+<li><a class="reference internal" href="#cmd.Cmd"><code class="docutils literal notranslate"><span class="pre">Cmd</span></code></a></li>
+<li><a class="reference internal" href="#cmd-objects">Cmd 物件</a><ul>
+<li><a class="reference internal" href="#cmd.Cmd.cmdloop"><code class="docutils literal notranslate"><span class="pre">Cmd.cmdloop()</span></code></a></li>
+<li><a class="reference internal" href="#cmd.Cmd.onecmd"><code class="docutils literal notranslate"><span class="pre">Cmd.onecmd()</span></code></a></li>
+<li><a class="reference internal" href="#cmd.Cmd.emptyline"><code class="docutils literal notranslate"><span class="pre">Cmd.emptyline()</span></code></a></li>
+<li><a class="reference internal" href="#cmd.Cmd.default"><code class="docutils literal notranslate"><span class="pre">Cmd.default()</span></code></a></li>
+<li><a class="reference internal" href="#cmd.Cmd.completedefault"><code class="docutils literal notranslate"><span class="pre">Cmd.completedefault()</span></code></a></li>
+<li><a class="reference internal" href="#cmd.Cmd.precmd"><code class="docutils literal notranslate"><span class="pre">Cmd.precmd()</span></code></a></li>
+<li><a class="reference internal" href="#cmd.Cmd.postcmd"><code class="docutils literal notranslate"><span class="pre">Cmd.postcmd()</span></code></a></li>
+<li><a class="reference internal" href="#cmd.Cmd.preloop"><code class="docutils literal notranslate"><span class="pre">Cmd.preloop()</span></code></a></li>
+<li><a class="reference internal" href="#cmd.Cmd.postloop"><code class="docutils literal notranslate"><span class="pre">Cmd.postloop()</span></code></a></li>
+<li><a class="reference internal" href="#cmd.Cmd.prompt"><code class="docutils literal notranslate"><span class="pre">Cmd.prompt</span></code></a></li>
+<li><a class="reference internal" href="#cmd.Cmd.identchars"><code class="docutils literal notranslate"><span class="pre">Cmd.identchars</span></code></a></li>
+<li><a class="reference internal" href="#cmd.Cmd.lastcmd"><code class="docutils literal notranslate"><span class="pre">Cmd.lastcmd</span></code></a></li>
+<li><a class="reference internal" href="#cmd.Cmd.cmdqueue"><code class="docutils literal notranslate"><span class="pre">Cmd.cmdqueue</span></code></a></li>
+<li><a class="reference internal" href="#cmd.Cmd.intro"><code class="docutils literal notranslate"><span class="pre">Cmd.intro</span></code></a></li>
+<li><a class="reference internal" href="#cmd.Cmd.doc_header"><code class="docutils literal notranslate"><span class="pre">Cmd.doc_header</span></code></a></li>
+<li><a class="reference internal" href="#cmd.Cmd.misc_header"><code class="docutils literal notranslate"><span class="pre">Cmd.misc_header</span></code></a></li>
+<li><a class="reference internal" href="#cmd.Cmd.undoc_header"><code class="docutils literal notranslate"><span class="pre">Cmd.undoc_header</span></code></a></li>
+<li><a class="reference internal" href="#cmd.Cmd.ruler"><code class="docutils literal notranslate"><span class="pre">Cmd.ruler</span></code></a></li>
+<li><a class="reference internal" href="#cmd.Cmd.use_rawinput"><code class="docutils literal notranslate"><span class="pre">Cmd.use_rawinput</span></code></a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#cmd-example">Cmd Example</a></li>
 </ul>
 </li>
@@ -134,7 +157,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.7 Documentation</a> &#187;
+      <a href="../index.html">3.10.8 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -539,7 +562,29 @@ Thank you for using Turtle
     <h3><a href="../contents.html">目錄</a></h3>
     <ul>
 <li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">cmd</span></code> --- Support for line-oriented command interpreters</a><ul>
-<li><a class="reference internal" href="#cmd-objects">Cmd 物件</a></li>
+<li><a class="reference internal" href="#cmd.Cmd"><code class="docutils literal notranslate"><span class="pre">Cmd</span></code></a></li>
+<li><a class="reference internal" href="#cmd-objects">Cmd 物件</a><ul>
+<li><a class="reference internal" href="#cmd.Cmd.cmdloop"><code class="docutils literal notranslate"><span class="pre">Cmd.cmdloop()</span></code></a></li>
+<li><a class="reference internal" href="#cmd.Cmd.onecmd"><code class="docutils literal notranslate"><span class="pre">Cmd.onecmd()</span></code></a></li>
+<li><a class="reference internal" href="#cmd.Cmd.emptyline"><code class="docutils literal notranslate"><span class="pre">Cmd.emptyline()</span></code></a></li>
+<li><a class="reference internal" href="#cmd.Cmd.default"><code class="docutils literal notranslate"><span class="pre">Cmd.default()</span></code></a></li>
+<li><a class="reference internal" href="#cmd.Cmd.completedefault"><code class="docutils literal notranslate"><span class="pre">Cmd.completedefault()</span></code></a></li>
+<li><a class="reference internal" href="#cmd.Cmd.precmd"><code class="docutils literal notranslate"><span class="pre">Cmd.precmd()</span></code></a></li>
+<li><a class="reference internal" href="#cmd.Cmd.postcmd"><code class="docutils literal notranslate"><span class="pre">Cmd.postcmd()</span></code></a></li>
+<li><a class="reference internal" href="#cmd.Cmd.preloop"><code class="docutils literal notranslate"><span class="pre">Cmd.preloop()</span></code></a></li>
+<li><a class="reference internal" href="#cmd.Cmd.postloop"><code class="docutils literal notranslate"><span class="pre">Cmd.postloop()</span></code></a></li>
+<li><a class="reference internal" href="#cmd.Cmd.prompt"><code class="docutils literal notranslate"><span class="pre">Cmd.prompt</span></code></a></li>
+<li><a class="reference internal" href="#cmd.Cmd.identchars"><code class="docutils literal notranslate"><span class="pre">Cmd.identchars</span></code></a></li>
+<li><a class="reference internal" href="#cmd.Cmd.lastcmd"><code class="docutils literal notranslate"><span class="pre">Cmd.lastcmd</span></code></a></li>
+<li><a class="reference internal" href="#cmd.Cmd.cmdqueue"><code class="docutils literal notranslate"><span class="pre">Cmd.cmdqueue</span></code></a></li>
+<li><a class="reference internal" href="#cmd.Cmd.intro"><code class="docutils literal notranslate"><span class="pre">Cmd.intro</span></code></a></li>
+<li><a class="reference internal" href="#cmd.Cmd.doc_header"><code class="docutils literal notranslate"><span class="pre">Cmd.doc_header</span></code></a></li>
+<li><a class="reference internal" href="#cmd.Cmd.misc_header"><code class="docutils literal notranslate"><span class="pre">Cmd.misc_header</span></code></a></li>
+<li><a class="reference internal" href="#cmd.Cmd.undoc_header"><code class="docutils literal notranslate"><span class="pre">Cmd.undoc_header</span></code></a></li>
+<li><a class="reference internal" href="#cmd.Cmd.ruler"><code class="docutils literal notranslate"><span class="pre">Cmd.ruler</span></code></a></li>
+<li><a class="reference internal" href="#cmd.Cmd.use_rawinput"><code class="docutils literal notranslate"><span class="pre">Cmd.use_rawinput</span></code></a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#cmd-example">Cmd Example</a></li>
 </ul>
 </li>
@@ -601,7 +646,7 @@ Thank you for using Turtle
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.7 Documentation</a> &#187;
+      <a href="../index.html">3.10.8 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -638,11 +683,11 @@ Thank you for using Turtle
 <br />
     <br />
 
-    最後更新於 9月 16, 2022。
+    最後更新於 10月 15, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 
-    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1 建立。
+    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.2.3 建立。
     </div>
 
   </body>

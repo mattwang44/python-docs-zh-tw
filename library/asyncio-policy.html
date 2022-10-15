@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>Policies &#8212; Python 3.10.7 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Policies &#8212; Python 3.10.8 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -16,12 +16,13 @@
     <script src="../_static/underscore.js"></script>
     <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/translations.js"></script>
     
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.10.7 說明文件 中搜尋"
+          title="在 Python 3.10.8 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -75,9 +76,43 @@
     <h3><a href="../contents.html">目錄</a></h3>
     <ul>
 <li><a class="reference internal" href="#">Policies</a><ul>
-<li><a class="reference internal" href="#getting-and-setting-the-policy">Getting and Setting the Policy</a></li>
-<li><a class="reference internal" href="#policy-objects">Policy Objects</a></li>
-<li><a class="reference internal" href="#process-watchers">Process Watchers</a></li>
+<li><a class="reference internal" href="#getting-and-setting-the-policy">Getting and Setting the Policy</a><ul>
+<li><a class="reference internal" href="#asyncio.get_event_loop_policy"><code class="docutils literal notranslate"><span class="pre">get_event_loop_policy()</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.set_event_loop_policy"><code class="docutils literal notranslate"><span class="pre">set_event_loop_policy()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#policy-objects">Policy Objects</a><ul>
+<li><a class="reference internal" href="#asyncio.AbstractEventLoopPolicy"><code class="docutils literal notranslate"><span class="pre">AbstractEventLoopPolicy</span></code></a><ul>
+<li><a class="reference internal" href="#asyncio.AbstractEventLoopPolicy.get_event_loop"><code class="docutils literal notranslate"><span class="pre">AbstractEventLoopPolicy.get_event_loop()</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.AbstractEventLoopPolicy.set_event_loop"><code class="docutils literal notranslate"><span class="pre">AbstractEventLoopPolicy.set_event_loop()</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.AbstractEventLoopPolicy.new_event_loop"><code class="docutils literal notranslate"><span class="pre">AbstractEventLoopPolicy.new_event_loop()</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.AbstractEventLoopPolicy.get_child_watcher"><code class="docutils literal notranslate"><span class="pre">AbstractEventLoopPolicy.get_child_watcher()</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.AbstractEventLoopPolicy.set_child_watcher"><code class="docutils literal notranslate"><span class="pre">AbstractEventLoopPolicy.set_child_watcher()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#asyncio.DefaultEventLoopPolicy"><code class="docutils literal notranslate"><span class="pre">DefaultEventLoopPolicy</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.WindowsSelectorEventLoopPolicy"><code class="docutils literal notranslate"><span class="pre">WindowsSelectorEventLoopPolicy</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.WindowsProactorEventLoopPolicy"><code class="docutils literal notranslate"><span class="pre">WindowsProactorEventLoopPolicy</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#process-watchers">Process Watchers</a><ul>
+<li><a class="reference internal" href="#asyncio.get_child_watcher"><code class="docutils literal notranslate"><span class="pre">get_child_watcher()</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.set_child_watcher"><code class="docutils literal notranslate"><span class="pre">set_child_watcher()</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.AbstractChildWatcher"><code class="docutils literal notranslate"><span class="pre">AbstractChildWatcher</span></code></a><ul>
+<li><a class="reference internal" href="#asyncio.AbstractChildWatcher.add_child_handler"><code class="docutils literal notranslate"><span class="pre">AbstractChildWatcher.add_child_handler()</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.AbstractChildWatcher.remove_child_handler"><code class="docutils literal notranslate"><span class="pre">AbstractChildWatcher.remove_child_handler()</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.AbstractChildWatcher.attach_loop"><code class="docutils literal notranslate"><span class="pre">AbstractChildWatcher.attach_loop()</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.AbstractChildWatcher.is_active"><code class="docutils literal notranslate"><span class="pre">AbstractChildWatcher.is_active()</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.AbstractChildWatcher.close"><code class="docutils literal notranslate"><span class="pre">AbstractChildWatcher.close()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#asyncio.ThreadedChildWatcher"><code class="docutils literal notranslate"><span class="pre">ThreadedChildWatcher</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.MultiLoopChildWatcher"><code class="docutils literal notranslate"><span class="pre">MultiLoopChildWatcher</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.SafeChildWatcher"><code class="docutils literal notranslate"><span class="pre">SafeChildWatcher</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.FastChildWatcher"><code class="docutils literal notranslate"><span class="pre">FastChildWatcher</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.PidfdChildWatcher"><code class="docutils literal notranslate"><span class="pre">PidfdChildWatcher</span></code></a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#custom-policies">Custom Policies</a></li>
 </ul>
 </li>
@@ -136,7 +171,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.7 Documentation</a> &#187;
+      <a href="../index.html">3.10.8 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -167,19 +202,24 @@
             
   <section id="policies">
 <span id="asyncio-policies"></span><h1>Policies<a class="headerlink" href="#policies" title="本標頭的永久連結">¶</a></h1>
-<p>An event loop policy is a global per-process object that controls
-the management of the event loop. Each event loop has a default
-policy, which can be changed and customized using the policy API.</p>
-<p>A policy defines the notion of <em>context</em> and manages a
-separate event loop per context. The default policy
-defines <em>context</em> to be the current thread.</p>
-<p>By using a custom event loop policy, the behavior of
-<a class="reference internal" href="asyncio-eventloop.html#asyncio.get_event_loop" title="asyncio.get_event_loop"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_event_loop()</span></code></a>, <a class="reference internal" href="asyncio-eventloop.html#asyncio.set_event_loop" title="asyncio.set_event_loop"><code class="xref py py-func docutils literal notranslate"><span class="pre">set_event_loop()</span></code></a>, and
-<a class="reference internal" href="asyncio-eventloop.html#asyncio.new_event_loop" title="asyncio.new_event_loop"><code class="xref py py-func docutils literal notranslate"><span class="pre">new_event_loop()</span></code></a> functions can be customized.</p>
+<p>An event loop policy is a global object
+used to get and set the current <a class="reference internal" href="asyncio-eventloop.html#asyncio-event-loop"><span class="std std-ref">event loop</span></a>,
+as well as create new event loops.
+The default policy can be <a class="reference internal" href="#asyncio-policy-get-set"><span class="std std-ref">replaced</span></a> with
+<a class="reference internal" href="#asyncio-policy-builtin"><span class="std std-ref">built-in alternatives</span></a>
+to use different event loop implementations,
+or substituted by a <a class="reference internal" href="#asyncio-custom-policies"><span class="std std-ref">custom policy</span></a>
+that can override these behaviors.</p>
+<p>The <a class="reference internal" href="#asyncio-policy-objects"><span class="std std-ref">policy object</span></a>
+gets and sets a separate event loop per <em>context</em>.
+This is per-thread by default,
+though custom policies could define <em>context</em> differently.</p>
+<p>Custom event loop policies can control the behavior of
+<a class="reference internal" href="asyncio-eventloop.html#asyncio.get_event_loop" title="asyncio.get_event_loop"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_event_loop()</span></code></a>, <a class="reference internal" href="asyncio-eventloop.html#asyncio.set_event_loop" title="asyncio.set_event_loop"><code class="xref py py-func docutils literal notranslate"><span class="pre">set_event_loop()</span></code></a>, and <a class="reference internal" href="asyncio-eventloop.html#asyncio.new_event_loop" title="asyncio.new_event_loop"><code class="xref py py-func docutils literal notranslate"><span class="pre">new_event_loop()</span></code></a>.</p>
 <p>Policy objects should implement the APIs defined
 in the <a class="reference internal" href="#asyncio.AbstractEventLoopPolicy" title="asyncio.AbstractEventLoopPolicy"><code class="xref py py-class docutils literal notranslate"><span class="pre">AbstractEventLoopPolicy</span></code></a> abstract base class.</p>
 <section id="getting-and-setting-the-policy">
-<h2>Getting and Setting the Policy<a class="headerlink" href="#getting-and-setting-the-policy" title="本標頭的永久連結">¶</a></h2>
+<span id="asyncio-policy-get-set"></span><h2>Getting and Setting the Policy<a class="headerlink" href="#getting-and-setting-the-policy" title="本標頭的永久連結">¶</a></h2>
 <p>The following functions can be used to get and set the policy
 for the current process:</p>
 <dl class="py function">
@@ -197,7 +237,7 @@ for the current process:</p>
 
 </section>
 <section id="policy-objects">
-<h2>Policy Objects<a class="headerlink" href="#policy-objects" title="本標頭的永久連結">¶</a></h2>
+<span id="asyncio-policy-objects"></span><h2>Policy Objects<a class="headerlink" href="#policy-objects" title="本標頭的永久連結">¶</a></h2>
 <p>The abstract event loop policy base class is defined as follows:</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="asyncio.AbstractEventLoopPolicy">
@@ -246,7 +286,7 @@ for the current process:</p>
 
 </dd></dl>
 
-<p>asyncio ships with the following built-in policies:</p>
+<p id="asyncio-policy-builtin">asyncio ships with the following built-in policies:</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="asyncio.DefaultEventLoopPolicy">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">asyncio.</span></span><span class="sig-name descname"><span class="pre">DefaultEventLoopPolicy</span></span><a class="headerlink" href="#asyncio.DefaultEventLoopPolicy" title="本定義的永久連結">¶</a></dt>
@@ -437,7 +477,7 @@ only work on recent (5.3+) kernels.</p>
 
 </section>
 <section id="custom-policies">
-<h2>Custom Policies<a class="headerlink" href="#custom-policies" title="本標頭的永久連結">¶</a></h2>
+<span id="asyncio-custom-policies"></span><h2>Custom Policies<a class="headerlink" href="#custom-policies" title="本標頭的永久連結">¶</a></h2>
 <p>To implement a new event loop policy, it is recommended to subclass
 <a class="reference internal" href="#asyncio.DefaultEventLoopPolicy" title="asyncio.DefaultEventLoopPolicy"><code class="xref py py-class docutils literal notranslate"><span class="pre">DefaultEventLoopPolicy</span></code></a> and override the methods for which
 custom behavior is wanted, e.g.:</p>
@@ -469,9 +509,43 @@ custom behavior is wanted, e.g.:</p>
     <h3><a href="../contents.html">目錄</a></h3>
     <ul>
 <li><a class="reference internal" href="#">Policies</a><ul>
-<li><a class="reference internal" href="#getting-and-setting-the-policy">Getting and Setting the Policy</a></li>
-<li><a class="reference internal" href="#policy-objects">Policy Objects</a></li>
-<li><a class="reference internal" href="#process-watchers">Process Watchers</a></li>
+<li><a class="reference internal" href="#getting-and-setting-the-policy">Getting and Setting the Policy</a><ul>
+<li><a class="reference internal" href="#asyncio.get_event_loop_policy"><code class="docutils literal notranslate"><span class="pre">get_event_loop_policy()</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.set_event_loop_policy"><code class="docutils literal notranslate"><span class="pre">set_event_loop_policy()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#policy-objects">Policy Objects</a><ul>
+<li><a class="reference internal" href="#asyncio.AbstractEventLoopPolicy"><code class="docutils literal notranslate"><span class="pre">AbstractEventLoopPolicy</span></code></a><ul>
+<li><a class="reference internal" href="#asyncio.AbstractEventLoopPolicy.get_event_loop"><code class="docutils literal notranslate"><span class="pre">AbstractEventLoopPolicy.get_event_loop()</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.AbstractEventLoopPolicy.set_event_loop"><code class="docutils literal notranslate"><span class="pre">AbstractEventLoopPolicy.set_event_loop()</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.AbstractEventLoopPolicy.new_event_loop"><code class="docutils literal notranslate"><span class="pre">AbstractEventLoopPolicy.new_event_loop()</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.AbstractEventLoopPolicy.get_child_watcher"><code class="docutils literal notranslate"><span class="pre">AbstractEventLoopPolicy.get_child_watcher()</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.AbstractEventLoopPolicy.set_child_watcher"><code class="docutils literal notranslate"><span class="pre">AbstractEventLoopPolicy.set_child_watcher()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#asyncio.DefaultEventLoopPolicy"><code class="docutils literal notranslate"><span class="pre">DefaultEventLoopPolicy</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.WindowsSelectorEventLoopPolicy"><code class="docutils literal notranslate"><span class="pre">WindowsSelectorEventLoopPolicy</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.WindowsProactorEventLoopPolicy"><code class="docutils literal notranslate"><span class="pre">WindowsProactorEventLoopPolicy</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#process-watchers">Process Watchers</a><ul>
+<li><a class="reference internal" href="#asyncio.get_child_watcher"><code class="docutils literal notranslate"><span class="pre">get_child_watcher()</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.set_child_watcher"><code class="docutils literal notranslate"><span class="pre">set_child_watcher()</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.AbstractChildWatcher"><code class="docutils literal notranslate"><span class="pre">AbstractChildWatcher</span></code></a><ul>
+<li><a class="reference internal" href="#asyncio.AbstractChildWatcher.add_child_handler"><code class="docutils literal notranslate"><span class="pre">AbstractChildWatcher.add_child_handler()</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.AbstractChildWatcher.remove_child_handler"><code class="docutils literal notranslate"><span class="pre">AbstractChildWatcher.remove_child_handler()</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.AbstractChildWatcher.attach_loop"><code class="docutils literal notranslate"><span class="pre">AbstractChildWatcher.attach_loop()</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.AbstractChildWatcher.is_active"><code class="docutils literal notranslate"><span class="pre">AbstractChildWatcher.is_active()</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.AbstractChildWatcher.close"><code class="docutils literal notranslate"><span class="pre">AbstractChildWatcher.close()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#asyncio.ThreadedChildWatcher"><code class="docutils literal notranslate"><span class="pre">ThreadedChildWatcher</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.MultiLoopChildWatcher"><code class="docutils literal notranslate"><span class="pre">MultiLoopChildWatcher</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.SafeChildWatcher"><code class="docutils literal notranslate"><span class="pre">SafeChildWatcher</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.FastChildWatcher"><code class="docutils literal notranslate"><span class="pre">FastChildWatcher</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.PidfdChildWatcher"><code class="docutils literal notranslate"><span class="pre">PidfdChildWatcher</span></code></a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#custom-policies">Custom Policies</a></li>
 </ul>
 </li>
@@ -533,7 +607,7 @@ custom behavior is wanted, e.g.:</p>
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.7 Documentation</a> &#187;
+      <a href="../index.html">3.10.8 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -571,11 +645,11 @@ custom behavior is wanted, e.g.:</p>
 <br />
     <br />
 
-    最後更新於 9月 16, 2022。
+    最後更新於 10月 15, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 
-    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1 建立。
+    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.2.3 建立。
     </div>
 
   </body>

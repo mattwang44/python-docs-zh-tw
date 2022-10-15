@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>Futures &#8212; Python 3.10.7 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Futures &#8212; Python 3.10.8 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -16,12 +16,13 @@
     <script src="../_static/underscore.js"></script>
     <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/translations.js"></script>
     
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.10.7 說明文件 中搜尋"
+          title="在 Python 3.10.8 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -75,8 +76,28 @@
     <h3><a href="../contents.html">目錄</a></h3>
     <ul>
 <li><a class="reference internal" href="#">Futures</a><ul>
-<li><a class="reference internal" href="#future-functions">Future 函數</a></li>
-<li><a class="reference internal" href="#future-object">Future 物件</a></li>
+<li><a class="reference internal" href="#future-functions">Future 函數</a><ul>
+<li><a class="reference internal" href="#asyncio.isfuture"><code class="docutils literal notranslate"><span class="pre">isfuture()</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.ensure_future"><code class="docutils literal notranslate"><span class="pre">ensure_future()</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.wrap_future"><code class="docutils literal notranslate"><span class="pre">wrap_future()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#future-object">Future 物件</a><ul>
+<li><a class="reference internal" href="#asyncio.Future"><code class="docutils literal notranslate"><span class="pre">Future</span></code></a><ul>
+<li><a class="reference internal" href="#asyncio.Future.result"><code class="docutils literal notranslate"><span class="pre">Future.result()</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.Future.set_result"><code class="docutils literal notranslate"><span class="pre">Future.set_result()</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.Future.set_exception"><code class="docutils literal notranslate"><span class="pre">Future.set_exception()</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.Future.done"><code class="docutils literal notranslate"><span class="pre">Future.done()</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.Future.cancelled"><code class="docutils literal notranslate"><span class="pre">Future.cancelled()</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.Future.add_done_callback"><code class="docutils literal notranslate"><span class="pre">Future.add_done_callback()</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.Future.remove_done_callback"><code class="docutils literal notranslate"><span class="pre">Future.remove_done_callback()</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.Future.cancel"><code class="docutils literal notranslate"><span class="pre">Future.cancel()</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.Future.exception"><code class="docutils literal notranslate"><span class="pre">Future.exception()</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.Future.get_loop"><code class="docutils literal notranslate"><span class="pre">Future.get_loop()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -134,7 +155,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.7 Documentation</a> &#187;
+      <a href="../index.html">3.10.8 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -223,7 +244,7 @@
 <dt class="sig sig-object py" id="asyncio.Future">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">asyncio.</span></span><span class="sig-name descname"><span class="pre">Future</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loop</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#asyncio.Future" title="本定義的永久連結">¶</a></dt>
 <dd><p>一個 Future 代表一個非同步運算的最終結果。並不支援執行緒安全 (thread-safe)。</p>
-<p>Future 是一個 <a class="reference internal" href="../glossary.html#term-awaitable"><span class="xref std std-term">awaitable</span></a> 物件。協程可以等待 Future 物件直到它們有結果或例外被設置、或者被取消。</p>
+<p>Future 是一個 <a class="reference internal" href="../glossary.html#term-awaitable"><span class="xref std std-term">awaitable</span></a> 物件。協程可以等待 Future 物件直到它們有結果或例外被設置、或者被取消。一個 Future 可被多次等待而結果都會是相同的。</p>
 <p>Future 通常用於讓低階基於回呼的程式（例如在協定實作中使用 asyncio <a class="reference internal" href="asyncio-protocol.html#asyncio-transports-protocols"><span class="std std-ref">transports</span></a>）能夠與高階 async/await 程式互動。</p>
 <p>經驗法則為永遠不要在提供給使用者的 API 中公開 Future 物件，同時建議使用 <a class="reference internal" href="asyncio-eventloop.html#asyncio.loop.create_future" title="asyncio.loop.create_future"><code class="xref py py-meth docutils literal notranslate"><span class="pre">loop.create_future()</span></code></a> 來建立 Future 物件。如此一來，不同實作的事件迴圈可以注入自己最佳化實作的 Future 物件。</p>
 <div class="versionchanged">
@@ -385,8 +406,28 @@
     <h3><a href="../contents.html">目錄</a></h3>
     <ul>
 <li><a class="reference internal" href="#">Futures</a><ul>
-<li><a class="reference internal" href="#future-functions">Future 函數</a></li>
-<li><a class="reference internal" href="#future-object">Future 物件</a></li>
+<li><a class="reference internal" href="#future-functions">Future 函數</a><ul>
+<li><a class="reference internal" href="#asyncio.isfuture"><code class="docutils literal notranslate"><span class="pre">isfuture()</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.ensure_future"><code class="docutils literal notranslate"><span class="pre">ensure_future()</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.wrap_future"><code class="docutils literal notranslate"><span class="pre">wrap_future()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#future-object">Future 物件</a><ul>
+<li><a class="reference internal" href="#asyncio.Future"><code class="docutils literal notranslate"><span class="pre">Future</span></code></a><ul>
+<li><a class="reference internal" href="#asyncio.Future.result"><code class="docutils literal notranslate"><span class="pre">Future.result()</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.Future.set_result"><code class="docutils literal notranslate"><span class="pre">Future.set_result()</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.Future.set_exception"><code class="docutils literal notranslate"><span class="pre">Future.set_exception()</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.Future.done"><code class="docutils literal notranslate"><span class="pre">Future.done()</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.Future.cancelled"><code class="docutils literal notranslate"><span class="pre">Future.cancelled()</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.Future.add_done_callback"><code class="docutils literal notranslate"><span class="pre">Future.add_done_callback()</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.Future.remove_done_callback"><code class="docutils literal notranslate"><span class="pre">Future.remove_done_callback()</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.Future.cancel"><code class="docutils literal notranslate"><span class="pre">Future.cancel()</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.Future.exception"><code class="docutils literal notranslate"><span class="pre">Future.exception()</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.Future.get_loop"><code class="docutils literal notranslate"><span class="pre">Future.get_loop()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -447,7 +488,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.7 Documentation</a> &#187;
+      <a href="../index.html">3.10.8 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -485,11 +526,11 @@
 <br />
     <br />
 
-    最後更新於 9月 16, 2022。
+    最後更新於 10月 15, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 
-    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1 建立。
+    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.2.3 建立。
     </div>
 
   </body>

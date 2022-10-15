@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>urllib.parse --- Parse URLs into components &#8212; Python 3.10.7 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>urllib.parse --- Parse URLs into components &#8212; Python 3.10.8 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -16,12 +16,13 @@
     <script src="../_static/underscore.js"></script>
     <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/translations.js"></script>
     
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.10.7 說明文件 中搜尋"
+          title="在 Python 3.10.8 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -75,10 +76,39 @@
     <h3><a href="../contents.html">目錄</a></h3>
     <ul>
 <li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">urllib.parse</span></code> --- Parse URLs into components</a><ul>
-<li><a class="reference internal" href="#url-parsing">URL Parsing</a></li>
+<li><a class="reference internal" href="#url-parsing">URL Parsing</a><ul>
+<li><a class="reference internal" href="#urllib.parse.urlparse"><code class="docutils literal notranslate"><span class="pre">urlparse()</span></code></a></li>
+<li><a class="reference internal" href="#urllib.parse.parse_qs"><code class="docutils literal notranslate"><span class="pre">parse_qs()</span></code></a></li>
+<li><a class="reference internal" href="#urllib.parse.parse_qsl"><code class="docutils literal notranslate"><span class="pre">parse_qsl()</span></code></a></li>
+<li><a class="reference internal" href="#urllib.parse.urlunparse"><code class="docutils literal notranslate"><span class="pre">urlunparse()</span></code></a></li>
+<li><a class="reference internal" href="#urllib.parse.urlsplit"><code class="docutils literal notranslate"><span class="pre">urlsplit()</span></code></a></li>
+<li><a class="reference internal" href="#urllib.parse.urlunsplit"><code class="docutils literal notranslate"><span class="pre">urlunsplit()</span></code></a></li>
+<li><a class="reference internal" href="#urllib.parse.urljoin"><code class="docutils literal notranslate"><span class="pre">urljoin()</span></code></a></li>
+<li><a class="reference internal" href="#urllib.parse.urldefrag"><code class="docutils literal notranslate"><span class="pre">urldefrag()</span></code></a></li>
+<li><a class="reference internal" href="#urllib.parse.unwrap"><code class="docutils literal notranslate"><span class="pre">unwrap()</span></code></a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#parsing-ascii-encoded-bytes">Parsing ASCII Encoded Bytes</a></li>
-<li><a class="reference internal" href="#structured-parse-results">Structured Parse Results</a></li>
-<li><a class="reference internal" href="#url-quoting">URL Quoting</a></li>
+<li><a class="reference internal" href="#structured-parse-results">Structured Parse Results</a><ul>
+<li><a class="reference internal" href="#urllib.parse.urllib.parse.SplitResult.geturl"><code class="docutils literal notranslate"><span class="pre">urllib.parse.SplitResult.geturl()</span></code></a></li>
+<li><a class="reference internal" href="#urllib.parse.DefragResult"><code class="docutils literal notranslate"><span class="pre">DefragResult</span></code></a></li>
+<li><a class="reference internal" href="#urllib.parse.ParseResult"><code class="docutils literal notranslate"><span class="pre">ParseResult</span></code></a></li>
+<li><a class="reference internal" href="#urllib.parse.SplitResult"><code class="docutils literal notranslate"><span class="pre">SplitResult</span></code></a></li>
+<li><a class="reference internal" href="#urllib.parse.DefragResultBytes"><code class="docutils literal notranslate"><span class="pre">DefragResultBytes</span></code></a></li>
+<li><a class="reference internal" href="#urllib.parse.ParseResultBytes"><code class="docutils literal notranslate"><span class="pre">ParseResultBytes</span></code></a></li>
+<li><a class="reference internal" href="#urllib.parse.SplitResultBytes"><code class="docutils literal notranslate"><span class="pre">SplitResultBytes</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#url-quoting">URL Quoting</a><ul>
+<li><a class="reference internal" href="#urllib.parse.quote"><code class="docutils literal notranslate"><span class="pre">quote()</span></code></a></li>
+<li><a class="reference internal" href="#urllib.parse.quote_plus"><code class="docutils literal notranslate"><span class="pre">quote_plus()</span></code></a></li>
+<li><a class="reference internal" href="#urllib.parse.quote_from_bytes"><code class="docutils literal notranslate"><span class="pre">quote_from_bytes()</span></code></a></li>
+<li><a class="reference internal" href="#urllib.parse.unquote"><code class="docutils literal notranslate"><span class="pre">unquote()</span></code></a></li>
+<li><a class="reference internal" href="#urllib.parse.unquote_plus"><code class="docutils literal notranslate"><span class="pre">unquote_plus()</span></code></a></li>
+<li><a class="reference internal" href="#urllib.parse.unquote_to_bytes"><code class="docutils literal notranslate"><span class="pre">unquote_to_bytes()</span></code></a></li>
+<li><a class="reference internal" href="#urllib.parse.urlencode"><code class="docutils literal notranslate"><span class="pre">urlencode()</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -136,7 +166,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.7 Documentation</a> &#187;
+      <a href="../index.html">3.10.8 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -196,7 +226,7 @@ into smaller parts (for example, the network location is a single string), and %
 escapes are not expanded. The delimiters as shown above are not part of the
 result, except for a leading slash in the <em>path</em> component, which is retained if
 present.  For example:</p>
-<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">urllib.parse</span> <span class="kn">import</span> <span class="n">urlparse</span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">urllib.parse</span> <span class="kn">import</span> <span class="n">urlparse</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">urlparse</span><span class="p">(</span><span class="s2">&quot;scheme://netloc/path;parameters?query#fragment&quot;</span><span class="p">)</span>
 <span class="go">ParseResult(scheme=&#39;scheme&#39;, netloc=&#39;netloc&#39;, path=&#39;/path;parameters&#39;, params=&#39;&#39;,</span>
 <span class="go">            query=&#39;query&#39;, fragment=&#39;fragment&#39;)</span>
@@ -222,7 +252,7 @@ present.  For example:</p>
 a netloc only if it is properly introduced by '//'.  Otherwise the
 input is presumed to be a relative URL and thus to start with
 a path component.</p>
-<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">urllib.parse</span> <span class="kn">import</span> <span class="n">urlparse</span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">urllib.parse</span> <span class="kn">import</span> <span class="n">urlparse</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">urlparse</span><span class="p">(</span><span class="s1">&#39;//www.cwi.nl:80/</span><span class="si">%7E</span><span class="s1">guido/Python.html&#39;</span><span class="p">)</span>
 <span class="go">ParseResult(scheme=&#39;&#39;, netloc=&#39;www.cwi.nl:80&#39;, path=&#39;/%7Eguido/Python.html&#39;,</span>
 <span class="go">            params=&#39;&#39;, query=&#39;&#39;, fragment=&#39;&#39;)</span>
@@ -270,8 +300,9 @@ be accessed by index or as named attributes, which are:</p>
 </tr>
 <tr class="row-odd"><td><p><code class="xref py py-attr docutils literal notranslate"><span class="pre">params</span></code></p></td>
 <td><p>3</p></td>
-<td><p>No longer used</p></td>
-<td><p>always an empty string</p></td>
+<td><p>Parameters for last
+path element</p></td>
+<td><p>empty string</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="xref py py-attr docutils literal notranslate"><span class="pre">query</span></code></p></td>
 <td><p>4</p></td>
@@ -319,7 +350,7 @@ decomposed before parsing, no error will be raised.</p>
 and attributes that are particularly useful. One such method is <code class="xref py py-meth docutils literal notranslate"><span class="pre">_replace()</span></code>.
 The <code class="xref py py-meth docutils literal notranslate"><span class="pre">_replace()</span></code> method will return a new ParseResult object replacing specified
 fields with new values.</p>
-<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">urllib.parse</span> <span class="kn">import</span> <span class="n">urlparse</span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">urllib.parse</span> <span class="kn">import</span> <span class="n">urlparse</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">u</span> <span class="o">=</span> <span class="n">urlparse</span><span class="p">(</span><span class="s1">&#39;//www.cwi.nl:80/</span><span class="si">%7E</span><span class="s1">guido/Python.html&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">u</span>
 <span class="go">ParseResult(scheme=&#39;&#39;, netloc=&#39;www.cwi.nl:80&#39;, path=&#39;/%7Eguido/Python.html&#39;,</span>
@@ -558,7 +589,7 @@ path, to provide missing components in the relative URL.  For example:</p>
 <p class="admonition-title">備註</p>
 <p>If <em>url</em> is an absolute URL (that is, it starts with <code class="docutils literal notranslate"><span class="pre">//</span></code> or <code class="docutils literal notranslate"><span class="pre">scheme://</span></code>),
 the <em>url</em>'s hostname and/or scheme will be present in the result.  For example:</p>
-<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">urljoin</span><span class="p">(</span><span class="s1">&#39;http://www.cwi.nl/</span><span class="si">%7E</span><span class="s1">guido/Python.html&#39;</span><span class="p">,</span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">urljoin</span><span class="p">(</span><span class="s1">&#39;http://www.cwi.nl/</span><span class="si">%7E</span><span class="s1">guido/Python.html&#39;</span><span class="p">,</span>
 <span class="gp">... </span>        <span class="s1">&#39;//www.python.org/</span><span class="si">%7E</span><span class="s1">guido&#39;</span><span class="p">)</span>
 <span class="go">&#39;http://www.python.org/%7Eguido&#39;</span>
 </pre></div>
@@ -918,10 +949,39 @@ treatment of border cases.</p>
     <h3><a href="../contents.html">目錄</a></h3>
     <ul>
 <li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">urllib.parse</span></code> --- Parse URLs into components</a><ul>
-<li><a class="reference internal" href="#url-parsing">URL Parsing</a></li>
+<li><a class="reference internal" href="#url-parsing">URL Parsing</a><ul>
+<li><a class="reference internal" href="#urllib.parse.urlparse"><code class="docutils literal notranslate"><span class="pre">urlparse()</span></code></a></li>
+<li><a class="reference internal" href="#urllib.parse.parse_qs"><code class="docutils literal notranslate"><span class="pre">parse_qs()</span></code></a></li>
+<li><a class="reference internal" href="#urllib.parse.parse_qsl"><code class="docutils literal notranslate"><span class="pre">parse_qsl()</span></code></a></li>
+<li><a class="reference internal" href="#urllib.parse.urlunparse"><code class="docutils literal notranslate"><span class="pre">urlunparse()</span></code></a></li>
+<li><a class="reference internal" href="#urllib.parse.urlsplit"><code class="docutils literal notranslate"><span class="pre">urlsplit()</span></code></a></li>
+<li><a class="reference internal" href="#urllib.parse.urlunsplit"><code class="docutils literal notranslate"><span class="pre">urlunsplit()</span></code></a></li>
+<li><a class="reference internal" href="#urllib.parse.urljoin"><code class="docutils literal notranslate"><span class="pre">urljoin()</span></code></a></li>
+<li><a class="reference internal" href="#urllib.parse.urldefrag"><code class="docutils literal notranslate"><span class="pre">urldefrag()</span></code></a></li>
+<li><a class="reference internal" href="#urllib.parse.unwrap"><code class="docutils literal notranslate"><span class="pre">unwrap()</span></code></a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#parsing-ascii-encoded-bytes">Parsing ASCII Encoded Bytes</a></li>
-<li><a class="reference internal" href="#structured-parse-results">Structured Parse Results</a></li>
-<li><a class="reference internal" href="#url-quoting">URL Quoting</a></li>
+<li><a class="reference internal" href="#structured-parse-results">Structured Parse Results</a><ul>
+<li><a class="reference internal" href="#urllib.parse.urllib.parse.SplitResult.geturl"><code class="docutils literal notranslate"><span class="pre">urllib.parse.SplitResult.geturl()</span></code></a></li>
+<li><a class="reference internal" href="#urllib.parse.DefragResult"><code class="docutils literal notranslate"><span class="pre">DefragResult</span></code></a></li>
+<li><a class="reference internal" href="#urllib.parse.ParseResult"><code class="docutils literal notranslate"><span class="pre">ParseResult</span></code></a></li>
+<li><a class="reference internal" href="#urllib.parse.SplitResult"><code class="docutils literal notranslate"><span class="pre">SplitResult</span></code></a></li>
+<li><a class="reference internal" href="#urllib.parse.DefragResultBytes"><code class="docutils literal notranslate"><span class="pre">DefragResultBytes</span></code></a></li>
+<li><a class="reference internal" href="#urllib.parse.ParseResultBytes"><code class="docutils literal notranslate"><span class="pre">ParseResultBytes</span></code></a></li>
+<li><a class="reference internal" href="#urllib.parse.SplitResultBytes"><code class="docutils literal notranslate"><span class="pre">SplitResultBytes</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#url-quoting">URL Quoting</a><ul>
+<li><a class="reference internal" href="#urllib.parse.quote"><code class="docutils literal notranslate"><span class="pre">quote()</span></code></a></li>
+<li><a class="reference internal" href="#urllib.parse.quote_plus"><code class="docutils literal notranslate"><span class="pre">quote_plus()</span></code></a></li>
+<li><a class="reference internal" href="#urllib.parse.quote_from_bytes"><code class="docutils literal notranslate"><span class="pre">quote_from_bytes()</span></code></a></li>
+<li><a class="reference internal" href="#urllib.parse.unquote"><code class="docutils literal notranslate"><span class="pre">unquote()</span></code></a></li>
+<li><a class="reference internal" href="#urllib.parse.unquote_plus"><code class="docutils literal notranslate"><span class="pre">unquote_plus()</span></code></a></li>
+<li><a class="reference internal" href="#urllib.parse.unquote_to_bytes"><code class="docutils literal notranslate"><span class="pre">unquote_to_bytes()</span></code></a></li>
+<li><a class="reference internal" href="#urllib.parse.urlencode"><code class="docutils literal notranslate"><span class="pre">urlencode()</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -982,7 +1042,7 @@ treatment of border cases.</p>
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.7 Documentation</a> &#187;
+      <a href="../index.html">3.10.8 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -1019,11 +1079,11 @@ treatment of border cases.</p>
 <br />
     <br />
 
-    最後更新於 9月 16, 2022。
+    最後更新於 10月 15, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 
-    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1 建立。
+    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.2.3 建立。
     </div>
 
   </body>

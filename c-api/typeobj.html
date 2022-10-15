@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>Type Objects &#8212; Python 3.10.7 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Type Objects &#8212; Python 3.10.8 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -16,12 +16,13 @@
     <script src="../_static/underscore.js"></script>
     <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/translations.js"></script>
     
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.10.7 說明文件 中搜尋"
+          title="在 Python 3.10.8 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -84,7 +85,30 @@
 <li><a class="reference internal" href="#pytypeobject-definition">PyTypeObject Definition</a></li>
 <li><a class="reference internal" href="#pyobject-slots">PyObject Slots</a></li>
 <li><a class="reference internal" href="#pyvarobject-slots">PyVarObject Slots</a></li>
-<li><a class="reference internal" href="#pytypeobject-slots">PyTypeObject Slots</a></li>
+<li><a class="reference internal" href="#pytypeobject-slots">PyTypeObject Slots</a><ul>
+<li><a class="reference internal" href="#Py_TPFLAGS_HEAPTYPE"><code class="docutils literal notranslate"><span class="pre">Py_TPFLAGS_HEAPTYPE</span></code></a></li>
+<li><a class="reference internal" href="#Py_TPFLAGS_BASETYPE"><code class="docutils literal notranslate"><span class="pre">Py_TPFLAGS_BASETYPE</span></code></a></li>
+<li><a class="reference internal" href="#Py_TPFLAGS_READY"><code class="docutils literal notranslate"><span class="pre">Py_TPFLAGS_READY</span></code></a></li>
+<li><a class="reference internal" href="#Py_TPFLAGS_READYING"><code class="docutils literal notranslate"><span class="pre">Py_TPFLAGS_READYING</span></code></a></li>
+<li><a class="reference internal" href="#Py_TPFLAGS_HAVE_GC"><code class="docutils literal notranslate"><span class="pre">Py_TPFLAGS_HAVE_GC</span></code></a></li>
+<li><a class="reference internal" href="#Py_TPFLAGS_DEFAULT"><code class="docutils literal notranslate"><span class="pre">Py_TPFLAGS_DEFAULT</span></code></a></li>
+<li><a class="reference internal" href="#Py_TPFLAGS_METHOD_DESCRIPTOR"><code class="docutils literal notranslate"><span class="pre">Py_TPFLAGS_METHOD_DESCRIPTOR</span></code></a></li>
+<li><a class="reference internal" href="#Py_TPFLAGS_LONG_SUBCLASS"><code class="docutils literal notranslate"><span class="pre">Py_TPFLAGS_LONG_SUBCLASS</span></code></a></li>
+<li><a class="reference internal" href="#Py_TPFLAGS_LIST_SUBCLASS"><code class="docutils literal notranslate"><span class="pre">Py_TPFLAGS_LIST_SUBCLASS</span></code></a></li>
+<li><a class="reference internal" href="#Py_TPFLAGS_TUPLE_SUBCLASS"><code class="docutils literal notranslate"><span class="pre">Py_TPFLAGS_TUPLE_SUBCLASS</span></code></a></li>
+<li><a class="reference internal" href="#Py_TPFLAGS_BYTES_SUBCLASS"><code class="docutils literal notranslate"><span class="pre">Py_TPFLAGS_BYTES_SUBCLASS</span></code></a></li>
+<li><a class="reference internal" href="#Py_TPFLAGS_UNICODE_SUBCLASS"><code class="docutils literal notranslate"><span class="pre">Py_TPFLAGS_UNICODE_SUBCLASS</span></code></a></li>
+<li><a class="reference internal" href="#Py_TPFLAGS_DICT_SUBCLASS"><code class="docutils literal notranslate"><span class="pre">Py_TPFLAGS_DICT_SUBCLASS</span></code></a></li>
+<li><a class="reference internal" href="#Py_TPFLAGS_BASE_EXC_SUBCLASS"><code class="docutils literal notranslate"><span class="pre">Py_TPFLAGS_BASE_EXC_SUBCLASS</span></code></a></li>
+<li><a class="reference internal" href="#Py_TPFLAGS_TYPE_SUBCLASS"><code class="docutils literal notranslate"><span class="pre">Py_TPFLAGS_TYPE_SUBCLASS</span></code></a></li>
+<li><a class="reference internal" href="#Py_TPFLAGS_HAVE_FINALIZE"><code class="docutils literal notranslate"><span class="pre">Py_TPFLAGS_HAVE_FINALIZE</span></code></a></li>
+<li><a class="reference internal" href="#Py_TPFLAGS_HAVE_VECTORCALL"><code class="docutils literal notranslate"><span class="pre">Py_TPFLAGS_HAVE_VECTORCALL</span></code></a></li>
+<li><a class="reference internal" href="#Py_TPFLAGS_IMMUTABLETYPE"><code class="docutils literal notranslate"><span class="pre">Py_TPFLAGS_IMMUTABLETYPE</span></code></a></li>
+<li><a class="reference internal" href="#Py_TPFLAGS_DISALLOW_INSTANTIATION"><code class="docutils literal notranslate"><span class="pre">Py_TPFLAGS_DISALLOW_INSTANTIATION</span></code></a></li>
+<li><a class="reference internal" href="#Py_TPFLAGS_MAPPING"><code class="docutils literal notranslate"><span class="pre">Py_TPFLAGS_MAPPING</span></code></a></li>
+<li><a class="reference internal" href="#Py_TPFLAGS_SEQUENCE"><code class="docutils literal notranslate"><span class="pre">Py_TPFLAGS_SEQUENCE</span></code></a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#static-types">Static Types</a></li>
 <li><a class="reference internal" href="#heap-types">Heap Types</a></li>
 </ul>
@@ -151,7 +175,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.7 Documentation</a> &#187;
+      <a href="../index.html">3.10.8 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python/C API 參考手冊</a> &#187;</li>
@@ -183,8 +207,8 @@
 <span id="type-structs"></span><h1>Type Objects<a class="headerlink" href="#type-objects" title="本標頭的永久連結">¶</a></h1>
 <p>Perhaps one of the most important structures of the Python object system is the
 structure that defines a new type: the <a class="reference internal" href="type.html#c.PyTypeObject" title="PyTypeObject"><code class="xref c c-type docutils literal notranslate"><span class="pre">PyTypeObject</span></code></a> structure.  Type
-objects can be handled using any of the <span class="xref c c-texpr"><span class="n">PyObject_</span><span class="p">*</span></span> or
-<span class="xref c c-texpr"><span class="n">PyType_</span><span class="p">*</span></span> functions, but do not offer much that's interesting to most
+objects can be handled using any of the <code class="docutils literal notranslate"><span class="pre">PyObject_*</span></code> or
+<code class="docutils literal notranslate"><span class="pre">PyType_*</span></code> functions, but do not offer much that's interesting to most
 Python applications. These objects are fundamental to how objects behave, so
 they are very important to the interpreter itself and to any extension module
 that implements new types.</p>
@@ -2160,8 +2184,8 @@ comparisons.</p>
 <dd><p>If the instances of this type are weakly referenceable, this field is greater
 than zero and contains the offset in the instance structure of the weak
 reference list head (ignoring the GC header, if present); this offset is used by
-<code class="xref c c-func docutils literal notranslate"><span class="pre">PyObject_ClearWeakRefs()</span></code> and the <span class="xref c c-texpr"><span class="n">PyWeakref_</span><span class="p">*</span></span> functions.  The
-instance structure needs to include a field of type <span class="xref c c-texpr"><a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n">PyObject</span></a><span class="p">*</span></span> which is
+<code class="xref c c-func docutils literal notranslate"><span class="pre">PyObject_ClearWeakRefs()</span></code> and the <code class="docutils literal notranslate"><span class="pre">PyWeakref_*</span></code> functions.  The
+instance structure needs to include a field of type <span class="c-expr sig sig-inline c"><a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n">PyObject</span></a><span class="p">*</span></span> which is
 initialized to <code class="docutils literal notranslate"><span class="pre">NULL</span></code>.</p>
 <p>Do not confuse this field with <a class="reference internal" href="#c.PyTypeObject.tp_weaklist" title="PyTypeObject.tp_weaklist"><code class="xref c c-member docutils literal notranslate"><span class="pre">tp_weaklist</span></code></a>; that is the list head for
 weak references to the type object itself.</p>
@@ -2936,7 +2960,7 @@ implement the mapping protocol.  It has three members:</p>
 <a class="reference internal" href="#c.binaryfunc" title="binaryfunc"><span class="n"><span class="pre">binaryfunc</span></span></a><span class="w"> </span><span class="sig-prename descclassname"><a class="reference internal" href="#c.PyMappingMethods" title="PyMappingMethods"><span class="n"><span class="pre">PyMappingMethods</span></span></a><span class="p"><span class="pre">.</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">mp_subscript</span></span></span><a class="headerlink" href="#c.PyMappingMethods.mp_subscript" title="本定義的永久連結">¶</a><br /></dt>
 <dd><p>This function is used by <a class="reference internal" href="object.html#c.PyObject_GetItem" title="PyObject_GetItem"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyObject_GetItem()</span></code></a> and
 <a class="reference internal" href="sequence.html#c.PySequence_GetSlice" title="PySequence_GetSlice"><code class="xref c c-func docutils literal notranslate"><span class="pre">PySequence_GetSlice()</span></code></a>, and has the same signature as
-<span class="xref c c-texpr"><span class="o">!</span><a class="reference internal" href="object.html#c.PyObject_GetItem" title="PyObject_GetItem"><span class="n">PyObject_GetItem</span></a></span>.  This slot must be filled for the
+<code class="xref c c-func docutils literal notranslate"><span class="pre">PyObject_GetItem()</span></code>.  This slot must be filled for the
 <a class="reference internal" href="mapping.html#c.PyMapping_Check" title="PyMapping_Check"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyMapping_Check()</span></code></a> function to return <code class="docutils literal notranslate"><span class="pre">1</span></code>, it can be <code class="docutils literal notranslate"><span class="pre">NULL</span></code>
 otherwise.</p>
 </dd></dl>
@@ -2947,7 +2971,7 @@ otherwise.</p>
 <dd><p>This function is used by <a class="reference internal" href="object.html#c.PyObject_SetItem" title="PyObject_SetItem"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyObject_SetItem()</span></code></a>,
 <a class="reference internal" href="object.html#c.PyObject_DelItem" title="PyObject_DelItem"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyObject_DelItem()</span></code></a>, <code class="xref c c-func docutils literal notranslate"><span class="pre">PyObject_SetSlice()</span></code> and
 <code class="xref c c-func docutils literal notranslate"><span class="pre">PyObject_DelSlice()</span></code>.  It has the same signature as
-<span class="xref c c-texpr"><span class="o">!</span><a class="reference internal" href="object.html#c.PyObject_SetItem" title="PyObject_SetItem"><span class="n">PyObject_SetItem</span></a></span>, but <em>v</em> can also be set to <code class="docutils literal notranslate"><span class="pre">NULL</span></code> to delete
+<code class="xref c c-func docutils literal notranslate"><span class="pre">PyObject_SetItem()</span></code>, but <em>v</em> can also be set to <code class="docutils literal notranslate"><span class="pre">NULL</span></code> to delete
 an item.  If this slot is <code class="docutils literal notranslate"><span class="pre">NULL</span></code>, the object does not support item
 assignment and deletion.</p>
 </dd></dl>
@@ -3017,7 +3041,7 @@ item assignment and deletion.</p>
 <a class="reference internal" href="#c.objobjproc" title="objobjproc"><span class="n"><span class="pre">objobjproc</span></span></a><span class="w"> </span><span class="sig-prename descclassname"><a class="reference internal" href="#c.PySequenceMethods" title="PySequenceMethods"><span class="n"><span class="pre">PySequenceMethods</span></span></a><span class="p"><span class="pre">.</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">sq_contains</span></span></span><a class="headerlink" href="#c.PySequenceMethods.sq_contains" title="本定義的永久連結">¶</a><br /></dt>
 <dd><p>This function may be used by <a class="reference internal" href="sequence.html#c.PySequence_Contains" title="PySequence_Contains"><code class="xref c c-func docutils literal notranslate"><span class="pre">PySequence_Contains()</span></code></a> and has the same
 signature.  This slot may be left to <code class="docutils literal notranslate"><span class="pre">NULL</span></code>, in this case
-<span class="xref c c-texpr"><span class="o">!</span><a class="reference internal" href="sequence.html#c.PySequence_Contains" title="PySequence_Contains"><span class="n">PySequence_Contains</span></a></span> simply traverses the sequence until it
+<code class="xref c c-func docutils literal notranslate"><span class="pre">PySequence_Contains()</span></code> simply traverses the sequence until it
 finds a match.</p>
 </dd></dl>
 
@@ -3026,7 +3050,7 @@ finds a match.</p>
 <a class="reference internal" href="#c.binaryfunc" title="binaryfunc"><span class="n"><span class="pre">binaryfunc</span></span></a><span class="w"> </span><span class="sig-prename descclassname"><a class="reference internal" href="#c.PySequenceMethods" title="PySequenceMethods"><span class="n"><span class="pre">PySequenceMethods</span></span></a><span class="p"><span class="pre">.</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">sq_inplace_concat</span></span></span><a class="headerlink" href="#c.PySequenceMethods.sq_inplace_concat" title="本定義的永久連結">¶</a><br /></dt>
 <dd><p>This function is used by <a class="reference internal" href="sequence.html#c.PySequence_InPlaceConcat" title="PySequence_InPlaceConcat"><code class="xref c c-func docutils literal notranslate"><span class="pre">PySequence_InPlaceConcat()</span></code></a> and has the same
 signature.  It should modify its first operand, and return it.  This slot
-may be left to <code class="docutils literal notranslate"><span class="pre">NULL</span></code>, in this case <span class="xref c c-texpr"><span class="o">!</span><a class="reference internal" href="sequence.html#c.PySequence_InPlaceConcat" title="PySequence_InPlaceConcat"><span class="n">PySequence_InPlaceConcat</span></a></span>
+may be left to <code class="docutils literal notranslate"><span class="pre">NULL</span></code>, in this case <code class="xref c c-func docutils literal notranslate"><span class="pre">PySequence_InPlaceConcat()</span></code>
 will fall back to <a class="reference internal" href="sequence.html#c.PySequence_Concat" title="PySequence_Concat"><code class="xref c c-func docutils literal notranslate"><span class="pre">PySequence_Concat()</span></code></a>.  It is also used by the
 augmented assignment <code class="docutils literal notranslate"><span class="pre">+=</span></code>, after trying numeric in-place addition
 via the <a class="reference internal" href="#c.PyNumberMethods.nb_inplace_add" title="PyNumberMethods.nb_inplace_add"><code class="xref c c-member docutils literal notranslate"><span class="pre">nb_inplace_add</span></code></a> slot.</p>
@@ -3037,7 +3061,7 @@ via the <a class="reference internal" href="#c.PyNumberMethods.nb_inplace_add" t
 <a class="reference internal" href="#c.ssizeargfunc" title="ssizeargfunc"><span class="n"><span class="pre">ssizeargfunc</span></span></a><span class="w"> </span><span class="sig-prename descclassname"><a class="reference internal" href="#c.PySequenceMethods" title="PySequenceMethods"><span class="n"><span class="pre">PySequenceMethods</span></span></a><span class="p"><span class="pre">.</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">sq_inplace_repeat</span></span></span><a class="headerlink" href="#c.PySequenceMethods.sq_inplace_repeat" title="本定義的永久連結">¶</a><br /></dt>
 <dd><p>This function is used by <a class="reference internal" href="sequence.html#c.PySequence_InPlaceRepeat" title="PySequence_InPlaceRepeat"><code class="xref c c-func docutils literal notranslate"><span class="pre">PySequence_InPlaceRepeat()</span></code></a> and has the same
 signature.  It should modify its first operand, and return it.  This slot
-may be left to <code class="docutils literal notranslate"><span class="pre">NULL</span></code>, in this case <span class="xref c c-texpr"><span class="o">!</span><a class="reference internal" href="sequence.html#c.PySequence_InPlaceRepeat" title="PySequence_InPlaceRepeat"><span class="n">PySequence_InPlaceRepeat</span></a></span>
+may be left to <code class="docutils literal notranslate"><span class="pre">NULL</span></code>, in this case <code class="xref c c-func docutils literal notranslate"><span class="pre">PySequence_InPlaceRepeat()</span></code>
 will fall back to <a class="reference internal" href="sequence.html#c.PySequence_Repeat" title="PySequence_Repeat"><code class="xref c c-func docutils literal notranslate"><span class="pre">PySequence_Repeat()</span></code></a>.  It is also used by the
 augmented assignment <code class="docutils literal notranslate"><span class="pre">*=</span></code>, after trying numeric in-place multiplication
 via the <a class="reference internal" href="#c.PyNumberMethods.nb_inplace_multiply" title="PyNumberMethods.nb_inplace_multiply"><code class="xref c c-member docutils literal notranslate"><span class="pre">nb_inplace_multiply</span></code></a> slot.</p>
@@ -3066,19 +3090,19 @@ Except for point (3), an implementation of this function MUST take these
 steps:</p>
 <ol class="arabic simple">
 <li><p>Check if the request can be met. If not, raise <code class="xref c c-data docutils literal notranslate"><span class="pre">PyExc_BufferError</span></code>,
-set <span class="xref c c-texpr"><span class="n">view</span><span class="o">-&gt;</span><span class="n">obj</span></span> to <code class="docutils literal notranslate"><span class="pre">NULL</span></code> and return <code class="docutils literal notranslate"><span class="pre">-1</span></code>.</p></li>
+set <span class="c-expr sig sig-inline c"><span class="n">view</span><span class="o">-&gt;</span><span class="n">obj</span></span> to <code class="docutils literal notranslate"><span class="pre">NULL</span></code> and return <code class="docutils literal notranslate"><span class="pre">-1</span></code>.</p></li>
 <li><p>Fill in the requested fields.</p></li>
 <li><p>Increment an internal counter for the number of exports.</p></li>
-<li><p>Set <span class="xref c c-texpr"><span class="n">view</span><span class="o">-&gt;</span><span class="n">obj</span></span> to <em>exporter</em> and increment <span class="xref c c-texpr"><span class="n">view</span><span class="o">-&gt;</span><span class="n">obj</span></span>.</p></li>
+<li><p>Set <span class="c-expr sig sig-inline c"><span class="n">view</span><span class="o">-&gt;</span><span class="n">obj</span></span> to <em>exporter</em> and increment <span class="c-expr sig sig-inline c"><span class="n">view</span><span class="o">-&gt;</span><span class="n">obj</span></span>.</p></li>
 <li><p>Return <code class="docutils literal notranslate"><span class="pre">0</span></code>.</p></li>
 </ol>
 <p>If <em>exporter</em> is part of a chain or tree of buffer providers, two main
 schemes can be used:</p>
 <ul class="simple">
 <li><p>Re-export: Each member of the tree acts as the exporting object and
-sets <span class="xref c c-texpr"><span class="n">view</span><span class="o">-&gt;</span><span class="n">obj</span></span> to a new reference to itself.</p></li>
+sets <span class="c-expr sig sig-inline c"><span class="n">view</span><span class="o">-&gt;</span><span class="n">obj</span></span> to a new reference to itself.</p></li>
 <li><p>Redirect: The buffer request is redirected to the root object of the
-tree. Here, <span class="xref c c-texpr"><span class="n">view</span><span class="o">-&gt;</span><span class="n">obj</span></span> will be a new reference to the root
+tree. Here, <span class="c-expr sig sig-inline c"><span class="n">view</span><span class="o">-&gt;</span><span class="n">obj</span></span> will be a new reference to the root
 object.</p></li>
 </ul>
 <p>The individual fields of <em>view</em> are described in section
@@ -3116,7 +3140,7 @@ these optional steps:</p>
 track of buffer-specific resources. This field is guaranteed to remain
 constant, while a consumer MAY pass a copy of the original buffer as the
 <em>view</em> argument.</p>
-<p>This function MUST NOT decrement <span class="xref c c-texpr"><span class="n">view</span><span class="o">-&gt;</span><span class="n">obj</span></span>, since that is
+<p>This function MUST NOT decrement <span class="c-expr sig sig-inline c"><span class="n">view</span><span class="o">-&gt;</span><span class="n">obj</span></span>, since that is
 done automatically in <a class="reference internal" href="buffer.html#c.PyBuffer_Release" title="PyBuffer_Release"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyBuffer_Release()</span></code></a> (this scheme is
 useful for breaking reference cycles).</p>
 <p><a class="reference internal" href="buffer.html#c.PyBuffer_Release" title="PyBuffer_Release"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyBuffer_Release()</span></code></a> is the interface for the consumer that
@@ -3524,7 +3548,30 @@ to create instances (e.g. uses a separate factory func) using
 <li><a class="reference internal" href="#pytypeobject-definition">PyTypeObject Definition</a></li>
 <li><a class="reference internal" href="#pyobject-slots">PyObject Slots</a></li>
 <li><a class="reference internal" href="#pyvarobject-slots">PyVarObject Slots</a></li>
-<li><a class="reference internal" href="#pytypeobject-slots">PyTypeObject Slots</a></li>
+<li><a class="reference internal" href="#pytypeobject-slots">PyTypeObject Slots</a><ul>
+<li><a class="reference internal" href="#Py_TPFLAGS_HEAPTYPE"><code class="docutils literal notranslate"><span class="pre">Py_TPFLAGS_HEAPTYPE</span></code></a></li>
+<li><a class="reference internal" href="#Py_TPFLAGS_BASETYPE"><code class="docutils literal notranslate"><span class="pre">Py_TPFLAGS_BASETYPE</span></code></a></li>
+<li><a class="reference internal" href="#Py_TPFLAGS_READY"><code class="docutils literal notranslate"><span class="pre">Py_TPFLAGS_READY</span></code></a></li>
+<li><a class="reference internal" href="#Py_TPFLAGS_READYING"><code class="docutils literal notranslate"><span class="pre">Py_TPFLAGS_READYING</span></code></a></li>
+<li><a class="reference internal" href="#Py_TPFLAGS_HAVE_GC"><code class="docutils literal notranslate"><span class="pre">Py_TPFLAGS_HAVE_GC</span></code></a></li>
+<li><a class="reference internal" href="#Py_TPFLAGS_DEFAULT"><code class="docutils literal notranslate"><span class="pre">Py_TPFLAGS_DEFAULT</span></code></a></li>
+<li><a class="reference internal" href="#Py_TPFLAGS_METHOD_DESCRIPTOR"><code class="docutils literal notranslate"><span class="pre">Py_TPFLAGS_METHOD_DESCRIPTOR</span></code></a></li>
+<li><a class="reference internal" href="#Py_TPFLAGS_LONG_SUBCLASS"><code class="docutils literal notranslate"><span class="pre">Py_TPFLAGS_LONG_SUBCLASS</span></code></a></li>
+<li><a class="reference internal" href="#Py_TPFLAGS_LIST_SUBCLASS"><code class="docutils literal notranslate"><span class="pre">Py_TPFLAGS_LIST_SUBCLASS</span></code></a></li>
+<li><a class="reference internal" href="#Py_TPFLAGS_TUPLE_SUBCLASS"><code class="docutils literal notranslate"><span class="pre">Py_TPFLAGS_TUPLE_SUBCLASS</span></code></a></li>
+<li><a class="reference internal" href="#Py_TPFLAGS_BYTES_SUBCLASS"><code class="docutils literal notranslate"><span class="pre">Py_TPFLAGS_BYTES_SUBCLASS</span></code></a></li>
+<li><a class="reference internal" href="#Py_TPFLAGS_UNICODE_SUBCLASS"><code class="docutils literal notranslate"><span class="pre">Py_TPFLAGS_UNICODE_SUBCLASS</span></code></a></li>
+<li><a class="reference internal" href="#Py_TPFLAGS_DICT_SUBCLASS"><code class="docutils literal notranslate"><span class="pre">Py_TPFLAGS_DICT_SUBCLASS</span></code></a></li>
+<li><a class="reference internal" href="#Py_TPFLAGS_BASE_EXC_SUBCLASS"><code class="docutils literal notranslate"><span class="pre">Py_TPFLAGS_BASE_EXC_SUBCLASS</span></code></a></li>
+<li><a class="reference internal" href="#Py_TPFLAGS_TYPE_SUBCLASS"><code class="docutils literal notranslate"><span class="pre">Py_TPFLAGS_TYPE_SUBCLASS</span></code></a></li>
+<li><a class="reference internal" href="#Py_TPFLAGS_HAVE_FINALIZE"><code class="docutils literal notranslate"><span class="pre">Py_TPFLAGS_HAVE_FINALIZE</span></code></a></li>
+<li><a class="reference internal" href="#Py_TPFLAGS_HAVE_VECTORCALL"><code class="docutils literal notranslate"><span class="pre">Py_TPFLAGS_HAVE_VECTORCALL</span></code></a></li>
+<li><a class="reference internal" href="#Py_TPFLAGS_IMMUTABLETYPE"><code class="docutils literal notranslate"><span class="pre">Py_TPFLAGS_IMMUTABLETYPE</span></code></a></li>
+<li><a class="reference internal" href="#Py_TPFLAGS_DISALLOW_INSTANTIATION"><code class="docutils literal notranslate"><span class="pre">Py_TPFLAGS_DISALLOW_INSTANTIATION</span></code></a></li>
+<li><a class="reference internal" href="#Py_TPFLAGS_MAPPING"><code class="docutils literal notranslate"><span class="pre">Py_TPFLAGS_MAPPING</span></code></a></li>
+<li><a class="reference internal" href="#Py_TPFLAGS_SEQUENCE"><code class="docutils literal notranslate"><span class="pre">Py_TPFLAGS_SEQUENCE</span></code></a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#static-types">Static Types</a></li>
 <li><a class="reference internal" href="#heap-types">Heap Types</a></li>
 </ul>
@@ -3594,7 +3641,7 @@ to create instances (e.g. uses a separate factory func) using
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.7 Documentation</a> &#187;
+      <a href="../index.html">3.10.8 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python/C API 參考手冊</a> &#187;</li>
@@ -3631,11 +3678,11 @@ to create instances (e.g. uses a separate factory func) using
 <br />
     <br />
 
-    最後更新於 9月 16, 2022。
+    最後更新於 10月 15, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 
-    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1 建立。
+    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.2.3 建立。
     </div>
 
   </body>

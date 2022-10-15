@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>shlex --- Simple lexical analysis &#8212; Python 3.10.7 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>shlex --- Simple lexical analysis &#8212; Python 3.10.8 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -16,12 +16,13 @@
     <script src="../_static/underscore.js"></script>
     <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/translations.js"></script>
     
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.10.7 說明文件 中搜尋"
+          title="在 Python 3.10.8 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -75,7 +76,35 @@
     <h3><a href="../contents.html">目錄</a></h3>
     <ul>
 <li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">shlex</span></code> --- Simple lexical analysis</a><ul>
-<li><a class="reference internal" href="#shlex-objects">shlex 物件</a></li>
+<li><a class="reference internal" href="#shlex.split"><code class="docutils literal notranslate"><span class="pre">split()</span></code></a></li>
+<li><a class="reference internal" href="#shlex.join"><code class="docutils literal notranslate"><span class="pre">join()</span></code></a></li>
+<li><a class="reference internal" href="#shlex.quote"><code class="docutils literal notranslate"><span class="pre">quote()</span></code></a></li>
+<li><a class="reference internal" href="#shlex.shlex"><code class="docutils literal notranslate"><span class="pre">shlex</span></code></a></li>
+<li><a class="reference internal" href="#shlex-objects">shlex 物件</a><ul>
+<li><a class="reference internal" href="#shlex.shlex.get_token"><code class="docutils literal notranslate"><span class="pre">shlex.get_token()</span></code></a></li>
+<li><a class="reference internal" href="#shlex.shlex.push_token"><code class="docutils literal notranslate"><span class="pre">shlex.push_token()</span></code></a></li>
+<li><a class="reference internal" href="#shlex.shlex.read_token"><code class="docutils literal notranslate"><span class="pre">shlex.read_token()</span></code></a></li>
+<li><a class="reference internal" href="#shlex.shlex.sourcehook"><code class="docutils literal notranslate"><span class="pre">shlex.sourcehook()</span></code></a></li>
+<li><a class="reference internal" href="#shlex.shlex.push_source"><code class="docutils literal notranslate"><span class="pre">shlex.push_source()</span></code></a></li>
+<li><a class="reference internal" href="#shlex.shlex.pop_source"><code class="docutils literal notranslate"><span class="pre">shlex.pop_source()</span></code></a></li>
+<li><a class="reference internal" href="#shlex.shlex.error_leader"><code class="docutils literal notranslate"><span class="pre">shlex.error_leader()</span></code></a></li>
+<li><a class="reference internal" href="#shlex.shlex.commenters"><code class="docutils literal notranslate"><span class="pre">shlex.commenters</span></code></a></li>
+<li><a class="reference internal" href="#shlex.shlex.wordchars"><code class="docutils literal notranslate"><span class="pre">shlex.wordchars</span></code></a></li>
+<li><a class="reference internal" href="#shlex.shlex.whitespace"><code class="docutils literal notranslate"><span class="pre">shlex.whitespace</span></code></a></li>
+<li><a class="reference internal" href="#shlex.shlex.escape"><code class="docutils literal notranslate"><span class="pre">shlex.escape</span></code></a></li>
+<li><a class="reference internal" href="#shlex.shlex.quotes"><code class="docutils literal notranslate"><span class="pre">shlex.quotes</span></code></a></li>
+<li><a class="reference internal" href="#shlex.shlex.escapedquotes"><code class="docutils literal notranslate"><span class="pre">shlex.escapedquotes</span></code></a></li>
+<li><a class="reference internal" href="#shlex.shlex.whitespace_split"><code class="docutils literal notranslate"><span class="pre">shlex.whitespace_split</span></code></a></li>
+<li><a class="reference internal" href="#shlex.shlex.infile"><code class="docutils literal notranslate"><span class="pre">shlex.infile</span></code></a></li>
+<li><a class="reference internal" href="#shlex.shlex.instream"><code class="docutils literal notranslate"><span class="pre">shlex.instream</span></code></a></li>
+<li><a class="reference internal" href="#shlex.shlex.source"><code class="docutils literal notranslate"><span class="pre">shlex.source</span></code></a></li>
+<li><a class="reference internal" href="#shlex.shlex.debug"><code class="docutils literal notranslate"><span class="pre">shlex.debug</span></code></a></li>
+<li><a class="reference internal" href="#shlex.shlex.lineno"><code class="docutils literal notranslate"><span class="pre">shlex.lineno</span></code></a></li>
+<li><a class="reference internal" href="#shlex.shlex.token"><code class="docutils literal notranslate"><span class="pre">shlex.token</span></code></a></li>
+<li><a class="reference internal" href="#shlex.shlex.eof"><code class="docutils literal notranslate"><span class="pre">shlex.eof</span></code></a></li>
+<li><a class="reference internal" href="#shlex.shlex.punctuation_chars"><code class="docutils literal notranslate"><span class="pre">shlex.punctuation_chars</span></code></a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#parsing-rules">Parsing Rules</a></li>
 <li><a class="reference internal" href="#improved-compatibility-with-shells">Improved Compatibility with Shells</a></li>
 </ul>
@@ -135,7 +164,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.7 Documentation</a> &#187;
+      <a href="../index.html">3.10.8 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -567,7 +596,7 @@ this is short of a full parser for shells (which would be out of scope for the
 standard library, given the multiplicity of shells out there), it does allow
 you to perform processing of command lines more easily than you could
 otherwise.  To illustrate, you can see the difference in the following snippet:</p>
-<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="go"> &gt;&gt;&gt; import shlex</span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="go"> &gt;&gt;&gt; import shlex</span>
 <span class="go"> &gt;&gt;&gt; text = &quot;a &amp;&amp; b; c &amp;&amp; d || e; f &gt;&#39;abc&#39;; (def \&quot;ghi\&quot;)&quot;</span>
 <span class="go"> &gt;&gt;&gt; s = shlex.shlex(text, posix=True)</span>
 <span class="go"> &gt;&gt;&gt; s.whitespace_split = True</span>
@@ -626,7 +655,35 @@ always use <code class="docutils literal notranslate"><span class="pre">posix</s
     <h3><a href="../contents.html">目錄</a></h3>
     <ul>
 <li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">shlex</span></code> --- Simple lexical analysis</a><ul>
-<li><a class="reference internal" href="#shlex-objects">shlex 物件</a></li>
+<li><a class="reference internal" href="#shlex.split"><code class="docutils literal notranslate"><span class="pre">split()</span></code></a></li>
+<li><a class="reference internal" href="#shlex.join"><code class="docutils literal notranslate"><span class="pre">join()</span></code></a></li>
+<li><a class="reference internal" href="#shlex.quote"><code class="docutils literal notranslate"><span class="pre">quote()</span></code></a></li>
+<li><a class="reference internal" href="#shlex.shlex"><code class="docutils literal notranslate"><span class="pre">shlex</span></code></a></li>
+<li><a class="reference internal" href="#shlex-objects">shlex 物件</a><ul>
+<li><a class="reference internal" href="#shlex.shlex.get_token"><code class="docutils literal notranslate"><span class="pre">shlex.get_token()</span></code></a></li>
+<li><a class="reference internal" href="#shlex.shlex.push_token"><code class="docutils literal notranslate"><span class="pre">shlex.push_token()</span></code></a></li>
+<li><a class="reference internal" href="#shlex.shlex.read_token"><code class="docutils literal notranslate"><span class="pre">shlex.read_token()</span></code></a></li>
+<li><a class="reference internal" href="#shlex.shlex.sourcehook"><code class="docutils literal notranslate"><span class="pre">shlex.sourcehook()</span></code></a></li>
+<li><a class="reference internal" href="#shlex.shlex.push_source"><code class="docutils literal notranslate"><span class="pre">shlex.push_source()</span></code></a></li>
+<li><a class="reference internal" href="#shlex.shlex.pop_source"><code class="docutils literal notranslate"><span class="pre">shlex.pop_source()</span></code></a></li>
+<li><a class="reference internal" href="#shlex.shlex.error_leader"><code class="docutils literal notranslate"><span class="pre">shlex.error_leader()</span></code></a></li>
+<li><a class="reference internal" href="#shlex.shlex.commenters"><code class="docutils literal notranslate"><span class="pre">shlex.commenters</span></code></a></li>
+<li><a class="reference internal" href="#shlex.shlex.wordchars"><code class="docutils literal notranslate"><span class="pre">shlex.wordchars</span></code></a></li>
+<li><a class="reference internal" href="#shlex.shlex.whitespace"><code class="docutils literal notranslate"><span class="pre">shlex.whitespace</span></code></a></li>
+<li><a class="reference internal" href="#shlex.shlex.escape"><code class="docutils literal notranslate"><span class="pre">shlex.escape</span></code></a></li>
+<li><a class="reference internal" href="#shlex.shlex.quotes"><code class="docutils literal notranslate"><span class="pre">shlex.quotes</span></code></a></li>
+<li><a class="reference internal" href="#shlex.shlex.escapedquotes"><code class="docutils literal notranslate"><span class="pre">shlex.escapedquotes</span></code></a></li>
+<li><a class="reference internal" href="#shlex.shlex.whitespace_split"><code class="docutils literal notranslate"><span class="pre">shlex.whitespace_split</span></code></a></li>
+<li><a class="reference internal" href="#shlex.shlex.infile"><code class="docutils literal notranslate"><span class="pre">shlex.infile</span></code></a></li>
+<li><a class="reference internal" href="#shlex.shlex.instream"><code class="docutils literal notranslate"><span class="pre">shlex.instream</span></code></a></li>
+<li><a class="reference internal" href="#shlex.shlex.source"><code class="docutils literal notranslate"><span class="pre">shlex.source</span></code></a></li>
+<li><a class="reference internal" href="#shlex.shlex.debug"><code class="docutils literal notranslate"><span class="pre">shlex.debug</span></code></a></li>
+<li><a class="reference internal" href="#shlex.shlex.lineno"><code class="docutils literal notranslate"><span class="pre">shlex.lineno</span></code></a></li>
+<li><a class="reference internal" href="#shlex.shlex.token"><code class="docutils literal notranslate"><span class="pre">shlex.token</span></code></a></li>
+<li><a class="reference internal" href="#shlex.shlex.eof"><code class="docutils literal notranslate"><span class="pre">shlex.eof</span></code></a></li>
+<li><a class="reference internal" href="#shlex.shlex.punctuation_chars"><code class="docutils literal notranslate"><span class="pre">shlex.punctuation_chars</span></code></a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#parsing-rules">Parsing Rules</a></li>
 <li><a class="reference internal" href="#improved-compatibility-with-shells">Improved Compatibility with Shells</a></li>
 </ul>
@@ -689,7 +746,7 @@ always use <code class="docutils literal notranslate"><span class="pre">posix</s
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.7 Documentation</a> &#187;
+      <a href="../index.html">3.10.8 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -726,11 +783,11 @@ always use <code class="docutils literal notranslate"><span class="pre">posix</s
 <br />
     <br />
 
-    最後更新於 9月 16, 2022。
+    最後更新於 10月 15, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 
-    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1 建立。
+    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.2.3 建立。
     </div>
 
   </body>

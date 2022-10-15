@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>簡介 &#8212; Python 3.10.7 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>簡介 &#8212; Python 3.10.8 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -16,12 +16,13 @@
     <script src="../_static/underscore.js"></script>
     <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/translations.js"></script>
     
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.10.7 說明文件 中搜尋"
+          title="在 Python 3.10.8 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -146,7 +147,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.7 Documentation</a> &#187;
+      <a href="../index.html">3.10.8 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Python/C API 參考手冊</a> &#187;</li>
@@ -402,13 +403,13 @@ building Python without docstrings, as specified in <span class="target" id="ind
 <section id="objects-types-and-reference-counts">
 <span id="api-objects"></span><h2>Objects, Types and Reference Counts<a class="headerlink" href="#objects-types-and-reference-counts" title="本標頭的永久連結">¶</a></h2>
 <p id="index-8">Most Python/C API functions have one or more arguments as well as a return value
-of type <span class="xref c c-texpr"><a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n">PyObject</span></a><span class="p">*</span></span>.  This type is a pointer to an opaque data type
+of type <span class="c-expr sig sig-inline c"><a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n">PyObject</span></a><span class="p">*</span></span>.  This type is a pointer to an opaque data type
 representing an arbitrary Python object.  Since all Python object types are
 treated the same way by the Python language in most situations (e.g.,
 assignments, scope rules, and argument passing), it is only fitting that they
 should be represented by a single C type.  Almost all Python objects live on the
 heap: you never declare an automatic or static variable of type
-<a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><code class="xref c c-type docutils literal notranslate"><span class="pre">PyObject</span></code></a>, only pointer variables of type <span class="xref c c-texpr"><a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n">PyObject</span></a><span class="p">*</span></span> can  be
+<a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><code class="xref c c-type docutils literal notranslate"><span class="pre">PyObject</span></code></a>, only pointer variables of type <span class="c-expr sig sig-inline c"><a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n">PyObject</span></a><span class="p">*</span></span> can  be
 declared.  The sole exception are the type objects; since these must never be
 deallocated, they are typically static <a class="reference internal" href="type.html#c.PyTypeObject" title="PyTypeObject"><code class="xref c c-type docutils literal notranslate"><span class="pre">PyTypeObject</span></code></a> objects.</p>
 <p>All Python objects (even Python integers) have a <em class="dfn">type</em> and a
@@ -625,8 +626,8 @@ using <a class="reference internal" href="sequence.html#c.PySequence_GetItem" ti
 <section id="types">
 <span id="api-types"></span><span id="index-14"></span><h3>Types<a class="headerlink" href="#types" title="本標頭的永久連結">¶</a></h3>
 <p>There are few other data types that play a significant role in  the Python/C
-API; most are simple C types such as <span class="xref c c-texpr"><span class="kt">int</span></span>,  <span class="xref c c-texpr"><span class="kt">long</span></span>,
-<span class="xref c c-texpr"><span class="kt">double</span></span> and <span class="xref c c-texpr"><span class="kt">char</span><span class="p">*</span></span>.  A few structure types  are used to
+API; most are simple C types such as <span class="c-expr sig sig-inline c"><span class="kt">int</span></span>,  <span class="c-expr sig sig-inline c"><span class="kt">long</span></span>,
+<span class="c-expr sig sig-inline c"><span class="kt">double</span></span> and <span class="c-expr sig sig-inline c"><span class="kt">char</span><span class="p">*</span></span>.  A few structure types  are used to
 describe static tables used to list the functions exported  by a module or the
 data attributes of a new object type, and another is used to describe the value
 of a complex number.  These will  be discussed together with the functions that
@@ -922,7 +923,7 @@ for more detailed information.</p>
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.7 Documentation</a> &#187;
+      <a href="../index.html">3.10.8 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python/C API 參考手冊</a> &#187;</li>
@@ -958,11 +959,11 @@ for more detailed information.</p>
 <br />
     <br />
 
-    最後更新於 9月 16, 2022。
+    最後更新於 10月 15, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 
-    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1 建立。
+    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.2.3 建立。
     </div>
 
   </body>

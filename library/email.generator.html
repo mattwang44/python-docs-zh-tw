@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>email.generator: Generating MIME documents &#8212; Python 3.10.7 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>email.generator: Generating MIME documents &#8212; Python 3.10.8 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -16,12 +16,13 @@
     <script src="../_static/underscore.js"></script>
     <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/translations.js"></script>
     
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.10.7 說明文件 中搜尋"
+          title="在 Python 3.10.8 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -71,6 +72,28 @@
     <div class="menu-wrapper">
         <nav class="menu" role="navigation" aria-label="main navigation">
             <div class="language_switcher_placeholder"></div>
+  <div>
+    <h3><a href="../contents.html">目錄</a></h3>
+    <ul>
+<li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">email.generator</span></code>: Generating MIME documents</a><ul>
+<li><a class="reference internal" href="#email.generator.BytesGenerator"><code class="docutils literal notranslate"><span class="pre">BytesGenerator</span></code></a><ul>
+<li><a class="reference internal" href="#email.generator.BytesGenerator.flatten"><code class="docutils literal notranslate"><span class="pre">BytesGenerator.flatten()</span></code></a></li>
+<li><a class="reference internal" href="#email.generator.BytesGenerator.clone"><code class="docutils literal notranslate"><span class="pre">BytesGenerator.clone()</span></code></a></li>
+<li><a class="reference internal" href="#email.generator.BytesGenerator.write"><code class="docutils literal notranslate"><span class="pre">BytesGenerator.write()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#email.generator.Generator"><code class="docutils literal notranslate"><span class="pre">Generator</span></code></a><ul>
+<li><a class="reference internal" href="#email.generator.Generator.flatten"><code class="docutils literal notranslate"><span class="pre">Generator.flatten()</span></code></a></li>
+<li><a class="reference internal" href="#email.generator.Generator.clone"><code class="docutils literal notranslate"><span class="pre">Generator.clone()</span></code></a></li>
+<li><a class="reference internal" href="#email.generator.Generator.write"><code class="docutils literal notranslate"><span class="pre">Generator.write()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#email.generator.DecodedGenerator"><code class="docutils literal notranslate"><span class="pre">DecodedGenerator</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
   <div>
     <h4>上個主題</h4>
     <p class="topless"><a href="email.parser.html"
@@ -123,7 +146,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.7 Documentation</a> &#187;
+      <a href="../index.html">3.10.8 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -197,7 +220,7 @@ any line in the body that starts with the exact string <code class="docutils lit
 defaults to the value of the <a class="reference internal" href="email.policy.html#email.policy.Policy.mangle_from_" title="email.policy.Policy.mangle_from_"><code class="xref py py-attr docutils literal notranslate"><span class="pre">mangle_from_</span></code></a>
 setting of the <em>policy</em> (which is <code class="docutils literal notranslate"><span class="pre">True</span></code> for the
 <a class="reference internal" href="email.policy.html#email.policy.compat32" title="email.policy.compat32"><code class="xref py py-data docutils literal notranslate"><span class="pre">compat32</span></code></a> policy and <code class="docutils literal notranslate"><span class="pre">False</span></code> for all others).
-<em>mangle_from_</em> is intended for use when messages are stored in unix mbox
+<em>mangle_from_</em> is intended for use when messages are stored in Unix mbox
 format (see <a class="reference internal" href="mailbox.html#module-mailbox" title="mailbox: Manipulate mailboxes in various formats"><code class="xref py py-mod docutils literal notranslate"><span class="pre">mailbox</span></code></a> and <a class="reference external" href="https://www.jwz.org/doc/content-length.html">WHY THE CONTENT-LENGTH FORMAT IS BAD</a>).</p>
 <p>If <em>maxheaderlen</em> is not <code class="docutils literal notranslate"><span class="pre">None</span></code>, refold any header lines that are longer
 than <em>maxheaderlen</em>, or if <code class="docutils literal notranslate"><span class="pre">0</span></code>, do not rewrap any headers.  If
@@ -289,7 +312,7 @@ any line in the body that starts with the exact string <code class="docutils lit
 defaults to the value of the <a class="reference internal" href="email.policy.html#email.policy.Policy.mangle_from_" title="email.policy.Policy.mangle_from_"><code class="xref py py-attr docutils literal notranslate"><span class="pre">mangle_from_</span></code></a>
 setting of the <em>policy</em> (which is <code class="docutils literal notranslate"><span class="pre">True</span></code> for the
 <a class="reference internal" href="email.policy.html#email.policy.compat32" title="email.policy.compat32"><code class="xref py py-data docutils literal notranslate"><span class="pre">compat32</span></code></a> policy and <code class="docutils literal notranslate"><span class="pre">False</span></code> for all others).
-<em>mangle_from_</em> is intended for use when messages are stored in unix mbox
+<em>mangle_from_</em> is intended for use when messages are stored in Unix mbox
 format (see <a class="reference internal" href="mailbox.html#module-mailbox" title="mailbox: Manipulate mailboxes in various formats"><code class="xref py py-mod docutils literal notranslate"><span class="pre">mailbox</span></code></a> and <a class="reference external" href="https://www.jwz.org/doc/content-length.html">WHY THE CONTENT-LENGTH FORMAT IS BAD</a>).</p>
 <p>If <em>maxheaderlen</em> is not <code class="docutils literal notranslate"><span class="pre">None</span></code>, refold any header lines that are longer
 than <em>maxheaderlen</em>, or if <code class="docutils literal notranslate"><span class="pre">0</span></code>, do not rewrap any headers.  If
@@ -416,6 +439,28 @@ to fix these latter edge cases when possible.</p>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
   <div>
+    <h3><a href="../contents.html">目錄</a></h3>
+    <ul>
+<li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">email.generator</span></code>: Generating MIME documents</a><ul>
+<li><a class="reference internal" href="#email.generator.BytesGenerator"><code class="docutils literal notranslate"><span class="pre">BytesGenerator</span></code></a><ul>
+<li><a class="reference internal" href="#email.generator.BytesGenerator.flatten"><code class="docutils literal notranslate"><span class="pre">BytesGenerator.flatten()</span></code></a></li>
+<li><a class="reference internal" href="#email.generator.BytesGenerator.clone"><code class="docutils literal notranslate"><span class="pre">BytesGenerator.clone()</span></code></a></li>
+<li><a class="reference internal" href="#email.generator.BytesGenerator.write"><code class="docutils literal notranslate"><span class="pre">BytesGenerator.write()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#email.generator.Generator"><code class="docutils literal notranslate"><span class="pre">Generator</span></code></a><ul>
+<li><a class="reference internal" href="#email.generator.Generator.flatten"><code class="docutils literal notranslate"><span class="pre">Generator.flatten()</span></code></a></li>
+<li><a class="reference internal" href="#email.generator.Generator.clone"><code class="docutils literal notranslate"><span class="pre">Generator.clone()</span></code></a></li>
+<li><a class="reference internal" href="#email.generator.Generator.write"><code class="docutils literal notranslate"><span class="pre">Generator.write()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#email.generator.DecodedGenerator"><code class="docutils literal notranslate"><span class="pre">DecodedGenerator</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
     <h4>上個主題</h4>
     <p class="topless"><a href="email.parser.html"
                           title="上一章"><code class="xref py py-mod docutils literal notranslate"><span class="pre">email.parser</span></code>: Parsing email messages</a></p>
@@ -470,7 +515,7 @@ to fix these latter edge cases when possible.</p>
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.7 Documentation</a> &#187;
+      <a href="../index.html">3.10.8 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -508,11 +553,11 @@ to fix these latter edge cases when possible.</p>
 <br />
     <br />
 
-    最後更新於 9月 16, 2022。
+    最後更新於 10月 15, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 
-    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1 建立。
+    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.2.3 建立。
     </div>
 
   </body>

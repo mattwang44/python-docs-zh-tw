@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>例外處理 &#8212; Python 3.10.7 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>例外處理 &#8212; Python 3.10.8 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -16,12 +16,13 @@
     <script src="../_static/underscore.js"></script>
     <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/translations.js"></script>
     
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.10.7 說明文件 中搜尋"
+          title="在 Python 3.10.8 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -143,7 +144,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.7 Documentation</a> &#187;
+      <a href="../index.html">3.10.8 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Python/C API 參考手冊</a> &#187;</li>
@@ -179,7 +180,7 @@ there is a global indicator (per thread) of the last error that occurred.  Most
 C API functions don't clear this on success, but will set it to indicate the
 cause of the error on failure.  Most C API functions also return an error
 indicator, usually <code class="docutils literal notranslate"><span class="pre">NULL</span></code> if they are supposed to return a pointer, or <code class="docutils literal notranslate"><span class="pre">-1</span></code>
-if they return an integer (exception: the <span class="xref c c-texpr"><span class="n">PyArg_</span><span class="p">*</span></span> functions
+if they return an integer (exception: the <code class="docutils literal notranslate"><span class="pre">PyArg_*</span></code> functions
 return <code class="docutils literal notranslate"><span class="pre">1</span></code> for success and <code class="docutils literal notranslate"><span class="pre">0</span></code> for failure).</p>
 <p>Concretely, the error indicator consists of three object pointers: the
 exception's type, the exception's value, and the traceback object.  Any
@@ -358,7 +359,7 @@ encoding and error handler</span></a>.</p>
 <dt class="sig sig-object c" id="c.PyErr_SetFromWindowsErr">
 <a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">PyErr_SetFromWindowsErr</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n"><span class="pre">ierr</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.PyErr_SetFromWindowsErr" title="本定義的永久連結">¶</a><br /></dt>
 <dd><em class="refcount">Return value: Always NULL.</em><em class="stableabi"> Part of the <a class="reference internal" href="stable.html#stable"><span class="std std-ref">Stable ABI</span></a> on Windows since version 3.7.</em><p>This is a convenience function to raise <a class="reference internal" href="../library/exceptions.html#WindowsError" title="WindowsError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">WindowsError</span></code></a>. If called with
-<em>ierr</em> of <span class="xref c c-texpr"><span class="m">0</span></span>, the error code returned by a call to <code class="xref c c-func docutils literal notranslate"><span class="pre">GetLastError()</span></code>
+<em>ierr</em> of <code class="docutils literal notranslate"><span class="pre">0</span></code>, the error code returned by a call to <code class="xref c c-func docutils literal notranslate"><span class="pre">GetLastError()</span></code>
 is used instead.  It calls the Win32 function <code class="xref c c-func docutils literal notranslate"><span class="pre">FormatMessage()</span></code> to retrieve
 the Windows description of error code given by <em>ierr</em> or <code class="xref c c-func docutils literal notranslate"><span class="pre">GetLastError()</span></code>,
 then it constructs a tuple object whose first item is the <em>ierr</em> value and whose
@@ -555,7 +556,7 @@ an ASCII-encoded string.</p>
 <dt class="sig sig-object c" id="c.PyErr_Occurred">
 <a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">PyErr_Occurred</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c.PyErr_Occurred" title="本定義的永久連結">¶</a><br /></dt>
 <dd><em class="refcount">Return value: Borrowed reference.</em><em class="stableabi"> Part of the <a class="reference internal" href="stable.html#stable"><span class="std std-ref">Stable ABI</span></a>.</em><p>Test whether the error indicator is set.  If set, return the exception <em>type</em>
-(the first argument to the last call to one of the <span class="xref c c-texpr"><span class="n">PyErr_Set</span><span class="p">*</span></span>
+(the first argument to the last call to one of the <code class="docutils literal notranslate"><span class="pre">PyErr_Set*</span></code>
 functions or to <a class="reference internal" href="#c.PyErr_Restore" title="PyErr_Restore"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyErr_Restore()</span></code></a>).  If not set, return <code class="docutils literal notranslate"><span class="pre">NULL</span></code>.  You do not
 own a reference to the return value, so you do not need to <a class="reference internal" href="refcounting.html#c.Py_DECREF" title="Py_DECREF"><code class="xref c c-func docutils literal notranslate"><span class="pre">Py_DECREF()</span></code></a>
 it.</p>
@@ -1043,7 +1044,7 @@ invocation of <a class="reference internal" href="#c.Py_ReprEnter" title="Py_Rep
 <span id="standardexceptions"></span><h2>Standard Exceptions<a class="headerlink" href="#standard-exceptions" title="本標頭的永久連結">¶</a></h2>
 <p>All standard Python exceptions are available as global variables whose names are
 <code class="docutils literal notranslate"><span class="pre">PyExc_</span></code> followed by the Python exception name.  These have the type
-<span class="xref c c-texpr"><a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n">PyObject</span></a><span class="p">*</span></span>; they are all class objects.  For completeness, here are all
+<span class="c-expr sig sig-inline c"><a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n">PyObject</span></a><span class="p">*</span></span>; they are all class objects.  For completeness, here are all
 the variables:</p>
 <table class="docutils align-default" id="index-4">
 <thead>
@@ -1316,7 +1317,7 @@ preprocessor macro <code class="docutils literal notranslate"><span class="pre">
 <span id="standardwarningcategories"></span><h2>Standard Warning Categories<a class="headerlink" href="#standard-warning-categories" title="本標頭的永久連結">¶</a></h2>
 <p>All standard Python warning categories are available as global variables whose
 names are <code class="docutils literal notranslate"><span class="pre">PyExc_</span></code> followed by the Python exception name. These have the type
-<span class="xref c c-texpr"><a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n">PyObject</span></a><span class="p">*</span></span>; they are all class objects. For completeness, here are all
+<span class="c-expr sig sig-inline c"><a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n">PyObject</span></a><span class="p">*</span></span>; they are all class objects. For completeness, here are all
 the variables:</p>
 <table class="docutils align-default" id="index-7">
 <thead>
@@ -1467,7 +1468,7 @@ the variables:</p>
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.7 Documentation</a> &#187;
+      <a href="../index.html">3.10.8 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python/C API 參考手冊</a> &#187;</li>
@@ -1503,11 +1504,11 @@ the variables:</p>
 <br />
     <br />
 
-    最後更新於 9月 16, 2022。
+    最後更新於 10月 15, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 
-    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1 建立。
+    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.2.3 建立。
     </div>
 
   </body>

@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>uuid --- UUID objects according to RFC 4122 &#8212; Python 3.10.7 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>uuid --- UUID objects according to RFC 4122 &#8212; Python 3.10.8 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -16,12 +16,13 @@
     <script src="../_static/underscore.js"></script>
     <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/translations.js"></script>
     
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.10.7 說明文件 中搜尋"
+          title="在 Python 3.10.8 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -75,6 +76,37 @@
     <h3><a href="../contents.html">目錄</a></h3>
     <ul>
 <li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">uuid</span></code> --- UUID objects according to <strong>RFC 4122</strong></a><ul>
+<li><a class="reference internal" href="#uuid.SafeUUID"><code class="docutils literal notranslate"><span class="pre">SafeUUID</span></code></a><ul>
+<li><a class="reference internal" href="#uuid.SafeUUID.safe"><code class="docutils literal notranslate"><span class="pre">SafeUUID.safe</span></code></a></li>
+<li><a class="reference internal" href="#uuid.SafeUUID.unsafe"><code class="docutils literal notranslate"><span class="pre">SafeUUID.unsafe</span></code></a></li>
+<li><a class="reference internal" href="#uuid.SafeUUID.unknown"><code class="docutils literal notranslate"><span class="pre">SafeUUID.unknown</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#uuid.UUID"><code class="docutils literal notranslate"><span class="pre">UUID</span></code></a><ul>
+<li><a class="reference internal" href="#uuid.UUID.bytes"><code class="docutils literal notranslate"><span class="pre">UUID.bytes</span></code></a></li>
+<li><a class="reference internal" href="#uuid.UUID.bytes_le"><code class="docutils literal notranslate"><span class="pre">UUID.bytes_le</span></code></a></li>
+<li><a class="reference internal" href="#uuid.UUID.fields"><code class="docutils literal notranslate"><span class="pre">UUID.fields</span></code></a></li>
+<li><a class="reference internal" href="#uuid.UUID.hex"><code class="docutils literal notranslate"><span class="pre">UUID.hex</span></code></a></li>
+<li><a class="reference internal" href="#uuid.UUID.int"><code class="docutils literal notranslate"><span class="pre">UUID.int</span></code></a></li>
+<li><a class="reference internal" href="#uuid.UUID.urn"><code class="docutils literal notranslate"><span class="pre">UUID.urn</span></code></a></li>
+<li><a class="reference internal" href="#uuid.UUID.variant"><code class="docutils literal notranslate"><span class="pre">UUID.variant</span></code></a></li>
+<li><a class="reference internal" href="#uuid.UUID.version"><code class="docutils literal notranslate"><span class="pre">UUID.version</span></code></a></li>
+<li><a class="reference internal" href="#uuid.UUID.is_safe"><code class="docutils literal notranslate"><span class="pre">UUID.is_safe</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#uuid.getnode"><code class="docutils literal notranslate"><span class="pre">getnode()</span></code></a></li>
+<li><a class="reference internal" href="#uuid.uuid1"><code class="docutils literal notranslate"><span class="pre">uuid1()</span></code></a></li>
+<li><a class="reference internal" href="#uuid.uuid3"><code class="docutils literal notranslate"><span class="pre">uuid3()</span></code></a></li>
+<li><a class="reference internal" href="#uuid.uuid4"><code class="docutils literal notranslate"><span class="pre">uuid4()</span></code></a></li>
+<li><a class="reference internal" href="#uuid.uuid5"><code class="docutils literal notranslate"><span class="pre">uuid5()</span></code></a></li>
+<li><a class="reference internal" href="#uuid.NAMESPACE_DNS"><code class="docutils literal notranslate"><span class="pre">NAMESPACE_DNS</span></code></a></li>
+<li><a class="reference internal" href="#uuid.NAMESPACE_URL"><code class="docutils literal notranslate"><span class="pre">NAMESPACE_URL</span></code></a></li>
+<li><a class="reference internal" href="#uuid.NAMESPACE_OID"><code class="docutils literal notranslate"><span class="pre">NAMESPACE_OID</span></code></a></li>
+<li><a class="reference internal" href="#uuid.NAMESPACE_X500"><code class="docutils literal notranslate"><span class="pre">NAMESPACE_X500</span></code></a></li>
+<li><a class="reference internal" href="#uuid.RESERVED_NCS"><code class="docutils literal notranslate"><span class="pre">RESERVED_NCS</span></code></a></li>
+<li><a class="reference internal" href="#uuid.RFC_4122"><code class="docutils literal notranslate"><span class="pre">RFC_4122</span></code></a></li>
+<li><a class="reference internal" href="#uuid.RESERVED_MICROSOFT"><code class="docutils literal notranslate"><span class="pre">RESERVED_MICROSOFT</span></code></a></li>
+<li><a class="reference internal" href="#uuid.RESERVED_FUTURE"><code class="docutils literal notranslate"><span class="pre">RESERVED_FUTURE</span></code></a></li>
 <li><a class="reference internal" href="#example">範例</a></li>
 </ul>
 </li>
@@ -133,7 +165,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.7 Documentation</a> &#187;
+      <a href="../index.html">3.10.8 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -498,6 +530,37 @@ internal format of UUIDs, and methods of generating UUIDs.</p>
     <h3><a href="../contents.html">目錄</a></h3>
     <ul>
 <li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">uuid</span></code> --- UUID objects according to <strong>RFC 4122</strong></a><ul>
+<li><a class="reference internal" href="#uuid.SafeUUID"><code class="docutils literal notranslate"><span class="pre">SafeUUID</span></code></a><ul>
+<li><a class="reference internal" href="#uuid.SafeUUID.safe"><code class="docutils literal notranslate"><span class="pre">SafeUUID.safe</span></code></a></li>
+<li><a class="reference internal" href="#uuid.SafeUUID.unsafe"><code class="docutils literal notranslate"><span class="pre">SafeUUID.unsafe</span></code></a></li>
+<li><a class="reference internal" href="#uuid.SafeUUID.unknown"><code class="docutils literal notranslate"><span class="pre">SafeUUID.unknown</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#uuid.UUID"><code class="docutils literal notranslate"><span class="pre">UUID</span></code></a><ul>
+<li><a class="reference internal" href="#uuid.UUID.bytes"><code class="docutils literal notranslate"><span class="pre">UUID.bytes</span></code></a></li>
+<li><a class="reference internal" href="#uuid.UUID.bytes_le"><code class="docutils literal notranslate"><span class="pre">UUID.bytes_le</span></code></a></li>
+<li><a class="reference internal" href="#uuid.UUID.fields"><code class="docutils literal notranslate"><span class="pre">UUID.fields</span></code></a></li>
+<li><a class="reference internal" href="#uuid.UUID.hex"><code class="docutils literal notranslate"><span class="pre">UUID.hex</span></code></a></li>
+<li><a class="reference internal" href="#uuid.UUID.int"><code class="docutils literal notranslate"><span class="pre">UUID.int</span></code></a></li>
+<li><a class="reference internal" href="#uuid.UUID.urn"><code class="docutils literal notranslate"><span class="pre">UUID.urn</span></code></a></li>
+<li><a class="reference internal" href="#uuid.UUID.variant"><code class="docutils literal notranslate"><span class="pre">UUID.variant</span></code></a></li>
+<li><a class="reference internal" href="#uuid.UUID.version"><code class="docutils literal notranslate"><span class="pre">UUID.version</span></code></a></li>
+<li><a class="reference internal" href="#uuid.UUID.is_safe"><code class="docutils literal notranslate"><span class="pre">UUID.is_safe</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#uuid.getnode"><code class="docutils literal notranslate"><span class="pre">getnode()</span></code></a></li>
+<li><a class="reference internal" href="#uuid.uuid1"><code class="docutils literal notranslate"><span class="pre">uuid1()</span></code></a></li>
+<li><a class="reference internal" href="#uuid.uuid3"><code class="docutils literal notranslate"><span class="pre">uuid3()</span></code></a></li>
+<li><a class="reference internal" href="#uuid.uuid4"><code class="docutils literal notranslate"><span class="pre">uuid4()</span></code></a></li>
+<li><a class="reference internal" href="#uuid.uuid5"><code class="docutils literal notranslate"><span class="pre">uuid5()</span></code></a></li>
+<li><a class="reference internal" href="#uuid.NAMESPACE_DNS"><code class="docutils literal notranslate"><span class="pre">NAMESPACE_DNS</span></code></a></li>
+<li><a class="reference internal" href="#uuid.NAMESPACE_URL"><code class="docutils literal notranslate"><span class="pre">NAMESPACE_URL</span></code></a></li>
+<li><a class="reference internal" href="#uuid.NAMESPACE_OID"><code class="docutils literal notranslate"><span class="pre">NAMESPACE_OID</span></code></a></li>
+<li><a class="reference internal" href="#uuid.NAMESPACE_X500"><code class="docutils literal notranslate"><span class="pre">NAMESPACE_X500</span></code></a></li>
+<li><a class="reference internal" href="#uuid.RESERVED_NCS"><code class="docutils literal notranslate"><span class="pre">RESERVED_NCS</span></code></a></li>
+<li><a class="reference internal" href="#uuid.RFC_4122"><code class="docutils literal notranslate"><span class="pre">RFC_4122</span></code></a></li>
+<li><a class="reference internal" href="#uuid.RESERVED_MICROSOFT"><code class="docutils literal notranslate"><span class="pre">RESERVED_MICROSOFT</span></code></a></li>
+<li><a class="reference internal" href="#uuid.RESERVED_FUTURE"><code class="docutils literal notranslate"><span class="pre">RESERVED_FUTURE</span></code></a></li>
 <li><a class="reference internal" href="#example">範例</a></li>
 </ul>
 </li>
@@ -559,7 +622,7 @@ internal format of UUIDs, and methods of generating UUIDs.</p>
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.7 Documentation</a> &#187;
+      <a href="../index.html">3.10.8 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -596,11 +659,11 @@ internal format of UUIDs, and methods of generating UUIDs.</p>
 <br />
     <br />
 
-    最後更新於 9月 16, 2022。
+    最後更新於 10月 15, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 
-    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1 建立。
+    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.2.3 建立。
     </div>
 
   </body>

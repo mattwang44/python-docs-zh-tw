@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>http.server --- HTTP servers &#8212; Python 3.10.7 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>http.server --- HTTP servers &#8212; Python 3.10.8 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -16,12 +16,13 @@
     <script src="../_static/underscore.js"></script>
     <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/translations.js"></script>
     
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.10.7 說明文件 中搜尋"
+          title="在 Python 3.10.8 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -75,6 +76,56 @@
     <h3><a href="../contents.html">目錄</a></h3>
     <ul>
 <li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">http.server</span></code> --- HTTP servers</a><ul>
+<li><a class="reference internal" href="#http.server.HTTPServer"><code class="docutils literal notranslate"><span class="pre">HTTPServer</span></code></a></li>
+<li><a class="reference internal" href="#http.server.ThreadingHTTPServer"><code class="docutils literal notranslate"><span class="pre">ThreadingHTTPServer</span></code></a></li>
+<li><a class="reference internal" href="#http.server.BaseHTTPRequestHandler"><code class="docutils literal notranslate"><span class="pre">BaseHTTPRequestHandler</span></code></a><ul>
+<li><a class="reference internal" href="#http.server.BaseHTTPRequestHandler.client_address"><code class="docutils literal notranslate"><span class="pre">BaseHTTPRequestHandler.client_address</span></code></a></li>
+<li><a class="reference internal" href="#http.server.BaseHTTPRequestHandler.server"><code class="docutils literal notranslate"><span class="pre">BaseHTTPRequestHandler.server</span></code></a></li>
+<li><a class="reference internal" href="#http.server.BaseHTTPRequestHandler.close_connection"><code class="docutils literal notranslate"><span class="pre">BaseHTTPRequestHandler.close_connection</span></code></a></li>
+<li><a class="reference internal" href="#http.server.BaseHTTPRequestHandler.requestline"><code class="docutils literal notranslate"><span class="pre">BaseHTTPRequestHandler.requestline</span></code></a></li>
+<li><a class="reference internal" href="#http.server.BaseHTTPRequestHandler.command"><code class="docutils literal notranslate"><span class="pre">BaseHTTPRequestHandler.command</span></code></a></li>
+<li><a class="reference internal" href="#http.server.BaseHTTPRequestHandler.path"><code class="docutils literal notranslate"><span class="pre">BaseHTTPRequestHandler.path</span></code></a></li>
+<li><a class="reference internal" href="#http.server.BaseHTTPRequestHandler.request_version"><code class="docutils literal notranslate"><span class="pre">BaseHTTPRequestHandler.request_version</span></code></a></li>
+<li><a class="reference internal" href="#http.server.BaseHTTPRequestHandler.headers"><code class="docutils literal notranslate"><span class="pre">BaseHTTPRequestHandler.headers</span></code></a></li>
+<li><a class="reference internal" href="#http.server.BaseHTTPRequestHandler.rfile"><code class="docutils literal notranslate"><span class="pre">BaseHTTPRequestHandler.rfile</span></code></a></li>
+<li><a class="reference internal" href="#http.server.BaseHTTPRequestHandler.wfile"><code class="docutils literal notranslate"><span class="pre">BaseHTTPRequestHandler.wfile</span></code></a></li>
+<li><a class="reference internal" href="#http.server.BaseHTTPRequestHandler.server_version"><code class="docutils literal notranslate"><span class="pre">BaseHTTPRequestHandler.server_version</span></code></a></li>
+<li><a class="reference internal" href="#http.server.BaseHTTPRequestHandler.sys_version"><code class="docutils literal notranslate"><span class="pre">BaseHTTPRequestHandler.sys_version</span></code></a></li>
+<li><a class="reference internal" href="#http.server.BaseHTTPRequestHandler.error_message_format"><code class="docutils literal notranslate"><span class="pre">BaseHTTPRequestHandler.error_message_format</span></code></a></li>
+<li><a class="reference internal" href="#http.server.BaseHTTPRequestHandler.error_content_type"><code class="docutils literal notranslate"><span class="pre">BaseHTTPRequestHandler.error_content_type</span></code></a></li>
+<li><a class="reference internal" href="#http.server.BaseHTTPRequestHandler.protocol_version"><code class="docutils literal notranslate"><span class="pre">BaseHTTPRequestHandler.protocol_version</span></code></a></li>
+<li><a class="reference internal" href="#http.server.BaseHTTPRequestHandler.MessageClass"><code class="docutils literal notranslate"><span class="pre">BaseHTTPRequestHandler.MessageClass</span></code></a></li>
+<li><a class="reference internal" href="#http.server.BaseHTTPRequestHandler.responses"><code class="docutils literal notranslate"><span class="pre">BaseHTTPRequestHandler.responses</span></code></a></li>
+<li><a class="reference internal" href="#http.server.BaseHTTPRequestHandler.handle"><code class="docutils literal notranslate"><span class="pre">BaseHTTPRequestHandler.handle()</span></code></a></li>
+<li><a class="reference internal" href="#http.server.BaseHTTPRequestHandler.handle_one_request"><code class="docutils literal notranslate"><span class="pre">BaseHTTPRequestHandler.handle_one_request()</span></code></a></li>
+<li><a class="reference internal" href="#http.server.BaseHTTPRequestHandler.handle_expect_100"><code class="docutils literal notranslate"><span class="pre">BaseHTTPRequestHandler.handle_expect_100()</span></code></a></li>
+<li><a class="reference internal" href="#http.server.BaseHTTPRequestHandler.send_error"><code class="docutils literal notranslate"><span class="pre">BaseHTTPRequestHandler.send_error()</span></code></a></li>
+<li><a class="reference internal" href="#http.server.BaseHTTPRequestHandler.send_response"><code class="docutils literal notranslate"><span class="pre">BaseHTTPRequestHandler.send_response()</span></code></a></li>
+<li><a class="reference internal" href="#http.server.BaseHTTPRequestHandler.send_header"><code class="docutils literal notranslate"><span class="pre">BaseHTTPRequestHandler.send_header()</span></code></a></li>
+<li><a class="reference internal" href="#http.server.BaseHTTPRequestHandler.send_response_only"><code class="docutils literal notranslate"><span class="pre">BaseHTTPRequestHandler.send_response_only()</span></code></a></li>
+<li><a class="reference internal" href="#http.server.BaseHTTPRequestHandler.end_headers"><code class="docutils literal notranslate"><span class="pre">BaseHTTPRequestHandler.end_headers()</span></code></a></li>
+<li><a class="reference internal" href="#http.server.BaseHTTPRequestHandler.flush_headers"><code class="docutils literal notranslate"><span class="pre">BaseHTTPRequestHandler.flush_headers()</span></code></a></li>
+<li><a class="reference internal" href="#http.server.BaseHTTPRequestHandler.log_request"><code class="docutils literal notranslate"><span class="pre">BaseHTTPRequestHandler.log_request()</span></code></a></li>
+<li><a class="reference internal" href="#http.server.BaseHTTPRequestHandler.log_error"><code class="docutils literal notranslate"><span class="pre">BaseHTTPRequestHandler.log_error()</span></code></a></li>
+<li><a class="reference internal" href="#http.server.BaseHTTPRequestHandler.log_message"><code class="docutils literal notranslate"><span class="pre">BaseHTTPRequestHandler.log_message()</span></code></a></li>
+<li><a class="reference internal" href="#http.server.BaseHTTPRequestHandler.version_string"><code class="docutils literal notranslate"><span class="pre">BaseHTTPRequestHandler.version_string()</span></code></a></li>
+<li><a class="reference internal" href="#http.server.BaseHTTPRequestHandler.date_time_string"><code class="docutils literal notranslate"><span class="pre">BaseHTTPRequestHandler.date_time_string()</span></code></a></li>
+<li><a class="reference internal" href="#http.server.BaseHTTPRequestHandler.log_date_time_string"><code class="docutils literal notranslate"><span class="pre">BaseHTTPRequestHandler.log_date_time_string()</span></code></a></li>
+<li><a class="reference internal" href="#http.server.BaseHTTPRequestHandler.address_string"><code class="docutils literal notranslate"><span class="pre">BaseHTTPRequestHandler.address_string()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#http.server.SimpleHTTPRequestHandler"><code class="docutils literal notranslate"><span class="pre">SimpleHTTPRequestHandler</span></code></a><ul>
+<li><a class="reference internal" href="#http.server.SimpleHTTPRequestHandler.server_version"><code class="docutils literal notranslate"><span class="pre">SimpleHTTPRequestHandler.server_version</span></code></a></li>
+<li><a class="reference internal" href="#http.server.SimpleHTTPRequestHandler.extensions_map"><code class="docutils literal notranslate"><span class="pre">SimpleHTTPRequestHandler.extensions_map</span></code></a></li>
+<li><a class="reference internal" href="#http.server.SimpleHTTPRequestHandler.do_HEAD"><code class="docutils literal notranslate"><span class="pre">SimpleHTTPRequestHandler.do_HEAD()</span></code></a></li>
+<li><a class="reference internal" href="#http.server.SimpleHTTPRequestHandler.do_GET"><code class="docutils literal notranslate"><span class="pre">SimpleHTTPRequestHandler.do_GET()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#http.server.CGIHTTPRequestHandler"><code class="docutils literal notranslate"><span class="pre">CGIHTTPRequestHandler</span></code></a><ul>
+<li><a class="reference internal" href="#http.server.CGIHTTPRequestHandler.cgi_directories"><code class="docutils literal notranslate"><span class="pre">CGIHTTPRequestHandler.cgi_directories</span></code></a></li>
+<li><a class="reference internal" href="#http.server.CGIHTTPRequestHandler.do_POST"><code class="docutils literal notranslate"><span class="pre">CGIHTTPRequestHandler.do_POST()</span></code></a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#security-considerations">Security Considerations</a></li>
 </ul>
 </li>
@@ -133,7 +184,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.7 Documentation</a> &#187;
+      <a href="../index.html">3.10.8 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -602,8 +653,8 @@ followed by a <code class="docutils literal notranslate"><span class="pre">'Cont
 <p>Then follows a blank line signifying the end of the headers, and then the
 contents of the file are output. If the file's MIME type starts with
 <code class="docutils literal notranslate"><span class="pre">text/</span></code> the file is opened in text mode; otherwise binary mode is used.</p>
-<p>For example usage, see the implementation of the <a class="reference internal" href="test.html#module-test" title="test: Regression tests package containing the testing suite for Python."><code class="xref py py-func docutils literal notranslate"><span class="pre">test()</span></code></a> function
-invocation in the <a class="reference internal" href="#module-http.server" title="http.server: HTTP server and request handlers."><code class="xref py py-mod docutils literal notranslate"><span class="pre">http.server</span></code></a> module.</p>
+<p>For example usage, see the implementation of the <code class="docutils literal notranslate"><span class="pre">test</span></code> function
+in <a class="reference external" href="https://github.com/python/cpython/tree/3.10/Lib/http/server.py">Lib/http/server.py</a>.</p>
 <div class="versionchanged">
 <p><span class="versionmodified changed">在 3.7 版本變更: </span>Support of the <code class="docutils literal notranslate"><span class="pre">'If-Modified-Since'</span></code> header.</p>
 </div>
@@ -724,6 +775,56 @@ to be served.</p>
     <h3><a href="../contents.html">目錄</a></h3>
     <ul>
 <li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">http.server</span></code> --- HTTP servers</a><ul>
+<li><a class="reference internal" href="#http.server.HTTPServer"><code class="docutils literal notranslate"><span class="pre">HTTPServer</span></code></a></li>
+<li><a class="reference internal" href="#http.server.ThreadingHTTPServer"><code class="docutils literal notranslate"><span class="pre">ThreadingHTTPServer</span></code></a></li>
+<li><a class="reference internal" href="#http.server.BaseHTTPRequestHandler"><code class="docutils literal notranslate"><span class="pre">BaseHTTPRequestHandler</span></code></a><ul>
+<li><a class="reference internal" href="#http.server.BaseHTTPRequestHandler.client_address"><code class="docutils literal notranslate"><span class="pre">BaseHTTPRequestHandler.client_address</span></code></a></li>
+<li><a class="reference internal" href="#http.server.BaseHTTPRequestHandler.server"><code class="docutils literal notranslate"><span class="pre">BaseHTTPRequestHandler.server</span></code></a></li>
+<li><a class="reference internal" href="#http.server.BaseHTTPRequestHandler.close_connection"><code class="docutils literal notranslate"><span class="pre">BaseHTTPRequestHandler.close_connection</span></code></a></li>
+<li><a class="reference internal" href="#http.server.BaseHTTPRequestHandler.requestline"><code class="docutils literal notranslate"><span class="pre">BaseHTTPRequestHandler.requestline</span></code></a></li>
+<li><a class="reference internal" href="#http.server.BaseHTTPRequestHandler.command"><code class="docutils literal notranslate"><span class="pre">BaseHTTPRequestHandler.command</span></code></a></li>
+<li><a class="reference internal" href="#http.server.BaseHTTPRequestHandler.path"><code class="docutils literal notranslate"><span class="pre">BaseHTTPRequestHandler.path</span></code></a></li>
+<li><a class="reference internal" href="#http.server.BaseHTTPRequestHandler.request_version"><code class="docutils literal notranslate"><span class="pre">BaseHTTPRequestHandler.request_version</span></code></a></li>
+<li><a class="reference internal" href="#http.server.BaseHTTPRequestHandler.headers"><code class="docutils literal notranslate"><span class="pre">BaseHTTPRequestHandler.headers</span></code></a></li>
+<li><a class="reference internal" href="#http.server.BaseHTTPRequestHandler.rfile"><code class="docutils literal notranslate"><span class="pre">BaseHTTPRequestHandler.rfile</span></code></a></li>
+<li><a class="reference internal" href="#http.server.BaseHTTPRequestHandler.wfile"><code class="docutils literal notranslate"><span class="pre">BaseHTTPRequestHandler.wfile</span></code></a></li>
+<li><a class="reference internal" href="#http.server.BaseHTTPRequestHandler.server_version"><code class="docutils literal notranslate"><span class="pre">BaseHTTPRequestHandler.server_version</span></code></a></li>
+<li><a class="reference internal" href="#http.server.BaseHTTPRequestHandler.sys_version"><code class="docutils literal notranslate"><span class="pre">BaseHTTPRequestHandler.sys_version</span></code></a></li>
+<li><a class="reference internal" href="#http.server.BaseHTTPRequestHandler.error_message_format"><code class="docutils literal notranslate"><span class="pre">BaseHTTPRequestHandler.error_message_format</span></code></a></li>
+<li><a class="reference internal" href="#http.server.BaseHTTPRequestHandler.error_content_type"><code class="docutils literal notranslate"><span class="pre">BaseHTTPRequestHandler.error_content_type</span></code></a></li>
+<li><a class="reference internal" href="#http.server.BaseHTTPRequestHandler.protocol_version"><code class="docutils literal notranslate"><span class="pre">BaseHTTPRequestHandler.protocol_version</span></code></a></li>
+<li><a class="reference internal" href="#http.server.BaseHTTPRequestHandler.MessageClass"><code class="docutils literal notranslate"><span class="pre">BaseHTTPRequestHandler.MessageClass</span></code></a></li>
+<li><a class="reference internal" href="#http.server.BaseHTTPRequestHandler.responses"><code class="docutils literal notranslate"><span class="pre">BaseHTTPRequestHandler.responses</span></code></a></li>
+<li><a class="reference internal" href="#http.server.BaseHTTPRequestHandler.handle"><code class="docutils literal notranslate"><span class="pre">BaseHTTPRequestHandler.handle()</span></code></a></li>
+<li><a class="reference internal" href="#http.server.BaseHTTPRequestHandler.handle_one_request"><code class="docutils literal notranslate"><span class="pre">BaseHTTPRequestHandler.handle_one_request()</span></code></a></li>
+<li><a class="reference internal" href="#http.server.BaseHTTPRequestHandler.handle_expect_100"><code class="docutils literal notranslate"><span class="pre">BaseHTTPRequestHandler.handle_expect_100()</span></code></a></li>
+<li><a class="reference internal" href="#http.server.BaseHTTPRequestHandler.send_error"><code class="docutils literal notranslate"><span class="pre">BaseHTTPRequestHandler.send_error()</span></code></a></li>
+<li><a class="reference internal" href="#http.server.BaseHTTPRequestHandler.send_response"><code class="docutils literal notranslate"><span class="pre">BaseHTTPRequestHandler.send_response()</span></code></a></li>
+<li><a class="reference internal" href="#http.server.BaseHTTPRequestHandler.send_header"><code class="docutils literal notranslate"><span class="pre">BaseHTTPRequestHandler.send_header()</span></code></a></li>
+<li><a class="reference internal" href="#http.server.BaseHTTPRequestHandler.send_response_only"><code class="docutils literal notranslate"><span class="pre">BaseHTTPRequestHandler.send_response_only()</span></code></a></li>
+<li><a class="reference internal" href="#http.server.BaseHTTPRequestHandler.end_headers"><code class="docutils literal notranslate"><span class="pre">BaseHTTPRequestHandler.end_headers()</span></code></a></li>
+<li><a class="reference internal" href="#http.server.BaseHTTPRequestHandler.flush_headers"><code class="docutils literal notranslate"><span class="pre">BaseHTTPRequestHandler.flush_headers()</span></code></a></li>
+<li><a class="reference internal" href="#http.server.BaseHTTPRequestHandler.log_request"><code class="docutils literal notranslate"><span class="pre">BaseHTTPRequestHandler.log_request()</span></code></a></li>
+<li><a class="reference internal" href="#http.server.BaseHTTPRequestHandler.log_error"><code class="docutils literal notranslate"><span class="pre">BaseHTTPRequestHandler.log_error()</span></code></a></li>
+<li><a class="reference internal" href="#http.server.BaseHTTPRequestHandler.log_message"><code class="docutils literal notranslate"><span class="pre">BaseHTTPRequestHandler.log_message()</span></code></a></li>
+<li><a class="reference internal" href="#http.server.BaseHTTPRequestHandler.version_string"><code class="docutils literal notranslate"><span class="pre">BaseHTTPRequestHandler.version_string()</span></code></a></li>
+<li><a class="reference internal" href="#http.server.BaseHTTPRequestHandler.date_time_string"><code class="docutils literal notranslate"><span class="pre">BaseHTTPRequestHandler.date_time_string()</span></code></a></li>
+<li><a class="reference internal" href="#http.server.BaseHTTPRequestHandler.log_date_time_string"><code class="docutils literal notranslate"><span class="pre">BaseHTTPRequestHandler.log_date_time_string()</span></code></a></li>
+<li><a class="reference internal" href="#http.server.BaseHTTPRequestHandler.address_string"><code class="docutils literal notranslate"><span class="pre">BaseHTTPRequestHandler.address_string()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#http.server.SimpleHTTPRequestHandler"><code class="docutils literal notranslate"><span class="pre">SimpleHTTPRequestHandler</span></code></a><ul>
+<li><a class="reference internal" href="#http.server.SimpleHTTPRequestHandler.server_version"><code class="docutils literal notranslate"><span class="pre">SimpleHTTPRequestHandler.server_version</span></code></a></li>
+<li><a class="reference internal" href="#http.server.SimpleHTTPRequestHandler.extensions_map"><code class="docutils literal notranslate"><span class="pre">SimpleHTTPRequestHandler.extensions_map</span></code></a></li>
+<li><a class="reference internal" href="#http.server.SimpleHTTPRequestHandler.do_HEAD"><code class="docutils literal notranslate"><span class="pre">SimpleHTTPRequestHandler.do_HEAD()</span></code></a></li>
+<li><a class="reference internal" href="#http.server.SimpleHTTPRequestHandler.do_GET"><code class="docutils literal notranslate"><span class="pre">SimpleHTTPRequestHandler.do_GET()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#http.server.CGIHTTPRequestHandler"><code class="docutils literal notranslate"><span class="pre">CGIHTTPRequestHandler</span></code></a><ul>
+<li><a class="reference internal" href="#http.server.CGIHTTPRequestHandler.cgi_directories"><code class="docutils literal notranslate"><span class="pre">CGIHTTPRequestHandler.cgi_directories</span></code></a></li>
+<li><a class="reference internal" href="#http.server.CGIHTTPRequestHandler.do_POST"><code class="docutils literal notranslate"><span class="pre">CGIHTTPRequestHandler.do_POST()</span></code></a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#security-considerations">Security Considerations</a></li>
 </ul>
 </li>
@@ -785,7 +886,7 @@ to be served.</p>
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.7 Documentation</a> &#187;
+      <a href="../index.html">3.10.8 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -822,11 +923,11 @@ to be served.</p>
 <br />
     <br />
 
-    最後更新於 9月 16, 2022。
+    最後更新於 10月 15, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 
-    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1 建立。
+    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.2.3 建立。
     </div>
 
   </body>

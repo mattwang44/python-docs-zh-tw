@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>lzma --- Compression using the LZMA algorithm &#8212; Python 3.10.7 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>lzma --- Compression using the LZMA algorithm &#8212; Python 3.10.8 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -16,12 +16,13 @@
     <script src="../_static/underscore.js"></script>
     <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/translations.js"></script>
     
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.10.7 說明文件 中搜尋"
+          title="在 Python 3.10.8 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -75,9 +76,37 @@
     <h3><a href="../contents.html">目錄</a></h3>
     <ul>
 <li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">lzma</span></code> --- Compression using the LZMA algorithm</a><ul>
-<li><a class="reference internal" href="#reading-and-writing-compressed-files">Reading and writing compressed files</a></li>
-<li><a class="reference internal" href="#compressing-and-decompressing-data-in-memory">Compressing and decompressing data in memory</a></li>
-<li><a class="reference internal" href="#miscellaneous">Miscellaneous</a></li>
+<li><a class="reference internal" href="#lzma.LZMAError"><code class="docutils literal notranslate"><span class="pre">LZMAError</span></code></a></li>
+<li><a class="reference internal" href="#reading-and-writing-compressed-files">Reading and writing compressed files</a><ul>
+<li><a class="reference internal" href="#lzma.open"><code class="docutils literal notranslate"><span class="pre">open()</span></code></a></li>
+<li><a class="reference internal" href="#lzma.LZMAFile"><code class="docutils literal notranslate"><span class="pre">LZMAFile</span></code></a><ul>
+<li><a class="reference internal" href="#lzma.LZMAFile.peek"><code class="docutils literal notranslate"><span class="pre">LZMAFile.peek()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#compressing-and-decompressing-data-in-memory">Compressing and decompressing data in memory</a><ul>
+<li><a class="reference internal" href="#lzma.LZMACompressor"><code class="docutils literal notranslate"><span class="pre">LZMACompressor</span></code></a><ul>
+<li><a class="reference internal" href="#lzma.LZMACompressor.compress"><code class="docutils literal notranslate"><span class="pre">LZMACompressor.compress()</span></code></a></li>
+<li><a class="reference internal" href="#lzma.LZMACompressor.flush"><code class="docutils literal notranslate"><span class="pre">LZMACompressor.flush()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#lzma.LZMADecompressor"><code class="docutils literal notranslate"><span class="pre">LZMADecompressor</span></code></a><ul>
+<li><a class="reference internal" href="#lzma.LZMADecompressor.decompress"><code class="docutils literal notranslate"><span class="pre">LZMADecompressor.decompress()</span></code></a></li>
+<li><a class="reference internal" href="#lzma.LZMADecompressor.check"><code class="docutils literal notranslate"><span class="pre">LZMADecompressor.check</span></code></a></li>
+<li><a class="reference internal" href="#lzma.LZMADecompressor.eof"><code class="docutils literal notranslate"><span class="pre">LZMADecompressor.eof</span></code></a></li>
+<li><a class="reference internal" href="#lzma.LZMADecompressor.unused_data"><code class="docutils literal notranslate"><span class="pre">LZMADecompressor.unused_data</span></code></a></li>
+<li><a class="reference internal" href="#lzma.LZMADecompressor.needs_input"><code class="docutils literal notranslate"><span class="pre">LZMADecompressor.needs_input</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#lzma.compress"><code class="docutils literal notranslate"><span class="pre">compress()</span></code></a></li>
+<li><a class="reference internal" href="#lzma.decompress"><code class="docutils literal notranslate"><span class="pre">decompress()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#miscellaneous">Miscellaneous</a><ul>
+<li><a class="reference internal" href="#lzma.is_check_supported"><code class="docutils literal notranslate"><span class="pre">is_check_supported()</span></code></a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#specifying-custom-filter-chains">Specifying custom filter chains</a></li>
 <li><a class="reference internal" href="#examples">範例</a></li>
 </ul>
@@ -137,7 +166,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.7 Documentation</a> &#187;
+      <a href="../index.html">3.10.8 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -612,9 +641,37 @@ that should be mapped to the beginning of the input data. The default is 0.</p>
     <h3><a href="../contents.html">目錄</a></h3>
     <ul>
 <li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">lzma</span></code> --- Compression using the LZMA algorithm</a><ul>
-<li><a class="reference internal" href="#reading-and-writing-compressed-files">Reading and writing compressed files</a></li>
-<li><a class="reference internal" href="#compressing-and-decompressing-data-in-memory">Compressing and decompressing data in memory</a></li>
-<li><a class="reference internal" href="#miscellaneous">Miscellaneous</a></li>
+<li><a class="reference internal" href="#lzma.LZMAError"><code class="docutils literal notranslate"><span class="pre">LZMAError</span></code></a></li>
+<li><a class="reference internal" href="#reading-and-writing-compressed-files">Reading and writing compressed files</a><ul>
+<li><a class="reference internal" href="#lzma.open"><code class="docutils literal notranslate"><span class="pre">open()</span></code></a></li>
+<li><a class="reference internal" href="#lzma.LZMAFile"><code class="docutils literal notranslate"><span class="pre">LZMAFile</span></code></a><ul>
+<li><a class="reference internal" href="#lzma.LZMAFile.peek"><code class="docutils literal notranslate"><span class="pre">LZMAFile.peek()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#compressing-and-decompressing-data-in-memory">Compressing and decompressing data in memory</a><ul>
+<li><a class="reference internal" href="#lzma.LZMACompressor"><code class="docutils literal notranslate"><span class="pre">LZMACompressor</span></code></a><ul>
+<li><a class="reference internal" href="#lzma.LZMACompressor.compress"><code class="docutils literal notranslate"><span class="pre">LZMACompressor.compress()</span></code></a></li>
+<li><a class="reference internal" href="#lzma.LZMACompressor.flush"><code class="docutils literal notranslate"><span class="pre">LZMACompressor.flush()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#lzma.LZMADecompressor"><code class="docutils literal notranslate"><span class="pre">LZMADecompressor</span></code></a><ul>
+<li><a class="reference internal" href="#lzma.LZMADecompressor.decompress"><code class="docutils literal notranslate"><span class="pre">LZMADecompressor.decompress()</span></code></a></li>
+<li><a class="reference internal" href="#lzma.LZMADecompressor.check"><code class="docutils literal notranslate"><span class="pre">LZMADecompressor.check</span></code></a></li>
+<li><a class="reference internal" href="#lzma.LZMADecompressor.eof"><code class="docutils literal notranslate"><span class="pre">LZMADecompressor.eof</span></code></a></li>
+<li><a class="reference internal" href="#lzma.LZMADecompressor.unused_data"><code class="docutils literal notranslate"><span class="pre">LZMADecompressor.unused_data</span></code></a></li>
+<li><a class="reference internal" href="#lzma.LZMADecompressor.needs_input"><code class="docutils literal notranslate"><span class="pre">LZMADecompressor.needs_input</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#lzma.compress"><code class="docutils literal notranslate"><span class="pre">compress()</span></code></a></li>
+<li><a class="reference internal" href="#lzma.decompress"><code class="docutils literal notranslate"><span class="pre">decompress()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#miscellaneous">Miscellaneous</a><ul>
+<li><a class="reference internal" href="#lzma.is_check_supported"><code class="docutils literal notranslate"><span class="pre">is_check_supported()</span></code></a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#specifying-custom-filter-chains">Specifying custom filter chains</a></li>
 <li><a class="reference internal" href="#examples">範例</a></li>
 </ul>
@@ -677,7 +734,7 @@ that should be mapped to the beginning of the input data. The default is 0.</p>
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.7 Documentation</a> &#187;
+      <a href="../index.html">3.10.8 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -714,11 +771,11 @@ that should be mapped to the beginning of the input data. The default is 0.</p>
 <br />
     <br />
 
-    最後更新於 9月 16, 2022。
+    最後更新於 10月 15, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 
-    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1 建立。
+    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.2.3 建立。
     </div>
 
   </body>

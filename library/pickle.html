@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>pickle --- Python object serialization &#8212; Python 3.10.7 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pickle --- Python object serialization &#8212; Python 3.10.8 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -16,12 +16,13 @@
     <script src="../_static/underscore.js"></script>
     <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/translations.js"></script>
     
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.10.7 說明文件 中搜尋"
+          title="在 Python 3.10.8 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -81,9 +82,45 @@
 </ul>
 </li>
 <li><a class="reference internal" href="#data-stream-format">Data stream format</a></li>
-<li><a class="reference internal" href="#module-interface">模組介面</a></li>
+<li><a class="reference internal" href="#module-interface">模組介面</a><ul>
+<li><a class="reference internal" href="#pickle.HIGHEST_PROTOCOL"><code class="docutils literal notranslate"><span class="pre">HIGHEST_PROTOCOL</span></code></a></li>
+<li><a class="reference internal" href="#pickle.DEFAULT_PROTOCOL"><code class="docutils literal notranslate"><span class="pre">DEFAULT_PROTOCOL</span></code></a></li>
+<li><a class="reference internal" href="#pickle.dump"><code class="docutils literal notranslate"><span class="pre">dump()</span></code></a></li>
+<li><a class="reference internal" href="#pickle.dumps"><code class="docutils literal notranslate"><span class="pre">dumps()</span></code></a></li>
+<li><a class="reference internal" href="#pickle.load"><code class="docutils literal notranslate"><span class="pre">load()</span></code></a></li>
+<li><a class="reference internal" href="#pickle.loads"><code class="docutils literal notranslate"><span class="pre">loads()</span></code></a></li>
+<li><a class="reference internal" href="#pickle.PickleError"><code class="docutils literal notranslate"><span class="pre">PickleError</span></code></a></li>
+<li><a class="reference internal" href="#pickle.PicklingError"><code class="docutils literal notranslate"><span class="pre">PicklingError</span></code></a></li>
+<li><a class="reference internal" href="#pickle.UnpicklingError"><code class="docutils literal notranslate"><span class="pre">UnpicklingError</span></code></a></li>
+<li><a class="reference internal" href="#pickle.Pickler"><code class="docutils literal notranslate"><span class="pre">Pickler</span></code></a><ul>
+<li><a class="reference internal" href="#pickle.Pickler.dump"><code class="docutils literal notranslate"><span class="pre">Pickler.dump()</span></code></a></li>
+<li><a class="reference internal" href="#pickle.Pickler.persistent_id"><code class="docutils literal notranslate"><span class="pre">Pickler.persistent_id()</span></code></a></li>
+<li><a class="reference internal" href="#pickle.Pickler.dispatch_table"><code class="docutils literal notranslate"><span class="pre">Pickler.dispatch_table</span></code></a></li>
+<li><a class="reference internal" href="#pickle.Pickler.reducer_override"><code class="docutils literal notranslate"><span class="pre">Pickler.reducer_override()</span></code></a></li>
+<li><a class="reference internal" href="#pickle.Pickler.fast"><code class="docutils literal notranslate"><span class="pre">Pickler.fast</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#pickle.Unpickler"><code class="docutils literal notranslate"><span class="pre">Unpickler</span></code></a><ul>
+<li><a class="reference internal" href="#pickle.Unpickler.load"><code class="docutils literal notranslate"><span class="pre">Unpickler.load()</span></code></a></li>
+<li><a class="reference internal" href="#pickle.Unpickler.persistent_load"><code class="docutils literal notranslate"><span class="pre">Unpickler.persistent_load()</span></code></a></li>
+<li><a class="reference internal" href="#pickle.Unpickler.find_class"><code class="docutils literal notranslate"><span class="pre">Unpickler.find_class()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#pickle.PickleBuffer"><code class="docutils literal notranslate"><span class="pre">PickleBuffer</span></code></a><ul>
+<li><a class="reference internal" href="#pickle.PickleBuffer.raw"><code class="docutils literal notranslate"><span class="pre">PickleBuffer.raw()</span></code></a></li>
+<li><a class="reference internal" href="#pickle.PickleBuffer.release"><code class="docutils literal notranslate"><span class="pre">PickleBuffer.release()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li><a class="reference internal" href="#what-can-be-pickled-and-unpickled">What can be pickled and unpickled?</a></li>
 <li><a class="reference internal" href="#pickling-class-instances">Pickling Class Instances</a><ul>
+<li><a class="reference internal" href="#object.__getnewargs_ex__"><code class="docutils literal notranslate"><span class="pre">object.__getnewargs_ex__()</span></code></a></li>
+<li><a class="reference internal" href="#object.__getnewargs__"><code class="docutils literal notranslate"><span class="pre">object.__getnewargs__()</span></code></a></li>
+<li><a class="reference internal" href="#object.__getstate__"><code class="docutils literal notranslate"><span class="pre">object.__getstate__()</span></code></a></li>
+<li><a class="reference internal" href="#object.__setstate__"><code class="docutils literal notranslate"><span class="pre">object.__setstate__()</span></code></a></li>
+<li><a class="reference internal" href="#object.__reduce__"><code class="docutils literal notranslate"><span class="pre">object.__reduce__()</span></code></a></li>
+<li><a class="reference internal" href="#object.__reduce_ex__"><code class="docutils literal notranslate"><span class="pre">object.__reduce_ex__()</span></code></a></li>
 <li><a class="reference internal" href="#persistence-of-external-objects">Persistence of External Objects</a></li>
 <li><a class="reference internal" href="#dispatch-tables">Dispatch Tables</a></li>
 <li><a class="reference internal" href="#handling-stateful-objects">Handling Stateful Objects</a></li>
@@ -156,7 +193,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.7 Documentation</a> &#187;
+      <a href="../index.html">3.10.8 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -246,7 +283,7 @@ if your data is crossing that unique breaking change language boundary.</p></li>
 <section id="comparison-with-json">
 <span id="id2"></span><h3>Comparison with <code class="docutils literal notranslate"><span class="pre">json</span></code><a class="headerlink" href="#comparison-with-json" title="本標頭的永久連結">¶</a></h3>
 <p>There are fundamental differences between the pickle protocols and
-<a class="reference external" href="http://json.org">JSON (JavaScript Object Notation)</a>:</p>
+<a class="reference external" href="https://json.org">JSON (JavaScript Object Notation)</a>:</p>
 <ul class="simple">
 <li><p>JSON is a text serialization format (it outputs unicode text, although
 most of the time it is then encoded to <code class="docutils literal notranslate"><span class="pre">utf-8</span></code>), while pickle is
@@ -1372,9 +1409,45 @@ persistent IDs, the resulting pickled data will become unreadable.</p>
 </ul>
 </li>
 <li><a class="reference internal" href="#data-stream-format">Data stream format</a></li>
-<li><a class="reference internal" href="#module-interface">模組介面</a></li>
+<li><a class="reference internal" href="#module-interface">模組介面</a><ul>
+<li><a class="reference internal" href="#pickle.HIGHEST_PROTOCOL"><code class="docutils literal notranslate"><span class="pre">HIGHEST_PROTOCOL</span></code></a></li>
+<li><a class="reference internal" href="#pickle.DEFAULT_PROTOCOL"><code class="docutils literal notranslate"><span class="pre">DEFAULT_PROTOCOL</span></code></a></li>
+<li><a class="reference internal" href="#pickle.dump"><code class="docutils literal notranslate"><span class="pre">dump()</span></code></a></li>
+<li><a class="reference internal" href="#pickle.dumps"><code class="docutils literal notranslate"><span class="pre">dumps()</span></code></a></li>
+<li><a class="reference internal" href="#pickle.load"><code class="docutils literal notranslate"><span class="pre">load()</span></code></a></li>
+<li><a class="reference internal" href="#pickle.loads"><code class="docutils literal notranslate"><span class="pre">loads()</span></code></a></li>
+<li><a class="reference internal" href="#pickle.PickleError"><code class="docutils literal notranslate"><span class="pre">PickleError</span></code></a></li>
+<li><a class="reference internal" href="#pickle.PicklingError"><code class="docutils literal notranslate"><span class="pre">PicklingError</span></code></a></li>
+<li><a class="reference internal" href="#pickle.UnpicklingError"><code class="docutils literal notranslate"><span class="pre">UnpicklingError</span></code></a></li>
+<li><a class="reference internal" href="#pickle.Pickler"><code class="docutils literal notranslate"><span class="pre">Pickler</span></code></a><ul>
+<li><a class="reference internal" href="#pickle.Pickler.dump"><code class="docutils literal notranslate"><span class="pre">Pickler.dump()</span></code></a></li>
+<li><a class="reference internal" href="#pickle.Pickler.persistent_id"><code class="docutils literal notranslate"><span class="pre">Pickler.persistent_id()</span></code></a></li>
+<li><a class="reference internal" href="#pickle.Pickler.dispatch_table"><code class="docutils literal notranslate"><span class="pre">Pickler.dispatch_table</span></code></a></li>
+<li><a class="reference internal" href="#pickle.Pickler.reducer_override"><code class="docutils literal notranslate"><span class="pre">Pickler.reducer_override()</span></code></a></li>
+<li><a class="reference internal" href="#pickle.Pickler.fast"><code class="docutils literal notranslate"><span class="pre">Pickler.fast</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#pickle.Unpickler"><code class="docutils literal notranslate"><span class="pre">Unpickler</span></code></a><ul>
+<li><a class="reference internal" href="#pickle.Unpickler.load"><code class="docutils literal notranslate"><span class="pre">Unpickler.load()</span></code></a></li>
+<li><a class="reference internal" href="#pickle.Unpickler.persistent_load"><code class="docutils literal notranslate"><span class="pre">Unpickler.persistent_load()</span></code></a></li>
+<li><a class="reference internal" href="#pickle.Unpickler.find_class"><code class="docutils literal notranslate"><span class="pre">Unpickler.find_class()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#pickle.PickleBuffer"><code class="docutils literal notranslate"><span class="pre">PickleBuffer</span></code></a><ul>
+<li><a class="reference internal" href="#pickle.PickleBuffer.raw"><code class="docutils literal notranslate"><span class="pre">PickleBuffer.raw()</span></code></a></li>
+<li><a class="reference internal" href="#pickle.PickleBuffer.release"><code class="docutils literal notranslate"><span class="pre">PickleBuffer.release()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li><a class="reference internal" href="#what-can-be-pickled-and-unpickled">What can be pickled and unpickled?</a></li>
 <li><a class="reference internal" href="#pickling-class-instances">Pickling Class Instances</a><ul>
+<li><a class="reference internal" href="#object.__getnewargs_ex__"><code class="docutils literal notranslate"><span class="pre">object.__getnewargs_ex__()</span></code></a></li>
+<li><a class="reference internal" href="#object.__getnewargs__"><code class="docutils literal notranslate"><span class="pre">object.__getnewargs__()</span></code></a></li>
+<li><a class="reference internal" href="#object.__getstate__"><code class="docutils literal notranslate"><span class="pre">object.__getstate__()</span></code></a></li>
+<li><a class="reference internal" href="#object.__setstate__"><code class="docutils literal notranslate"><span class="pre">object.__setstate__()</span></code></a></li>
+<li><a class="reference internal" href="#object.__reduce__"><code class="docutils literal notranslate"><span class="pre">object.__reduce__()</span></code></a></li>
+<li><a class="reference internal" href="#object.__reduce_ex__"><code class="docutils literal notranslate"><span class="pre">object.__reduce_ex__()</span></code></a></li>
 <li><a class="reference internal" href="#persistence-of-external-objects">Persistence of External Objects</a></li>
 <li><a class="reference internal" href="#dispatch-tables">Dispatch Tables</a></li>
 <li><a class="reference internal" href="#handling-stateful-objects">Handling Stateful Objects</a></li>
@@ -1450,7 +1523,7 @@ persistent IDs, the resulting pickled data will become unreadable.</p>
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.7 Documentation</a> &#187;
+      <a href="../index.html">3.10.8 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -1487,11 +1560,11 @@ persistent IDs, the resulting pickled data will become unreadable.</p>
 <br />
     <br />
 
-    最後更新於 9月 16, 2022。
+    最後更新於 10月 15, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 
-    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1 建立。
+    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.2.3 建立。
     </div>
 
   </body>

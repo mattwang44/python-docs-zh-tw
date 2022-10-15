@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>enum --- Support for enumerations &#8212; Python 3.10.7 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>enum --- Support for enumerations &#8212; Python 3.10.8 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -16,12 +16,13 @@
     <script src="../_static/underscore.js"></script>
     <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/translations.js"></script>
     
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.10.7 說明文件 中搜尋"
+          title="在 Python 3.10.8 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -75,11 +76,21 @@
     <h3><a href="../contents.html">目錄</a></h3>
     <ul>
 <li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">enum</span></code> --- Support for enumerations</a><ul>
-<li><a class="reference internal" href="#module-contents">模組內容</a></li>
+<li><a class="reference internal" href="#module-contents">模組內容</a><ul>
+<li><a class="reference internal" href="#enum.Enum"><code class="docutils literal notranslate"><span class="pre">Enum</span></code></a></li>
+<li><a class="reference internal" href="#enum.IntEnum"><code class="docutils literal notranslate"><span class="pre">IntEnum</span></code></a></li>
+<li><a class="reference internal" href="#enum.IntFlag"><code class="docutils literal notranslate"><span class="pre">IntFlag</span></code></a></li>
+<li><a class="reference internal" href="#enum.Flag"><code class="docutils literal notranslate"><span class="pre">Flag</span></code></a></li>
+<li><a class="reference internal" href="#enum.auto"><code class="docutils literal notranslate"><span class="pre">auto</span></code></a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#creating-an-enum">Creating an Enum</a></li>
 <li><a class="reference internal" href="#programmatic-access-to-enumeration-members-and-their-attributes">Programmatic access to enumeration members and their attributes</a></li>
 <li><a class="reference internal" href="#duplicating-enum-members-and-values">Duplicating enum members and values</a></li>
-<li><a class="reference internal" href="#ensuring-unique-enumeration-values">Ensuring unique enumeration values</a></li>
+<li><a class="reference internal" href="#ensuring-unique-enumeration-values">Ensuring unique enumeration values</a><ul>
+<li><a class="reference internal" href="#enum.unique"><code class="docutils literal notranslate"><span class="pre">unique()</span></code></a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#using-automatic-values">Using automatic values</a></li>
 <li><a class="reference internal" href="#iteration">Iteration</a></li>
 <li><a class="reference internal" href="#comparisons">Comparisons</a></li>
@@ -181,7 +192,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.7 Documentation</a> &#187;
+      <a href="../index.html">3.10.8 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -1401,11 +1412,21 @@ like <code class="docutils literal notranslate"><span class="pre">&lt;Color.BLUE
     <h3><a href="../contents.html">目錄</a></h3>
     <ul>
 <li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">enum</span></code> --- Support for enumerations</a><ul>
-<li><a class="reference internal" href="#module-contents">模組內容</a></li>
+<li><a class="reference internal" href="#module-contents">模組內容</a><ul>
+<li><a class="reference internal" href="#enum.Enum"><code class="docutils literal notranslate"><span class="pre">Enum</span></code></a></li>
+<li><a class="reference internal" href="#enum.IntEnum"><code class="docutils literal notranslate"><span class="pre">IntEnum</span></code></a></li>
+<li><a class="reference internal" href="#enum.IntFlag"><code class="docutils literal notranslate"><span class="pre">IntFlag</span></code></a></li>
+<li><a class="reference internal" href="#enum.Flag"><code class="docutils literal notranslate"><span class="pre">Flag</span></code></a></li>
+<li><a class="reference internal" href="#enum.auto"><code class="docutils literal notranslate"><span class="pre">auto</span></code></a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#creating-an-enum">Creating an Enum</a></li>
 <li><a class="reference internal" href="#programmatic-access-to-enumeration-members-and-their-attributes">Programmatic access to enumeration members and their attributes</a></li>
 <li><a class="reference internal" href="#duplicating-enum-members-and-values">Duplicating enum members and values</a></li>
-<li><a class="reference internal" href="#ensuring-unique-enumeration-values">Ensuring unique enumeration values</a></li>
+<li><a class="reference internal" href="#ensuring-unique-enumeration-values">Ensuring unique enumeration values</a><ul>
+<li><a class="reference internal" href="#enum.unique"><code class="docutils literal notranslate"><span class="pre">unique()</span></code></a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#using-automatic-values">Using automatic values</a></li>
 <li><a class="reference internal" href="#iteration">Iteration</a></li>
 <li><a class="reference internal" href="#comparisons">Comparisons</a></li>
@@ -1510,7 +1531,7 @@ like <code class="docutils literal notranslate"><span class="pre">&lt;Color.BLUE
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.7 Documentation</a> &#187;
+      <a href="../index.html">3.10.8 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -1547,11 +1568,11 @@ like <code class="docutils literal notranslate"><span class="pre">&lt;Color.BLUE
 <br />
     <br />
 
-    最後更新於 9月 16, 2022。
+    最後更新於 10月 15, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 
-    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1 建立。
+    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.2.3 建立。
     </div>
 
   </body>

@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>smtpd --- SMTP 伺服器 &#8212; Python 3.10.7 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>smtpd --- SMTP 伺服器 &#8212; Python 3.10.8 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -16,12 +16,13 @@
     <script src="../_static/underscore.js"></script>
     <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/translations.js"></script>
     
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.10.7 說明文件 中搜尋"
+          title="在 Python 3.10.8 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -75,11 +76,43 @@
     <h3><a href="../contents.html">目錄</a></h3>
     <ul>
 <li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">smtpd</span></code> --- SMTP 伺服器</a><ul>
-<li><a class="reference internal" href="#smtpserver-objects">SMTPServer 物件</a></li>
-<li><a class="reference internal" href="#debuggingserver-objects">DebuggingServer 物件</a></li>
-<li><a class="reference internal" href="#pureproxy-objects">PureProxy 物件</a></li>
-<li><a class="reference internal" href="#mailmanproxy-objects">MailmanProxy 物件</a></li>
-<li><a class="reference internal" href="#smtpchannel-objects">SMTPChannel 物件</a></li>
+<li><a class="reference internal" href="#smtpserver-objects">SMTPServer 物件</a><ul>
+<li><a class="reference internal" href="#smtpd.SMTPServer"><code class="docutils literal notranslate"><span class="pre">SMTPServer</span></code></a><ul>
+<li><a class="reference internal" href="#smtpd.SMTPServer.process_message"><code class="docutils literal notranslate"><span class="pre">SMTPServer.process_message()</span></code></a></li>
+<li><a class="reference internal" href="#smtpd.SMTPServer.channel_class"><code class="docutils literal notranslate"><span class="pre">SMTPServer.channel_class</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#debuggingserver-objects">DebuggingServer 物件</a><ul>
+<li><a class="reference internal" href="#smtpd.DebuggingServer"><code class="docutils literal notranslate"><span class="pre">DebuggingServer</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#pureproxy-objects">PureProxy 物件</a><ul>
+<li><a class="reference internal" href="#smtpd.PureProxy"><code class="docutils literal notranslate"><span class="pre">PureProxy</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#mailmanproxy-objects">MailmanProxy 物件</a><ul>
+<li><a class="reference internal" href="#smtpd.MailmanProxy"><code class="docutils literal notranslate"><span class="pre">MailmanProxy</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#smtpchannel-objects">SMTPChannel 物件</a><ul>
+<li><a class="reference internal" href="#smtpd.SMTPChannel"><code class="docutils literal notranslate"><span class="pre">SMTPChannel</span></code></a><ul>
+<li><a class="reference internal" href="#smtpd.SMTPChannel.smtp_server"><code class="docutils literal notranslate"><span class="pre">SMTPChannel.smtp_server</span></code></a></li>
+<li><a class="reference internal" href="#smtpd.SMTPChannel.conn"><code class="docutils literal notranslate"><span class="pre">SMTPChannel.conn</span></code></a></li>
+<li><a class="reference internal" href="#smtpd.SMTPChannel.addr"><code class="docutils literal notranslate"><span class="pre">SMTPChannel.addr</span></code></a></li>
+<li><a class="reference internal" href="#smtpd.SMTPChannel.received_lines"><code class="docutils literal notranslate"><span class="pre">SMTPChannel.received_lines</span></code></a></li>
+<li><a class="reference internal" href="#smtpd.SMTPChannel.smtp_state"><code class="docutils literal notranslate"><span class="pre">SMTPChannel.smtp_state</span></code></a></li>
+<li><a class="reference internal" href="#smtpd.SMTPChannel.seen_greeting"><code class="docutils literal notranslate"><span class="pre">SMTPChannel.seen_greeting</span></code></a></li>
+<li><a class="reference internal" href="#smtpd.SMTPChannel.mailfrom"><code class="docutils literal notranslate"><span class="pre">SMTPChannel.mailfrom</span></code></a></li>
+<li><a class="reference internal" href="#smtpd.SMTPChannel.rcpttos"><code class="docutils literal notranslate"><span class="pre">SMTPChannel.rcpttos</span></code></a></li>
+<li><a class="reference internal" href="#smtpd.SMTPChannel.received_data"><code class="docutils literal notranslate"><span class="pre">SMTPChannel.received_data</span></code></a></li>
+<li><a class="reference internal" href="#smtpd.SMTPChannel.fqdn"><code class="docutils literal notranslate"><span class="pre">SMTPChannel.fqdn</span></code></a></li>
+<li><a class="reference internal" href="#smtpd.SMTPChannel.peer"><code class="docutils literal notranslate"><span class="pre">SMTPChannel.peer</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -137,7 +170,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.7 Documentation</a> &#187;
+      <a href="../index.html">3.10.8 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -482,11 +515,43 @@ from the client in <a class="reference internal" href="#smtpd.SMTPChannel.receiv
     <h3><a href="../contents.html">目錄</a></h3>
     <ul>
 <li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">smtpd</span></code> --- SMTP 伺服器</a><ul>
-<li><a class="reference internal" href="#smtpserver-objects">SMTPServer 物件</a></li>
-<li><a class="reference internal" href="#debuggingserver-objects">DebuggingServer 物件</a></li>
-<li><a class="reference internal" href="#pureproxy-objects">PureProxy 物件</a></li>
-<li><a class="reference internal" href="#mailmanproxy-objects">MailmanProxy 物件</a></li>
-<li><a class="reference internal" href="#smtpchannel-objects">SMTPChannel 物件</a></li>
+<li><a class="reference internal" href="#smtpserver-objects">SMTPServer 物件</a><ul>
+<li><a class="reference internal" href="#smtpd.SMTPServer"><code class="docutils literal notranslate"><span class="pre">SMTPServer</span></code></a><ul>
+<li><a class="reference internal" href="#smtpd.SMTPServer.process_message"><code class="docutils literal notranslate"><span class="pre">SMTPServer.process_message()</span></code></a></li>
+<li><a class="reference internal" href="#smtpd.SMTPServer.channel_class"><code class="docutils literal notranslate"><span class="pre">SMTPServer.channel_class</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#debuggingserver-objects">DebuggingServer 物件</a><ul>
+<li><a class="reference internal" href="#smtpd.DebuggingServer"><code class="docutils literal notranslate"><span class="pre">DebuggingServer</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#pureproxy-objects">PureProxy 物件</a><ul>
+<li><a class="reference internal" href="#smtpd.PureProxy"><code class="docutils literal notranslate"><span class="pre">PureProxy</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#mailmanproxy-objects">MailmanProxy 物件</a><ul>
+<li><a class="reference internal" href="#smtpd.MailmanProxy"><code class="docutils literal notranslate"><span class="pre">MailmanProxy</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#smtpchannel-objects">SMTPChannel 物件</a><ul>
+<li><a class="reference internal" href="#smtpd.SMTPChannel"><code class="docutils literal notranslate"><span class="pre">SMTPChannel</span></code></a><ul>
+<li><a class="reference internal" href="#smtpd.SMTPChannel.smtp_server"><code class="docutils literal notranslate"><span class="pre">SMTPChannel.smtp_server</span></code></a></li>
+<li><a class="reference internal" href="#smtpd.SMTPChannel.conn"><code class="docutils literal notranslate"><span class="pre">SMTPChannel.conn</span></code></a></li>
+<li><a class="reference internal" href="#smtpd.SMTPChannel.addr"><code class="docutils literal notranslate"><span class="pre">SMTPChannel.addr</span></code></a></li>
+<li><a class="reference internal" href="#smtpd.SMTPChannel.received_lines"><code class="docutils literal notranslate"><span class="pre">SMTPChannel.received_lines</span></code></a></li>
+<li><a class="reference internal" href="#smtpd.SMTPChannel.smtp_state"><code class="docutils literal notranslate"><span class="pre">SMTPChannel.smtp_state</span></code></a></li>
+<li><a class="reference internal" href="#smtpd.SMTPChannel.seen_greeting"><code class="docutils literal notranslate"><span class="pre">SMTPChannel.seen_greeting</span></code></a></li>
+<li><a class="reference internal" href="#smtpd.SMTPChannel.mailfrom"><code class="docutils literal notranslate"><span class="pre">SMTPChannel.mailfrom</span></code></a></li>
+<li><a class="reference internal" href="#smtpd.SMTPChannel.rcpttos"><code class="docutils literal notranslate"><span class="pre">SMTPChannel.rcpttos</span></code></a></li>
+<li><a class="reference internal" href="#smtpd.SMTPChannel.received_data"><code class="docutils literal notranslate"><span class="pre">SMTPChannel.received_data</span></code></a></li>
+<li><a class="reference internal" href="#smtpd.SMTPChannel.fqdn"><code class="docutils literal notranslate"><span class="pre">SMTPChannel.fqdn</span></code></a></li>
+<li><a class="reference internal" href="#smtpd.SMTPChannel.peer"><code class="docutils literal notranslate"><span class="pre">SMTPChannel.peer</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -547,7 +612,7 @@ from the client in <a class="reference internal" href="#smtpd.SMTPChannel.receiv
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.7 Documentation</a> &#187;
+      <a href="../index.html">3.10.8 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -584,11 +649,11 @@ from the client in <a class="reference internal" href="#smtpd.SMTPChannel.receiv
 <br />
     <br />
 
-    最後更新於 9月 16, 2022。
+    最後更新於 10月 15, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 
-    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1 建立。
+    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.2.3 建立。
     </div>
 
   </body>

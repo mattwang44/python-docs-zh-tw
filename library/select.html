@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>select --- Waiting for I/O completion &#8212; Python 3.10.7 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>select --- Waiting for I/O completion &#8212; Python 3.10.8 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -16,12 +16,13 @@
     <script src="../_static/underscore.js"></script>
     <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/translations.js"></script>
     
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.10.7 說明文件 中搜尋"
+          title="在 Python 3.10.8 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -75,11 +76,59 @@
     <h3><a href="../contents.html">目錄</a></h3>
     <ul>
 <li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">select</span></code> --- Waiting for I/O completion</a><ul>
-<li><a class="reference internal" href="#dev-poll-polling-objects"><code class="docutils literal notranslate"><span class="pre">/dev/poll</span></code> Polling Objects</a></li>
-<li><a class="reference internal" href="#edge-and-level-trigger-polling-epoll-objects">Edge and Level Trigger Polling (epoll) Objects</a></li>
-<li><a class="reference internal" href="#polling-objects">Polling Objects</a></li>
-<li><a class="reference internal" href="#kqueue-objects">Kqueue Objects</a></li>
-<li><a class="reference internal" href="#kevent-objects">Kevent Objects</a></li>
+<li><a class="reference internal" href="#select.error"><code class="docutils literal notranslate"><span class="pre">error</span></code></a></li>
+<li><a class="reference internal" href="#select.devpoll"><code class="docutils literal notranslate"><span class="pre">devpoll()</span></code></a></li>
+<li><a class="reference internal" href="#select.epoll"><code class="docutils literal notranslate"><span class="pre">epoll()</span></code></a></li>
+<li><a class="reference internal" href="#select.poll"><code class="docutils literal notranslate"><span class="pre">poll()</span></code></a></li>
+<li><a class="reference internal" href="#select.kqueue"><code class="docutils literal notranslate"><span class="pre">kqueue()</span></code></a></li>
+<li><a class="reference internal" href="#select.kevent"><code class="docutils literal notranslate"><span class="pre">kevent()</span></code></a></li>
+<li><a class="reference internal" href="#select.select"><code class="docutils literal notranslate"><span class="pre">select()</span></code></a></li>
+<li><a class="reference internal" href="#select.PIPE_BUF"><code class="docutils literal notranslate"><span class="pre">PIPE_BUF</span></code></a></li>
+<li><a class="reference internal" href="#dev-poll-polling-objects"><code class="docutils literal notranslate"><span class="pre">/dev/poll</span></code> Polling Objects</a><ul>
+<li><a class="reference internal" href="#select.devpoll.close"><code class="docutils literal notranslate"><span class="pre">devpoll.close()</span></code></a></li>
+<li><a class="reference internal" href="#select.devpoll.closed"><code class="docutils literal notranslate"><span class="pre">devpoll.closed</span></code></a></li>
+<li><a class="reference internal" href="#select.devpoll.fileno"><code class="docutils literal notranslate"><span class="pre">devpoll.fileno()</span></code></a></li>
+<li><a class="reference internal" href="#select.devpoll.register"><code class="docutils literal notranslate"><span class="pre">devpoll.register()</span></code></a></li>
+<li><a class="reference internal" href="#select.devpoll.modify"><code class="docutils literal notranslate"><span class="pre">devpoll.modify()</span></code></a></li>
+<li><a class="reference internal" href="#select.devpoll.unregister"><code class="docutils literal notranslate"><span class="pre">devpoll.unregister()</span></code></a></li>
+<li><a class="reference internal" href="#select.devpoll.poll"><code class="docutils literal notranslate"><span class="pre">devpoll.poll()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#edge-and-level-trigger-polling-epoll-objects">Edge and Level Trigger Polling (epoll) Objects</a><ul>
+<li><a class="reference internal" href="#select.epoll.close"><code class="docutils literal notranslate"><span class="pre">epoll.close()</span></code></a></li>
+<li><a class="reference internal" href="#select.epoll.closed"><code class="docutils literal notranslate"><span class="pre">epoll.closed</span></code></a></li>
+<li><a class="reference internal" href="#select.epoll.fileno"><code class="docutils literal notranslate"><span class="pre">epoll.fileno()</span></code></a></li>
+<li><a class="reference internal" href="#select.epoll.fromfd"><code class="docutils literal notranslate"><span class="pre">epoll.fromfd()</span></code></a></li>
+<li><a class="reference internal" href="#select.epoll.register"><code class="docutils literal notranslate"><span class="pre">epoll.register()</span></code></a></li>
+<li><a class="reference internal" href="#select.epoll.modify"><code class="docutils literal notranslate"><span class="pre">epoll.modify()</span></code></a></li>
+<li><a class="reference internal" href="#select.epoll.unregister"><code class="docutils literal notranslate"><span class="pre">epoll.unregister()</span></code></a></li>
+<li><a class="reference internal" href="#select.epoll.poll"><code class="docutils literal notranslate"><span class="pre">epoll.poll()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#polling-objects">Polling Objects</a><ul>
+<li><a class="reference internal" href="#select.poll.register"><code class="docutils literal notranslate"><span class="pre">poll.register()</span></code></a></li>
+<li><a class="reference internal" href="#select.poll.modify"><code class="docutils literal notranslate"><span class="pre">poll.modify()</span></code></a></li>
+<li><a class="reference internal" href="#select.poll.unregister"><code class="docutils literal notranslate"><span class="pre">poll.unregister()</span></code></a></li>
+<li><a class="reference internal" href="#select.poll.poll"><code class="docutils literal notranslate"><span class="pre">poll.poll()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#kqueue-objects">Kqueue Objects</a><ul>
+<li><a class="reference internal" href="#select.kqueue.close"><code class="docutils literal notranslate"><span class="pre">kqueue.close()</span></code></a></li>
+<li><a class="reference internal" href="#select.kqueue.closed"><code class="docutils literal notranslate"><span class="pre">kqueue.closed</span></code></a></li>
+<li><a class="reference internal" href="#select.kqueue.fileno"><code class="docutils literal notranslate"><span class="pre">kqueue.fileno()</span></code></a></li>
+<li><a class="reference internal" href="#select.kqueue.fromfd"><code class="docutils literal notranslate"><span class="pre">kqueue.fromfd()</span></code></a></li>
+<li><a class="reference internal" href="#select.kqueue.control"><code class="docutils literal notranslate"><span class="pre">kqueue.control()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#kevent-objects">Kevent Objects</a><ul>
+<li><a class="reference internal" href="#select.kevent.ident"><code class="docutils literal notranslate"><span class="pre">kevent.ident</span></code></a></li>
+<li><a class="reference internal" href="#select.kevent.filter"><code class="docutils literal notranslate"><span class="pre">kevent.filter</span></code></a></li>
+<li><a class="reference internal" href="#select.kevent.flags"><code class="docutils literal notranslate"><span class="pre">kevent.flags</span></code></a></li>
+<li><a class="reference internal" href="#select.kevent.fflags"><code class="docutils literal notranslate"><span class="pre">kevent.fflags</span></code></a></li>
+<li><a class="reference internal" href="#select.kevent.data"><code class="docutils literal notranslate"><span class="pre">kevent.data</span></code></a></li>
+<li><a class="reference internal" href="#select.kevent.udata"><code class="docutils literal notranslate"><span class="pre">kevent.udata</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -137,7 +186,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.7 Documentation</a> &#187;
+      <a href="../index.html">3.10.8 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -922,11 +971,59 @@ delivered to the process</p></td>
     <h3><a href="../contents.html">目錄</a></h3>
     <ul>
 <li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">select</span></code> --- Waiting for I/O completion</a><ul>
-<li><a class="reference internal" href="#dev-poll-polling-objects"><code class="docutils literal notranslate"><span class="pre">/dev/poll</span></code> Polling Objects</a></li>
-<li><a class="reference internal" href="#edge-and-level-trigger-polling-epoll-objects">Edge and Level Trigger Polling (epoll) Objects</a></li>
-<li><a class="reference internal" href="#polling-objects">Polling Objects</a></li>
-<li><a class="reference internal" href="#kqueue-objects">Kqueue Objects</a></li>
-<li><a class="reference internal" href="#kevent-objects">Kevent Objects</a></li>
+<li><a class="reference internal" href="#select.error"><code class="docutils literal notranslate"><span class="pre">error</span></code></a></li>
+<li><a class="reference internal" href="#select.devpoll"><code class="docutils literal notranslate"><span class="pre">devpoll()</span></code></a></li>
+<li><a class="reference internal" href="#select.epoll"><code class="docutils literal notranslate"><span class="pre">epoll()</span></code></a></li>
+<li><a class="reference internal" href="#select.poll"><code class="docutils literal notranslate"><span class="pre">poll()</span></code></a></li>
+<li><a class="reference internal" href="#select.kqueue"><code class="docutils literal notranslate"><span class="pre">kqueue()</span></code></a></li>
+<li><a class="reference internal" href="#select.kevent"><code class="docutils literal notranslate"><span class="pre">kevent()</span></code></a></li>
+<li><a class="reference internal" href="#select.select"><code class="docutils literal notranslate"><span class="pre">select()</span></code></a></li>
+<li><a class="reference internal" href="#select.PIPE_BUF"><code class="docutils literal notranslate"><span class="pre">PIPE_BUF</span></code></a></li>
+<li><a class="reference internal" href="#dev-poll-polling-objects"><code class="docutils literal notranslate"><span class="pre">/dev/poll</span></code> Polling Objects</a><ul>
+<li><a class="reference internal" href="#select.devpoll.close"><code class="docutils literal notranslate"><span class="pre">devpoll.close()</span></code></a></li>
+<li><a class="reference internal" href="#select.devpoll.closed"><code class="docutils literal notranslate"><span class="pre">devpoll.closed</span></code></a></li>
+<li><a class="reference internal" href="#select.devpoll.fileno"><code class="docutils literal notranslate"><span class="pre">devpoll.fileno()</span></code></a></li>
+<li><a class="reference internal" href="#select.devpoll.register"><code class="docutils literal notranslate"><span class="pre">devpoll.register()</span></code></a></li>
+<li><a class="reference internal" href="#select.devpoll.modify"><code class="docutils literal notranslate"><span class="pre">devpoll.modify()</span></code></a></li>
+<li><a class="reference internal" href="#select.devpoll.unregister"><code class="docutils literal notranslate"><span class="pre">devpoll.unregister()</span></code></a></li>
+<li><a class="reference internal" href="#select.devpoll.poll"><code class="docutils literal notranslate"><span class="pre">devpoll.poll()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#edge-and-level-trigger-polling-epoll-objects">Edge and Level Trigger Polling (epoll) Objects</a><ul>
+<li><a class="reference internal" href="#select.epoll.close"><code class="docutils literal notranslate"><span class="pre">epoll.close()</span></code></a></li>
+<li><a class="reference internal" href="#select.epoll.closed"><code class="docutils literal notranslate"><span class="pre">epoll.closed</span></code></a></li>
+<li><a class="reference internal" href="#select.epoll.fileno"><code class="docutils literal notranslate"><span class="pre">epoll.fileno()</span></code></a></li>
+<li><a class="reference internal" href="#select.epoll.fromfd"><code class="docutils literal notranslate"><span class="pre">epoll.fromfd()</span></code></a></li>
+<li><a class="reference internal" href="#select.epoll.register"><code class="docutils literal notranslate"><span class="pre">epoll.register()</span></code></a></li>
+<li><a class="reference internal" href="#select.epoll.modify"><code class="docutils literal notranslate"><span class="pre">epoll.modify()</span></code></a></li>
+<li><a class="reference internal" href="#select.epoll.unregister"><code class="docutils literal notranslate"><span class="pre">epoll.unregister()</span></code></a></li>
+<li><a class="reference internal" href="#select.epoll.poll"><code class="docutils literal notranslate"><span class="pre">epoll.poll()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#polling-objects">Polling Objects</a><ul>
+<li><a class="reference internal" href="#select.poll.register"><code class="docutils literal notranslate"><span class="pre">poll.register()</span></code></a></li>
+<li><a class="reference internal" href="#select.poll.modify"><code class="docutils literal notranslate"><span class="pre">poll.modify()</span></code></a></li>
+<li><a class="reference internal" href="#select.poll.unregister"><code class="docutils literal notranslate"><span class="pre">poll.unregister()</span></code></a></li>
+<li><a class="reference internal" href="#select.poll.poll"><code class="docutils literal notranslate"><span class="pre">poll.poll()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#kqueue-objects">Kqueue Objects</a><ul>
+<li><a class="reference internal" href="#select.kqueue.close"><code class="docutils literal notranslate"><span class="pre">kqueue.close()</span></code></a></li>
+<li><a class="reference internal" href="#select.kqueue.closed"><code class="docutils literal notranslate"><span class="pre">kqueue.closed</span></code></a></li>
+<li><a class="reference internal" href="#select.kqueue.fileno"><code class="docutils literal notranslate"><span class="pre">kqueue.fileno()</span></code></a></li>
+<li><a class="reference internal" href="#select.kqueue.fromfd"><code class="docutils literal notranslate"><span class="pre">kqueue.fromfd()</span></code></a></li>
+<li><a class="reference internal" href="#select.kqueue.control"><code class="docutils literal notranslate"><span class="pre">kqueue.control()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#kevent-objects">Kevent Objects</a><ul>
+<li><a class="reference internal" href="#select.kevent.ident"><code class="docutils literal notranslate"><span class="pre">kevent.ident</span></code></a></li>
+<li><a class="reference internal" href="#select.kevent.filter"><code class="docutils literal notranslate"><span class="pre">kevent.filter</span></code></a></li>
+<li><a class="reference internal" href="#select.kevent.flags"><code class="docutils literal notranslate"><span class="pre">kevent.flags</span></code></a></li>
+<li><a class="reference internal" href="#select.kevent.fflags"><code class="docutils literal notranslate"><span class="pre">kevent.fflags</span></code></a></li>
+<li><a class="reference internal" href="#select.kevent.data"><code class="docutils literal notranslate"><span class="pre">kevent.data</span></code></a></li>
+<li><a class="reference internal" href="#select.kevent.udata"><code class="docutils literal notranslate"><span class="pre">kevent.udata</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -987,7 +1084,7 @@ delivered to the process</p></td>
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.7 Documentation</a> &#187;
+      <a href="../index.html">3.10.8 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -1024,11 +1121,11 @@ delivered to the process</p></td>
 <br />
     <br />
 
-    最後更新於 9月 16, 2022。
+    最後更新於 10月 15, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 
-    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1 建立。
+    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.2.3 建立。
     </div>
 
   </body>

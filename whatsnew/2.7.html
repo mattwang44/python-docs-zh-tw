@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>Python 2.7 有什麼新功能 &#8212; Python 3.10.7 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python 2.7 有什麼新功能 &#8212; Python 3.10.8 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -16,12 +16,13 @@
     <script src="../_static/underscore.js"></script>
     <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/translations.js"></script>
     
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.10.7 說明文件 中搜尋"
+          title="在 Python 3.10.8 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -179,7 +180,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.7 Documentation</a> &#187;
+      <a href="../index.html">3.10.8 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Python 有什麼新功能？</a> &#187;</li>
@@ -724,7 +725,7 @@ Backported to 2.7 by Alexandre Vassalotti; <a class="reference external" href="h
 <h2>PEP 3137: The memoryview Object<a class="headerlink" href="#pep-3137-the-memoryview-object" title="本標頭的永久連結">¶</a></h2>
 <p>The <a class="reference internal" href="../library/stdtypes.html#memoryview" title="memoryview"><code class="xref py py-class docutils literal notranslate"><span class="pre">memoryview</span></code></a> object provides a view of another object's
 memory content that matches the <a class="reference internal" href="../library/stdtypes.html#bytes" title="bytes"><code class="xref py py-class docutils literal notranslate"><span class="pre">bytes</span></code></a> type's interface.</p>
-<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">string</span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">string</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">m</span> <span class="o">=</span> <span class="nb">memoryview</span><span class="p">(</span><span class="n">string</span><span class="o">.</span><span class="n">letters</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">m</span>
 <span class="go">&lt;memory at 0x37f850&gt;</span>
@@ -739,7 +740,7 @@ memory content that matches the <a class="reference internal" href="../library/s
 </div>
 <p>The content of the view can be converted to a string of bytes or
 a list of integers:</p>
-<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">m2</span><span class="o">.</span><span class="n">tobytes</span><span class="p">()</span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">m2</span><span class="o">.</span><span class="n">tobytes</span><span class="p">()</span>
 <span class="go">&#39;abcdefghijklmnopqrstuvwxyz&#39;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">m2</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
 <span class="go">[97, 98, 99, 100, 101, 102, 103, ... 121, 122]</span>
@@ -748,7 +749,7 @@ a list of integers:</p>
 </div>
 <p><a class="reference internal" href="../library/stdtypes.html#memoryview" title="memoryview"><code class="xref py py-class docutils literal notranslate"><span class="pre">memoryview</span></code></a> objects allow modifying the underlying object if
 it's a mutable object.</p>
-<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">m2</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">75</span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">m2</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">75</span>
 <span class="gt">Traceback (most recent call last):</span>
   File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
 <span class="gr">TypeError</span>: <span class="n">cannot modify read-only memory</span>
@@ -782,7 +783,7 @@ mutable set; set literals are
 distinguished from dictionaries by not containing colons and values.
 <code class="docutils literal notranslate"><span class="pre">{}</span></code> continues to represent an empty dictionary; use
 <code class="docutils literal notranslate"><span class="pre">set()</span></code> for an empty set.</p>
-<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">}</span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">}</span>
 <span class="go">set([1, 2, 3, 4, 5])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">set</span><span class="p">()</span> <span class="c1"># empty set</span>
 <span class="go">set([])</span>
@@ -795,7 +796,7 @@ distinguished from dictionaries by not containing colons and values.
 <li><p>Dictionary and set comprehensions are another feature backported from
 3.x, generalizing list/generator comprehensions to use
 the literal syntax for sets and dictionaries.</p>
-<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="p">{</span><span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">*</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">)}</span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="p">{</span><span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">*</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">)}</span>
 <span class="go">{0: 0, 1: 1, 2: 4, 3: 9, 4: 16, 5: 25}</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="p">{(</span><span class="s1">&#39;a&#39;</span><span class="o">*</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">)}</span>
 <span class="go">set([&#39;&#39;, &#39;a&#39;, &#39;aa&#39;, &#39;aaa&#39;, &#39;aaaa&#39;, &#39;aaaaa&#39;])</span>
@@ -1106,7 +1107,7 @@ management protocol, so you can write <code class="docutils literal notranslate"
 module is useful for tallying data.  <a class="reference internal" href="../library/collections.html#collections.Counter" title="collections.Counter"><code class="xref py py-class docutils literal notranslate"><span class="pre">Counter</span></code></a> instances
 behave mostly like dictionaries but return zero for missing keys instead of
 raising a <a class="reference internal" href="../library/exceptions.html#KeyError" title="KeyError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">KeyError</span></code></a>:</p>
-<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">Counter</span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">Counter</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">c</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">letter</span> <span class="ow">in</span> <span class="s1">&#39;here is a sample of english text&#39;</span><span class="p">:</span>
 <span class="gp">... </span>  <span class="n">c</span><span class="p">[</span><span class="n">letter</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
@@ -1628,13 +1629,13 @@ URL is of the form <code class="docutils literal notranslate"><span class="pre">
 the module doesn't know about.  This change may break code that
 worked around the old behaviour.  For example, Python 2.6.4 or 2.5
 will return the following:</p>
-<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">urlparse</span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">urlparse</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">urlparse</span><span class="o">.</span><span class="n">urlsplit</span><span class="p">(</span><span class="s1">&#39;invented://host/filename?query&#39;</span><span class="p">)</span>
 <span class="go">(&#39;invented&#39;, &#39;&#39;, &#39;//host/filename?query&#39;, &#39;&#39;, &#39;&#39;)</span>
 </pre></div>
 </div>
 <p>Python 2.7 (and Python 2.6.5) will return:</p>
-<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">urlparse</span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">urlparse</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">urlparse</span><span class="o">.</span><span class="n">urlsplit</span><span class="p">(</span><span class="s1">&#39;invented://host/filename?query&#39;</span><span class="p">)</span>
 <span class="go">(&#39;invented&#39;, &#39;host&#39;, &#39;/filename?query&#39;, &#39;&#39;, &#39;&#39;)</span>
 </pre></div>
@@ -1643,7 +1644,7 @@ will return the following:</p>
 returns a named tuple instead of a standard tuple.)</p>
 <p>The <code class="xref py py-mod docutils literal notranslate"><span class="pre">urlparse</span></code> module also supports IPv6 literal addresses as defined by
 <span class="target" id="index-11"></span><a class="rfc reference external" href="https://datatracker.ietf.org/doc/html/rfc2732.html"><strong>RFC 2732</strong></a> (contributed by Senthil Kumaran; <a class="reference external" href="https://bugs.python.org/issue?&#64;action=redirect&amp;bpo=2987">bpo-2987</a>).</p>
-<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">urlparse</span><span class="o">.</span><span class="n">urlparse</span><span class="p">(</span><span class="s1">&#39;http://[1080::8:800:200C:417A]/foo&#39;</span><span class="p">)</span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">urlparse</span><span class="o">.</span><span class="n">urlparse</span><span class="p">(</span><span class="s1">&#39;http://[1080::8:800:200C:417A]/foo&#39;</span><span class="p">)</span>
 <span class="go">ParseResult(scheme=&#39;http&#39;, netloc=&#39;[1080::8:800:200C:417A]&#39;,</span>
 <span class="go">            path=&#39;/foo&#39;, params=&#39;&#39;, query=&#39;&#39;, fragment=&#39;&#39;)</span>
 </pre></div>
@@ -2045,7 +2046,7 @@ instruction currently executing, and then look up the line number
 corresponding to that address.  (Added by Jeffrey Yasskin.)</p></li>
 <li><p>New functions: <a class="reference internal" href="../c-api/long.html#c.PyLong_AsLongAndOverflow" title="PyLong_AsLongAndOverflow"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyLong_AsLongAndOverflow()</span></code></a> and
 <a class="reference internal" href="../c-api/long.html#c.PyLong_AsLongLongAndOverflow" title="PyLong_AsLongLongAndOverflow"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyLong_AsLongLongAndOverflow()</span></code></a>  approximates a Python long
-integer as a C <span class="xref c c-texpr"><span class="kt">long</span></span> or <span class="xref c c-texpr"><span class="kt">long</span><span class="w"> </span><span class="kt">long</span></span>.
+integer as a C <span class="c-expr sig sig-inline c"><span class="kt">long</span></span> or <span class="c-expr sig sig-inline c"><span class="kt">long</span><span class="w"> </span><span class="kt">long</span></span>.
 If the number is too large to fit into
 the output type, an <em>overflow</em> flag is set and returned to the caller.
 (Contributed by Case Van Horsen; <a class="reference external" href="https://bugs.python.org/issue?&#64;action=redirect&amp;bpo=7528">bpo-7528</a> and <a class="reference external" href="https://bugs.python.org/issue?&#64;action=redirect&amp;bpo=7767">bpo-7767</a>.)</p></li>
@@ -2094,7 +2095,7 @@ deleted by now.  (Removed by Antoine Pitrou; <a class="reference external" href=
 <li><p>New format codes: the <code class="xref c c-func docutils literal notranslate"><span class="pre">PyFormat_FromString()</span></code>,
 <code class="xref c c-func docutils literal notranslate"><span class="pre">PyFormat_FromStringV()</span></code>, and <a class="reference internal" href="../c-api/exceptions.html#c.PyErr_Format" title="PyErr_Format"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyErr_Format()</span></code></a> functions now
 accept <code class="docutils literal notranslate"><span class="pre">%lld</span></code> and <code class="docutils literal notranslate"><span class="pre">%llu</span></code> format codes for displaying
-C's <span class="xref c c-texpr"><span class="kt">long</span><span class="w"> </span><span class="kt">long</span></span> types.
+C's <span class="c-expr sig sig-inline c"><span class="kt">long</span><span class="w"> </span><span class="kt">long</span></span> types.
 (Contributed by Mark Dickinson; <a class="reference external" href="https://bugs.python.org/issue?&#64;action=redirect&amp;bpo=7228">bpo-7228</a>.)</p></li>
 <li><p>The complicated interaction between threads and process forking has
 been changed.  Previously, the child process created by
@@ -2362,13 +2363,13 @@ URL is of the form <code class="docutils literal notranslate"><span class="pre">
 the module doesn't know about.  This change may break code that
 worked around the old behaviour.  For example, Python 2.6.4 or 2.5
 will return the following:</p>
-<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">urlparse</span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">urlparse</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">urlparse</span><span class="o">.</span><span class="n">urlsplit</span><span class="p">(</span><span class="s1">&#39;invented://host/filename?query&#39;</span><span class="p">)</span>
 <span class="go">(&#39;invented&#39;, &#39;&#39;, &#39;//host/filename?query&#39;, &#39;&#39;, &#39;&#39;)</span>
 </pre></div>
 </div>
 <p>Python 2.7 (and Python 2.6.5) will return:</p>
-<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">urlparse</span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">urlparse</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">urlparse</span><span class="o">.</span><span class="n">urlsplit</span><span class="p">(</span><span class="s1">&#39;invented://host/filename?query&#39;</span><span class="p">)</span>
 <span class="go">(&#39;invented&#39;, &#39;host&#39;, &#39;/filename?query&#39;, &#39;&#39;, &#39;&#39;)</span>
 </pre></div>
@@ -2715,7 +2716,7 @@ Hugh Secker-Walker.</p>
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.7 Documentation</a> &#187;
+      <a href="../index.html">3.10.8 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 有什麼新功能？</a> &#187;</li>
@@ -2751,11 +2752,11 @@ Hugh Secker-Walker.</p>
 <br />
     <br />
 
-    最後更新於 9月 16, 2022。
+    最後更新於 10月 15, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 
-    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1 建立。
+    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.2.3 建立。
     </div>
 
   </body>

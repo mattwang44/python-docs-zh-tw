@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>argparse --- Parser for command-line options, arguments and sub-commands &#8212; Python 3.10.7 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>argparse --- Parser for command-line options, arguments and sub-commands &#8212; Python 3.10.8 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -16,12 +16,13 @@
     <script src="../_static/underscore.js"></script>
     <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/translations.js"></script>
     
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.10.7 說明文件 中搜尋"
+          title="在 Python 3.10.8 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -82,12 +83,19 @@
 </ul>
 </li>
 <li><a class="reference internal" href="#argumentparser-objects">ArgumentParser 物件</a><ul>
+<li><a class="reference internal" href="#argparse.ArgumentParser"><code class="docutils literal notranslate"><span class="pre">ArgumentParser</span></code></a></li>
 <li><a class="reference internal" href="#prog">prog</a></li>
 <li><a class="reference internal" href="#usage">usage</a></li>
 <li><a class="reference internal" href="#description">描述</a></li>
 <li><a class="reference internal" href="#epilog">epilog</a></li>
 <li><a class="reference internal" href="#parents">parents</a></li>
-<li><a class="reference internal" href="#formatter-class">formatter_class</a></li>
+<li><a class="reference internal" href="#formatter-class">formatter_class</a><ul>
+<li><a class="reference internal" href="#argparse.RawDescriptionHelpFormatter"><code class="docutils literal notranslate"><span class="pre">RawDescriptionHelpFormatter</span></code></a></li>
+<li><a class="reference internal" href="#argparse.RawTextHelpFormatter"><code class="docutils literal notranslate"><span class="pre">RawTextHelpFormatter</span></code></a></li>
+<li><a class="reference internal" href="#argparse.ArgumentDefaultsHelpFormatter"><code class="docutils literal notranslate"><span class="pre">ArgumentDefaultsHelpFormatter</span></code></a></li>
+<li><a class="reference internal" href="#argparse.MetavarTypeHelpFormatter"><code class="docutils literal notranslate"><span class="pre">MetavarTypeHelpFormatter</span></code></a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#prefix-chars">prefix_chars</a></li>
 <li><a class="reference internal" href="#fromfile-prefix-chars">fromfile_prefix_chars</a></li>
 <li><a class="reference internal" href="#argument-default">argument_default</a></li>
@@ -98,6 +106,7 @@
 </ul>
 </li>
 <li><a class="reference internal" href="#the-add-argument-method">The add_argument() method</a><ul>
+<li><a class="reference internal" href="#argparse.ArgumentParser.add_argument"><code class="docutils literal notranslate"><span class="pre">ArgumentParser.add_argument()</span></code></a></li>
 <li><a class="reference internal" href="#name-or-flags">name or flags</a></li>
 <li><a class="reference internal" href="#action">action</a></li>
 <li><a class="reference internal" href="#nargs">nargs</a></li>
@@ -109,29 +118,72 @@
 <li><a class="reference internal" href="#help">help</a></li>
 <li><a class="reference internal" href="#metavar">metavar</a></li>
 <li><a class="reference internal" href="#dest">dest</a></li>
-<li><a class="reference internal" href="#action-classes">Action classes</a></li>
+<li><a class="reference internal" href="#action-classes">Action classes</a><ul>
+<li><a class="reference internal" href="#argparse.Action"><code class="docutils literal notranslate"><span class="pre">Action</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a class="reference internal" href="#the-parse-args-method">The parse_args() method</a><ul>
+<li><a class="reference internal" href="#argparse.ArgumentParser.parse_args"><code class="docutils literal notranslate"><span class="pre">ArgumentParser.parse_args()</span></code></a></li>
 <li><a class="reference internal" href="#option-value-syntax">Option value syntax</a></li>
 <li><a class="reference internal" href="#invalid-arguments">Invalid arguments</a></li>
 <li><a class="reference internal" href="#arguments-containing">Arguments containing <code class="docutils literal notranslate"><span class="pre">-</span></code></a></li>
 <li><a class="reference internal" href="#argument-abbreviations-prefix-matching">Argument abbreviations (prefix matching)</a></li>
 <li><a class="reference internal" href="#beyond-sys-argv">Beyond <code class="docutils literal notranslate"><span class="pre">sys.argv</span></code></a></li>
-<li><a class="reference internal" href="#the-namespace-object">The Namespace object</a></li>
+<li><a class="reference internal" href="#the-namespace-object">The Namespace object</a><ul>
+<li><a class="reference internal" href="#argparse.Namespace"><code class="docutils literal notranslate"><span class="pre">Namespace</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a class="reference internal" href="#other-utilities">Other utilities</a><ul>
-<li><a class="reference internal" href="#sub-commands">Sub-commands</a></li>
-<li><a class="reference internal" href="#filetype-objects">FileType 物件</a></li>
-<li><a class="reference internal" href="#argument-groups">Argument groups</a></li>
-<li><a class="reference internal" href="#mutual-exclusion">Mutual exclusion</a></li>
-<li><a class="reference internal" href="#parser-defaults">Parser defaults</a></li>
-<li><a class="reference internal" href="#printing-help">Printing help</a></li>
-<li><a class="reference internal" href="#partial-parsing">Partial parsing</a></li>
-<li><a class="reference internal" href="#customizing-file-parsing">Customizing file parsing</a></li>
-<li><a class="reference internal" href="#exiting-methods">Exiting methods</a></li>
-<li><a class="reference internal" href="#intermixed-parsing">Intermixed parsing</a></li>
+<li><a class="reference internal" href="#sub-commands">Sub-commands</a><ul>
+<li><a class="reference internal" href="#argparse.ArgumentParser.add_subparsers"><code class="docutils literal notranslate"><span class="pre">ArgumentParser.add_subparsers()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#filetype-objects">FileType 物件</a><ul>
+<li><a class="reference internal" href="#argparse.FileType"><code class="docutils literal notranslate"><span class="pre">FileType</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#argument-groups">Argument groups</a><ul>
+<li><a class="reference internal" href="#argparse.ArgumentParser.add_argument_group"><code class="docutils literal notranslate"><span class="pre">ArgumentParser.add_argument_group()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#mutual-exclusion">Mutual exclusion</a><ul>
+<li><a class="reference internal" href="#argparse.ArgumentParser.add_mutually_exclusive_group"><code class="docutils literal notranslate"><span class="pre">ArgumentParser.add_mutually_exclusive_group()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#parser-defaults">Parser defaults</a><ul>
+<li><a class="reference internal" href="#argparse.ArgumentParser.set_defaults"><code class="docutils literal notranslate"><span class="pre">ArgumentParser.set_defaults()</span></code></a></li>
+<li><a class="reference internal" href="#argparse.ArgumentParser.get_default"><code class="docutils literal notranslate"><span class="pre">ArgumentParser.get_default()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#printing-help">Printing help</a><ul>
+<li><a class="reference internal" href="#argparse.ArgumentParser.print_usage"><code class="docutils literal notranslate"><span class="pre">ArgumentParser.print_usage()</span></code></a></li>
+<li><a class="reference internal" href="#argparse.ArgumentParser.print_help"><code class="docutils literal notranslate"><span class="pre">ArgumentParser.print_help()</span></code></a></li>
+<li><a class="reference internal" href="#argparse.ArgumentParser.format_usage"><code class="docutils literal notranslate"><span class="pre">ArgumentParser.format_usage()</span></code></a></li>
+<li><a class="reference internal" href="#argparse.ArgumentParser.format_help"><code class="docutils literal notranslate"><span class="pre">ArgumentParser.format_help()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#partial-parsing">Partial parsing</a><ul>
+<li><a class="reference internal" href="#argparse.ArgumentParser.parse_known_args"><code class="docutils literal notranslate"><span class="pre">ArgumentParser.parse_known_args()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#customizing-file-parsing">Customizing file parsing</a><ul>
+<li><a class="reference internal" href="#argparse.ArgumentParser.convert_arg_line_to_args"><code class="docutils literal notranslate"><span class="pre">ArgumentParser.convert_arg_line_to_args()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#exiting-methods">Exiting methods</a><ul>
+<li><a class="reference internal" href="#argparse.ArgumentParser.exit"><code class="docutils literal notranslate"><span class="pre">ArgumentParser.exit()</span></code></a></li>
+<li><a class="reference internal" href="#argparse.ArgumentParser.error"><code class="docutils literal notranslate"><span class="pre">ArgumentParser.error()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#intermixed-parsing">Intermixed parsing</a><ul>
+<li><a class="reference internal" href="#argparse.ArgumentParser.parse_intermixed_args"><code class="docutils literal notranslate"><span class="pre">ArgumentParser.parse_intermixed_args()</span></code></a></li>
+<li><a class="reference internal" href="#argparse.ArgumentParser.parse_known_intermixed_args"><code class="docutils literal notranslate"><span class="pre">ArgumentParser.parse_known_intermixed_args()</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a class="reference internal" href="#upgrading-optparse-code">Upgrading optparse code</a></li>
@@ -192,7 +244,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.7 Documentation</a> &#187;
+      <a href="../index.html">3.10.8 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -1214,7 +1266,7 @@ If the function raises <code class="xref py py-exc docutils literal notranslate"
 <a class="reference internal" href="exceptions.html#ValueError" title="ValueError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code></a>, the exception is caught and a nicely formatted error
 message is displayed.  No other exception types are handled.</p>
 <p>Common built-in types and functions can be used as type converters:</p>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">argparse</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">argparse</span>
 <span class="kn">import</span> <span class="nn">pathlib</span>
 
 <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">()</span>
@@ -1228,7 +1280,7 @@ message is displayed.  No other exception types are handled.</p>
 </pre></div>
 </div>
 <p>User defined functions can be used as well:</p>
-<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">hyphenated</span><span class="p">(</span><span class="n">string</span><span class="p">):</span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">hyphenated</span><span class="p">(</span><span class="n">string</span><span class="p">):</span>
 <span class="gp">... </span>    <span class="k">return</span> <span class="s1">&#39;-&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">word</span><span class="p">[:</span><span class="mi">4</span><span class="p">]</span> <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">string</span><span class="o">.</span><span class="n">casefold</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">()])</span>
 <span class="gp">...</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">()</span>
@@ -2301,12 +2353,19 @@ the standard Python syntax to use dictionaries to format strings, that is,
 </ul>
 </li>
 <li><a class="reference internal" href="#argumentparser-objects">ArgumentParser 物件</a><ul>
+<li><a class="reference internal" href="#argparse.ArgumentParser"><code class="docutils literal notranslate"><span class="pre">ArgumentParser</span></code></a></li>
 <li><a class="reference internal" href="#prog">prog</a></li>
 <li><a class="reference internal" href="#usage">usage</a></li>
 <li><a class="reference internal" href="#description">描述</a></li>
 <li><a class="reference internal" href="#epilog">epilog</a></li>
 <li><a class="reference internal" href="#parents">parents</a></li>
-<li><a class="reference internal" href="#formatter-class">formatter_class</a></li>
+<li><a class="reference internal" href="#formatter-class">formatter_class</a><ul>
+<li><a class="reference internal" href="#argparse.RawDescriptionHelpFormatter"><code class="docutils literal notranslate"><span class="pre">RawDescriptionHelpFormatter</span></code></a></li>
+<li><a class="reference internal" href="#argparse.RawTextHelpFormatter"><code class="docutils literal notranslate"><span class="pre">RawTextHelpFormatter</span></code></a></li>
+<li><a class="reference internal" href="#argparse.ArgumentDefaultsHelpFormatter"><code class="docutils literal notranslate"><span class="pre">ArgumentDefaultsHelpFormatter</span></code></a></li>
+<li><a class="reference internal" href="#argparse.MetavarTypeHelpFormatter"><code class="docutils literal notranslate"><span class="pre">MetavarTypeHelpFormatter</span></code></a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#prefix-chars">prefix_chars</a></li>
 <li><a class="reference internal" href="#fromfile-prefix-chars">fromfile_prefix_chars</a></li>
 <li><a class="reference internal" href="#argument-default">argument_default</a></li>
@@ -2317,6 +2376,7 @@ the standard Python syntax to use dictionaries to format strings, that is,
 </ul>
 </li>
 <li><a class="reference internal" href="#the-add-argument-method">The add_argument() method</a><ul>
+<li><a class="reference internal" href="#argparse.ArgumentParser.add_argument"><code class="docutils literal notranslate"><span class="pre">ArgumentParser.add_argument()</span></code></a></li>
 <li><a class="reference internal" href="#name-or-flags">name or flags</a></li>
 <li><a class="reference internal" href="#action">action</a></li>
 <li><a class="reference internal" href="#nargs">nargs</a></li>
@@ -2328,29 +2388,72 @@ the standard Python syntax to use dictionaries to format strings, that is,
 <li><a class="reference internal" href="#help">help</a></li>
 <li><a class="reference internal" href="#metavar">metavar</a></li>
 <li><a class="reference internal" href="#dest">dest</a></li>
-<li><a class="reference internal" href="#action-classes">Action classes</a></li>
+<li><a class="reference internal" href="#action-classes">Action classes</a><ul>
+<li><a class="reference internal" href="#argparse.Action"><code class="docutils literal notranslate"><span class="pre">Action</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a class="reference internal" href="#the-parse-args-method">The parse_args() method</a><ul>
+<li><a class="reference internal" href="#argparse.ArgumentParser.parse_args"><code class="docutils literal notranslate"><span class="pre">ArgumentParser.parse_args()</span></code></a></li>
 <li><a class="reference internal" href="#option-value-syntax">Option value syntax</a></li>
 <li><a class="reference internal" href="#invalid-arguments">Invalid arguments</a></li>
 <li><a class="reference internal" href="#arguments-containing">Arguments containing <code class="docutils literal notranslate"><span class="pre">-</span></code></a></li>
 <li><a class="reference internal" href="#argument-abbreviations-prefix-matching">Argument abbreviations (prefix matching)</a></li>
 <li><a class="reference internal" href="#beyond-sys-argv">Beyond <code class="docutils literal notranslate"><span class="pre">sys.argv</span></code></a></li>
-<li><a class="reference internal" href="#the-namespace-object">The Namespace object</a></li>
+<li><a class="reference internal" href="#the-namespace-object">The Namespace object</a><ul>
+<li><a class="reference internal" href="#argparse.Namespace"><code class="docutils literal notranslate"><span class="pre">Namespace</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a class="reference internal" href="#other-utilities">Other utilities</a><ul>
-<li><a class="reference internal" href="#sub-commands">Sub-commands</a></li>
-<li><a class="reference internal" href="#filetype-objects">FileType 物件</a></li>
-<li><a class="reference internal" href="#argument-groups">Argument groups</a></li>
-<li><a class="reference internal" href="#mutual-exclusion">Mutual exclusion</a></li>
-<li><a class="reference internal" href="#parser-defaults">Parser defaults</a></li>
-<li><a class="reference internal" href="#printing-help">Printing help</a></li>
-<li><a class="reference internal" href="#partial-parsing">Partial parsing</a></li>
-<li><a class="reference internal" href="#customizing-file-parsing">Customizing file parsing</a></li>
-<li><a class="reference internal" href="#exiting-methods">Exiting methods</a></li>
-<li><a class="reference internal" href="#intermixed-parsing">Intermixed parsing</a></li>
+<li><a class="reference internal" href="#sub-commands">Sub-commands</a><ul>
+<li><a class="reference internal" href="#argparse.ArgumentParser.add_subparsers"><code class="docutils literal notranslate"><span class="pre">ArgumentParser.add_subparsers()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#filetype-objects">FileType 物件</a><ul>
+<li><a class="reference internal" href="#argparse.FileType"><code class="docutils literal notranslate"><span class="pre">FileType</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#argument-groups">Argument groups</a><ul>
+<li><a class="reference internal" href="#argparse.ArgumentParser.add_argument_group"><code class="docutils literal notranslate"><span class="pre">ArgumentParser.add_argument_group()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#mutual-exclusion">Mutual exclusion</a><ul>
+<li><a class="reference internal" href="#argparse.ArgumentParser.add_mutually_exclusive_group"><code class="docutils literal notranslate"><span class="pre">ArgumentParser.add_mutually_exclusive_group()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#parser-defaults">Parser defaults</a><ul>
+<li><a class="reference internal" href="#argparse.ArgumentParser.set_defaults"><code class="docutils literal notranslate"><span class="pre">ArgumentParser.set_defaults()</span></code></a></li>
+<li><a class="reference internal" href="#argparse.ArgumentParser.get_default"><code class="docutils literal notranslate"><span class="pre">ArgumentParser.get_default()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#printing-help">Printing help</a><ul>
+<li><a class="reference internal" href="#argparse.ArgumentParser.print_usage"><code class="docutils literal notranslate"><span class="pre">ArgumentParser.print_usage()</span></code></a></li>
+<li><a class="reference internal" href="#argparse.ArgumentParser.print_help"><code class="docutils literal notranslate"><span class="pre">ArgumentParser.print_help()</span></code></a></li>
+<li><a class="reference internal" href="#argparse.ArgumentParser.format_usage"><code class="docutils literal notranslate"><span class="pre">ArgumentParser.format_usage()</span></code></a></li>
+<li><a class="reference internal" href="#argparse.ArgumentParser.format_help"><code class="docutils literal notranslate"><span class="pre">ArgumentParser.format_help()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#partial-parsing">Partial parsing</a><ul>
+<li><a class="reference internal" href="#argparse.ArgumentParser.parse_known_args"><code class="docutils literal notranslate"><span class="pre">ArgumentParser.parse_known_args()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#customizing-file-parsing">Customizing file parsing</a><ul>
+<li><a class="reference internal" href="#argparse.ArgumentParser.convert_arg_line_to_args"><code class="docutils literal notranslate"><span class="pre">ArgumentParser.convert_arg_line_to_args()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#exiting-methods">Exiting methods</a><ul>
+<li><a class="reference internal" href="#argparse.ArgumentParser.exit"><code class="docutils literal notranslate"><span class="pre">ArgumentParser.exit()</span></code></a></li>
+<li><a class="reference internal" href="#argparse.ArgumentParser.error"><code class="docutils literal notranslate"><span class="pre">ArgumentParser.error()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#intermixed-parsing">Intermixed parsing</a><ul>
+<li><a class="reference internal" href="#argparse.ArgumentParser.parse_intermixed_args"><code class="docutils literal notranslate"><span class="pre">ArgumentParser.parse_intermixed_args()</span></code></a></li>
+<li><a class="reference internal" href="#argparse.ArgumentParser.parse_known_intermixed_args"><code class="docutils literal notranslate"><span class="pre">ArgumentParser.parse_known_intermixed_args()</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a class="reference internal" href="#upgrading-optparse-code">Upgrading optparse code</a></li>
@@ -2414,7 +2517,7 @@ the standard Python syntax to use dictionaries to format strings, that is,
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.7 Documentation</a> &#187;
+      <a href="../index.html">3.10.8 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -2451,11 +2554,11 @@ the standard Python syntax to use dictionaries to format strings, that is,
 <br />
     <br />
 
-    最後更新於 9月 16, 2022。
+    最後更新於 10月 15, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 
-    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1 建立。
+    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.2.3 建立。
     </div>
 
   </body>

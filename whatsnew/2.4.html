@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>Python 2.4 有什麼新功能 &#8212; Python 3.10.7 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python 2.4 有什麼新功能 &#8212; Python 3.10.8 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -16,12 +16,13 @@
     <script src="../_static/underscore.js"></script>
     <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/translations.js"></script>
     
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.10.7 說明文件 中搜尋"
+          title="在 Python 3.10.8 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -162,7 +163,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.7 Documentation</a> &#187;
+      <a href="../index.html">3.10.8 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Python 有什麼新功能？</a> &#187;</li>
@@ -604,7 +605,7 @@ others.</p>
 <section id="pep-327-decimal-data-type">
 <h2>PEP 327: Decimal Data Type<a class="headerlink" href="#pep-327-decimal-data-type" title="本標頭的永久連結">¶</a></h2>
 <p>Python has always supported floating-point (FP) numbers, based on the underlying
-C <span class="xref c c-texpr"><span class="kt">double</span></span> type, as a data type.  However, while most programming
+C <span class="c-expr sig sig-inline c"><span class="kt">double</span></span> type, as a data type.  However, while most programming
 languages provide a floating-point type, many people (even programmers) are
 unaware that floating-point numbers don't represent certain decimal fractions
 accurately.  The new <code class="xref py py-class docutils literal notranslate"><span class="pre">Decimal</span></code> type can represent these fractions
@@ -627,7 +628,7 @@ The number 5 has the same sign and mantissa, but the exponent is 2 because the
 mantissa is multiplied by 4 (2 to the power of the exponent 2); 1.25 * 4 equals
 5.</p>
 <p>Modern systems usually provide floating-point support that conforms to a
-standard called IEEE 754.  C's <span class="xref c c-texpr"><span class="kt">double</span></span> type is usually implemented as a
+standard called IEEE 754.  C's <span class="c-expr sig sig-inline c"><span class="kt">double</span></span> type is usually implemented as a
 64-bit IEEE 754 number, which uses 52 bits of space for the mantissa.  This
 means that numbers can only be specified to 52 bits of precision.  If you're
 trying to represent numbers whose expansion repeats endlessly, the expansion is
@@ -856,9 +857,9 @@ numbers in the current locale.</p>
 API that perform ASCII-only conversions, ignoring the locale setting:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">PyOS_ascii_strtod(str,</span> <span class="pre">ptr)</span></code>  and <code class="docutils literal notranslate"><span class="pre">PyOS_ascii_atof(str,</span> <span class="pre">ptr)</span></code>
-both convert a string to a C <span class="xref c c-texpr"><span class="kt">double</span></span>.</p></li>
+both convert a string to a C <span class="c-expr sig sig-inline c"><span class="kt">double</span></span>.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">PyOS_ascii_formatd(buffer,</span> <span class="pre">buf_len,</span> <span class="pre">format,</span> <span class="pre">d)</span></code> converts a
-<span class="xref c c-texpr"><span class="kt">double</span></span> to an ASCII string.</p></li>
+<span class="c-expr sig sig-inline c"><span class="kt">double</span></span> to an ASCII string.</p></li>
 </ul>
 <p>The code for these functions came from the GLib library
 (<a class="reference external" href="https://developer.gnome.org/glib/stable/">https://developer.gnome.org/glib/stable/</a>), whose developers kindly
@@ -1461,7 +1462,7 @@ Differences (unified diff with -expected +actual):
 <li><p>Three new convenience macros were added for common return values from
 extension functions: <a class="reference internal" href="../c-api/none.html#c.Py_RETURN_NONE" title="Py_RETURN_NONE"><code class="xref c c-macro docutils literal notranslate"><span class="pre">Py_RETURN_NONE</span></code></a>, <a class="reference internal" href="../c-api/bool.html#c.Py_RETURN_TRUE" title="Py_RETURN_TRUE"><code class="xref c c-macro docutils literal notranslate"><span class="pre">Py_RETURN_TRUE</span></code></a>, and
 <a class="reference internal" href="../c-api/bool.html#c.Py_RETURN_FALSE" title="Py_RETURN_FALSE"><code class="xref c c-macro docutils literal notranslate"><span class="pre">Py_RETURN_FALSE</span></code></a>. (Contributed by Brett Cannon.)</p></li>
-<li><p>Another new macro, <span class="xref c c-texpr"><a class="reference internal" href="../c-api/refcounting.html#c.Py_CLEAR" title="Py_CLEAR"><span class="n">Py_CLEAR</span></a><span class="p">(</span><span class="n">obj</span><span class="p">)</span></span>,  decreases the reference count of
+<li><p>Another new macro, <a class="reference internal" href="../c-api/refcounting.html#c.Py_CLEAR" title="Py_CLEAR"><code class="xref c c-macro docutils literal notranslate"><span class="pre">Py_CLEAR</span></code></a>,  decreases the reference count of
 <em>obj</em> and sets <em>obj</em> to the null pointer.  (Contributed by Jim Fulton.)</p></li>
 <li><p>A new function, <code class="docutils literal notranslate"><span class="pre">PyTuple_Pack(N,</span> <span class="pre">obj1,</span> <span class="pre">obj2,</span> <span class="pre">...,</span> <span class="pre">objN)</span></code>, constructs
 tuples from a variable length argument list of Python objects.  (Contributed by
@@ -1469,7 +1470,7 @@ Raymond Hettinger.)</p></li>
 <li><p>A new function, <code class="docutils literal notranslate"><span class="pre">PyDict_Contains(d,</span> <span class="pre">k)</span></code>, implements fast dictionary
 lookups without masking exceptions raised during the look-up process.
 (Contributed by Raymond Hettinger.)</p></li>
-<li><p>The <span class="xref c c-texpr"><span class="n">Py_IS_NAN</span><span class="p">(</span><span class="n">X</span><span class="p">)</span></span> macro returns 1 if  its float or double argument
+<li><p>The <span class="c-expr sig sig-inline c"><span class="n">Py_IS_NAN</span><span class="p">(</span><span class="n">X</span><span class="p">)</span></span> macro returns 1 if  its float or double argument
 <em>X</em> is a NaN.   (Contributed by Tim Peters.)</p></li>
 <li><p>C code can avoid unnecessary locking by using the new
 <a class="reference internal" href="../c-api/init.html#c.PyEval_ThreadsInitialized" title="PyEval_ThreadsInitialized"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyEval_ThreadsInitialized()</span></code></a> function to tell  if any thread operations
@@ -1646,7 +1647,7 @@ Fredrik Lundh, Sean Reifschneider, Sadruddin Rejeb.</p>
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.7 Documentation</a> &#187;
+      <a href="../index.html">3.10.8 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 有什麼新功能？</a> &#187;</li>
@@ -1682,11 +1683,11 @@ Fredrik Lundh, Sean Reifschneider, Sadruddin Rejeb.</p>
 <br />
     <br />
 
-    最後更新於 9月 16, 2022。
+    最後更新於 10月 15, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 
-    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1 建立。
+    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.2.3 建立。
     </div>
 
   </body>

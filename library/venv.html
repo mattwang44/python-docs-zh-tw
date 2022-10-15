@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>venv --- Creation of virtual environments &#8212; Python 3.10.7 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>venv --- Creation of virtual environments &#8212; Python 3.10.8 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -16,12 +16,13 @@
     <script src="../_static/underscore.js"></script>
     <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/translations.js"></script>
     
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.10.7 說明文件 中搜尋"
+          title="在 Python 3.10.8 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -76,7 +77,21 @@
     <ul>
 <li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">venv</span></code> --- Creation of virtual environments</a><ul>
 <li><a class="reference internal" href="#creating-virtual-environments">Creating virtual environments</a></li>
-<li><a class="reference internal" href="#api">API</a></li>
+<li><a class="reference internal" href="#api">API</a><ul>
+<li><a class="reference internal" href="#venv.EnvBuilder"><code class="docutils literal notranslate"><span class="pre">EnvBuilder</span></code></a><ul>
+<li><a class="reference internal" href="#venv.EnvBuilder.create"><code class="docutils literal notranslate"><span class="pre">EnvBuilder.create()</span></code></a></li>
+<li><a class="reference internal" href="#venv.EnvBuilder.ensure_directories"><code class="docutils literal notranslate"><span class="pre">EnvBuilder.ensure_directories()</span></code></a></li>
+<li><a class="reference internal" href="#venv.EnvBuilder.create_configuration"><code class="docutils literal notranslate"><span class="pre">EnvBuilder.create_configuration()</span></code></a></li>
+<li><a class="reference internal" href="#venv.EnvBuilder.setup_python"><code class="docutils literal notranslate"><span class="pre">EnvBuilder.setup_python()</span></code></a></li>
+<li><a class="reference internal" href="#venv.EnvBuilder.setup_scripts"><code class="docutils literal notranslate"><span class="pre">EnvBuilder.setup_scripts()</span></code></a></li>
+<li><a class="reference internal" href="#venv.EnvBuilder.upgrade_dependencies"><code class="docutils literal notranslate"><span class="pre">EnvBuilder.upgrade_dependencies()</span></code></a></li>
+<li><a class="reference internal" href="#venv.EnvBuilder.post_setup"><code class="docutils literal notranslate"><span class="pre">EnvBuilder.post_setup()</span></code></a></li>
+<li><a class="reference internal" href="#venv.EnvBuilder.install_scripts"><code class="docutils literal notranslate"><span class="pre">EnvBuilder.install_scripts()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#venv.create"><code class="docutils literal notranslate"><span class="pre">create()</span></code></a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#an-example-of-extending-envbuilder">An example of extending <code class="docutils literal notranslate"><span class="pre">EnvBuilder</span></code></a></li>
 </ul>
 </li>
@@ -135,7 +150,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.7 Documentation</a> &#187;
+      <a href="../index.html">3.10.8 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -381,6 +396,22 @@ Python Launcher for Windows installed (this was added to Python in 3.3 - see
 Windows Explorer window should run the script with the correct interpreter
 without there needing to be any reference to its virtual environment in
 <code class="docutils literal notranslate"><span class="pre">PATH</span></code>.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">警告</p>
+<p>Because scripts installed in environments should not expect the
+environment to be activated, their shebang lines contain the absolute paths
+to their environment's interpreters. Because of this, environments are
+inherently non-portable, in the general case. You should always have a
+simple means of recreating an environment (for example, if you have a
+requirements file <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code>, you can invoke <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-r</span>
+<span class="pre">requirements.txt</span></code> using the environment's <code class="docutils literal notranslate"><span class="pre">pip</span></code> to install all of the
+packages needed by the environment). If for any reason you need to move the
+environment to a new location, you should recreate it at the desired
+location and delete the one at the old location. If you move an environment
+because you moved a parent directory of it, you should recreate the
+environment in its new location. Otherwise, software installed into the
+environment may not work as expected.</p>
 </div>
 </section>
 <section id="api">
@@ -799,7 +830,21 @@ subclass which installs setuptools and pip into a created virtual environment:</
     <ul>
 <li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">venv</span></code> --- Creation of virtual environments</a><ul>
 <li><a class="reference internal" href="#creating-virtual-environments">Creating virtual environments</a></li>
-<li><a class="reference internal" href="#api">API</a></li>
+<li><a class="reference internal" href="#api">API</a><ul>
+<li><a class="reference internal" href="#venv.EnvBuilder"><code class="docutils literal notranslate"><span class="pre">EnvBuilder</span></code></a><ul>
+<li><a class="reference internal" href="#venv.EnvBuilder.create"><code class="docutils literal notranslate"><span class="pre">EnvBuilder.create()</span></code></a></li>
+<li><a class="reference internal" href="#venv.EnvBuilder.ensure_directories"><code class="docutils literal notranslate"><span class="pre">EnvBuilder.ensure_directories()</span></code></a></li>
+<li><a class="reference internal" href="#venv.EnvBuilder.create_configuration"><code class="docutils literal notranslate"><span class="pre">EnvBuilder.create_configuration()</span></code></a></li>
+<li><a class="reference internal" href="#venv.EnvBuilder.setup_python"><code class="docutils literal notranslate"><span class="pre">EnvBuilder.setup_python()</span></code></a></li>
+<li><a class="reference internal" href="#venv.EnvBuilder.setup_scripts"><code class="docutils literal notranslate"><span class="pre">EnvBuilder.setup_scripts()</span></code></a></li>
+<li><a class="reference internal" href="#venv.EnvBuilder.upgrade_dependencies"><code class="docutils literal notranslate"><span class="pre">EnvBuilder.upgrade_dependencies()</span></code></a></li>
+<li><a class="reference internal" href="#venv.EnvBuilder.post_setup"><code class="docutils literal notranslate"><span class="pre">EnvBuilder.post_setup()</span></code></a></li>
+<li><a class="reference internal" href="#venv.EnvBuilder.install_scripts"><code class="docutils literal notranslate"><span class="pre">EnvBuilder.install_scripts()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#venv.create"><code class="docutils literal notranslate"><span class="pre">create()</span></code></a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#an-example-of-extending-envbuilder">An example of extending <code class="docutils literal notranslate"><span class="pre">EnvBuilder</span></code></a></li>
 </ul>
 </li>
@@ -861,7 +906,7 @@ subclass which installs setuptools and pip into a created virtual environment:</
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.7 Documentation</a> &#187;
+      <a href="../index.html">3.10.8 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -898,11 +943,11 @@ subclass which installs setuptools and pip into a created virtual environment:</
 <br />
     <br />
 
-    最後更新於 9月 16, 2022。
+    最後更新於 10月 15, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 
-    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1 建立。
+    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.2.3 建立。
     </div>
 
   </body>

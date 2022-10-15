@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>tempfile --- 生成臨時檔案和目錄 &#8212; Python 3.10.7 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>tempfile --- 生成臨時檔案和目錄 &#8212; Python 3.10.8 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -16,12 +16,13 @@
     <script src="../_static/underscore.js"></script>
     <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/translations.js"></script>
     
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.10.7 說明文件 中搜尋"
+          title="在 Python 3.10.8 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -75,8 +76,22 @@
     <h3><a href="../contents.html">目錄</a></h3>
     <ul>
 <li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">tempfile</span></code> --- 生成臨時檔案和目錄</a><ul>
+<li><a class="reference internal" href="#tempfile.TemporaryFile"><code class="docutils literal notranslate"><span class="pre">TemporaryFile()</span></code></a></li>
+<li><a class="reference internal" href="#tempfile.NamedTemporaryFile"><code class="docutils literal notranslate"><span class="pre">NamedTemporaryFile()</span></code></a></li>
+<li><a class="reference internal" href="#tempfile.SpooledTemporaryFile"><code class="docutils literal notranslate"><span class="pre">SpooledTemporaryFile</span></code></a></li>
+<li><a class="reference internal" href="#tempfile.TemporaryDirectory"><code class="docutils literal notranslate"><span class="pre">TemporaryDirectory</span></code></a></li>
+<li><a class="reference internal" href="#tempfile.mkstemp"><code class="docutils literal notranslate"><span class="pre">mkstemp()</span></code></a></li>
+<li><a class="reference internal" href="#tempfile.mkdtemp"><code class="docutils literal notranslate"><span class="pre">mkdtemp()</span></code></a></li>
+<li><a class="reference internal" href="#tempfile.gettempdir"><code class="docutils literal notranslate"><span class="pre">gettempdir()</span></code></a></li>
+<li><a class="reference internal" href="#tempfile.gettempdirb"><code class="docutils literal notranslate"><span class="pre">gettempdirb()</span></code></a></li>
+<li><a class="reference internal" href="#tempfile.gettempprefix"><code class="docutils literal notranslate"><span class="pre">gettempprefix()</span></code></a></li>
+<li><a class="reference internal" href="#tempfile.gettempprefixb"><code class="docutils literal notranslate"><span class="pre">gettempprefixb()</span></code></a></li>
+<li><a class="reference internal" href="#tempfile.tempdir"><code class="docutils literal notranslate"><span class="pre">tempdir</span></code></a></li>
 <li><a class="reference internal" href="#examples">範例</a></li>
-<li><a class="reference internal" href="#deprecated-functions-and-variables">已棄用的函式和變數</a></li>
+<li><a class="reference internal" href="#deprecated-functions-and-variables">已棄用的函式和變數</a><ul>
+<li><a class="reference internal" href="#tempfile.mktemp"><code class="docutils literal notranslate"><span class="pre">mktemp()</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -134,7 +149,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.7 Documentation</a> &#187;
+      <a href="../index.html">3.10.8 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -395,8 +410,22 @@
     <h3><a href="../contents.html">目錄</a></h3>
     <ul>
 <li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">tempfile</span></code> --- 生成臨時檔案和目錄</a><ul>
+<li><a class="reference internal" href="#tempfile.TemporaryFile"><code class="docutils literal notranslate"><span class="pre">TemporaryFile()</span></code></a></li>
+<li><a class="reference internal" href="#tempfile.NamedTemporaryFile"><code class="docutils literal notranslate"><span class="pre">NamedTemporaryFile()</span></code></a></li>
+<li><a class="reference internal" href="#tempfile.SpooledTemporaryFile"><code class="docutils literal notranslate"><span class="pre">SpooledTemporaryFile</span></code></a></li>
+<li><a class="reference internal" href="#tempfile.TemporaryDirectory"><code class="docutils literal notranslate"><span class="pre">TemporaryDirectory</span></code></a></li>
+<li><a class="reference internal" href="#tempfile.mkstemp"><code class="docutils literal notranslate"><span class="pre">mkstemp()</span></code></a></li>
+<li><a class="reference internal" href="#tempfile.mkdtemp"><code class="docutils literal notranslate"><span class="pre">mkdtemp()</span></code></a></li>
+<li><a class="reference internal" href="#tempfile.gettempdir"><code class="docutils literal notranslate"><span class="pre">gettempdir()</span></code></a></li>
+<li><a class="reference internal" href="#tempfile.gettempdirb"><code class="docutils literal notranslate"><span class="pre">gettempdirb()</span></code></a></li>
+<li><a class="reference internal" href="#tempfile.gettempprefix"><code class="docutils literal notranslate"><span class="pre">gettempprefix()</span></code></a></li>
+<li><a class="reference internal" href="#tempfile.gettempprefixb"><code class="docutils literal notranslate"><span class="pre">gettempprefixb()</span></code></a></li>
+<li><a class="reference internal" href="#tempfile.tempdir"><code class="docutils literal notranslate"><span class="pre">tempdir</span></code></a></li>
 <li><a class="reference internal" href="#examples">範例</a></li>
-<li><a class="reference internal" href="#deprecated-functions-and-variables">已棄用的函式和變數</a></li>
+<li><a class="reference internal" href="#deprecated-functions-and-variables">已棄用的函式和變數</a><ul>
+<li><a class="reference internal" href="#tempfile.mktemp"><code class="docutils literal notranslate"><span class="pre">mktemp()</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -457,7 +486,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.7 Documentation</a> &#187;
+      <a href="../index.html">3.10.8 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -494,11 +523,11 @@
 <br />
     <br />
 
-    最後更新於 9月 16, 2022。
+    最後更新於 10月 15, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 
-    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1 建立。
+    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.2.3 建立。
     </div>
 
   </body>

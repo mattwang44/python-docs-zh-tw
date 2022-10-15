@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>optparse --- Parser for command line options &#8212; Python 3.10.7 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>optparse --- Parser for command line options &#8212; Python 3.10.8 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -16,12 +16,13 @@
     <script src="../_static/underscore.js"></script>
     <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/translations.js"></script>
     
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.10.7 說明文件 中搜尋"
+          title="在 Python 3.10.8 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -88,26 +89,67 @@
 <li><a class="reference internal" href="#other-actions">Other actions</a></li>
 <li><a class="reference internal" href="#default-values">Default values</a></li>
 <li><a class="reference internal" href="#generating-help">Generating help</a><ul>
-<li><a class="reference internal" href="#grouping-options">Grouping Options</a></li>
+<li><a class="reference internal" href="#grouping-options">Grouping Options</a><ul>
+<li><a class="reference internal" href="#optparse.OptionGroup"><code class="docutils literal notranslate"><span class="pre">OptionGroup</span></code></a></li>
+<li><a class="reference internal" href="#optparse.OptionParser.get_option_group"><code class="docutils literal notranslate"><span class="pre">OptionParser.get_option_group()</span></code></a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#printing-a-version-string">Printing a version string</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#printing-a-version-string">Printing a version string</a><ul>
+<li><a class="reference internal" href="#optparse.OptionParser.print_version"><code class="docutils literal notranslate"><span class="pre">OptionParser.print_version()</span></code></a></li>
+<li><a class="reference internal" href="#optparse.OptionParser.get_version"><code class="docutils literal notranslate"><span class="pre">OptionParser.get_version()</span></code></a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#how-optparse-handles-errors">How <code class="xref py py-mod docutils literal notranslate"><span class="pre">optparse</span></code> handles errors</a></li>
 <li><a class="reference internal" href="#putting-it-all-together">Putting it all together</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#reference-guide">Reference Guide</a><ul>
-<li><a class="reference internal" href="#creating-the-parser">Creating the parser</a></li>
+<li><a class="reference internal" href="#creating-the-parser">Creating the parser</a><ul>
+<li><a class="reference internal" href="#optparse.OptionParser"><code class="docutils literal notranslate"><span class="pre">OptionParser</span></code></a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#populating-the-parser">Populating the parser</a></li>
-<li><a class="reference internal" href="#defining-options">Defining options</a></li>
-<li><a class="reference internal" href="#option-attributes">Option attributes</a></li>
+<li><a class="reference internal" href="#defining-options">Defining options</a><ul>
+<li><a class="reference internal" href="#optparse.OptionParser.add_option"><code class="docutils literal notranslate"><span class="pre">OptionParser.add_option()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#option-attributes">Option attributes</a><ul>
+<li><a class="reference internal" href="#optparse.Option.action"><code class="docutils literal notranslate"><span class="pre">Option.action</span></code></a></li>
+<li><a class="reference internal" href="#optparse.Option.type"><code class="docutils literal notranslate"><span class="pre">Option.type</span></code></a></li>
+<li><a class="reference internal" href="#optparse.Option.dest"><code class="docutils literal notranslate"><span class="pre">Option.dest</span></code></a></li>
+<li><a class="reference internal" href="#optparse.Option.default"><code class="docutils literal notranslate"><span class="pre">Option.default</span></code></a></li>
+<li><a class="reference internal" href="#optparse.Option.nargs"><code class="docutils literal notranslate"><span class="pre">Option.nargs</span></code></a></li>
+<li><a class="reference internal" href="#optparse.Option.const"><code class="docutils literal notranslate"><span class="pre">Option.const</span></code></a></li>
+<li><a class="reference internal" href="#optparse.Option.choices"><code class="docutils literal notranslate"><span class="pre">Option.choices</span></code></a></li>
+<li><a class="reference internal" href="#optparse.Option.callback"><code class="docutils literal notranslate"><span class="pre">Option.callback</span></code></a></li>
+<li><a class="reference internal" href="#optparse.Option.callback_args"><code class="docutils literal notranslate"><span class="pre">Option.callback_args</span></code></a></li>
+<li><a class="reference internal" href="#optparse.Option.callback_kwargs"><code class="docutils literal notranslate"><span class="pre">Option.callback_kwargs</span></code></a></li>
+<li><a class="reference internal" href="#optparse.Option.help"><code class="docutils literal notranslate"><span class="pre">Option.help</span></code></a></li>
+<li><a class="reference internal" href="#optparse.Option.metavar"><code class="docutils literal notranslate"><span class="pre">Option.metavar</span></code></a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#standard-option-actions">Standard option actions</a></li>
 <li><a class="reference internal" href="#standard-option-types">Standard option types</a></li>
 <li><a class="reference internal" href="#parsing-arguments">Parsing arguments</a></li>
-<li><a class="reference internal" href="#querying-and-manipulating-your-option-parser">Querying and manipulating your option parser</a></li>
+<li><a class="reference internal" href="#querying-and-manipulating-your-option-parser">Querying and manipulating your option parser</a><ul>
+<li><a class="reference internal" href="#optparse.OptionParser.disable_interspersed_args"><code class="docutils literal notranslate"><span class="pre">OptionParser.disable_interspersed_args()</span></code></a></li>
+<li><a class="reference internal" href="#optparse.OptionParser.enable_interspersed_args"><code class="docutils literal notranslate"><span class="pre">OptionParser.enable_interspersed_args()</span></code></a></li>
+<li><a class="reference internal" href="#optparse.OptionParser.get_option"><code class="docutils literal notranslate"><span class="pre">OptionParser.get_option()</span></code></a></li>
+<li><a class="reference internal" href="#optparse.OptionParser.has_option"><code class="docutils literal notranslate"><span class="pre">OptionParser.has_option()</span></code></a></li>
+<li><a class="reference internal" href="#optparse.OptionParser.remove_option"><code class="docutils literal notranslate"><span class="pre">OptionParser.remove_option()</span></code></a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#conflicts-between-options">Conflicts between options</a></li>
 <li><a class="reference internal" href="#cleanup">Cleanup</a></li>
-<li><a class="reference internal" href="#other-methods">Other methods</a></li>
+<li><a class="reference internal" href="#other-methods">Other methods</a><ul>
+<li><a class="reference internal" href="#optparse.OptionParser.set_usage"><code class="docutils literal notranslate"><span class="pre">OptionParser.set_usage()</span></code></a></li>
+<li><a class="reference internal" href="#optparse.OptionParser.print_usage"><code class="docutils literal notranslate"><span class="pre">OptionParser.print_usage()</span></code></a></li>
+<li><a class="reference internal" href="#optparse.OptionParser.get_usage"><code class="docutils literal notranslate"><span class="pre">OptionParser.get_usage()</span></code></a></li>
+<li><a class="reference internal" href="#optparse.OptionParser.set_defaults"><code class="docutils literal notranslate"><span class="pre">OptionParser.set_defaults()</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a class="reference internal" href="#option-callbacks">Option Callbacks</a><ul>
@@ -123,8 +165,18 @@
 </ul>
 </li>
 <li><a class="reference internal" href="#extending-optparse">Extending <code class="xref py py-mod docutils literal notranslate"><span class="pre">optparse</span></code></a><ul>
-<li><a class="reference internal" href="#adding-new-types">Adding new types</a></li>
-<li><a class="reference internal" href="#adding-new-actions">Adding new actions</a></li>
+<li><a class="reference internal" href="#adding-new-types">Adding new types</a><ul>
+<li><a class="reference internal" href="#optparse.Option.TYPES"><code class="docutils literal notranslate"><span class="pre">Option.TYPES</span></code></a></li>
+<li><a class="reference internal" href="#optparse.Option.TYPE_CHECKER"><code class="docutils literal notranslate"><span class="pre">Option.TYPE_CHECKER</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#adding-new-actions">Adding new actions</a><ul>
+<li><a class="reference internal" href="#optparse.Option.ACTIONS"><code class="docutils literal notranslate"><span class="pre">Option.ACTIONS</span></code></a></li>
+<li><a class="reference internal" href="#optparse.Option.STORE_ACTIONS"><code class="docutils literal notranslate"><span class="pre">Option.STORE_ACTIONS</span></code></a></li>
+<li><a class="reference internal" href="#optparse.Option.TYPED_ACTIONS"><code class="docutils literal notranslate"><span class="pre">Option.TYPED_ACTIONS</span></code></a></li>
+<li><a class="reference internal" href="#optparse.Option.ALWAYS_TYPED_ACTIONS"><code class="docutils literal notranslate"><span class="pre">Option.ALWAYS_TYPED_ACTIONS</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -184,7 +236,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.7 Documentation</a> &#187;
+      <a href="../index.html">3.10.8 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -2045,26 +2097,67 @@ getting it right when it's needed.</p>
 <li><a class="reference internal" href="#other-actions">Other actions</a></li>
 <li><a class="reference internal" href="#default-values">Default values</a></li>
 <li><a class="reference internal" href="#generating-help">Generating help</a><ul>
-<li><a class="reference internal" href="#grouping-options">Grouping Options</a></li>
+<li><a class="reference internal" href="#grouping-options">Grouping Options</a><ul>
+<li><a class="reference internal" href="#optparse.OptionGroup"><code class="docutils literal notranslate"><span class="pre">OptionGroup</span></code></a></li>
+<li><a class="reference internal" href="#optparse.OptionParser.get_option_group"><code class="docutils literal notranslate"><span class="pre">OptionParser.get_option_group()</span></code></a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#printing-a-version-string">Printing a version string</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#printing-a-version-string">Printing a version string</a><ul>
+<li><a class="reference internal" href="#optparse.OptionParser.print_version"><code class="docutils literal notranslate"><span class="pre">OptionParser.print_version()</span></code></a></li>
+<li><a class="reference internal" href="#optparse.OptionParser.get_version"><code class="docutils literal notranslate"><span class="pre">OptionParser.get_version()</span></code></a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#how-optparse-handles-errors">How <code class="xref py py-mod docutils literal notranslate"><span class="pre">optparse</span></code> handles errors</a></li>
 <li><a class="reference internal" href="#putting-it-all-together">Putting it all together</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#reference-guide">Reference Guide</a><ul>
-<li><a class="reference internal" href="#creating-the-parser">Creating the parser</a></li>
+<li><a class="reference internal" href="#creating-the-parser">Creating the parser</a><ul>
+<li><a class="reference internal" href="#optparse.OptionParser"><code class="docutils literal notranslate"><span class="pre">OptionParser</span></code></a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#populating-the-parser">Populating the parser</a></li>
-<li><a class="reference internal" href="#defining-options">Defining options</a></li>
-<li><a class="reference internal" href="#option-attributes">Option attributes</a></li>
+<li><a class="reference internal" href="#defining-options">Defining options</a><ul>
+<li><a class="reference internal" href="#optparse.OptionParser.add_option"><code class="docutils literal notranslate"><span class="pre">OptionParser.add_option()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#option-attributes">Option attributes</a><ul>
+<li><a class="reference internal" href="#optparse.Option.action"><code class="docutils literal notranslate"><span class="pre">Option.action</span></code></a></li>
+<li><a class="reference internal" href="#optparse.Option.type"><code class="docutils literal notranslate"><span class="pre">Option.type</span></code></a></li>
+<li><a class="reference internal" href="#optparse.Option.dest"><code class="docutils literal notranslate"><span class="pre">Option.dest</span></code></a></li>
+<li><a class="reference internal" href="#optparse.Option.default"><code class="docutils literal notranslate"><span class="pre">Option.default</span></code></a></li>
+<li><a class="reference internal" href="#optparse.Option.nargs"><code class="docutils literal notranslate"><span class="pre">Option.nargs</span></code></a></li>
+<li><a class="reference internal" href="#optparse.Option.const"><code class="docutils literal notranslate"><span class="pre">Option.const</span></code></a></li>
+<li><a class="reference internal" href="#optparse.Option.choices"><code class="docutils literal notranslate"><span class="pre">Option.choices</span></code></a></li>
+<li><a class="reference internal" href="#optparse.Option.callback"><code class="docutils literal notranslate"><span class="pre">Option.callback</span></code></a></li>
+<li><a class="reference internal" href="#optparse.Option.callback_args"><code class="docutils literal notranslate"><span class="pre">Option.callback_args</span></code></a></li>
+<li><a class="reference internal" href="#optparse.Option.callback_kwargs"><code class="docutils literal notranslate"><span class="pre">Option.callback_kwargs</span></code></a></li>
+<li><a class="reference internal" href="#optparse.Option.help"><code class="docutils literal notranslate"><span class="pre">Option.help</span></code></a></li>
+<li><a class="reference internal" href="#optparse.Option.metavar"><code class="docutils literal notranslate"><span class="pre">Option.metavar</span></code></a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#standard-option-actions">Standard option actions</a></li>
 <li><a class="reference internal" href="#standard-option-types">Standard option types</a></li>
 <li><a class="reference internal" href="#parsing-arguments">Parsing arguments</a></li>
-<li><a class="reference internal" href="#querying-and-manipulating-your-option-parser">Querying and manipulating your option parser</a></li>
+<li><a class="reference internal" href="#querying-and-manipulating-your-option-parser">Querying and manipulating your option parser</a><ul>
+<li><a class="reference internal" href="#optparse.OptionParser.disable_interspersed_args"><code class="docutils literal notranslate"><span class="pre">OptionParser.disable_interspersed_args()</span></code></a></li>
+<li><a class="reference internal" href="#optparse.OptionParser.enable_interspersed_args"><code class="docutils literal notranslate"><span class="pre">OptionParser.enable_interspersed_args()</span></code></a></li>
+<li><a class="reference internal" href="#optparse.OptionParser.get_option"><code class="docutils literal notranslate"><span class="pre">OptionParser.get_option()</span></code></a></li>
+<li><a class="reference internal" href="#optparse.OptionParser.has_option"><code class="docutils literal notranslate"><span class="pre">OptionParser.has_option()</span></code></a></li>
+<li><a class="reference internal" href="#optparse.OptionParser.remove_option"><code class="docutils literal notranslate"><span class="pre">OptionParser.remove_option()</span></code></a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#conflicts-between-options">Conflicts between options</a></li>
 <li><a class="reference internal" href="#cleanup">Cleanup</a></li>
-<li><a class="reference internal" href="#other-methods">Other methods</a></li>
+<li><a class="reference internal" href="#other-methods">Other methods</a><ul>
+<li><a class="reference internal" href="#optparse.OptionParser.set_usage"><code class="docutils literal notranslate"><span class="pre">OptionParser.set_usage()</span></code></a></li>
+<li><a class="reference internal" href="#optparse.OptionParser.print_usage"><code class="docutils literal notranslate"><span class="pre">OptionParser.print_usage()</span></code></a></li>
+<li><a class="reference internal" href="#optparse.OptionParser.get_usage"><code class="docutils literal notranslate"><span class="pre">OptionParser.get_usage()</span></code></a></li>
+<li><a class="reference internal" href="#optparse.OptionParser.set_defaults"><code class="docutils literal notranslate"><span class="pre">OptionParser.set_defaults()</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a class="reference internal" href="#option-callbacks">Option Callbacks</a><ul>
@@ -2080,8 +2173,18 @@ getting it right when it's needed.</p>
 </ul>
 </li>
 <li><a class="reference internal" href="#extending-optparse">Extending <code class="xref py py-mod docutils literal notranslate"><span class="pre">optparse</span></code></a><ul>
-<li><a class="reference internal" href="#adding-new-types">Adding new types</a></li>
-<li><a class="reference internal" href="#adding-new-actions">Adding new actions</a></li>
+<li><a class="reference internal" href="#adding-new-types">Adding new types</a><ul>
+<li><a class="reference internal" href="#optparse.Option.TYPES"><code class="docutils literal notranslate"><span class="pre">Option.TYPES</span></code></a></li>
+<li><a class="reference internal" href="#optparse.Option.TYPE_CHECKER"><code class="docutils literal notranslate"><span class="pre">Option.TYPE_CHECKER</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#adding-new-actions">Adding new actions</a><ul>
+<li><a class="reference internal" href="#optparse.Option.ACTIONS"><code class="docutils literal notranslate"><span class="pre">Option.ACTIONS</span></code></a></li>
+<li><a class="reference internal" href="#optparse.Option.STORE_ACTIONS"><code class="docutils literal notranslate"><span class="pre">Option.STORE_ACTIONS</span></code></a></li>
+<li><a class="reference internal" href="#optparse.Option.TYPED_ACTIONS"><code class="docutils literal notranslate"><span class="pre">Option.TYPED_ACTIONS</span></code></a></li>
+<li><a class="reference internal" href="#optparse.Option.ALWAYS_TYPED_ACTIONS"><code class="docutils literal notranslate"><span class="pre">Option.ALWAYS_TYPED_ACTIONS</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -2144,7 +2247,7 @@ getting it right when it's needed.</p>
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.7 Documentation</a> &#187;
+      <a href="../index.html">3.10.8 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -2181,11 +2284,11 @@ getting it right when it's needed.</p>
 <br />
     <br />
 
-    最後更新於 9月 16, 2022。
+    最後更新於 10月 15, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 
-    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1 建立。
+    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.2.3 建立。
     </div>
 
   </body>

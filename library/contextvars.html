@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>contextvars --- Context Variables &#8212; Python 3.10.7 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>contextvars --- Context Variables &#8212; Python 3.10.8 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -16,19 +16,20 @@
     <script src="../_static/underscore.js"></script>
     <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/translations.js"></script>
     
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.10.7 說明文件 中搜尋"
+          title="在 Python 3.10.8 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="搜尋" href="../search.html" />
     <link rel="copyright" title="版權" href="../copyright.html" />
     <link rel="next" title="_thread --- Low-level threading API" href="_thread.html" />
-    <link rel="prev" title="queue --- A synchronized queue class" href="queue.html" />
+    <link rel="prev" title="queue --- 同步佇列 (queue) class（類別）" href="queue.html" />
     <link rel="canonical" href="https://docs.python.org/3/library/contextvars.html" />
     
       
@@ -75,8 +76,35 @@
     <h3><a href="../contents.html">目錄</a></h3>
     <ul>
 <li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">contextvars</span></code> --- Context Variables</a><ul>
-<li><a class="reference internal" href="#context-variables">Context Variables</a></li>
-<li><a class="reference internal" href="#manual-context-management">Manual Context Management</a></li>
+<li><a class="reference internal" href="#context-variables">Context Variables</a><ul>
+<li><a class="reference internal" href="#contextvars.ContextVar"><code class="docutils literal notranslate"><span class="pre">ContextVar</span></code></a><ul>
+<li><a class="reference internal" href="#contextvars.ContextVar.name"><code class="docutils literal notranslate"><span class="pre">ContextVar.name</span></code></a></li>
+<li><a class="reference internal" href="#contextvars.ContextVar.get"><code class="docutils literal notranslate"><span class="pre">ContextVar.get()</span></code></a></li>
+<li><a class="reference internal" href="#contextvars.ContextVar.set"><code class="docutils literal notranslate"><span class="pre">ContextVar.set()</span></code></a></li>
+<li><a class="reference internal" href="#contextvars.ContextVar.reset"><code class="docutils literal notranslate"><span class="pre">ContextVar.reset()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#contextvars.Token"><code class="docutils literal notranslate"><span class="pre">Token</span></code></a><ul>
+<li><a class="reference internal" href="#contextvars.Token.var"><code class="docutils literal notranslate"><span class="pre">Token.var</span></code></a></li>
+<li><a class="reference internal" href="#contextvars.Token.old_value"><code class="docutils literal notranslate"><span class="pre">Token.old_value</span></code></a></li>
+<li><a class="reference internal" href="#contextvars.Token.MISSING"><code class="docutils literal notranslate"><span class="pre">Token.MISSING</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#manual-context-management">Manual Context Management</a><ul>
+<li><a class="reference internal" href="#contextvars.copy_context"><code class="docutils literal notranslate"><span class="pre">copy_context()</span></code></a></li>
+<li><a class="reference internal" href="#contextvars.Context"><code class="docutils literal notranslate"><span class="pre">Context</span></code></a><ul>
+<li><a class="reference internal" href="#contextvars.Context.run"><code class="docutils literal notranslate"><span class="pre">Context.run()</span></code></a></li>
+<li><a class="reference internal" href="#contextvars.Context.copy"><code class="docutils literal notranslate"><span class="pre">Context.copy()</span></code></a></li>
+<li><a class="reference internal" href="#contextvars.Context.get"><code class="docutils literal notranslate"><span class="pre">Context.get()</span></code></a></li>
+<li><a class="reference internal" href="#contextvars.Context.keys"><code class="docutils literal notranslate"><span class="pre">Context.keys()</span></code></a></li>
+<li><a class="reference internal" href="#contextvars.Context.values"><code class="docutils literal notranslate"><span class="pre">Context.values()</span></code></a></li>
+<li><a class="reference internal" href="#contextvars.Context.items"><code class="docutils literal notranslate"><span class="pre">Context.items()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li><a class="reference internal" href="#asyncio-support">asyncio support</a></li>
 </ul>
 </li>
@@ -86,7 +114,7 @@
   <div>
     <h4>上個主題</h4>
     <p class="topless"><a href="queue.html"
-                          title="上一章"><code class="xref py py-mod docutils literal notranslate"><span class="pre">queue</span></code> --- A synchronized queue class</a></p>
+                          title="上一章"><code class="xref py py-mod docutils literal notranslate"><span class="pre">queue</span></code> --- 同步佇列 (queue) class（類別）</a></p>
   </div>
   <div>
     <h4>下個主題</h4>
@@ -122,7 +150,7 @@
           <a href="_thread.html" title="_thread --- Low-level threading API"
              accesskey="N">下一頁</a> |</li>
         <li class="right" >
-          <a href="queue.html" title="queue --- A synchronized queue class"
+          <a href="queue.html" title="queue --- 同步佇列 (queue) class（類別）"
              accesskey="P">上一頁</a> |</li>
 
           <li><img src="../_static/py.svg" alt="python logo" style="vertical-align: middle; margin-top: -1px"/></li>
@@ -135,7 +163,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.7 Documentation</a> &#187;
+      <a href="../index.html">3.10.8 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -476,8 +504,35 @@ client:</p>
     <h3><a href="../contents.html">目錄</a></h3>
     <ul>
 <li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">contextvars</span></code> --- Context Variables</a><ul>
-<li><a class="reference internal" href="#context-variables">Context Variables</a></li>
-<li><a class="reference internal" href="#manual-context-management">Manual Context Management</a></li>
+<li><a class="reference internal" href="#context-variables">Context Variables</a><ul>
+<li><a class="reference internal" href="#contextvars.ContextVar"><code class="docutils literal notranslate"><span class="pre">ContextVar</span></code></a><ul>
+<li><a class="reference internal" href="#contextvars.ContextVar.name"><code class="docutils literal notranslate"><span class="pre">ContextVar.name</span></code></a></li>
+<li><a class="reference internal" href="#contextvars.ContextVar.get"><code class="docutils literal notranslate"><span class="pre">ContextVar.get()</span></code></a></li>
+<li><a class="reference internal" href="#contextvars.ContextVar.set"><code class="docutils literal notranslate"><span class="pre">ContextVar.set()</span></code></a></li>
+<li><a class="reference internal" href="#contextvars.ContextVar.reset"><code class="docutils literal notranslate"><span class="pre">ContextVar.reset()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#contextvars.Token"><code class="docutils literal notranslate"><span class="pre">Token</span></code></a><ul>
+<li><a class="reference internal" href="#contextvars.Token.var"><code class="docutils literal notranslate"><span class="pre">Token.var</span></code></a></li>
+<li><a class="reference internal" href="#contextvars.Token.old_value"><code class="docutils literal notranslate"><span class="pre">Token.old_value</span></code></a></li>
+<li><a class="reference internal" href="#contextvars.Token.MISSING"><code class="docutils literal notranslate"><span class="pre">Token.MISSING</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#manual-context-management">Manual Context Management</a><ul>
+<li><a class="reference internal" href="#contextvars.copy_context"><code class="docutils literal notranslate"><span class="pre">copy_context()</span></code></a></li>
+<li><a class="reference internal" href="#contextvars.Context"><code class="docutils literal notranslate"><span class="pre">Context</span></code></a><ul>
+<li><a class="reference internal" href="#contextvars.Context.run"><code class="docutils literal notranslate"><span class="pre">Context.run()</span></code></a></li>
+<li><a class="reference internal" href="#contextvars.Context.copy"><code class="docutils literal notranslate"><span class="pre">Context.copy()</span></code></a></li>
+<li><a class="reference internal" href="#contextvars.Context.get"><code class="docutils literal notranslate"><span class="pre">Context.get()</span></code></a></li>
+<li><a class="reference internal" href="#contextvars.Context.keys"><code class="docutils literal notranslate"><span class="pre">Context.keys()</span></code></a></li>
+<li><a class="reference internal" href="#contextvars.Context.values"><code class="docutils literal notranslate"><span class="pre">Context.values()</span></code></a></li>
+<li><a class="reference internal" href="#contextvars.Context.items"><code class="docutils literal notranslate"><span class="pre">Context.items()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li><a class="reference internal" href="#asyncio-support">asyncio support</a></li>
 </ul>
 </li>
@@ -487,7 +542,7 @@ client:</p>
   <div>
     <h4>上個主題</h4>
     <p class="topless"><a href="queue.html"
-                          title="上一章"><code class="xref py py-mod docutils literal notranslate"><span class="pre">queue</span></code> --- A synchronized queue class</a></p>
+                          title="上一章"><code class="xref py py-mod docutils literal notranslate"><span class="pre">queue</span></code> --- 同步佇列 (queue) class（類別）</a></p>
   </div>
   <div>
     <h4>下個主題</h4>
@@ -526,7 +581,7 @@ client:</p>
           <a href="_thread.html" title="_thread --- Low-level threading API"
              >下一頁</a> |</li>
         <li class="right" >
-          <a href="queue.html" title="queue --- A synchronized queue class"
+          <a href="queue.html" title="queue --- 同步佇列 (queue) class（類別）"
              >上一頁</a> |</li>
 
           <li><img src="../_static/py.svg" alt="python logo" style="vertical-align: middle; margin-top: -1px"/></li>
@@ -539,7 +594,7 @@ client:</p>
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.7 Documentation</a> &#187;
+      <a href="../index.html">3.10.8 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -576,11 +631,11 @@ client:</p>
 <br />
     <br />
 
-    最後更新於 9月 16, 2022。
+    最後更新於 10月 15, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 
-    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1 建立。
+    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.2.3 建立。
     </div>
 
   </body>

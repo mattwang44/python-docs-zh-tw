@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>sqlite3 --- DB-API 2.0 interface for SQLite databases &#8212; Python 3.10.7 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sqlite3 --- DB-API 2.0 interface for SQLite databases &#8212; Python 3.10.8 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -16,12 +16,13 @@
     <script src="../_static/underscore.js"></script>
     <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/translations.js"></script>
     
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.10.7 說明文件 中搜尋"
+          title="在 Python 3.10.8 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -77,13 +78,102 @@
 <li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sqlite3</span></code> --- DB-API 2.0 interface for SQLite databases</a><ul>
 <li><a class="reference internal" href="#tutorial">Tutorial</a></li>
 <li><a class="reference internal" href="#reference">Reference</a><ul>
-<li><a class="reference internal" href="#module-functions">Module functions</a></li>
-<li><a class="reference internal" href="#module-constants">Module constants</a></li>
-<li><a class="reference internal" href="#connection-objects">Connection objects</a></li>
-<li><a class="reference internal" href="#cursor-objects">Cursor objects</a></li>
-<li><a class="reference internal" href="#row-objects">Row objects</a></li>
-<li><a class="reference internal" href="#prepareprotocol-objects">PrepareProtocol objects</a></li>
-<li><a class="reference internal" href="#exceptions">例外</a></li>
+<li><a class="reference internal" href="#module-functions">Module functions</a><ul>
+<li><a class="reference internal" href="#sqlite3.connect"><code class="docutils literal notranslate"><span class="pre">connect()</span></code></a></li>
+<li><a class="reference internal" href="#sqlite3.complete_statement"><code class="docutils literal notranslate"><span class="pre">complete_statement()</span></code></a></li>
+<li><a class="reference internal" href="#sqlite3.enable_callback_tracebacks"><code class="docutils literal notranslate"><span class="pre">enable_callback_tracebacks()</span></code></a></li>
+<li><a class="reference internal" href="#sqlite3.register_adapter"><code class="docutils literal notranslate"><span class="pre">register_adapter()</span></code></a></li>
+<li><a class="reference internal" href="#sqlite3.register_converter"><code class="docutils literal notranslate"><span class="pre">register_converter()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-constants">Module constants</a><ul>
+<li><a class="reference internal" href="#sqlite3.PARSE_COLNAMES"><code class="docutils literal notranslate"><span class="pre">PARSE_COLNAMES</span></code></a></li>
+<li><a class="reference internal" href="#sqlite3.PARSE_DECLTYPES"><code class="docutils literal notranslate"><span class="pre">PARSE_DECLTYPES</span></code></a></li>
+<li><a class="reference internal" href="#sqlite3.SQLITE_OK"><code class="docutils literal notranslate"><span class="pre">SQLITE_OK</span></code></a></li>
+<li><a class="reference internal" href="#sqlite3.SQLITE_DENY"><code class="docutils literal notranslate"><span class="pre">SQLITE_DENY</span></code></a></li>
+<li><a class="reference internal" href="#sqlite3.SQLITE_IGNORE"><code class="docutils literal notranslate"><span class="pre">SQLITE_IGNORE</span></code></a></li>
+<li><a class="reference internal" href="#sqlite3.apilevel"><code class="docutils literal notranslate"><span class="pre">apilevel</span></code></a></li>
+<li><a class="reference internal" href="#sqlite3.paramstyle"><code class="docutils literal notranslate"><span class="pre">paramstyle</span></code></a></li>
+<li><a class="reference internal" href="#sqlite3.sqlite_version"><code class="docutils literal notranslate"><span class="pre">sqlite_version</span></code></a></li>
+<li><a class="reference internal" href="#sqlite3.sqlite_version_info"><code class="docutils literal notranslate"><span class="pre">sqlite_version_info</span></code></a></li>
+<li><a class="reference internal" href="#sqlite3.threadsafety"><code class="docutils literal notranslate"><span class="pre">threadsafety</span></code></a></li>
+<li><a class="reference internal" href="#sqlite3.version"><code class="docutils literal notranslate"><span class="pre">version</span></code></a></li>
+<li><a class="reference internal" href="#sqlite3.version_info"><code class="docutils literal notranslate"><span class="pre">version_info</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#connection-objects">Connection objects</a><ul>
+<li><a class="reference internal" href="#sqlite3.Connection"><code class="docutils literal notranslate"><span class="pre">Connection</span></code></a><ul>
+<li><a class="reference internal" href="#sqlite3.Connection.cursor"><code class="docutils literal notranslate"><span class="pre">Connection.cursor()</span></code></a></li>
+<li><a class="reference internal" href="#sqlite3.Connection.commit"><code class="docutils literal notranslate"><span class="pre">Connection.commit()</span></code></a></li>
+<li><a class="reference internal" href="#sqlite3.Connection.rollback"><code class="docutils literal notranslate"><span class="pre">Connection.rollback()</span></code></a></li>
+<li><a class="reference internal" href="#sqlite3.Connection.close"><code class="docutils literal notranslate"><span class="pre">Connection.close()</span></code></a></li>
+<li><a class="reference internal" href="#sqlite3.Connection.execute"><code class="docutils literal notranslate"><span class="pre">Connection.execute()</span></code></a></li>
+<li><a class="reference internal" href="#sqlite3.Connection.executemany"><code class="docutils literal notranslate"><span class="pre">Connection.executemany()</span></code></a></li>
+<li><a class="reference internal" href="#sqlite3.Connection.executescript"><code class="docutils literal notranslate"><span class="pre">Connection.executescript()</span></code></a></li>
+<li><a class="reference internal" href="#sqlite3.Connection.create_function"><code class="docutils literal notranslate"><span class="pre">Connection.create_function()</span></code></a></li>
+<li><a class="reference internal" href="#sqlite3.Connection.create_aggregate"><code class="docutils literal notranslate"><span class="pre">Connection.create_aggregate()</span></code></a></li>
+<li><a class="reference internal" href="#sqlite3.Connection.create_collation"><code class="docutils literal notranslate"><span class="pre">Connection.create_collation()</span></code></a></li>
+<li><a class="reference internal" href="#sqlite3.Connection.interrupt"><code class="docutils literal notranslate"><span class="pre">Connection.interrupt()</span></code></a></li>
+<li><a class="reference internal" href="#sqlite3.Connection.set_authorizer"><code class="docutils literal notranslate"><span class="pre">Connection.set_authorizer()</span></code></a></li>
+<li><a class="reference internal" href="#sqlite3.Connection.set_progress_handler"><code class="docutils literal notranslate"><span class="pre">Connection.set_progress_handler()</span></code></a></li>
+<li><a class="reference internal" href="#sqlite3.Connection.set_trace_callback"><code class="docutils literal notranslate"><span class="pre">Connection.set_trace_callback()</span></code></a></li>
+<li><a class="reference internal" href="#sqlite3.Connection.enable_load_extension"><code class="docutils literal notranslate"><span class="pre">Connection.enable_load_extension()</span></code></a></li>
+<li><a class="reference internal" href="#sqlite3.Connection.load_extension"><code class="docutils literal notranslate"><span class="pre">Connection.load_extension()</span></code></a></li>
+<li><a class="reference internal" href="#sqlite3.Connection.iterdump"><code class="docutils literal notranslate"><span class="pre">Connection.iterdump()</span></code></a></li>
+<li><a class="reference internal" href="#sqlite3.Connection.backup"><code class="docutils literal notranslate"><span class="pre">Connection.backup()</span></code></a></li>
+<li><a class="reference internal" href="#sqlite3.Connection.in_transaction"><code class="docutils literal notranslate"><span class="pre">Connection.in_transaction</span></code></a></li>
+<li><a class="reference internal" href="#sqlite3.Connection.isolation_level"><code class="docutils literal notranslate"><span class="pre">Connection.isolation_level</span></code></a></li>
+<li><a class="reference internal" href="#sqlite3.Connection.row_factory"><code class="docutils literal notranslate"><span class="pre">Connection.row_factory</span></code></a></li>
+<li><a class="reference internal" href="#sqlite3.Connection.text_factory"><code class="docutils literal notranslate"><span class="pre">Connection.text_factory</span></code></a></li>
+<li><a class="reference internal" href="#sqlite3.Connection.total_changes"><code class="docutils literal notranslate"><span class="pre">Connection.total_changes</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#cursor-objects">Cursor objects</a><ul>
+<li><a class="reference internal" href="#sqlite3.Cursor"><code class="docutils literal notranslate"><span class="pre">Cursor</span></code></a><ul>
+<li><a class="reference internal" href="#sqlite3.Cursor.execute"><code class="docutils literal notranslate"><span class="pre">Cursor.execute()</span></code></a></li>
+<li><a class="reference internal" href="#sqlite3.Cursor.executemany"><code class="docutils literal notranslate"><span class="pre">Cursor.executemany()</span></code></a></li>
+<li><a class="reference internal" href="#sqlite3.Cursor.executescript"><code class="docutils literal notranslate"><span class="pre">Cursor.executescript()</span></code></a></li>
+<li><a class="reference internal" href="#sqlite3.Cursor.fetchone"><code class="docutils literal notranslate"><span class="pre">Cursor.fetchone()</span></code></a></li>
+<li><a class="reference internal" href="#sqlite3.Cursor.fetchmany"><code class="docutils literal notranslate"><span class="pre">Cursor.fetchmany()</span></code></a></li>
+<li><a class="reference internal" href="#sqlite3.Cursor.fetchall"><code class="docutils literal notranslate"><span class="pre">Cursor.fetchall()</span></code></a></li>
+<li><a class="reference internal" href="#sqlite3.Cursor.close"><code class="docutils literal notranslate"><span class="pre">Cursor.close()</span></code></a></li>
+<li><a class="reference internal" href="#sqlite3.Cursor.setinputsizes"><code class="docutils literal notranslate"><span class="pre">Cursor.setinputsizes()</span></code></a></li>
+<li><a class="reference internal" href="#sqlite3.Cursor.setoutputsize"><code class="docutils literal notranslate"><span class="pre">Cursor.setoutputsize()</span></code></a></li>
+<li><a class="reference internal" href="#sqlite3.Cursor.arraysize"><code class="docutils literal notranslate"><span class="pre">Cursor.arraysize</span></code></a></li>
+<li><a class="reference internal" href="#sqlite3.Cursor.connection"><code class="docutils literal notranslate"><span class="pre">Cursor.connection</span></code></a></li>
+<li><a class="reference internal" href="#sqlite3.Cursor.description"><code class="docutils literal notranslate"><span class="pre">Cursor.description</span></code></a></li>
+<li><a class="reference internal" href="#sqlite3.Cursor.lastrowid"><code class="docutils literal notranslate"><span class="pre">Cursor.lastrowid</span></code></a></li>
+<li><a class="reference internal" href="#sqlite3.Cursor.rowcount"><code class="docutils literal notranslate"><span class="pre">Cursor.rowcount</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#row-objects">Row objects</a><ul>
+<li><a class="reference internal" href="#sqlite3.Row"><code class="docutils literal notranslate"><span class="pre">Row</span></code></a><ul>
+<li><a class="reference internal" href="#sqlite3.Row.keys"><code class="docutils literal notranslate"><span class="pre">Row.keys()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#prepareprotocol-objects">PrepareProtocol objects</a><ul>
+<li><a class="reference internal" href="#sqlite3.PrepareProtocol"><code class="docutils literal notranslate"><span class="pre">PrepareProtocol</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#exceptions">例外</a><ul>
+<li><a class="reference internal" href="#sqlite3.Warning"><code class="docutils literal notranslate"><span class="pre">Warning</span></code></a></li>
+<li><a class="reference internal" href="#sqlite3.Error"><code class="docutils literal notranslate"><span class="pre">Error</span></code></a></li>
+<li><a class="reference internal" href="#sqlite3.InterfaceError"><code class="docutils literal notranslate"><span class="pre">InterfaceError</span></code></a></li>
+<li><a class="reference internal" href="#sqlite3.DatabaseError"><code class="docutils literal notranslate"><span class="pre">DatabaseError</span></code></a></li>
+<li><a class="reference internal" href="#sqlite3.DataError"><code class="docutils literal notranslate"><span class="pre">DataError</span></code></a></li>
+<li><a class="reference internal" href="#sqlite3.OperationalError"><code class="docutils literal notranslate"><span class="pre">OperationalError</span></code></a></li>
+<li><a class="reference internal" href="#sqlite3.IntegrityError"><code class="docutils literal notranslate"><span class="pre">IntegrityError</span></code></a></li>
+<li><a class="reference internal" href="#sqlite3.InternalError"><code class="docutils literal notranslate"><span class="pre">InternalError</span></code></a></li>
+<li><a class="reference internal" href="#sqlite3.ProgrammingError"><code class="docutils literal notranslate"><span class="pre">ProgrammingError</span></code></a></li>
+<li><a class="reference internal" href="#sqlite3.NotSupportedError"><code class="docutils literal notranslate"><span class="pre">NotSupportedError</span></code></a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#sqlite-and-python-types">SQLite and Python types</a></li>
 <li><a class="reference internal" href="#default-adapters-and-converters">Default adapters and converters</a></li>
 </ul>
@@ -163,7 +253,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.7 Documentation</a> &#187;
+      <a href="../index.html">3.10.8 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -235,7 +325,7 @@ a database connection to allow <code class="xref py py-mod docutils literal notr
 Call <a class="reference internal" href="#sqlite3.connect" title="sqlite3.connect"><code class="xref py py-func docutils literal notranslate"><span class="pre">sqlite3.connect()</span></code></a> to to create a connection to
 the database <code class="file docutils literal notranslate"><span class="pre">tutorial.db</span></code> in the current working directory,
 implicitly creating it if it does not exist:</p>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sqlite3</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sqlite3</span>
 <span class="n">con</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;tutorial.db&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -244,7 +334,7 @@ represents the connection to the on-disk database.</p>
 <p>In order to execute SQL statements and fetch results from SQL queries,
 we will need to use a database cursor.
 Call <a class="reference internal" href="#sqlite3.Connection.cursor" title="sqlite3.Connection.cursor"><code class="xref py py-meth docutils literal notranslate"><span class="pre">con.cursor()</span></code></a> to create the <a class="reference internal" href="#sqlite3.Cursor" title="sqlite3.Cursor"><code class="xref py py-class docutils literal notranslate"><span class="pre">Cursor</span></code></a>:</p>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">cur</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">cur</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
 </pre></div>
 </div>
 <p>Now that we've got a database connection and a cursor,
@@ -255,7 +345,7 @@ thanks to the <a class="reference external" href="https://www.sqlite.org/flextyp
 specifying the data types is optional.
 Execute the <code class="docutils literal notranslate"><span class="pre">CREATE</span> <span class="pre">TABLE</span></code> statement
 by calling <a class="reference internal" href="#sqlite3.Cursor.execute" title="sqlite3.Cursor.execute"><code class="xref py py-meth docutils literal notranslate"><span class="pre">cur.execute(...)</span></code></a>:</p>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">cur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;CREATE TABLE movie(title, year, score)&quot;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">cur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;CREATE TABLE movie(title, year, score)&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>We can verify that the new table has been created by querying
@@ -265,7 +355,7 @@ which should now contain an entry for the <code class="docutils literal notransl
 Execute that query by calling <a class="reference internal" href="#sqlite3.Cursor.execute" title="sqlite3.Cursor.execute"><code class="xref py py-meth docutils literal notranslate"><span class="pre">cur.execute(...)</span></code></a>,
 assign the result to <code class="docutils literal notranslate"><span class="pre">res</span></code>,
 and call <a class="reference internal" href="#sqlite3.Cursor.fetchone" title="sqlite3.Cursor.fetchone"><code class="xref py py-meth docutils literal notranslate"><span class="pre">res.fetchone()</span></code></a> to fetch the resulting row:</p>
-<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">res</span> <span class="o">=</span> <span class="n">cur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;SELECT name FROM sqlite_master&quot;</span><span class="p">)</span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">res</span> <span class="o">=</span> <span class="n">cur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;SELECT name FROM sqlite_master&quot;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">res</span><span class="o">.</span><span class="n">fetchone</span><span class="p">()</span>
 <span class="go">(&#39;movie&#39;,)</span>
 </pre></div>
@@ -274,7 +364,7 @@ and call <a class="reference internal" href="#sqlite3.Cursor.fetchone" title="sq
 as the query returns a <a class="reference internal" href="stdtypes.html#tuple" title="tuple"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a> containing the table's name.
 If we query <code class="docutils literal notranslate"><span class="pre">sqlite_master</span></code> for a non-existent table <code class="docutils literal notranslate"><span class="pre">spam</span></code>,
 <code class="xref py py-meth docutils literal notranslate"><span class="pre">res.fetchone()</span></code> will return <code class="docutils literal notranslate"><span class="pre">None</span></code>:</p>
-<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">res</span> <span class="o">=</span> <span class="n">cur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;SELECT name FROM sqlite_master WHERE name=&#39;spam&#39;&quot;</span><span class="p">)</span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">res</span> <span class="o">=</span> <span class="n">cur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;SELECT name FROM sqlite_master WHERE name=&#39;spam&#39;&quot;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">res</span><span class="o">.</span><span class="n">fetchone</span><span class="p">()</span> <span class="ow">is</span> <span class="kc">None</span>
 <span class="go">True</span>
 </pre></div>
@@ -282,7 +372,7 @@ If we query <code class="docutils literal notranslate"><span class="pre">sqlite_
 <p>Now, add two rows of data supplied as SQL literals
 by executing an <code class="docutils literal notranslate"><span class="pre">INSERT</span></code> statement,
 once again by calling <a class="reference internal" href="#sqlite3.Cursor.execute" title="sqlite3.Cursor.execute"><code class="xref py py-meth docutils literal notranslate"><span class="pre">cur.execute(...)</span></code></a>:</p>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">cur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">cur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
 <span class="s2">    INSERT INTO movie VALUES</span>
 <span class="s2">        (&#39;Monty Python and the Holy Grail&#39;, 1975, 8.2),</span>
 <span class="s2">        (&#39;And Now for Something Completely Different&#39;, 1971, 7.5)</span>
@@ -294,7 +384,7 @@ which needs to be committed before changes are saved in the database
 (see <a class="reference internal" href="#sqlite3-controlling-transactions"><span class="std std-ref">Transaction control</span></a> for details).
 Call <a class="reference internal" href="#sqlite3.Connection.commit" title="sqlite3.Connection.commit"><code class="xref py py-meth docutils literal notranslate"><span class="pre">con.commit()</span></code></a> on the connection object
 to commit the transaction:</p>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">con</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">con</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
 </pre></div>
 </div>
 <p>We can verify that the data was inserted correctly
@@ -302,7 +392,7 @@ by executing a <code class="docutils literal notranslate"><span class="pre">SELE
 Use the now-familiar <a class="reference internal" href="#sqlite3.Cursor.execute" title="sqlite3.Cursor.execute"><code class="xref py py-meth docutils literal notranslate"><span class="pre">cur.execute(...)</span></code></a> to
 assign the result to <code class="docutils literal notranslate"><span class="pre">res</span></code>,
 and call <a class="reference internal" href="#sqlite3.Cursor.fetchall" title="sqlite3.Cursor.fetchall"><code class="xref py py-meth docutils literal notranslate"><span class="pre">res.fetchall()</span></code></a> to return all resulting rows:</p>
-<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">res</span> <span class="o">=</span> <span class="n">cur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;SELECT score FROM movie&quot;</span><span class="p">)</span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">res</span> <span class="o">=</span> <span class="n">cur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;SELECT score FROM movie&quot;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">res</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
 <span class="go">[(8.2,), (7.5,)]</span>
 </pre></div>
@@ -311,7 +401,7 @@ and call <a class="reference internal" href="#sqlite3.Cursor.fetchall" title="sq
 each containing that row's <code class="docutils literal notranslate"><span class="pre">score</span></code> value.</p>
 <p>Now, insert three more rows by calling
 <a class="reference internal" href="#sqlite3.Cursor.executemany" title="sqlite3.Cursor.executemany"><code class="xref py py-meth docutils literal notranslate"><span class="pre">cur.executemany(...)</span></code></a>:</p>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="p">[</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="p">[</span>
     <span class="p">(</span><span class="s2">&quot;Monty Python Live at the Hollywood Bowl&quot;</span><span class="p">,</span> <span class="mi">1982</span><span class="p">,</span> <span class="mf">7.9</span><span class="p">),</span>
     <span class="p">(</span><span class="s2">&quot;Monty Python&#39;s The Meaning of Life&quot;</span><span class="p">,</span> <span class="mi">1983</span><span class="p">,</span> <span class="mf">7.5</span><span class="p">),</span>
     <span class="p">(</span><span class="s2">&quot;Monty Python&#39;s Life of Brian&quot;</span><span class="p">,</span> <span class="mi">1979</span><span class="p">,</span> <span class="mf">8.0</span><span class="p">),</span>
@@ -328,7 +418,7 @@ to avoid <a class="reference external" href="https://en.wikipedia.org/wiki/SQL_i
 <p>We can verify that the new rows were inserted
 by executing a <code class="docutils literal notranslate"><span class="pre">SELECT</span></code> query,
 this time iterating over the results of the query:</p>
-<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">cur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;SELECT year, title FROM movie ORDER BY year&quot;</span><span class="p">):</span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">cur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;SELECT year, title FROM movie ORDER BY year&quot;</span><span class="p">):</span>
 <span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
 <span class="go">(1971, &#39;And Now for Something Completely Different&#39;)</span>
 <span class="go">(1975, &#39;Monty Python and the Holy Grail&#39;)</span>
@@ -343,7 +433,7 @@ matching the columns selected in the query.</p>
 by calling <a class="reference internal" href="#sqlite3.Connection.close" title="sqlite3.Connection.close"><code class="xref py py-meth docutils literal notranslate"><span class="pre">con.close()</span></code></a>
 to close the existing connection, opening a new one,
 creating a new cursor, then querying the database:</p>
-<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">con</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">con</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">new_con</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;tutorial.db&quot;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">new_cur</span> <span class="o">=</span> <span class="n">new_con</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">res</span> <span class="o">=</span> <span class="n">new_cur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;SELECT title, year FROM movie ORDER BY score DESC&quot;</span><span class="p">)</span>
@@ -377,7 +467,7 @@ inserted data and retrieved values from it in multiple ways.</p>
 <span id="sqlite3-module-functions"></span><span id="sqlite3-module-contents"></span><h3>Module functions<a class="headerlink" href="#module-functions" title="本標頭的永久連結">¶</a></h3>
 <dl class="py function">
 <dt class="sig sig-object py" id="sqlite3.connect">
-<span class="sig-prename descclassname"><span class="pre">sqlite3.</span></span><span class="sig-name descname"><span class="pre">connect</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">database</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">detect_types</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">isolation_level</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'DEFERRED'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check_same_thread</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">factory</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">sqlite3.Connection</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cached_statements</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">128</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">uri</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sqlite3.connect" title="本定義的永久連結">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">sqlite3.</span></span><span class="sig-name descname"><span class="pre">connect</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">database</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">detect_types</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">isolation_level</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'DEFERRED'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check_same_thread</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">factory</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">sqlite3.Connection</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cached_statements</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">uri</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sqlite3.connect" title="本定義的永久連結">¶</a></dt>
 <dd><p>Open a connection to an SQLite database.</p>
 <dl class="field-list simple">
 <dt class="field-odd">參數<span class="colon">:</span></dt>
@@ -451,7 +541,7 @@ No syntactic verification or parsing of any kind is performed,
 other than checking that there are no unclosed string literals
 and the statement is terminated by a semicolon.</p>
 <p>範例：</p>
-<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">sqlite3</span><span class="o">.</span><span class="n">complete_statement</span><span class="p">(</span><span class="s2">&quot;SELECT foo FROM bar;&quot;</span><span class="p">)</span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">sqlite3</span><span class="o">.</span><span class="n">complete_statement</span><span class="p">(</span><span class="s2">&quot;SELECT foo FROM bar;&quot;</span><span class="p">)</span>
 <span class="go">True</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">sqlite3</span><span class="o">.</span><span class="n">complete_statement</span><span class="p">(</span><span class="s2">&quot;SELECT foo&quot;</span><span class="p">)</span>
 <span class="go">False</span>
@@ -721,7 +811,7 @@ which allows SQLite to perform additional optimizations.</p></li>
 <p><span class="versionmodified added">在 3.8 版本新加入: </span>新增 <em>deterministic</em> 參數。</p>
 </div>
 <p>範例：</p>
-<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">hashlib</span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">hashlib</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">md5sum</span><span class="p">(</span><span class="n">t</span><span class="p">):</span>
 <span class="gp">... </span>    <span class="k">return</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">md5</span><span class="p">(</span><span class="n">t</span><span class="p">)</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">con</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;:memory:&quot;</span><span class="p">)</span>
@@ -757,7 +847,7 @@ is controlled by <em>n_arg</em>.</p>
 </dd>
 </dl>
 <p>範例：</p>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MySum</span><span class="p">:</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MySum</span><span class="p">:</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
 
@@ -792,7 +882,7 @@ and it should return an <a class="reference internal" href="functions.html#int" 
 <li><p><code class="docutils literal notranslate"><span class="pre">0</span></code> if they are ordered equal</p></li>
 </ul>
 <p>The following example shows a reverse sorting collation:</p>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">collate_reverse</span><span class="p">(</span><span class="n">string1</span><span class="p">,</span> <span class="n">string2</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">collate_reverse</span><span class="p">(</span><span class="n">string1</span><span class="p">,</span> <span class="n">string2</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">string1</span> <span class="o">==</span> <span class="n">string2</span><span class="p">:</span>
         <span class="k">return</span> <span class="mi">0</span>
     <span class="k">elif</span> <span class="n">string1</span> <span class="o">&lt;</span> <span class="n">string2</span><span class="p">:</span>
@@ -905,7 +995,7 @@ to <strong class="program">configure</strong>.</p>
 <div class="versionchanged">
 <p><span class="versionmodified changed">在 3.10 版本變更: </span>Added the <code class="docutils literal notranslate"><span class="pre">sqlite3.enable_load_extension</span></code> auditing event.</p>
 </div>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">con</span><span class="o">.</span><span class="n">enable_load_extension</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">con</span><span class="o">.</span><span class="n">enable_load_extension</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
 
 <span class="c1"># Load the fulltext search extension</span>
 <span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;select load_extension(&#39;./fts3.so&#39;)&quot;</span><span class="p">)</span>
@@ -954,7 +1044,7 @@ calling this method.</p>
 Useful when saving an in-memory database for later restoration.
 Similar to the <code class="docutils literal notranslate"><span class="pre">.dump</span></code> command in the <strong class="program">sqlite3</strong> shell.</p>
 <p>範例：</p>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Convert file example.db to SQL dump file dump.sql</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Convert file example.db to SQL dump file dump.sql</span>
 <span class="n">con</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s1">&#39;example.db&#39;</span><span class="p">)</span>
 <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;dump.sql&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
     <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">con</span><span class="o">.</span><span class="n">iterdump</span><span class="p">():</span>
@@ -995,7 +1085,7 @@ to back up remaining pages.</p></li>
 </dd>
 </dl>
 <p>Example 1, copy an existing database into another:</p>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">progress</span><span class="p">(</span><span class="n">status</span><span class="p">,</span> <span class="n">remaining</span><span class="p">,</span> <span class="n">total</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">progress</span><span class="p">(</span><span class="n">status</span><span class="p">,</span> <span class="n">remaining</span><span class="p">,</span> <span class="n">total</span><span class="p">):</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Copied </span><span class="si">{</span><span class="n">total</span><span class="o">-</span><span class="n">remaining</span><span class="si">}</span><span class="s1"> of </span><span class="si">{</span><span class="n">total</span><span class="si">}</span><span class="s1"> pages...&#39;</span><span class="p">)</span>
 
 <span class="n">src</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s1">&#39;example.db&#39;</span><span class="p">)</span>
@@ -1007,7 +1097,7 @@ to back up remaining pages.</p></li>
 </pre></div>
 </div>
 <p>Example 2, copy an existing database into a transient copy:</p>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">src</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s1">&#39;example.db&#39;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">src</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s1">&#39;example.db&#39;</span><span class="p">)</span>
 <span class="n">dst</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s1">&#39;:memory:&#39;</span><span class="p">)</span>
 <span class="n">src</span><span class="o">.</span><span class="n">backup</span><span class="p">(</span><span class="n">dst</span><span class="p">)</span>
 </pre></div>
@@ -1048,7 +1138,7 @@ the default is <code class="docutils literal notranslate"><span class="pre">&quo
 a <a class="reference internal" href="#sqlite3.Cursor" title="sqlite3.Cursor"><code class="xref py py-class docutils literal notranslate"><span class="pre">Cursor</span></code></a> object and the raw row results as a <a class="reference internal" href="stdtypes.html#tuple" title="tuple"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>,
 and returns a custom object representing an SQLite row.</p>
 <p>範例：</p>
-<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">dict_factory</span><span class="p">(</span><span class="n">cursor</span><span class="p">,</span> <span class="n">row</span><span class="p">):</span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">dict_factory</span><span class="p">(</span><span class="n">cursor</span><span class="p">,</span> <span class="n">row</span><span class="p">):</span>
 <span class="gp">... </span>    <span class="n">col_names</span> <span class="o">=</span> <span class="p">[</span><span class="n">col</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">cursor</span><span class="o">.</span><span class="n">description</span><span class="p">]</span>
 <span class="gp">... </span>    <span class="k">return</span> <span class="p">{</span><span class="n">key</span><span class="p">:</span> <span class="n">value</span> <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">col_names</span><span class="p">,</span> <span class="n">row</span><span class="p">)}</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">con</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;:memory:&quot;</span><span class="p">)</span>
@@ -1075,7 +1165,7 @@ The callable is invoked for SQLite values with the <code class="docutils literal
 By default, this attribute is set to <a class="reference internal" href="stdtypes.html#str" title="str"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>.
 If you want to return <code class="docutils literal notranslate"><span class="pre">bytes</span></code> instead, set <em>text_factory</em> to <code class="docutils literal notranslate"><span class="pre">bytes</span></code>.</p>
 <p>範例：</p>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">con</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;:memory:&quot;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">con</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;:memory:&quot;</span><span class="p">)</span>
 <span class="n">cur</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
 
 <span class="n">AUSTRIA</span> <span class="o">=</span> <span class="s2">&quot;Österreich&quot;</span>
@@ -1127,7 +1217,7 @@ or by using any of the <a class="reference internal" href="#sqlite3-connection-s
 <p>Cursor objects are <a class="reference internal" href="../glossary.html#term-iterator"><span class="xref std std-term">iterators</span></a>,
 meaning that if you <a class="reference internal" href="#sqlite3.Cursor.execute" title="sqlite3.Cursor.execute"><code class="xref py py-meth docutils literal notranslate"><span class="pre">execute()</span></code></a> a <code class="docutils literal notranslate"><span class="pre">SELECT</span></code> query,
 you can simply iterate over the cursor to fetch the resulting rows:</p>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">cur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;SELECT t FROM data&quot;</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">cur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;SELECT t FROM data&quot;</span><span class="p">):</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1161,7 +1251,7 @@ against all parameter sequences or mappings found in the sequence
 <a class="reference internal" href="../glossary.html#term-iterator"><span class="xref std std-term">iterator</span></a> yielding parameters instead of a sequence.
 Uses the same implicit transaction handling as <a class="reference internal" href="#sqlite3.Cursor.execute" title="sqlite3.Cursor.execute"><code class="xref py py-meth docutils literal notranslate"><span class="pre">execute()</span></code></a>.</p>
 <p>範例：</p>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">rows</span> <span class="o">=</span> <span class="p">[</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">rows</span> <span class="o">=</span> <span class="p">[</span>
     <span class="p">(</span><span class="s2">&quot;row1&quot;</span><span class="p">,),</span>
     <span class="p">(</span><span class="s2">&quot;row2&quot;</span><span class="p">,),</span>
 <span class="p">]</span>
@@ -1181,7 +1271,7 @@ No other implicit transaction control is performed;
 any transaction control must be added to <em>sql_script</em>.</p>
 <p><em>sql_script</em> must be a <a class="reference internal" href="stdtypes.html#str" title="str"><code class="xref py py-class docutils literal notranslate"><span class="pre">string</span></code></a>.</p>
 <p>範例：</p>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># cur is an sqlite3.Cursor object</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># cur is an sqlite3.Cursor object</span>
 <span class="n">cur</span><span class="o">.</span><span class="n">executescript</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
 <span class="s2">    BEGIN;</span>
 <span class="s2">    CREATE TABLE person(firstname, lastname, age);</span>
@@ -1196,7 +1286,9 @@ any transaction control must be added to <em>sql_script</em>.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="sqlite3.Cursor.fetchone">
 <span class="sig-name descname"><span class="pre">fetchone</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sqlite3.Cursor.fetchone" title="本定義的永久連結">¶</a></dt>
-<dd><p>Return the next row of a query result set as a <a class="reference internal" href="stdtypes.html#tuple" title="tuple"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>.
+<dd><p>If <a class="reference internal" href="#sqlite3.Connection.row_factory" title="sqlite3.Connection.row_factory"><code class="xref py py-attr docutils literal notranslate"><span class="pre">row_factory</span></code></a> is <code class="docutils literal notranslate"><span class="pre">None</span></code>,
+return the next row query result set as a <a class="reference internal" href="stdtypes.html#tuple" title="tuple"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>.
+Else, pass it to the row factory and return its result.
 Return <code class="docutils literal notranslate"><span class="pre">None</span></code> if no more data is available.</p>
 </dd></dl>
 
@@ -1259,7 +1351,7 @@ The default value is 1 which means a single row would be fetched per call.</p>
 belonging to the cursor.  A <a class="reference internal" href="#sqlite3.Cursor" title="sqlite3.Cursor"><code class="xref py py-class docutils literal notranslate"><span class="pre">Cursor</span></code></a> object created by
 calling <a class="reference internal" href="#sqlite3.Connection.cursor" title="sqlite3.Connection.cursor"><code class="xref py py-meth docutils literal notranslate"><span class="pre">con.cursor()</span></code></a> will have a
 <a class="reference internal" href="#sqlite3.Cursor.connection" title="sqlite3.Cursor.connection"><code class="xref py py-attr docutils literal notranslate"><span class="pre">connection</span></code></a> attribute that refers to <em>con</em>:</p>
-<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">con</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;:memory:&quot;</span><span class="p">)</span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">con</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;:memory:&quot;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">cur</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">cur</span><span class="o">.</span><span class="n">connection</span> <span class="o">==</span> <span class="n">con</span>
 <span class="go">True</span>
@@ -1329,7 +1421,7 @@ it is the first member of each tuple in <a class="reference internal" href="#sql
 <p><span class="versionmodified changed">在 3.5 版本變更: </span>Added support of slicing.</p>
 </div>
 <p>範例：</p>
-<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">con</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;:memory:&quot;</span><span class="p">)</span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">con</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;:memory:&quot;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">con</span><span class="o">.</span><span class="n">row_factory</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Row</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">res</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;SELECT &#39;Earth&#39; AS name, 6378 AS radius&quot;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">row</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">fetchone</span><span class="p">()</span>
@@ -1577,7 +1669,7 @@ placeholders (named style). For the qmark style, <code class="docutils literal n
 <a class="reference internal" href="#sqlite3.ProgrammingError" title="sqlite3.ProgrammingError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">ProgrammingError</span></code></a> is raised. If a <a class="reference internal" href="stdtypes.html#dict" title="dict"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a> is given, it must contain
 keys for all named parameters. Any extra items are ignored. Here's an example of
 both styles:</p>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">con</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;:memory:&quot;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">con</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;:memory:&quot;</span><span class="p">)</span>
 <span class="n">cur</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;CREATE TABLE lang(name, first_appeared)&quot;</span><span class="p">)</span>
 
 <span class="c1"># This is the qmark style:</span>
@@ -1618,7 +1710,7 @@ using a semicolon to separate the coordinates.
 This can be implemented by adding a <code class="docutils literal notranslate"><span class="pre">__conform__(self,</span> <span class="pre">protocol)</span></code>
 method which returns the adapted value.
 The object passed to <em>protocol</em> will be of type <a class="reference internal" href="#sqlite3.PrepareProtocol" title="sqlite3.PrepareProtocol"><code class="xref py py-class docutils literal notranslate"><span class="pre">PrepareProtocol</span></code></a>.</p>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Point</span><span class="p">:</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Point</span><span class="p">:</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span>
 
@@ -1639,7 +1731,7 @@ The object passed to <em>protocol</em> will be of type <a class="reference inter
 <p>The other possibility is to create a function that converts the Python object
 to an SQLite-compatible type.
 This function can then be registered using <a class="reference internal" href="#sqlite3.register_adapter" title="sqlite3.register_adapter"><code class="xref py py-func docutils literal notranslate"><span class="pre">register_adapter()</span></code></a>.</p>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Point</span><span class="p">:</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Point</span><span class="p">:</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span>
 
@@ -1672,7 +1764,7 @@ and constructs a <code class="xref py py-class docutils literal notranslate"><sp
 <p>Converter functions are <strong>always</strong> passed a <a class="reference internal" href="stdtypes.html#bytes" title="bytes"><code class="xref py py-class docutils literal notranslate"><span class="pre">bytes</span></code></a> object,
 no matter the underlying SQLite data type.</p>
 </div>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">convert_point</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">convert_point</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
     <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="nb">float</span><span class="p">,</span> <span class="n">s</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="sa">b</span><span class="s2">&quot;;&quot;</span><span class="p">))</span>
     <span class="k">return</span> <span class="n">Point</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
 </pre></div>
@@ -1688,7 +1780,7 @@ of <a class="reference internal" href="#sqlite3.connect" title="sqlite3.connect"
 Column names take precedence over declared types.</p></li>
 </ul>
 <p>The following example illustrates the implicit and explicit approaches:</p>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Point</span><span class="p">:</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Point</span><span class="p">:</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span>
 
@@ -1730,7 +1822,7 @@ Column names take precedence over declared types.</p></li>
 <section id="adapter-and-converter-recipes">
 <span id="sqlite3-adapter-converter-recipes"></span><h3>Adapter and converter recipes<a class="headerlink" href="#adapter-and-converter-recipes" title="本標頭的永久連結">¶</a></h3>
 <p>This section shows recipes for common adapters and converters.</p>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">datetime</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">datetime</span>
 <span class="kn">import</span> <span class="nn">sqlite3</span>
 
 <span class="k">def</span> <span class="nf">adapt_date_iso</span><span class="p">(</span><span class="n">val</span><span class="p">):</span>
@@ -1777,7 +1869,7 @@ superfluous) <a class="reference internal" href="#sqlite3.Cursor" title="sqlite3
 objects are created implicitly and these shortcut methods return the cursor
 objects. This way, you can execute a <code class="docutils literal notranslate"><span class="pre">SELECT</span></code> statement and iterate over it
 directly using only a single call on the <a class="reference internal" href="#sqlite3.Connection" title="sqlite3.Connection"><code class="xref py py-class docutils literal notranslate"><span class="pre">Connection</span></code></a> object.</p>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create and fill the table.</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create and fill the table.</span>
 <span class="n">con</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;:memory:&quot;</span><span class="p">)</span>
 <span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;CREATE TABLE lang(name, first_appeared)&quot;</span><span class="p">)</span>
 <span class="n">data</span> <span class="o">=</span> <span class="p">[</span>
@@ -1815,7 +1907,7 @@ the context manager is a no-op.</p>
 <p>The context manager neither implicitly opens a new transaction
 nor closes the connection.</p>
 </div>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">con</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;:memory:&quot;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">con</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;:memory:&quot;</span><span class="p">)</span>
 <span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;CREATE TABLE lang(id INTEGER PRIMARY KEY, name VARCHAR UNIQUE)&quot;</span><span class="p">)</span>
 
 <span class="c1"># Successful, con.commit() is called automatically afterwards</span>
@@ -1842,7 +1934,7 @@ nor closes the connection.</p>
 <ul class="simple">
 <li><p>Open a database in read-only mode:</p></li>
 </ul>
-<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">con</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;file:tutorial.db?mode=ro&quot;</span><span class="p">,</span> <span class="n">uri</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">con</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;file:tutorial.db?mode=ro&quot;</span><span class="p">,</span> <span class="n">uri</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;CREATE TABLE readonly(data)&quot;</span><span class="p">)</span>
 <span class="gt">Traceback (most recent call last):</span>
 <span class="gr">OperationalError</span>: <span class="n">attempt to write a readonly database</span>
@@ -1852,7 +1944,7 @@ nor closes the connection.</p>
 <li><p>Do not implicitly create a new database file if it does not already exist;
 will raise <a class="reference internal" href="#sqlite3.OperationalError" title="sqlite3.OperationalError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">OperationalError</span></code></a> if unable to create a new file:</p></li>
 </ul>
-<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">con</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;file:nosuchdb.db?mode=rw&quot;</span><span class="p">,</span> <span class="n">uri</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">con</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;file:nosuchdb.db?mode=rw&quot;</span><span class="p">,</span> <span class="n">uri</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="gt">Traceback (most recent call last):</span>
 <span class="gr">OperationalError</span>: <span class="n">unable to open database file</span>
 </pre></div>
@@ -1860,7 +1952,7 @@ will raise <a class="reference internal" href="#sqlite3.OperationalError" title=
 <ul class="simple">
 <li><p>Create a shared named in-memory database:</p></li>
 </ul>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">db</span> <span class="o">=</span> <span class="s2">&quot;file:mem1?mode=memory&amp;cache=shared&quot;</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">db</span> <span class="o">=</span> <span class="s2">&quot;file:mem1?mode=memory&amp;cache=shared&quot;</span>
 <span class="n">con1</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">db</span><span class="p">,</span> <span class="n">uri</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">con2</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">db</span><span class="p">,</span> <span class="n">uri</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="k">with</span> <span class="n">con1</span><span class="p">:</span>
@@ -1923,13 +2015,102 @@ statements.  This is no longer the case.</p>
 <li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sqlite3</span></code> --- DB-API 2.0 interface for SQLite databases</a><ul>
 <li><a class="reference internal" href="#tutorial">Tutorial</a></li>
 <li><a class="reference internal" href="#reference">Reference</a><ul>
-<li><a class="reference internal" href="#module-functions">Module functions</a></li>
-<li><a class="reference internal" href="#module-constants">Module constants</a></li>
-<li><a class="reference internal" href="#connection-objects">Connection objects</a></li>
-<li><a class="reference internal" href="#cursor-objects">Cursor objects</a></li>
-<li><a class="reference internal" href="#row-objects">Row objects</a></li>
-<li><a class="reference internal" href="#prepareprotocol-objects">PrepareProtocol objects</a></li>
-<li><a class="reference internal" href="#exceptions">例外</a></li>
+<li><a class="reference internal" href="#module-functions">Module functions</a><ul>
+<li><a class="reference internal" href="#sqlite3.connect"><code class="docutils literal notranslate"><span class="pre">connect()</span></code></a></li>
+<li><a class="reference internal" href="#sqlite3.complete_statement"><code class="docutils literal notranslate"><span class="pre">complete_statement()</span></code></a></li>
+<li><a class="reference internal" href="#sqlite3.enable_callback_tracebacks"><code class="docutils literal notranslate"><span class="pre">enable_callback_tracebacks()</span></code></a></li>
+<li><a class="reference internal" href="#sqlite3.register_adapter"><code class="docutils literal notranslate"><span class="pre">register_adapter()</span></code></a></li>
+<li><a class="reference internal" href="#sqlite3.register_converter"><code class="docutils literal notranslate"><span class="pre">register_converter()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-constants">Module constants</a><ul>
+<li><a class="reference internal" href="#sqlite3.PARSE_COLNAMES"><code class="docutils literal notranslate"><span class="pre">PARSE_COLNAMES</span></code></a></li>
+<li><a class="reference internal" href="#sqlite3.PARSE_DECLTYPES"><code class="docutils literal notranslate"><span class="pre">PARSE_DECLTYPES</span></code></a></li>
+<li><a class="reference internal" href="#sqlite3.SQLITE_OK"><code class="docutils literal notranslate"><span class="pre">SQLITE_OK</span></code></a></li>
+<li><a class="reference internal" href="#sqlite3.SQLITE_DENY"><code class="docutils literal notranslate"><span class="pre">SQLITE_DENY</span></code></a></li>
+<li><a class="reference internal" href="#sqlite3.SQLITE_IGNORE"><code class="docutils literal notranslate"><span class="pre">SQLITE_IGNORE</span></code></a></li>
+<li><a class="reference internal" href="#sqlite3.apilevel"><code class="docutils literal notranslate"><span class="pre">apilevel</span></code></a></li>
+<li><a class="reference internal" href="#sqlite3.paramstyle"><code class="docutils literal notranslate"><span class="pre">paramstyle</span></code></a></li>
+<li><a class="reference internal" href="#sqlite3.sqlite_version"><code class="docutils literal notranslate"><span class="pre">sqlite_version</span></code></a></li>
+<li><a class="reference internal" href="#sqlite3.sqlite_version_info"><code class="docutils literal notranslate"><span class="pre">sqlite_version_info</span></code></a></li>
+<li><a class="reference internal" href="#sqlite3.threadsafety"><code class="docutils literal notranslate"><span class="pre">threadsafety</span></code></a></li>
+<li><a class="reference internal" href="#sqlite3.version"><code class="docutils literal notranslate"><span class="pre">version</span></code></a></li>
+<li><a class="reference internal" href="#sqlite3.version_info"><code class="docutils literal notranslate"><span class="pre">version_info</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#connection-objects">Connection objects</a><ul>
+<li><a class="reference internal" href="#sqlite3.Connection"><code class="docutils literal notranslate"><span class="pre">Connection</span></code></a><ul>
+<li><a class="reference internal" href="#sqlite3.Connection.cursor"><code class="docutils literal notranslate"><span class="pre">Connection.cursor()</span></code></a></li>
+<li><a class="reference internal" href="#sqlite3.Connection.commit"><code class="docutils literal notranslate"><span class="pre">Connection.commit()</span></code></a></li>
+<li><a class="reference internal" href="#sqlite3.Connection.rollback"><code class="docutils literal notranslate"><span class="pre">Connection.rollback()</span></code></a></li>
+<li><a class="reference internal" href="#sqlite3.Connection.close"><code class="docutils literal notranslate"><span class="pre">Connection.close()</span></code></a></li>
+<li><a class="reference internal" href="#sqlite3.Connection.execute"><code class="docutils literal notranslate"><span class="pre">Connection.execute()</span></code></a></li>
+<li><a class="reference internal" href="#sqlite3.Connection.executemany"><code class="docutils literal notranslate"><span class="pre">Connection.executemany()</span></code></a></li>
+<li><a class="reference internal" href="#sqlite3.Connection.executescript"><code class="docutils literal notranslate"><span class="pre">Connection.executescript()</span></code></a></li>
+<li><a class="reference internal" href="#sqlite3.Connection.create_function"><code class="docutils literal notranslate"><span class="pre">Connection.create_function()</span></code></a></li>
+<li><a class="reference internal" href="#sqlite3.Connection.create_aggregate"><code class="docutils literal notranslate"><span class="pre">Connection.create_aggregate()</span></code></a></li>
+<li><a class="reference internal" href="#sqlite3.Connection.create_collation"><code class="docutils literal notranslate"><span class="pre">Connection.create_collation()</span></code></a></li>
+<li><a class="reference internal" href="#sqlite3.Connection.interrupt"><code class="docutils literal notranslate"><span class="pre">Connection.interrupt()</span></code></a></li>
+<li><a class="reference internal" href="#sqlite3.Connection.set_authorizer"><code class="docutils literal notranslate"><span class="pre">Connection.set_authorizer()</span></code></a></li>
+<li><a class="reference internal" href="#sqlite3.Connection.set_progress_handler"><code class="docutils literal notranslate"><span class="pre">Connection.set_progress_handler()</span></code></a></li>
+<li><a class="reference internal" href="#sqlite3.Connection.set_trace_callback"><code class="docutils literal notranslate"><span class="pre">Connection.set_trace_callback()</span></code></a></li>
+<li><a class="reference internal" href="#sqlite3.Connection.enable_load_extension"><code class="docutils literal notranslate"><span class="pre">Connection.enable_load_extension()</span></code></a></li>
+<li><a class="reference internal" href="#sqlite3.Connection.load_extension"><code class="docutils literal notranslate"><span class="pre">Connection.load_extension()</span></code></a></li>
+<li><a class="reference internal" href="#sqlite3.Connection.iterdump"><code class="docutils literal notranslate"><span class="pre">Connection.iterdump()</span></code></a></li>
+<li><a class="reference internal" href="#sqlite3.Connection.backup"><code class="docutils literal notranslate"><span class="pre">Connection.backup()</span></code></a></li>
+<li><a class="reference internal" href="#sqlite3.Connection.in_transaction"><code class="docutils literal notranslate"><span class="pre">Connection.in_transaction</span></code></a></li>
+<li><a class="reference internal" href="#sqlite3.Connection.isolation_level"><code class="docutils literal notranslate"><span class="pre">Connection.isolation_level</span></code></a></li>
+<li><a class="reference internal" href="#sqlite3.Connection.row_factory"><code class="docutils literal notranslate"><span class="pre">Connection.row_factory</span></code></a></li>
+<li><a class="reference internal" href="#sqlite3.Connection.text_factory"><code class="docutils literal notranslate"><span class="pre">Connection.text_factory</span></code></a></li>
+<li><a class="reference internal" href="#sqlite3.Connection.total_changes"><code class="docutils literal notranslate"><span class="pre">Connection.total_changes</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#cursor-objects">Cursor objects</a><ul>
+<li><a class="reference internal" href="#sqlite3.Cursor"><code class="docutils literal notranslate"><span class="pre">Cursor</span></code></a><ul>
+<li><a class="reference internal" href="#sqlite3.Cursor.execute"><code class="docutils literal notranslate"><span class="pre">Cursor.execute()</span></code></a></li>
+<li><a class="reference internal" href="#sqlite3.Cursor.executemany"><code class="docutils literal notranslate"><span class="pre">Cursor.executemany()</span></code></a></li>
+<li><a class="reference internal" href="#sqlite3.Cursor.executescript"><code class="docutils literal notranslate"><span class="pre">Cursor.executescript()</span></code></a></li>
+<li><a class="reference internal" href="#sqlite3.Cursor.fetchone"><code class="docutils literal notranslate"><span class="pre">Cursor.fetchone()</span></code></a></li>
+<li><a class="reference internal" href="#sqlite3.Cursor.fetchmany"><code class="docutils literal notranslate"><span class="pre">Cursor.fetchmany()</span></code></a></li>
+<li><a class="reference internal" href="#sqlite3.Cursor.fetchall"><code class="docutils literal notranslate"><span class="pre">Cursor.fetchall()</span></code></a></li>
+<li><a class="reference internal" href="#sqlite3.Cursor.close"><code class="docutils literal notranslate"><span class="pre">Cursor.close()</span></code></a></li>
+<li><a class="reference internal" href="#sqlite3.Cursor.setinputsizes"><code class="docutils literal notranslate"><span class="pre">Cursor.setinputsizes()</span></code></a></li>
+<li><a class="reference internal" href="#sqlite3.Cursor.setoutputsize"><code class="docutils literal notranslate"><span class="pre">Cursor.setoutputsize()</span></code></a></li>
+<li><a class="reference internal" href="#sqlite3.Cursor.arraysize"><code class="docutils literal notranslate"><span class="pre">Cursor.arraysize</span></code></a></li>
+<li><a class="reference internal" href="#sqlite3.Cursor.connection"><code class="docutils literal notranslate"><span class="pre">Cursor.connection</span></code></a></li>
+<li><a class="reference internal" href="#sqlite3.Cursor.description"><code class="docutils literal notranslate"><span class="pre">Cursor.description</span></code></a></li>
+<li><a class="reference internal" href="#sqlite3.Cursor.lastrowid"><code class="docutils literal notranslate"><span class="pre">Cursor.lastrowid</span></code></a></li>
+<li><a class="reference internal" href="#sqlite3.Cursor.rowcount"><code class="docutils literal notranslate"><span class="pre">Cursor.rowcount</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#row-objects">Row objects</a><ul>
+<li><a class="reference internal" href="#sqlite3.Row"><code class="docutils literal notranslate"><span class="pre">Row</span></code></a><ul>
+<li><a class="reference internal" href="#sqlite3.Row.keys"><code class="docutils literal notranslate"><span class="pre">Row.keys()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#prepareprotocol-objects">PrepareProtocol objects</a><ul>
+<li><a class="reference internal" href="#sqlite3.PrepareProtocol"><code class="docutils literal notranslate"><span class="pre">PrepareProtocol</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#exceptions">例外</a><ul>
+<li><a class="reference internal" href="#sqlite3.Warning"><code class="docutils literal notranslate"><span class="pre">Warning</span></code></a></li>
+<li><a class="reference internal" href="#sqlite3.Error"><code class="docutils literal notranslate"><span class="pre">Error</span></code></a></li>
+<li><a class="reference internal" href="#sqlite3.InterfaceError"><code class="docutils literal notranslate"><span class="pre">InterfaceError</span></code></a></li>
+<li><a class="reference internal" href="#sqlite3.DatabaseError"><code class="docutils literal notranslate"><span class="pre">DatabaseError</span></code></a></li>
+<li><a class="reference internal" href="#sqlite3.DataError"><code class="docutils literal notranslate"><span class="pre">DataError</span></code></a></li>
+<li><a class="reference internal" href="#sqlite3.OperationalError"><code class="docutils literal notranslate"><span class="pre">OperationalError</span></code></a></li>
+<li><a class="reference internal" href="#sqlite3.IntegrityError"><code class="docutils literal notranslate"><span class="pre">IntegrityError</span></code></a></li>
+<li><a class="reference internal" href="#sqlite3.InternalError"><code class="docutils literal notranslate"><span class="pre">InternalError</span></code></a></li>
+<li><a class="reference internal" href="#sqlite3.ProgrammingError"><code class="docutils literal notranslate"><span class="pre">ProgrammingError</span></code></a></li>
+<li><a class="reference internal" href="#sqlite3.NotSupportedError"><code class="docutils literal notranslate"><span class="pre">NotSupportedError</span></code></a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#sqlite-and-python-types">SQLite and Python types</a></li>
 <li><a class="reference internal" href="#default-adapters-and-converters">Default adapters and converters</a></li>
 </ul>
@@ -2012,7 +2193,7 @@ statements.  This is no longer the case.</p>
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.7 Documentation</a> &#187;
+      <a href="../index.html">3.10.8 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -2049,11 +2230,11 @@ statements.  This is no longer the case.</p>
 <br />
     <br />
 
-    最後更新於 9月 16, 2022。
+    最後更新於 10月 15, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 
-    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1 建立。
+    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.2.3 建立。
     </div>
 
   </body>

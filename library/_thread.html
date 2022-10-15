@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>_thread --- Low-level threading API &#8212; Python 3.10.7 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>_thread --- Low-level threading API &#8212; Python 3.10.8 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -16,12 +16,13 @@
     <script src="../_static/underscore.js"></script>
     <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/translations.js"></script>
     
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.10.7 說明文件 中搜尋"
+          title="在 Python 3.10.8 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -71,6 +72,28 @@
     <div class="menu-wrapper">
         <nav class="menu" role="navigation" aria-label="main navigation">
             <div class="language_switcher_placeholder"></div>
+  <div>
+    <h3><a href="../contents.html">目錄</a></h3>
+    <ul>
+<li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">_thread</span></code> --- Low-level threading API</a><ul>
+<li><a class="reference internal" href="#thread.error"><code class="docutils literal notranslate"><span class="pre">error</span></code></a></li>
+<li><a class="reference internal" href="#thread.LockType"><code class="docutils literal notranslate"><span class="pre">LockType</span></code></a></li>
+<li><a class="reference internal" href="#thread.start_new_thread"><code class="docutils literal notranslate"><span class="pre">start_new_thread()</span></code></a></li>
+<li><a class="reference internal" href="#thread.interrupt_main"><code class="docutils literal notranslate"><span class="pre">interrupt_main()</span></code></a></li>
+<li><a class="reference internal" href="#thread.exit"><code class="docutils literal notranslate"><span class="pre">exit()</span></code></a></li>
+<li><a class="reference internal" href="#thread.allocate_lock"><code class="docutils literal notranslate"><span class="pre">allocate_lock()</span></code></a></li>
+<li><a class="reference internal" href="#thread.get_ident"><code class="docutils literal notranslate"><span class="pre">get_ident()</span></code></a></li>
+<li><a class="reference internal" href="#thread.get_native_id"><code class="docutils literal notranslate"><span class="pre">get_native_id()</span></code></a></li>
+<li><a class="reference internal" href="#thread.stack_size"><code class="docutils literal notranslate"><span class="pre">stack_size()</span></code></a></li>
+<li><a class="reference internal" href="#thread.TIMEOUT_MAX"><code class="docutils literal notranslate"><span class="pre">TIMEOUT_MAX</span></code></a></li>
+<li><a class="reference internal" href="#thread.lock.acquire"><code class="docutils literal notranslate"><span class="pre">lock.acquire()</span></code></a></li>
+<li><a class="reference internal" href="#thread.lock.release"><code class="docutils literal notranslate"><span class="pre">lock.release()</span></code></a></li>
+<li><a class="reference internal" href="#thread.lock.locked"><code class="docutils literal notranslate"><span class="pre">lock.locked()</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
   <div>
     <h4>上個主題</h4>
     <p class="topless"><a href="contextvars.html"
@@ -123,7 +146,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.7 Documentation</a> &#187;
+      <a href="../index.html">3.10.8 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -289,18 +312,18 @@ raise an <a class="reference internal" href="exceptions.html#OverflowError" titl
 <p>Lock objects have the following methods:</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="thread.lock.acquire">
-<span class="sig-prename descclassname"><span class="pre">lock.</span></span><span class="sig-name descname"><span class="pre">acquire</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">waitflag</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#thread.lock.acquire" title="本定義的永久連結">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">lock.</span></span><span class="sig-name descname"><span class="pre">acquire</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">blocking</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#thread.lock.acquire" title="本定義的永久連結">¶</a></dt>
 <dd><p>Without any optional argument, this method acquires the lock unconditionally, if
 necessary waiting until it is released by another thread (only one thread at a
 time can acquire a lock --- that's their reason for existence).</p>
-<p>If the integer <em>waitflag</em> argument is present, the action depends on its
-value: if it is zero, the lock is only acquired if it can be acquired
-immediately without waiting, while if it is nonzero, the lock is acquired
+<p>If the <em>blocking</em> argument is present, the action depends on its
+value: if it is False, the lock is only acquired if it can be acquired
+immediately without waiting, while if it is True, the lock is acquired
 unconditionally as above.</p>
 <p>If the floating-point <em>timeout</em> argument is present and positive, it
 specifies the maximum wait time in seconds before returning.  A negative
 <em>timeout</em> argument specifies an unbounded wait.  You cannot specify
-a <em>timeout</em> if <em>waitflag</em> is zero.</p>
+a <em>timeout</em> if <em>blocking</em> is False.</p>
 <p>The return value is <code class="docutils literal notranslate"><span class="pre">True</span></code> if the lock is acquired successfully,
 <code class="docutils literal notranslate"><span class="pre">False</span></code> if not.</p>
 <div class="versionchanged">
@@ -364,6 +387,28 @@ standard I/O files are not flushed.</p></li>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
   <div>
+    <h3><a href="../contents.html">目錄</a></h3>
+    <ul>
+<li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">_thread</span></code> --- Low-level threading API</a><ul>
+<li><a class="reference internal" href="#thread.error"><code class="docutils literal notranslate"><span class="pre">error</span></code></a></li>
+<li><a class="reference internal" href="#thread.LockType"><code class="docutils literal notranslate"><span class="pre">LockType</span></code></a></li>
+<li><a class="reference internal" href="#thread.start_new_thread"><code class="docutils literal notranslate"><span class="pre">start_new_thread()</span></code></a></li>
+<li><a class="reference internal" href="#thread.interrupt_main"><code class="docutils literal notranslate"><span class="pre">interrupt_main()</span></code></a></li>
+<li><a class="reference internal" href="#thread.exit"><code class="docutils literal notranslate"><span class="pre">exit()</span></code></a></li>
+<li><a class="reference internal" href="#thread.allocate_lock"><code class="docutils literal notranslate"><span class="pre">allocate_lock()</span></code></a></li>
+<li><a class="reference internal" href="#thread.get_ident"><code class="docutils literal notranslate"><span class="pre">get_ident()</span></code></a></li>
+<li><a class="reference internal" href="#thread.get_native_id"><code class="docutils literal notranslate"><span class="pre">get_native_id()</span></code></a></li>
+<li><a class="reference internal" href="#thread.stack_size"><code class="docutils literal notranslate"><span class="pre">stack_size()</span></code></a></li>
+<li><a class="reference internal" href="#thread.TIMEOUT_MAX"><code class="docutils literal notranslate"><span class="pre">TIMEOUT_MAX</span></code></a></li>
+<li><a class="reference internal" href="#thread.lock.acquire"><code class="docutils literal notranslate"><span class="pre">lock.acquire()</span></code></a></li>
+<li><a class="reference internal" href="#thread.lock.release"><code class="docutils literal notranslate"><span class="pre">lock.release()</span></code></a></li>
+<li><a class="reference internal" href="#thread.lock.locked"><code class="docutils literal notranslate"><span class="pre">lock.locked()</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
     <h4>上個主題</h4>
     <p class="topless"><a href="contextvars.html"
                           title="上一章"><code class="xref py py-mod docutils literal notranslate"><span class="pre">contextvars</span></code> --- Context Variables</a></p>
@@ -418,7 +463,7 @@ standard I/O files are not flushed.</p></li>
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.7 Documentation</a> &#187;
+      <a href="../index.html">3.10.8 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -455,11 +500,11 @@ standard I/O files are not flushed.</p></li>
 <br />
     <br />
 
-    最後更新於 9月 16, 2022。
+    最後更新於 10月 15, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 
-    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1 建立。
+    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.2.3 建立。
     </div>
 
   </body>

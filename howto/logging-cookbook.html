@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>Logging Cookbook &#8212; Python 3.10.7 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logging Cookbook &#8212; Python 3.10.8 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -16,12 +16,13 @@
     <script src="../_static/underscore.js"></script>
     <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/translations.js"></script>
     
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.10.7 說明文件 中搜尋"
+          title="在 Python 3.10.8 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -191,7 +192,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.7 Documentation</a> &#187;
+      <a href="../index.html">3.10.8 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Python 如何達成任務</a> &#187;</li>
@@ -531,7 +532,7 @@ configuration:</p>
 </div>
 </section>
 <section id="dealing-with-handlers-that-block">
-<h2>Dealing with handlers that block<a class="headerlink" href="#dealing-with-handlers-that-block" title="本標頭的永久連結">¶</a></h2>
+<span id="blocking-handlers"></span><h2>Dealing with handlers that block<a class="headerlink" href="#dealing-with-handlers-that-block" title="本標頭的永久連結">¶</a></h2>
 <p>Sometimes you have to get your logging handlers to do their work without
 blocking the thread you're logging from. This is common in web applications,
 though of course it also occurs in other scenarios.</p>
@@ -584,6 +585,16 @@ classes, which would eat up one thread per handler for no particular benefit.</p
 <p>which, when run, will produce:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>MainThread: Look out!
 </pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">備註</p>
+<p>Although the earlier discussion wasn't specifically talking about
+async code, but rather about slow logging handlers, it should be noted that
+when logging from async code, network and even file handlers could lead to
+problems (blocking the event loop) because some logging is done from
+<a class="reference internal" href="../library/asyncio.html#module-asyncio" title="asyncio: Asynchronous I/O."><code class="xref py py-mod docutils literal notranslate"><span class="pre">asyncio</span></code></a> internals. It might be best, if any async code is used in an
+application, to use the above approach for logging, so that any blocking code
+runs only in the <code class="docutils literal notranslate"><span class="pre">QueueListener</span></code> thread.</p>
 </div>
 <div class="versionchanged">
 <p><span class="versionmodified changed">在 3.5 版本變更: </span>Prior to Python 3.5, the <a class="reference internal" href="../library/logging.handlers.html#logging.handlers.QueueListener" title="logging.handlers.QueueListener"><code class="xref py py-class docutils literal notranslate"><span class="pre">QueueListener</span></code></a> always passed every message
@@ -3623,7 +3634,7 @@ more fine-grained than that).</p>
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.7 Documentation</a> &#187;
+      <a href="../index.html">3.10.8 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 如何達成任務</a> &#187;</li>
@@ -3659,11 +3670,11 @@ more fine-grained than that).</p>
 <br />
     <br />
 
-    最後更新於 9月 16, 2022。
+    最後更新於 10月 15, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 
-    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1 建立。
+    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.2.3 建立。
     </div>
 
   </body>

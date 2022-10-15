@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>例外 &#8212; Python 3.10.7 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>例外 &#8212; Python 3.10.8 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -16,19 +16,20 @@
     <script src="../_static/underscore.js"></script>
     <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/translations.js"></script>
     
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.10.7 說明文件 中搜尋"
+          title="在 Python 3.10.8 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="搜尋" href="../search.html" />
     <link rel="copyright" title="版權" href="../copyright.html" />
     <link rel="next" title="Event Loop" href="asyncio-eventloop.html" />
-    <link rel="prev" title="Queues" href="asyncio-queue.html" />
+    <link rel="prev" title="佇列 (Queues)" href="asyncio-queue.html" />
     <link rel="canonical" href="https://docs.python.org/3/library/asyncio-exceptions.html" />
     
       
@@ -72,9 +73,31 @@
         <nav class="menu" role="navigation" aria-label="main navigation">
             <div class="language_switcher_placeholder"></div>
   <div>
+    <h3><a href="../contents.html">目錄</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">例外</a><ul>
+<li><a class="reference internal" href="#asyncio.TimeoutError"><code class="docutils literal notranslate"><span class="pre">TimeoutError</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.CancelledError"><code class="docutils literal notranslate"><span class="pre">CancelledError</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.InvalidStateError"><code class="docutils literal notranslate"><span class="pre">InvalidStateError</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.SendfileNotAvailableError"><code class="docutils literal notranslate"><span class="pre">SendfileNotAvailableError</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.IncompleteReadError"><code class="docutils literal notranslate"><span class="pre">IncompleteReadError</span></code></a><ul>
+<li><a class="reference internal" href="#asyncio.IncompleteReadError.expected"><code class="docutils literal notranslate"><span class="pre">IncompleteReadError.expected</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.IncompleteReadError.partial"><code class="docutils literal notranslate"><span class="pre">IncompleteReadError.partial</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#asyncio.LimitOverrunError"><code class="docutils literal notranslate"><span class="pre">LimitOverrunError</span></code></a><ul>
+<li><a class="reference internal" href="#asyncio.LimitOverrunError.consumed"><code class="docutils literal notranslate"><span class="pre">LimitOverrunError.consumed</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
     <h4>上個主題</h4>
     <p class="topless"><a href="asyncio-queue.html"
-                          title="上一章">Queues</a></p>
+                          title="上一章">佇列 (Queues)</a></p>
   </div>
   <div>
     <h4>下個主題</h4>
@@ -110,7 +133,7 @@
           <a href="asyncio-eventloop.html" title="Event Loop"
              accesskey="N">下一頁</a> |</li>
         <li class="right" >
-          <a href="asyncio-queue.html" title="Queues"
+          <a href="asyncio-queue.html" title="佇列 (Queues)"
              accesskey="P">上一頁</a> |</li>
 
           <li><img src="../_static/py.svg" alt="python logo" style="vertical-align: middle; margin-top: -1px"/></li>
@@ -123,7 +146,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.7 Documentation</a> &#187;
+      <a href="../index.html">3.10.8 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -233,9 +256,31 @@
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
   <div>
+    <h3><a href="../contents.html">目錄</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">例外</a><ul>
+<li><a class="reference internal" href="#asyncio.TimeoutError"><code class="docutils literal notranslate"><span class="pre">TimeoutError</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.CancelledError"><code class="docutils literal notranslate"><span class="pre">CancelledError</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.InvalidStateError"><code class="docutils literal notranslate"><span class="pre">InvalidStateError</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.SendfileNotAvailableError"><code class="docutils literal notranslate"><span class="pre">SendfileNotAvailableError</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.IncompleteReadError"><code class="docutils literal notranslate"><span class="pre">IncompleteReadError</span></code></a><ul>
+<li><a class="reference internal" href="#asyncio.IncompleteReadError.expected"><code class="docutils literal notranslate"><span class="pre">IncompleteReadError.expected</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.IncompleteReadError.partial"><code class="docutils literal notranslate"><span class="pre">IncompleteReadError.partial</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#asyncio.LimitOverrunError"><code class="docutils literal notranslate"><span class="pre">LimitOverrunError</span></code></a><ul>
+<li><a class="reference internal" href="#asyncio.LimitOverrunError.consumed"><code class="docutils literal notranslate"><span class="pre">LimitOverrunError.consumed</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
     <h4>上個主題</h4>
     <p class="topless"><a href="asyncio-queue.html"
-                          title="上一章">Queues</a></p>
+                          title="上一章">佇列 (Queues)</a></p>
   </div>
   <div>
     <h4>下個主題</h4>
@@ -274,7 +319,7 @@
           <a href="asyncio-eventloop.html" title="Event Loop"
              >下一頁</a> |</li>
         <li class="right" >
-          <a href="asyncio-queue.html" title="Queues"
+          <a href="asyncio-queue.html" title="佇列 (Queues)"
              >上一頁</a> |</li>
 
           <li><img src="../_static/py.svg" alt="python logo" style="vertical-align: middle; margin-top: -1px"/></li>
@@ -287,7 +332,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.7 Documentation</a> &#187;
+      <a href="../index.html">3.10.8 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -325,11 +370,11 @@
 <br />
     <br />
 
-    最後更新於 9月 16, 2022。
+    最後更新於 10月 15, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 
-    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1 建立。
+    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.2.3 建立。
     </div>
 
   </body>

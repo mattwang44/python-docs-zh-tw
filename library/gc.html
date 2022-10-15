@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>gc --- Garbage Collector interface &#8212; Python 3.10.7 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>gc --- Garbage Collector interface &#8212; Python 3.10.8 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -16,12 +16,13 @@
     <script src="../_static/underscore.js"></script>
     <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/translations.js"></script>
     
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.10.7 說明文件 中搜尋"
+          title="在 Python 3.10.8 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -71,6 +72,40 @@
     <div class="menu-wrapper">
         <nav class="menu" role="navigation" aria-label="main navigation">
             <div class="language_switcher_placeholder"></div>
+  <div>
+    <h3><a href="../contents.html">目錄</a></h3>
+    <ul>
+<li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gc</span></code> --- Garbage Collector interface</a><ul>
+<li><a class="reference internal" href="#gc.enable"><code class="docutils literal notranslate"><span class="pre">enable()</span></code></a></li>
+<li><a class="reference internal" href="#gc.disable"><code class="docutils literal notranslate"><span class="pre">disable()</span></code></a></li>
+<li><a class="reference internal" href="#gc.isenabled"><code class="docutils literal notranslate"><span class="pre">isenabled()</span></code></a></li>
+<li><a class="reference internal" href="#gc.collect"><code class="docutils literal notranslate"><span class="pre">collect()</span></code></a></li>
+<li><a class="reference internal" href="#gc.set_debug"><code class="docutils literal notranslate"><span class="pre">set_debug()</span></code></a></li>
+<li><a class="reference internal" href="#gc.get_debug"><code class="docutils literal notranslate"><span class="pre">get_debug()</span></code></a></li>
+<li><a class="reference internal" href="#gc.get_objects"><code class="docutils literal notranslate"><span class="pre">get_objects()</span></code></a></li>
+<li><a class="reference internal" href="#gc.get_stats"><code class="docutils literal notranslate"><span class="pre">get_stats()</span></code></a></li>
+<li><a class="reference internal" href="#gc.set_threshold"><code class="docutils literal notranslate"><span class="pre">set_threshold()</span></code></a></li>
+<li><a class="reference internal" href="#gc.get_count"><code class="docutils literal notranslate"><span class="pre">get_count()</span></code></a></li>
+<li><a class="reference internal" href="#gc.get_threshold"><code class="docutils literal notranslate"><span class="pre">get_threshold()</span></code></a></li>
+<li><a class="reference internal" href="#gc.get_referrers"><code class="docutils literal notranslate"><span class="pre">get_referrers()</span></code></a></li>
+<li><a class="reference internal" href="#gc.get_referents"><code class="docutils literal notranslate"><span class="pre">get_referents()</span></code></a></li>
+<li><a class="reference internal" href="#gc.is_tracked"><code class="docutils literal notranslate"><span class="pre">is_tracked()</span></code></a></li>
+<li><a class="reference internal" href="#gc.is_finalized"><code class="docutils literal notranslate"><span class="pre">is_finalized()</span></code></a></li>
+<li><a class="reference internal" href="#gc.freeze"><code class="docutils literal notranslate"><span class="pre">freeze()</span></code></a></li>
+<li><a class="reference internal" href="#gc.unfreeze"><code class="docutils literal notranslate"><span class="pre">unfreeze()</span></code></a></li>
+<li><a class="reference internal" href="#gc.get_freeze_count"><code class="docutils literal notranslate"><span class="pre">get_freeze_count()</span></code></a></li>
+<li><a class="reference internal" href="#gc.garbage"><code class="docutils literal notranslate"><span class="pre">garbage</span></code></a></li>
+<li><a class="reference internal" href="#gc.callbacks"><code class="docutils literal notranslate"><span class="pre">callbacks</span></code></a></li>
+<li><a class="reference internal" href="#gc.DEBUG_STATS"><code class="docutils literal notranslate"><span class="pre">DEBUG_STATS</span></code></a></li>
+<li><a class="reference internal" href="#gc.DEBUG_COLLECTABLE"><code class="docutils literal notranslate"><span class="pre">DEBUG_COLLECTABLE</span></code></a></li>
+<li><a class="reference internal" href="#gc.DEBUG_UNCOLLECTABLE"><code class="docutils literal notranslate"><span class="pre">DEBUG_UNCOLLECTABLE</span></code></a></li>
+<li><a class="reference internal" href="#gc.DEBUG_SAVEALL"><code class="docutils literal notranslate"><span class="pre">DEBUG_SAVEALL</span></code></a></li>
+<li><a class="reference internal" href="#gc.DEBUG_LEAK"><code class="docutils literal notranslate"><span class="pre">DEBUG_LEAK</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
   <div>
     <h4>上個主題</h4>
     <p class="topless"><a href="__future__.html"
@@ -123,7 +158,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.7 Documentation</a> &#187;
+      <a href="../index.html">3.10.8 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -503,6 +538,40 @@ leaking program (equal to <code class="docutils literal notranslate"><span class
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
   <div>
+    <h3><a href="../contents.html">目錄</a></h3>
+    <ul>
+<li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gc</span></code> --- Garbage Collector interface</a><ul>
+<li><a class="reference internal" href="#gc.enable"><code class="docutils literal notranslate"><span class="pre">enable()</span></code></a></li>
+<li><a class="reference internal" href="#gc.disable"><code class="docutils literal notranslate"><span class="pre">disable()</span></code></a></li>
+<li><a class="reference internal" href="#gc.isenabled"><code class="docutils literal notranslate"><span class="pre">isenabled()</span></code></a></li>
+<li><a class="reference internal" href="#gc.collect"><code class="docutils literal notranslate"><span class="pre">collect()</span></code></a></li>
+<li><a class="reference internal" href="#gc.set_debug"><code class="docutils literal notranslate"><span class="pre">set_debug()</span></code></a></li>
+<li><a class="reference internal" href="#gc.get_debug"><code class="docutils literal notranslate"><span class="pre">get_debug()</span></code></a></li>
+<li><a class="reference internal" href="#gc.get_objects"><code class="docutils literal notranslate"><span class="pre">get_objects()</span></code></a></li>
+<li><a class="reference internal" href="#gc.get_stats"><code class="docutils literal notranslate"><span class="pre">get_stats()</span></code></a></li>
+<li><a class="reference internal" href="#gc.set_threshold"><code class="docutils literal notranslate"><span class="pre">set_threshold()</span></code></a></li>
+<li><a class="reference internal" href="#gc.get_count"><code class="docutils literal notranslate"><span class="pre">get_count()</span></code></a></li>
+<li><a class="reference internal" href="#gc.get_threshold"><code class="docutils literal notranslate"><span class="pre">get_threshold()</span></code></a></li>
+<li><a class="reference internal" href="#gc.get_referrers"><code class="docutils literal notranslate"><span class="pre">get_referrers()</span></code></a></li>
+<li><a class="reference internal" href="#gc.get_referents"><code class="docutils literal notranslate"><span class="pre">get_referents()</span></code></a></li>
+<li><a class="reference internal" href="#gc.is_tracked"><code class="docutils literal notranslate"><span class="pre">is_tracked()</span></code></a></li>
+<li><a class="reference internal" href="#gc.is_finalized"><code class="docutils literal notranslate"><span class="pre">is_finalized()</span></code></a></li>
+<li><a class="reference internal" href="#gc.freeze"><code class="docutils literal notranslate"><span class="pre">freeze()</span></code></a></li>
+<li><a class="reference internal" href="#gc.unfreeze"><code class="docutils literal notranslate"><span class="pre">unfreeze()</span></code></a></li>
+<li><a class="reference internal" href="#gc.get_freeze_count"><code class="docutils literal notranslate"><span class="pre">get_freeze_count()</span></code></a></li>
+<li><a class="reference internal" href="#gc.garbage"><code class="docutils literal notranslate"><span class="pre">garbage</span></code></a></li>
+<li><a class="reference internal" href="#gc.callbacks"><code class="docutils literal notranslate"><span class="pre">callbacks</span></code></a></li>
+<li><a class="reference internal" href="#gc.DEBUG_STATS"><code class="docutils literal notranslate"><span class="pre">DEBUG_STATS</span></code></a></li>
+<li><a class="reference internal" href="#gc.DEBUG_COLLECTABLE"><code class="docutils literal notranslate"><span class="pre">DEBUG_COLLECTABLE</span></code></a></li>
+<li><a class="reference internal" href="#gc.DEBUG_UNCOLLECTABLE"><code class="docutils literal notranslate"><span class="pre">DEBUG_UNCOLLECTABLE</span></code></a></li>
+<li><a class="reference internal" href="#gc.DEBUG_SAVEALL"><code class="docutils literal notranslate"><span class="pre">DEBUG_SAVEALL</span></code></a></li>
+<li><a class="reference internal" href="#gc.DEBUG_LEAK"><code class="docutils literal notranslate"><span class="pre">DEBUG_LEAK</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
     <h4>上個主題</h4>
     <p class="topless"><a href="__future__.html"
                           title="上一章"><code class="xref py py-mod docutils literal notranslate"><span class="pre">__future__</span></code> --- Future statement definitions</a></p>
@@ -557,7 +626,7 @@ leaking program (equal to <code class="docutils literal notranslate"><span class
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.7 Documentation</a> &#187;
+      <a href="../index.html">3.10.8 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -594,11 +663,11 @@ leaking program (equal to <code class="docutils literal notranslate"><span class
 <br />
     <br />
 
-    最後更新於 9月 16, 2022。
+    最後更新於 10月 15, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 
-    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1 建立。
+    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.2.3 建立。
     </div>
 
   </body>

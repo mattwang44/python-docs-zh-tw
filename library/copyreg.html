@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>copyreg --- Register pickle support functions &#8212; Python 3.10.7 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>copyreg --- Register pickle support functions &#8212; Python 3.10.8 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -16,12 +16,13 @@
     <script src="../_static/underscore.js"></script>
     <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/translations.js"></script>
     
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.10.7 說明文件 中搜尋"
+          title="在 Python 3.10.8 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -75,6 +76,8 @@
     <h3><a href="../contents.html">目錄</a></h3>
     <ul>
 <li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">copyreg</span></code> --- Register <code class="xref py py-mod docutils literal notranslate"><span class="pre">pickle</span></code> support functions</a><ul>
+<li><a class="reference internal" href="#copyreg.constructor"><code class="docutils literal notranslate"><span class="pre">constructor()</span></code></a></li>
+<li><a class="reference internal" href="#copyreg.pickle"><code class="docutils literal notranslate"><span class="pre">pickle()</span></code></a></li>
 <li><a class="reference internal" href="#example">範例</a></li>
 </ul>
 </li>
@@ -133,7 +136,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.7 Documentation</a> &#187;
+      <a href="../index.html">3.10.8 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -179,17 +182,14 @@ hence not valid as a constructor), raises <a class="reference internal" href="ex
 
 <dl class="py function">
 <dt class="sig sig-object py" id="copyreg.pickle">
-<span class="sig-prename descclassname"><span class="pre">copyreg.</span></span><span class="sig-name descname"><span class="pre">pickle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">function</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">constructor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#copyreg.pickle" title="本定義的永久連結">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">copyreg.</span></span><span class="sig-name descname"><span class="pre">pickle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">function</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">constructor_ob</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#copyreg.pickle" title="本定義的永久連結">¶</a></dt>
 <dd><p>Declares that <em>function</em> should be used as a &quot;reduction&quot; function for objects
 of type <em>type</em>.  <em>function</em> should return either a string or a tuple
-containing two or three elements.</p>
-<p>The optional <em>constructor</em> parameter, if provided, is a callable object which
-can be used to reconstruct the object when called with the tuple of arguments
-returned by <em>function</em> at pickling time.  A <a class="reference internal" href="exceptions.html#TypeError" title="TypeError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">TypeError</span></code></a> is raised if the
-<em>constructor</em> is not callable.</p>
-<p>See the <a class="reference internal" href="pickle.html#module-pickle" title="pickle: Convert Python objects to streams of bytes and back."><code class="xref py py-mod docutils literal notranslate"><span class="pre">pickle</span></code></a> module for more details on the interface
-expected of <em>function</em> and <em>constructor</em>.  Note that the
-<a class="reference internal" href="pickle.html#pickle.Pickler.dispatch_table" title="pickle.Pickler.dispatch_table"><code class="xref py py-attr docutils literal notranslate"><span class="pre">dispatch_table</span></code></a> attribute of a pickler
+containing two or three elements. See the <a class="reference internal" href="pickle.html#pickle.Pickler.dispatch_table" title="pickle.Pickler.dispatch_table"><code class="xref py py-attr docutils literal notranslate"><span class="pre">dispatch_table</span></code></a>
+for more details on the interface of <em>function</em>.</p>
+<p>The <em>constructor_ob</em> parameter is a legacy feature and is now ignored, but if
+passed it must be a callable.</p>
+<p>Note that the <a class="reference internal" href="pickle.html#pickle.Pickler.dispatch_table" title="pickle.Pickler.dispatch_table"><code class="xref py py-attr docutils literal notranslate"><span class="pre">dispatch_table</span></code></a> attribute of a pickler
 object or subclass of <a class="reference internal" href="pickle.html#pickle.Pickler" title="pickle.Pickler"><code class="xref py py-class docutils literal notranslate"><span class="pre">pickle.Pickler</span></code></a> can also be used for
 declaring reduction functions.</p>
 </dd></dl>
@@ -229,6 +229,8 @@ it will be used:</p>
     <h3><a href="../contents.html">目錄</a></h3>
     <ul>
 <li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">copyreg</span></code> --- Register <code class="xref py py-mod docutils literal notranslate"><span class="pre">pickle</span></code> support functions</a><ul>
+<li><a class="reference internal" href="#copyreg.constructor"><code class="docutils literal notranslate"><span class="pre">constructor()</span></code></a></li>
+<li><a class="reference internal" href="#copyreg.pickle"><code class="docutils literal notranslate"><span class="pre">pickle()</span></code></a></li>
 <li><a class="reference internal" href="#example">範例</a></li>
 </ul>
 </li>
@@ -290,7 +292,7 @@ it will be used:</p>
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.7 Documentation</a> &#187;
+      <a href="../index.html">3.10.8 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -327,11 +329,11 @@ it will be used:</p>
 <br />
     <br />
 
-    最後更新於 9月 16, 2022。
+    最後更新於 10月 15, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 
-    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1 建立。
+    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.2.3 建立。
     </div>
 
   </body>

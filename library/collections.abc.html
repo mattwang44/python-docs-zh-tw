@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>collections.abc --- Abstract Base Classes for Containers &#8212; Python 3.10.7 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>collections.abc --- Abstract Base Classes for Containers &#8212; Python 3.10.8 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -16,12 +16,13 @@
     <script src="../_static/underscore.js"></script>
     <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/translations.js"></script>
     
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.10.7 說明文件 中搜尋"
+          title="在 Python 3.10.8 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -76,7 +77,34 @@
     <ul>
 <li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">collections.abc</span></code> --- Abstract Base Classes for Containers</a><ul>
 <li><a class="reference internal" href="#collections-abstract-base-classes">Collections Abstract Base Classes</a></li>
-<li><a class="reference internal" href="#collections-abstract-base-classes-detailed-descriptions">Collections Abstract Base Classes -- Detailed Descriptions</a></li>
+<li><a class="reference internal" href="#collections-abstract-base-classes-detailed-descriptions">Collections Abstract Base Classes -- Detailed Descriptions</a><ul>
+<li><a class="reference internal" href="#collections.abc.Container"><code class="docutils literal notranslate"><span class="pre">Container</span></code></a></li>
+<li><a class="reference internal" href="#collections.abc.Hashable"><code class="docutils literal notranslate"><span class="pre">Hashable</span></code></a></li>
+<li><a class="reference internal" href="#collections.abc.Sized"><code class="docutils literal notranslate"><span class="pre">Sized</span></code></a></li>
+<li><a class="reference internal" href="#collections.abc.Callable"><code class="docutils literal notranslate"><span class="pre">Callable</span></code></a></li>
+<li><a class="reference internal" href="#collections.abc.Iterable"><code class="docutils literal notranslate"><span class="pre">Iterable</span></code></a></li>
+<li><a class="reference internal" href="#collections.abc.Collection"><code class="docutils literal notranslate"><span class="pre">Collection</span></code></a></li>
+<li><a class="reference internal" href="#collections.abc.Iterator"><code class="docutils literal notranslate"><span class="pre">Iterator</span></code></a></li>
+<li><a class="reference internal" href="#collections.abc.Reversible"><code class="docutils literal notranslate"><span class="pre">Reversible</span></code></a></li>
+<li><a class="reference internal" href="#collections.abc.Generator"><code class="docutils literal notranslate"><span class="pre">Generator</span></code></a></li>
+<li><a class="reference internal" href="#collections.abc.Sequence"><code class="docutils literal notranslate"><span class="pre">Sequence</span></code></a></li>
+<li><a class="reference internal" href="#collections.abc.MutableSequence"><code class="docutils literal notranslate"><span class="pre">MutableSequence</span></code></a></li>
+<li><a class="reference internal" href="#collections.abc.ByteString"><code class="docutils literal notranslate"><span class="pre">ByteString</span></code></a></li>
+<li><a class="reference internal" href="#collections.abc.Set"><code class="docutils literal notranslate"><span class="pre">Set</span></code></a></li>
+<li><a class="reference internal" href="#collections.abc.MutableSet"><code class="docutils literal notranslate"><span class="pre">MutableSet</span></code></a></li>
+<li><a class="reference internal" href="#collections.abc.Mapping"><code class="docutils literal notranslate"><span class="pre">Mapping</span></code></a></li>
+<li><a class="reference internal" href="#collections.abc.MutableMapping"><code class="docutils literal notranslate"><span class="pre">MutableMapping</span></code></a></li>
+<li><a class="reference internal" href="#collections.abc.MappingView"><code class="docutils literal notranslate"><span class="pre">MappingView</span></code></a></li>
+<li><a class="reference internal" href="#collections.abc.ItemsView"><code class="docutils literal notranslate"><span class="pre">ItemsView</span></code></a></li>
+<li><a class="reference internal" href="#collections.abc.KeysView"><code class="docutils literal notranslate"><span class="pre">KeysView</span></code></a></li>
+<li><a class="reference internal" href="#collections.abc.ValuesView"><code class="docutils literal notranslate"><span class="pre">ValuesView</span></code></a></li>
+<li><a class="reference internal" href="#collections.abc.Awaitable"><code class="docutils literal notranslate"><span class="pre">Awaitable</span></code></a></li>
+<li><a class="reference internal" href="#collections.abc.Coroutine"><code class="docutils literal notranslate"><span class="pre">Coroutine</span></code></a></li>
+<li><a class="reference internal" href="#collections.abc.AsyncIterable"><code class="docutils literal notranslate"><span class="pre">AsyncIterable</span></code></a></li>
+<li><a class="reference internal" href="#collections.abc.AsyncIterator"><code class="docutils literal notranslate"><span class="pre">AsyncIterator</span></code></a></li>
+<li><a class="reference internal" href="#collections.abc.AsyncGenerator"><code class="docutils literal notranslate"><span class="pre">AsyncGenerator</span></code></a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#examples-and-recipes">Examples and Recipes</a></li>
 </ul>
 </li>
@@ -135,7 +163,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.7 Documentation</a> &#187;
+      <a href="../index.html">3.10.8 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -179,14 +207,14 @@ of three ways.</p>
 abstract base classes.  The class must supply the required abstract
 methods.  The remaining mixin methods come from inheritance and can be
 overridden if desired.  Other methods may be added as needed:</p>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">C</span><span class="p">(</span><span class="n">Sequence</span><span class="p">):</span>                      <span class="c1"># Direct inheritance</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">C</span><span class="p">(</span><span class="n">Sequence</span><span class="p">):</span>                      <span class="c1"># Direct inheritance</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <span class="o">...</span>             <span class="c1"># Extra method not required by the ABC</span>
     <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">):</span>  <span class="o">...</span>  <span class="c1"># Required abstract method</span>
     <span class="k">def</span> <span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>  <span class="o">...</span>             <span class="c1"># Required abstract method</span>
     <span class="k">def</span> <span class="nf">count</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span> <span class="o">...</span>         <span class="c1"># Optionally override a mixin method</span>
 </pre></div>
 </div>
-<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">issubclass</span><span class="p">(</span><span class="n">C</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">)</span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">issubclass</span><span class="p">(</span><span class="n">C</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">)</span>
 <span class="go">True</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">isinstance</span><span class="p">(</span><span class="n">C</span><span class="p">(),</span> <span class="n">Sequence</span><span class="p">)</span>
 <span class="go">True</span>
@@ -199,7 +227,7 @@ This lets users rely on <a class="reference internal" href="functions.html#issub
 to determine whether the full interface is supported.  The exception to
 this rule is for methods that are automatically inferred from the rest
 of the API:</p>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">D</span><span class="p">:</span>                                 <span class="c1"># No inheritance</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">D</span><span class="p">:</span>                                 <span class="c1"># No inheritance</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <span class="o">...</span>              <span class="c1"># Extra method not required by the ABC</span>
     <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">):</span>  <span class="o">...</span>   <span class="c1"># Abstract method</span>
     <span class="k">def</span> <span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>  <span class="o">...</span>              <span class="c1"># Abstract method</span>
@@ -209,7 +237,7 @@ of the API:</p>
 <span class="n">Sequence</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">D</span><span class="p">)</span>                     <span class="c1"># Register instead of inherit</span>
 </pre></div>
 </div>
-<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">issubclass</span><span class="p">(</span><span class="n">D</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">)</span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">issubclass</span><span class="p">(</span><span class="n">D</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">)</span>
 <span class="go">True</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">isinstance</span><span class="p">(</span><span class="n">D</span><span class="p">(),</span> <span class="n">Sequence</span><span class="p">)</span>
 <span class="go">True</span>
@@ -223,12 +251,12 @@ using <code class="docutils literal notranslate"><span class="pre">__getitem__</
 <p>3) Some simple interfaces are directly recognizable by the presence of
 the required methods (unless those methods have been set to
 <a class="reference internal" href="constants.html#None" title="None"><code class="xref py py-const docutils literal notranslate"><span class="pre">None</span></code></a>):</p>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">E</span><span class="p">:</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">E</span><span class="p">:</span>
     <span class="k">def</span> <span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <span class="o">...</span>
     <span class="k">def</span> <span class="fm">__next__</span><span class="p">(</span><span class="nb">next</span><span class="p">):</span> <span class="o">...</span>
 </pre></div>
 </div>
-<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">issubclass</span><span class="p">(</span><span class="n">E</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">)</span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">issubclass</span><span class="p">(</span><span class="n">E</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">)</span>
 <span class="go">True</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">isinstance</span><span class="p">(</span><span class="n">E</span><span class="p">(),</span> <span class="n">Iterable</span><span class="p">)</span>
 <span class="go">True</span>
@@ -693,7 +721,34 @@ example built on <a class="reference internal" href="#collections.abc.MutableSet
     <ul>
 <li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">collections.abc</span></code> --- Abstract Base Classes for Containers</a><ul>
 <li><a class="reference internal" href="#collections-abstract-base-classes">Collections Abstract Base Classes</a></li>
-<li><a class="reference internal" href="#collections-abstract-base-classes-detailed-descriptions">Collections Abstract Base Classes -- Detailed Descriptions</a></li>
+<li><a class="reference internal" href="#collections-abstract-base-classes-detailed-descriptions">Collections Abstract Base Classes -- Detailed Descriptions</a><ul>
+<li><a class="reference internal" href="#collections.abc.Container"><code class="docutils literal notranslate"><span class="pre">Container</span></code></a></li>
+<li><a class="reference internal" href="#collections.abc.Hashable"><code class="docutils literal notranslate"><span class="pre">Hashable</span></code></a></li>
+<li><a class="reference internal" href="#collections.abc.Sized"><code class="docutils literal notranslate"><span class="pre">Sized</span></code></a></li>
+<li><a class="reference internal" href="#collections.abc.Callable"><code class="docutils literal notranslate"><span class="pre">Callable</span></code></a></li>
+<li><a class="reference internal" href="#collections.abc.Iterable"><code class="docutils literal notranslate"><span class="pre">Iterable</span></code></a></li>
+<li><a class="reference internal" href="#collections.abc.Collection"><code class="docutils literal notranslate"><span class="pre">Collection</span></code></a></li>
+<li><a class="reference internal" href="#collections.abc.Iterator"><code class="docutils literal notranslate"><span class="pre">Iterator</span></code></a></li>
+<li><a class="reference internal" href="#collections.abc.Reversible"><code class="docutils literal notranslate"><span class="pre">Reversible</span></code></a></li>
+<li><a class="reference internal" href="#collections.abc.Generator"><code class="docutils literal notranslate"><span class="pre">Generator</span></code></a></li>
+<li><a class="reference internal" href="#collections.abc.Sequence"><code class="docutils literal notranslate"><span class="pre">Sequence</span></code></a></li>
+<li><a class="reference internal" href="#collections.abc.MutableSequence"><code class="docutils literal notranslate"><span class="pre">MutableSequence</span></code></a></li>
+<li><a class="reference internal" href="#collections.abc.ByteString"><code class="docutils literal notranslate"><span class="pre">ByteString</span></code></a></li>
+<li><a class="reference internal" href="#collections.abc.Set"><code class="docutils literal notranslate"><span class="pre">Set</span></code></a></li>
+<li><a class="reference internal" href="#collections.abc.MutableSet"><code class="docutils literal notranslate"><span class="pre">MutableSet</span></code></a></li>
+<li><a class="reference internal" href="#collections.abc.Mapping"><code class="docutils literal notranslate"><span class="pre">Mapping</span></code></a></li>
+<li><a class="reference internal" href="#collections.abc.MutableMapping"><code class="docutils literal notranslate"><span class="pre">MutableMapping</span></code></a></li>
+<li><a class="reference internal" href="#collections.abc.MappingView"><code class="docutils literal notranslate"><span class="pre">MappingView</span></code></a></li>
+<li><a class="reference internal" href="#collections.abc.ItemsView"><code class="docutils literal notranslate"><span class="pre">ItemsView</span></code></a></li>
+<li><a class="reference internal" href="#collections.abc.KeysView"><code class="docutils literal notranslate"><span class="pre">KeysView</span></code></a></li>
+<li><a class="reference internal" href="#collections.abc.ValuesView"><code class="docutils literal notranslate"><span class="pre">ValuesView</span></code></a></li>
+<li><a class="reference internal" href="#collections.abc.Awaitable"><code class="docutils literal notranslate"><span class="pre">Awaitable</span></code></a></li>
+<li><a class="reference internal" href="#collections.abc.Coroutine"><code class="docutils literal notranslate"><span class="pre">Coroutine</span></code></a></li>
+<li><a class="reference internal" href="#collections.abc.AsyncIterable"><code class="docutils literal notranslate"><span class="pre">AsyncIterable</span></code></a></li>
+<li><a class="reference internal" href="#collections.abc.AsyncIterator"><code class="docutils literal notranslate"><span class="pre">AsyncIterator</span></code></a></li>
+<li><a class="reference internal" href="#collections.abc.AsyncGenerator"><code class="docutils literal notranslate"><span class="pre">AsyncGenerator</span></code></a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#examples-and-recipes">Examples and Recipes</a></li>
 </ul>
 </li>
@@ -755,7 +810,7 @@ example built on <a class="reference internal" href="#collections.abc.MutableSet
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.7 Documentation</a> &#187;
+      <a href="../index.html">3.10.8 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -792,11 +847,11 @@ example built on <a class="reference internal" href="#collections.abc.MutableSet
 <br />
     <br />
 
-    最後更新於 9月 16, 2022。
+    最後更新於 10月 15, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 
-    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1 建立。
+    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.2.3 建立。
     </div>
 
   </body>

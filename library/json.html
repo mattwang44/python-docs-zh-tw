@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>json --- JSON encoder and decoder &#8212; Python 3.10.7 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>json --- JSON encoder and decoder &#8212; Python 3.10.8 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -16,12 +16,13 @@
     <script src="../_static/underscore.js"></script>
     <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/translations.js"></script>
     
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.10.7 說明文件 中搜尋"
+          title="在 Python 3.10.8 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -75,9 +76,38 @@
     <h3><a href="../contents.html">目錄</a></h3>
     <ul>
 <li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">json</span></code> --- JSON encoder and decoder</a><ul>
-<li><a class="reference internal" href="#basic-usage">基本用法</a></li>
-<li><a class="reference internal" href="#encoders-and-decoders">Encoders and Decoders</a></li>
-<li><a class="reference internal" href="#exceptions">例外</a></li>
+<li><a class="reference internal" href="#basic-usage">基本用法</a><ul>
+<li><a class="reference internal" href="#json.dump"><code class="docutils literal notranslate"><span class="pre">dump()</span></code></a></li>
+<li><a class="reference internal" href="#json.dumps"><code class="docutils literal notranslate"><span class="pre">dumps()</span></code></a></li>
+<li><a class="reference internal" href="#json.load"><code class="docutils literal notranslate"><span class="pre">load()</span></code></a></li>
+<li><a class="reference internal" href="#json.loads"><code class="docutils literal notranslate"><span class="pre">loads()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#encoders-and-decoders">Encoders and Decoders</a><ul>
+<li><a class="reference internal" href="#json.JSONDecoder"><code class="docutils literal notranslate"><span class="pre">JSONDecoder</span></code></a><ul>
+<li><a class="reference internal" href="#json.JSONDecoder.decode"><code class="docutils literal notranslate"><span class="pre">JSONDecoder.decode()</span></code></a></li>
+<li><a class="reference internal" href="#json.JSONDecoder.raw_decode"><code class="docutils literal notranslate"><span class="pre">JSONDecoder.raw_decode()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#json.JSONEncoder"><code class="docutils literal notranslate"><span class="pre">JSONEncoder</span></code></a><ul>
+<li><a class="reference internal" href="#json.JSONEncoder.default"><code class="docutils literal notranslate"><span class="pre">JSONEncoder.default()</span></code></a></li>
+<li><a class="reference internal" href="#json.JSONEncoder.encode"><code class="docutils literal notranslate"><span class="pre">JSONEncoder.encode()</span></code></a></li>
+<li><a class="reference internal" href="#json.JSONEncoder.iterencode"><code class="docutils literal notranslate"><span class="pre">JSONEncoder.iterencode()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#exceptions">例外</a><ul>
+<li><a class="reference internal" href="#json.JSONDecodeError"><code class="docutils literal notranslate"><span class="pre">JSONDecodeError</span></code></a><ul>
+<li><a class="reference internal" href="#json.JSONDecodeError.msg"><code class="docutils literal notranslate"><span class="pre">JSONDecodeError.msg</span></code></a></li>
+<li><a class="reference internal" href="#json.JSONDecodeError.doc"><code class="docutils literal notranslate"><span class="pre">JSONDecodeError.doc</span></code></a></li>
+<li><a class="reference internal" href="#json.JSONDecodeError.pos"><code class="docutils literal notranslate"><span class="pre">JSONDecodeError.pos</span></code></a></li>
+<li><a class="reference internal" href="#json.JSONDecodeError.lineno"><code class="docutils literal notranslate"><span class="pre">JSONDecodeError.lineno</span></code></a></li>
+<li><a class="reference internal" href="#json.JSONDecodeError.colno"><code class="docutils literal notranslate"><span class="pre">JSONDecodeError.colno</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li><a class="reference internal" href="#standard-compliance-and-interoperability">Standard Compliance and Interoperability</a><ul>
 <li><a class="reference internal" href="#character-encodings">Character Encodings</a></li>
 <li><a class="reference internal" href="#infinite-and-nan-number-values">Infinite and NaN Number Values</a></li>
@@ -147,7 +177,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.7 Documentation</a> &#187;
+      <a href="../index.html">3.10.8 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -283,7 +313,7 @@ resources. Limiting the size of data to be parsed is recommended.</p>
 <p>更詳盡的文件請見 <a class="reference internal" href="#json-commandline"><span class="std std-ref">Command Line Interface</span></a>。</p>
 <div class="admonition note">
 <p class="admonition-title">備註</p>
-<p>JSON is a subset of <a class="reference external" href="http://yaml.org/">YAML</a> 1.2.  The JSON produced by
+<p>JSON is a subset of <a class="reference external" href="https://yaml.org/">YAML</a> 1.2.  The JSON produced by
 this module's default settings (in particular, the default <em>separators</em>
 value) is also a subset of YAML 1.0 and 1.1.  This module can thus also be
 used as a YAML serializer.</p>
@@ -931,9 +961,38 @@ U+2029 (PARAGRAPH SEPARATOR) characters in strings, whereas JavaScript
     <h3><a href="../contents.html">目錄</a></h3>
     <ul>
 <li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">json</span></code> --- JSON encoder and decoder</a><ul>
-<li><a class="reference internal" href="#basic-usage">基本用法</a></li>
-<li><a class="reference internal" href="#encoders-and-decoders">Encoders and Decoders</a></li>
-<li><a class="reference internal" href="#exceptions">例外</a></li>
+<li><a class="reference internal" href="#basic-usage">基本用法</a><ul>
+<li><a class="reference internal" href="#json.dump"><code class="docutils literal notranslate"><span class="pre">dump()</span></code></a></li>
+<li><a class="reference internal" href="#json.dumps"><code class="docutils literal notranslate"><span class="pre">dumps()</span></code></a></li>
+<li><a class="reference internal" href="#json.load"><code class="docutils literal notranslate"><span class="pre">load()</span></code></a></li>
+<li><a class="reference internal" href="#json.loads"><code class="docutils literal notranslate"><span class="pre">loads()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#encoders-and-decoders">Encoders and Decoders</a><ul>
+<li><a class="reference internal" href="#json.JSONDecoder"><code class="docutils literal notranslate"><span class="pre">JSONDecoder</span></code></a><ul>
+<li><a class="reference internal" href="#json.JSONDecoder.decode"><code class="docutils literal notranslate"><span class="pre">JSONDecoder.decode()</span></code></a></li>
+<li><a class="reference internal" href="#json.JSONDecoder.raw_decode"><code class="docutils literal notranslate"><span class="pre">JSONDecoder.raw_decode()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#json.JSONEncoder"><code class="docutils literal notranslate"><span class="pre">JSONEncoder</span></code></a><ul>
+<li><a class="reference internal" href="#json.JSONEncoder.default"><code class="docutils literal notranslate"><span class="pre">JSONEncoder.default()</span></code></a></li>
+<li><a class="reference internal" href="#json.JSONEncoder.encode"><code class="docutils literal notranslate"><span class="pre">JSONEncoder.encode()</span></code></a></li>
+<li><a class="reference internal" href="#json.JSONEncoder.iterencode"><code class="docutils literal notranslate"><span class="pre">JSONEncoder.iterencode()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#exceptions">例外</a><ul>
+<li><a class="reference internal" href="#json.JSONDecodeError"><code class="docutils literal notranslate"><span class="pre">JSONDecodeError</span></code></a><ul>
+<li><a class="reference internal" href="#json.JSONDecodeError.msg"><code class="docutils literal notranslate"><span class="pre">JSONDecodeError.msg</span></code></a></li>
+<li><a class="reference internal" href="#json.JSONDecodeError.doc"><code class="docutils literal notranslate"><span class="pre">JSONDecodeError.doc</span></code></a></li>
+<li><a class="reference internal" href="#json.JSONDecodeError.pos"><code class="docutils literal notranslate"><span class="pre">JSONDecodeError.pos</span></code></a></li>
+<li><a class="reference internal" href="#json.JSONDecodeError.lineno"><code class="docutils literal notranslate"><span class="pre">JSONDecodeError.lineno</span></code></a></li>
+<li><a class="reference internal" href="#json.JSONDecodeError.colno"><code class="docutils literal notranslate"><span class="pre">JSONDecodeError.colno</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li><a class="reference internal" href="#standard-compliance-and-interoperability">Standard Compliance and Interoperability</a><ul>
 <li><a class="reference internal" href="#character-encodings">Character Encodings</a></li>
 <li><a class="reference internal" href="#infinite-and-nan-number-values">Infinite and NaN Number Values</a></li>
@@ -1006,7 +1065,7 @@ U+2029 (PARAGRAPH SEPARATOR) characters in strings, whereas JavaScript
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.7 Documentation</a> &#187;
+      <a href="../index.html">3.10.8 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -1043,11 +1102,11 @@ U+2029 (PARAGRAPH SEPARATOR) characters in strings, whereas JavaScript
 <br />
     <br />
 
-    最後更新於 9月 16, 2022。
+    最後更新於 10月 15, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 
-    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1 建立。
+    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.2.3 建立。
     </div>
 
   </body>

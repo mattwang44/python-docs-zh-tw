@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>locale --- Internationalization services &#8212; Python 3.10.7 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>locale --- Internationalization services &#8212; Python 3.10.8 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -16,12 +16,13 @@
     <script src="../_static/underscore.js"></script>
     <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/translations.js"></script>
     
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.10.7 說明文件 中搜尋"
+          title="在 Python 3.10.8 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -75,9 +76,58 @@
     <h3><a href="../contents.html">目錄</a></h3>
     <ul>
 <li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">locale</span></code> --- Internationalization services</a><ul>
+<li><a class="reference internal" href="#locale.Error"><code class="docutils literal notranslate"><span class="pre">Error</span></code></a></li>
+<li><a class="reference internal" href="#locale.setlocale"><code class="docutils literal notranslate"><span class="pre">setlocale()</span></code></a></li>
+<li><a class="reference internal" href="#locale.localeconv"><code class="docutils literal notranslate"><span class="pre">localeconv()</span></code></a></li>
+<li><a class="reference internal" href="#locale.nl_langinfo"><code class="docutils literal notranslate"><span class="pre">nl_langinfo()</span></code></a></li>
+<li><a class="reference internal" href="#locale.CODESET"><code class="docutils literal notranslate"><span class="pre">CODESET</span></code></a></li>
+<li><a class="reference internal" href="#locale.D_T_FMT"><code class="docutils literal notranslate"><span class="pre">D_T_FMT</span></code></a></li>
+<li><a class="reference internal" href="#locale.D_FMT"><code class="docutils literal notranslate"><span class="pre">D_FMT</span></code></a></li>
+<li><a class="reference internal" href="#locale.T_FMT"><code class="docutils literal notranslate"><span class="pre">T_FMT</span></code></a></li>
+<li><a class="reference internal" href="#locale.T_FMT_AMPM"><code class="docutils literal notranslate"><span class="pre">T_FMT_AMPM</span></code></a></li>
+<li><a class="reference internal" href="#locale.RADIXCHAR"><code class="docutils literal notranslate"><span class="pre">RADIXCHAR</span></code></a></li>
+<li><a class="reference internal" href="#locale.THOUSEP"><code class="docutils literal notranslate"><span class="pre">THOUSEP</span></code></a></li>
+<li><a class="reference internal" href="#locale.YESEXPR"><code class="docutils literal notranslate"><span class="pre">YESEXPR</span></code></a></li>
+<li><a class="reference internal" href="#locale.NOEXPR"><code class="docutils literal notranslate"><span class="pre">NOEXPR</span></code></a></li>
+<li><a class="reference internal" href="#locale.CRNCYSTR"><code class="docutils literal notranslate"><span class="pre">CRNCYSTR</span></code></a></li>
+<li><a class="reference internal" href="#locale.ERA"><code class="docutils literal notranslate"><span class="pre">ERA</span></code></a></li>
+<li><a class="reference internal" href="#locale.ERA_D_T_FMT"><code class="docutils literal notranslate"><span class="pre">ERA_D_T_FMT</span></code></a></li>
+<li><a class="reference internal" href="#locale.ERA_D_FMT"><code class="docutils literal notranslate"><span class="pre">ERA_D_FMT</span></code></a></li>
+<li><a class="reference internal" href="#locale.ERA_T_FMT"><code class="docutils literal notranslate"><span class="pre">ERA_T_FMT</span></code></a></li>
+<li><a class="reference internal" href="#locale.ALT_DIGITS"><code class="docutils literal notranslate"><span class="pre">ALT_DIGITS</span></code></a></li>
+<li><a class="reference internal" href="#locale.getdefaultlocale"><code class="docutils literal notranslate"><span class="pre">getdefaultlocale()</span></code></a></li>
+<li><a class="reference internal" href="#locale.getlocale"><code class="docutils literal notranslate"><span class="pre">getlocale()</span></code></a></li>
+<li><a class="reference internal" href="#locale.getpreferredencoding"><code class="docutils literal notranslate"><span class="pre">getpreferredencoding()</span></code></a></li>
+<li><a class="reference internal" href="#locale.normalize"><code class="docutils literal notranslate"><span class="pre">normalize()</span></code></a></li>
+<li><a class="reference internal" href="#locale.resetlocale"><code class="docutils literal notranslate"><span class="pre">resetlocale()</span></code></a></li>
+<li><a class="reference internal" href="#locale.strcoll"><code class="docutils literal notranslate"><span class="pre">strcoll()</span></code></a></li>
+<li><a class="reference internal" href="#locale.strxfrm"><code class="docutils literal notranslate"><span class="pre">strxfrm()</span></code></a></li>
+<li><a class="reference internal" href="#locale.format_string"><code class="docutils literal notranslate"><span class="pre">format_string()</span></code></a></li>
+<li><a class="reference internal" href="#locale.format"><code class="docutils literal notranslate"><span class="pre">format()</span></code></a></li>
+<li><a class="reference internal" href="#locale.currency"><code class="docutils literal notranslate"><span class="pre">currency()</span></code></a></li>
+<li><a class="reference internal" href="#locale.str"><code class="docutils literal notranslate"><span class="pre">str()</span></code></a></li>
+<li><a class="reference internal" href="#locale.delocalize"><code class="docutils literal notranslate"><span class="pre">delocalize()</span></code></a></li>
+<li><a class="reference internal" href="#locale.localize"><code class="docutils literal notranslate"><span class="pre">localize()</span></code></a></li>
+<li><a class="reference internal" href="#locale.atof"><code class="docutils literal notranslate"><span class="pre">atof()</span></code></a></li>
+<li><a class="reference internal" href="#locale.atoi"><code class="docutils literal notranslate"><span class="pre">atoi()</span></code></a></li>
+<li><a class="reference internal" href="#locale.LC_CTYPE"><code class="docutils literal notranslate"><span class="pre">LC_CTYPE</span></code></a></li>
+<li><a class="reference internal" href="#locale.LC_COLLATE"><code class="docutils literal notranslate"><span class="pre">LC_COLLATE</span></code></a></li>
+<li><a class="reference internal" href="#locale.LC_TIME"><code class="docutils literal notranslate"><span class="pre">LC_TIME</span></code></a></li>
+<li><a class="reference internal" href="#locale.LC_MONETARY"><code class="docutils literal notranslate"><span class="pre">LC_MONETARY</span></code></a></li>
+<li><a class="reference internal" href="#locale.LC_MESSAGES"><code class="docutils literal notranslate"><span class="pre">LC_MESSAGES</span></code></a></li>
+<li><a class="reference internal" href="#locale.LC_NUMERIC"><code class="docutils literal notranslate"><span class="pre">LC_NUMERIC</span></code></a></li>
+<li><a class="reference internal" href="#locale.LC_ALL"><code class="docutils literal notranslate"><span class="pre">LC_ALL</span></code></a></li>
+<li><a class="reference internal" href="#locale.CHAR_MAX"><code class="docutils literal notranslate"><span class="pre">CHAR_MAX</span></code></a></li>
 <li><a class="reference internal" href="#background-details-hints-tips-and-caveats">Background, details, hints, tips and caveats</a></li>
 <li><a class="reference internal" href="#for-extension-writers-and-programs-that-embed-python">For extension writers and programs that embed Python</a></li>
-<li><a class="reference internal" href="#access-to-message-catalogs">Access to message catalogs</a></li>
+<li><a class="reference internal" href="#access-to-message-catalogs">Access to message catalogs</a><ul>
+<li><a class="reference internal" href="#locale.gettext"><code class="docutils literal notranslate"><span class="pre">gettext()</span></code></a></li>
+<li><a class="reference internal" href="#locale.dgettext"><code class="docutils literal notranslate"><span class="pre">dgettext()</span></code></a></li>
+<li><a class="reference internal" href="#locale.dcgettext"><code class="docutils literal notranslate"><span class="pre">dcgettext()</span></code></a></li>
+<li><a class="reference internal" href="#locale.textdomain"><code class="docutils literal notranslate"><span class="pre">textdomain()</span></code></a></li>
+<li><a class="reference internal" href="#locale.bindtextdomain"><code class="docutils literal notranslate"><span class="pre">bindtextdomain()</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -135,7 +185,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.7 Documentation</a> &#187;
+      <a href="../index.html">3.10.8 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -851,9 +901,58 @@ their message catalogs.</p>
     <h3><a href="../contents.html">目錄</a></h3>
     <ul>
 <li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">locale</span></code> --- Internationalization services</a><ul>
+<li><a class="reference internal" href="#locale.Error"><code class="docutils literal notranslate"><span class="pre">Error</span></code></a></li>
+<li><a class="reference internal" href="#locale.setlocale"><code class="docutils literal notranslate"><span class="pre">setlocale()</span></code></a></li>
+<li><a class="reference internal" href="#locale.localeconv"><code class="docutils literal notranslate"><span class="pre">localeconv()</span></code></a></li>
+<li><a class="reference internal" href="#locale.nl_langinfo"><code class="docutils literal notranslate"><span class="pre">nl_langinfo()</span></code></a></li>
+<li><a class="reference internal" href="#locale.CODESET"><code class="docutils literal notranslate"><span class="pre">CODESET</span></code></a></li>
+<li><a class="reference internal" href="#locale.D_T_FMT"><code class="docutils literal notranslate"><span class="pre">D_T_FMT</span></code></a></li>
+<li><a class="reference internal" href="#locale.D_FMT"><code class="docutils literal notranslate"><span class="pre">D_FMT</span></code></a></li>
+<li><a class="reference internal" href="#locale.T_FMT"><code class="docutils literal notranslate"><span class="pre">T_FMT</span></code></a></li>
+<li><a class="reference internal" href="#locale.T_FMT_AMPM"><code class="docutils literal notranslate"><span class="pre">T_FMT_AMPM</span></code></a></li>
+<li><a class="reference internal" href="#locale.RADIXCHAR"><code class="docutils literal notranslate"><span class="pre">RADIXCHAR</span></code></a></li>
+<li><a class="reference internal" href="#locale.THOUSEP"><code class="docutils literal notranslate"><span class="pre">THOUSEP</span></code></a></li>
+<li><a class="reference internal" href="#locale.YESEXPR"><code class="docutils literal notranslate"><span class="pre">YESEXPR</span></code></a></li>
+<li><a class="reference internal" href="#locale.NOEXPR"><code class="docutils literal notranslate"><span class="pre">NOEXPR</span></code></a></li>
+<li><a class="reference internal" href="#locale.CRNCYSTR"><code class="docutils literal notranslate"><span class="pre">CRNCYSTR</span></code></a></li>
+<li><a class="reference internal" href="#locale.ERA"><code class="docutils literal notranslate"><span class="pre">ERA</span></code></a></li>
+<li><a class="reference internal" href="#locale.ERA_D_T_FMT"><code class="docutils literal notranslate"><span class="pre">ERA_D_T_FMT</span></code></a></li>
+<li><a class="reference internal" href="#locale.ERA_D_FMT"><code class="docutils literal notranslate"><span class="pre">ERA_D_FMT</span></code></a></li>
+<li><a class="reference internal" href="#locale.ERA_T_FMT"><code class="docutils literal notranslate"><span class="pre">ERA_T_FMT</span></code></a></li>
+<li><a class="reference internal" href="#locale.ALT_DIGITS"><code class="docutils literal notranslate"><span class="pre">ALT_DIGITS</span></code></a></li>
+<li><a class="reference internal" href="#locale.getdefaultlocale"><code class="docutils literal notranslate"><span class="pre">getdefaultlocale()</span></code></a></li>
+<li><a class="reference internal" href="#locale.getlocale"><code class="docutils literal notranslate"><span class="pre">getlocale()</span></code></a></li>
+<li><a class="reference internal" href="#locale.getpreferredencoding"><code class="docutils literal notranslate"><span class="pre">getpreferredencoding()</span></code></a></li>
+<li><a class="reference internal" href="#locale.normalize"><code class="docutils literal notranslate"><span class="pre">normalize()</span></code></a></li>
+<li><a class="reference internal" href="#locale.resetlocale"><code class="docutils literal notranslate"><span class="pre">resetlocale()</span></code></a></li>
+<li><a class="reference internal" href="#locale.strcoll"><code class="docutils literal notranslate"><span class="pre">strcoll()</span></code></a></li>
+<li><a class="reference internal" href="#locale.strxfrm"><code class="docutils literal notranslate"><span class="pre">strxfrm()</span></code></a></li>
+<li><a class="reference internal" href="#locale.format_string"><code class="docutils literal notranslate"><span class="pre">format_string()</span></code></a></li>
+<li><a class="reference internal" href="#locale.format"><code class="docutils literal notranslate"><span class="pre">format()</span></code></a></li>
+<li><a class="reference internal" href="#locale.currency"><code class="docutils literal notranslate"><span class="pre">currency()</span></code></a></li>
+<li><a class="reference internal" href="#locale.str"><code class="docutils literal notranslate"><span class="pre">str()</span></code></a></li>
+<li><a class="reference internal" href="#locale.delocalize"><code class="docutils literal notranslate"><span class="pre">delocalize()</span></code></a></li>
+<li><a class="reference internal" href="#locale.localize"><code class="docutils literal notranslate"><span class="pre">localize()</span></code></a></li>
+<li><a class="reference internal" href="#locale.atof"><code class="docutils literal notranslate"><span class="pre">atof()</span></code></a></li>
+<li><a class="reference internal" href="#locale.atoi"><code class="docutils literal notranslate"><span class="pre">atoi()</span></code></a></li>
+<li><a class="reference internal" href="#locale.LC_CTYPE"><code class="docutils literal notranslate"><span class="pre">LC_CTYPE</span></code></a></li>
+<li><a class="reference internal" href="#locale.LC_COLLATE"><code class="docutils literal notranslate"><span class="pre">LC_COLLATE</span></code></a></li>
+<li><a class="reference internal" href="#locale.LC_TIME"><code class="docutils literal notranslate"><span class="pre">LC_TIME</span></code></a></li>
+<li><a class="reference internal" href="#locale.LC_MONETARY"><code class="docutils literal notranslate"><span class="pre">LC_MONETARY</span></code></a></li>
+<li><a class="reference internal" href="#locale.LC_MESSAGES"><code class="docutils literal notranslate"><span class="pre">LC_MESSAGES</span></code></a></li>
+<li><a class="reference internal" href="#locale.LC_NUMERIC"><code class="docutils literal notranslate"><span class="pre">LC_NUMERIC</span></code></a></li>
+<li><a class="reference internal" href="#locale.LC_ALL"><code class="docutils literal notranslate"><span class="pre">LC_ALL</span></code></a></li>
+<li><a class="reference internal" href="#locale.CHAR_MAX"><code class="docutils literal notranslate"><span class="pre">CHAR_MAX</span></code></a></li>
 <li><a class="reference internal" href="#background-details-hints-tips-and-caveats">Background, details, hints, tips and caveats</a></li>
 <li><a class="reference internal" href="#for-extension-writers-and-programs-that-embed-python">For extension writers and programs that embed Python</a></li>
-<li><a class="reference internal" href="#access-to-message-catalogs">Access to message catalogs</a></li>
+<li><a class="reference internal" href="#access-to-message-catalogs">Access to message catalogs</a><ul>
+<li><a class="reference internal" href="#locale.gettext"><code class="docutils literal notranslate"><span class="pre">gettext()</span></code></a></li>
+<li><a class="reference internal" href="#locale.dgettext"><code class="docutils literal notranslate"><span class="pre">dgettext()</span></code></a></li>
+<li><a class="reference internal" href="#locale.dcgettext"><code class="docutils literal notranslate"><span class="pre">dcgettext()</span></code></a></li>
+<li><a class="reference internal" href="#locale.textdomain"><code class="docutils literal notranslate"><span class="pre">textdomain()</span></code></a></li>
+<li><a class="reference internal" href="#locale.bindtextdomain"><code class="docutils literal notranslate"><span class="pre">bindtextdomain()</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -914,7 +1013,7 @@ their message catalogs.</p>
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.7 Documentation</a> &#187;
+      <a href="../index.html">3.10.8 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -951,11 +1050,11 @@ their message catalogs.</p>
 <br />
     <br />
 
-    最後更新於 9月 16, 2022。
+    最後更新於 10月 15, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 
-    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1 建立。
+    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.2.3 建立。
     </div>
 
   </body>

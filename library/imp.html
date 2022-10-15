@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>imp --- Access the import internals &#8212; Python 3.10.7 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>imp --- Access the import internals &#8212; Python 3.10.8 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -16,12 +16,13 @@
     <script src="../_static/underscore.js"></script>
     <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/translations.js"></script>
     
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.10.7 說明文件 中搜尋"
+          title="在 Python 3.10.8 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -75,6 +76,28 @@
     <h3><a href="../contents.html">目錄</a></h3>
     <ul>
 <li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">imp</span></code> --- Access the <span class="xref std std-ref">import</span> internals</a><ul>
+<li><a class="reference internal" href="#imp.get_magic"><code class="docutils literal notranslate"><span class="pre">get_magic()</span></code></a></li>
+<li><a class="reference internal" href="#imp.get_suffixes"><code class="docutils literal notranslate"><span class="pre">get_suffixes()</span></code></a></li>
+<li><a class="reference internal" href="#imp.find_module"><code class="docutils literal notranslate"><span class="pre">find_module()</span></code></a></li>
+<li><a class="reference internal" href="#imp.load_module"><code class="docutils literal notranslate"><span class="pre">load_module()</span></code></a></li>
+<li><a class="reference internal" href="#imp.new_module"><code class="docutils literal notranslate"><span class="pre">new_module()</span></code></a></li>
+<li><a class="reference internal" href="#imp.reload"><code class="docutils literal notranslate"><span class="pre">reload()</span></code></a></li>
+<li><a class="reference internal" href="#imp.cache_from_source"><code class="docutils literal notranslate"><span class="pre">cache_from_source()</span></code></a></li>
+<li><a class="reference internal" href="#imp.source_from_cache"><code class="docutils literal notranslate"><span class="pre">source_from_cache()</span></code></a></li>
+<li><a class="reference internal" href="#imp.get_tag"><code class="docutils literal notranslate"><span class="pre">get_tag()</span></code></a></li>
+<li><a class="reference internal" href="#imp.lock_held"><code class="docutils literal notranslate"><span class="pre">lock_held()</span></code></a></li>
+<li><a class="reference internal" href="#imp.acquire_lock"><code class="docutils literal notranslate"><span class="pre">acquire_lock()</span></code></a></li>
+<li><a class="reference internal" href="#imp.release_lock"><code class="docutils literal notranslate"><span class="pre">release_lock()</span></code></a></li>
+<li><a class="reference internal" href="#imp.PY_SOURCE"><code class="docutils literal notranslate"><span class="pre">PY_SOURCE</span></code></a></li>
+<li><a class="reference internal" href="#imp.PY_COMPILED"><code class="docutils literal notranslate"><span class="pre">PY_COMPILED</span></code></a></li>
+<li><a class="reference internal" href="#imp.C_EXTENSION"><code class="docutils literal notranslate"><span class="pre">C_EXTENSION</span></code></a></li>
+<li><a class="reference internal" href="#imp.PKG_DIRECTORY"><code class="docutils literal notranslate"><span class="pre">PKG_DIRECTORY</span></code></a></li>
+<li><a class="reference internal" href="#imp.C_BUILTIN"><code class="docutils literal notranslate"><span class="pre">C_BUILTIN</span></code></a></li>
+<li><a class="reference internal" href="#imp.PY_FROZEN"><code class="docutils literal notranslate"><span class="pre">PY_FROZEN</span></code></a></li>
+<li><a class="reference internal" href="#imp.NullImporter"><code class="docutils literal notranslate"><span class="pre">NullImporter</span></code></a><ul>
+<li><a class="reference internal" href="#imp.NullImporter.find_module"><code class="docutils literal notranslate"><span class="pre">NullImporter.find_module()</span></code></a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#examples">範例</a></li>
 </ul>
 </li>
@@ -133,7 +156,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.7 Documentation</a> &#187;
+      <a href="../index.html">3.10.8 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -577,6 +600,28 @@ in that version, since <a class="reference internal" href="#imp.find_module" tit
     <h3><a href="../contents.html">目錄</a></h3>
     <ul>
 <li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">imp</span></code> --- Access the <span class="xref std std-ref">import</span> internals</a><ul>
+<li><a class="reference internal" href="#imp.get_magic"><code class="docutils literal notranslate"><span class="pre">get_magic()</span></code></a></li>
+<li><a class="reference internal" href="#imp.get_suffixes"><code class="docutils literal notranslate"><span class="pre">get_suffixes()</span></code></a></li>
+<li><a class="reference internal" href="#imp.find_module"><code class="docutils literal notranslate"><span class="pre">find_module()</span></code></a></li>
+<li><a class="reference internal" href="#imp.load_module"><code class="docutils literal notranslate"><span class="pre">load_module()</span></code></a></li>
+<li><a class="reference internal" href="#imp.new_module"><code class="docutils literal notranslate"><span class="pre">new_module()</span></code></a></li>
+<li><a class="reference internal" href="#imp.reload"><code class="docutils literal notranslate"><span class="pre">reload()</span></code></a></li>
+<li><a class="reference internal" href="#imp.cache_from_source"><code class="docutils literal notranslate"><span class="pre">cache_from_source()</span></code></a></li>
+<li><a class="reference internal" href="#imp.source_from_cache"><code class="docutils literal notranslate"><span class="pre">source_from_cache()</span></code></a></li>
+<li><a class="reference internal" href="#imp.get_tag"><code class="docutils literal notranslate"><span class="pre">get_tag()</span></code></a></li>
+<li><a class="reference internal" href="#imp.lock_held"><code class="docutils literal notranslate"><span class="pre">lock_held()</span></code></a></li>
+<li><a class="reference internal" href="#imp.acquire_lock"><code class="docutils literal notranslate"><span class="pre">acquire_lock()</span></code></a></li>
+<li><a class="reference internal" href="#imp.release_lock"><code class="docutils literal notranslate"><span class="pre">release_lock()</span></code></a></li>
+<li><a class="reference internal" href="#imp.PY_SOURCE"><code class="docutils literal notranslate"><span class="pre">PY_SOURCE</span></code></a></li>
+<li><a class="reference internal" href="#imp.PY_COMPILED"><code class="docutils literal notranslate"><span class="pre">PY_COMPILED</span></code></a></li>
+<li><a class="reference internal" href="#imp.C_EXTENSION"><code class="docutils literal notranslate"><span class="pre">C_EXTENSION</span></code></a></li>
+<li><a class="reference internal" href="#imp.PKG_DIRECTORY"><code class="docutils literal notranslate"><span class="pre">PKG_DIRECTORY</span></code></a></li>
+<li><a class="reference internal" href="#imp.C_BUILTIN"><code class="docutils literal notranslate"><span class="pre">C_BUILTIN</span></code></a></li>
+<li><a class="reference internal" href="#imp.PY_FROZEN"><code class="docutils literal notranslate"><span class="pre">PY_FROZEN</span></code></a></li>
+<li><a class="reference internal" href="#imp.NullImporter"><code class="docutils literal notranslate"><span class="pre">NullImporter</span></code></a><ul>
+<li><a class="reference internal" href="#imp.NullImporter.find_module"><code class="docutils literal notranslate"><span class="pre">NullImporter.find_module()</span></code></a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#examples">範例</a></li>
 </ul>
 </li>
@@ -638,7 +683,7 @@ in that version, since <a class="reference internal" href="#imp.find_module" tit
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.7 Documentation</a> &#187;
+      <a href="../index.html">3.10.8 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -675,11 +720,11 @@ in that version, since <a class="reference internal" href="#imp.find_module" tit
 <br />
     <br />
 
-    最後更新於 9月 16, 2022。
+    最後更新於 10月 15, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 
-    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1 建立。
+    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.2.3 建立。
     </div>
 
   </body>

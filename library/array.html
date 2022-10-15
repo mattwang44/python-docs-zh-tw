@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>array --- 高效率的數值型陣列 &#8212; Python 3.10.7 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>array --- 高效率的數值型陣列 &#8212; Python 3.10.8 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -16,12 +16,13 @@
     <script src="../_static/underscore.js"></script>
     <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/translations.js"></script>
     
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.10.7 說明文件 中搜尋"
+          title="在 Python 3.10.8 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -71,6 +72,39 @@
     <div class="menu-wrapper">
         <nav class="menu" role="navigation" aria-label="main navigation">
             <div class="language_switcher_placeholder"></div>
+  <div>
+    <h3><a href="../contents.html">目錄</a></h3>
+    <ul>
+<li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">array</span></code> --- 高效率的數值型陣列</a><ul>
+<li><a class="reference internal" href="#array.array"><code class="docutils literal notranslate"><span class="pre">array</span></code></a><ul>
+<li><a class="reference internal" href="#array.array.typecode"><code class="docutils literal notranslate"><span class="pre">array.typecode</span></code></a></li>
+<li><a class="reference internal" href="#array.array.itemsize"><code class="docutils literal notranslate"><span class="pre">array.itemsize</span></code></a></li>
+<li><a class="reference internal" href="#array.array.append"><code class="docutils literal notranslate"><span class="pre">array.append()</span></code></a></li>
+<li><a class="reference internal" href="#array.array.buffer_info"><code class="docutils literal notranslate"><span class="pre">array.buffer_info()</span></code></a></li>
+<li><a class="reference internal" href="#array.array.byteswap"><code class="docutils literal notranslate"><span class="pre">array.byteswap()</span></code></a></li>
+<li><a class="reference internal" href="#array.array.count"><code class="docutils literal notranslate"><span class="pre">array.count()</span></code></a></li>
+<li><a class="reference internal" href="#array.array.extend"><code class="docutils literal notranslate"><span class="pre">array.extend()</span></code></a></li>
+<li><a class="reference internal" href="#array.array.frombytes"><code class="docutils literal notranslate"><span class="pre">array.frombytes()</span></code></a></li>
+<li><a class="reference internal" href="#array.array.fromfile"><code class="docutils literal notranslate"><span class="pre">array.fromfile()</span></code></a></li>
+<li><a class="reference internal" href="#array.array.fromlist"><code class="docutils literal notranslate"><span class="pre">array.fromlist()</span></code></a></li>
+<li><a class="reference internal" href="#array.array.fromunicode"><code class="docutils literal notranslate"><span class="pre">array.fromunicode()</span></code></a></li>
+<li><a class="reference internal" href="#array.array.index"><code class="docutils literal notranslate"><span class="pre">array.index()</span></code></a></li>
+<li><a class="reference internal" href="#array.array.insert"><code class="docutils literal notranslate"><span class="pre">array.insert()</span></code></a></li>
+<li><a class="reference internal" href="#array.array.pop"><code class="docutils literal notranslate"><span class="pre">array.pop()</span></code></a></li>
+<li><a class="reference internal" href="#array.array.remove"><code class="docutils literal notranslate"><span class="pre">array.remove()</span></code></a></li>
+<li><a class="reference internal" href="#array.array.reverse"><code class="docutils literal notranslate"><span class="pre">array.reverse()</span></code></a></li>
+<li><a class="reference internal" href="#array.array.tobytes"><code class="docutils literal notranslate"><span class="pre">array.tobytes()</span></code></a></li>
+<li><a class="reference internal" href="#array.array.tofile"><code class="docutils literal notranslate"><span class="pre">array.tofile()</span></code></a></li>
+<li><a class="reference internal" href="#array.array.tolist"><code class="docutils literal notranslate"><span class="pre">array.tolist()</span></code></a></li>
+<li><a class="reference internal" href="#array.array.tounicode"><code class="docutils literal notranslate"><span class="pre">array.tounicode()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#array.typecodes"><code class="docutils literal notranslate"><span class="pre">typecodes</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
   <div>
     <h4>上個主題</h4>
     <p class="topless"><a href="bisect.html"
@@ -123,7 +157,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.7 Documentation</a> &#187;
+      <a href="../index.html">3.10.8 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -435,6 +469,39 @@
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
   <div>
+    <h3><a href="../contents.html">目錄</a></h3>
+    <ul>
+<li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">array</span></code> --- 高效率的數值型陣列</a><ul>
+<li><a class="reference internal" href="#array.array"><code class="docutils literal notranslate"><span class="pre">array</span></code></a><ul>
+<li><a class="reference internal" href="#array.array.typecode"><code class="docutils literal notranslate"><span class="pre">array.typecode</span></code></a></li>
+<li><a class="reference internal" href="#array.array.itemsize"><code class="docutils literal notranslate"><span class="pre">array.itemsize</span></code></a></li>
+<li><a class="reference internal" href="#array.array.append"><code class="docutils literal notranslate"><span class="pre">array.append()</span></code></a></li>
+<li><a class="reference internal" href="#array.array.buffer_info"><code class="docutils literal notranslate"><span class="pre">array.buffer_info()</span></code></a></li>
+<li><a class="reference internal" href="#array.array.byteswap"><code class="docutils literal notranslate"><span class="pre">array.byteswap()</span></code></a></li>
+<li><a class="reference internal" href="#array.array.count"><code class="docutils literal notranslate"><span class="pre">array.count()</span></code></a></li>
+<li><a class="reference internal" href="#array.array.extend"><code class="docutils literal notranslate"><span class="pre">array.extend()</span></code></a></li>
+<li><a class="reference internal" href="#array.array.frombytes"><code class="docutils literal notranslate"><span class="pre">array.frombytes()</span></code></a></li>
+<li><a class="reference internal" href="#array.array.fromfile"><code class="docutils literal notranslate"><span class="pre">array.fromfile()</span></code></a></li>
+<li><a class="reference internal" href="#array.array.fromlist"><code class="docutils literal notranslate"><span class="pre">array.fromlist()</span></code></a></li>
+<li><a class="reference internal" href="#array.array.fromunicode"><code class="docutils literal notranslate"><span class="pre">array.fromunicode()</span></code></a></li>
+<li><a class="reference internal" href="#array.array.index"><code class="docutils literal notranslate"><span class="pre">array.index()</span></code></a></li>
+<li><a class="reference internal" href="#array.array.insert"><code class="docutils literal notranslate"><span class="pre">array.insert()</span></code></a></li>
+<li><a class="reference internal" href="#array.array.pop"><code class="docutils literal notranslate"><span class="pre">array.pop()</span></code></a></li>
+<li><a class="reference internal" href="#array.array.remove"><code class="docutils literal notranslate"><span class="pre">array.remove()</span></code></a></li>
+<li><a class="reference internal" href="#array.array.reverse"><code class="docutils literal notranslate"><span class="pre">array.reverse()</span></code></a></li>
+<li><a class="reference internal" href="#array.array.tobytes"><code class="docutils literal notranslate"><span class="pre">array.tobytes()</span></code></a></li>
+<li><a class="reference internal" href="#array.array.tofile"><code class="docutils literal notranslate"><span class="pre">array.tofile()</span></code></a></li>
+<li><a class="reference internal" href="#array.array.tolist"><code class="docutils literal notranslate"><span class="pre">array.tolist()</span></code></a></li>
+<li><a class="reference internal" href="#array.array.tounicode"><code class="docutils literal notranslate"><span class="pre">array.tounicode()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#array.typecodes"><code class="docutils literal notranslate"><span class="pre">typecodes</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
     <h4>上個主題</h4>
     <p class="topless"><a href="bisect.html"
                           title="上一章"><code class="xref py py-mod docutils literal notranslate"><span class="pre">bisect</span></code> --- 陣列二分演算法 (Array bisection algorithm)</a></p>
@@ -489,7 +556,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.7 Documentation</a> &#187;
+      <a href="../index.html">3.10.8 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -526,11 +593,11 @@
 <br />
     <br />
 
-    最後更新於 9月 16, 2022。
+    最後更新於 10月 15, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 
-    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1 建立。
+    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.2.3 建立。
     </div>
 
   </body>

@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>術語表 &#8212; Python 3.10.7 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>術語表 &#8212; Python 3.10.8 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/pydoctheme.css?2022.1" />
@@ -16,12 +16,13 @@
     <script src="_static/underscore.js"></script>
     <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/translations.js"></script>
     
     <script src="_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.10.7 說明文件 中搜尋"
+          title="在 Python 3.10.8 說明文件 中搜尋"
           href="_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="about.html" />
     <link rel="index" title="索引" href="genindex.html" />
@@ -123,7 +124,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="index.html">3.10.7 Documentation</a> &#187;
+      <a href="index.html">3.10.8 Documentation</a> &#187;
     </li>
 
         <li class="nav-item nav-item-this"><a href="">術語表</a></li>
@@ -201,7 +202,8 @@
 </dd>
 <dt id="term-asynchronous-iterator">asynchronous iterator（非同步疊代器）<a class="headerlink" href="#term-asynchronous-iterator" title="本術語的永久連結">¶</a></dt><dd><p>一個實作 <code class="xref py py-meth docutils literal notranslate"><span class="pre">__aiter__()</span></code> 和 <code class="xref py py-meth docutils literal notranslate"><span class="pre">__anext__()</span></code> method 的物件。<code class="docutils literal notranslate"><span class="pre">__anext__</span></code> 必須回傳一個 <a class="reference internal" href="#term-awaitable"><span class="xref std std-term">awaitable</span></a>（可等待物件）。<a class="reference internal" href="reference/compound_stmts.html#async-for"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">async</span> <span class="pre">for</span></code></a> 會解析非同步疊代器的 <code class="xref py py-meth docutils literal notranslate"><span class="pre">__anext__()</span></code> method 所回傳的可等待物件，直到它引發 <a class="reference internal" href="library/exceptions.html#StopAsyncIteration" title="StopAsyncIteration"><code class="xref py py-exc docutils literal notranslate"><span class="pre">StopAsyncIteration</span></code></a> 例外。由 <span class="target" id="index-84"></span><a class="pep reference external" href="https://peps.python.org/pep-0492/"><strong>PEP 492</strong></a> 引入。</p>
 </dd>
-<dt id="term-attribute">attribute（屬性）<a class="headerlink" href="#term-attribute" title="本術語的永久連結">¶</a></dt><dd><p>一個與某物件相關聯的值，該值能透過使用點分隔運算式 (dotted expression) 的名稱被參照。例如，如果物件 <em>o</em> 有一個屬性 <em>a</em>，則該屬性能以 <em>o.a</em> 被參照。</p>
+<dt id="term-attribute">attribute（屬性）<a class="headerlink" href="#term-attribute" title="本術語的永久連結">¶</a></dt><dd><p>一個與某物件相關聯的值，該值大多能透過使用點分隔運算式 (dotted expression) 的名稱被參照。例如，如果物件 <em>o</em> 有一個屬性 <em>a</em>，則該屬性能以 <em>o.a</em> 被參照。</p>
+<p>如果一個物件允許，給予該物件一個名稱不是由<a class="reference internal" href="reference/lexical_analysis.html#identifiers"><span class="std std-ref">Identifiers and keywords</span></a>所定義之識別符 (identifier) 的屬性是有可能的，例如使用 <a class="reference internal" href="library/functions.html#setattr" title="setattr"><code class="xref py py-func docutils literal notranslate"><span class="pre">setattr()</span></code></a>。像這樣的屬性將無法使用點分隔運算式來存取，而是需要使用 <a class="reference internal" href="library/functions.html#getattr" title="getattr"><code class="xref py py-func docutils literal notranslate"><span class="pre">getattr()</span></code></a> 來取得它。</p>
 </dd>
 <dt id="term-awaitable">awaitable（可等待物件）<a class="headerlink" href="#term-awaitable" title="本術語的永久連結">¶</a></dt><dd><p>一個可以在 <a class="reference internal" href="reference/expressions.html#await"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">await</span></code></a> 運算式中被使用的物件。它可以是一個 <a class="reference internal" href="#term-coroutine"><span class="xref std std-term">coroutine</span></a>（協程），或是一個有 <code class="xref py py-meth docutils literal notranslate"><span class="pre">__await__()</span></code> method 的物件。另請參閱 <span class="target" id="index-85"></span><a class="pep reference external" href="https://peps.python.org/pep-0492/"><strong>PEP 492</strong></a>。</p>
 </dd>
@@ -218,6 +220,12 @@
 </dd>
 <dt id="term-bytecode">bytecode（位元組碼）<a class="headerlink" href="#term-bytecode" title="本術語的永久連結">¶</a></dt><dd><p>Python 的原始碼會被編譯成位元組碼，它是 Python 程式在 CPython 直譯器中的內部表示法。該位元組碼也會被暫存在 <code class="docutils literal notranslate"><span class="pre">.pyc</span></code> 檔案中，以便第二次執行同一個檔案時能夠更快速（可以不用從原始碼重新編譯為位元組碼）。這種「中間語言 (intermediate language)」據說是運行在一個 <a class="reference internal" href="#term-virtual-machine"><span class="xref std std-term">virtual machine</span></a>（虛擬機器）上，該虛擬機器會執行與每個位元組碼對應的機器碼 (machine code)。要注意的是，位元組碼理論上是無法在不同的 Python 虛擬機器之間運作的，也不能在不同版本的 Python 之間保持穩定。</p>
 <p>位元組碼的指令列表可以在 <a class="reference internal" href="library/dis.html#bytecodes"><span class="std std-ref">dis 模組</span></a>的說明文件中找到。</p>
+</dd>
+<dt id="term-callable">callable（可呼叫物件）<a class="headerlink" href="#term-callable" title="本術語的永久連結">¶</a></dt><dd><p>一個 callable 是可以被呼叫的物件，呼叫時可能以下列形式帶有一組引數（請見 <a class="reference internal" href="#term-argument"><span class="xref std std-term">argument</span></a>）：</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">callable</span><span class="p">(</span><span class="n">argument1</span><span class="p">,</span> <span class="n">argument2</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>一個 <a class="reference internal" href="#term-function"><span class="xref std std-term">function</span></a> 與其延伸的 <a class="reference internal" href="#term-method"><span class="xref std std-term">method</span></a> 都是 callable。一個有實作 <a class="reference internal" href="reference/datamodel.html#object.__call__" title="object.__call__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__call__()</span></code></a> 方法的 class 之實例也是個 callable。</p>
 </dd>
 <dt id="term-callback">callback（回呼）<a class="headerlink" href="#term-callback" title="本術語的永久連結">¶</a></dt><dd><p>作為引數被傳遞的一個副程式 (subroutine) 函式，會在未來的某個時間點被執行。</p>
 </dd>
@@ -672,7 +680,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="index.html">3.10.7 Documentation</a> &#187;
+      <a href="index.html">3.10.8 Documentation</a> &#187;
     </li>
 
         <li class="nav-item nav-item-this"><a href="">術語表</a></li>
@@ -707,11 +715,11 @@
 <br />
     <br />
 
-    最後更新於 9月 16, 2022。
+    最後更新於 10月 15, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 
-    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1 建立。
+    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.2.3 建立。
     </div>
 
   </body>

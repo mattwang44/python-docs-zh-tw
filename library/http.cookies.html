@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>http.cookies --- HTTP state management &#8212; Python 3.10.7 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>http.cookies --- HTTP state management &#8212; Python 3.10.8 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -16,12 +16,13 @@
     <script src="../_static/underscore.js"></script>
     <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/translations.js"></script>
     
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.10.7 說明文件 中搜尋"
+          title="在 Python 3.10.8 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -75,8 +76,34 @@
     <h3><a href="../contents.html">目錄</a></h3>
     <ul>
 <li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">http.cookies</span></code> --- HTTP state management</a><ul>
-<li><a class="reference internal" href="#cookie-objects">Cookie 物件</a></li>
-<li><a class="reference internal" href="#morsel-objects">Morsel 物件</a></li>
+<li><a class="reference internal" href="#http.cookies.CookieError"><code class="docutils literal notranslate"><span class="pre">CookieError</span></code></a></li>
+<li><a class="reference internal" href="#http.cookies.BaseCookie"><code class="docutils literal notranslate"><span class="pre">BaseCookie</span></code></a></li>
+<li><a class="reference internal" href="#http.cookies.SimpleCookie"><code class="docutils literal notranslate"><span class="pre">SimpleCookie</span></code></a></li>
+<li><a class="reference internal" href="#cookie-objects">Cookie 物件</a><ul>
+<li><a class="reference internal" href="#http.cookies.BaseCookie.value_decode"><code class="docutils literal notranslate"><span class="pre">BaseCookie.value_decode()</span></code></a></li>
+<li><a class="reference internal" href="#http.cookies.BaseCookie.value_encode"><code class="docutils literal notranslate"><span class="pre">BaseCookie.value_encode()</span></code></a></li>
+<li><a class="reference internal" href="#http.cookies.BaseCookie.output"><code class="docutils literal notranslate"><span class="pre">BaseCookie.output()</span></code></a></li>
+<li><a class="reference internal" href="#http.cookies.BaseCookie.js_output"><code class="docutils literal notranslate"><span class="pre">BaseCookie.js_output()</span></code></a></li>
+<li><a class="reference internal" href="#http.cookies.BaseCookie.load"><code class="docutils literal notranslate"><span class="pre">BaseCookie.load()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#morsel-objects">Morsel 物件</a><ul>
+<li><a class="reference internal" href="#http.cookies.Morsel"><code class="docutils literal notranslate"><span class="pre">Morsel</span></code></a><ul>
+<li><a class="reference internal" href="#http.cookies.Morsel.value"><code class="docutils literal notranslate"><span class="pre">Morsel.value</span></code></a></li>
+<li><a class="reference internal" href="#http.cookies.Morsel.coded_value"><code class="docutils literal notranslate"><span class="pre">Morsel.coded_value</span></code></a></li>
+<li><a class="reference internal" href="#http.cookies.Morsel.key"><code class="docutils literal notranslate"><span class="pre">Morsel.key</span></code></a></li>
+<li><a class="reference internal" href="#http.cookies.Morsel.set"><code class="docutils literal notranslate"><span class="pre">Morsel.set()</span></code></a></li>
+<li><a class="reference internal" href="#http.cookies.Morsel.isReservedKey"><code class="docutils literal notranslate"><span class="pre">Morsel.isReservedKey()</span></code></a></li>
+<li><a class="reference internal" href="#http.cookies.Morsel.output"><code class="docutils literal notranslate"><span class="pre">Morsel.output()</span></code></a></li>
+<li><a class="reference internal" href="#http.cookies.Morsel.js_output"><code class="docutils literal notranslate"><span class="pre">Morsel.js_output()</span></code></a></li>
+<li><a class="reference internal" href="#http.cookies.Morsel.OutputString"><code class="docutils literal notranslate"><span class="pre">Morsel.OutputString()</span></code></a></li>
+<li><a class="reference internal" href="#http.cookies.Morsel.update"><code class="docutils literal notranslate"><span class="pre">Morsel.update()</span></code></a></li>
+<li><a class="reference internal" href="#http.cookies.Morsel.copy"><code class="docutils literal notranslate"><span class="pre">Morsel.copy()</span></code></a></li>
+<li><a class="reference internal" href="#http.cookies.Morsel.setdefault"><code class="docutils literal notranslate"><span class="pre">Morsel.setdefault()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li><a class="reference internal" href="#example">範例</a></li>
 </ul>
 </li>
@@ -135,7 +162,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.7 Documentation</a> &#187;
+      <a href="../index.html">3.10.8 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -399,7 +426,7 @@ behave the same as <a class="reference internal" href="stdtypes.html#dict.setdef
 <section id="example">
 <span id="cookie-example"></span><h2>範例<a class="headerlink" href="#example" title="本標頭的永久連結">¶</a></h2>
 <p>The following example demonstrates how to use the <a class="reference internal" href="#module-http.cookies" title="http.cookies: Support for HTTP state management (cookies)."><code class="xref py py-mod docutils literal notranslate"><span class="pre">http.cookies</span></code></a> module.</p>
-<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">http</span> <span class="kn">import</span> <span class="n">cookies</span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">http</span> <span class="kn">import</span> <span class="n">cookies</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">C</span> <span class="o">=</span> <span class="n">cookies</span><span class="o">.</span><span class="n">SimpleCookie</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">C</span><span class="p">[</span><span class="s2">&quot;fig&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;newton&quot;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">C</span><span class="p">[</span><span class="s2">&quot;sugar&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;wafer&quot;</span>
@@ -460,8 +487,34 @@ behave the same as <a class="reference internal" href="stdtypes.html#dict.setdef
     <h3><a href="../contents.html">目錄</a></h3>
     <ul>
 <li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">http.cookies</span></code> --- HTTP state management</a><ul>
-<li><a class="reference internal" href="#cookie-objects">Cookie 物件</a></li>
-<li><a class="reference internal" href="#morsel-objects">Morsel 物件</a></li>
+<li><a class="reference internal" href="#http.cookies.CookieError"><code class="docutils literal notranslate"><span class="pre">CookieError</span></code></a></li>
+<li><a class="reference internal" href="#http.cookies.BaseCookie"><code class="docutils literal notranslate"><span class="pre">BaseCookie</span></code></a></li>
+<li><a class="reference internal" href="#http.cookies.SimpleCookie"><code class="docutils literal notranslate"><span class="pre">SimpleCookie</span></code></a></li>
+<li><a class="reference internal" href="#cookie-objects">Cookie 物件</a><ul>
+<li><a class="reference internal" href="#http.cookies.BaseCookie.value_decode"><code class="docutils literal notranslate"><span class="pre">BaseCookie.value_decode()</span></code></a></li>
+<li><a class="reference internal" href="#http.cookies.BaseCookie.value_encode"><code class="docutils literal notranslate"><span class="pre">BaseCookie.value_encode()</span></code></a></li>
+<li><a class="reference internal" href="#http.cookies.BaseCookie.output"><code class="docutils literal notranslate"><span class="pre">BaseCookie.output()</span></code></a></li>
+<li><a class="reference internal" href="#http.cookies.BaseCookie.js_output"><code class="docutils literal notranslate"><span class="pre">BaseCookie.js_output()</span></code></a></li>
+<li><a class="reference internal" href="#http.cookies.BaseCookie.load"><code class="docutils literal notranslate"><span class="pre">BaseCookie.load()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#morsel-objects">Morsel 物件</a><ul>
+<li><a class="reference internal" href="#http.cookies.Morsel"><code class="docutils literal notranslate"><span class="pre">Morsel</span></code></a><ul>
+<li><a class="reference internal" href="#http.cookies.Morsel.value"><code class="docutils literal notranslate"><span class="pre">Morsel.value</span></code></a></li>
+<li><a class="reference internal" href="#http.cookies.Morsel.coded_value"><code class="docutils literal notranslate"><span class="pre">Morsel.coded_value</span></code></a></li>
+<li><a class="reference internal" href="#http.cookies.Morsel.key"><code class="docutils literal notranslate"><span class="pre">Morsel.key</span></code></a></li>
+<li><a class="reference internal" href="#http.cookies.Morsel.set"><code class="docutils literal notranslate"><span class="pre">Morsel.set()</span></code></a></li>
+<li><a class="reference internal" href="#http.cookies.Morsel.isReservedKey"><code class="docutils literal notranslate"><span class="pre">Morsel.isReservedKey()</span></code></a></li>
+<li><a class="reference internal" href="#http.cookies.Morsel.output"><code class="docutils literal notranslate"><span class="pre">Morsel.output()</span></code></a></li>
+<li><a class="reference internal" href="#http.cookies.Morsel.js_output"><code class="docutils literal notranslate"><span class="pre">Morsel.js_output()</span></code></a></li>
+<li><a class="reference internal" href="#http.cookies.Morsel.OutputString"><code class="docutils literal notranslate"><span class="pre">Morsel.OutputString()</span></code></a></li>
+<li><a class="reference internal" href="#http.cookies.Morsel.update"><code class="docutils literal notranslate"><span class="pre">Morsel.update()</span></code></a></li>
+<li><a class="reference internal" href="#http.cookies.Morsel.copy"><code class="docutils literal notranslate"><span class="pre">Morsel.copy()</span></code></a></li>
+<li><a class="reference internal" href="#http.cookies.Morsel.setdefault"><code class="docutils literal notranslate"><span class="pre">Morsel.setdefault()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li><a class="reference internal" href="#example">範例</a></li>
 </ul>
 </li>
@@ -523,7 +576,7 @@ behave the same as <a class="reference internal" href="stdtypes.html#dict.setdef
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.7 Documentation</a> &#187;
+      <a href="../index.html">3.10.8 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -560,11 +613,11 @@ behave the same as <a class="reference internal" href="stdtypes.html#dict.setdef
 <br />
     <br />
 
-    最後更新於 9月 16, 2022。
+    最後更新於 10月 15, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 
-    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1 建立。
+    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.2.3 建立。
     </div>
 
   </body>

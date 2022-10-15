@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>1. 以 C 或 C++ 擴充 Python &#8212; Python 3.10.7 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1. 以 C 或 C++ 擴充 Python &#8212; Python 3.10.8 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -16,12 +16,13 @@
     <script src="../_static/underscore.js"></script>
     <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/translations.js"></script>
     
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.10.7 說明文件 中搜尋"
+          title="在 Python 3.10.8 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -150,7 +151,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.7 Documentation</a> &#187;
+      <a href="../index.html">3.10.8 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">擴充和嵌入 Python 直譯器</a> &#187;</li>
@@ -303,15 +304,15 @@ if no exception has occurred.  You normally don't need to call
 since you should be able to tell from the return value.</p>
 <p>When a function <em>f</em> that calls another function <em>g</em> detects that the latter
 fails, <em>f</em> should itself return an error value (usually <code class="docutils literal notranslate"><span class="pre">NULL</span></code> or <code class="docutils literal notranslate"><span class="pre">-1</span></code>).  It
-should <em>not</em> call one of the <span class="xref c c-texpr"><span class="n">PyErr_</span><span class="p">*</span></span> functions --- one has already
+should <em>not</em> call one of the <code class="docutils literal notranslate"><span class="pre">PyErr_*</span></code> functions --- one has already
 been called by <em>g</em>. <em>f</em>'s caller is then supposed to also return an error
-indication to <em>its</em> caller, again <em>without</em> calling <span class="xref c c-texpr"><span class="n">PyErr_</span><span class="p">*</span></span>, and so on
+indication to <em>its</em> caller, again <em>without</em> calling <code class="docutils literal notranslate"><span class="pre">PyErr_*</span></code>, and so on
 --- the most detailed cause of the error was already reported by the function
 that first detected it.  Once the error reaches the Python interpreter's main
 loop, this aborts the currently executing Python code and tries to find an
 exception handler specified by the Python programmer.</p>
 <p>(There are situations where a module can actually give a more detailed error
-message by calling another <span class="xref c c-texpr"><span class="n">PyErr_</span><span class="p">*</span></span> function, and in such cases it is
+message by calling another <code class="docutils literal notranslate"><span class="pre">PyErr_*</span></code> function, and in such cases it is
 fine to do so.  As a general rule, however, this is not necessary, and can cause
 information about the cause of the error to be lost: most operations can fail
 for a variety of reasons.)</p>
@@ -429,7 +430,7 @@ Python object.  This is done using the function <a class="reference internal" hr
 <p>In this case, it will return an integer object.  (Yes, even integers are objects
 on the heap in Python!)</p>
 <p>If you have a C function that returns no useful argument (a function returning
-<span class="xref c c-texpr"><span class="kt">void</span></span>), the corresponding Python function must return <code class="docutils literal notranslate"><span class="pre">None</span></code>.   You
+<span class="c-expr sig sig-inline c"><span class="kt">void</span></span>), the corresponding Python function must return <code class="docutils literal notranslate"><span class="pre">None</span></code>.   You
 need this idiom to do so (which is implemented by the <a class="reference internal" href="../c-api/none.html#c.Py_RETURN_NONE" title="Py_RETURN_NONE"><code class="xref c c-macro docutils literal notranslate"><span class="pre">Py_RETURN_NONE</span></code></a>
 macro):</p>
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">Py_INCREF</span><span class="p">(</span><span class="n">Py_None</span><span class="p">);</span><span class="w"></span>
@@ -1178,7 +1179,7 @@ avoid name clashes with other extension modules (as discussed in section
 other extension modules must be exported in a different way.</p>
 <p>Python provides a special mechanism to pass C-level information (pointers) from
 one extension module to another one: Capsules. A Capsule is a Python data type
-which stores a pointer (<span class="xref c c-texpr"><span class="kt">void</span><span class="p">*</span></span>).  Capsules can only be created and
+which stores a pointer (<span class="c-expr sig sig-inline c"><span class="kt">void</span><span class="p">*</span></span>).  Capsules can only be created and
 accessed via their C API, but they can be passed around like any other Python
 object. In particular,  they can be assigned to a name in an extension module's
 namespace. Other extension modules can then import this module, retrieve the
@@ -1190,7 +1191,7 @@ various tasks of storing and retrieving the pointers can be distributed in
 different ways between the module providing the code and the client modules.</p>
 <p>Whichever method you choose, it's important to name your Capsules properly.
 The function <a class="reference internal" href="../c-api/capsule.html#c.PyCapsule_New" title="PyCapsule_New"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyCapsule_New()</span></code></a> takes a name parameter
-(<span class="xref c c-texpr"><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="p">*</span></span>); you're permitted to pass in a <code class="docutils literal notranslate"><span class="pre">NULL</span></code> name, but
+(<span class="c-expr sig sig-inline c"><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="p">*</span></span>); you're permitted to pass in a <code class="docutils literal notranslate"><span class="pre">NULL</span></code> name, but
 we strongly encourage you to specify a name.  Properly named Capsules provide
 a degree of runtime type-safety; there is no feasible way to tell one unnamed
 Capsule from another.</p>
@@ -1206,7 +1207,7 @@ of certainty that the Capsule they load contains the correct C API.</p>
 <p>The following example demonstrates an approach that puts most of the burden on
 the writer of the exporting module, which is appropriate for commonly used
 library modules. It stores all C API pointers (just one in the example!) in an
-array of <span class="xref c c-texpr"><span class="kt">void</span></span> pointers which becomes the value of a Capsule. The header
+array of <span class="c-expr sig sig-inline c"><span class="kt">void</span></span> pointers which becomes the value of a Capsule. The header
 file corresponding to the module provides a macro that takes care of importing
 the module and retrieving its C API pointers; client modules only have to call
 this macro before accessing the C API.</p>
@@ -1474,7 +1475,7 @@ this is still found in much existing code.</p>
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.7 Documentation</a> &#187;
+      <a href="../index.html">3.10.8 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >擴充和嵌入 Python 直譯器</a> &#187;</li>
@@ -1510,11 +1511,11 @@ this is still found in much existing code.</p>
 <br />
     <br />
 
-    最後更新於 9月 16, 2022。
+    最後更新於 10月 15, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 
-    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1 建立。
+    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.2.3 建立。
     </div>
 
   </body>
