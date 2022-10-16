@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>multiprocessing --- Process-based parallelism &#8212; Python 3.10.8 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>multiprocessing --- Process-based parallelism &#8212; Python 3.11.0rc2 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -22,7 +22,7 @@
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.10.8 說明文件 中搜尋"
+          title="在 Python 3.11.0rc2 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -317,7 +317,7 @@
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.10/Doc/library/multiprocessing.rst"
+        <a href="https://github.com/python/cpython/blob/main/Doc/library/multiprocessing.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -354,7 +354,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.8 Documentation</a> &#187;
+      <a href="../index.html">3.11.0rc2 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -384,8 +384,12 @@
             
   <section id="module-multiprocessing">
 <span id="multiprocessing-process-based-parallelism"></span><h1><a class="reference internal" href="#module-multiprocessing" title="multiprocessing: Process-based parallelism."><code class="xref py py-mod docutils literal notranslate"><span class="pre">multiprocessing</span></code></a> --- Process-based parallelism<a class="headerlink" href="#module-multiprocessing" title="本標頭的永久連結">¶</a></h1>
-<p><strong>原始碼：</strong><a class="reference external" href="https://github.com/python/cpython/tree/3.10/Lib/multiprocessing/">Lib/multiprocessing/</a></p>
+<p><strong>原始碼：</strong><a class="reference external" href="https://github.com/python/cpython/tree/3.11/Lib/multiprocessing/">Lib/multiprocessing/</a></p>
 <hr class="docutils" />
+<p class="availability"><a class="reference internal" href="intro.html#availability"><span class="std std-ref">Availability</span></a>: not Emscripten, not WASI.<p>This module does not work or is not available on WebAssembly platforms
+<code class="docutils literal notranslate"><span class="pre">wasm32-emscripten</span></code> and <code class="docutils literal notranslate"><span class="pre">wasm32-wasi</span></code>. See
+<a class="reference internal" href="intro.html#wasm-availability"><span class="std std-ref">WebAssembly platforms</span></a> for more information.</p>
+</p>
 <section id="introduction">
 <h2>簡介<a class="headerlink" href="#introduction" title="本標頭的永久連結">¶</a></h2>
 <p><a class="reference internal" href="#module-multiprocessing" title="multiprocessing: Process-based parallelism."><code class="xref py py-mod docutils literal notranslate"><span class="pre">multiprocessing</span></code></a> is a package that supports spawning processes using an
@@ -770,7 +774,7 @@ processes in a few different ways.</p>
         <span class="n">multiple_results</span> <span class="o">=</span> <span class="p">[</span><span class="n">pool</span><span class="o">.</span><span class="n">apply_async</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getpid</span><span class="p">,</span> <span class="p">())</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">)]</span>
         <span class="nb">print</span><span class="p">([</span><span class="n">res</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">timeout</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">res</span> <span class="ow">in</span> <span class="n">multiple_results</span><span class="p">])</span>
 
-        <span class="c1"># make a single worker sleep for 10 secs</span>
+        <span class="c1"># make a single worker sleep for 10 seconds</span>
         <span class="n">res</span> <span class="o">=</span> <span class="n">pool</span><span class="o">.</span><span class="n">apply_async</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">,</span> <span class="p">(</span><span class="mi">10</span><span class="p">,))</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="nb">print</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">timeout</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
@@ -836,7 +840,9 @@ dictionary of keyword arguments for the target invocation.  If provided,
 the keyword-only <em>daemon</em> argument sets the process <a class="reference internal" href="#multiprocessing.Process.daemon" title="multiprocessing.Process.daemon"><code class="xref py py-attr docutils literal notranslate"><span class="pre">daemon</span></code></a> flag
 to <code class="docutils literal notranslate"><span class="pre">True</span></code> or <code class="docutils literal notranslate"><span class="pre">False</span></code>.  If <code class="docutils literal notranslate"><span class="pre">None</span></code> (the default), this flag will be
 inherited from the creating process.</p>
-<p>By default, no arguments are passed to <em>target</em>.</p>
+<p>By default, no arguments are passed to <em>target</em>. The <em>args</em> argument,
+which defaults to <code class="docutils literal notranslate"><span class="pre">()</span></code>, can be used to specify a list or tuple of the arguments
+to pass to <em>target</em>.</p>
 <p>If a subclass overrides the constructor, it must make sure it invokes the
 base class constructor (<code class="xref py py-meth docutils literal notranslate"><span class="pre">Process.__init__()</span></code>) before doing anything else
 to the process.</p>
@@ -851,6 +857,18 @@ to the process.</p>
 method invokes the callable object passed to the object's constructor as
 the target argument, if any, with sequential and keyword arguments taken
 from the <em>args</em> and <em>kwargs</em> arguments, respectively.</p>
+<p>Using a list or tuple as the <em>args</em> argument passed to <a class="reference internal" href="#multiprocessing.Process" title="multiprocessing.Process"><code class="xref py py-class docutils literal notranslate"><span class="pre">Process</span></code></a>
+achieves the same effect.</p>
+<p>範例：</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">multiprocessing</span> <span class="kn">import</span> <span class="n">Process</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p</span> <span class="o">=</span> <span class="n">Process</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="nb">print</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+<span class="go">1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p</span> <span class="o">=</span> <span class="n">Process</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="nb">print</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+<span class="go">1</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="py method">
@@ -1452,6 +1470,9 @@ do some thing like</p>
 <div class="versionchanged">
 <p><span class="versionmodified changed">在 3.4 版本變更: </span>Now supported on Unix when the <code class="docutils literal notranslate"><span class="pre">'spawn'</span></code> start method is used.</p>
 </div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">在 3.11 版本變更: </span>Accepts a <a class="reference internal" href="../glossary.html#term-path-like-object"><span class="xref std std-term">path-like object</span></a>.</p>
+</div>
 </dd></dl>
 
 <dl class="py function">
@@ -2050,7 +2071,7 @@ their parent process exits.  The manager classes are defined in the
 <a class="reference internal" href="#module-multiprocessing.managers" title="multiprocessing.managers: Share data between process with shared objects."><code class="xref py py-mod docutils literal notranslate"><span class="pre">multiprocessing.managers</span></code></a> module:</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="multiprocessing.managers.BaseManager">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">multiprocessing.managers.</span></span><span class="sig-name descname"><span class="pre">BaseManager</span></span><span class="sig-paren">(</span><span class="optional">[</span><em class="sig-param"><span class="n"><span class="pre">address</span></span></em><span class="optional">[</span>, <em class="sig-param"><span class="n"><span class="pre">authkey</span></span></em><span class="optional">]</span><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#multiprocessing.managers.BaseManager" title="本定義的永久連結">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">multiprocessing.managers.</span></span><span class="sig-name descname"><span class="pre">BaseManager</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">address</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">authkey</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">serializer</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'pickle'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ctx</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shutdown_timeout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#multiprocessing.managers.BaseManager" title="本定義的永久連結">¶</a></dt>
 <dd><p>Create a BaseManager object.</p>
 <p>Once created one should call <a class="reference internal" href="#multiprocessing.managers.BaseManager.start" title="multiprocessing.managers.BaseManager.start"><code class="xref py py-meth docutils literal notranslate"><span class="pre">start()</span></code></a> or <code class="docutils literal notranslate"><span class="pre">get_server().serve_forever()</span></code> to ensure
 that the manager object refers to a started manager process.</p>
@@ -2060,6 +2081,17 @@ connections.  If <em>address</em> is <code class="docutils literal notranslate">
 validity of incoming connections to the server process.  If
 <em>authkey</em> is <code class="docutils literal notranslate"><span class="pre">None</span></code> then <code class="docutils literal notranslate"><span class="pre">current_process().authkey</span></code> is used.
 Otherwise <em>authkey</em> is used and it must be a byte string.</p>
+<p><em>serializer</em> must be <code class="docutils literal notranslate"><span class="pre">'pickle'</span></code> (use <a class="reference internal" href="pickle.html#module-pickle" title="pickle: Convert Python objects to streams of bytes and back."><code class="xref py py-mod docutils literal notranslate"><span class="pre">pickle</span></code></a> serialization) or
+<code class="docutils literal notranslate"><span class="pre">'xmlrpclib'</span></code> (use <a class="reference internal" href="xmlrpc.client.html#module-xmlrpc.client" title="xmlrpc.client: XML-RPC client access."><code class="xref py py-mod docutils literal notranslate"><span class="pre">xmlrpc.client</span></code></a> serialization).</p>
+<p><em>ctx</em> is a context object, or <code class="docutils literal notranslate"><span class="pre">None</span></code> (use the current context). See the
+<code class="xref py py-func docutils literal notranslate"><span class="pre">get_context()</span></code> function.</p>
+<p><em>shutdown_timeout</em> is a timeout in seconds used to wait until the process
+used by the manager completes in the <a class="reference internal" href="#multiprocessing.managers.BaseManager.shutdown" title="multiprocessing.managers.BaseManager.shutdown"><code class="xref py py-meth docutils literal notranslate"><span class="pre">shutdown()</span></code></a> method. If the
+shutdown times out, the process is terminated. If terminating the process
+also times out, the process is killed.</p>
+<div class="versionchanged">
+<p><span class="versionmodified changed">在 3.11 版本變更: </span>新增 <em>shutdown_timeout</em> 參數。</p>
+</div>
 <dl class="py method">
 <dt class="sig sig-object py" id="multiprocessing.managers.BaseManager.start">
 <span class="sig-name descname"><span class="pre">start</span></span><span class="sig-paren">(</span><span class="optional">[</span><em class="sig-param"><span class="n"><span class="pre">initializer</span></span></em><span class="optional">[</span>, <em class="sig-param"><span class="n"><span class="pre">initargs</span></span></em><span class="optional">]</span><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#multiprocessing.managers.BaseManager.start" title="本定義的永久連結">¶</a></dt>
@@ -3910,7 +3942,7 @@ processes and collect the results:</p>
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.10/Doc/library/multiprocessing.rst"
+        <a href="https://github.com/python/cpython/blob/main/Doc/library/multiprocessing.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -3950,7 +3982,7 @@ processes and collect the results:</p>
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.8 Documentation</a> &#187;
+      <a href="../index.html">3.11.0rc2 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -3987,7 +4019,7 @@ processes and collect the results:</p>
 <br />
     <br />
 
-    最後更新於 10月 15, 2022。
+    最後更新於 10月 16, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 

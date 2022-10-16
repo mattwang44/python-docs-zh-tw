@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>The Very High Level Layer &#8212; Python 3.10.8 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Very High Level Layer &#8212; Python 3.11.0rc2 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -22,7 +22,7 @@
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.10.8 說明文件 中搜尋"
+          title="在 Python 3.11.0rc2 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -87,7 +87,7 @@
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.10/Doc/c-api/veryhigh.rst"
+        <a href="https://github.com/python/cpython/blob/main/Doc/c-api/veryhigh.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -124,7 +124,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.8 Documentation</a> &#187;
+      <a href="../index.html">3.11.0rc2 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Python/C API 參考手冊</a> &#187;</li>
@@ -456,23 +456,16 @@ a mapping object of local variables, arrays of arguments, keywords and
 defaults, a dictionary of default values for <a class="reference internal" href="../glossary.html#keyword-only-parameter"><span class="std std-ref">keyword-only</span></a> arguments and a closure tuple of cells.</p>
 </dd></dl>
 
-<dl class="c type">
-<dt class="sig sig-object c" id="c.PyFrameObject">
-<span class="k"><span class="pre">type</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PyFrameObject</span></span></span><a class="headerlink" href="#c.PyFrameObject" title="本定義的永久連結">¶</a><br /></dt>
-<dd><em class="stableabi"> Part of the <a class="reference internal" href="stable.html#stable"><span class="std std-ref">Limited API</span></a> (as an opaque struct).</em><p>The C structure of the objects used to describe frame objects. The
-fields of this type are subject to change at any time.</p>
-</dd></dl>
-
 <dl class="c function">
 <dt class="sig sig-object c" id="c.PyEval_EvalFrame">
-<a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">PyEval_EvalFrame</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.PyFrameObject" title="PyFrameObject"><span class="n"><span class="pre">PyFrameObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">f</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.PyEval_EvalFrame" title="本定義的永久連結">¶</a><br /></dt>
+<a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">PyEval_EvalFrame</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="frame.html#c.PyFrameObject" title="PyFrameObject"><span class="n"><span class="pre">PyFrameObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">f</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.PyEval_EvalFrame" title="本定義的永久連結">¶</a><br /></dt>
 <dd><em class="refcount">Return value: New reference.</em><em class="stableabi"> Part of the <a class="reference internal" href="stable.html#stable"><span class="std std-ref">Stable ABI</span></a>.</em><p>Evaluate an execution frame.  This is a simplified interface to
 <a class="reference internal" href="#c.PyEval_EvalFrameEx" title="PyEval_EvalFrameEx"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyEval_EvalFrameEx()</span></code></a>, for backward compatibility.</p>
 </dd></dl>
 
 <dl class="c function">
 <dt class="sig sig-object c" id="c.PyEval_EvalFrameEx">
-<a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">PyEval_EvalFrameEx</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.PyFrameObject" title="PyFrameObject"><span class="n"><span class="pre">PyFrameObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">f</span></span>, <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n"><span class="pre">throwflag</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.PyEval_EvalFrameEx" title="本定義的永久連結">¶</a><br /></dt>
+<a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">PyEval_EvalFrameEx</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="frame.html#c.PyFrameObject" title="PyFrameObject"><span class="n"><span class="pre">PyFrameObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">f</span></span>, <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n"><span class="pre">throwflag</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.PyEval_EvalFrameEx" title="本定義的永久連結">¶</a><br /></dt>
 <dd><em class="refcount">Return value: New reference.</em><em class="stableabi"> Part of the <a class="reference internal" href="stable.html#stable"><span class="std std-ref">Stable ABI</span></a>.</em><p>This is the main, unvarnished function of Python interpretation.  The code
 object associated with the execution frame <em>f</em> is executed, interpreting
 bytecode and executing calls as needed.  The additional <em>throwflag</em>
@@ -576,7 +569,7 @@ interpreted as &quot;true division&quot; according to <span class="target" id="i
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.10/Doc/c-api/veryhigh.rst"
+        <a href="https://github.com/python/cpython/blob/main/Doc/c-api/veryhigh.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -616,7 +609,7 @@ interpreted as &quot;true division&quot; according to <span class="target" id="i
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.8 Documentation</a> &#187;
+      <a href="../index.html">3.11.0rc2 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python/C API 參考手冊</a> &#187;</li>
@@ -652,7 +645,7 @@ interpreted as &quot;true division&quot; according to <span class="target" id="i
 <br />
     <br />
 
-    最後更新於 10月 15, 2022。
+    最後更新於 10月 16, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 

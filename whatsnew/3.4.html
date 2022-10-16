@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>Python 3.4 有什麼新功能 &#8212; Python 3.10.8 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python 3.4 有什麼新功能 &#8212; Python 3.11.0rc2 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -22,7 +22,7 @@
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.10.8 說明文件 中搜尋"
+          title="在 Python 3.11.0rc2 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -217,7 +217,7 @@
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.10/Doc/whatsnew/3.4.rst"
+        <a href="https://github.com/python/cpython/blob/main/Doc/whatsnew/3.4.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -254,7 +254,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.8 Documentation</a> &#187;
+      <a href="../index.html">3.11.0rc2 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Python 有什麼新功能？</a> &#187;</li>
@@ -414,7 +414,7 @@ during the installation process). Window users will need to opt in to the
 automatic <code class="docutils literal notranslate"><span class="pre">PATH</span></code> modifications to have <code class="docutils literal notranslate"><span class="pre">pip</span></code> available from the command
 line by default, otherwise it can still be accessed through the Python
 launcher for Windows as <code class="docutils literal notranslate"><span class="pre">py</span> <span class="pre">-m</span> <span class="pre">pip</span></code>.</p>
-<p>As <a class="reference external" href="https://www.python.org/dev/peps/pep-0453/#recommendations-for-downstream-distributors">discussed in the PEP</a>, platform packagers may choose not to install
+<p>As <a class="reference external" href="https://peps.python.org/pep-0453/#recommendations-for-downstream-distributors">discussed in the PEP</a>, platform packagers may choose not to install
 these commands by default, as long as, when invoked, they provide clear and
 simple directions on how to install them on that platform (usually using
 the system package manager).</p>
@@ -583,7 +583,7 @@ their replacements.</p>
 can be used to specify the value they return if the iterable they are
 evaluating has no elements.  (Contributed by Julian Berman in
 <a class="reference external" href="https://bugs.python.org/issue?&#64;action=redirect&amp;bpo=18111">bpo-18111</a>.)</p></li>
-<li><p>Module objects are now <a class="reference internal" href="../library/weakref.html#module-weakref" title="weakref: Support for weak references and weak dictionaries."><code class="xref py py-mod docutils literal notranslate"><span class="pre">weakref</span></code></a>'able.</p></li>
+<li><p>Module objects are now <a class="reference internal" href="../library/weakref.html#mod-weakref"><span class="std std-ref">weakly referenceable</span></a>.</p></li>
 <li><p>Module <code class="docutils literal notranslate"><span class="pre">__file__</span></code> attributes (and related values) should now always
 contain absolute paths by default, with the sole exception of
 <code class="docutils literal notranslate"><span class="pre">__main__.__file__</span></code> when a script has been executed directly using
@@ -1090,7 +1090,7 @@ Daniel Urban, Aaron Iles and Nick Coghlan in <a class="reference external" href=
 <code class="docutils literal notranslate"><span class="pre">__dir__</span></code> methods and dynamic class attributes provided through
 metaclasses.  (Contributed by Ethan Furman in <a class="reference external" href="https://bugs.python.org/issue?&#64;action=redirect&amp;bpo=18929">bpo-18929</a> and
 <a class="reference external" href="https://bugs.python.org/issue?&#64;action=redirect&amp;bpo=19030">bpo-19030</a>.)</p>
-<p><a class="reference internal" href="../library/inspect.html#inspect.getfullargspec" title="inspect.getfullargspec"><code class="xref py py-func docutils literal notranslate"><span class="pre">getfullargspec()</span></code></a> and <a class="reference internal" href="../library/inspect.html#inspect.getargspec" title="inspect.getargspec"><code class="xref py py-func docutils literal notranslate"><span class="pre">getargspec()</span></code></a>
+<p><a class="reference internal" href="../library/inspect.html#inspect.getfullargspec" title="inspect.getfullargspec"><code class="xref py py-func docutils literal notranslate"><span class="pre">getfullargspec()</span></code></a> and <code class="xref py py-func docutils literal notranslate"><span class="pre">getargspec()</span></code>
 now use the <a class="reference internal" href="../library/inspect.html#inspect.signature" title="inspect.signature"><code class="xref py py-func docutils literal notranslate"><span class="pre">signature()</span></code></a> API. This allows them to
 support a much broader range of callables, including those with
 <code class="docutils literal notranslate"><span class="pre">__signature__</span></code> attributes, those with metadata provided by argument
@@ -1149,8 +1149,8 @@ with additional speedups by Antoine Pitrou in <a class="reference external" href
 </section>
 <section id="mmap">
 <h3>mmap<a class="headerlink" href="#mmap" title="本標頭的永久連結">¶</a></h3>
-<p>mmap objects can now be <a class="reference internal" href="../library/weakref.html#module-weakref" title="weakref: Support for weak references and weak dictionaries."><code class="xref py py-mod docutils literal notranslate"><span class="pre">weakref</span></code></a>ed.  (Contributed by Valerie Lambert in
-<a class="reference external" href="https://bugs.python.org/issue?&#64;action=redirect&amp;bpo=4885">bpo-4885</a>.)</p>
+<p>mmap objects are now <a class="reference internal" href="../library/weakref.html#mod-weakref"><span class="std std-ref">weakly referenceable</span></a>.
+(Contributed by Valerie Lambert in <a class="reference external" href="https://bugs.python.org/issue?&#64;action=redirect&amp;bpo=4885">bpo-4885</a>.)</p>
 </section>
 <section id="multiprocessing">
 <h3>multiprocessing<a class="headerlink" href="#multiprocessing" title="本標頭的永久連結">¶</a></h3>
@@ -2274,7 +2274,7 @@ string allocated by <a class="reference internal" href="../c-api/memory.html#c.P
 <li><p><a class="reference internal" href="../c-api/init.html#c.PyThread_set_key_value" title="PyThread_set_key_value"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyThread_set_key_value()</span></code></a> now always set the value. In Python
 3.3, the function did nothing if the key already exists (if the current
 value is a non-<code class="docutils literal notranslate"><span class="pre">NULL</span></code> pointer).</p></li>
-<li><p>The <code class="docutils literal notranslate"><span class="pre">f_tstate</span></code> (thread state) field of the <a class="reference internal" href="../c-api/veryhigh.html#c.PyFrameObject" title="PyFrameObject"><code class="xref c c-type docutils literal notranslate"><span class="pre">PyFrameObject</span></code></a>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">f_tstate</span></code> (thread state) field of the <a class="reference internal" href="../c-api/frame.html#c.PyFrameObject" title="PyFrameObject"><code class="xref c c-type docutils literal notranslate"><span class="pre">PyFrameObject</span></code></a>
 structure has been removed to fix a bug: see <a class="reference external" href="https://bugs.python.org/issue?&#64;action=redirect&amp;bpo=14432">bpo-14432</a> for the
 rationale.</p></li>
 </ul>
@@ -2460,7 +2460,7 @@ alternate context:</p>
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.10/Doc/whatsnew/3.4.rst"
+        <a href="https://github.com/python/cpython/blob/main/Doc/whatsnew/3.4.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -2500,7 +2500,7 @@ alternate context:</p>
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.8 Documentation</a> &#187;
+      <a href="../index.html">3.11.0rc2 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 有什麼新功能？</a> &#187;</li>
@@ -2536,7 +2536,7 @@ alternate context:</p>
 <br />
     <br />
 
-    最後更新於 10月 15, 2022。
+    最後更新於 10月 16, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 

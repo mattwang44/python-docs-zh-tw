@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>cgi --- 通用閘道器介面支援 &#8212; Python 3.10.8 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cgi --- 通用閘道器介面支援 &#8212; Python 3.11.0rc2 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -22,7 +22,7 @@
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.10.8 說明文件 中搜尋"
+          title="在 Python 3.11.0rc2 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -119,7 +119,7 @@
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.10/Doc/library/cgi.rst"
+        <a href="https://github.com/python/cpython/blob/main/Doc/library/cgi.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -156,7 +156,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.8 Documentation</a> &#187;
+      <a href="../index.html">3.11.0rc2 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -186,14 +186,27 @@
             
   <section id="module-cgi">
 <span id="cgi-common-gateway-interface-support"></span><h1><a class="reference internal" href="#module-cgi" title="cgi: Helpers for running Python scripts via the Common Gateway Interface.（已棄用）"><code class="xref py py-mod docutils literal notranslate"><span class="pre">cgi</span></code></a> --- 通用閘道器介面支援<a class="headerlink" href="#module-cgi" title="本標頭的永久連結">¶</a></h1>
-<p><strong>原始碼：</strong><a class="reference external" href="https://github.com/python/cpython/tree/3.10/Lib/cgi.py">Lib/cgi.py</a></p>
-<div class="deprecated" id="index-0">
-<p><span class="versionmodified deprecated">在 3.11 版本開始棄用: </span><a class="reference internal" href="#module-cgi" title="cgi: Helpers for running Python scripts via the Common Gateway Interface.（已棄用）"><code class="xref py py-mod docutils literal notranslate"><span class="pre">cgi</span></code></a> 模組 (module) 即將被棄用（詳情與替代方案請見 <span class="target" id="index-8"></span><a class="pep reference external" href="https://peps.python.org/pep-0594/#cgi"><strong>PEP 594</strong></a>）。</p>
+<p><strong>原始碼：</strong><a class="reference external" href="https://github.com/python/cpython/tree/3.11/Lib/cgi.py">Lib/cgi.py</a></p>
+<div class="deprecated-removed" id="index-0">
+<p><span class="versionmodified">Deprecated since version 3.11, will be removed in version 3.13: </span><a class="reference internal" href="#module-cgi" title="cgi: Helpers for running Python scripts via the Common Gateway Interface.（已棄用）"><code class="xref py py-mod docutils literal notranslate"><span class="pre">cgi</span></code></a> 模組 (module) 即將被棄用（詳情與替代方案請見 <span class="target" id="index-8"></span><a class="pep reference external" href="https://peps.python.org/pep-0594/#cgi"><strong>PEP 594</strong></a>）。</p>
+<p>The <code class="xref py py-class docutils literal notranslate"><span class="pre">FieldStorage</span></code> class can typically be replaced with
+<a class="reference internal" href="urllib.parse.html#urllib.parse.parse_qsl" title="urllib.parse.parse_qsl"><code class="xref py py-func docutils literal notranslate"><span class="pre">urllib.parse.parse_qsl()</span></code></a> for <code class="docutils literal notranslate"><span class="pre">GET</span></code> and <code class="docutils literal notranslate"><span class="pre">HEAD</span></code> requests,
+and the <a class="reference internal" href="email.message.html#module-email.message" title="email.message: The base class representing email messages."><code class="xref py py-mod docutils literal notranslate"><span class="pre">email.message</span></code></a> module or
+<a class="reference external" href="https://pypi.org/project/multipart/">multipart</a> for <code class="docutils literal notranslate"><span class="pre">POST</span></code> and <code class="docutils literal notranslate"><span class="pre">PUT</span></code>.
+Most <a class="reference internal" href="#functions-in-cgi-module"><span class="std std-ref">utility functions</span></a> have replacements.</p>
 </div>
 <hr class="docutils" />
 <p>Support module for Common Gateway Interface (CGI) scripts.</p>
 <p>This module defines a number of utilities for use by CGI scripts written in
 Python.</p>
+<p>The global variable <code class="docutils literal notranslate"><span class="pre">maxlen</span></code> can be set to an integer indicating the maximum
+size of a POST request. POST requests larger than this size will result in a
+<a class="reference internal" href="exceptions.html#ValueError" title="ValueError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code></a> being raised during parsing. The default value of this
+variable is <code class="docutils literal notranslate"><span class="pre">0</span></code>, meaning the request size is unlimited.</p>
+<p class="availability"><a class="reference internal" href="intro.html#availability"><span class="std std-ref">Availability</span></a>: not Emscripten, not WASI.<p>This module does not work or is not available on WebAssembly platforms
+<code class="docutils literal notranslate"><span class="pre">wasm32-emscripten</span></code> and <code class="docutils literal notranslate"><span class="pre">wasm32-wasi</span></code>. See
+<a class="reference internal" href="intro.html#wasm-availability"><span class="std std-ref">WebAssembly platforms</span></a> for more information.</p>
+</p>
 <section id="introduction">
 <h2>簡介<a class="headerlink" href="#introduction" title="本標頭的永久連結">¶</a></h2>
 <p id="cgi-intro">A CGI script is invoked by an HTTP server, usually to process user input
@@ -425,6 +438,12 @@ algorithms implemented in this module in other circumstances.</p>
 <dd><p>Parse a query in the environment or from a file (the file defaults to
 <code class="docutils literal notranslate"><span class="pre">sys.stdin</span></code>).  The <em>keep_blank_values</em>, <em>strict_parsing</em> and <em>separator</em> parameters are
 passed to <a class="reference internal" href="urllib.parse.html#urllib.parse.parse_qs" title="urllib.parse.parse_qs"><code class="xref py py-func docutils literal notranslate"><span class="pre">urllib.parse.parse_qs()</span></code></a> unchanged.</p>
+<div class="deprecated-removed">
+<p><span class="versionmodified">Deprecated since version 3.11, will be removed in version 3.13: </span>This function, like the rest of the <a class="reference internal" href="#module-cgi" title="cgi: Helpers for running Python scripts via the Common Gateway Interface.（已棄用）"><code class="xref py py-mod docutils literal notranslate"><span class="pre">cgi</span></code></a> module, is deprecated.
+It can be replaced by calling <a class="reference internal" href="urllib.parse.html#urllib.parse.parse_qs" title="urllib.parse.parse_qs"><code class="xref py py-func docutils literal notranslate"><span class="pre">urllib.parse.parse_qs()</span></code></a> directly
+on the desired query string (except for <code class="docutils literal notranslate"><span class="pre">multipart/form-data</span></code> input,
+which can be handled as described for <a class="reference internal" href="#cgi.parse_multipart" title="cgi.parse_multipart"><code class="xref py py-func docutils literal notranslate"><span class="pre">parse_multipart()</span></code></a>).</p>
+</div>
 </dd></dl>
 
 <dl class="py function">
@@ -447,6 +466,13 @@ value is now a list of strings, not bytes.</p>
 <div class="versionchanged">
 <p><span class="versionmodified changed">在 3.10 版本變更: </span>新增 <em>separator</em> 參數。</p>
 </div>
+<div class="deprecated-removed">
+<p><span class="versionmodified">Deprecated since version 3.11, will be removed in version 3.13: </span>This function, like the rest of the <a class="reference internal" href="#module-cgi" title="cgi: Helpers for running Python scripts via the Common Gateway Interface.（已棄用）"><code class="xref py py-mod docutils literal notranslate"><span class="pre">cgi</span></code></a> module, is deprecated.
+It can be replaced with the functionality in the <a class="reference internal" href="email.html#module-email" title="email: Package supporting the parsing, manipulating, and generating email messages."><code class="xref py py-mod docutils literal notranslate"><span class="pre">email</span></code></a> package
+(e.g. <a class="reference internal" href="email.message.html#email.message.EmailMessage" title="email.message.EmailMessage"><code class="xref py py-class docutils literal notranslate"><span class="pre">email.message.EmailMessage</span></code></a>/<a class="reference internal" href="email.compat32-message.html#email.message.Message" title="email.message.Message"><code class="xref py py-class docutils literal notranslate"><span class="pre">email.message.Message</span></code></a>)
+which implements the same MIME RFCs, or with the
+<a class="reference external" href="https://pypi.org/project/multipart/">multipart</a> PyPI project.</p>
+</div>
 </dd></dl>
 
 <dl class="py function">
@@ -454,6 +480,18 @@ value is now a list of strings, not bytes.</p>
 <span class="sig-prename descclassname"><span class="pre">cgi.</span></span><span class="sig-name descname"><span class="pre">parse_header</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cgi.parse_header" title="本定義的永久連結">¶</a></dt>
 <dd><p>Parse a MIME header (such as <em class="mailheader">Content-Type</em>) into a main value and a
 dictionary of parameters.</p>
+<div class="deprecated-removed">
+<p><span class="versionmodified">Deprecated since version 3.11, will be removed in version 3.13: </span>This function, like the rest of the <a class="reference internal" href="#module-cgi" title="cgi: Helpers for running Python scripts via the Common Gateway Interface.（已棄用）"><code class="xref py py-mod docutils literal notranslate"><span class="pre">cgi</span></code></a> module, is deprecated.
+It can be replaced with the functionality in the <a class="reference internal" href="email.html#module-email" title="email: Package supporting the parsing, manipulating, and generating email messages."><code class="xref py py-mod docutils literal notranslate"><span class="pre">email</span></code></a> package,
+which implements the same MIME RFCs.</p>
+<p>For example, with <a class="reference internal" href="email.message.html#email.message.EmailMessage" title="email.message.EmailMessage"><code class="xref py py-class docutils literal notranslate"><span class="pre">email.message.EmailMessage</span></code></a>:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">email.message</span> <span class="kn">import</span> <span class="n">EmailMessage</span>
+<span class="n">msg</span> <span class="o">=</span> <span class="n">EmailMessage</span><span class="p">()</span>
+<span class="n">msg</span><span class="p">[</span><span class="s1">&#39;content-type&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;application/json; charset=&quot;utf8&quot;&#39;</span>
+<span class="n">main</span><span class="p">,</span> <span class="n">params</span> <span class="o">=</span> <span class="n">msg</span><span class="o">.</span><span class="n">get_content_type</span><span class="p">(),</span> <span class="n">msg</span><span class="p">[</span><span class="s1">&#39;content-type&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">params</span>
+</pre></div>
+</div>
+</div>
 </dd></dl>
 
 <dl class="py function">
@@ -697,7 +735,7 @@ tedious and error-prone.</p>
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.10/Doc/library/cgi.rst"
+        <a href="https://github.com/python/cpython/blob/main/Doc/library/cgi.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -737,7 +775,7 @@ tedious and error-prone.</p>
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.8 Documentation</a> &#187;
+      <a href="../index.html">3.11.0rc2 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -774,7 +812,7 @@ tedious and error-prone.</p>
 <br />
     <br />
 
-    最後更新於 10月 15, 2022。
+    最後更新於 10月 16, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 

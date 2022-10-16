@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>math --- 數學函式 &#8212; Python 3.10.8 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>math --- 數學函式 &#8212; Python 3.11.0rc2 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -22,7 +22,7 @@
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.10.8 說明文件 中搜尋"
+          title="在 Python 3.11.0rc2 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -104,7 +104,9 @@
 </ul>
 </li>
 <li><a class="reference internal" href="#power-and-logarithmic-functions">Power and logarithmic functions</a><ul>
+<li><a class="reference internal" href="#math.cbrt"><code class="docutils literal notranslate"><span class="pre">cbrt()</span></code></a></li>
 <li><a class="reference internal" href="#math.exp"><code class="docutils literal notranslate"><span class="pre">exp()</span></code></a></li>
+<li><a class="reference internal" href="#math.exp2"><code class="docutils literal notranslate"><span class="pre">exp2()</span></code></a></li>
 <li><a class="reference internal" href="#math.expm1"><code class="docutils literal notranslate"><span class="pre">expm1()</span></code></a></li>
 <li><a class="reference internal" href="#math.log"><code class="docutils literal notranslate"><span class="pre">log()</span></code></a></li>
 <li><a class="reference internal" href="#math.log1p"><code class="docutils literal notranslate"><span class="pre">log1p()</span></code></a></li>
@@ -175,7 +177,7 @@
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.10/Doc/library/math.rst"
+        <a href="https://github.com/python/cpython/blob/main/Doc/library/math.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -212,7 +214,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.8 Documentation</a> &#187;
+      <a href="../index.html">3.11.0rc2 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -273,8 +275,8 @@ and without order.</p>
 <p>Evaluates to <code class="docutils literal notranslate"><span class="pre">n!</span> <span class="pre">/</span> <span class="pre">(k!</span> <span class="pre">*</span> <span class="pre">(n</span> <span class="pre">-</span> <span class="pre">k)!)</span></code> when <code class="docutils literal notranslate"><span class="pre">k</span> <span class="pre">&lt;=</span> <span class="pre">n</span></code> and evaluates
 to zero when <code class="docutils literal notranslate"><span class="pre">k</span> <span class="pre">&gt;</span> <span class="pre">n</span></code>.</p>
 <p>Also called the binomial coefficient because it is equivalent
-to the coefficient of k-th term in polynomial expansion of the
-expression <code class="docutils literal notranslate"><span class="pre">(1</span> <span class="pre">+</span> <span class="pre">x)</span> <span class="pre">**</span> <span class="pre">n</span></code>.</p>
+to the coefficient of k-th term in polynomial expansion of
+<code class="docutils literal notranslate"><span class="pre">(1</span> <span class="pre">+</span> <span class="pre">x)ⁿ</span></code>.</p>
 <p>Raises <a class="reference internal" href="exceptions.html#TypeError" title="TypeError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">TypeError</span></code></a> if either of the arguments are not integers.
 Raises <a class="reference internal" href="exceptions.html#ValueError" title="ValueError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code></a> if either of the arguments are negative.</p>
 <div class="versionadded">
@@ -298,8 +300,8 @@ returns <em>-1.0</em>.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="math.factorial">
-<span class="sig-prename descclassname"><span class="pre">math.</span></span><span class="sig-name descname"><span class="pre">factorial</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#math.factorial" title="本定義的永久連結">¶</a></dt>
-<dd><p>Return <em>x</em> factorial as an integer.  Raises <a class="reference internal" href="exceptions.html#ValueError" title="ValueError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code></a> if <em>x</em> is not integral or
+<span class="sig-prename descclassname"><span class="pre">math.</span></span><span class="sig-name descname"><span class="pre">factorial</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#math.factorial" title="本定義的永久連結">¶</a></dt>
+<dd><p>Return <em>n</em> factorial as an integer.  Raises <a class="reference internal" href="exceptions.html#ValueError" title="ValueError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code></a> if <em>n</em> is not integral or
 is negative.</p>
 <div class="deprecated">
 <p><span class="versionmodified deprecated">在 3.9 版本開始棄用: </span>Accepting floats with integral values (like <code class="docutils literal notranslate"><span class="pre">5.0</span></code>) is deprecated.</p>
@@ -585,11 +587,29 @@ necessarily has no fractional bits.</p>
 <section id="power-and-logarithmic-functions">
 <h2>Power and logarithmic functions<a class="headerlink" href="#power-and-logarithmic-functions" title="本標頭的永久連結">¶</a></h2>
 <dl class="py function">
+<dt class="sig sig-object py" id="math.cbrt">
+<span class="sig-prename descclassname"><span class="pre">math.</span></span><span class="sig-name descname"><span class="pre">cbrt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#math.cbrt" title="本定義的永久連結">¶</a></dt>
+<dd><p>Return the cube root of <em>x</em>.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">在 3.11 版本新加入.</span></p>
+</div>
+</dd></dl>
+
+<dl class="py function">
 <dt class="sig sig-object py" id="math.exp">
 <span class="sig-prename descclassname"><span class="pre">math.</span></span><span class="sig-name descname"><span class="pre">exp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#math.exp" title="本定義的永久連結">¶</a></dt>
 <dd><p>Return <em>e</em> raised to the power <em>x</em>, where <em>e</em> = 2.718281... is the base
 of natural logarithms.  This is usually more accurate than <code class="docutils literal notranslate"><span class="pre">math.e</span> <span class="pre">**</span> <span class="pre">x</span></code>
 or <code class="docutils literal notranslate"><span class="pre">pow(math.e,</span> <span class="pre">x)</span></code>.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="math.exp2">
+<span class="sig-prename descclassname"><span class="pre">math.</span></span><span class="sig-name descname"><span class="pre">exp2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#math.exp2" title="本定義的永久連結">¶</a></dt>
+<dd><p>Return <em>2</em> raised to the power <em>x</em>.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">在 3.11 版本新加入.</span></p>
+</div>
 </dd></dl>
 
 <dl class="py function">
@@ -652,7 +672,7 @@ than <code class="docutils literal notranslate"><span class="pre">log(x,</span> 
 <dt class="sig sig-object py" id="math.pow">
 <span class="sig-prename descclassname"><span class="pre">math.</span></span><span class="sig-name descname"><span class="pre">pow</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#math.pow" title="本定義的永久連結">¶</a></dt>
 <dd><p>Return <code class="docutils literal notranslate"><span class="pre">x</span></code> raised to the power <code class="docutils literal notranslate"><span class="pre">y</span></code>.  Exceptional cases follow
-Annex 'F' of the C99 standard as far as possible.  In particular,
+the IEEE 754 standard as far as possible.  In particular,
 <code class="docutils literal notranslate"><span class="pre">pow(1.0,</span> <span class="pre">x)</span></code> and <code class="docutils literal notranslate"><span class="pre">pow(x,</span> <span class="pre">0.0)</span></code> always return <code class="docutils literal notranslate"><span class="pre">1.0</span></code>, even
 when <code class="docutils literal notranslate"><span class="pre">x</span></code> is a zero or a NaN.  If both <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code> are finite,
 <code class="docutils literal notranslate"><span class="pre">x</span></code> is negative, and <code class="docutils literal notranslate"><span class="pre">y</span></code> is not an integer then <code class="docutils literal notranslate"><span class="pre">pow(x,</span> <span class="pre">y)</span></code>
@@ -660,6 +680,11 @@ is undefined, and raises <a class="reference internal" href="exceptions.html#Val
 <p>Unlike the built-in <code class="docutils literal notranslate"><span class="pre">**</span></code> operator, <a class="reference internal" href="#math.pow" title="math.pow"><code class="xref py py-func docutils literal notranslate"><span class="pre">math.pow()</span></code></a> converts both
 its arguments to type <a class="reference internal" href="functions.html#float" title="float"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>.  Use <code class="docutils literal notranslate"><span class="pre">**</span></code> or the built-in
 <a class="reference internal" href="functions.html#pow" title="pow"><code class="xref py py-func docutils literal notranslate"><span class="pre">pow()</span></code></a> function for computing exact integer powers.</p>
+<div class="versionchanged">
+<p><span class="versionmodified changed">在 3.11 版本變更: </span>The special cases <code class="docutils literal notranslate"><span class="pre">pow(0.0,</span> <span class="pre">-inf)</span></code> and <code class="docutils literal notranslate"><span class="pre">pow(-0.0,</span> <span class="pre">-inf)</span></code> were
+changed to return <code class="docutils literal notranslate"><span class="pre">inf</span></code> instead of raising <a class="reference internal" href="exceptions.html#ValueError" title="ValueError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code></a>,
+for consistency with IEEE 754.</p>
+</div>
 </dd></dl>
 
 <dl class="py function">
@@ -923,6 +948,9 @@ Example:</p>
 <span class="go">True</span>
 </pre></div>
 </div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">在 3.11 版本變更: </span>It is now always available.</p>
+</div>
 <div class="versionadded">
 <p><span class="versionmodified added">在 3.5 版本新加入.</span></p>
 </div>
@@ -993,7 +1021,9 @@ Typical behavior is to treat all NaNs as though they were quiet.</p>
 </ul>
 </li>
 <li><a class="reference internal" href="#power-and-logarithmic-functions">Power and logarithmic functions</a><ul>
+<li><a class="reference internal" href="#math.cbrt"><code class="docutils literal notranslate"><span class="pre">cbrt()</span></code></a></li>
 <li><a class="reference internal" href="#math.exp"><code class="docutils literal notranslate"><span class="pre">exp()</span></code></a></li>
+<li><a class="reference internal" href="#math.exp2"><code class="docutils literal notranslate"><span class="pre">exp2()</span></code></a></li>
 <li><a class="reference internal" href="#math.expm1"><code class="docutils literal notranslate"><span class="pre">expm1()</span></code></a></li>
 <li><a class="reference internal" href="#math.log"><code class="docutils literal notranslate"><span class="pre">log()</span></code></a></li>
 <li><a class="reference internal" href="#math.log1p"><code class="docutils literal notranslate"><span class="pre">log1p()</span></code></a></li>
@@ -1064,7 +1094,7 @@ Typical behavior is to treat all NaNs as though they were quiet.</p>
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.10/Doc/library/math.rst"
+        <a href="https://github.com/python/cpython/blob/main/Doc/library/math.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -1104,7 +1134,7 @@ Typical behavior is to treat all NaNs as though they were quiet.</p>
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.8 Documentation</a> &#187;
+      <a href="../index.html">3.11.0rc2 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -1141,7 +1171,7 @@ Typical behavior is to treat all NaNs as though they were quiet.</p>
 <br />
     <br />
 
-    最後更新於 10月 15, 2022。
+    最後更新於 10月 16, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 

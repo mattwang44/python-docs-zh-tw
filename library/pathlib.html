@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>pathlib --- Object-oriented filesystem paths &#8212; Python 3.10.8 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pathlib --- Object-oriented filesystem paths &#8212; Python 3.11.0rc2 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -22,7 +22,7 @@
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.10.8 說明文件 中搜尋"
+          title="在 Python 3.11.0rc2 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -144,6 +144,7 @@
 <li><a class="reference internal" href="#pathlib.Path.readlink"><code class="docutils literal notranslate"><span class="pre">Path.readlink()</span></code></a></li>
 <li><a class="reference internal" href="#pathlib.Path.rename"><code class="docutils literal notranslate"><span class="pre">Path.rename()</span></code></a></li>
 <li><a class="reference internal" href="#pathlib.Path.replace"><code class="docutils literal notranslate"><span class="pre">Path.replace()</span></code></a></li>
+<li><a class="reference internal" href="#pathlib.Path.absolute"><code class="docutils literal notranslate"><span class="pre">Path.absolute()</span></code></a></li>
 <li><a class="reference internal" href="#pathlib.Path.resolve"><code class="docutils literal notranslate"><span class="pre">Path.resolve()</span></code></a></li>
 <li><a class="reference internal" href="#pathlib.Path.rglob"><code class="docutils literal notranslate"><span class="pre">Path.rglob()</span></code></a></li>
 <li><a class="reference internal" href="#pathlib.Path.rmdir"><code class="docutils literal notranslate"><span class="pre">Path.rmdir()</span></code></a></li>
@@ -180,7 +181,7 @@
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.10/Doc/library/pathlib.rst"
+        <a href="https://github.com/python/cpython/blob/main/Doc/library/pathlib.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -217,7 +218,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.8 Documentation</a> &#187;
+      <a href="../index.html">3.11.0rc2 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -250,7 +251,7 @@
 <div class="versionadded">
 <p><span class="versionmodified added">在 3.4 版本新加入.</span></p>
 </div>
-<p><strong>原始碼：</strong><a class="reference external" href="https://github.com/python/cpython/tree/3.10/Lib/pathlib.py">Lib/pathlib.py</a></p>
+<p><strong>原始碼：</strong><a class="reference external" href="https://github.com/python/cpython/tree/3.11/Lib/pathlib.py">Lib/pathlib.py</a></p>
 <hr class="docutils" id="index-0" />
 <p>This module offers classes representing filesystem paths with semantics
 appropriate for different operating systems.  Path classes are divided
@@ -1113,6 +1114,10 @@ words, it enables recursive globbing:</p>
 an inordinate amount of time.</p>
 </div>
 <p class="audit-hook">Raises an <a class="reference internal" href="sys.html#auditing"><span class="std std-ref">auditing event</span></a> <code class="docutils literal notranslate"><span class="pre">pathlib.Path.glob</span></code> with arguments <code class="docutils literal notranslate"><span class="pre">self</span></code>, <code class="docutils literal notranslate"><span class="pre">pattern</span></code>.</p>
+<div class="versionchanged">
+<p><span class="versionmodified changed">在 3.11 版本變更: </span>Return only directories if <em>pattern</em> ends with a pathname components
+separator (<a class="reference internal" href="os.html#os.sep" title="os.sep"><code class="xref py py-data docutils literal notranslate"><span class="pre">sep</span></code></a> or <a class="reference internal" href="os.html#os.altsep" title="os.altsep"><code class="xref py py-data docutils literal notranslate"><span class="pre">altsep</span></code></a>).</p>
+</div>
 </dd></dl>
 
 <dl class="py method">
@@ -1369,6 +1374,20 @@ object.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="pathlib.Path.absolute">
+<span class="sig-prename descclassname"><span class="pre">Path.</span></span><span class="sig-name descname"><span class="pre">absolute</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pathlib.Path.absolute" title="本定義的永久連結">¶</a></dt>
+<dd><p>Make the path absolute, without normalization or resolving symlinks.
+Returns a new path object:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">p</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s1">&#39;tests&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p</span>
+<span class="go">PosixPath(&#39;tests&#39;)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p</span><span class="o">.</span><span class="n">absolute</span><span class="p">()</span>
+<span class="go">PosixPath(&#39;/home/antoine/pathlib/tests&#39;)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="pathlib.Path.resolve">
 <span class="sig-prename descclassname"><span class="pre">Path.</span></span><span class="sig-name descname"><span class="pre">resolve</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">strict</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pathlib.Path.resolve" title="本定義的永久連結">¶</a></dt>
 <dd><p>Make the path absolute, resolving any symlinks.  A new path object is
@@ -1410,6 +1429,10 @@ given relative <em>pattern</em>:</p>
 </pre></div>
 </div>
 <p class="audit-hook">Raises an <a class="reference internal" href="sys.html#auditing"><span class="std std-ref">auditing event</span></a> <code class="docutils literal notranslate"><span class="pre">pathlib.Path.rglob</span></code> with arguments <code class="docutils literal notranslate"><span class="pre">self</span></code>, <code class="docutils literal notranslate"><span class="pre">pattern</span></code>.</p>
+<div class="versionchanged">
+<p><span class="versionmodified changed">在 3.11 版本變更: </span>Return only directories if <em>pattern</em> ends with a pathname components
+separator (<a class="reference internal" href="os.html#os.sep" title="os.sep"><code class="xref py py-data docutils literal notranslate"><span class="pre">sep</span></code></a> or <a class="reference internal" href="os.html#os.altsep" title="os.altsep"><code class="xref py py-data docutils literal notranslate"><span class="pre">altsep</span></code></a>).</p>
+</div>
 </dd></dl>
 
 <dl class="py method">
@@ -1571,7 +1594,7 @@ have the same meaning as in <a class="reference internal" href="functions.html#o
 <p class="admonition-title">備註</p>
 <p>Not all pairs of functions/methods below are equivalent. Some of them,
 despite having some overlapping use-cases, have different semantics. They
-include <a class="reference internal" href="os.path.html#os.path.abspath" title="os.path.abspath"><code class="xref py py-func docutils literal notranslate"><span class="pre">os.path.abspath()</span></code></a> and <a class="reference internal" href="#pathlib.Path.resolve" title="pathlib.Path.resolve"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Path.resolve()</span></code></a>,
+include <a class="reference internal" href="os.path.html#os.path.abspath" title="os.path.abspath"><code class="xref py py-func docutils literal notranslate"><span class="pre">os.path.abspath()</span></code></a> and <a class="reference internal" href="#pathlib.Path.absolute" title="pathlib.Path.absolute"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Path.absolute()</span></code></a>,
 <a class="reference internal" href="os.path.html#os.path.relpath" title="os.path.relpath"><code class="xref py py-func docutils literal notranslate"><span class="pre">os.path.relpath()</span></code></a> and <a class="reference internal" href="#pathlib.PurePath.relative_to" title="pathlib.PurePath.relative_to"><code class="xref py py-meth docutils literal notranslate"><span class="pre">PurePath.relative_to()</span></code></a>.</p>
 </div>
 <table class="docutils align-default">
@@ -1582,83 +1605,86 @@ include <a class="reference internal" href="os.path.html#os.path.abspath" title=
 </thead>
 <tbody>
 <tr class="row-even"><td><p><a class="reference internal" href="os.path.html#os.path.abspath" title="os.path.abspath"><code class="xref py py-func docutils literal notranslate"><span class="pre">os.path.abspath()</span></code></a></p></td>
-<td><p><a class="reference internal" href="#pathlib.Path.resolve" title="pathlib.Path.resolve"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Path.resolve()</span></code></a> <a class="footnote-reference brackets" href="#id5" id="id3" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a></p></td>
+<td><p><a class="reference internal" href="#pathlib.Path.absolute" title="pathlib.Path.absolute"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Path.absolute()</span></code></a> <a class="footnote-reference brackets" href="#id5" id="id3" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="os.html#os.chmod" title="os.chmod"><code class="xref py py-func docutils literal notranslate"><span class="pre">os.chmod()</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="os.path.html#os.path.realpath" title="os.path.realpath"><code class="xref py py-func docutils literal notranslate"><span class="pre">os.path.realpath()</span></code></a></p></td>
+<td><p><a class="reference internal" href="#pathlib.Path.resolve" title="pathlib.Path.resolve"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Path.resolve()</span></code></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="os.html#os.chmod" title="os.chmod"><code class="xref py py-func docutils literal notranslate"><span class="pre">os.chmod()</span></code></a></p></td>
 <td><p><a class="reference internal" href="#pathlib.Path.chmod" title="pathlib.Path.chmod"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Path.chmod()</span></code></a></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="os.html#os.mkdir" title="os.mkdir"><code class="xref py py-func docutils literal notranslate"><span class="pre">os.mkdir()</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="os.html#os.mkdir" title="os.mkdir"><code class="xref py py-func docutils literal notranslate"><span class="pre">os.mkdir()</span></code></a></p></td>
 <td><p><a class="reference internal" href="#pathlib.Path.mkdir" title="pathlib.Path.mkdir"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Path.mkdir()</span></code></a></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="os.html#os.makedirs" title="os.makedirs"><code class="xref py py-func docutils literal notranslate"><span class="pre">os.makedirs()</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="os.html#os.makedirs" title="os.makedirs"><code class="xref py py-func docutils literal notranslate"><span class="pre">os.makedirs()</span></code></a></p></td>
 <td><p><a class="reference internal" href="#pathlib.Path.mkdir" title="pathlib.Path.mkdir"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Path.mkdir()</span></code></a></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="os.html#os.rename" title="os.rename"><code class="xref py py-func docutils literal notranslate"><span class="pre">os.rename()</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="os.html#os.rename" title="os.rename"><code class="xref py py-func docutils literal notranslate"><span class="pre">os.rename()</span></code></a></p></td>
 <td><p><a class="reference internal" href="#pathlib.Path.rename" title="pathlib.Path.rename"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Path.rename()</span></code></a></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="os.html#os.replace" title="os.replace"><code class="xref py py-func docutils literal notranslate"><span class="pre">os.replace()</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="os.html#os.replace" title="os.replace"><code class="xref py py-func docutils literal notranslate"><span class="pre">os.replace()</span></code></a></p></td>
 <td><p><a class="reference internal" href="#pathlib.Path.replace" title="pathlib.Path.replace"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Path.replace()</span></code></a></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="os.html#os.rmdir" title="os.rmdir"><code class="xref py py-func docutils literal notranslate"><span class="pre">os.rmdir()</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="os.html#os.rmdir" title="os.rmdir"><code class="xref py py-func docutils literal notranslate"><span class="pre">os.rmdir()</span></code></a></p></td>
 <td><p><a class="reference internal" href="#pathlib.Path.rmdir" title="pathlib.Path.rmdir"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Path.rmdir()</span></code></a></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="os.html#os.remove" title="os.remove"><code class="xref py py-func docutils literal notranslate"><span class="pre">os.remove()</span></code></a>, <a class="reference internal" href="os.html#os.unlink" title="os.unlink"><code class="xref py py-func docutils literal notranslate"><span class="pre">os.unlink()</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="os.html#os.remove" title="os.remove"><code class="xref py py-func docutils literal notranslate"><span class="pre">os.remove()</span></code></a>, <a class="reference internal" href="os.html#os.unlink" title="os.unlink"><code class="xref py py-func docutils literal notranslate"><span class="pre">os.unlink()</span></code></a></p></td>
 <td><p><a class="reference internal" href="#pathlib.Path.unlink" title="pathlib.Path.unlink"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Path.unlink()</span></code></a></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="os.html#os.getcwd" title="os.getcwd"><code class="xref py py-func docutils literal notranslate"><span class="pre">os.getcwd()</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="os.html#os.getcwd" title="os.getcwd"><code class="xref py py-func docutils literal notranslate"><span class="pre">os.getcwd()</span></code></a></p></td>
 <td><p><a class="reference internal" href="#pathlib.Path.cwd" title="pathlib.Path.cwd"><code class="xref py py-func docutils literal notranslate"><span class="pre">Path.cwd()</span></code></a></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="os.path.html#os.path.exists" title="os.path.exists"><code class="xref py py-func docutils literal notranslate"><span class="pre">os.path.exists()</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="os.path.html#os.path.exists" title="os.path.exists"><code class="xref py py-func docutils literal notranslate"><span class="pre">os.path.exists()</span></code></a></p></td>
 <td><p><a class="reference internal" href="#pathlib.Path.exists" title="pathlib.Path.exists"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Path.exists()</span></code></a></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="os.path.html#os.path.expanduser" title="os.path.expanduser"><code class="xref py py-func docutils literal notranslate"><span class="pre">os.path.expanduser()</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="os.path.html#os.path.expanduser" title="os.path.expanduser"><code class="xref py py-func docutils literal notranslate"><span class="pre">os.path.expanduser()</span></code></a></p></td>
 <td><p><a class="reference internal" href="#pathlib.Path.expanduser" title="pathlib.Path.expanduser"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Path.expanduser()</span></code></a> 和 <a class="reference internal" href="#pathlib.Path.home" title="pathlib.Path.home"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Path.home()</span></code></a></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="os.html#os.listdir" title="os.listdir"><code class="xref py py-func docutils literal notranslate"><span class="pre">os.listdir()</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="os.html#os.listdir" title="os.listdir"><code class="xref py py-func docutils literal notranslate"><span class="pre">os.listdir()</span></code></a></p></td>
 <td><p><a class="reference internal" href="#pathlib.Path.iterdir" title="pathlib.Path.iterdir"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Path.iterdir()</span></code></a></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="os.path.html#os.path.isdir" title="os.path.isdir"><code class="xref py py-func docutils literal notranslate"><span class="pre">os.path.isdir()</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="os.path.html#os.path.isdir" title="os.path.isdir"><code class="xref py py-func docutils literal notranslate"><span class="pre">os.path.isdir()</span></code></a></p></td>
 <td><p><a class="reference internal" href="#pathlib.Path.is_dir" title="pathlib.Path.is_dir"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Path.is_dir()</span></code></a></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="os.path.html#os.path.isfile" title="os.path.isfile"><code class="xref py py-func docutils literal notranslate"><span class="pre">os.path.isfile()</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="os.path.html#os.path.isfile" title="os.path.isfile"><code class="xref py py-func docutils literal notranslate"><span class="pre">os.path.isfile()</span></code></a></p></td>
 <td><p><a class="reference internal" href="#pathlib.Path.is_file" title="pathlib.Path.is_file"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Path.is_file()</span></code></a></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="os.path.html#os.path.islink" title="os.path.islink"><code class="xref py py-func docutils literal notranslate"><span class="pre">os.path.islink()</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="os.path.html#os.path.islink" title="os.path.islink"><code class="xref py py-func docutils literal notranslate"><span class="pre">os.path.islink()</span></code></a></p></td>
 <td><p><a class="reference internal" href="#pathlib.Path.is_symlink" title="pathlib.Path.is_symlink"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Path.is_symlink()</span></code></a></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="os.html#os.link" title="os.link"><code class="xref py py-func docutils literal notranslate"><span class="pre">os.link()</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="os.html#os.link" title="os.link"><code class="xref py py-func docutils literal notranslate"><span class="pre">os.link()</span></code></a></p></td>
 <td><p><a class="reference internal" href="#pathlib.Path.hardlink_to" title="pathlib.Path.hardlink_to"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Path.hardlink_to()</span></code></a></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="os.html#os.symlink" title="os.symlink"><code class="xref py py-func docutils literal notranslate"><span class="pre">os.symlink()</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="os.html#os.symlink" title="os.symlink"><code class="xref py py-func docutils literal notranslate"><span class="pre">os.symlink()</span></code></a></p></td>
 <td><p><a class="reference internal" href="#pathlib.Path.symlink_to" title="pathlib.Path.symlink_to"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Path.symlink_to()</span></code></a></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="os.html#os.readlink" title="os.readlink"><code class="xref py py-func docutils literal notranslate"><span class="pre">os.readlink()</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="os.html#os.readlink" title="os.readlink"><code class="xref py py-func docutils literal notranslate"><span class="pre">os.readlink()</span></code></a></p></td>
 <td><p><a class="reference internal" href="#pathlib.Path.readlink" title="pathlib.Path.readlink"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Path.readlink()</span></code></a></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="os.path.html#os.path.relpath" title="os.path.relpath"><code class="xref py py-func docutils literal notranslate"><span class="pre">os.path.relpath()</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="os.path.html#os.path.relpath" title="os.path.relpath"><code class="xref py py-func docutils literal notranslate"><span class="pre">os.path.relpath()</span></code></a></p></td>
 <td><p><a class="reference internal" href="#pathlib.PurePath.relative_to" title="pathlib.PurePath.relative_to"><code class="xref py py-meth docutils literal notranslate"><span class="pre">PurePath.relative_to()</span></code></a> <a class="footnote-reference brackets" href="#id6" id="id4" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="os.html#os.stat" title="os.stat"><code class="xref py py-func docutils literal notranslate"><span class="pre">os.stat()</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="os.html#os.stat" title="os.stat"><code class="xref py py-func docutils literal notranslate"><span class="pre">os.stat()</span></code></a></p></td>
 <td><p><a class="reference internal" href="#pathlib.Path.stat" title="pathlib.Path.stat"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Path.stat()</span></code></a>,
 <a class="reference internal" href="#pathlib.Path.owner" title="pathlib.Path.owner"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Path.owner()</span></code></a>,
 <a class="reference internal" href="#pathlib.Path.group" title="pathlib.Path.group"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Path.group()</span></code></a></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="os.path.html#os.path.isabs" title="os.path.isabs"><code class="xref py py-func docutils literal notranslate"><span class="pre">os.path.isabs()</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="os.path.html#os.path.isabs" title="os.path.isabs"><code class="xref py py-func docutils literal notranslate"><span class="pre">os.path.isabs()</span></code></a></p></td>
 <td><p><a class="reference internal" href="#pathlib.PurePath.is_absolute" title="pathlib.PurePath.is_absolute"><code class="xref py py-meth docutils literal notranslate"><span class="pre">PurePath.is_absolute()</span></code></a></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="os.path.html#os.path.join" title="os.path.join"><code class="xref py py-func docutils literal notranslate"><span class="pre">os.path.join()</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="os.path.html#os.path.join" title="os.path.join"><code class="xref py py-func docutils literal notranslate"><span class="pre">os.path.join()</span></code></a></p></td>
 <td><p><a class="reference internal" href="#pathlib.PurePath.joinpath" title="pathlib.PurePath.joinpath"><code class="xref py py-func docutils literal notranslate"><span class="pre">PurePath.joinpath()</span></code></a></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="os.path.html#os.path.basename" title="os.path.basename"><code class="xref py py-func docutils literal notranslate"><span class="pre">os.path.basename()</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="os.path.html#os.path.basename" title="os.path.basename"><code class="xref py py-func docutils literal notranslate"><span class="pre">os.path.basename()</span></code></a></p></td>
 <td><p><a class="reference internal" href="#pathlib.PurePath.name" title="pathlib.PurePath.name"><code class="xref py py-data docutils literal notranslate"><span class="pre">PurePath.name</span></code></a></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="os.path.html#os.path.dirname" title="os.path.dirname"><code class="xref py py-func docutils literal notranslate"><span class="pre">os.path.dirname()</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="os.path.html#os.path.dirname" title="os.path.dirname"><code class="xref py py-func docutils literal notranslate"><span class="pre">os.path.dirname()</span></code></a></p></td>
 <td><p><a class="reference internal" href="#pathlib.PurePath.parent" title="pathlib.PurePath.parent"><code class="xref py py-data docutils literal notranslate"><span class="pre">PurePath.parent</span></code></a></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="os.path.html#os.path.samefile" title="os.path.samefile"><code class="xref py py-func docutils literal notranslate"><span class="pre">os.path.samefile()</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="os.path.html#os.path.samefile" title="os.path.samefile"><code class="xref py py-func docutils literal notranslate"><span class="pre">os.path.samefile()</span></code></a></p></td>
 <td><p><a class="reference internal" href="#pathlib.Path.samefile" title="pathlib.Path.samefile"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Path.samefile()</span></code></a></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="os.path.html#os.path.splitext" title="os.path.splitext"><code class="xref py py-func docutils literal notranslate"><span class="pre">os.path.splitext()</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="os.path.html#os.path.splitext" title="os.path.splitext"><code class="xref py py-func docutils literal notranslate"><span class="pre">os.path.splitext()</span></code></a></p></td>
 <td><p><a class="reference internal" href="#pathlib.PurePath.stem" title="pathlib.PurePath.stem"><code class="xref py py-data docutils literal notranslate"><span class="pre">PurePath.stem</span></code></a> 和 <a class="reference internal" href="#pathlib.PurePath.suffix" title="pathlib.PurePath.suffix"><code class="xref py py-data docutils literal notranslate"><span class="pre">PurePath.suffix</span></code></a></p></td>
 </tr>
 </tbody>
@@ -1667,7 +1693,7 @@ include <a class="reference internal" href="os.path.html#os.path.abspath" title=
 <aside class="footnote-list brackets">
 <aside class="footnote brackets" id="id5" role="note">
 <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id3">1</a><span class="fn-bracket">]</span></span>
-<p><a class="reference internal" href="os.path.html#os.path.abspath" title="os.path.abspath"><code class="xref py py-func docutils literal notranslate"><span class="pre">os.path.abspath()</span></code></a> does not resolve symbolic links while <a class="reference internal" href="#pathlib.Path.resolve" title="pathlib.Path.resolve"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Path.resolve()</span></code></a> does.</p>
+<p><a class="reference internal" href="os.path.html#os.path.abspath" title="os.path.abspath"><code class="xref py py-func docutils literal notranslate"><span class="pre">os.path.abspath()</span></code></a> normalizes the resulting path, which may change its meaning in the presence of symlinks, while <a class="reference internal" href="#pathlib.Path.absolute" title="pathlib.Path.absolute"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Path.absolute()</span></code></a> does not.</p>
 </aside>
 <aside class="footnote brackets" id="id6" role="note">
 <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id4">2</a><span class="fn-bracket">]</span></span>
@@ -1756,6 +1782,7 @@ include <a class="reference internal" href="os.path.html#os.path.abspath" title=
 <li><a class="reference internal" href="#pathlib.Path.readlink"><code class="docutils literal notranslate"><span class="pre">Path.readlink()</span></code></a></li>
 <li><a class="reference internal" href="#pathlib.Path.rename"><code class="docutils literal notranslate"><span class="pre">Path.rename()</span></code></a></li>
 <li><a class="reference internal" href="#pathlib.Path.replace"><code class="docutils literal notranslate"><span class="pre">Path.replace()</span></code></a></li>
+<li><a class="reference internal" href="#pathlib.Path.absolute"><code class="docutils literal notranslate"><span class="pre">Path.absolute()</span></code></a></li>
 <li><a class="reference internal" href="#pathlib.Path.resolve"><code class="docutils literal notranslate"><span class="pre">Path.resolve()</span></code></a></li>
 <li><a class="reference internal" href="#pathlib.Path.rglob"><code class="docutils literal notranslate"><span class="pre">Path.rglob()</span></code></a></li>
 <li><a class="reference internal" href="#pathlib.Path.rmdir"><code class="docutils literal notranslate"><span class="pre">Path.rmdir()</span></code></a></li>
@@ -1792,7 +1819,7 @@ include <a class="reference internal" href="os.path.html#os.path.abspath" title=
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.10/Doc/library/pathlib.rst"
+        <a href="https://github.com/python/cpython/blob/main/Doc/library/pathlib.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -1832,7 +1859,7 @@ include <a class="reference internal" href="os.path.html#os.path.abspath" title=
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.8 Documentation</a> &#187;
+      <a href="../index.html">3.11.0rc2 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -1869,7 +1896,7 @@ include <a class="reference internal" href="os.path.html#os.path.abspath" title=
 <br />
     <br />
 
-    最後更新於 10月 15, 2022。
+    最後更新於 10月 16, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 

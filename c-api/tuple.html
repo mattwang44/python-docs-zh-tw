@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>元組（Tuple）物件 &#8212; Python 3.10.8 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>元組（Tuple）物件 &#8212; Python 3.11.0rc2 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -22,7 +22,7 @@
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.10.8 說明文件 中搜尋"
+          title="在 Python 3.11.0rc2 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -95,7 +95,7 @@
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.10/Doc/c-api/tuple.rst"
+        <a href="https://github.com/python/cpython/blob/main/Doc/c-api/tuple.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -132,7 +132,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.8 Documentation</a> &#187;
+      <a href="../index.html">3.11.0rc2 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python/C API 參考手冊</a> &#187;</li>
@@ -257,7 +257,7 @@ an item already in the tuple at the affected position.</p>
 used to fill in brand new tuples.</p>
 <div class="admonition note">
 <p class="admonition-title">備註</p>
-<p>This macro &quot;steals&quot; a reference to <em>o</em>, and, unlike
+<p>This function &quot;steals&quot; a reference to <em>o</em>, and, unlike
 <a class="reference internal" href="#c.PyTuple_SetItem" title="PyTuple_SetItem"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyTuple_SetItem()</span></code></a>, does <em>not</em> discard a reference to any item that
 is being replaced; any reference in the tuple at position <em>pos</em> will be
 leaked.</p>
@@ -377,7 +377,7 @@ to leave unnamed</p></td>
 <dl class="c var">
 <dt class="sig sig-object c" id="c.PyStructSequence_UnnamedField">
 <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PyStructSequence_UnnamedField</span></span></span><a class="headerlink" href="#c.PyStructSequence_UnnamedField" title="本定義的永久連結">¶</a><br /></dt>
-<dd><p>Special value for a field name to leave it unnamed.</p>
+<dd><em class="stableabi"> Part of the <a class="reference internal" href="stable.html#stable"><span class="std std-ref">Stable ABI</span></a> since version 3.11.</em><p>Special value for a field name to leave it unnamed.</p>
 <div class="versionchanged">
 <p><span class="versionmodified changed">在 3.9 版本變更: </span>The type was changed from <code class="docutils literal notranslate"><span class="pre">char</span> <span class="pre">*</span></code>.</p>
 </div>
@@ -418,7 +418,8 @@ instances.</p>
 <dl class="c function">
 <dt class="sig sig-object c" id="c.PyStructSequence_SET_ITEM">
 <span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PyStructSequence_SET_ITEM</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">p</span></span>, <a class="reference internal" href="intro.html#c.Py_ssize_t" title="Py_ssize_t"><span class="n"><span class="pre">Py_ssize_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">pos</span></span>, <a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">o</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.PyStructSequence_SET_ITEM" title="本定義的永久連結">¶</a><br /></dt>
-<dd><p>Macro equivalent of <a class="reference internal" href="#c.PyStructSequence_SetItem" title="PyStructSequence_SetItem"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyStructSequence_SetItem()</span></code></a>.</p>
+<dd><p>Similar to <a class="reference internal" href="#c.PyStructSequence_SetItem" title="PyStructSequence_SetItem"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyStructSequence_SetItem()</span></code></a>, but implemented as a static
+inlined function.</p>
 <div class="admonition note">
 <p class="admonition-title">備註</p>
 <p>This function &quot;steals&quot; a reference to <em>o</em>.</p>
@@ -457,7 +458,7 @@ instances.</p>
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.10/Doc/c-api/tuple.rst"
+        <a href="https://github.com/python/cpython/blob/main/Doc/c-api/tuple.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -497,7 +498,7 @@ instances.</p>
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.8 Documentation</a> &#187;
+      <a href="../index.html">3.11.0rc2 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python/C API 參考手冊</a> &#187;</li>
@@ -534,7 +535,7 @@ instances.</p>
 <br />
     <br />
 
-    最後更新於 10月 15, 2022。
+    最後更新於 10月 16, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 

@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>curses --- Terminal handling for character-cell displays &#8212; Python 3.10.8 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>curses --- Terminal handling for character-cell displays &#8212; Python 3.11.0rc2 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -22,7 +22,7 @@
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.10.8 說明文件 中搜尋"
+          title="在 Python 3.11.0rc2 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -278,7 +278,7 @@
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.10/Doc/library/curses.rst"
+        <a href="https://github.com/python/cpython/blob/main/Doc/library/curses.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -315,7 +315,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.8 Documentation</a> &#187;
+      <a href="../index.html">3.11.0rc2 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -359,20 +359,6 @@ as an integer, a one-character Unicode string or a one-byte byte string.</p>
 <p>Whenever the documentation mentions a <em>character string</em> it can be specified
 as a Unicode string or a byte string.</p>
 </div>
-<div class="admonition note">
-<p class="admonition-title">備註</p>
-<p>Since version 5.4, the ncurses library decides how to interpret non-ASCII data
-using the <code class="docutils literal notranslate"><span class="pre">nl_langinfo</span></code> function.  That means that you have to call
-<a class="reference internal" href="locale.html#locale.setlocale" title="locale.setlocale"><code class="xref py py-func docutils literal notranslate"><span class="pre">locale.setlocale()</span></code></a> in the application and encode Unicode strings
-using one of the system's available encodings.  This example uses the
-system's default encoding:</p>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">locale</span>
-<span class="n">locale</span><span class="o">.</span><span class="n">setlocale</span><span class="p">(</span><span class="n">locale</span><span class="o">.</span><span class="n">LC_ALL</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
-<span class="n">code</span> <span class="o">=</span> <span class="n">locale</span><span class="o">.</span><span class="n">getpreferredencoding</span><span class="p">()</span>
-</pre></div>
-</div>
-<p>Then use <em>code</em> as the encoding for <a class="reference internal" href="stdtypes.html#str.encode" title="str.encode"><code class="xref py py-meth docutils literal notranslate"><span class="pre">str.encode()</span></code></a> calls.</p>
-</div>
 <div class="admonition seealso">
 <p class="admonition-title">也參考</p>
 <dl class="simple">
@@ -386,7 +372,7 @@ system's default encoding:</p>
 Raymond.</p>
 </dd>
 </dl>
-<p>The <a class="reference external" href="https://github.com/python/cpython/tree/3.10/Tools/demo/">Tools/demo/</a> directory in the Python source distribution contains
+<p>The <a class="reference external" href="https://github.com/python/cpython/tree/3.11/Tools/demo/">Tools/demo/</a> directory in the Python source distribution contains
 some example programs using the curses bindings provided by this module.</p>
 </div>
 <section id="functions">
@@ -729,7 +715,7 @@ defined only after the call to <a class="reference internal" href="#curses.inits
 <span class="sig-prename descclassname"><span class="pre">curses.</span></span><span class="sig-name descname"><span class="pre">mouseinterval</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">interval</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curses.mouseinterval" title="本定義的永久連結">¶</a></dt>
 <dd><p>Set the maximum time in milliseconds that can elapse between press and release
 events in order for them to be recognized as a click, and return the previous
-interval value.  The default value is 200 msec, or one fifth of a second.</p>
+interval value.  The default value is 200 milliseconds, or one fifth of a second.</p>
 </dd></dl>
 
 <dl class="py function">
@@ -1383,8 +1369,8 @@ event.</p>
 <span class="sig-prename descclassname"><span class="pre">window.</span></span><span class="sig-name descname"><span class="pre">encoding</span></span><a class="headerlink" href="#curses.window.encoding" title="本定義的永久連結">¶</a></dt>
 <dd><p>Encoding used to encode method arguments (Unicode strings and characters).
 The encoding attribute is inherited from the parent window when a subwindow
-is created, for example with <a class="reference internal" href="#curses.window.subwin" title="curses.window.subwin"><code class="xref py py-meth docutils literal notranslate"><span class="pre">window.subwin()</span></code></a>. By default, the locale
-encoding is used (see <a class="reference internal" href="locale.html#locale.getpreferredencoding" title="locale.getpreferredencoding"><code class="xref py py-func docutils literal notranslate"><span class="pre">locale.getpreferredencoding()</span></code></a>).</p>
+is created, for example with <a class="reference internal" href="#curses.window.subwin" title="curses.window.subwin"><code class="xref py py-meth docutils literal notranslate"><span class="pre">window.subwin()</span></code></a>.
+By default, current locale encoding is used (see <a class="reference internal" href="locale.html#locale.getencoding" title="locale.getencoding"><code class="xref py py-func docutils literal notranslate"><span class="pre">locale.getencoding()</span></code></a>).</p>
 <div class="versionadded">
 <p><span class="versionmodified added">在 3.3 版本新加入.</span></p>
 </div>
@@ -2848,7 +2834,7 @@ contents are gathered.</p>
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.10/Doc/library/curses.rst"
+        <a href="https://github.com/python/cpython/blob/main/Doc/library/curses.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -2888,7 +2874,7 @@ contents are gathered.</p>
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.8 Documentation</a> &#187;
+      <a href="../index.html">3.11.0rc2 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -2925,7 +2911,7 @@ contents are gathered.</p>
 <br />
     <br />
 
-    最後更新於 10月 15, 2022。
+    最後更新於 10月 16, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 

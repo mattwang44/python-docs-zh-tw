@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>concurrent.futures -- 啟動平行任務 &#8212; Python 3.10.8 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>concurrent.futures -- 啟動平行任務 &#8212; Python 3.11.0rc2 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -22,7 +22,7 @@
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.10.8 說明文件 中搜尋"
+          title="在 Python 3.11.0rc2 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -145,7 +145,7 @@
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.10/Doc/library/concurrent.futures.rst"
+        <a href="https://github.com/python/cpython/blob/main/Doc/library/concurrent.futures.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -182,7 +182,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.8 Documentation</a> &#187;
+      <a href="../index.html">3.11.0rc2 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -215,7 +215,7 @@
 <div class="versionadded">
 <p><span class="versionmodified added">在 3.2 版本新加入.</span></p>
 </div>
-<p><strong>原始碼：</strong><a class="reference external" href="https://github.com/python/cpython/tree/3.10/Lib/concurrent/futures/thread.py">Lib/concurrent/futures/thread.py</a> 與 <a class="reference external" href="https://github.com/python/cpython/tree/3.10/Lib/concurrent/futures/process.py">Lib/concurrent/futures/process.py</a></p>
+<p><strong>原始碼：</strong><a class="reference external" href="https://github.com/python/cpython/tree/3.11/Lib/concurrent/futures/thread.py">Lib/concurrent/futures/thread.py</a> 與 <a class="reference external" href="https://github.com/python/cpython/tree/3.11/Lib/concurrent/futures/process.py">Lib/concurrent/futures/process.py</a></p>
 <hr class="docutils" />
 <p>The <a class="reference internal" href="#module-concurrent.futures" title="concurrent.futures: Execute computations concurrently using threads or processes."><code class="xref py py-mod docutils literal notranslate"><span class="pre">concurrent.futures</span></code></a> module provides a high-level interface for
 asynchronously executing callables.</p>
@@ -223,6 +223,10 @@ asynchronously executing callables.</p>
 <a class="reference internal" href="#concurrent.futures.ThreadPoolExecutor" title="concurrent.futures.ThreadPoolExecutor"><code class="xref py py-class docutils literal notranslate"><span class="pre">ThreadPoolExecutor</span></code></a>, or separate processes, using
 <a class="reference internal" href="#concurrent.futures.ProcessPoolExecutor" title="concurrent.futures.ProcessPoolExecutor"><code class="xref py py-class docutils literal notranslate"><span class="pre">ProcessPoolExecutor</span></code></a>.  Both implement the same interface, which is
 defined by the abstract <a class="reference internal" href="#concurrent.futures.Executor" title="concurrent.futures.Executor"><code class="xref py py-class docutils literal notranslate"><span class="pre">Executor</span></code></a> class.</p>
+<p class="availability"><a class="reference internal" href="intro.html#availability"><span class="std std-ref">Availability</span></a>: not Emscripten, not WASI.<p>This module does not work or is not available on WebAssembly platforms
+<code class="docutils literal notranslate"><span class="pre">wasm32-emscripten</span></code> and <code class="docutils literal notranslate"><span class="pre">wasm32-wasi</span></code>. See
+<a class="reference internal" href="intro.html#wasm-availability"><span class="std std-ref">WebAssembly platforms</span></a> for more information.</p>
+</p>
 <section id="executor-objects">
 <h2>Executor Objects<a class="headerlink" href="#executor-objects" title="本標頭的永久連結">¶</a></h2>
 <dl class="py class">
@@ -253,7 +257,7 @@ callable.</p>
 <li><p><em>func</em> is executed asynchronously and several calls to
 <em>func</em> may be made concurrently.</p></li>
 </ul>
-<p>The returned iterator raises a <a class="reference internal" href="#concurrent.futures.TimeoutError" title="concurrent.futures.TimeoutError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">concurrent.futures.TimeoutError</span></code></a>
+<p>The returned iterator raises a <a class="reference internal" href="exceptions.html#TimeoutError" title="TimeoutError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">TimeoutError</span></code></a>
 if <a class="reference internal" href="stdtypes.html#iterator.__next__" title="iterator.__next__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__next__()</span></code></a> is called and the result isn't available
 after <em>timeout</em> seconds from the original call to <a class="reference internal" href="#concurrent.futures.Executor.map" title="concurrent.futures.Executor.map"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Executor.map()</span></code></a>.
 <em>timeout</em> can be an int or a float.  If <em>timeout</em> is not specified or
@@ -435,7 +439,7 @@ that <a class="reference internal" href="#concurrent.futures.ProcessPoolExecutor
 to a <a class="reference internal" href="#concurrent.futures.ProcessPoolExecutor" title="concurrent.futures.ProcessPoolExecutor"><code class="xref py py-class docutils literal notranslate"><span class="pre">ProcessPoolExecutor</span></code></a> will result in deadlock.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="concurrent.futures.ProcessPoolExecutor">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">concurrent.futures.</span></span><span class="sig-name descname"><span class="pre">ProcessPoolExecutor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">max_workers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mp_context</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">initializer</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">initargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">()</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#concurrent.futures.ProcessPoolExecutor" title="本定義的永久連結">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">concurrent.futures.</span></span><span class="sig-name descname"><span class="pre">ProcessPoolExecutor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">max_workers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mp_context</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">initializer</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">initargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_tasks_per_child</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#concurrent.futures.ProcessPoolExecutor" title="本定義的永久連結">¶</a></dt>
 <dd><p>An <a class="reference internal" href="#concurrent.futures.Executor" title="concurrent.futures.Executor"><code class="xref py py-class docutils literal notranslate"><span class="pre">Executor</span></code></a> subclass that executes calls asynchronously using a pool
 of at most <em>max_workers</em> processes.  If <em>max_workers</em> is <code class="docutils literal notranslate"><span class="pre">None</span></code> or not
 given, it will default to the number of processors on the machine.
@@ -453,6 +457,13 @@ each worker process; <em>initargs</em> is a tuple of arguments passed to the
 initializer.  Should <em>initializer</em> raise an exception, all currently
 pending jobs will raise a <a class="reference internal" href="#concurrent.futures.process.BrokenProcessPool" title="concurrent.futures.process.BrokenProcessPool"><code class="xref py py-exc docutils literal notranslate"><span class="pre">BrokenProcessPool</span></code></a>,
 as well as any attempt to submit more jobs to the pool.</p>
+<p><em>max_tasks_per_child</em> is an optional argument that specifies the maximum
+number of tasks a single process can execute before it will exit and be
+replaced with a fresh worker process. By default <em>max_tasks_per_child</em> is
+<code class="docutils literal notranslate"><span class="pre">None</span></code> which means worker processes will live as long as the pool. When
+a max is specified, the &quot;spawn&quot; multiprocessing start method will be used by
+default in absence of a <em>mp_context</em> parameter. This feature is incompatible
+with the &quot;fork&quot; start method.</p>
 <div class="versionchanged">
 <p><span class="versionmodified changed">在 3.3 版本變更: </span>When one of the worker processes terminates abruptly, a
 <code class="xref py py-exc docutils literal notranslate"><span class="pre">BrokenProcessPool</span></code> error is now raised.  Previously, behaviour
@@ -463,6 +474,10 @@ freeze or deadlock.</p>
 <p><span class="versionmodified changed">在 3.7 版本變更: </span>The <em>mp_context</em> argument was added to allow users to control the
 start_method for worker processes created by the pool.</p>
 <p>新增 <em>initializer</em> 與 <em>initargs</em> 引數。</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">在 3.11 版本變更: </span>The <em>max_tasks_per_child</em> argument was added to allow users to
+control the lifetime of workers in the pool.</p>
 </div>
 </dd></dl>
 
@@ -550,7 +565,7 @@ running.</p>
 <dd><p>Return the value returned by the call. If the call hasn't yet completed
 then this method will wait up to <em>timeout</em> seconds.  If the call hasn't
 completed in <em>timeout</em> seconds, then a
-<a class="reference internal" href="#concurrent.futures.TimeoutError" title="concurrent.futures.TimeoutError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">concurrent.futures.TimeoutError</span></code></a> will be raised. <em>timeout</em> can be
+<a class="reference internal" href="exceptions.html#TimeoutError" title="TimeoutError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">TimeoutError</span></code></a> will be raised. <em>timeout</em> can be
 an int or float.  If <em>timeout</em> is not specified or <code class="docutils literal notranslate"><span class="pre">None</span></code>, there is no
 limit to the wait time.</p>
 <p>If the future is cancelled before completing then <a class="reference internal" href="#concurrent.futures.CancelledError" title="concurrent.futures.CancelledError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">CancelledError</span></code></a>
@@ -564,7 +579,7 @@ will be raised.</p>
 <dd><p>Return the exception raised by the call.  If the call hasn't yet
 completed then this method will wait up to <em>timeout</em> seconds.  If the
 call hasn't completed in <em>timeout</em> seconds, then a
-<a class="reference internal" href="#concurrent.futures.TimeoutError" title="concurrent.futures.TimeoutError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">concurrent.futures.TimeoutError</span></code></a> will be raised.  <em>timeout</em> can be
+<a class="reference internal" href="exceptions.html#TimeoutError" title="TimeoutError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">TimeoutError</span></code></a> will be raised.  <em>timeout</em> can be
 an int or float.  If <em>timeout</em> is not specified or <code class="docutils literal notranslate"><span class="pre">None</span></code>, there is no
 limit to the wait time.</p>
 <p>If the future is cancelled before completing then <a class="reference internal" href="#concurrent.futures.CancelledError" title="concurrent.futures.CancelledError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">CancelledError</span></code></a>
@@ -692,7 +707,7 @@ different <a class="reference internal" href="#concurrent.futures.Executor" titl
 they complete (finished or cancelled futures). Any futures given by <em>fs</em> that
 are duplicated will be returned once. Any futures that completed before
 <a class="reference internal" href="#concurrent.futures.as_completed" title="concurrent.futures.as_completed"><code class="xref py py-func docutils literal notranslate"><span class="pre">as_completed()</span></code></a> is called will be yielded first.  The returned iterator
-raises a <a class="reference internal" href="#concurrent.futures.TimeoutError" title="concurrent.futures.TimeoutError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">concurrent.futures.TimeoutError</span></code></a> if <a class="reference internal" href="stdtypes.html#iterator.__next__" title="iterator.__next__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__next__()</span></code></a>
+raises a <a class="reference internal" href="exceptions.html#TimeoutError" title="TimeoutError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">TimeoutError</span></code></a> if <a class="reference internal" href="stdtypes.html#iterator.__next__" title="iterator.__next__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__next__()</span></code></a>
 is called and the result isn't available after <em>timeout</em> seconds from the
 original call to <a class="reference internal" href="#concurrent.futures.as_completed" title="concurrent.futures.as_completed"><code class="xref py py-func docutils literal notranslate"><span class="pre">as_completed()</span></code></a>.  <em>timeout</em> can be an int or float. If
 <em>timeout</em> is not specified or <code class="docutils literal notranslate"><span class="pre">None</span></code>, there is no limit to the wait time.</p>
@@ -718,7 +733,11 @@ standard library.</p>
 <dl class="py exception">
 <dt class="sig sig-object py" id="concurrent.futures.TimeoutError">
 <em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">concurrent.futures.</span></span><span class="sig-name descname"><span class="pre">TimeoutError</span></span><a class="headerlink" href="#concurrent.futures.TimeoutError" title="本定義的永久連結">¶</a></dt>
-<dd><p>Raised when a future operation exceeds the given timeout.</p>
+<dd><p>A deprecated alias of <a class="reference internal" href="exceptions.html#TimeoutError" title="TimeoutError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">TimeoutError</span></code></a>,
+raised when a future operation exceeds the given timeout.</p>
+<div class="versionchanged">
+<p><span class="versionmodified changed">在 3.11 版本變更: </span>This class was made an alias of <a class="reference internal" href="exceptions.html#TimeoutError" title="TimeoutError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">TimeoutError</span></code></a>.</p>
+</div>
 </dd></dl>
 
 <dl class="py exception">
@@ -848,7 +867,7 @@ fashion (for example, if it was killed from the outside).</p>
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.10/Doc/library/concurrent.futures.rst"
+        <a href="https://github.com/python/cpython/blob/main/Doc/library/concurrent.futures.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -888,7 +907,7 @@ fashion (for example, if it was killed from the outside).</p>
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.8 Documentation</a> &#187;
+      <a href="../index.html">3.11.0rc2 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -925,7 +944,7 @@ fashion (for example, if it was killed from the outside).</p>
 <br />
     <br />
 
-    最後更新於 10月 15, 2022。
+    最後更新於 10月 16, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 

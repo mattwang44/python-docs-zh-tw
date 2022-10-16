@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>operator --- 標準運算子替代函式 &#8212; Python 3.10.8 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>operator --- 標準運算子替代函式 &#8212; Python 3.11.0rc2 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -22,7 +22,7 @@
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.10.8 說明文件 中搜尋"
+          title="在 Python 3.11.0rc2 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -144,6 +144,8 @@
 <li><a class="reference internal" href="#operator.setitem"><code class="docutils literal notranslate"><span class="pre">setitem()</span></code></a></li>
 <li><a class="reference internal" href="#operator.__setitem__"><code class="docutils literal notranslate"><span class="pre">__setitem__()</span></code></a></li>
 <li><a class="reference internal" href="#operator.length_hint"><code class="docutils literal notranslate"><span class="pre">length_hint()</span></code></a></li>
+<li><a class="reference internal" href="#operator.call"><code class="docutils literal notranslate"><span class="pre">call()</span></code></a></li>
+<li><a class="reference internal" href="#operator.__call__"><code class="docutils literal notranslate"><span class="pre">__call__()</span></code></a></li>
 <li><a class="reference internal" href="#operator.attrgetter"><code class="docutils literal notranslate"><span class="pre">attrgetter()</span></code></a></li>
 <li><a class="reference internal" href="#operator.itemgetter"><code class="docutils literal notranslate"><span class="pre">itemgetter()</span></code></a></li>
 <li><a class="reference internal" href="#operator.methodcaller"><code class="docutils literal notranslate"><span class="pre">methodcaller()</span></code></a></li>
@@ -199,7 +201,7 @@
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.10/Doc/library/operator.rst"
+        <a href="https://github.com/python/cpython/blob/main/Doc/library/operator.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -236,7 +238,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.8 Documentation</a> &#187;
+      <a href="../index.html">3.11.0rc2 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -266,7 +268,7 @@
             
   <section id="module-operator">
 <span id="operator-standard-operators-as-functions"></span><h1><a class="reference internal" href="#module-operator" title="operator: Functions corresponding to the standard operators."><code class="xref py py-mod docutils literal notranslate"><span class="pre">operator</span></code></a> --- 標準運算子替代函式<a class="headerlink" href="#module-operator" title="本標頭的永久連結">¶</a></h1>
-<p><strong>原始碼：</strong><a class="reference external" href="https://github.com/python/cpython/tree/3.10/Lib/operator.py">Lib/operator.py</a></p>
+<p><strong>原始碼：</strong><a class="reference external" href="https://github.com/python/cpython/tree/3.11/Lib/operator.py">Lib/operator.py</a></p>
 <hr class="docutils" />
 <p><a class="reference internal" href="#module-operator" title="operator: Functions corresponding to the standard operators."><code class="xref py py-mod docutils literal notranslate"><span class="pre">operator</span></code></a> module（模組）提供了一套與 Python 原生運算子對應的高效率函式。例如，<code class="docutils literal notranslate"><span class="pre">operator.add(x,</span> <span class="pre">y)</span></code> 與表示式 <code class="docutils literal notranslate"><span class="pre">x+y</span></code> 相同。許多函式名與特殊方法名相同，只是沒有雙底線。為了向後相容，許多包含雙底線的函式被保留了下來，但為了易於表達，建議使用沒有雙底線的函式。</p>
 <p>函式種類有物件的比較運算、邏輯運算、數學運算以及序列運算。</p>
@@ -540,6 +542,18 @@
 <dd><p>回傳物件 <em>o</em> 的估計長度。首先嘗試回傳其實際長度，再使用 <a class="reference internal" href="../reference/datamodel.html#object.__length_hint__" title="object.__length_hint__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">object.__length_hint__()</span></code></a> 得出估計值，最後才是回傳預設值。</p>
 <div class="versionadded">
 <p><span class="versionmodified added">在 3.4 版本新加入.</span></p>
+</div>
+</dd></dl>
+
+<p>The following operation works with callables:</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="operator.call">
+<span class="sig-prename descclassname"><span class="pre">operator.</span></span><span class="sig-name descname"><span class="pre">call</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">/</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#operator.call" title="本定義的永久連結">¶</a></dt>
+<dt class="sig sig-object py" id="operator.__call__">
+<span class="sig-prename descclassname"><span class="pre">operator.</span></span><span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">/</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#operator.__call__" title="本定義的永久連結">¶</a></dt>
+<dd><p>Return <code class="docutils literal notranslate"><span class="pre">obj(*args,</span> <span class="pre">**kwargs)</span></code>.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">在 3.11 版本新加入.</span></p>
 </div>
 </dd></dl>
 
@@ -1009,6 +1023,8 @@
 <li><a class="reference internal" href="#operator.setitem"><code class="docutils literal notranslate"><span class="pre">setitem()</span></code></a></li>
 <li><a class="reference internal" href="#operator.__setitem__"><code class="docutils literal notranslate"><span class="pre">__setitem__()</span></code></a></li>
 <li><a class="reference internal" href="#operator.length_hint"><code class="docutils literal notranslate"><span class="pre">length_hint()</span></code></a></li>
+<li><a class="reference internal" href="#operator.call"><code class="docutils literal notranslate"><span class="pre">call()</span></code></a></li>
+<li><a class="reference internal" href="#operator.__call__"><code class="docutils literal notranslate"><span class="pre">__call__()</span></code></a></li>
 <li><a class="reference internal" href="#operator.attrgetter"><code class="docutils literal notranslate"><span class="pre">attrgetter()</span></code></a></li>
 <li><a class="reference internal" href="#operator.itemgetter"><code class="docutils literal notranslate"><span class="pre">itemgetter()</span></code></a></li>
 <li><a class="reference internal" href="#operator.methodcaller"><code class="docutils literal notranslate"><span class="pre">methodcaller()</span></code></a></li>
@@ -1064,7 +1080,7 @@
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.10/Doc/library/operator.rst"
+        <a href="https://github.com/python/cpython/blob/main/Doc/library/operator.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -1104,7 +1120,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.8 Documentation</a> &#187;
+      <a href="../index.html">3.11.0rc2 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -1141,7 +1157,7 @@
 <br />
     <br />
 
-    最後更新於 10月 15, 2022。
+    最後更新於 10月 16, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 

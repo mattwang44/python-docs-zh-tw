@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>gettext --- Multilingual internationalization services &#8212; Python 3.10.8 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>gettext --- Multilingual internationalization services &#8212; Python 3.11.0rc2 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -22,7 +22,7 @@
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.10.8 說明文件 中搜尋"
+          title="在 Python 3.11.0rc2 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -78,7 +78,6 @@
 <li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gettext</span></code> --- Multilingual internationalization services</a><ul>
 <li><a class="reference internal" href="#gnu-gettext-api">GNU <strong class="program">gettext</strong> API</a><ul>
 <li><a class="reference internal" href="#gettext.bindtextdomain"><code class="docutils literal notranslate"><span class="pre">bindtextdomain()</span></code></a></li>
-<li><a class="reference internal" href="#gettext.bind_textdomain_codeset"><code class="docutils literal notranslate"><span class="pre">bind_textdomain_codeset()</span></code></a></li>
 <li><a class="reference internal" href="#gettext.textdomain"><code class="docutils literal notranslate"><span class="pre">textdomain()</span></code></a></li>
 <li><a class="reference internal" href="#gettext.gettext"><code class="docutils literal notranslate"><span class="pre">gettext()</span></code></a></li>
 <li><a class="reference internal" href="#gettext.dgettext"><code class="docutils literal notranslate"><span class="pre">dgettext()</span></code></a></li>
@@ -88,10 +87,6 @@
 <li><a class="reference internal" href="#gettext.dpgettext"><code class="docutils literal notranslate"><span class="pre">dpgettext()</span></code></a></li>
 <li><a class="reference internal" href="#gettext.npgettext"><code class="docutils literal notranslate"><span class="pre">npgettext()</span></code></a></li>
 <li><a class="reference internal" href="#gettext.dnpgettext"><code class="docutils literal notranslate"><span class="pre">dnpgettext()</span></code></a></li>
-<li><a class="reference internal" href="#gettext.lgettext"><code class="docutils literal notranslate"><span class="pre">lgettext()</span></code></a></li>
-<li><a class="reference internal" href="#gettext.ldgettext"><code class="docutils literal notranslate"><span class="pre">ldgettext()</span></code></a></li>
-<li><a class="reference internal" href="#gettext.lngettext"><code class="docutils literal notranslate"><span class="pre">lngettext()</span></code></a></li>
-<li><a class="reference internal" href="#gettext.ldngettext"><code class="docutils literal notranslate"><span class="pre">ldngettext()</span></code></a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#class-based-api">Class-based API</a><ul>
@@ -106,12 +101,8 @@
 <li><a class="reference internal" href="#gettext.NullTranslations.ngettext"><code class="docutils literal notranslate"><span class="pre">NullTranslations.ngettext()</span></code></a></li>
 <li><a class="reference internal" href="#gettext.NullTranslations.pgettext"><code class="docutils literal notranslate"><span class="pre">NullTranslations.pgettext()</span></code></a></li>
 <li><a class="reference internal" href="#gettext.NullTranslations.npgettext"><code class="docutils literal notranslate"><span class="pre">NullTranslations.npgettext()</span></code></a></li>
-<li><a class="reference internal" href="#gettext.NullTranslations.lgettext"><code class="docutils literal notranslate"><span class="pre">NullTranslations.lgettext()</span></code></a></li>
-<li><a class="reference internal" href="#gettext.NullTranslations.lngettext"><code class="docutils literal notranslate"><span class="pre">NullTranslations.lngettext()</span></code></a></li>
 <li><a class="reference internal" href="#gettext.NullTranslations.info"><code class="docutils literal notranslate"><span class="pre">NullTranslations.info()</span></code></a></li>
 <li><a class="reference internal" href="#gettext.NullTranslations.charset"><code class="docutils literal notranslate"><span class="pre">NullTranslations.charset()</span></code></a></li>
-<li><a class="reference internal" href="#gettext.NullTranslations.output_charset"><code class="docutils literal notranslate"><span class="pre">NullTranslations.output_charset()</span></code></a></li>
-<li><a class="reference internal" href="#gettext.NullTranslations.set_output_charset"><code class="docutils literal notranslate"><span class="pre">NullTranslations.set_output_charset()</span></code></a></li>
 <li><a class="reference internal" href="#gettext.NullTranslations.install"><code class="docutils literal notranslate"><span class="pre">NullTranslations.install()</span></code></a></li>
 </ul>
 </li>
@@ -123,8 +114,6 @@
 <li><a class="reference internal" href="#gettext.GNUTranslations.ngettext"><code class="docutils literal notranslate"><span class="pre">GNUTranslations.ngettext()</span></code></a></li>
 <li><a class="reference internal" href="#gettext.GNUTranslations.pgettext"><code class="docutils literal notranslate"><span class="pre">GNUTranslations.pgettext()</span></code></a></li>
 <li><a class="reference internal" href="#gettext.GNUTranslations.npgettext"><code class="docutils literal notranslate"><span class="pre">GNUTranslations.npgettext()</span></code></a></li>
-<li><a class="reference internal" href="#gettext.GNUTranslations.lgettext"><code class="docutils literal notranslate"><span class="pre">GNUTranslations.lgettext()</span></code></a></li>
-<li><a class="reference internal" href="#gettext.GNUTranslations.lngettext"><code class="docutils literal notranslate"><span class="pre">GNUTranslations.lngettext()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -161,7 +150,7 @@
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.10/Doc/library/gettext.rst"
+        <a href="https://github.com/python/cpython/blob/main/Doc/library/gettext.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -198,7 +187,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.8 Documentation</a> &#187;
+      <a href="../index.html">3.11.0rc2 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -228,7 +217,7 @@
             
   <section id="module-gettext">
 <span id="gettext-multilingual-internationalization-services"></span><h1><a class="reference internal" href="#module-gettext" title="gettext: Multilingual internationalization services."><code class="xref py py-mod docutils literal notranslate"><span class="pre">gettext</span></code></a> --- Multilingual internationalization services<a class="headerlink" href="#module-gettext" title="本標頭的永久連結">¶</a></h1>
-<p><strong>原始碼：</strong><a class="reference external" href="https://github.com/python/cpython/tree/3.10/Lib/gettext.py">Lib/gettext.py</a></p>
+<p><strong>原始碼：</strong><a class="reference external" href="https://github.com/python/cpython/tree/3.11/Lib/gettext.py">Lib/gettext.py</a></p>
 <hr class="docutils" />
 <p>The <a class="reference internal" href="#module-gettext" title="gettext: Multilingual internationalization services."><code class="xref py py-mod docutils literal notranslate"><span class="pre">gettext</span></code></a> module provides internationalization (I18N) and localization
 (L10N) services for your Python modules and applications. It supports both the
@@ -257,18 +246,6 @@ the path (on Unix): <code class="file docutils literal notranslate"><em><span cl
 <span class="target" id="index-1"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">LC_ALL</span></code>, <span class="target" id="index-2"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">LC_MESSAGES</span></code>, and <span class="target" id="index-3"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">LANG</span></code> respectively.</p>
 <p>If <em>localedir</em> is omitted or <code class="docutils literal notranslate"><span class="pre">None</span></code>, then the current binding for <em>domain</em> is
 returned. <a class="footnote-reference brackets" href="#id3" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a></p>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="gettext.bind_textdomain_codeset">
-<span class="sig-prename descclassname"><span class="pre">gettext.</span></span><span class="sig-name descname"><span class="pre">bind_textdomain_codeset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">domain</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">codeset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gettext.bind_textdomain_codeset" title="本定義的永久連結">¶</a></dt>
-<dd><p>Bind the <em>domain</em> to <em>codeset</em>, changing the encoding of byte strings
-returned by the <a class="reference internal" href="#gettext.lgettext" title="gettext.lgettext"><code class="xref py py-func docutils literal notranslate"><span class="pre">lgettext()</span></code></a>, <a class="reference internal" href="#gettext.ldgettext" title="gettext.ldgettext"><code class="xref py py-func docutils literal notranslate"><span class="pre">ldgettext()</span></code></a>, <a class="reference internal" href="#gettext.lngettext" title="gettext.lngettext"><code class="xref py py-func docutils literal notranslate"><span class="pre">lngettext()</span></code></a>
-and <a class="reference internal" href="#gettext.ldngettext" title="gettext.ldngettext"><code class="xref py py-func docutils literal notranslate"><span class="pre">ldngettext()</span></code></a> functions.
-If <em>codeset</em> is omitted, then the current binding is returned.</p>
-<div class="deprecated-removed">
-<p><span class="versionmodified">Deprecated since version 3.8, removed in version 3.10.</span></p>
-</div>
 </dd></dl>
 
 <dl class="py function">
@@ -340,43 +317,6 @@ but the translation is restricted to the given message <em>context</em>.</p>
 </div>
 </dd></dl>
 
-<dl class="py function">
-<dt class="sig sig-object py" id="gettext.lgettext">
-<span class="sig-prename descclassname"><span class="pre">gettext.</span></span><span class="sig-name descname"><span class="pre">lgettext</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gettext.lgettext" title="本定義的永久連結">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="gettext.ldgettext">
-<span class="sig-prename descclassname"><span class="pre">gettext.</span></span><span class="sig-name descname"><span class="pre">ldgettext</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">domain</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">message</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gettext.ldgettext" title="本定義的永久連結">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="gettext.lngettext">
-<span class="sig-prename descclassname"><span class="pre">gettext.</span></span><span class="sig-name descname"><span class="pre">lngettext</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">singular</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plural</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gettext.lngettext" title="本定義的永久連結">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="gettext.ldngettext">
-<span class="sig-prename descclassname"><span class="pre">gettext.</span></span><span class="sig-name descname"><span class="pre">ldngettext</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">domain</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">singular</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plural</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gettext.ldngettext" title="本定義的永久連結">¶</a></dt>
-<dd><p>Equivalent to the corresponding functions without the <code class="docutils literal notranslate"><span class="pre">l</span></code> prefix
-(<a class="reference internal" href="#gettext.gettext" title="gettext.gettext"><code class="xref py py-func docutils literal notranslate"><span class="pre">gettext()</span></code></a>, <a class="reference internal" href="#gettext.dgettext" title="gettext.dgettext"><code class="xref py py-func docutils literal notranslate"><span class="pre">dgettext()</span></code></a>, <a class="reference internal" href="#gettext.ngettext" title="gettext.ngettext"><code class="xref py py-func docutils literal notranslate"><span class="pre">ngettext()</span></code></a> and <a class="reference internal" href="#gettext.dngettext" title="gettext.dngettext"><code class="xref py py-func docutils literal notranslate"><span class="pre">dngettext()</span></code></a>),
-but the translation is returned as a byte string encoded in the preferred
-system encoding if no other encoding was explicitly set with
-<a class="reference internal" href="#gettext.bind_textdomain_codeset" title="gettext.bind_textdomain_codeset"><code class="xref py py-func docutils literal notranslate"><span class="pre">bind_textdomain_codeset()</span></code></a>.</p>
-<div class="admonition warning">
-<p class="admonition-title">警告</p>
-<p>These functions should be avoided in Python 3, because they return
-encoded bytes.  It's much better to use alternatives which return
-Unicode strings instead, since most Python applications will want to
-manipulate human readable text as strings instead of bytes.  Further,
-it's possible that you may get unexpected Unicode-related exceptions
-if there are encoding problems with the translated strings.</p>
-</div>
-<div class="deprecated-removed">
-<p><span class="versionmodified">Deprecated since version 3.8, removed in version 3.10.</span></p>
-</div>
-</dd></dl>
-
 <p>Note that GNU <strong class="program">gettext</strong> also defines a <code class="xref py py-func docutils literal notranslate"><span class="pre">dcgettext()</span></code> method, but
 this was deemed not useful and so it is currently unimplemented.</p>
 <p>Here's an example of typical usage for this API:</p>
@@ -422,7 +362,7 @@ the environment variables.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="gettext.translation">
-<span class="sig-prename descclassname"><span class="pre">gettext.</span></span><span class="sig-name descname"><span class="pre">translation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">domain</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">localedir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">languages</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">class_</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fallback</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">codeset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gettext.translation" title="本定義的永久連結">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">gettext.</span></span><span class="sig-name descname"><span class="pre">translation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">domain</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">localedir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">languages</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">class_</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fallback</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gettext.translation" title="本定義的永久連結">¶</a></dt>
 <dd><p>Return a <code class="xref py py-class docutils literal notranslate"><span class="pre">*Translations</span></code> instance based on the <em>domain</em>, <em>localedir</em>,
 and <em>languages</em>, which are first passed to <a class="reference internal" href="#gettext.find" title="gettext.find"><code class="xref py py-func docutils literal notranslate"><span class="pre">find()</span></code></a> to get a list of the
 associated <code class="file docutils literal notranslate"><span class="pre">.mo</span></code> file paths.  Instances with identical <code class="file docutils literal notranslate"><span class="pre">.mo</span></code> file
@@ -430,7 +370,7 @@ names are cached.  The actual class instantiated is <em>class_</em> if
 provided, otherwise <a class="reference internal" href="#gettext.GNUTranslations" title="gettext.GNUTranslations"><code class="xref py py-class docutils literal notranslate"><span class="pre">GNUTranslations</span></code></a>.  The class's constructor must
 take a single <a class="reference internal" href="../glossary.html#term-file-object"><span class="xref std std-term">file object</span></a> argument.  If provided, <em>codeset</em> will change
 the charset used to encode translated strings in the
-<a class="reference internal" href="#gettext.NullTranslations.lgettext" title="gettext.NullTranslations.lgettext"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lgettext()</span></code></a> and <a class="reference internal" href="#gettext.NullTranslations.lngettext" title="gettext.NullTranslations.lngettext"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lngettext()</span></code></a>
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">lgettext()</span></code> and <code class="xref py py-meth docutils literal notranslate"><span class="pre">lngettext()</span></code>
 methods.</p>
 <p>If multiple files are found, later files are used as fallbacks for earlier ones.
 To allow setting the fallback, <a class="reference internal" href="copy.html#copy.copy" title="copy.copy"><code class="xref py py-func docutils literal notranslate"><span class="pre">copy.copy()</span></code></a> is used to clone each
@@ -442,17 +382,16 @@ the cache.</p>
 <div class="versionchanged">
 <p><span class="versionmodified changed">在 3.3 版本變更: </span><a class="reference internal" href="exceptions.html#IOError" title="IOError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">IOError</span></code></a> used to be raised instead of <a class="reference internal" href="exceptions.html#OSError" title="OSError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">OSError</span></code></a>.</p>
 </div>
-<div class="deprecated-removed">
-<p><span class="versionmodified">Deprecated since version 3.8, removed in version 3.10: </span><em>codeset</em> 參數。</p>
+<div class="versionchanged">
+<p><span class="versionmodified changed">在 3.11 版本變更: </span><em>codeset</em> 參數被移除。</p>
 </div>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="gettext.install">
-<span class="sig-prename descclassname"><span class="pre">gettext.</span></span><span class="sig-name descname"><span class="pre">install</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">domain</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">localedir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">codeset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gettext.install" title="本定義的永久連結">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">gettext.</span></span><span class="sig-name descname"><span class="pre">install</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">domain</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">localedir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gettext.install" title="本定義的永久連結">¶</a></dt>
 <dd><p>This installs the function <code class="xref py py-func docutils literal notranslate"><span class="pre">_()</span></code> in Python's builtins namespace, based on
-<em>domain</em>, <em>localedir</em>, and <em>codeset</em> which are passed to the function
-<a class="reference internal" href="#gettext.translation" title="gettext.translation"><code class="xref py py-func docutils literal notranslate"><span class="pre">translation()</span></code></a>.</p>
+<em>domain</em> and <em>localedir</em> which are passed to the function <a class="reference internal" href="#gettext.translation" title="gettext.translation"><code class="xref py py-func docutils literal notranslate"><span class="pre">translation()</span></code></a>.</p>
 <p>For the <em>names</em> parameter, please see the description of the translation
 object's <a class="reference internal" href="#gettext.NullTranslations.install" title="gettext.NullTranslations.install"><code class="xref py py-meth docutils literal notranslate"><span class="pre">install()</span></code></a> method.</p>
 <p>As seen below, you usually mark the strings in your application that are
@@ -464,8 +403,8 @@ function, like this:</p>
 <p>For convenience, you want the <code class="xref py py-func docutils literal notranslate"><span class="pre">_()</span></code> function to be installed in Python's
 builtins namespace, so it is easily accessible in all modules of your
 application.</p>
-<div class="deprecated-removed">
-<p><span class="versionmodified">Deprecated since version 3.8, removed in version 3.10: </span><em>codeset</em> 參數。</p>
+<div class="versionchanged">
+<p><span class="versionmodified changed">在 3.11 版本變更: </span><em>names</em> is now a keyword-only parameter.</p>
 </div>
 </dd></dl>
 
@@ -537,28 +476,6 @@ Otherwise, return the translated message.  Overridden in derived classes.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="gettext.NullTranslations.lgettext">
-<span class="sig-name descname"><span class="pre">lgettext</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gettext.NullTranslations.lgettext" title="本定義的永久連結">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="gettext.NullTranslations.lngettext">
-<span class="sig-name descname"><span class="pre">lngettext</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">singular</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plural</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gettext.NullTranslations.lngettext" title="本定義的永久連結">¶</a></dt>
-<dd><p>Equivalent to <a class="reference internal" href="#gettext.NullTranslations.gettext" title="gettext.NullTranslations.gettext"><code class="xref py py-meth docutils literal notranslate"><span class="pre">gettext()</span></code></a> and <a class="reference internal" href="#gettext.NullTranslations.ngettext" title="gettext.NullTranslations.ngettext"><code class="xref py py-meth docutils literal notranslate"><span class="pre">ngettext()</span></code></a>, but the translation
-is returned as a byte string encoded in the preferred system encoding
-if no encoding was explicitly set with <a class="reference internal" href="#gettext.NullTranslations.set_output_charset" title="gettext.NullTranslations.set_output_charset"><code class="xref py py-meth docutils literal notranslate"><span class="pre">set_output_charset()</span></code></a>.
-Overridden in derived classes.</p>
-<div class="admonition warning">
-<p class="admonition-title">警告</p>
-<p>These methods should be avoided in Python 3.  See the warning for the
-<a class="reference internal" href="#gettext.lgettext" title="gettext.lgettext"><code class="xref py py-func docutils literal notranslate"><span class="pre">lgettext()</span></code></a> function.</p>
-</div>
-<div class="deprecated-removed">
-<p><span class="versionmodified">Deprecated since version 3.8, removed in version 3.10.</span></p>
-</div>
-</dd></dl>
-
-<dl class="py method">
 <dt class="sig sig-object py" id="gettext.NullTranslations.info">
 <span class="sig-name descname"><span class="pre">info</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gettext.NullTranslations.info" title="本定義的永久連結">¶</a></dt>
 <dd><p>Return the &quot;protected&quot; <code class="xref py py-attr docutils literal notranslate"><span class="pre">_info</span></code> variable, a dictionary containing
@@ -569,25 +486,6 @@ the metadata found in the message catalog file.</p>
 <dt class="sig sig-object py" id="gettext.NullTranslations.charset">
 <span class="sig-name descname"><span class="pre">charset</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gettext.NullTranslations.charset" title="本定義的永久連結">¶</a></dt>
 <dd><p>Return the encoding of the message catalog file.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="gettext.NullTranslations.output_charset">
-<span class="sig-name descname"><span class="pre">output_charset</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gettext.NullTranslations.output_charset" title="本定義的永久連結">¶</a></dt>
-<dd><p>Return the encoding used to return translated messages in <a class="reference internal" href="#gettext.NullTranslations.lgettext" title="gettext.NullTranslations.lgettext"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lgettext()</span></code></a>
-and <a class="reference internal" href="#gettext.NullTranslations.lngettext" title="gettext.NullTranslations.lngettext"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lngettext()</span></code></a>.</p>
-<div class="deprecated-removed">
-<p><span class="versionmodified">Deprecated since version 3.8, removed in version 3.10.</span></p>
-</div>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="gettext.NullTranslations.set_output_charset">
-<span class="sig-name descname"><span class="pre">set_output_charset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">charset</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gettext.NullTranslations.set_output_charset" title="本定義的永久連結">¶</a></dt>
-<dd><p>Change the encoding used to return translated messages.</p>
-<div class="deprecated-removed">
-<p><span class="versionmodified">Deprecated since version 3.8, removed in version 3.10.</span></p>
-</div>
 </dd></dl>
 
 <dl class="py method">
@@ -701,28 +599,6 @@ fallback is specified, the request is forwarded to the fallback's
 returned, and <em>plural</em> is returned in all other cases.</p>
 <div class="versionadded">
 <p><span class="versionmodified added">在 3.8 版本新加入.</span></p>
-</div>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="gettext.GNUTranslations.lgettext">
-<span class="sig-name descname"><span class="pre">lgettext</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gettext.GNUTranslations.lgettext" title="本定義的永久連結">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="gettext.GNUTranslations.lngettext">
-<span class="sig-name descname"><span class="pre">lngettext</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">singular</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plural</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gettext.GNUTranslations.lngettext" title="本定義的永久連結">¶</a></dt>
-<dd><p>Equivalent to <a class="reference internal" href="#gettext.GNUTranslations.gettext" title="gettext.GNUTranslations.gettext"><code class="xref py py-meth docutils literal notranslate"><span class="pre">gettext()</span></code></a> and <a class="reference internal" href="#gettext.GNUTranslations.ngettext" title="gettext.GNUTranslations.ngettext"><code class="xref py py-meth docutils literal notranslate"><span class="pre">ngettext()</span></code></a>, but the translation
-is returned as a byte string encoded in the preferred system encoding
-if no encoding  was explicitly set with
-<a class="reference internal" href="#gettext.NullTranslations.set_output_charset" title="gettext.NullTranslations.set_output_charset"><code class="xref py py-meth docutils literal notranslate"><span class="pre">set_output_charset()</span></code></a>.</p>
-<div class="admonition warning">
-<p class="admonition-title">警告</p>
-<p>These methods should be avoided in Python 3.  See the warning for the
-<a class="reference internal" href="#gettext.lgettext" title="gettext.lgettext"><code class="xref py py-func docutils literal notranslate"><span class="pre">lgettext()</span></code></a> function.</p>
-</div>
-<div class="deprecated-removed">
-<p><span class="versionmodified">Deprecated since version 3.8, removed in version 3.10.</span></p>
 </div>
 </dd></dl>
 
@@ -981,7 +857,6 @@ application.</p>
 <li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gettext</span></code> --- Multilingual internationalization services</a><ul>
 <li><a class="reference internal" href="#gnu-gettext-api">GNU <strong class="program">gettext</strong> API</a><ul>
 <li><a class="reference internal" href="#gettext.bindtextdomain"><code class="docutils literal notranslate"><span class="pre">bindtextdomain()</span></code></a></li>
-<li><a class="reference internal" href="#gettext.bind_textdomain_codeset"><code class="docutils literal notranslate"><span class="pre">bind_textdomain_codeset()</span></code></a></li>
 <li><a class="reference internal" href="#gettext.textdomain"><code class="docutils literal notranslate"><span class="pre">textdomain()</span></code></a></li>
 <li><a class="reference internal" href="#gettext.gettext"><code class="docutils literal notranslate"><span class="pre">gettext()</span></code></a></li>
 <li><a class="reference internal" href="#gettext.dgettext"><code class="docutils literal notranslate"><span class="pre">dgettext()</span></code></a></li>
@@ -991,10 +866,6 @@ application.</p>
 <li><a class="reference internal" href="#gettext.dpgettext"><code class="docutils literal notranslate"><span class="pre">dpgettext()</span></code></a></li>
 <li><a class="reference internal" href="#gettext.npgettext"><code class="docutils literal notranslate"><span class="pre">npgettext()</span></code></a></li>
 <li><a class="reference internal" href="#gettext.dnpgettext"><code class="docutils literal notranslate"><span class="pre">dnpgettext()</span></code></a></li>
-<li><a class="reference internal" href="#gettext.lgettext"><code class="docutils literal notranslate"><span class="pre">lgettext()</span></code></a></li>
-<li><a class="reference internal" href="#gettext.ldgettext"><code class="docutils literal notranslate"><span class="pre">ldgettext()</span></code></a></li>
-<li><a class="reference internal" href="#gettext.lngettext"><code class="docutils literal notranslate"><span class="pre">lngettext()</span></code></a></li>
-<li><a class="reference internal" href="#gettext.ldngettext"><code class="docutils literal notranslate"><span class="pre">ldngettext()</span></code></a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#class-based-api">Class-based API</a><ul>
@@ -1009,12 +880,8 @@ application.</p>
 <li><a class="reference internal" href="#gettext.NullTranslations.ngettext"><code class="docutils literal notranslate"><span class="pre">NullTranslations.ngettext()</span></code></a></li>
 <li><a class="reference internal" href="#gettext.NullTranslations.pgettext"><code class="docutils literal notranslate"><span class="pre">NullTranslations.pgettext()</span></code></a></li>
 <li><a class="reference internal" href="#gettext.NullTranslations.npgettext"><code class="docutils literal notranslate"><span class="pre">NullTranslations.npgettext()</span></code></a></li>
-<li><a class="reference internal" href="#gettext.NullTranslations.lgettext"><code class="docutils literal notranslate"><span class="pre">NullTranslations.lgettext()</span></code></a></li>
-<li><a class="reference internal" href="#gettext.NullTranslations.lngettext"><code class="docutils literal notranslate"><span class="pre">NullTranslations.lngettext()</span></code></a></li>
 <li><a class="reference internal" href="#gettext.NullTranslations.info"><code class="docutils literal notranslate"><span class="pre">NullTranslations.info()</span></code></a></li>
 <li><a class="reference internal" href="#gettext.NullTranslations.charset"><code class="docutils literal notranslate"><span class="pre">NullTranslations.charset()</span></code></a></li>
-<li><a class="reference internal" href="#gettext.NullTranslations.output_charset"><code class="docutils literal notranslate"><span class="pre">NullTranslations.output_charset()</span></code></a></li>
-<li><a class="reference internal" href="#gettext.NullTranslations.set_output_charset"><code class="docutils literal notranslate"><span class="pre">NullTranslations.set_output_charset()</span></code></a></li>
 <li><a class="reference internal" href="#gettext.NullTranslations.install"><code class="docutils literal notranslate"><span class="pre">NullTranslations.install()</span></code></a></li>
 </ul>
 </li>
@@ -1026,8 +893,6 @@ application.</p>
 <li><a class="reference internal" href="#gettext.GNUTranslations.ngettext"><code class="docutils literal notranslate"><span class="pre">GNUTranslations.ngettext()</span></code></a></li>
 <li><a class="reference internal" href="#gettext.GNUTranslations.pgettext"><code class="docutils literal notranslate"><span class="pre">GNUTranslations.pgettext()</span></code></a></li>
 <li><a class="reference internal" href="#gettext.GNUTranslations.npgettext"><code class="docutils literal notranslate"><span class="pre">GNUTranslations.npgettext()</span></code></a></li>
-<li><a class="reference internal" href="#gettext.GNUTranslations.lgettext"><code class="docutils literal notranslate"><span class="pre">GNUTranslations.lgettext()</span></code></a></li>
-<li><a class="reference internal" href="#gettext.GNUTranslations.lngettext"><code class="docutils literal notranslate"><span class="pre">GNUTranslations.lngettext()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -1064,7 +929,7 @@ application.</p>
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.10/Doc/library/gettext.rst"
+        <a href="https://github.com/python/cpython/blob/main/Doc/library/gettext.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -1104,7 +969,7 @@ application.</p>
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.8 Documentation</a> &#187;
+      <a href="../index.html">3.11.0rc2 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -1141,7 +1006,7 @@ application.</p>
 <br />
     <br />
 
-    最後更新於 10月 15, 2022。
+    最後更新於 10月 16, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 

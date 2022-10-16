@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>pickle --- Python object serialization &#8212; Python 3.10.8 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pickle --- Python object serialization &#8212; Python 3.11.0rc2 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -22,7 +22,7 @@
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.10.8 說明文件 中搜尋"
+          title="在 Python 3.11.0rc2 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -156,7 +156,7 @@
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.10/Doc/library/pickle.rst"
+        <a href="https://github.com/python/cpython/blob/main/Doc/library/pickle.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -193,7 +193,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.8 Documentation</a> &#187;
+      <a href="../index.html">3.11.0rc2 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -223,7 +223,7 @@
             
   <section id="module-pickle">
 <span id="pickle-python-object-serialization"></span><h1><a class="reference internal" href="#module-pickle" title="pickle: Convert Python objects to streams of bytes and back."><code class="xref py py-mod docutils literal notranslate"><span class="pre">pickle</span></code></a> --- Python object serialization<a class="headerlink" href="#module-pickle" title="本標頭的永久連結">¶</a></h1>
-<p><strong>原始碼：</strong><a class="reference external" href="https://github.com/python/cpython/tree/3.10/Lib/pickle.py">Lib/pickle.py</a></p>
+<p><strong>原始碼：</strong><a class="reference external" href="https://github.com/python/cpython/tree/3.11/Lib/pickle.py">Lib/pickle.py</a></p>
 <hr class="docutils" id="index-0" />
 <p>The <a class="reference internal" href="#module-pickle" title="pickle: Convert Python objects to streams of bytes and back."><code class="xref py py-mod docutils literal notranslate"><span class="pre">pickle</span></code></a> module implements binary protocols for serializing and
 de-serializing a Python object structure.  <em>&quot;Pickling&quot;</em> is the process
@@ -680,9 +680,8 @@ the buffer is neither C- nor Fortran-contiguous.</p>
 <li><p>functions (built-in and user-defined) accessible from the top level of a
 module (using <a class="reference internal" href="../reference/compound_stmts.html#def"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">def</span></code></a>, not <a class="reference internal" href="../reference/expressions.html#lambda"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">lambda</span></code></a>);</p></li>
 <li><p>classes accessible from the top level of a module;</p></li>
-<li><p>instances of such classes whose <a class="reference internal" href="stdtypes.html#object.__dict__" title="object.__dict__"><code class="xref py py-attr docutils literal notranslate"><span class="pre">__dict__</span></code></a> or the result of
-calling <code class="xref py py-meth docutils literal notranslate"><span class="pre">__getstate__()</span></code> is picklable  (see section <a class="reference internal" href="#pickle-inst"><span class="std std-ref">Pickling Class Instances</span></a> for
-details).</p></li>
+<li><p>instances of such classes whose the result of calling <code class="xref py py-meth docutils literal notranslate"><span class="pre">__getstate__()</span></code>
+is picklable  (see section <a class="reference internal" href="#pickle-inst"><span class="std std-ref">Pickling Class Instances</span></a> for details).</p></li>
 </ul>
 <p>Attempts to pickle unpicklable objects will raise the <a class="reference internal" href="#pickle.PicklingError" title="pickle.PicklingError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">PicklingError</span></code></a>
 exception; when this happens, an unspecified number of bytes may have already
@@ -772,11 +771,29 @@ defined.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="object.__getstate__">
 <span class="sig-prename descclassname"><span class="pre">object.</span></span><span class="sig-name descname"><span class="pre">__getstate__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#object.__getstate__" title="本定義的永久連結">¶</a></dt>
-<dd><p>Classes can further influence how their instances are pickled; if the class
-defines the method <a class="reference internal" href="#object.__getstate__" title="object.__getstate__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__getstate__()</span></code></a>, it is called and the returned object
-is pickled as the contents for the instance, instead of the contents of the
-instance's dictionary.  If the <a class="reference internal" href="#object.__getstate__" title="object.__getstate__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__getstate__()</span></code></a> method is absent, the
-instance's <a class="reference internal" href="stdtypes.html#object.__dict__" title="object.__dict__"><code class="xref py py-attr docutils literal notranslate"><span class="pre">__dict__</span></code></a> is pickled as usual.</p>
+<dd><p>Classes can further influence how their instances are pickled by overriding
+the method <a class="reference internal" href="#object.__getstate__" title="object.__getstate__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__getstate__()</span></code></a>.  It is called and the returned object
+is pickled as the contents for the instance, instead of a default state.
+There are several cases:</p>
+<ul class="simple">
+<li><p>For a class that has no instance <a class="reference internal" href="stdtypes.html#object.__dict__" title="object.__dict__"><code class="xref py py-attr docutils literal notranslate"><span class="pre">__dict__</span></code></a> and no
+<a class="reference internal" href="../reference/datamodel.html#object.__slots__" title="object.__slots__"><code class="xref py py-attr docutils literal notranslate"><span class="pre">__slots__</span></code></a>, the default state is <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p></li>
+<li><p>For a class that has an instance <a class="reference internal" href="stdtypes.html#object.__dict__" title="object.__dict__"><code class="xref py py-attr docutils literal notranslate"><span class="pre">__dict__</span></code></a> and no
+<a class="reference internal" href="../reference/datamodel.html#object.__slots__" title="object.__slots__"><code class="xref py py-attr docutils literal notranslate"><span class="pre">__slots__</span></code></a>, the default state is <code class="docutils literal notranslate"><span class="pre">self.__dict__</span></code>.</p></li>
+<li><p>For a class that has an instance <a class="reference internal" href="stdtypes.html#object.__dict__" title="object.__dict__"><code class="xref py py-attr docutils literal notranslate"><span class="pre">__dict__</span></code></a> and
+<a class="reference internal" href="../reference/datamodel.html#object.__slots__" title="object.__slots__"><code class="xref py py-attr docutils literal notranslate"><span class="pre">__slots__</span></code></a>, the default state is a tuple consisting of two
+dictionaries:  <code class="docutils literal notranslate"><span class="pre">self.__dict__</span></code>, and a dictionary mapping slot
+names to slot values.  Only slots that have a value are
+included in the latter.</p></li>
+<li><p>For a class that has <a class="reference internal" href="../reference/datamodel.html#object.__slots__" title="object.__slots__"><code class="xref py py-attr docutils literal notranslate"><span class="pre">__slots__</span></code></a> and no instance
+<a class="reference internal" href="stdtypes.html#object.__dict__" title="object.__dict__"><code class="xref py py-attr docutils literal notranslate"><span class="pre">__dict__</span></code></a>, the default state is a tuple whose first item
+is <code class="docutils literal notranslate"><span class="pre">None</span></code> and whose second item is a dictionary mapping slot names
+to slot values described in the previous bullet.</p></li>
+</ul>
+<div class="versionchanged">
+<p><span class="versionmodified changed">在 3.11 版本變更: </span>Added the default implementation of the <code class="docutils literal notranslate"><span class="pre">__getstate__()</span></code> method in the
+<a class="reference internal" href="functions.html#object" title="object"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a> class.</p>
+</div>
 </dd></dl>
 
 <dl class="py method">
@@ -1483,7 +1500,7 @@ persistent IDs, the resulting pickled data will become unreadable.</p>
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.10/Doc/library/pickle.rst"
+        <a href="https://github.com/python/cpython/blob/main/Doc/library/pickle.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -1523,7 +1540,7 @@ persistent IDs, the resulting pickled data will become unreadable.</p>
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.8 Documentation</a> &#187;
+      <a href="../index.html">3.11.0rc2 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -1560,7 +1577,7 @@ persistent IDs, the resulting pickled data will become unreadable.</p>
 <br />
     <br />
 
-    最後更新於 10月 15, 2022。
+    最後更新於 10月 16, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 

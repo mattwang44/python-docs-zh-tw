@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>csv --- CSV File Reading and Writing &#8212; Python 3.10.8 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>csv --- CSV File Reading and Writing &#8212; Python 3.11.0rc2 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -22,7 +22,7 @@
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.10.8 說明文件 中搜尋"
+          title="在 Python 3.11.0rc2 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -148,7 +148,7 @@
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.10/Doc/library/csv.rst"
+        <a href="https://github.com/python/cpython/blob/main/Doc/library/csv.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -185,7 +185,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.8 Documentation</a> &#187;
+      <a href="../index.html">3.11.0rc2 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -215,7 +215,7 @@
             
   <section id="module-csv">
 <span id="csv-csv-file-reading-and-writing"></span><h1><a class="reference internal" href="#module-csv" title="csv: Write and read tabular data to and from delimited files."><code class="xref py py-mod docutils literal notranslate"><span class="pre">csv</span></code></a> --- CSV File Reading and Writing<a class="headerlink" href="#module-csv" title="本標頭的永久連結">¶</a></h1>
-<p><strong>原始碼：</strong><a class="reference external" href="https://github.com/python/cpython/tree/3.10/Lib/csv.py">Lib/csv.py</a></p>
+<p><strong>原始碼：</strong><a class="reference external" href="https://github.com/python/cpython/tree/3.11/Lib/csv.py">Lib/csv.py</a></p>
 <hr class="docutils" id="index-0" />
 <p>The so-called CSV (Comma Separated Values) format is the most common import and
 export format for spreadsheets and databases.  CSV format was used for many
@@ -584,6 +584,9 @@ defaults to <a class="reference internal" href="constants.html#True" title="True
 is set to <a class="reference internal" href="#csv.QUOTE_NONE" title="csv.QUOTE_NONE"><code class="xref py py-const docutils literal notranslate"><span class="pre">QUOTE_NONE</span></code></a> and the <em>quotechar</em> if <em>doublequote</em> is
 <a class="reference internal" href="constants.html#False" title="False"><code class="xref py py-const docutils literal notranslate"><span class="pre">False</span></code></a>. On reading, the <em>escapechar</em> removes any special meaning from
 the following character. It defaults to <a class="reference internal" href="constants.html#None" title="None"><code class="xref py py-const docutils literal notranslate"><span class="pre">None</span></code></a>, which disables escaping.</p>
+<div class="versionchanged">
+<p><span class="versionmodified changed">在 3.11 版本變更: </span>An empty <em>escapechar</em> is not allowed.</p>
+</div>
 </dd></dl>
 
 <dl class="py attribute">
@@ -605,6 +608,9 @@ future.</p>
 <dd><p>A one-character string used to quote fields containing special characters, such
 as the <em>delimiter</em> or <em>quotechar</em>, or which contain new-line characters.  It
 defaults to <code class="docutils literal notranslate"><span class="pre">'&quot;'</span></code>.</p>
+<div class="versionchanged">
+<p><span class="versionmodified changed">在 3.11 版本變更: </span>An empty <em>quotechar</em> is not allowed.</p>
+</div>
 </dd></dl>
 
 <dl class="py attribute">
@@ -746,7 +752,7 @@ the <a class="reference internal" href="#csv.csvwriter.writerow" title="csv.csvw
 </div>
 <p>Since <a class="reference internal" href="functions.html#open" title="open"><code class="xref py py-func docutils literal notranslate"><span class="pre">open()</span></code></a> is used to open a CSV file for reading, the file
 will by default be decoded into unicode using the system default
-encoding (see <a class="reference internal" href="locale.html#locale.getpreferredencoding" title="locale.getpreferredencoding"><code class="xref py py-func docutils literal notranslate"><span class="pre">locale.getpreferredencoding()</span></code></a>).  To decode a file
+encoding (see <a class="reference internal" href="locale.html#locale.getencoding" title="locale.getencoding"><code class="xref py py-func docutils literal notranslate"><span class="pre">locale.getencoding()</span></code></a>).  To decode a file
 using a different encoding, use the <code class="docutils literal notranslate"><span class="pre">encoding</span></code> argument of open:</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">csv</span>
 <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;some.csv&#39;</span><span class="p">,</span> <span class="n">newline</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
@@ -881,7 +887,7 @@ on write an extra <code class="docutils literal notranslate"><span class="pre">\
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.10/Doc/library/csv.rst"
+        <a href="https://github.com/python/cpython/blob/main/Doc/library/csv.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -921,7 +927,7 @@ on write an extra <code class="docutils literal notranslate"><span class="pre">\
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.8 Documentation</a> &#187;
+      <a href="../index.html">3.11.0rc2 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -958,7 +964,7 @@ on write an extra <code class="docutils literal notranslate"><span class="pre">\
 <br />
     <br />
 
-    最後更新於 10月 15, 2022。
+    最後更新於 10月 16, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 

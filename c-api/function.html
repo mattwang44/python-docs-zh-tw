@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>函式（Function）物件 &#8212; Python 3.10.8 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>函式（Function）物件 &#8212; Python 3.11.0rc2 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -22,7 +22,7 @@
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.10.8 說明文件 中搜尋"
+          title="在 Python 3.11.0rc2 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -87,7 +87,7 @@
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.10/Doc/c-api/function.rst"
+        <a href="https://github.com/python/cpython/blob/main/Doc/c-api/function.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -124,7 +124,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.8 Documentation</a> &#187;
+      <a href="../index.html">3.11.0rc2 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python/C API 參考手冊</a> &#187;</li>
@@ -182,7 +182,8 @@ The parameter must not be <code class="docutils literal notranslate"><span class
 must be a dictionary with the global variables accessible to the function.</p>
 <p>The function's docstring and name are retrieved from the code object. <em>__module__</em>
 is retrieved from <em>globals</em>. The argument defaults, annotations and closure are
-set to <code class="docutils literal notranslate"><span class="pre">NULL</span></code>. <em>__qualname__</em> is set to the same value as the function's name.</p>
+set to <code class="docutils literal notranslate"><span class="pre">NULL</span></code>. <em>__qualname__</em> is set to the same value as the code object's
+<code class="docutils literal notranslate"><span class="pre">co_qualname</span></code> field.</p>
 </dd></dl>
 
 <dl class="c function">
@@ -190,8 +191,8 @@ set to <code class="docutils literal notranslate"><span class="pre">NULL</span><
 <a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">PyFunction_NewWithQualName</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">code</span></span>, <a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">globals</span></span>, <a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">qualname</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.PyFunction_NewWithQualName" title="本定義的永久連結">¶</a><br /></dt>
 <dd><em class="refcount">Return value: New reference.</em><p>As <a class="reference internal" href="#c.PyFunction_New" title="PyFunction_New"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyFunction_New()</span></code></a>, but also allows setting the function object's
 <code class="docutils literal notranslate"><span class="pre">__qualname__</span></code> attribute.  <em>qualname</em> should be a unicode object or <code class="docutils literal notranslate"><span class="pre">NULL</span></code>;
-if <code class="docutils literal notranslate"><span class="pre">NULL</span></code>, the <code class="docutils literal notranslate"><span class="pre">__qualname__</span></code> attribute is set to the same value as its
-<code class="docutils literal notranslate"><span class="pre">__name__</span></code> attribute.</p>
+if <code class="docutils literal notranslate"><span class="pre">NULL</span></code>, the <code class="docutils literal notranslate"><span class="pre">__qualname__</span></code> attribute is set to the same value as the
+code object's <code class="docutils literal notranslate"><span class="pre">co_qualname</span></code> field.</p>
 <div class="versionadded">
 <p><span class="versionmodified added">在 3.3 版本新加入.</span></p>
 </div>
@@ -287,7 +288,7 @@ must be a dictionary or <code class="docutils literal notranslate"><span class="
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.10/Doc/c-api/function.rst"
+        <a href="https://github.com/python/cpython/blob/main/Doc/c-api/function.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -327,7 +328,7 @@ must be a dictionary or <code class="docutils literal notranslate"><span class="
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.8 Documentation</a> &#187;
+      <a href="../index.html">3.11.0rc2 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python/C API 參考手冊</a> &#187;</li>
@@ -364,7 +365,7 @@ must be a dictionary or <code class="docutils literal notranslate"><span class="
 <br />
     <br />
 
-    最後更新於 10月 15, 2022。
+    最後更新於 10月 16, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 

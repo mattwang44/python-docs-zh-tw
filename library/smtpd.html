@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>smtpd --- SMTP 伺服器 &#8212; Python 3.10.8 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>smtpd --- SMTP 伺服器 &#8212; Python 3.11.0rc2 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -22,7 +22,7 @@
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.10.8 說明文件 中搜尋"
+          title="在 Python 3.11.0rc2 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -92,10 +92,6 @@
 <li><a class="reference internal" href="#smtpd.PureProxy"><code class="docutils literal notranslate"><span class="pre">PureProxy</span></code></a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#mailmanproxy-objects">MailmanProxy 物件</a><ul>
-<li><a class="reference internal" href="#smtpd.MailmanProxy"><code class="docutils literal notranslate"><span class="pre">MailmanProxy</span></code></a></li>
-</ul>
-</li>
 <li><a class="reference internal" href="#smtpchannel-objects">SMTPChannel 物件</a><ul>
 <li><a class="reference internal" href="#smtpd.SMTPChannel"><code class="docutils literal notranslate"><span class="pre">SMTPChannel</span></code></a><ul>
 <li><a class="reference internal" href="#smtpd.SMTPChannel.smtp_server"><code class="docutils literal notranslate"><span class="pre">SMTPChannel.smtp_server</span></code></a></li>
@@ -133,7 +129,7 @@
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.10/Doc/library/smtpd.rst"
+        <a href="https://github.com/python/cpython/blob/main/Doc/library/smtpd.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -170,7 +166,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.8 Documentation</a> &#187;
+      <a href="../index.html">3.11.0rc2 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -200,11 +196,11 @@
             
   <section id="module-smtpd">
 <span id="smtpd-smtp-server"></span><h1><a class="reference internal" href="#module-smtpd" title="smtpd: A SMTP server implementation in Python.（已棄用）"><code class="xref py py-mod docutils literal notranslate"><span class="pre">smtpd</span></code></a> --- SMTP 伺服器<a class="headerlink" href="#module-smtpd" title="本標頭的永久連結">¶</a></h1>
-<p><strong>原始碼：</strong><a class="reference external" href="https://github.com/python/cpython/tree/3.10/Lib/smtpd.py">Lib/smtpd.py</a></p>
+<p><strong>原始碼：</strong><a class="reference external" href="https://github.com/python/cpython/tree/3.11/Lib/smtpd.py">Lib/smtpd.py</a></p>
 <hr class="docutils" />
 <p>This module offers several classes to implement SMTP (email) servers.</p>
-<div class="deprecated">
-<p><span class="versionmodified deprecated">在 3.6 版本開始棄用: </span><a class="reference internal" href="#module-smtpd" title="smtpd: A SMTP server implementation in Python.（已棄用）"><code class="xref py py-mod docutils literal notranslate"><span class="pre">smtpd</span></code></a> 將於 Python 3.12 中移除（詳見 <span class="target" id="index-11"></span><a class="pep reference external" href="https://peps.python.org/pep-0594/#smtpd"><strong>PEP 594</strong></a>）。基於 <a class="reference internal" href="asyncio.html#module-asyncio" title="asyncio: Asynchronous I/O."><code class="xref py py-mod docutils literal notranslate"><span class="pre">asyncio</span></code></a> 且提供了更簡單易用 API 的 <a class="reference external" href="https://aiosmtpd.readthedocs.io/">aiosmtpd</a> 套件是個推薦的替代模組 (module)。</p>
+<div class="deprecated-removed">
+<p><span class="versionmodified">Deprecated since version 3.6, will be removed in version 3.12: </span><a class="reference internal" href="#module-smtpd" title="smtpd: A SMTP server implementation in Python.（已棄用）"><code class="xref py py-mod docutils literal notranslate"><span class="pre">smtpd</span></code></a> 已被棄用（詳見 <span class="target" id="index-11"></span><a class="pep reference external" href="https://peps.python.org/pep-0594/#smtpd"><strong>PEP 594</strong></a>）。基於 <a class="reference internal" href="asyncio.html#module-asyncio" title="asyncio: Asynchronous I/O."><code class="xref py py-mod docutils literal notranslate"><span class="pre">asyncio</span></code></a> 且提供了更簡單易用 API 的 <a class="reference external" href="https://aiosmtpd.readthedocs.io/">aiosmtpd</a> 套件是個推薦的替代模組 (module)。</p>
 </div>
 <p>Several server implementations are present; one is a generic
 do-nothing implementation, which can be overridden, while the other two offer
@@ -213,6 +209,10 @@ specific mail-sending strategies.</p>
 interaction behaviour with SMTP clients.</p>
 <p>The code supports <span class="target" id="index-1"></span><a class="rfc reference external" href="https://datatracker.ietf.org/doc/html/rfc5321.html"><strong>RFC 5321</strong></a>, plus the <span class="target" id="index-2"></span><a class="rfc reference external" href="https://datatracker.ietf.org/doc/html/rfc1870.html"><strong>RFC 1870</strong></a> SIZE and <span class="target" id="index-3"></span><a class="rfc reference external" href="https://datatracker.ietf.org/doc/html/rfc6531.html"><strong>RFC 6531</strong></a>
 SMTPUTF8 extensions.</p>
+<p class="availability"><a class="reference internal" href="intro.html#availability"><span class="std std-ref">Availability</span></a>: not Emscripten, not WASI.<p>This module does not work or is not available on WebAssembly platforms
+<code class="docutils literal notranslate"><span class="pre">wasm32-emscripten</span></code> and <code class="docutils literal notranslate"><span class="pre">wasm32-wasi</span></code>. See
+<a class="reference internal" href="intro.html#wasm-availability"><span class="std std-ref">WebAssembly platforms</span></a> for more information.</p>
+</p>
 <section id="smtpserver-objects">
 <h2>SMTPServer 物件<a class="headerlink" href="#smtpserver-objects" title="本標頭的永久連結">¶</a></h2>
 <dl class="py class">
@@ -319,23 +319,6 @@ Messages will be discarded, and printed on stdout.</p>
 <dd><p>Create a new pure proxy server. Arguments are as per <a class="reference internal" href="#smtpd.SMTPServer" title="smtpd.SMTPServer"><code class="xref py py-class docutils literal notranslate"><span class="pre">SMTPServer</span></code></a>.
 Everything will be relayed to <em>remoteaddr</em>.  Note that running this has a good
 chance to make you into an open relay, so please be careful.</p>
-</dd></dl>
-
-</section>
-<section id="mailmanproxy-objects">
-<h2>MailmanProxy 物件<a class="headerlink" href="#mailmanproxy-objects" title="本標頭的永久連結">¶</a></h2>
-<dl class="py class">
-<dt class="sig sig-object py" id="smtpd.MailmanProxy">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">smtpd.</span></span><span class="sig-name descname"><span class="pre">MailmanProxy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">localaddr</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">remoteaddr</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#smtpd.MailmanProxy" title="本定義的永久連結">¶</a></dt>
-<dd><div class="deprecated-removed">
-<p><span class="versionmodified">Deprecated since version 3.9, will be removed in version 3.11: </span><a class="reference internal" href="#smtpd.MailmanProxy" title="smtpd.MailmanProxy"><code class="xref py py-class docutils literal notranslate"><span class="pre">MailmanProxy</span></code></a> is deprecated, it depends on a <code class="docutils literal notranslate"><span class="pre">Mailman</span></code>
-module which no longer exists and therefore is already broken.</p>
-</div>
-<p>Create a new pure proxy server. Arguments are as per <a class="reference internal" href="#smtpd.SMTPServer" title="smtpd.SMTPServer"><code class="xref py py-class docutils literal notranslate"><span class="pre">SMTPServer</span></code></a>.
-Everything will be relayed to <em>remoteaddr</em>, unless local mailman configurations
-knows about an address, in which case it will be handled via mailman.  Note that
-running this has a good chance to make you into an open relay, so please be
-careful.</p>
 </dd></dl>
 
 </section>
@@ -531,10 +514,6 @@ from the client in <a class="reference internal" href="#smtpd.SMTPChannel.receiv
 <li><a class="reference internal" href="#smtpd.PureProxy"><code class="docutils literal notranslate"><span class="pre">PureProxy</span></code></a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#mailmanproxy-objects">MailmanProxy 物件</a><ul>
-<li><a class="reference internal" href="#smtpd.MailmanProxy"><code class="docutils literal notranslate"><span class="pre">MailmanProxy</span></code></a></li>
-</ul>
-</li>
 <li><a class="reference internal" href="#smtpchannel-objects">SMTPChannel 物件</a><ul>
 <li><a class="reference internal" href="#smtpd.SMTPChannel"><code class="docutils literal notranslate"><span class="pre">SMTPChannel</span></code></a><ul>
 <li><a class="reference internal" href="#smtpd.SMTPChannel.smtp_server"><code class="docutils literal notranslate"><span class="pre">SMTPChannel.smtp_server</span></code></a></li>
@@ -572,7 +551,7 @@ from the client in <a class="reference internal" href="#smtpd.SMTPChannel.receiv
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.10/Doc/library/smtpd.rst"
+        <a href="https://github.com/python/cpython/blob/main/Doc/library/smtpd.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -612,7 +591,7 @@ from the client in <a class="reference internal" href="#smtpd.SMTPChannel.receiv
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.8 Documentation</a> &#187;
+      <a href="../index.html">3.11.0rc2 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -649,7 +628,7 @@ from the client in <a class="reference internal" href="#smtpd.SMTPChannel.receiv
 <br />
     <br />
 
-    最後更新於 10月 15, 2022。
+    最後更新於 10月 16, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 

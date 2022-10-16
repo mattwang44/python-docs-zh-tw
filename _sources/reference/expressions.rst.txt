@@ -218,9 +218,9 @@ A comprehension in an :keyword:`!async def` function may consist of either a
 :keyword:`!for` or :keyword:`!async for` clause following the leading
 expression, may contain additional :keyword:`!for` or :keyword:`!async for`
 clauses, and may also use :keyword:`await` expressions.
-If a comprehension contains either :keyword:`!async for` clauses
-or :keyword:`!await` expressions it is called an
-:dfn:`asynchronous comprehension`.  An asynchronous comprehension may
+If a comprehension contains either :keyword:`!async for` clauses or
+:keyword:`!await` expressions or other asynchronous comprehensions it is called
+an :dfn:`asynchronous comprehension`.  An asynchronous comprehension may
 suspend the execution of the coroutine function in which it appears.
 See also :pep:`530`.
 
@@ -229,6 +229,11 @@ See also :pep:`530`.
 
 .. versionchanged:: 3.8
    ``yield`` and ``yield from`` prohibited in the implicitly nested scope.
+
+.. versionchanged:: 3.11
+   Asynchronous comprehensions are now allowed inside comprehensions in
+   asynchronous functions. Outer comprehensions implicitly become
+   asynchronous.
 
 
 .. _lists:
@@ -981,8 +986,8 @@ formal parameters.  If there are N positional arguments, they are placed in the
 first N slots.  Next, for each keyword argument, the identifier is used to
 determine the corresponding slot (if the identifier is the same as the first
 formal parameter name, the first slot is used, and so on).  If the slot is
-already filled, a :exc:`TypeError` exception is raised. Otherwise, the value of
-the argument is placed in the slot, filling it (even if the expression is
+already filled, a :exc:`TypeError` exception is raised. Otherwise, the
+argument is placed in the slot, filling it (even if the expression is
 ``None``, it fills the slot).  When all arguments have been processed, the slots
 that are still unfilled are filled with the corresponding default value from the
 function definition.  (Default values are calculated, once, when the function is
@@ -1042,7 +1047,7 @@ keyword arguments (and any ``**expression`` arguments -- see below).  So::
    1 2
 
 It is unusual for both keyword arguments and the ``*expression`` syntax to be
-used in the same call, so in practice this confusion does not arise.
+used in the same call, so in practice this confusion does not often arise.
 
 .. index::
    single: **; in function calls
@@ -1449,6 +1454,8 @@ evaluated at most once.
 Note that ``a op1 b op2 c`` doesn't imply any kind of comparison between *a* and
 *c*, so that, e.g., ``x < y > z`` is perfectly legal (though perhaps not
 pretty).
+
+.. _expressions-value-comparisons:
 
 Value comparisons
 -----------------
@@ -1895,7 +1902,7 @@ The following table summarizes the operator precedence in Python, from highest
 precedence (most binding) to lowest precedence (least binding).  Operators in
 the same box have the same precedence.  Unless the syntax is explicitly given,
 operators are binary.  Operators in the same box group left to right (except for
-exponentiation, which groups from right to left).
+exponentiation and conditional expressions, which group from right to left).
 
 Note that comparisons, membership tests, and identity tests, all have the same
 precedence and have a left-to-right chaining feature as described in the

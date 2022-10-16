@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>3. Configure Python &#8212; Python 3.10.8 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3. Configure Python &#8212; Python 3.11.0rc2 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -22,7 +22,7 @@
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.10.8 說明文件 中搜尋"
+          title="在 Python 3.11.0rc2 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -78,14 +78,16 @@
 <li><a class="reference internal" href="#">3. Configure Python</a><ul>
 <li><a class="reference internal" href="#configure-options">3.1. Configure Options</a><ul>
 <li><a class="reference internal" href="#general-options">3.1.1. General Options</a></li>
-<li><a class="reference internal" href="#install-options">3.1.2. Install Options</a></li>
-<li><a class="reference internal" href="#performance-options">3.1.3. Performance options</a></li>
-<li><a class="reference internal" href="#python-debug-build">3.1.4. Python Debug Build</a></li>
-<li><a class="reference internal" href="#debug-options">3.1.5. Debug options</a></li>
-<li><a class="reference internal" href="#linker-options">3.1.6. Linker options</a></li>
-<li><a class="reference internal" href="#libraries-options">3.1.7. Libraries options</a></li>
-<li><a class="reference internal" href="#security-options">3.1.8. Security Options</a></li>
-<li><a class="reference internal" href="#macos-options">3.1.9. macOS Options</a></li>
+<li><a class="reference internal" href="#webassembly-options">3.1.2. WebAssembly Options</a></li>
+<li><a class="reference internal" href="#install-options">3.1.3. Install Options</a></li>
+<li><a class="reference internal" href="#performance-options">3.1.4. Performance options</a></li>
+<li><a class="reference internal" href="#python-debug-build">3.1.5. Python Debug Build</a></li>
+<li><a class="reference internal" href="#debug-options">3.1.6. Debug options</a></li>
+<li><a class="reference internal" href="#linker-options">3.1.7. Linker options</a></li>
+<li><a class="reference internal" href="#libraries-options">3.1.8. Libraries options</a></li>
+<li><a class="reference internal" href="#security-options">3.1.9. Security Options</a></li>
+<li><a class="reference internal" href="#macos-options">3.1.10. macOS Options</a></li>
+<li><a class="reference internal" href="#cross-compiling-options">3.1.11. Cross Compiling Options</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#python-build-system">3.2. Python Build System</a><ul>
@@ -121,7 +123,7 @@
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.10/Doc/using/configure.rst"
+        <a href="https://github.com/python/cpython/blob/main/Doc/using/configure.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -158,7 +160,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.8 Documentation</a> &#187;
+      <a href="../index.html">3.11.0rc2 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Python 的設置與使用</a> &#187;</li>
@@ -219,8 +221,7 @@ is no).</p>
 <dt class="sig sig-object std" id="cmdoption-enable-big-digits">
 <span class="sig-name descname"><span class="pre">--enable-big-digits</span></span><span class="sig-prename descclassname"><span class="pre">=[15|30]</span></span><a class="headerlink" href="#cmdoption-enable-big-digits" title="本定義的永久連結">¶</a></dt>
 <dd><p>Define the size in bits of Python <a class="reference internal" href="../library/functions.html#int" title="int"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a> digits: 15 or 30 bits.</p>
-<p>By default, the number of bits is selected depending on <code class="docutils literal notranslate"><span class="pre">sizeof(void*)</span></code>:
-30 bits if <code class="docutils literal notranslate"><span class="pre">void*</span></code> size is 64-bit or larger, 15 bits otherwise.</p>
+<p>By default, the digit size is 30.</p>
 <p>將 <code class="docutils literal notranslate"><span class="pre">PYLONG_BITS_IN_DIGIT</span></code> 定義為 <code class="docutils literal notranslate"><span class="pre">15</span></code> 或 <code class="docutils literal notranslate"><span class="pre">30</span></code>。</p>
 <p>參閱 <a class="reference internal" href="../library/sys.html#sys.int_info" title="sys.int_info"><code class="xref py py-data docutils literal notranslate"><span class="pre">sys.int_info.bits_per_digit</span></code></a>。</p>
 </dd></dl>
@@ -242,7 +243,13 @@ compiler: <code class="docutils literal notranslate"><span class="pre">$CXX</spa
 <span class="sig-name descname"><span class="pre">--with-suffix</span></span><span class="sig-prename descclassname"><span class="pre">=SUFFIX</span></span><a class="headerlink" href="#cmdoption-with-suffix" title="本定義的永久連結">¶</a></dt>
 <dd><p>Set the Python executable suffix to <em>SUFFIX</em>.</p>
 <p>The default suffix is <code class="docutils literal notranslate"><span class="pre">.exe</span></code> on Windows and macOS (<code class="docutils literal notranslate"><span class="pre">python.exe</span></code>
-executable), and an empty string on other platforms (<code class="docutils literal notranslate"><span class="pre">python</span></code> executable).</p>
+executable), <code class="docutils literal notranslate"><span class="pre">.js</span></code> on Emscripten node, <code class="docutils literal notranslate"><span class="pre">.html</span></code> on Emscripten browser,
+<code class="docutils literal notranslate"><span class="pre">.wasm</span></code> on WASI, and an empty string on other platforms (<code class="docutils literal notranslate"><span class="pre">python</span></code>
+executable).</p>
+<div class="versionchanged">
+<p><span class="versionmodified changed">在 3.11 版本變更: </span>The default suffix on WASM platform is one of <code class="docutils literal notranslate"><span class="pre">.js</span></code>, <code class="docutils literal notranslate"><span class="pre">.html</span></code>
+or <code class="docutils literal notranslate"><span class="pre">.wasm</span></code>.</p>
+</div>
 </dd></dl>
 
 <dl class="std cmdoption">
@@ -270,7 +277,7 @@ than a coroutine-local context (default), see the <a class="reference internal" 
 
 <dl class="std cmdoption">
 <dt class="sig sig-object std" id="cmdoption-with-dbmliborder">
-<span class="sig-name descname"><span class="pre">--with-dbmliborder</span></span><span class="sig-prename descclassname"><span class="pre">=db1:db2:...</span></span><a class="headerlink" href="#cmdoption-with-dbmliborder" title="本定義的永久連結">¶</a></dt>
+<span class="sig-name descname"><span class="pre">--with-dbmliborder</span></span><span class="sig-prename descclassname"><span class="pre">=&lt;list</span> <span class="pre">of</span> <span class="pre">backend</span> <span class="pre">names&gt;</span></span><a class="headerlink" href="#cmdoption-with-dbmliborder" title="本定義的永久連結">¶</a></dt>
 <dd><p>Override order to check db backends for the <a class="reference internal" href="../library/dbm.html#module-dbm" title="dbm: Interfaces to various Unix &quot;database&quot; formats."><code class="xref py py-mod docutils literal notranslate"><span class="pre">dbm</span></code></a> module</p>
 <p>A valid value is a colon (<code class="docutils literal notranslate"><span class="pre">:</span></code>) separated string with the backend names:</p>
 <ul class="simple">
@@ -313,9 +320,72 @@ dependencies. For example, Fedora installs wheel packages in the
 </div>
 </dd></dl>
 
+<dl class="std cmdoption">
+<dt class="sig sig-object std" id="cmdoption-with-pkg-config">
+<span class="sig-name descname"><span class="pre">--with-pkg-config</span></span><span class="sig-prename descclassname"><span class="pre">=[check|yes|no]</span></span><a class="headerlink" href="#cmdoption-with-pkg-config" title="本定義的永久連結">¶</a></dt>
+<dd><p>Whether configure should use <strong class="program">pkg-config</strong> to detect build
+dependencies.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">check</span></code> (default): <strong class="program">pkg-config</strong> is optional</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">yes</span></code>: <strong class="program">pkg-config</strong> is mandatory</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">no</span></code>: configure does not use <strong class="program">pkg-config</strong> even when present</p></li>
+</ul>
+<div class="versionadded">
+<p><span class="versionmodified added">在 3.11 版本新加入.</span></p>
+</div>
+</dd></dl>
+
+<dl class="std cmdoption">
+<dt class="sig sig-object std" id="cmdoption-enable-pystats">
+<span class="sig-name descname"><span class="pre">--enable-pystats</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-enable-pystats" title="本定義的永久連結">¶</a></dt>
+<dd><p>Turn on internal statistics gathering.</p>
+<p>The statistics will be dumped to a arbitrary (probably unique) file in
+<code class="docutils literal notranslate"><span class="pre">/tmp/py_stats/</span></code>, or <code class="docutils literal notranslate"><span class="pre">C:\temp\py_stats\</span></code> on Windows.</p>
+<p>Use <code class="docutils literal notranslate"><span class="pre">Tools/scripts/summarize_stats.py</span></code> to read the stats.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">在 3.11 版本新加入.</span></p>
+</div>
+</dd></dl>
+
+</section>
+<section id="webassembly-options">
+<h3><span class="section-number">3.1.2. </span>WebAssembly Options<a class="headerlink" href="#webassembly-options" title="本標頭的永久連結">¶</a></h3>
+<dl class="std cmdoption">
+<dt class="sig sig-object std" id="cmdoption-with-emscripten-target">
+<span class="sig-name descname"><span class="pre">--with-emscripten-target</span></span><span class="sig-prename descclassname"><span class="pre">=[browser|node]</span></span><a class="headerlink" href="#cmdoption-with-emscripten-target" title="本定義的永久連結">¶</a></dt>
+<dd><p>Set build flavor for <code class="docutils literal notranslate"><span class="pre">wasm32-emscripten</span></code>.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">browser</span></code> (default): preload minimal stdlib, default MEMFS.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">node</span></code>: NODERAWFS and pthread support.</p></li>
+</ul>
+<div class="versionadded">
+<p><span class="versionmodified added">在 3.11 版本新加入.</span></p>
+</div>
+</dd></dl>
+
+<dl class="std cmdoption">
+<dt class="sig sig-object std" id="cmdoption-enable-wasm-dynamic-linking">
+<span class="sig-name descname"><span class="pre">--enable-wasm-dynamic-linking</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-enable-wasm-dynamic-linking" title="本定義的永久連結">¶</a></dt>
+<dd><p>Turn on dynamic linking support for WASM.</p>
+<p>Dynamic linking enables <code class="docutils literal notranslate"><span class="pre">dlopen</span></code>. File size of the executable
+increases due to limited dead code elimination and additional features.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">在 3.11 版本新加入.</span></p>
+</div>
+</dd></dl>
+
+<dl class="std cmdoption">
+<dt class="sig sig-object std" id="cmdoption-enable-wasm-pthreads">
+<span class="sig-name descname"><span class="pre">--enable-wasm-pthreads</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-enable-wasm-pthreads" title="本定義的永久連結">¶</a></dt>
+<dd><p>Turn on pthreads support for WASM.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">在 3.11 版本新加入.</span></p>
+</div>
+</dd></dl>
+
 </section>
 <section id="install-options">
-<h3><span class="section-number">3.1.2. </span>Install Options<a class="headerlink" href="#install-options" title="本標頭的永久連結">¶</a></h3>
+<h3><span class="section-number">3.1.3. </span>Install Options<a class="headerlink" href="#install-options" title="本標頭的永久連結">¶</a></h3>
 <dl class="std cmdoption">
 <dt class="sig sig-object std" id="cmdoption-disable-test-modules">
 <span class="sig-name descname"><span class="pre">--disable-test-modules</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-disable-test-modules" title="本定義的永久連結">¶</a></dt>
@@ -343,7 +413,7 @@ command.</p></li>
 
 </section>
 <section id="performance-options">
-<h3><span class="section-number">3.1.3. </span>Performance options<a class="headerlink" href="#performance-options" title="本標頭的永久連結">¶</a></h3>
+<h3><span class="section-number">3.1.4. </span>Performance options<a class="headerlink" href="#performance-options" title="本標頭的永久連結">¶</a></h3>
 <p>Configuring Python using <code class="docutils literal notranslate"><span class="pre">--enable-optimizations</span> <span class="pre">--with-lto</span></code> (PGO + LTO) is
 recommended for best performance.</p>
 <dl class="std cmdoption">
@@ -377,12 +447,15 @@ the PGO generation task.</p>
 
 <dl class="std cmdoption">
 <dt class="sig sig-object std" id="cmdoption-with-lto">
-<span class="sig-name descname"><span class="pre">--with-lto</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-with-lto" title="本定義的永久連結">¶</a></dt>
+<span class="sig-name descname"><span class="pre">--with-lto</span></span><span class="sig-prename descclassname"><span class="pre">=[full|thin|no|yes]</span></span><a class="headerlink" href="#cmdoption-with-lto" title="本定義的永久連結">¶</a></dt>
 <dd><p>Enable Link Time Optimization (LTO) in any build (disabled by default).</p>
 <p>The C compiler Clang requires <code class="docutils literal notranslate"><span class="pre">llvm-ar</span></code> for LTO (<code class="docutils literal notranslate"><span class="pre">ar</span></code> on macOS), as well
 as an LTO-aware linker (<code class="docutils literal notranslate"><span class="pre">ld.gold</span></code> or <code class="docutils literal notranslate"><span class="pre">lld</span></code>).</p>
 <div class="versionadded">
 <p><span class="versionmodified added">在 3.6 版本新加入.</span></p>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified added">在 3.11 版本新加入: </span>To use ThinLTO feature, use <code class="docutils literal notranslate"><span class="pre">--with-lto=thin</span></code> on Clang.</p>
 </div>
 </dd></dl>
 
@@ -418,7 +491,7 @@ by default). Documentation strings defined in Python are not affected.</p>
 
 </section>
 <section id="python-debug-build">
-<span id="debug-build"></span><h3><span class="section-number">3.1.4. </span>Python Debug Build<a class="headerlink" href="#python-debug-build" title="本標頭的永久連結">¶</a></h3>
+<span id="debug-build"></span><h3><span class="section-number">3.1.5. </span>Python Debug Build<a class="headerlink" href="#python-debug-build" title="本標頭的永久連結">¶</a></h3>
 <p>A debug build is Python built with the <a class="reference internal" href="#cmdoption-with-pydebug"><code class="xref std std-option docutils literal notranslate"><span class="pre">--with-pydebug</span></code></a> configure
 option.</p>
 <p>Effects of a debug build:</p>
@@ -429,12 +502,12 @@ in the <a class="reference internal" href="../library/warnings.html#module-warni
 <li><p>Add <code class="xref py py-func docutils literal notranslate"><span class="pre">sys.gettotalrefcount()</span></code> function.</p></li>
 <li><p>Add <a class="reference internal" href="cmdline.html#cmdoption-X"><code class="xref std std-option docutils literal notranslate"><span class="pre">-X</span> <span class="pre">showrefcount</span></code></a> command line option.</p></li>
 <li><p>Add <span class="target" id="index-4"></span><a class="reference internal" href="cmdline.html#envvar-PYTHONTHREADDEBUG"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PYTHONTHREADDEBUG</span></code></a> environment variable.</p></li>
-<li><p>Add support for the <code class="docutils literal notranslate"><span class="pre">__ltrace__</span></code> variable: enable low-level tracing in the
+<li><p>Add support for the <code class="docutils literal notranslate"><span class="pre">__lltrace__</span></code> variable: enable low-level tracing in the
 bytecode evaluation loop if the variable is defined.</p></li>
 <li><p>Install <a class="reference internal" href="../c-api/memory.html#default-memory-allocators"><span class="std std-ref">debug hooks on memory allocators</span></a>
 to detect buffer overflow and other memory errors.</p></li>
 <li><p>Define <code class="docutils literal notranslate"><span class="pre">Py_DEBUG</span></code> and <code class="docutils literal notranslate"><span class="pre">Py_REF_DEBUG</span></code> macros.</p></li>
-<li><p>Add runtime checks: code surroundeded by <code class="docutils literal notranslate"><span class="pre">#ifdef</span> <span class="pre">Py_DEBUG</span></code> and <code class="docutils literal notranslate"><span class="pre">#endif</span></code>.
+<li><p>Add runtime checks: code surrounded by <code class="docutils literal notranslate"><span class="pre">#ifdef</span> <span class="pre">Py_DEBUG</span></code> and <code class="docutils literal notranslate"><span class="pre">#endif</span></code>.
 Enable <code class="docutils literal notranslate"><span class="pre">assert(...)</span></code> and <code class="docutils literal notranslate"><span class="pre">_PyObject_ASSERT(...)</span></code> assertions: don't set
 the <code class="docutils literal notranslate"><span class="pre">NDEBUG</span></code> macro (see also the <a class="reference internal" href="#cmdoption-with-assertions"><code class="xref std std-option docutils literal notranslate"><span class="pre">--with-assertions</span></code></a> configure
 option). Main runtime checks:</p>
@@ -444,6 +517,7 @@ option). Main runtime checks:</p>
 to detect usage of uninitialized objects.</p></li>
 <li><p>Ensure that functions which can clear or replace the current exception are
 not called with an exception raised.</p></li>
+<li><p>Check that deallocator functions don't change the current exception.</p></li>
 <li><p>The garbage collector (<a class="reference internal" href="../library/gc.html#gc.collect" title="gc.collect"><code class="xref py py-func docutils literal notranslate"><span class="pre">gc.collect()</span></code></a> function) runs some basic checks
 on objects consistency.</p></li>
 <li><p>The <code class="xref c c-macro docutils literal notranslate"><span class="pre">Py_SAFE_DOWNCAST()</span></code> macro checks for integer underflow and
@@ -461,7 +535,7 @@ incompatibility.</p>
 </div>
 </section>
 <section id="debug-options">
-<h3><span class="section-number">3.1.5. </span>Debug options<a class="headerlink" href="#debug-options" title="本標頭的永久連結">¶</a></h3>
+<h3><span class="section-number">3.1.6. </span>Debug options<a class="headerlink" href="#debug-options" title="本標頭的永久連結">¶</a></h3>
 <dl class="std cmdoption">
 <dt class="sig sig-object std" id="cmdoption-with-pydebug">
 <span class="sig-name descname"><span class="pre">--with-pydebug</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-with-pydebug" title="本定義的永久連結">¶</a></dt>
@@ -545,7 +619,7 @@ variable.</p>
 
 </section>
 <section id="linker-options">
-<h3><span class="section-number">3.1.6. </span>Linker options<a class="headerlink" href="#linker-options" title="本標頭的永久連結">¶</a></h3>
+<h3><span class="section-number">3.1.7. </span>Linker options<a class="headerlink" href="#linker-options" title="本標頭的永久連結">¶</a></h3>
 <dl class="std cmdoption">
 <dt class="sig sig-object std" id="cmdoption-enable-shared">
 <span class="sig-name descname"><span class="pre">--enable-shared</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-enable-shared" title="本定義的永久連結">¶</a></dt>
@@ -564,7 +638,7 @@ variable.</p>
 
 </section>
 <section id="libraries-options">
-<h3><span class="section-number">3.1.7. </span>Libraries options<a class="headerlink" href="#libraries-options" title="本標頭的永久連結">¶</a></h3>
+<h3><span class="section-number">3.1.8. </span>Libraries options<a class="headerlink" href="#libraries-options" title="本標頭的永久連結">¶</a></h3>
 <dl class="std cmdoption">
 <dt class="sig sig-object std" id="cmdoption-with-libs">
 <span class="sig-name descname"><span class="pre">--with-libs</span></span><span class="sig-prename descclassname"><span class="pre">='lib1</span> <span class="pre">...'</span></span><a class="headerlink" href="#cmdoption-with-libs" title="本定義的永久連結">¶</a></dt>
@@ -616,18 +690,6 @@ library, see the <a class="reference internal" href="../library/decimal.html#mod
 </dd></dl>
 
 <dl class="std cmdoption">
-<dt class="sig sig-object std" id="cmdoption-with-tcltk-includes">
-<span class="sig-name descname"><span class="pre">--with-tcltk-includes</span></span><span class="sig-prename descclassname"><span class="pre">='-I...'</span></span><a class="headerlink" href="#cmdoption-with-tcltk-includes" title="本定義的永久連結">¶</a></dt>
-<dd><p>Override search for Tcl and Tk include files.</p>
-</dd></dl>
-
-<dl class="std cmdoption">
-<dt class="sig sig-object std" id="cmdoption-with-tcltk-libs">
-<span class="sig-name descname"><span class="pre">--with-tcltk-libs</span></span><span class="sig-prename descclassname"><span class="pre">='-L...'</span></span><a class="headerlink" href="#cmdoption-with-tcltk-libs" title="本定義的永久連結">¶</a></dt>
-<dd><p>Override search for Tcl and Tk libraries.</p>
-</dd></dl>
-
-<dl class="std cmdoption">
 <dt class="sig sig-object std" id="cmdoption-with-libm">
 <span class="sig-name descname"><span class="pre">--with-libm</span></span><span class="sig-prename descclassname"><span class="pre">=STRING</span></span><a class="headerlink" href="#cmdoption-with-libm" title="本定義的永久連結">¶</a></dt>
 <dd><p>Override <code class="docutils literal notranslate"><span class="pre">libm</span></code> math library to <em>STRING</em> (default is system-dependent).</p>
@@ -665,17 +727,21 @@ library, see the <a class="reference internal" href="../library/decimal.html#mod
 
 </section>
 <section id="security-options">
-<h3><span class="section-number">3.1.8. </span>Security Options<a class="headerlink" href="#security-options" title="本標頭的永久連結">¶</a></h3>
+<h3><span class="section-number">3.1.9. </span>Security Options<a class="headerlink" href="#security-options" title="本標頭的永久連結">¶</a></h3>
 <dl class="std cmdoption">
 <dt class="sig sig-object std" id="cmdoption-with-hash-algorithm">
-<span class="sig-name descname"><span class="pre">--with-hash-algorithm</span></span><span class="sig-prename descclassname"><span class="pre">=[fnv|siphash24]</span></span><a class="headerlink" href="#cmdoption-with-hash-algorithm" title="本定義的永久連結">¶</a></dt>
+<span class="sig-name descname"><span class="pre">--with-hash-algorithm</span></span><span class="sig-prename descclassname"><span class="pre">=[fnv|siphash13|siphash24]</span></span><a class="headerlink" href="#cmdoption-with-hash-algorithm" title="本定義的永久連結">¶</a></dt>
 <dd><p>Select hash algorithm for use in <code class="docutils literal notranslate"><span class="pre">Python/pyhash.c</span></code>:</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">siphash24</span></code> (default).</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">fnv</span></code>;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">siphash13</span></code> (default);</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">siphash24</span></code>;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">fnv</span></code>.</p></li>
 </ul>
 <div class="versionadded">
 <p><span class="versionmodified added">在 3.4 版本新加入.</span></p>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified added">在 3.11 版本新加入: </span><code class="docutils literal notranslate"><span class="pre">siphash13</span></code> is added and it is the new default.</p>
 </div>
 </dd></dl>
 
@@ -717,7 +783,7 @@ protocol version.</p>
 
 </section>
 <section id="macos-options">
-<h3><span class="section-number">3.1.9. </span>macOS Options<a class="headerlink" href="#macos-options" title="本標頭的永久連結">¶</a></h3>
+<h3><span class="section-number">3.1.10. </span>macOS Options<a class="headerlink" href="#macos-options" title="本標頭的永久連結">¶</a></h3>
 <p>參閱 <code class="docutils literal notranslate"><span class="pre">Mac/README.rst</span></code>。</p>
 <dl class="std cmdoption">
 <dt class="sig sig-object std" id="cmdoption-enable-universalsdk">
@@ -768,6 +834,54 @@ only valid when <a class="reference internal" href="#cmdoption-1"><code class="x
 <a class="reference internal" href="#cmdoption-2"><code class="xref std std-option docutils literal notranslate"><span class="pre">--enable-framework</span></code></a> is set (default: <code class="docutils literal notranslate"><span class="pre">Python</span></code>).</p>
 </dd></dl>
 
+</section>
+<section id="cross-compiling-options">
+<h3><span class="section-number">3.1.11. </span>Cross Compiling Options<a class="headerlink" href="#cross-compiling-options" title="本標頭的永久連結">¶</a></h3>
+<p>Cross compiling, also known as cross building, can be used to build Python
+for another CPU architecture or platform. Cross compiling requires a Python
+interpreter for the build platform. The version of the build Python must match
+the version of the cross compiled host Python.</p>
+<dl class="std cmdoption">
+<dt class="sig sig-object std" id="cmdoption-build">
+<span class="sig-name descname"><span class="pre">--build</span></span><span class="sig-prename descclassname"><span class="pre">=BUILD</span></span><a class="headerlink" href="#cmdoption-build" title="本定義的永久連結">¶</a></dt>
+<dd><p>configure for building on BUILD, usually guessed by <strong class="program">config.guess</strong>.</p>
+</dd></dl>
+
+<dl class="std cmdoption">
+<dt class="sig sig-object std" id="cmdoption-host">
+<span class="sig-name descname"><span class="pre">--host</span></span><span class="sig-prename descclassname"><span class="pre">=HOST</span></span><a class="headerlink" href="#cmdoption-host" title="本定義的永久連結">¶</a></dt>
+<dd><p>cross-compile to build programs to run on HOST (target platform)</p>
+</dd></dl>
+
+<dl class="std cmdoption">
+<dt class="sig sig-object std" id="cmdoption-with-build-python">
+<span class="sig-name descname"><span class="pre">--with-build-python</span></span><span class="sig-prename descclassname"><span class="pre">=path/to/python</span></span><a class="headerlink" href="#cmdoption-with-build-python" title="本定義的永久連結">¶</a></dt>
+<dd><p>path to build <code class="docutils literal notranslate"><span class="pre">python</span></code> binary for cross compiling</p>
+<div class="versionadded">
+<p><span class="versionmodified added">在 3.11 版本新加入.</span></p>
+</div>
+</dd></dl>
+
+<dl class="std cmdoption">
+<dt class="sig sig-object std" id="cmdoption-arg-CONFIG_SITE">
+<span id="cmdoption-arg-config-site"></span><span class="sig-name descname"><span class="pre">CONFIG_SITE</span></span><span class="sig-prename descclassname"><span class="pre">=file</span></span><a class="headerlink" href="#cmdoption-arg-CONFIG_SITE" title="本定義的永久連結">¶</a></dt>
+<dd><p>An environment variable that points to a file with configure overrides.</p>
+<p>Example <em>config.site</em> file:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># config.site-aarch64</span>
+<span class="n">ac_cv_buggy_getaddrinfo</span><span class="o">=</span><span class="n">no</span>
+<span class="n">ac_cv_file__dev_ptmx</span><span class="o">=</span><span class="n">yes</span>
+<span class="n">ac_cv_file__dev_ptc</span><span class="o">=</span><span class="n">no</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<p>Cross compiling example:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">CONFIG_SITE</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">site</span><span class="o">-</span><span class="n">aarch64</span> <span class="o">../</span><span class="n">configure</span> \
+    <span class="o">--</span><span class="n">build</span><span class="o">=</span><span class="n">x86_64</span><span class="o">-</span><span class="n">pc</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">gnu</span> \
+    <span class="o">--</span><span class="n">host</span><span class="o">=</span><span class="n">aarch64</span><span class="o">-</span><span class="n">unknown</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">gnu</span> \
+    <span class="o">--</span><span class="k">with</span><span class="o">-</span><span class="n">build</span><span class="o">-</span><span class="n">python</span><span class="o">=../</span><span class="n">x86_64</span><span class="o">/</span><span class="n">python</span>
+</pre></div>
+</div>
 </section>
 </section>
 <section id="python-build-system">
@@ -830,7 +944,7 @@ Built-in modules have no <code class="docutils literal notranslate"><span class=
 <span class="gr">AttributeError</span>: <span class="n">module &#39;sys&#39; has no attribute &#39;__file__&#39;</span>
 </pre></div>
 </div>
-<p>Other C extensins are built as dynamic libraries, like the <code class="docutils literal notranslate"><span class="pre">_asyncio</span></code> module.
+<p>Other C extensions are built as dynamic libraries, like the <code class="docutils literal notranslate"><span class="pre">_asyncio</span></code> module.
 They are built with the <code class="docutils literal notranslate"><span class="pre">Py_BUILD_CORE_MODULE</span></code> macro defined.
 Example on Linux x86-64:</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">_asyncio</span>
@@ -1189,14 +1303,16 @@ executable.</p>
 <li><a class="reference internal" href="#">3. Configure Python</a><ul>
 <li><a class="reference internal" href="#configure-options">3.1. Configure Options</a><ul>
 <li><a class="reference internal" href="#general-options">3.1.1. General Options</a></li>
-<li><a class="reference internal" href="#install-options">3.1.2. Install Options</a></li>
-<li><a class="reference internal" href="#performance-options">3.1.3. Performance options</a></li>
-<li><a class="reference internal" href="#python-debug-build">3.1.4. Python Debug Build</a></li>
-<li><a class="reference internal" href="#debug-options">3.1.5. Debug options</a></li>
-<li><a class="reference internal" href="#linker-options">3.1.6. Linker options</a></li>
-<li><a class="reference internal" href="#libraries-options">3.1.7. Libraries options</a></li>
-<li><a class="reference internal" href="#security-options">3.1.8. Security Options</a></li>
-<li><a class="reference internal" href="#macos-options">3.1.9. macOS Options</a></li>
+<li><a class="reference internal" href="#webassembly-options">3.1.2. WebAssembly Options</a></li>
+<li><a class="reference internal" href="#install-options">3.1.3. Install Options</a></li>
+<li><a class="reference internal" href="#performance-options">3.1.4. Performance options</a></li>
+<li><a class="reference internal" href="#python-debug-build">3.1.5. Python Debug Build</a></li>
+<li><a class="reference internal" href="#debug-options">3.1.6. Debug options</a></li>
+<li><a class="reference internal" href="#linker-options">3.1.7. Linker options</a></li>
+<li><a class="reference internal" href="#libraries-options">3.1.8. Libraries options</a></li>
+<li><a class="reference internal" href="#security-options">3.1.9. Security Options</a></li>
+<li><a class="reference internal" href="#macos-options">3.1.10. macOS Options</a></li>
+<li><a class="reference internal" href="#cross-compiling-options">3.1.11. Cross Compiling Options</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#python-build-system">3.2. Python Build System</a><ul>
@@ -1232,7 +1348,7 @@ executable.</p>
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.10/Doc/using/configure.rst"
+        <a href="https://github.com/python/cpython/blob/main/Doc/using/configure.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -1272,7 +1388,7 @@ executable.</p>
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.8 Documentation</a> &#187;
+      <a href="../index.html">3.11.0rc2 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 的設置與使用</a> &#187;</li>
@@ -1308,7 +1424,7 @@ executable.</p>
 <br />
     <br />
 
-    最後更新於 10月 15, 2022。
+    最後更新於 10月 16, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 

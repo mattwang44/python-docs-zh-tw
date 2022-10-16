@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>Argument Clinic How-To &#8212; Python 3.10.8 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Argument Clinic How-To &#8212; Python 3.11.0rc2 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -22,7 +22,7 @@
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.10.8 說明文件 中搜尋"
+          title="在 Python 3.11.0rc2 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -124,7 +124,7 @@
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.10/Doc/howto/clinic.rst"
+        <a href="https://github.com/python/cpython/blob/main/Doc/howto/clinic.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -161,7 +161,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.8 Documentation</a> &#187;
+      <a href="../index.html">3.11.0rc2 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Python 如何達成任務</a> &#187;</li>
@@ -693,8 +693,6 @@ expression.  Currently the following are explicitly supported:</p>
 <li><p>Simple symbolic constants like <code class="docutils literal notranslate"><span class="pre">sys.maxsize</span></code>, which must
 start with the name of the module</p></li>
 </ul>
-<p>In case you're curious, this is implemented in  <code class="docutils literal notranslate"><span class="pre">from_builtin()</span></code>
-in <code class="docutils literal notranslate"><span class="pre">Lib/inspect.py</span></code>.</p>
 <p>(In the future, this may need to get even more elaborate,
 to allow full expressions like <code class="docutils literal notranslate"><span class="pre">CONSTANT</span> <span class="pre">-</span> <span class="pre">1</span></code>.)</p>
 </section>
@@ -1372,14 +1370,14 @@ will be of type <code class="docutils literal notranslate"><span class="pre">PyT
 <p>The <code class="docutils literal notranslate"><span class="pre">defining_class</span></code> converter is not compatible with <code class="docutils literal notranslate"><span class="pre">__init__</span></code> and <code class="docutils literal notranslate"><span class="pre">__new__</span></code>
 methods, which cannot use the <code class="docutils literal notranslate"><span class="pre">METH_METHOD</span></code> convention.</p>
 <p>It is not possible to use <code class="docutils literal notranslate"><span class="pre">defining_class</span></code> with slot methods.  In order to
-fetch the module state from such methods, use <code class="docutils literal notranslate"><span class="pre">_PyType_GetModuleByDef</span></code> to
-look up the module and then <a class="reference internal" href="../c-api/module.html#c.PyModule_GetState" title="PyModule_GetState"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyModule_GetState()</span></code></a> to fetch the module
+fetch the module state from such methods, use <a class="reference internal" href="../c-api/type.html#c.PyType_GetModuleByDef" title="PyType_GetModuleByDef"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyType_GetModuleByDef()</span></code></a>
+to look up the module and then <a class="reference internal" href="../c-api/module.html#c.PyModule_GetState" title="PyModule_GetState"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyModule_GetState()</span></code></a> to fetch the module
 state.  Example from the <code class="docutils literal notranslate"><span class="pre">setattro</span></code> slot method in
 <code class="docutils literal notranslate"><span class="pre">Modules/_threadmodule.c</span></code>:</p>
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="kt">int</span><span class="w"></span>
 <span class="nf">local_setattro</span><span class="p">(</span><span class="n">localobject</span><span class="w"> </span><span class="o">*</span><span class="n">self</span><span class="p">,</span><span class="w"> </span><span class="n">PyObject</span><span class="w"> </span><span class="o">*</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">PyObject</span><span class="w"> </span><span class="o">*</span><span class="n">v</span><span class="p">)</span><span class="w"></span>
 <span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="n">PyObject</span><span class="w"> </span><span class="o">*</span><span class="n">module</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">_PyType_GetModuleByDef</span><span class="p">(</span><span class="n">Py_TYPE</span><span class="p">(</span><span class="n">self</span><span class="p">),</span><span class="w"> </span><span class="o">&amp;</span><span class="n">thread_module</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">PyObject</span><span class="w"> </span><span class="o">*</span><span class="n">module</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PyType_GetModuleByDef</span><span class="p">(</span><span class="n">Py_TYPE</span><span class="p">(</span><span class="n">self</span><span class="p">),</span><span class="w"> </span><span class="o">&amp;</span><span class="n">thread_module</span><span class="p">);</span><span class="w"></span>
 <span class="w">    </span><span class="n">thread_module_state</span><span class="w"> </span><span class="o">*</span><span class="n">state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">get_thread_state</span><span class="p">(</span><span class="n">module</span><span class="p">);</span><span class="w"></span>
 <span class="w">    </span><span class="p">...</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
@@ -1897,7 +1895,7 @@ blocks embedded in Python files look slightly different.  They look like this:</
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.10/Doc/howto/clinic.rst"
+        <a href="https://github.com/python/cpython/blob/main/Doc/howto/clinic.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -1937,7 +1935,7 @@ blocks embedded in Python files look slightly different.  They look like this:</
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.8 Documentation</a> &#187;
+      <a href="../index.html">3.11.0rc2 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 如何達成任務</a> &#187;</li>
@@ -1973,7 +1971,7 @@ blocks embedded in Python files look slightly different.  They look like this:</
 <br />
     <br />
 
-    最後更新於 10月 15, 2022。
+    最後更新於 10月 16, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 

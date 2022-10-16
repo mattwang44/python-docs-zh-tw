@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>6. Expressions &#8212; Python 3.10.8 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>6. Expressions &#8212; Python 3.11.0rc2 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -22,7 +22,7 @@
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.10.8 說明文件 中搜尋"
+          title="在 Python 3.11.0rc2 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -153,7 +153,7 @@
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.10/Doc/reference/expressions.rst"
+        <a href="https://github.com/python/cpython/blob/main/Doc/reference/expressions.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -190,7 +190,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.8 Documentation</a> &#187;
+      <a href="../index.html">3.11.0rc2 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Python 語言參考手冊</a> &#187;</li>
@@ -347,9 +347,9 @@ A comprehension in an <code class="xref std std-keyword docutils literal notrans
 <code class="xref std std-keyword docutils literal notranslate"><span class="pre">for</span></code> or <code class="xref std std-keyword docutils literal notranslate"><span class="pre">async</span> <span class="pre">for</span></code> clause following the leading
 expression, may contain additional <code class="xref std std-keyword docutils literal notranslate"><span class="pre">for</span></code> or <code class="xref std std-keyword docutils literal notranslate"><span class="pre">async</span> <span class="pre">for</span></code>
 clauses, and may also use <a class="reference internal" href="#await"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">await</span></code></a> expressions.
-If a comprehension contains either <code class="xref std std-keyword docutils literal notranslate"><span class="pre">async</span> <span class="pre">for</span></code> clauses
-or <code class="xref std std-keyword docutils literal notranslate"><span class="pre">await</span></code> expressions it is called an
-<em class="dfn">asynchronous comprehension</em>.  An asynchronous comprehension may
+If a comprehension contains either <code class="xref std std-keyword docutils literal notranslate"><span class="pre">async</span> <span class="pre">for</span></code> clauses or
+<code class="xref std std-keyword docutils literal notranslate"><span class="pre">await</span></code> expressions or other asynchronous comprehensions it is called
+an <em class="dfn">asynchronous comprehension</em>.  An asynchronous comprehension may
 suspend the execution of the coroutine function in which it appears.
 See also <span class="target" id="index-14"></span><a class="pep reference external" href="https://peps.python.org/pep-0530/"><strong>PEP 530</strong></a>.</p>
 <div class="versionadded">
@@ -357,6 +357,11 @@ See also <span class="target" id="index-14"></span><a class="pep reference exter
 </div>
 <div class="versionchanged">
 <p><span class="versionmodified changed">在 3.8 版本變更: </span><code class="docutils literal notranslate"><span class="pre">yield</span></code> and <code class="docutils literal notranslate"><span class="pre">yield</span> <span class="pre">from</span></code> prohibited in the implicitly nested scope.</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">在 3.11 版本變更: </span>Asynchronous comprehensions are now allowed inside comprehensions in
+asynchronous functions. Outer comprehensions implicitly become
+asynchronous.</p>
 </div>
 </section>
 <section id="list-displays">
@@ -708,7 +713,7 @@ This  <em>finalizer</em> may be registered by calling <a class="reference intern
 When first iterated over, an asynchronous generator-iterator will store the
 registered <em>finalizer</em> to be called upon finalization. For a reference example
 of a <em>finalizer</em> method see the implementation of
-<code class="docutils literal notranslate"><span class="pre">asyncio.Loop.shutdown_asyncgens</span></code> in <a class="reference external" href="https://github.com/python/cpython/tree/3.10/Lib/asyncio/base_events.py">Lib/asyncio/base_events.py</a>.</p>
+<code class="docutils literal notranslate"><span class="pre">asyncio.Loop.shutdown_asyncgens</span></code> in <a class="reference external" href="https://github.com/python/cpython/tree/3.11/Lib/asyncio/base_events.py">Lib/asyncio/base_events.py</a>.</p>
 <p>The expression <code class="docutils literal notranslate"><span class="pre">yield</span> <span class="pre">from</span> <span class="pre">&lt;expr&gt;</span></code> is a syntax error when used in an
 asynchronous generator function.</p>
 </section>
@@ -912,8 +917,8 @@ formal parameters.  If there are N positional arguments, they are placed in the
 first N slots.  Next, for each keyword argument, the identifier is used to
 determine the corresponding slot (if the identifier is the same as the first
 formal parameter name, the first slot is used, and so on).  If the slot is
-already filled, a <a class="reference internal" href="../library/exceptions.html#TypeError" title="TypeError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">TypeError</span></code></a> exception is raised. Otherwise, the value of
-the argument is placed in the slot, filling it (even if the expression is
+already filled, a <a class="reference internal" href="../library/exceptions.html#TypeError" title="TypeError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">TypeError</span></code></a> exception is raised. Otherwise, the
+argument is placed in the slot, filling it (even if the expression is
 <code class="docutils literal notranslate"><span class="pre">None</span></code>, it fills the slot).  When all arguments have been processed, the slots
 that are still unfilled are filled with the corresponding default value from the
 function definition.  (Default values are calculated, once, when the function is
@@ -964,7 +969,7 @@ keyword arguments (and any <code class="docutils literal notranslate"><span clas
 </pre></div>
 </div>
 <p>It is unusual for both keyword arguments and the <code class="docutils literal notranslate"><span class="pre">*expression</span></code> syntax to be
-used in the same call, so in practice this confusion does not arise.</p>
+used in the same call, so in practice this confusion does not often arise.</p>
 <p id="index-50">If the syntax <code class="docutils literal notranslate"><span class="pre">**expression</span></code> appears in the function call, <code class="docutils literal notranslate"><span class="pre">expression</span></code> must
 evaluate to a <a class="reference internal" href="../glossary.html#term-mapping"><span class="xref std std-term">mapping</span></a>, the contents of which are treated as
 additional keyword arguments. If a parameter matching a key has already been
@@ -1182,7 +1187,7 @@ evaluated at most once.</p>
 <em>c</em>, so that, e.g., <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">&lt;</span> <span class="pre">y</span> <span class="pre">&gt;</span> <span class="pre">z</span></code> is perfectly legal (though perhaps not
 pretty).</p>
 <section id="value-comparisons">
-<h3><span class="section-number">6.10.1. </span>Value comparisons<a class="headerlink" href="#value-comparisons" title="本標頭的永久連結">¶</a></h3>
+<span id="expressions-value-comparisons"></span><h3><span class="section-number">6.10.1. </span>Value comparisons<a class="headerlink" href="#value-comparisons" title="本標頭的永久連結">¶</a></h3>
 <p>The operators <code class="docutils literal notranslate"><span class="pre">&lt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">==</span></code>, <code class="docutils literal notranslate"><span class="pre">&gt;=</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;=</span></code>, and <code class="docutils literal notranslate"><span class="pre">!=</span></code> compare the
 values of two objects.  The objects do not need to have the same type.</p>
 <p>Chapter <a class="reference internal" href="datamodel.html#objects"><span class="std std-ref">Objects, values and types</span></a> states that objects have a value (in addition to type
@@ -1491,7 +1496,7 @@ their suffixes:</p>
 precedence (most binding) to lowest precedence (least binding).  Operators in
 the same box have the same precedence.  Unless the syntax is explicitly given,
 operators are binary.  Operators in the same box group left to right (except for
-exponentiation, which groups from right to left).</p>
+exponentiation and conditional expressions, which group from right to left).</p>
 <p>Note that comparisons, membership tests, and identity tests, all have the same
 precedence and have a left-to-right chaining feature as described in the
 <a class="reference internal" href="#comparisons"><span class="std std-ref">Comparisons</span></a> section.</p>
@@ -1721,7 +1726,7 @@ precedence applies.</p>
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.10/Doc/reference/expressions.rst"
+        <a href="https://github.com/python/cpython/blob/main/Doc/reference/expressions.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -1761,7 +1766,7 @@ precedence applies.</p>
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.8 Documentation</a> &#187;
+      <a href="../index.html">3.11.0rc2 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 語言參考手冊</a> &#187;</li>
@@ -1797,7 +1802,7 @@ precedence applies.</p>
 <br />
     <br />
 
-    最後更新於 10月 15, 2022。
+    最後更新於 10月 16, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 

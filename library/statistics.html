@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>statistics --- 數學統計函式 &#8212; Python 3.10.8 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>statistics --- 數學統計函式 &#8212; Python 3.11.0rc2 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -22,7 +22,7 @@
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.10.8 說明文件 中搜尋"
+          title="在 Python 3.11.0rc2 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -144,7 +144,7 @@
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.10/Doc/library/statistics.rst"
+        <a href="https://github.com/python/cpython/blob/main/Doc/library/statistics.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -181,7 +181,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.8 Documentation</a> &#187;
+      <a href="../index.html">3.11.0rc2 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -214,7 +214,7 @@
 <div class="versionadded">
 <p><span class="versionmodified added">在 3.4 版本新加入.</span></p>
 </div>
-<p><strong>原始碼：</strong><a class="reference external" href="https://github.com/python/cpython/tree/3.10/Lib/statistics.py">Lib/statistics.py</a></p>
+<p><strong>原始碼：</strong><a class="reference external" href="https://github.com/python/cpython/tree/3.11/Lib/statistics.py">Lib/statistics.py</a></p>
 <hr class="docutils" />
 <p>這個模組提供計算數值 (<code class="xref py py-class docutils literal notranslate"><span class="pre">Real</span></code>-valued) 資料的數學統計函式。</p>
 <p>The module is not intended to be a competitor to third-party libraries such
@@ -266,10 +266,10 @@ functions:</p>
 <td><p>數據的算術平均（平均值）。</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#statistics.fmean" title="statistics.fmean"><code class="xref py py-func docutils literal notranslate"><span class="pre">fmean()</span></code></a></p></td>
-<td><p>Fast, floating point arithmetic mean.</p></td>
+<td><p>Fast, floating point arithmetic mean, with optional weighting.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#statistics.geometric_mean" title="statistics.geometric_mean"><code class="xref py py-func docutils literal notranslate"><span class="pre">geometric_mean()</span></code></a></p></td>
-<td><p>Geometric mean of data.</p></td>
+<td><p>數據中的幾何平均數。</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#statistics.harmonic_mean" title="statistics.harmonic_mean"><code class="xref py py-func docutils literal notranslate"><span class="pre">harmonic_mean()</span></code></a></p></td>
 <td><p>Harmonic mean of data.</p></td>
@@ -378,7 +378,7 @@ so that when taken on average over all the possible samples,
 
 <dl class="py function">
 <dt class="sig sig-object py" id="statistics.fmean">
-<span class="sig-prename descclassname"><span class="pre">statistics.</span></span><span class="sig-name descname"><span class="pre">fmean</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#statistics.fmean" title="本定義的永久連結">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">statistics.</span></span><span class="sig-name descname"><span class="pre">fmean</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weights</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#statistics.fmean" title="本定義的永久連結">¶</a></dt>
 <dd><p>Convert <em>data</em> to floats and compute the arithmetic mean.</p>
 <p>This runs faster than the <a class="reference internal" href="#statistics.mean" title="statistics.mean"><code class="xref py py-func docutils literal notranslate"><span class="pre">mean()</span></code></a> function and it always returns a
 <a class="reference internal" href="functions.html#float" title="float"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>.  The <em>data</em> may be a sequence or iterable.  If the input
@@ -387,8 +387,22 @@ dataset is empty, raises a <a class="reference internal" href="#statistics.Stati
 <span class="go">4.25</span>
 </pre></div>
 </div>
+<p>Optional weighting is supported.  For example, a professor assigns a
+grade for a course by weighting quizzes at 20%, homework at 20%, a
+midterm exam at 30%, and a final exam at 30%:</p>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">grades</span> <span class="o">=</span> <span class="p">[</span><span class="mi">85</span><span class="p">,</span> <span class="mi">92</span><span class="p">,</span> <span class="mi">83</span><span class="p">,</span> <span class="mi">91</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">weights</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.20</span><span class="p">,</span> <span class="mf">0.20</span><span class="p">,</span> <span class="mf">0.30</span><span class="p">,</span> <span class="mf">0.30</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fmean</span><span class="p">(</span><span class="n">grades</span><span class="p">,</span> <span class="n">weights</span><span class="p">)</span>
+<span class="go">87.6</span>
+</pre></div>
+</div>
+<p>If <em>weights</em> is supplied, it must be the same length as the <em>data</em> or
+a <a class="reference internal" href="exceptions.html#ValueError" title="ValueError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code></a> will be raised.</p>
 <div class="versionadded">
 <p><span class="versionmodified added">在 3.8 版本新加入.</span></p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">在 3.11 版本變更: </span>新增 <em>weights</em> 的支援。</p>
 </div>
 </dd></dl>
 
@@ -828,7 +842,7 @@ not to be constant, otherwise <a class="reference internal" href="#statistics.St
 
 <dl class="py function">
 <dt class="sig sig-object py" id="statistics.linear_regression">
-<span class="sig-prename descclassname"><span class="pre">statistics.</span></span><span class="sig-name descname"><span class="pre">linear_regression</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">/</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#statistics.linear_regression" title="本定義的永久連結">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">statistics.</span></span><span class="sig-name descname"><span class="pre">linear_regression</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">/</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">proportional</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#statistics.linear_regression" title="本定義的永久連結">¶</a></dt>
 <dd><p>Return the slope and intercept of <a class="reference external" href="https://en.wikipedia.org/wiki/Simple_linear_regression">simple linear regression</a>
 parameters estimated using ordinary least squares. Simple linear
 regression describes the relationship between an independent variable <em>x</em> and
@@ -856,8 +870,19 @@ assuming that they had kept the pace.</p>
 <span class="go">16</span>
 </pre></div>
 </div>
+<p>If <em>proportional</em> is true, the independent variable <em>x</em> and the
+dependent variable <em>y</em> are assumed to be directly proportional.
+The data is fit to a line passing through the origin.
+Since the <em>intercept</em> will always be 0.0, the underlying linear
+function simplifies to:</p>
+<blockquote>
+<div><p><em>y = slope * x + noise</em></p>
+</div></blockquote>
 <div class="versionadded">
 <p><span class="versionmodified added">在 3.10 版本新加入.</span></p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">在 3.11 版本變更: </span>新增 <em>proportional</em> 的支援。</p>
 </div>
 </dd></dl>
 
@@ -1227,7 +1252,7 @@ feature measurements given the gender:</p>
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.10/Doc/library/statistics.rst"
+        <a href="https://github.com/python/cpython/blob/main/Doc/library/statistics.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -1267,7 +1292,7 @@ feature measurements given the gender:</p>
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.8 Documentation</a> &#187;
+      <a href="../index.html">3.11.0rc2 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -1304,7 +1329,7 @@ feature measurements given the gender:</p>
 <br />
     <br />
 
-    最後更新於 10月 15, 2022。
+    最後更新於 10月 16, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 

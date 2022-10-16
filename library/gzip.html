@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>gzip --- Support for gzip files &#8212; Python 3.10.8 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>gzip --- Support for gzip files &#8212; Python 3.11.0rc2 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -22,7 +22,7 @@
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.10.8 說明文件 中搜尋"
+          title="在 Python 3.11.0rc2 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -110,7 +110,7 @@
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.10/Doc/library/gzip.rst"
+        <a href="https://github.com/python/cpython/blob/main/Doc/library/gzip.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -147,7 +147,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.8 Documentation</a> &#187;
+      <a href="../index.html">3.11.0rc2 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -177,7 +177,7 @@
             
   <section id="module-gzip">
 <span id="gzip-support-for-gzip-files"></span><h1><a class="reference internal" href="#module-gzip" title="gzip: Interfaces for gzip compression and decompression using file objects."><code class="xref py py-mod docutils literal notranslate"><span class="pre">gzip</span></code></a> --- Support for <strong class="program">gzip</strong> files<a class="headerlink" href="#module-gzip" title="本標頭的永久連結">¶</a></h1>
-<p><strong>原始碼：</strong><a class="reference external" href="https://github.com/python/cpython/tree/3.10/Lib/gzip.py">Lib/gzip.py</a></p>
+<p><strong>原始碼：</strong><a class="reference external" href="https://github.com/python/cpython/tree/3.11/Lib/gzip.py">Lib/gzip.py</a></p>
 <hr class="docutils" />
 <p>This module provides a simple interface to compress and decompress files just
 like the GNU programs <strong class="program">gzip</strong> and <strong class="program">gunzip</strong> would.</p>
@@ -338,12 +338,19 @@ argument is deprecated.</p>
 <span class="sig-prename descclassname"><span class="pre">gzip.</span></span><span class="sig-name descname"><span class="pre">compress</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">compresslevel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">9</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mtime</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gzip.compress" title="本定義的永久連結">¶</a></dt>
 <dd><p>Compress the <em>data</em>, returning a <a class="reference internal" href="stdtypes.html#bytes" title="bytes"><code class="xref py py-class docutils literal notranslate"><span class="pre">bytes</span></code></a> object containing
 the compressed data.  <em>compresslevel</em> and <em>mtime</em> have the same meaning as in
-the <a class="reference internal" href="#gzip.GzipFile" title="gzip.GzipFile"><code class="xref py py-class docutils literal notranslate"><span class="pre">GzipFile</span></code></a> constructor above.</p>
+the <a class="reference internal" href="#gzip.GzipFile" title="gzip.GzipFile"><code class="xref py py-class docutils literal notranslate"><span class="pre">GzipFile</span></code></a> constructor above. When <em>mtime</em> is set to <code class="docutils literal notranslate"><span class="pre">0</span></code>, this
+function is equivalent to <a class="reference internal" href="zlib.html#zlib.compress" title="zlib.compress"><code class="xref py py-func docutils literal notranslate"><span class="pre">zlib.compress()</span></code></a> with <em>wbits</em> set to <code class="docutils literal notranslate"><span class="pre">31</span></code>.
+The zlib function is faster.</p>
 <div class="versionadded">
 <p><span class="versionmodified added">在 3.2 版本新加入.</span></p>
 </div>
 <div class="versionchanged">
 <p><span class="versionmodified changed">在 3.8 版本變更: </span>Added the <em>mtime</em> parameter for reproducible output.</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">在 3.11 版本變更: </span>Speed is improved by compressing all data at once instead of in a
+streamed fashion. Calls with <em>mtime</em> set to <code class="docutils literal notranslate"><span class="pre">0</span></code> are delegated to
+<a class="reference internal" href="zlib.html#zlib.compress" title="zlib.compress"><code class="xref py py-func docutils literal notranslate"><span class="pre">zlib.compress()</span></code></a> for better speed.</p>
 </div>
 </dd></dl>
 
@@ -351,9 +358,16 @@ the <a class="reference internal" href="#gzip.GzipFile" title="gzip.GzipFile"><c
 <dt class="sig sig-object py" id="gzip.decompress">
 <span class="sig-prename descclassname"><span class="pre">gzip.</span></span><span class="sig-name descname"><span class="pre">decompress</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gzip.decompress" title="本定義的永久連結">¶</a></dt>
 <dd><p>Decompress the <em>data</em>, returning a <a class="reference internal" href="stdtypes.html#bytes" title="bytes"><code class="xref py py-class docutils literal notranslate"><span class="pre">bytes</span></code></a> object containing the
-uncompressed data.</p>
+uncompressed data. This function is capable of decompressing multi-member
+gzip data (multiple gzip blocks concatenated together). When the data is
+certain to contain only one member the <a class="reference internal" href="zlib.html#zlib.decompress" title="zlib.decompress"><code class="xref py py-func docutils literal notranslate"><span class="pre">zlib.decompress()</span></code></a> function with
+<em>wbits</em> set to 31 is faster.</p>
 <div class="versionadded">
 <p><span class="versionmodified added">在 3.2 版本新加入.</span></p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">在 3.11 版本變更: </span>Speed is improved by decompressing members at once in memory instead of in
+a streamed fashion.</p>
 </div>
 </dd></dl>
 
@@ -485,7 +499,7 @@ By default, when you will execute the CLI, the default compression level is 6.</
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.10/Doc/library/gzip.rst"
+        <a href="https://github.com/python/cpython/blob/main/Doc/library/gzip.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -525,7 +539,7 @@ By default, when you will execute the CLI, the default compression level is 6.</
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.8 Documentation</a> &#187;
+      <a href="../index.html">3.11.0rc2 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -562,7 +576,7 @@ By default, when you will execute the CLI, the default compression level is 6.</
 <br />
     <br />
 
-    最後更新於 10月 15, 2022。
+    最後更新於 10月 16, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 

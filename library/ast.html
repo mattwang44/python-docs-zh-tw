@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>ast --- Abstract Syntax Trees &#8212; Python 3.10.8 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ast --- Abstract Syntax Trees &#8212; Python 3.11.0rc2 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -22,7 +22,7 @@
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.10.8 說明文件 中搜尋"
+          title="在 Python 3.11.0rc2 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -188,6 +188,7 @@
 <li><a class="reference internal" href="#ast.Break"><code class="docutils literal notranslate"><span class="pre">Break</span></code></a></li>
 <li><a class="reference internal" href="#ast.Continue"><code class="docutils literal notranslate"><span class="pre">Continue</span></code></a></li>
 <li><a class="reference internal" href="#ast.Try"><code class="docutils literal notranslate"><span class="pre">Try</span></code></a></li>
+<li><a class="reference internal" href="#ast.TryStar"><code class="docutils literal notranslate"><span class="pre">TryStar</span></code></a></li>
 <li><a class="reference internal" href="#ast.ExceptHandler"><code class="docutils literal notranslate"><span class="pre">ExceptHandler</span></code></a></li>
 <li><a class="reference internal" href="#ast.With"><code class="docutils literal notranslate"><span class="pre">With</span></code></a><ul>
 <li><a class="reference internal" href="#ast.With.type_comment"><code class="docutils literal notranslate"><span class="pre">With.type_comment</span></code></a></li>
@@ -285,7 +286,7 @@
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.10/Doc/library/ast.rst"
+        <a href="https://github.com/python/cpython/blob/main/Doc/library/ast.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -322,7 +323,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.8 Documentation</a> &#187;
+      <a href="../index.html">3.11.0rc2 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -352,7 +353,7 @@
             
   <section id="module-ast">
 <span id="ast-abstract-syntax-trees"></span><h1><a class="reference internal" href="#module-ast" title="ast: Abstract Syntax Tree classes and manipulation."><code class="xref py py-mod docutils literal notranslate"><span class="pre">ast</span></code></a> --- Abstract Syntax Trees<a class="headerlink" href="#module-ast" title="本標頭的永久連結">¶</a></h1>
-<p><strong>原始碼：</strong><a class="reference external" href="https://github.com/python/cpython/tree/3.10/Lib/ast.py">Lib/ast.py</a></p>
+<p><strong>原始碼：</strong><a class="reference external" href="https://github.com/python/cpython/tree/3.11/Lib/ast.py">Lib/ast.py</a></p>
 <hr class="docutils" />
 <p>The <a class="reference internal" href="#module-ast" title="ast: Abstract Syntax Tree classes and manipulation."><code class="xref py py-mod docutils literal notranslate"><span class="pre">ast</span></code></a> module helps Python applications to process trees of the Python
 abstract syntax grammar.  The abstract syntax itself might change with each
@@ -408,6 +409,7 @@ compiled into a Python code object using the built-in <a class="reference intern
 
           <span class="o">|</span> <span class="nc">Raise</span><span class="p">(</span><span class="bp">expr</span><span class="o">? </span><span class="n">exc</span>, <span class="bp">expr</span><span class="o">? </span><span class="n">cause</span><span class="p">)</span>
           <span class="o">|</span> <span class="nc">Try</span><span class="p">(</span><span class="bp">stmt</span><span class="o">* </span><span class="n">body</span>, <span class="bp">excepthandler</span><span class="o">* </span><span class="n">handlers</span>, <span class="bp">stmt</span><span class="o">* </span><span class="n">orelse</span>, <span class="bp">stmt</span><span class="o">* </span><span class="n">finalbody</span><span class="p">)</span>
+          <span class="o">|</span> <span class="nc">TryStar</span><span class="p">(</span><span class="bp">stmt</span><span class="o">* </span><span class="n">body</span>, <span class="bp">excepthandler</span><span class="o">* </span><span class="n">handlers</span>, <span class="bp">stmt</span><span class="o">* </span><span class="n">orelse</span>, <span class="bp">stmt</span><span class="o">* </span><span class="n">finalbody</span><span class="p">)</span>
           <span class="o">|</span> <span class="nc">Assert</span><span class="p">(</span><span class="bp">expr</span><span class="o"> </span><span class="n">test</span>, <span class="bp">expr</span><span class="o">? </span><span class="n">msg</span><span class="p">)</span>
 
           <span class="o">|</span> <span class="nc">Import</span><span class="p">(</span><span class="bp">alias</span><span class="o">* </span><span class="n">names</span><span class="p">)</span>
@@ -1682,6 +1684,37 @@ node.</p>
 </dd></dl>
 
 <dl class="py class">
+<dt class="sig sig-object py" id="ast.TryStar">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ast.</span></span><span class="sig-name descname"><span class="pre">TryStar</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">body</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">handlers</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">orelse</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">finalbody</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ast.TryStar" title="本定義的永久連結">¶</a></dt>
+<dd><p><code class="docutils literal notranslate"><span class="pre">try</span></code> blocks which are followed by <code class="docutils literal notranslate"><span class="pre">except*</span></code> clauses. The attributes are the
+same as for <a class="reference internal" href="#ast.Try" title="ast.Try"><code class="xref py py-class docutils literal notranslate"><span class="pre">Try</span></code></a> but the <a class="reference internal" href="#ast.ExceptHandler" title="ast.ExceptHandler"><code class="xref py py-class docutils literal notranslate"><span class="pre">ExceptHandler</span></code></a> nodes in <code class="docutils literal notranslate"><span class="pre">handlers</span></code>
+are interpreted as <code class="docutils literal notranslate"><span class="pre">except*</span></code> blocks rather then <code class="docutils literal notranslate"><span class="pre">except</span></code>.</p>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">ast</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">ast</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="gp">... </span><span class="s2">try:</span>
+<span class="gp">... </span><span class="s2">   ...</span>
+<span class="gp">... </span><span class="s2">except* Exception:</span>
+<span class="gp">... </span><span class="s2">   ...</span>
+<span class="gp">... </span><span class="s2">&quot;&quot;&quot;</span><span class="p">),</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">))</span>
+<span class="go">Module(</span>
+<span class="go">    body=[</span>
+<span class="go">        TryStar(</span>
+<span class="go">            body=[</span>
+<span class="go">                Expr(</span>
+<span class="go">                    value=Constant(value=Ellipsis))],</span>
+<span class="go">            handlers=[</span>
+<span class="go">                ExceptHandler(</span>
+<span class="go">                    type=Name(id=&#39;Exception&#39;, ctx=Load()),</span>
+<span class="go">                    body=[</span>
+<span class="go">                        Expr(</span>
+<span class="go">                            value=Constant(value=Ellipsis))])],</span>
+<span class="go">            orelse=[],</span>
+<span class="go">            finalbody=[])],</span>
+<span class="go">    type_ignores=[])</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py class">
 <dt class="sig sig-object py" id="ast.ExceptHandler">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ast.</span></span><span class="sig-name descname"><span class="pre">ExceptHandler</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">body</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ast.ExceptHandler" title="本定義的永久連結">¶</a></dt>
 <dd><p>A single <code class="docutils literal notranslate"><span class="pre">except</span></code> clause. <code class="docutils literal notranslate"><span class="pre">type</span></code> is the exception type it will match,
@@ -2325,7 +2358,7 @@ must be wrapped in a <a class="reference internal" href="#ast.Expr" title="ast.E
 <li><p><code class="docutils literal notranslate"><span class="pre">name</span></code> is a raw string for the class name</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">bases</span></code> is a list of nodes for explicitly specified base classes.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">keywords</span></code> is a list of <a class="reference internal" href="keyword.html#module-keyword" title="keyword: Test whether a string is a keyword in Python."><code class="xref py py-class docutils literal notranslate"><span class="pre">keyword</span></code></a> nodes, principally for 'metaclass'.
-Other keywords will be passed to the metaclass, as per <a class="reference external" href="https://www.python.org/dev/peps/pep-3115/">PEP-3115</a>.</p></li>
+Other keywords will be passed to the metaclass, as per <a class="reference external" href="https://peps.python.org/pep-3115/">PEP-3115</a>.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">starargs</span></code> and <code class="docutils literal notranslate"><span class="pre">kwargs</span></code> are each a single node, as in a function call.
 starargs will be expanded to join the list of base classes, and kwargs will
 be passed to the metaclass.</p></li>
@@ -2932,6 +2965,7 @@ in your python file.</p>
 <li><a class="reference internal" href="#ast.Break"><code class="docutils literal notranslate"><span class="pre">Break</span></code></a></li>
 <li><a class="reference internal" href="#ast.Continue"><code class="docutils literal notranslate"><span class="pre">Continue</span></code></a></li>
 <li><a class="reference internal" href="#ast.Try"><code class="docutils literal notranslate"><span class="pre">Try</span></code></a></li>
+<li><a class="reference internal" href="#ast.TryStar"><code class="docutils literal notranslate"><span class="pre">TryStar</span></code></a></li>
 <li><a class="reference internal" href="#ast.ExceptHandler"><code class="docutils literal notranslate"><span class="pre">ExceptHandler</span></code></a></li>
 <li><a class="reference internal" href="#ast.With"><code class="docutils literal notranslate"><span class="pre">With</span></code></a><ul>
 <li><a class="reference internal" href="#ast.With.type_comment"><code class="docutils literal notranslate"><span class="pre">With.type_comment</span></code></a></li>
@@ -3029,7 +3063,7 @@ in your python file.</p>
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.10/Doc/library/ast.rst"
+        <a href="https://github.com/python/cpython/blob/main/Doc/library/ast.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -3069,7 +3103,7 @@ in your python file.</p>
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.8 Documentation</a> &#187;
+      <a href="../index.html">3.11.0rc2 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -3106,7 +3140,7 @@ in your python file.</p>
 <br />
     <br />
 
-    最後更新於 10月 15, 2022。
+    最後更新於 10月 16, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 

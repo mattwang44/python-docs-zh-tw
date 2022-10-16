@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>fileinput --- Iterate over lines from multiple input streams &#8212; Python 3.10.8 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>fileinput --- Iterate over lines from multiple input streams &#8212; Python 3.11.0rc2 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -22,7 +22,7 @@
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.10.8 說明文件 中搜尋"
+          title="在 Python 3.11.0rc2 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -108,7 +108,7 @@
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.10/Doc/library/fileinput.rst"
+        <a href="https://github.com/python/cpython/blob/main/Doc/library/fileinput.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -145,7 +145,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.8 Documentation</a> &#187;
+      <a href="../index.html">3.11.0rc2 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -175,7 +175,7 @@
             
   <section id="module-fileinput">
 <span id="fileinput-iterate-over-lines-from-multiple-input-streams"></span><h1><a class="reference internal" href="#module-fileinput" title="fileinput: Loop over standard input or a list of files."><code class="xref py py-mod docutils literal notranslate"><span class="pre">fileinput</span></code></a> --- Iterate over lines from multiple input streams<a class="headerlink" href="#module-fileinput" title="本標頭的永久連結">¶</a></h1>
-<p><strong>原始碼：</strong><a class="reference external" href="https://github.com/python/cpython/tree/3.10/Lib/fileinput.py">Lib/fileinput.py</a></p>
+<p><strong>原始碼：</strong><a class="reference external" href="https://github.com/python/cpython/tree/3.11/Lib/fileinput.py">Lib/fileinput.py</a></p>
 <hr class="docutils" />
 <p>This module implements a helper class and functions to quickly write a
 loop over standard input or a list of files. If you just want to read or
@@ -310,13 +310,12 @@ available for subclassing as well:</p>
 <dd><p>Class <a class="reference internal" href="#fileinput.FileInput" title="fileinput.FileInput"><code class="xref py py-class docutils literal notranslate"><span class="pre">FileInput</span></code></a> is the implementation; its methods <a class="reference internal" href="#fileinput.filename" title="fileinput.filename"><code class="xref py py-meth docutils literal notranslate"><span class="pre">filename()</span></code></a>,
 <a class="reference internal" href="#fileinput.fileno" title="fileinput.fileno"><code class="xref py py-meth docutils literal notranslate"><span class="pre">fileno()</span></code></a>, <a class="reference internal" href="#fileinput.lineno" title="fileinput.lineno"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lineno()</span></code></a>, <a class="reference internal" href="#fileinput.filelineno" title="fileinput.filelineno"><code class="xref py py-meth docutils literal notranslate"><span class="pre">filelineno()</span></code></a>, <a class="reference internal" href="#fileinput.isfirstline" title="fileinput.isfirstline"><code class="xref py py-meth docutils literal notranslate"><span class="pre">isfirstline()</span></code></a>,
 <a class="reference internal" href="#fileinput.isstdin" title="fileinput.isstdin"><code class="xref py py-meth docutils literal notranslate"><span class="pre">isstdin()</span></code></a>, <a class="reference internal" href="#fileinput.nextfile" title="fileinput.nextfile"><code class="xref py py-meth docutils literal notranslate"><span class="pre">nextfile()</span></code></a> and <a class="reference internal" href="#fileinput.close" title="fileinput.close"><code class="xref py py-meth docutils literal notranslate"><span class="pre">close()</span></code></a> correspond to the
-functions of the same name in the module. In addition it has a
-<a class="reference internal" href="io.html#io.TextIOBase.readline" title="io.TextIOBase.readline"><code class="xref py py-meth docutils literal notranslate"><span class="pre">readline()</span></code></a> method which returns the next input line,
-and a <code class="xref py py-meth docutils literal notranslate"><span class="pre">__getitem__()</span></code> method which implements the sequence behavior.
-The sequence must be accessed in strictly sequential order; random access
-and <a class="reference internal" href="io.html#io.TextIOBase.readline" title="io.TextIOBase.readline"><code class="xref py py-meth docutils literal notranslate"><span class="pre">readline()</span></code></a> cannot be mixed.</p>
+functions of the same name in the module. In addition it is <a class="reference internal" href="../glossary.html#term-iterable"><span class="xref std std-term">iterable</span></a>
+and has a <a class="reference internal" href="io.html#io.TextIOBase.readline" title="io.TextIOBase.readline"><code class="xref py py-meth docutils literal notranslate"><span class="pre">readline()</span></code></a> method which returns the next
+input line. The sequence must be accessed in strictly sequential order;
+random access and <a class="reference internal" href="io.html#io.TextIOBase.readline" title="io.TextIOBase.readline"><code class="xref py py-meth docutils literal notranslate"><span class="pre">readline()</span></code></a> cannot be mixed.</p>
 <p>With <em>mode</em> you can specify which file mode will be passed to <a class="reference internal" href="functions.html#open" title="open"><code class="xref py py-func docutils literal notranslate"><span class="pre">open()</span></code></a>. It
-must be one of <code class="docutils literal notranslate"><span class="pre">'r'</span></code>, <code class="docutils literal notranslate"><span class="pre">'rU'</span></code>, <code class="docutils literal notranslate"><span class="pre">'U'</span></code> and <code class="docutils literal notranslate"><span class="pre">'rb'</span></code>.</p>
+must be one of <code class="docutils literal notranslate"><span class="pre">'r'</span></code> and <code class="docutils literal notranslate"><span class="pre">'rb'</span></code>.</p>
 <p>The <em>openhook</em>, when given, must be a function that takes two arguments,
 <em>filename</em> and <em>mode</em>, and returns an accordingly opened file-like object. You
 cannot use <em>inplace</em> and <em>openhook</em> together.</p>
@@ -331,17 +330,15 @@ cannot use <em>inplace</em> and <em>openhook</em> together.</p>
 <div class="versionchanged">
 <p><span class="versionmodified changed">在 3.2 版本變更: </span>Can be used as a context manager.</p>
 </div>
-<div class="deprecated">
-<p><span class="versionmodified deprecated">在 3.4 版本開始棄用: </span><code class="docutils literal notranslate"><span class="pre">'rU'</span></code> 和 <code class="docutils literal notranslate"><span class="pre">'U'</span></code> 模式。</p>
-</div>
-<div class="deprecated">
-<p><span class="versionmodified deprecated">在 3.8 版本開始棄用: </span>Support for <code class="xref py py-meth docutils literal notranslate"><span class="pre">__getitem__()</span></code> method is deprecated.</p>
-</div>
 <div class="versionchanged">
 <p><span class="versionmodified changed">在 3.8 版本變更: </span>The keyword parameter <em>mode</em> and <em>openhook</em> are now keyword-only.</p>
 </div>
 <div class="versionchanged">
 <p><span class="versionmodified changed">在 3.10 版本變更: </span>The keyword-only parameter <em>encoding</em> and <em>errors</em> are added.</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">在 3.11 版本變更: </span>The <code class="docutils literal notranslate"><span class="pre">'rU'</span></code> and <code class="docutils literal notranslate"><span class="pre">'U'</span></code> modes and the <code class="xref py py-meth docutils literal notranslate"><span class="pre">__getitem__()</span></code> method have
+been removed.</p>
 </div>
 </dd></dl>
 
@@ -433,7 +430,7 @@ now have <em>encoding</em> and <em>errors</em> parameters.</p>
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.10/Doc/library/fileinput.rst"
+        <a href="https://github.com/python/cpython/blob/main/Doc/library/fileinput.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -473,7 +470,7 @@ now have <em>encoding</em> and <em>errors</em> parameters.</p>
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.8 Documentation</a> &#187;
+      <a href="../index.html">3.11.0rc2 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -510,7 +507,7 @@ now have <em>encoding</em> and <em>errors</em> parameters.</p>
 <br />
     <br />
 
-    最後更新於 10月 15, 2022。
+    最後更新於 10月 16, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 

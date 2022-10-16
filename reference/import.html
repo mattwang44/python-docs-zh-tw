@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>5. The import system &#8212; Python 3.10.8 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5. The import system &#8212; Python 3.11.0rc2 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -22,7 +22,7 @@
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.10.8 說明文件 中搜尋"
+          title="在 Python 3.11.0rc2 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -140,7 +140,7 @@
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.10/Doc/reference/import.rst"
+        <a href="https://github.com/python/cpython/blob/main/Doc/reference/import.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -177,7 +177,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.8 Documentation</a> &#187;
+      <a href="../index.html">3.11.0rc2 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Python 語言參考手冊</a> &#187;</li>
@@ -720,17 +720,23 @@ over. More details on the semantics of <code class="docutils literal notranslate
 <dl class="py attribute">
 <dt class="sig sig-object py" id="cached__">
 <span class="sig-name descname"><span class="pre">__cached__</span></span><a class="headerlink" href="#cached__" title="本定義的永久連結">¶</a></dt>
-<dd><p><code class="docutils literal notranslate"><span class="pre">__file__</span></code> is optional. If set, this attribute's value must be a
-string.  The import system may opt to leave <code class="docutils literal notranslate"><span class="pre">__file__</span></code> unset if it
-has no semantic meaning (e.g. a module loaded from a database).</p>
-<p>If <code class="docutils literal notranslate"><span class="pre">__file__</span></code> is set, it may also be appropriate to set the
-<code class="docutils literal notranslate"><span class="pre">__cached__</span></code> attribute which is the path to any compiled version of
+<dd><p><code class="docutils literal notranslate"><span class="pre">__file__</span></code> is optional (if set, value must be a string). It indicates
+the pathname of the file from which the module was loaded (if
+loaded from a file), or the pathname of the shared library file
+for extension modules loaded dynamically from a shared library.
+It might be missing for certain types of modules, such as C
+modules that are statically linked into the interpreter, and the
+import system may opt to leave it unset if it has no semantic
+meaning (e.g. a module loaded from a database).</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">__file__</span></code> is set then the <code class="docutils literal notranslate"><span class="pre">__cached__</span></code> attribute might also
+be set,  which is the path to any compiled version of
 the code (e.g. byte-compiled file). The file does not need to exist
 to set this attribute; the path can simply point to where the
 compiled file would exist (see <span class="target" id="index-13"></span><a class="pep reference external" href="https://peps.python.org/pep-3147/"><strong>PEP 3147</strong></a>).</p>
-<p>It is also appropriate to set <code class="docutils literal notranslate"><span class="pre">__cached__</span></code> when <code class="docutils literal notranslate"><span class="pre">__file__</span></code> is not
+<p>Note that <code class="docutils literal notranslate"><span class="pre">__cached__</span></code> may be set even if <code class="docutils literal notranslate"><span class="pre">__file__</span></code> is not
 set.  However, that scenario is quite atypical.  Ultimately, the
-loader is what makes use of <code class="docutils literal notranslate"><span class="pre">__file__</span></code> and/or <code class="docutils literal notranslate"><span class="pre">__cached__</span></code>.  So
+loader is what makes use of the module spec provided by the finder
+(from which <code class="docutils literal notranslate"><span class="pre">__file__</span></code> and <code class="docutils literal notranslate"><span class="pre">__cached__</span></code> are derived).  So
 if a loader can load from a cached module but otherwise does not load
 from a file, that atypical scenario may be appropriate.</p>
 </dd></dl>
@@ -876,9 +882,8 @@ environment variable and various other installation- and
 implementation-specific defaults.  Entries in <a class="reference internal" href="../library/sys.html#sys.path" title="sys.path"><code class="xref py py-data docutils literal notranslate"><span class="pre">sys.path</span></code></a> can name
 directories on the file system, zip files, and potentially other &quot;locations&quot;
 (see the <a class="reference internal" href="../library/site.html#module-site" title="site: Module responsible for site-specific configuration."><code class="xref py py-mod docutils literal notranslate"><span class="pre">site</span></code></a> module) that should be searched for modules, such as
-URLs, or database queries.  Only strings and bytes should be present on
-<a class="reference internal" href="../library/sys.html#sys.path" title="sys.path"><code class="xref py py-data docutils literal notranslate"><span class="pre">sys.path</span></code></a>; all other data types are ignored.  The encoding of bytes
-entries is determined by the individual <a class="reference internal" href="../glossary.html#term-path-entry-finder"><span class="xref std std-term">path entry finders</span></a>.</p>
+URLs, or database queries.  Only strings should be present on
+<a class="reference internal" href="../library/sys.html#sys.path" title="sys.path"><code class="xref py py-data docutils literal notranslate"><span class="pre">sys.path</span></code></a>; all other data types are ignored.</p>
 <p>The <a class="reference internal" href="../glossary.html#term-path-based-finder"><span class="xref std std-term">path based finder</span></a> is a <a class="reference internal" href="../glossary.html#term-meta-path-finder"><span class="xref std std-term">meta path finder</span></a>, so the import
 machinery begins the <a class="reference internal" href="../glossary.html#term-import-path"><span class="xref std std-term">import path</span></a> search by calling the path
 based finder's <a class="reference internal" href="../library/importlib.html#importlib.machinery.PathFinder.find_spec" title="importlib.machinery.PathFinder.find_spec"><code class="xref py py-meth docutils literal notranslate"><span class="pre">find_spec()</span></code></a> method as
@@ -1188,7 +1193,7 @@ is recommended that code be changed to use <code class="docutils literal notrans
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.10/Doc/reference/import.rst"
+        <a href="https://github.com/python/cpython/blob/main/Doc/reference/import.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -1228,7 +1233,7 @@ is recommended that code be changed to use <code class="docutils literal notrans
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.8 Documentation</a> &#187;
+      <a href="../index.html">3.11.0rc2 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 語言參考手冊</a> &#187;</li>
@@ -1264,7 +1269,7 @@ is recommended that code be changed to use <code class="docutils literal notrans
 <br />
     <br />
 
-    最後更新於 10月 15, 2022。
+    最後更新於 10月 16, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 

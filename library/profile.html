@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>The Python Profilers &#8212; Python 3.10.8 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Python Profilers &#8212; Python 3.11.0rc2 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -22,7 +22,7 @@
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.10.8 說明文件 中搜尋"
+          title="在 Python 3.11.0rc2 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -133,7 +133,7 @@
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.10/Doc/library/profile.rst"
+        <a href="https://github.com/python/cpython/blob/main/Doc/library/profile.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -170,7 +170,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.8 Documentation</a> &#187;
+      <a href="../index.html">3.11.0rc2 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -200,7 +200,7 @@
             
   <section id="the-python-profilers">
 <span id="profile"></span><h1>The Python Profilers<a class="headerlink" href="#the-python-profilers" title="本標頭的永久連結">¶</a></h1>
-<p><strong>原始碼：</strong><a class="reference external" href="https://github.com/python/cpython/tree/3.10/Lib/profile.py">Lib/profile.py</a> 與 <a class="reference external" href="https://github.com/python/cpython/tree/3.10/Lib/pstats.py">Lib/pstats.py</a></p>
+<p><strong>原始碼：</strong><a class="reference external" href="https://github.com/python/cpython/tree/3.11/Lib/profile.py">Lib/profile.py</a> 與 <a class="reference external" href="https://github.com/python/cpython/tree/3.11/Lib/pstats.py">Lib/pstats.py</a></p>
 <hr class="docutils" />
 <section id="introduction-to-the-profilers">
 <span id="profiler-introduction"></span><h2>Introduction to the profilers<a class="headerlink" href="#introduction-to-the-profilers" title="本標頭的永久連結">¶</a></h2>
@@ -245,23 +245,24 @@ on an existing application.</p>
 your system.)</p>
 <p>The above action would run <a class="reference internal" href="re.html#re.compile" title="re.compile"><code class="xref py py-func docutils literal notranslate"><span class="pre">re.compile()</span></code></a> and print profile results like
 the following:</p>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span>      <span class="mi">197</span> <span class="n">function</span> <span class="n">calls</span> <span class="p">(</span><span class="mi">192</span> <span class="n">primitive</span> <span class="n">calls</span><span class="p">)</span> <span class="ow">in</span> <span class="mf">0.002</span> <span class="n">seconds</span>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span>      <span class="mi">214</span> <span class="n">function</span> <span class="n">calls</span> <span class="p">(</span><span class="mi">207</span> <span class="n">primitive</span> <span class="n">calls</span><span class="p">)</span> <span class="ow">in</span> <span class="mf">0.002</span> <span class="n">seconds</span>
 
-<span class="n">Ordered</span> <span class="n">by</span><span class="p">:</span> <span class="n">standard</span> <span class="n">name</span>
+<span class="n">Ordered</span> <span class="n">by</span><span class="p">:</span> <span class="n">cumulative</span> <span class="n">time</span>
 
 <span class="n">ncalls</span>  <span class="n">tottime</span>  <span class="n">percall</span>  <span class="n">cumtime</span>  <span class="n">percall</span> <span class="n">filename</span><span class="p">:</span><span class="n">lineno</span><span class="p">(</span><span class="n">function</span><span class="p">)</span>
+     <span class="mi">1</span>    <span class="mf">0.000</span>    <span class="mf">0.000</span>    <span class="mf">0.002</span>    <span class="mf">0.002</span> <span class="p">{</span><span class="n">built</span><span class="o">-</span><span class="ow">in</span> <span class="n">method</span> <span class="n">builtins</span><span class="o">.</span><span class="n">exec</span><span class="p">}</span>
      <span class="mi">1</span>    <span class="mf">0.000</span>    <span class="mf">0.000</span>    <span class="mf">0.001</span>    <span class="mf">0.001</span> <span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span><span class="p">:</span><span class="mi">1</span><span class="p">(</span><span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span><span class="p">)</span>
-     <span class="mi">1</span>    <span class="mf">0.000</span>    <span class="mf">0.000</span>    <span class="mf">0.001</span>    <span class="mf">0.001</span> <span class="n">re</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">212</span><span class="p">(</span><span class="nb">compile</span><span class="p">)</span>
-     <span class="mi">1</span>    <span class="mf">0.000</span>    <span class="mf">0.000</span>    <span class="mf">0.001</span>    <span class="mf">0.001</span> <span class="n">re</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">268</span><span class="p">(</span><span class="n">_compile</span><span class="p">)</span>
-     <span class="mi">1</span>    <span class="mf">0.000</span>    <span class="mf">0.000</span>    <span class="mf">0.000</span>    <span class="mf">0.000</span> <span class="n">sre_compile</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">172</span><span class="p">(</span><span class="n">_compile_charset</span><span class="p">)</span>
-     <span class="mi">1</span>    <span class="mf">0.000</span>    <span class="mf">0.000</span>    <span class="mf">0.000</span>    <span class="mf">0.000</span> <span class="n">sre_compile</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">201</span><span class="p">(</span><span class="n">_optimize_charset</span><span class="p">)</span>
-     <span class="mi">4</span>    <span class="mf">0.000</span>    <span class="mf">0.000</span>    <span class="mf">0.000</span>    <span class="mf">0.000</span> <span class="n">sre_compile</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">25</span><span class="p">(</span><span class="n">_identityfunction</span><span class="p">)</span>
-   <span class="mi">3</span><span class="o">/</span><span class="mi">1</span>    <span class="mf">0.000</span>    <span class="mf">0.000</span>    <span class="mf">0.000</span>    <span class="mf">0.000</span> <span class="n">sre_compile</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">33</span><span class="p">(</span><span class="n">_compile</span><span class="p">)</span>
+     <span class="mi">1</span>    <span class="mf">0.000</span>    <span class="mf">0.000</span>    <span class="mf">0.001</span>    <span class="mf">0.001</span> <span class="fm">__init__</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">250</span><span class="p">(</span><span class="nb">compile</span><span class="p">)</span>
+     <span class="mi">1</span>    <span class="mf">0.000</span>    <span class="mf">0.000</span>    <span class="mf">0.001</span>    <span class="mf">0.001</span> <span class="fm">__init__</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">289</span><span class="p">(</span><span class="n">_compile</span><span class="p">)</span>
+     <span class="mi">1</span>    <span class="mf">0.000</span>    <span class="mf">0.000</span>    <span class="mf">0.000</span>    <span class="mf">0.000</span> <span class="n">_compiler</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">759</span><span class="p">(</span><span class="nb">compile</span><span class="p">)</span>
+     <span class="mi">1</span>    <span class="mf">0.000</span>    <span class="mf">0.000</span>    <span class="mf">0.000</span>    <span class="mf">0.000</span> <span class="n">_parser</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">937</span><span class="p">(</span><span class="n">parse</span><span class="p">)</span>
+     <span class="mi">1</span>    <span class="mf">0.000</span>    <span class="mf">0.000</span>    <span class="mf">0.000</span>    <span class="mf">0.000</span> <span class="n">_compiler</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">598</span><span class="p">(</span><span class="n">_code</span><span class="p">)</span>
+     <span class="mi">1</span>    <span class="mf">0.000</span>    <span class="mf">0.000</span>    <span class="mf">0.000</span>    <span class="mf">0.000</span> <span class="n">_parser</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">435</span><span class="p">(</span><span class="n">_parse_sub</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>The first line indicates that 197 calls were monitored.  Of those calls, 192
+<p>The first line indicates that 214 calls were monitored.  Of those calls, 207
 were <em class="dfn">primitive</em>, meaning that the call was not induced via recursion. The
-next line: <code class="docutils literal notranslate"><span class="pre">Ordered</span> <span class="pre">by:</span> <span class="pre">standard</span> <span class="pre">name</span></code>, indicates that the text string in the
+next line: <code class="docutils literal notranslate"><span class="pre">Ordered</span> <span class="pre">by:</span> <span class="pre">cumulative</span> <span class="pre">name</span></code>, indicates that the text string in the
 far right column was used to sort the output. The column headings include:</p>
 <dl class="simple">
 <dt>ncalls</dt><dd><p>for the number of calls.</p>
@@ -952,7 +953,7 @@ precise measurements of process or wall-clock time. For example, see
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.10/Doc/library/profile.rst"
+        <a href="https://github.com/python/cpython/blob/main/Doc/library/profile.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -992,7 +993,7 @@ precise measurements of process or wall-clock time. For example, see
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.8 Documentation</a> &#187;
+      <a href="../index.html">3.11.0rc2 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -1029,7 +1030,7 @@ precise measurements of process or wall-clock time. For example, see
 <br />
     <br />
 
-    最後更新於 10月 15, 2022。
+    最後更新於 10月 16, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 

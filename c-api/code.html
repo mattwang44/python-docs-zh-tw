@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>Code Objects &#8212; Python 3.10.8 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code Objects &#8212; Python 3.11.0rc2 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -22,7 +22,7 @@
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.10.8 說明文件 中搜尋"
+          title="在 Python 3.11.0rc2 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -87,7 +87,7 @@
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.10/Doc/c-api/code.rst"
+        <a href="https://github.com/python/cpython/blob/main/Doc/c-api/code.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -124,7 +124,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.8 Documentation</a> &#187;
+      <a href="../index.html">3.11.0rc2 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python/C API 參考手冊</a> &#187;</li>
@@ -152,8 +152,8 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <span class="target" id="codeobjects"></span><section id="code-objects">
-<span id="index-0"></span><h1>Code Objects<a class="headerlink" href="#code-objects" title="本標頭的永久連結">¶</a></h1>
+  <section id="code-objects">
+<span id="codeobjects"></span><span id="index-0"></span><h1>Code Objects<a class="headerlink" href="#code-objects" title="本標頭的永久連結">¶</a></h1>
 <p>Code objects are a low-level detail of the CPython implementation.
 Each one represents a chunk of executable code that hasn't yet been
 bound into a function.</p>
@@ -185,19 +185,28 @@ fields of this type are subject to change at any time.</p>
 
 <dl class="c function">
 <dt class="sig sig-object c" id="c.PyCode_New">
-<a class="reference internal" href="#c.PyCodeObject" title="PyCodeObject"><span class="n"><span class="pre">PyCodeObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">PyCode_New</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n"><span class="pre">argcount</span></span>, <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n"><span class="pre">kwonlyargcount</span></span>, <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n"><span class="pre">nlocals</span></span>, <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n"><span class="pre">stacksize</span></span>, <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n"><span class="pre">flags</span></span>, <a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">code</span></span>, <a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">consts</span></span>, <a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">names</span></span>, <a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">varnames</span></span>, <a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">freevars</span></span>, <a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">cellvars</span></span>, <a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">filename</span></span>, <a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">name</span></span>, <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n"><span class="pre">firstlineno</span></span>, <a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">lnotab</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.PyCode_New" title="本定義的永久連結">¶</a><br /></dt>
+<a class="reference internal" href="#c.PyCodeObject" title="PyCodeObject"><span class="n"><span class="pre">PyCodeObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">PyCode_New</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n"><span class="pre">argcount</span></span>, <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n"><span class="pre">kwonlyargcount</span></span>, <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n"><span class="pre">nlocals</span></span>, <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n"><span class="pre">stacksize</span></span>, <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n"><span class="pre">flags</span></span>, <a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">code</span></span>, <a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">consts</span></span>, <a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">names</span></span>, <a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">varnames</span></span>, <a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">freevars</span></span>, <a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">cellvars</span></span>, <a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">filename</span></span>, <a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">name</span></span>, <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n"><span class="pre">firstlineno</span></span>, <a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">linetable</span></span>, <a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">exceptiontable</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.PyCode_New" title="本定義的永久連結">¶</a><br /></dt>
 <dd><em class="refcount">Return value: New reference.</em><p>Return a new code object.  If you need a dummy code object to create a frame,
 use <a class="reference internal" href="#c.PyCode_NewEmpty" title="PyCode_NewEmpty"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyCode_NewEmpty()</span></code></a> instead.  Calling <a class="reference internal" href="#c.PyCode_New" title="PyCode_New"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyCode_New()</span></code></a> directly
-can bind you to a precise Python version since the definition of the bytecode
-changes often.</p>
+will bind you to a precise Python version since the definition of the bytecode
+changes often. The many arguments of this function are inter-dependent in complex
+ways, meaning that subtle changes to values are likely to result in incorrect
+execution or VM crashes. Use this function only with extreme care.</p>
+<div class="versionchanged">
+<p><span class="versionmodified changed">在 3.11 版本變更: </span>Added <code class="docutils literal notranslate"><span class="pre">exceptiontable</span></code> parameter.</p>
+</div>
 </dd></dl>
 
 <dl class="c function">
 <dt class="sig sig-object c" id="c.PyCode_NewWithPosOnlyArgs">
-<a class="reference internal" href="#c.PyCodeObject" title="PyCodeObject"><span class="n"><span class="pre">PyCodeObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">PyCode_NewWithPosOnlyArgs</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n"><span class="pre">argcount</span></span>, <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n"><span class="pre">posonlyargcount</span></span>, <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n"><span class="pre">kwonlyargcount</span></span>, <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n"><span class="pre">nlocals</span></span>, <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n"><span class="pre">stacksize</span></span>, <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n"><span class="pre">flags</span></span>, <a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">code</span></span>, <a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">consts</span></span>, <a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">names</span></span>, <a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">varnames</span></span>, <a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">freevars</span></span>, <a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">cellvars</span></span>, <a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">filename</span></span>, <a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">name</span></span>, <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n"><span class="pre">firstlineno</span></span>, <a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">lnotab</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.PyCode_NewWithPosOnlyArgs" title="本定義的永久連結">¶</a><br /></dt>
-<dd><em class="refcount">Return value: New reference.</em><p>Similar to <a class="reference internal" href="#c.PyCode_New" title="PyCode_New"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyCode_New()</span></code></a>, but with an extra &quot;posonlyargcount&quot; for positional-only arguments.</p>
+<a class="reference internal" href="#c.PyCodeObject" title="PyCodeObject"><span class="n"><span class="pre">PyCodeObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">PyCode_NewWithPosOnlyArgs</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n"><span class="pre">argcount</span></span>, <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n"><span class="pre">posonlyargcount</span></span>, <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n"><span class="pre">kwonlyargcount</span></span>, <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n"><span class="pre">nlocals</span></span>, <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n"><span class="pre">stacksize</span></span>, <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n"><span class="pre">flags</span></span>, <a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">code</span></span>, <a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">consts</span></span>, <a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">names</span></span>, <a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">varnames</span></span>, <a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">freevars</span></span>, <a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">cellvars</span></span>, <a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">filename</span></span>, <a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">name</span></span>, <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n"><span class="pre">firstlineno</span></span>, <a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">linetable</span></span>, <a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">exceptiontable</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.PyCode_NewWithPosOnlyArgs" title="本定義的永久連結">¶</a><br /></dt>
+<dd><em class="refcount">Return value: New reference.</em><p>Similar to <a class="reference internal" href="#c.PyCode_New" title="PyCode_New"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyCode_New()</span></code></a>, but with an extra &quot;posonlyargcount&quot; for positional-only arguments.
+The same caveats that apply to <code class="docutils literal notranslate"><span class="pre">PyCode_New</span></code> also apply to this function.</p>
 <div class="versionadded">
 <p><span class="versionmodified added">在 3.8 版本新加入.</span></p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">在 3.11 版本變更: </span>Added <code class="docutils literal notranslate"><span class="pre">exceptiontable</span></code> parameter.</p>
 </div>
 </dd></dl>
 
@@ -205,16 +214,75 @@ changes often.</p>
 <dt class="sig sig-object c" id="c.PyCode_NewEmpty">
 <a class="reference internal" href="#c.PyCodeObject" title="PyCodeObject"><span class="n"><span class="pre">PyCodeObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">PyCode_NewEmpty</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">filename</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">funcname</span></span>, <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n"><span class="pre">firstlineno</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.PyCode_NewEmpty" title="本定義的永久連結">¶</a><br /></dt>
 <dd><em class="refcount">Return value: New reference.</em><p>Return a new empty code object with the specified filename,
-function name, and first line number.  It is illegal to
-<a class="reference internal" href="../library/functions.html#exec" title="exec"><code class="xref py py-func docutils literal notranslate"><span class="pre">exec()</span></code></a> or <a class="reference internal" href="../library/functions.html#eval" title="eval"><code class="xref py py-func docutils literal notranslate"><span class="pre">eval()</span></code></a> the resulting code object.</p>
+function name, and first line number. The resulting code
+object will raise an <code class="docutils literal notranslate"><span class="pre">Exception</span></code> if executed.</p>
 </dd></dl>
 
 <dl class="c function">
 <dt class="sig sig-object c" id="c.PyCode_Addr2Line">
 <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PyCode_Addr2Line</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.PyCodeObject" title="PyCodeObject"><span class="n"><span class="pre">PyCodeObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">co</span></span>, <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n"><span class="pre">byte_offset</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.PyCode_Addr2Line" title="本定義的永久連結">¶</a><br /></dt>
 <dd><p>Return the line number of the instruction that occurs on or before <code class="docutils literal notranslate"><span class="pre">byte_offset</span></code> and ends after it.
-If you just need the line number of a frame, use <a class="reference internal" href="reflection.html#c.PyFrame_GetLineNumber" title="PyFrame_GetLineNumber"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyFrame_GetLineNumber()</span></code></a> instead.</p>
-<p>For efficiently iterating over the line numbers in a code object, use <a class="reference external" href="https://www.python.org/dev/peps/pep-0626/#out-of-process-debuggers-and-profilers">the API described in PEP 626</a>.</p>
+If you just need the line number of a frame, use <a class="reference internal" href="frame.html#c.PyFrame_GetLineNumber" title="PyFrame_GetLineNumber"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyFrame_GetLineNumber()</span></code></a> instead.</p>
+<p>For efficiently iterating over the line numbers in a code object, use <a class="reference external" href="https://peps.python.org/pep-0626/#out-of-process-debuggers-and-profilers">the API described in PEP 626</a>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.PyCode_Addr2Location">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PyCode_Addr2Location</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">co</span></span>, <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n"><span class="pre">byte_offset</span></span>, <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">start_line</span></span>, <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">start_column</span></span>, <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">end_line</span></span>, <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">end_column</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.PyCode_Addr2Location" title="本定義的永久連結">¶</a><br /></dt>
+<dd><p>Sets the passed <code class="docutils literal notranslate"><span class="pre">int</span></code> pointers to the source code line and column numbers
+for the instruction at <code class="docutils literal notranslate"><span class="pre">byte_offset</span></code>. Sets the value to <code class="docutils literal notranslate"><span class="pre">0</span></code> when
+information is not available for any particular element.</p>
+<p>Returns <code class="docutils literal notranslate"><span class="pre">1</span></code> if the function succeeds and 0 otherwise.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.PyCode_GetCode">
+<a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">PyCode_GetCode</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.PyCodeObject" title="PyCodeObject"><span class="n"><span class="pre">PyCodeObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">co</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.PyCode_GetCode" title="本定義的永久連結">¶</a><br /></dt>
+<dd><p>Equivalent to the Python code <code class="docutils literal notranslate"><span class="pre">getattr(co,</span> <span class="pre">'co_code')</span></code>.
+Returns a strong reference to a <a class="reference internal" href="bytes.html#c.PyBytesObject" title="PyBytesObject"><code class="xref c c-type docutils literal notranslate"><span class="pre">PyBytesObject</span></code></a> representing the
+bytecode in a code object. On error, <code class="docutils literal notranslate"><span class="pre">NULL</span></code> is returned and an exception
+is raised.</p>
+<p>This <code class="docutils literal notranslate"><span class="pre">PyBytesObject</span></code> may be created on-demand by the interpreter and does
+not necessarily represent the bytecode actually executed by CPython. The
+primary use case for this function is debuggers and profilers.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">在 3.11 版本新加入.</span></p>
+</div>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.PyCode_GetVarnames">
+<a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">PyCode_GetVarnames</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.PyCodeObject" title="PyCodeObject"><span class="n"><span class="pre">PyCodeObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">co</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.PyCode_GetVarnames" title="本定義的永久連結">¶</a><br /></dt>
+<dd><p>Equivalent to the Python code <code class="docutils literal notranslate"><span class="pre">getattr(co,</span> <span class="pre">'co_varnames')</span></code>.
+Returns a new reference to a <a class="reference internal" href="tuple.html#c.PyTupleObject" title="PyTupleObject"><code class="xref c c-type docutils literal notranslate"><span class="pre">PyTupleObject</span></code></a> containing the names of
+the local variables. On error, <code class="docutils literal notranslate"><span class="pre">NULL</span></code> is returned and an exception
+is raised.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">在 3.11 版本新加入.</span></p>
+</div>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.PyCode_GetCellvars">
+<a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">PyCode_GetCellvars</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.PyCodeObject" title="PyCodeObject"><span class="n"><span class="pre">PyCodeObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">co</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.PyCode_GetCellvars" title="本定義的永久連結">¶</a><br /></dt>
+<dd><p>Equivalent to the Python code <code class="docutils literal notranslate"><span class="pre">getattr(co,</span> <span class="pre">'co_cellvars')</span></code>.
+Returns a new reference to a <a class="reference internal" href="tuple.html#c.PyTupleObject" title="PyTupleObject"><code class="xref c c-type docutils literal notranslate"><span class="pre">PyTupleObject</span></code></a> containing the names of
+the local variables that are referenced by nested functions. On error, <code class="docutils literal notranslate"><span class="pre">NULL</span></code>
+is returned and an exception is raised.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">在 3.11 版本新加入.</span></p>
+</div>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.PyCode_GetFreevars">
+<a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">PyCode_GetFreevars</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.PyCodeObject" title="PyCodeObject"><span class="n"><span class="pre">PyCodeObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">co</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.PyCode_GetFreevars" title="本定義的永久連結">¶</a><br /></dt>
+<dd><p>Equivalent to the Python code <code class="docutils literal notranslate"><span class="pre">getattr(co,</span> <span class="pre">'co_freevars')</span></code>.
+Returns a new reference to a <a class="reference internal" href="tuple.html#c.PyTupleObject" title="PyTupleObject"><code class="xref c c-type docutils literal notranslate"><span class="pre">PyTupleObject</span></code></a> containing the names of
+the free variables. On error, <code class="docutils literal notranslate"><span class="pre">NULL</span></code> is returned and an exception is raised.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">在 3.11 版本新加入.</span></p>
+</div>
 </dd></dl>
 
 </section>
@@ -241,7 +309,7 @@ If you just need the line number of a frame, use <a class="reference internal" h
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.10/Doc/c-api/code.rst"
+        <a href="https://github.com/python/cpython/blob/main/Doc/c-api/code.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -281,7 +349,7 @@ If you just need the line number of a frame, use <a class="reference internal" h
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.8 Documentation</a> &#187;
+      <a href="../index.html">3.11.0rc2 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python/C API 參考手冊</a> &#187;</li>
@@ -318,7 +386,7 @@ If you just need the line number of a frame, use <a class="reference internal" h
 <br />
     <br />
 
-    最後更新於 10月 15, 2022。
+    最後更新於 10月 16, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 

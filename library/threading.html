@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>threading --- Thread-based parallelism &#8212; Python 3.10.8 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>threading --- Thread-based parallelism &#8212; Python 3.11.0rc2 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -22,7 +22,7 @@
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.10.8 說明文件 中搜尋"
+          title="在 Python 3.11.0rc2 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -202,7 +202,7 @@
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.10/Doc/library/threading.rst"
+        <a href="https://github.com/python/cpython/blob/main/Doc/library/threading.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -239,7 +239,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.8 Documentation</a> &#187;
+      <a href="../index.html">3.11.0rc2 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -269,7 +269,7 @@
             
   <section id="module-threading">
 <span id="threading-thread-based-parallelism"></span><h1><a class="reference internal" href="#module-threading" title="threading: Thread-based parallelism."><code class="xref py py-mod docutils literal notranslate"><span class="pre">threading</span></code></a> --- Thread-based parallelism<a class="headerlink" href="#module-threading" title="本標頭的永久連結">¶</a></h1>
-<p><strong>原始碼：</strong><a class="reference external" href="https://github.com/python/cpython/tree/3.10/Lib/threading.py">Lib/threading.py</a></p>
+<p><strong>原始碼：</strong><a class="reference external" href="https://github.com/python/cpython/tree/3.11/Lib/threading.py">Lib/threading.py</a></p>
 <hr class="docutils" />
 <p>This module constructs higher-level threading interfaces on top of the lower
 level <a class="reference internal" href="_thread.html#module-_thread" title="_thread: Low-level threading API."><code class="xref py py-mod docutils literal notranslate"><span class="pre">_thread</span></code></a> module.</p>
@@ -302,6 +302,10 @@ resources of multi-core machines, you are advised to use
 However, threading is still an appropriate model if you want to run
 multiple I/O-bound tasks simultaneously.</p>
 </div>
+<p class="availability"><a class="reference internal" href="intro.html#availability"><span class="std std-ref">Availability</span></a>: not Emscripten, not WASI.<p>This module does not work or is not available on WebAssembly platforms
+<code class="docutils literal notranslate"><span class="pre">wasm32-emscripten</span></code> and <code class="docutils literal notranslate"><span class="pre">wasm32-wasi</span></code>. See
+<a class="reference internal" href="intro.html#wasm-availability"><span class="std std-ref">WebAssembly platforms</span></a> for more information.</p>
+</p>
 <p>This module defines the following functions:</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="threading.active_count">
@@ -462,7 +466,7 @@ minimum stack size &gt; 32 KiB or requiring allocation in multiples of the syste
 memory page size - platform documentation should be referred to for more
 information (4 KiB pages are common; using multiples of 4096 for the stack size is
 the suggested approach in the absence of more specific information).</p>
-<p class="availability"><a class="reference internal" href="intro.html#availability"><span class="std std-ref">Availability</span></a>: Windows, systems with POSIX threads.</p>
+<p class="availability"><a class="reference internal" href="intro.html#availability"><span class="std std-ref">適用</span></a>：Windows, pthreads。</p>
 </dd></dl>
 
 <p>This module also defines the following constant:</p>
@@ -548,7 +552,7 @@ control in the Python program.  It is not a daemon thread.</p>
 thread objects corresponding to &quot;alien threads&quot;, which are threads of control
 started outside the threading module, such as directly from C code.  Dummy
 thread objects have limited functionality; they are always considered alive and
-daemonic, and cannot be <a class="reference internal" href="#threading.Thread.join" title="threading.Thread.join"><code class="xref py py-meth docutils literal notranslate"><span class="pre">join()</span></code></a>ed.  They are never deleted,
+daemonic, and cannot be <a class="reference internal" href="#meth-thread-join"><span class="std std-ref">joined</span></a>.  They are never deleted,
 since it is impossible to detect the termination of alien threads.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="threading.Thread">
@@ -563,7 +567,7 @@ Defaults to <code class="docutils literal notranslate"><span class="pre">None</s
 of the form &quot;Thread-<em>N</em>&quot; where <em>N</em> is a small decimal number,
 or &quot;Thread-<em>N</em> (target)&quot; where &quot;target&quot; is <code class="docutils literal notranslate"><span class="pre">target.__name__</span></code> if the
 <em>target</em> argument is specified.</p>
-<p><em>args</em> is the argument tuple for the target invocation.  Defaults to <code class="docutils literal notranslate"><span class="pre">()</span></code>.</p>
+<p><em>args</em> is a list or tuple of arguments for the target invocation.  Defaults to <code class="docutils literal notranslate"><span class="pre">()</span></code>.</p>
 <p><em>kwargs</em> is a dictionary of keyword arguments for the target invocation.
 Defaults to <code class="docutils literal notranslate"><span class="pre">{}</span></code>.</p>
 <p>If not <code class="docutils literal notranslate"><span class="pre">None</span></code>, <em>daemon</em> explicitly sets whether the thread is daemonic.
@@ -597,9 +601,21 @@ on the same thread object.</p>
 method invokes the callable object passed to the object's constructor as
 the <em>target</em> argument, if any, with positional and keyword arguments taken
 from the <em>args</em> and <em>kwargs</em> arguments, respectively.</p>
+<p>Using list or tuple as the <em>args</em> argument which passed to the <a class="reference internal" href="#threading.Thread" title="threading.Thread"><code class="xref py py-class docutils literal notranslate"><span class="pre">Thread</span></code></a>
+could achieve the same effect.</p>
+<p>舉例來說：</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">threading</span> <span class="kn">import</span> <span class="n">Thread</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">t</span> <span class="o">=</span> <span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="nb">print</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">t</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+<span class="go">1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">t</span> <span class="o">=</span> <span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="nb">print</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">t</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+<span class="go">1</span>
+</pre></div>
+</div>
 </dd></dl>
 
-<dl class="py method">
+<span class="target" id="meth-thread-join"></span><dl class="py method">
 <dt class="sig sig-object py" id="threading.Thread.join">
 <span class="sig-name descname"><span class="pre">join</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#threading.Thread.join" title="本定義的永久連結">¶</a></dt>
 <dd><p>Wait until the thread terminates. This blocks the calling thread until
@@ -614,7 +630,7 @@ decide whether a timeout happened -- if the thread is still alive, the
 <a class="reference internal" href="#threading.Thread.join" title="threading.Thread.join"><code class="xref py py-meth docutils literal notranslate"><span class="pre">join()</span></code></a> call timed out.</p>
 <p>When the <em>timeout</em> argument is not present or <code class="docutils literal notranslate"><span class="pre">None</span></code>, the operation will
 block until the thread terminates.</p>
-<p>A thread can be <a class="reference internal" href="#threading.Thread.join" title="threading.Thread.join"><code class="xref py py-meth docutils literal notranslate"><span class="pre">join()</span></code></a>ed many times.</p>
+<p>A thread can be joined many times.</p>
 <p><a class="reference internal" href="#threading.Thread.join" title="threading.Thread.join"><code class="xref py py-meth docutils literal notranslate"><span class="pre">join()</span></code></a> raises a <a class="reference internal" href="exceptions.html#RuntimeError" title="RuntimeError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">RuntimeError</span></code></a> if an attempt is made
 to join the current thread as that would cause a deadlock. It is also
 an error to <a class="reference internal" href="#threading.Thread.join" title="threading.Thread.join"><code class="xref py py-meth docutils literal notranslate"><span class="pre">join()</span></code></a> a thread before it has been started
@@ -666,7 +682,7 @@ may be recycled by the OS).</p>
 system-wide) from the time the thread is created until the thread
 has been terminated.</p>
 </div>
-<p class="availability"><a class="reference internal" href="intro.html#availability"><span class="std std-ref">Availability</span></a>: Requires <a class="reference internal" href="#threading.get_native_id" title="threading.get_native_id"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_native_id()</span></code></a> function.</p>
+<p class="availability"><a class="reference internal" href="intro.html#availability"><span class="std std-ref">Availability</span></a>: Windows, FreeBSD, Linux, macOS, OpenBSD, NetBSD, AIX, DragonFlyBSD.</p>
 <div class="versionadded">
 <p><span class="versionmodified added">在 3.8 版本新加入.</span></p>
 </div>
@@ -1489,7 +1505,7 @@ the following snippet:</p>
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.10/Doc/library/threading.rst"
+        <a href="https://github.com/python/cpython/blob/main/Doc/library/threading.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -1529,7 +1545,7 @@ the following snippet:</p>
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.8 Documentation</a> &#187;
+      <a href="../index.html">3.11.0rc2 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -1566,7 +1582,7 @@ the following snippet:</p>
 <br />
     <br />
 
-    最後更新於 10月 15, 2022。
+    最後更新於 10月 16, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 

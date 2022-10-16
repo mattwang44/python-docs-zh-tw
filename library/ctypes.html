@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>ctypes --- A foreign function library for Python &#8212; Python 3.10.8 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ctypes --- A foreign function library for Python &#8212; Python 3.11.0rc2 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -22,7 +22,7 @@
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.10.8 說明文件 中搜尋"
+          title="在 Python 3.11.0rc2 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -214,6 +214,8 @@
 </li>
 <li><a class="reference internal" href="#structured-data-types">Structured data types</a><ul>
 <li><a class="reference internal" href="#ctypes.Union"><code class="docutils literal notranslate"><span class="pre">Union</span></code></a></li>
+<li><a class="reference internal" href="#ctypes.BigEndianUnion"><code class="docutils literal notranslate"><span class="pre">BigEndianUnion</span></code></a></li>
+<li><a class="reference internal" href="#ctypes.LittleEndianUnion"><code class="docutils literal notranslate"><span class="pre">LittleEndianUnion</span></code></a></li>
 <li><a class="reference internal" href="#ctypes.BigEndianStructure"><code class="docutils literal notranslate"><span class="pre">BigEndianStructure</span></code></a></li>
 <li><a class="reference internal" href="#ctypes.LittleEndianStructure"><code class="docutils literal notranslate"><span class="pre">LittleEndianStructure</span></code></a></li>
 <li><a class="reference internal" href="#ctypes.Structure"><code class="docutils literal notranslate"><span class="pre">Structure</span></code></a><ul>
@@ -259,7 +261,7 @@
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.10/Doc/library/ctypes.rst"
+        <a href="https://github.com/python/cpython/blob/main/Doc/library/ctypes.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -296,7 +298,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.8 Documentation</a> &#187;
+      <a href="../index.html">3.11.0rc2 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -664,10 +666,9 @@ property:</p>
 <span class="go">&gt;&gt;&gt;</span>
 </pre></div>
 </div>
-<p>The <a class="reference internal" href="#ctypes.create_string_buffer" title="ctypes.create_string_buffer"><code class="xref py py-func docutils literal notranslate"><span class="pre">create_string_buffer()</span></code></a> function replaces the <code class="xref py py-func docutils literal notranslate"><span class="pre">c_buffer()</span></code> function
-(which is still available as an alias), as well as the <code class="xref py py-func docutils literal notranslate"><span class="pre">c_string()</span></code> function
-from earlier ctypes releases.  To create a mutable memory block containing
-unicode characters of the C type <span class="c-expr sig sig-inline c"><span class="n">wchar_t</span></span> use the
+<p>The <a class="reference internal" href="#ctypes.create_string_buffer" title="ctypes.create_string_buffer"><code class="xref py py-func docutils literal notranslate"><span class="pre">create_string_buffer()</span></code></a> function replaces the old <code class="xref py py-func docutils literal notranslate"><span class="pre">c_buffer()</span></code>
+function (which is still available as an alias).  To create a mutable memory
+block containing unicode characters of the C type <span class="c-expr sig sig-inline c"><span class="n">wchar_t</span></span>, use the
 <a class="reference internal" href="#ctypes.create_unicode_buffer" title="ctypes.create_unicode_buffer"><code class="xref py py-func docutils literal notranslate"><span class="pre">create_unicode_buffer()</span></code></a> function.</p>
 </section>
 <section id="calling-functions-continued">
@@ -926,7 +927,7 @@ what <code class="docutils literal notranslate"><span class="pre">#pragma</span>
 <p><a class="reference internal" href="#module-ctypes" title="ctypes: A foreign function library for Python."><code class="xref py py-mod docutils literal notranslate"><span class="pre">ctypes</span></code></a> uses the native byte order for Structures and Unions.  To build
 structures with non-native byte order, you can use one of the
 <a class="reference internal" href="#ctypes.BigEndianStructure" title="ctypes.BigEndianStructure"><code class="xref py py-class docutils literal notranslate"><span class="pre">BigEndianStructure</span></code></a>, <a class="reference internal" href="#ctypes.LittleEndianStructure" title="ctypes.LittleEndianStructure"><code class="xref py py-class docutils literal notranslate"><span class="pre">LittleEndianStructure</span></code></a>,
-<code class="xref py py-class docutils literal notranslate"><span class="pre">BigEndianUnion</span></code>, and <code class="xref py py-class docutils literal notranslate"><span class="pre">LittleEndianUnion</span></code> base classes.  These
+<a class="reference internal" href="#ctypes.BigEndianUnion" title="ctypes.BigEndianUnion"><code class="xref py py-class docutils literal notranslate"><span class="pre">BigEndianUnion</span></code></a>, and <a class="reference internal" href="#ctypes.LittleEndianUnion" title="ctypes.LittleEndianUnion"><code class="xref py py-class docutils literal notranslate"><span class="pre">LittleEndianUnion</span></code></a> base classes.  These
 classes cannot contain pointer fields.</p>
 </section>
 <section id="bit-fields-in-structures-and-unions">
@@ -1348,7 +1349,9 @@ size, we show only how this table can be read with <a class="reference internal"
 <span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">struct_frozen</span><span class="p">(</span><span class="n">Structure</span><span class="p">):</span>
 <span class="gp">... </span>    <span class="n">_fields_</span> <span class="o">=</span> <span class="p">[(</span><span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="n">c_char_p</span><span class="p">),</span>
 <span class="gp">... </span>                <span class="p">(</span><span class="s2">&quot;code&quot;</span><span class="p">,</span> <span class="n">POINTER</span><span class="p">(</span><span class="n">c_ubyte</span><span class="p">)),</span>
-<span class="gp">... </span>                <span class="p">(</span><span class="s2">&quot;size&quot;</span><span class="p">,</span> <span class="n">c_int</span><span class="p">)]</span>
+<span class="gp">... </span>                <span class="p">(</span><span class="s2">&quot;size&quot;</span><span class="p">,</span> <span class="n">c_int</span><span class="p">),</span>
+<span class="gp">... </span>                <span class="p">(</span><span class="s2">&quot;get_code&quot;</span><span class="p">,</span> <span class="n">POINTER</span><span class="p">(</span><span class="n">c_ubyte</span><span class="p">)),</span>  <span class="c1"># Function pointer</span>
+<span class="gp">... </span>               <span class="p">]</span>
 <span class="gp">...</span>
 <span class="go">&gt;&gt;&gt;</span>
 </pre></div>
@@ -1356,7 +1359,7 @@ size, we show only how this table can be read with <a class="reference internal"
 <p>We have defined the <a class="reference internal" href="../c-api/import.html#c._frozen" title="_frozen"><code class="xref c c-struct docutils literal notranslate"><span class="pre">_frozen</span></code></a> data type, so we can get the pointer
 to the table:</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">FrozenTable</span> <span class="o">=</span> <span class="n">POINTER</span><span class="p">(</span><span class="n">struct_frozen</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">table</span> <span class="o">=</span> <span class="n">FrozenTable</span><span class="o">.</span><span class="n">in_dll</span><span class="p">(</span><span class="n">pythonapi</span><span class="p">,</span> <span class="s2">&quot;PyImport_FrozenModules&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">table</span> <span class="o">=</span> <span class="n">FrozenTable</span><span class="o">.</span><span class="n">in_dll</span><span class="p">(</span><span class="n">pythonapi</span><span class="p">,</span> <span class="s2">&quot;_PyImport_FrozenBootstrap&quot;</span><span class="p">)</span>
 <span class="go">&gt;&gt;&gt;</span>
 </pre></div>
 </div>
@@ -1372,9 +1375,7 @@ hit the <code class="docutils literal notranslate"><span class="pre">NULL</span>
 <span class="gp">...</span>
 <span class="go">_frozen_importlib 31764</span>
 <span class="go">_frozen_importlib_external 41499</span>
-<span class="go">__hello__ 161</span>
-<span class="go">__phello__ -161</span>
-<span class="go">__phello__.spam 161</span>
+<span class="go">zipimport 12345</span>
 <span class="go">&gt;&gt;&gt;</span>
 </pre></div>
 </div>
@@ -2625,6 +2626,24 @@ useful structures like <code class="xref c c-type docutils literal notranslate">
 </dd></dl>
 
 <dl class="py class">
+<dt class="sig sig-object py" id="ctypes.BigEndianUnion">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ctypes.</span></span><span class="sig-name descname"><span class="pre">BigEndianUnion</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kw</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ctypes.BigEndianUnion" title="本定義的永久連結">¶</a></dt>
+<dd><p>Abstract base class for unions in <em>big endian</em> byte order.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">在 3.11 版本新加入.</span></p>
+</div>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="ctypes.LittleEndianUnion">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ctypes.</span></span><span class="sig-name descname"><span class="pre">LittleEndianUnion</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kw</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ctypes.LittleEndianUnion" title="本定義的永久連結">¶</a></dt>
+<dd><p>Abstract base class for unions in <em>little endian</em> byte order.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">在 3.11 版本新加入.</span></p>
+</div>
+</dd></dl>
+
+<dl class="py class">
 <dt class="sig sig-object py" id="ctypes.BigEndianStructure">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ctypes.</span></span><span class="sig-name descname"><span class="pre">BigEndianStructure</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kw</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ctypes.BigEndianStructure" title="本定義的永久連結">¶</a></dt>
 <dd><p>Abstract base class for structures in <em>big endian</em> byte order.</p>
@@ -2636,8 +2655,8 @@ useful structures like <code class="xref c c-type docutils literal notranslate">
 <dd><p>Abstract base class for structures in <em>little endian</em> byte order.</p>
 </dd></dl>
 
-<p>Structures with non-native byte order cannot contain pointer type fields, or any
-other data types containing pointer type fields.</p>
+<p>Structures and unions with non-native byte order cannot contain pointer type
+fields, or any other data types containing pointer type fields.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="ctypes.Structure">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ctypes.</span></span><span class="sig-name descname"><span class="pre">Structure</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kw</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ctypes.Structure" title="本定義的永久連結">¶</a></dt>
@@ -2944,6 +2963,8 @@ attribute changes the pointer to point to the assigned object.</p>
 </li>
 <li><a class="reference internal" href="#structured-data-types">Structured data types</a><ul>
 <li><a class="reference internal" href="#ctypes.Union"><code class="docutils literal notranslate"><span class="pre">Union</span></code></a></li>
+<li><a class="reference internal" href="#ctypes.BigEndianUnion"><code class="docutils literal notranslate"><span class="pre">BigEndianUnion</span></code></a></li>
+<li><a class="reference internal" href="#ctypes.LittleEndianUnion"><code class="docutils literal notranslate"><span class="pre">LittleEndianUnion</span></code></a></li>
 <li><a class="reference internal" href="#ctypes.BigEndianStructure"><code class="docutils literal notranslate"><span class="pre">BigEndianStructure</span></code></a></li>
 <li><a class="reference internal" href="#ctypes.LittleEndianStructure"><code class="docutils literal notranslate"><span class="pre">LittleEndianStructure</span></code></a></li>
 <li><a class="reference internal" href="#ctypes.Structure"><code class="docutils literal notranslate"><span class="pre">Structure</span></code></a><ul>
@@ -2989,7 +3010,7 @@ attribute changes the pointer to point to the assigned object.</p>
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.10/Doc/library/ctypes.rst"
+        <a href="https://github.com/python/cpython/blob/main/Doc/library/ctypes.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -3029,7 +3050,7 @@ attribute changes the pointer to point to the assigned object.</p>
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.8 Documentation</a> &#187;
+      <a href="../index.html">3.11.0rc2 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -3066,7 +3087,7 @@ attribute changes the pointer to point to the assigned object.</p>
 <br />
     <br />
 
-    最後更新於 10月 15, 2022。
+    最後更新於 10月 16, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 

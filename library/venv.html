@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>venv --- Creation of virtual environments &#8212; Python 3.10.8 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>venv --- Creation of virtual environments &#8212; Python 3.11.0rc2 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -22,7 +22,7 @@
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.10.8 說明文件 中搜尋"
+          title="在 Python 3.11.0rc2 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -113,7 +113,7 @@
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.10/Doc/library/venv.rst"
+        <a href="https://github.com/python/cpython/blob/main/Doc/library/venv.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -150,7 +150,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.8 Documentation</a> &#187;
+      <a href="../index.html">3.11.0rc2 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -183,7 +183,7 @@
 <div class="versionadded">
 <p><span class="versionmodified added">在 3.3 版本新加入.</span></p>
 </div>
-<p><strong>原始碼：</strong><a class="reference external" href="https://github.com/python/cpython/tree/3.10/Lib/venv/">Lib/venv/</a></p>
+<p><strong>原始碼：</strong><a class="reference external" href="https://github.com/python/cpython/tree/3.11/Lib/venv/">Lib/venv/</a></p>
 <hr class="docutils" id="index-0" />
 <p>The <a class="reference internal" href="#module-venv" title="venv: Creation of virtual environments."><code class="xref py py-mod docutils literal notranslate"><span class="pre">venv</span></code></a> module provides support for creating lightweight &quot;virtual
 environments&quot; with their own site directories, optionally isolated from system
@@ -196,6 +196,10 @@ directories.</p>
 <p class="admonition-title">也參考</p>
 <p><a class="reference external" href="https://packaging.python.org/guides/installing-using-pip-and-virtual-environments/#creating-a-virtual-environment">Python Packaging User Guide: Creating and using virtual environments</a></p>
 </div>
+<p class="availability"><a class="reference internal" href="intro.html#availability"><span class="std std-ref">Availability</span></a>: not Emscripten, not WASI.<p>This module does not work or is not available on WebAssembly platforms
+<code class="docutils literal notranslate"><span class="pre">wasm32-emscripten</span></code> and <code class="docutils literal notranslate"><span class="pre">wasm32-wasi</span></code>. See
+<a class="reference internal" href="intro.html#wasm-availability"><span class="std std-ref">WebAssembly platforms</span></a> for more information.</p>
+</p>
 <section id="creating-virtual-environments">
 <h2>Creating virtual environments<a class="headerlink" href="#creating-virtual-environments" title="本標頭的永久連結">¶</a></h2>
 <p>Creation of <a class="reference internal" href="#venv-def"><span class="std std-ref">virtual environments</span></a> is done by executing the
@@ -486,11 +490,17 @@ hooks available for subclass customization:</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="venv.EnvBuilder.ensure_directories">
 <span class="sig-name descname"><span class="pre">ensure_directories</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">env_dir</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#venv.EnvBuilder.ensure_directories" title="本定義的永久連結">¶</a></dt>
-<dd><p>Creates the environment directory and all necessary directories, and
-returns a context object.  This is just a holder for attributes (such as
-paths), for use by the other methods. The directories are allowed to
-exist already, as long as either <code class="docutils literal notranslate"><span class="pre">clear</span></code> or <code class="docutils literal notranslate"><span class="pre">upgrade</span></code> were
-specified to allow operating on an existing environment directory.</p>
+<dd><p>Creates the environment directory and all necessary subdirectories that
+don't already exist, and returns a context object.  This context object
+is just a holder for attributes (such as paths) for use by the other
+methods.  If the <a class="reference internal" href="#venv.EnvBuilder" title="venv.EnvBuilder"><code class="xref py py-class docutils literal notranslate"><span class="pre">EnvBuilder</span></code></a> is created with the arg
+<code class="docutils literal notranslate"><span class="pre">clear=True</span></code>, contents of the environment directory will be cleared
+and then all necessary subdirectories will be recreated.</p>
+<div class="versionchanged">
+<p><span class="versionmodified changed">在 3.11 版本變更: </span>The <em>venv</em>
+<a class="reference internal" href="sysconfig.html#installation-paths"><span class="std std-ref">sysconfig installation scheme</span></a>
+is used to construct the paths of the created directories.</p>
+</div>
 </dd></dl>
 
 <dl class="py method">
@@ -866,7 +876,7 @@ subclass which installs setuptools and pip into a created virtual environment:</
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.10/Doc/library/venv.rst"
+        <a href="https://github.com/python/cpython/blob/main/Doc/library/venv.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -906,7 +916,7 @@ subclass which installs setuptools and pip into a created virtual environment:</
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.8 Documentation</a> &#187;
+      <a href="../index.html">3.11.0rc2 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -943,7 +953,7 @@ subclass which installs setuptools and pip into a created virtual environment:</
 <br />
     <br />
 
-    最後更新於 10月 15, 2022。
+    最後更新於 10月 16, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 

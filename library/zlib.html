@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>zlib --- Compression compatible with gzip &#8212; Python 3.10.8 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>zlib --- Compression compatible with gzip &#8212; Python 3.11.0rc2 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -22,7 +22,7 @@
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.10.8 說明文件 中搜尋"
+          title="在 Python 3.11.0rc2 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -114,7 +114,7 @@
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.10/Doc/library/zlib.rst"
+        <a href="https://github.com/python/cpython/blob/main/Doc/library/zlib.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -151,7 +151,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.8 Documentation</a> &#187;
+      <a href="../index.html">3.11.0rc2 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -213,24 +213,42 @@ strong, and should not be used for authentication or digital signatures.  Since
 the algorithm is designed for use as a checksum algorithm, it is not suitable
 for use as a general hash algorithm.</p>
 <div class="versionchanged">
-<p><span class="versionmodified changed">在 3.0 版本變更: </span>The result is always unsigned.
-To generate the same numeric value when using Python 2 or earlier,
-use <code class="docutils literal notranslate"><span class="pre">adler32(data)</span> <span class="pre">&amp;</span> <span class="pre">0xffffffff</span></code>.</p>
+<p><span class="versionmodified changed">在 3.0 版本變更: </span>The result is always unsigned.</p>
 </div>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="zlib.compress">
-<span class="sig-prename descclassname"><span class="pre">zlib.</span></span><span class="sig-name descname"><span class="pre">compress</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">/</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">level</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#zlib.compress" title="本定義的永久連結">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">zlib.</span></span><span class="sig-name descname"><span class="pre">compress</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">/</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">level</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wbits</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">MAX_WBITS</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#zlib.compress" title="本定義的永久連結">¶</a></dt>
 <dd><p>Compresses the bytes in <em>data</em>, returning a bytes object containing compressed data.
 <em>level</em> is an integer from <code class="docutils literal notranslate"><span class="pre">0</span></code> to <code class="docutils literal notranslate"><span class="pre">9</span></code> or <code class="docutils literal notranslate"><span class="pre">-1</span></code> controlling the level of compression;
 <code class="docutils literal notranslate"><span class="pre">1</span></code> (Z_BEST_SPEED) is fastest and produces the least compression, <code class="docutils literal notranslate"><span class="pre">9</span></code> (Z_BEST_COMPRESSION)
 is slowest and produces the most.  <code class="docutils literal notranslate"><span class="pre">0</span></code> (Z_NO_COMPRESSION) is no compression.
 The default value is <code class="docutils literal notranslate"><span class="pre">-1</span></code> (Z_DEFAULT_COMPRESSION).  Z_DEFAULT_COMPRESSION represents a default
-compromise between speed and compression (currently equivalent to level 6).
-Raises the <a class="reference internal" href="#zlib.error" title="zlib.error"><code class="xref py py-exc docutils literal notranslate"><span class="pre">error</span></code></a> exception if any error occurs.</p>
+compromise between speed and compression (currently equivalent to level 6).</p>
+<p id="compress-wbits">The <em>wbits</em> argument controls the size of the history buffer (or the
+&quot;window size&quot;) used when compressing data, and whether a header and
+trailer is included in the output.  It can take several ranges of values,
+defaulting to <code class="docutils literal notranslate"><span class="pre">15</span></code> (MAX_WBITS):</p>
+<ul class="simple">
+<li><p>+9 to +15: The base-two logarithm of the window size, which
+therefore ranges between 512 and 32768.  Larger values produce
+better compression at the expense of greater memory usage.  The
+resulting output will include a zlib-specific header and trailer.</p></li>
+<li><p>−9 to −15: Uses the absolute value of <em>wbits</em> as the
+window size logarithm, while producing a raw output stream with no
+header or trailing checksum.</p></li>
+<li><p>+25 to +31 = 16 + (9 to 15): Uses the low 4 bits of the value as the
+window size logarithm, while including a basic <strong class="program">gzip</strong> header
+and trailing checksum in the output.</p></li>
+</ul>
+<p>Raises the <a class="reference internal" href="#zlib.error" title="zlib.error"><code class="xref py py-exc docutils literal notranslate"><span class="pre">error</span></code></a> exception if any error occurs.</p>
 <div class="versionchanged">
 <p><span class="versionmodified changed">在 3.6 版本變更: </span><em>level</em> can now be used as a keyword parameter.</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">在 3.11 版本變更: </span>The <em>wbits</em> parameter is now available to set window bits and
+compression type.</p>
 </div>
 </dd></dl>
 
@@ -247,22 +265,9 @@ Z_DEFAULT_COMPRESSION represents a default compromise between speed and compress
 (currently equivalent to level 6).</p>
 <p><em>method</em> is the compression algorithm. Currently, the only supported value is
 <code class="xref py py-const docutils literal notranslate"><span class="pre">DEFLATED</span></code>.</p>
-<p>The <em>wbits</em> argument controls the size of the history buffer (or the
-&quot;window size&quot;) used when compressing data, and whether a header and
-trailer is included in the output.  It can take several ranges of values,
-defaulting to <code class="docutils literal notranslate"><span class="pre">15</span></code> (MAX_WBITS):</p>
-<ul class="simple">
-<li><p>+9 to +15: The base-two logarithm of the window size, which
-therefore ranges between 512 and 32768.  Larger values produce
-better compression at the expense of greater memory usage.  The
-resulting output will include a zlib-specific header and trailer.</p></li>
-<li><p>−9 to −15: Uses the absolute value of <em>wbits</em> as the
-window size logarithm, while producing a raw output stream with no
-header or trailing checksum.</p></li>
-<li><p>+25 to +31 = 16 + (9 to 15): Uses the low 4 bits of the value as the
-window size logarithm, while including a basic <strong class="program">gzip</strong> header
-and trailing checksum in the output.</p></li>
-</ul>
+<p>The <em>wbits</em> parameter controls the size of the history buffer (or the
+&quot;window size&quot;), and what header and trailer format will be used. It has
+the same meaning as <a class="reference external" href="#compress-wbits">described for compress()</a>.</p>
 <p>The <em>memLevel</em> argument controls the amount of memory used for the
 internal compression state. Valid values range from <code class="docutils literal notranslate"><span class="pre">1</span></code> to <code class="docutils literal notranslate"><span class="pre">9</span></code>.
 Higher values use more memory, but are faster and produce smaller output.</p>
@@ -290,9 +295,7 @@ strong, and should not be used for authentication or digital signatures.  Since
 the algorithm is designed for use as a checksum algorithm, it is not suitable
 for use as a general hash algorithm.</p>
 <div class="versionchanged">
-<p><span class="versionmodified changed">在 3.0 版本變更: </span>The result is always unsigned.
-To generate the same numeric value when using Python 2 or earlier,
-use <code class="docutils literal notranslate"><span class="pre">crc32(data)</span> <span class="pre">&amp;</span> <span class="pre">0xffffffff</span></code>.</p>
+<p><span class="versionmodified changed">在 3.0 版本變更: </span>The result is always unsigned.</p>
 </div>
 </dd></dl>
 
@@ -548,7 +551,7 @@ functions.</p>
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.10/Doc/library/zlib.rst"
+        <a href="https://github.com/python/cpython/blob/main/Doc/library/zlib.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -588,7 +591,7 @@ functions.</p>
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.8 Documentation</a> &#187;
+      <a href="../index.html">3.11.0rc2 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -625,7 +628,7 @@ functions.</p>
 <br />
     <br />
 
-    最後更新於 10月 15, 2022。
+    最後更新於 10月 16, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 

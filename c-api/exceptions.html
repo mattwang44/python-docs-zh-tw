@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>例外處理 &#8212; Python 3.10.8 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>例外處理 &#8212; Python 3.11.0rc2 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -22,7 +22,7 @@
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.10.8 說明文件 中搜尋"
+          title="在 Python 3.11.0rc2 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -107,7 +107,7 @@
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.10/Doc/c-api/exceptions.rst"
+        <a href="https://github.com/python/cpython/blob/main/Doc/c-api/exceptions.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -144,7 +144,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.8 Documentation</a> &#187;
+      <a href="../index.html">3.11.0rc2 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Python/C API 參考手冊</a> &#187;</li>
@@ -653,12 +653,52 @@ appropriately is desired, the following additional snippet is needed:</p>
 </dd></dl>
 
 <dl class="c function">
+<dt class="sig sig-object c" id="c.PyErr_GetHandledException">
+<a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">PyErr_GetHandledException</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">void</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.PyErr_GetHandledException" title="本定義的永久連結">¶</a><br /></dt>
+<dd><em class="stableabi"> Part of the <a class="reference internal" href="stable.html#stable"><span class="std std-ref">Stable ABI</span></a> since version 3.11.</em><p>Retrieve the active exception instance, as would be returned by <a class="reference internal" href="../library/sys.html#sys.exception" title="sys.exception"><code class="xref py py-func docutils literal notranslate"><span class="pre">sys.exception()</span></code></a>.
+This refers to an exception that was <em>already caught</em>, not to an exception that was
+freshly raised. Returns a new reference to the exception or <code class="docutils literal notranslate"><span class="pre">NULL</span></code>.
+Does not modify the interpreter's exception state.</p>
+<div class="admonition note">
+<p class="admonition-title">備註</p>
+<p>This function is not normally used by code that wants to handle exceptions.
+Rather, it can be used when code needs to save and restore the exception
+state temporarily.  Use <a class="reference internal" href="#c.PyErr_SetHandledException" title="PyErr_SetHandledException"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyErr_SetHandledException()</span></code></a> to restore or
+clear the exception state.</p>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified added">在 3.11 版本新加入.</span></p>
+</div>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.PyErr_SetHandledException">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PyErr_SetHandledException</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">exc</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.PyErr_SetHandledException" title="本定義的永久連結">¶</a><br /></dt>
+<dd><em class="stableabi"> Part of the <a class="reference internal" href="stable.html#stable"><span class="std std-ref">Stable ABI</span></a> since version 3.11.</em><p>Set the active exception, as known from <code class="docutils literal notranslate"><span class="pre">sys.exception()</span></code>.  This refers
+to an exception that was <em>already caught</em>, not to an exception that was
+freshly raised.
+To clear the exception state, pass <code class="docutils literal notranslate"><span class="pre">NULL</span></code>.</p>
+<div class="admonition note">
+<p class="admonition-title">備註</p>
+<p>This function is not normally used by code that wants to handle exceptions.
+Rather, it can be used when code needs to save and restore the exception
+state temporarily.  Use <a class="reference internal" href="#c.PyErr_GetHandledException" title="PyErr_GetHandledException"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyErr_GetHandledException()</span></code></a> to get the exception
+state.</p>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified added">在 3.11 版本新加入.</span></p>
+</div>
+</dd></dl>
+
+<dl class="c function">
 <dt class="sig sig-object c" id="c.PyErr_GetExcInfo">
 <span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PyErr_GetExcInfo</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">ptype</span></span>, <a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">pvalue</span></span>, <a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">ptraceback</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.PyErr_GetExcInfo" title="本定義的永久連結">¶</a><br /></dt>
-<dd><em class="stableabi"> Part of the <a class="reference internal" href="stable.html#stable"><span class="std std-ref">Stable ABI</span></a> since version 3.7.</em><p>Retrieve the exception info, as known from <code class="docutils literal notranslate"><span class="pre">sys.exc_info()</span></code>.  This refers
-to an exception that was <em>already caught</em>, not to an exception that was
-freshly raised.  Returns new references for the three objects, any of which
-may be <code class="docutils literal notranslate"><span class="pre">NULL</span></code>.  Does not modify the exception info state.</p>
+<dd><em class="stableabi"> Part of the <a class="reference internal" href="stable.html#stable"><span class="std std-ref">Stable ABI</span></a> since version 3.7.</em><p>Retrieve the old-style representation of the exception info, as known from
+<a class="reference internal" href="../library/sys.html#sys.exc_info" title="sys.exc_info"><code class="xref py py-func docutils literal notranslate"><span class="pre">sys.exc_info()</span></code></a>.  This refers to an exception that was <em>already caught</em>,
+not to an exception that was freshly raised.  Returns new references for the
+three objects, any of which may be <code class="docutils literal notranslate"><span class="pre">NULL</span></code>.  Does not modify the exception
+info state.  This function is kept for backwards compatibility. Prefer using
+<a class="reference internal" href="#c.PyErr_GetHandledException" title="PyErr_GetHandledException"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyErr_GetHandledException()</span></code></a>.</p>
 <div class="admonition note">
 <p class="admonition-title">備註</p>
 <p>This function is not normally used by code that wants to handle exceptions.
@@ -678,7 +718,8 @@ exception state.</p>
 to an exception that was <em>already caught</em>, not to an exception that was
 freshly raised.  This function steals the references of the arguments.
 To clear the exception state, pass <code class="docutils literal notranslate"><span class="pre">NULL</span></code> for all three arguments.
-For general rules about the three arguments, see <a class="reference internal" href="#c.PyErr_Restore" title="PyErr_Restore"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyErr_Restore()</span></code></a>.</p>
+This function is kept for backwards compatibility. Prefer using
+<a class="reference internal" href="#c.PyErr_SetHandledException" title="PyErr_SetHandledException"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyErr_SetHandledException()</span></code></a>.</p>
 <div class="admonition note">
 <p class="admonition-title">備註</p>
 <p>This function is not normally used by code that wants to handle exceptions.
@@ -688,6 +729,12 @@ state.</p>
 </div>
 <div class="versionadded">
 <p><span class="versionmodified added">在 3.3 版本新加入.</span></p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">在 3.11 版本變更: </span>The <code class="docutils literal notranslate"><span class="pre">type</span></code> and <code class="docutils literal notranslate"><span class="pre">traceback</span></code> arguments are no longer used and
+can be NULL. The interpreter now derives them from the exception
+instance (the <code class="docutils literal notranslate"><span class="pre">value</span></code> argument). The function still steals
+references of all three arguments.</p>
 </div>
 </dd></dl>
 
@@ -861,31 +908,6 @@ instance or <a class="reference internal" href="../library/constants.html#None" 
 <dd><em class="refcount">Return value: New reference.</em><em class="stableabi"> Part of the <a class="reference internal" href="stable.html#stable"><span class="std std-ref">Stable ABI</span></a>.</em><p>Create a <a class="reference internal" href="../library/exceptions.html#UnicodeDecodeError" title="UnicodeDecodeError"><code class="xref py py-class docutils literal notranslate"><span class="pre">UnicodeDecodeError</span></code></a> object with the attributes <em>encoding</em>,
 <em>object</em>, <em>length</em>, <em>start</em>, <em>end</em> and <em>reason</em>. <em>encoding</em> and <em>reason</em> are
 UTF-8 encoded strings.</p>
-</dd></dl>
-
-<dl class="c function">
-<dt class="sig sig-object c" id="c.PyUnicodeEncodeError_Create">
-<a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">PyUnicodeEncodeError_Create</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">encoding</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="unicode.html#c.Py_UNICODE" title="Py_UNICODE"><span class="n"><span class="pre">Py_UNICODE</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">object</span></span>, <a class="reference internal" href="intro.html#c.Py_ssize_t" title="Py_ssize_t"><span class="n"><span class="pre">Py_ssize_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">length</span></span>, <a class="reference internal" href="intro.html#c.Py_ssize_t" title="Py_ssize_t"><span class="n"><span class="pre">Py_ssize_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">start</span></span>, <a class="reference internal" href="intro.html#c.Py_ssize_t" title="Py_ssize_t"><span class="n"><span class="pre">Py_ssize_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">end</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">reason</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.PyUnicodeEncodeError_Create" title="本定義的永久連結">¶</a><br /></dt>
-<dd><em class="refcount">Return value: New reference.</em><p>Create a <a class="reference internal" href="../library/exceptions.html#UnicodeEncodeError" title="UnicodeEncodeError"><code class="xref py py-class docutils literal notranslate"><span class="pre">UnicodeEncodeError</span></code></a> object with the attributes <em>encoding</em>,
-<em>object</em>, <em>length</em>, <em>start</em>, <em>end</em> and <em>reason</em>. <em>encoding</em> and <em>reason</em> are
-UTF-8 encoded strings.</p>
-<div class="deprecated">
-<p><span class="versionmodified deprecated">在 3.3 版本開始棄用: </span>3.11</p>
-<p><code class="docutils literal notranslate"><span class="pre">Py_UNICODE</span></code> is deprecated since Python 3.3. Please migrate to
-<code class="docutils literal notranslate"><span class="pre">PyObject_CallFunction(PyExc_UnicodeEncodeError,</span> <span class="pre">&quot;sOnns&quot;,</span> <span class="pre">...)</span></code>.</p>
-</div>
-</dd></dl>
-
-<dl class="c function">
-<dt class="sig sig-object c" id="c.PyUnicodeTranslateError_Create">
-<a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">PyUnicodeTranslateError_Create</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="unicode.html#c.Py_UNICODE" title="Py_UNICODE"><span class="n"><span class="pre">Py_UNICODE</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">object</span></span>, <a class="reference internal" href="intro.html#c.Py_ssize_t" title="Py_ssize_t"><span class="n"><span class="pre">Py_ssize_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">length</span></span>, <a class="reference internal" href="intro.html#c.Py_ssize_t" title="Py_ssize_t"><span class="n"><span class="pre">Py_ssize_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">start</span></span>, <a class="reference internal" href="intro.html#c.Py_ssize_t" title="Py_ssize_t"><span class="n"><span class="pre">Py_ssize_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">end</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">reason</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.PyUnicodeTranslateError_Create" title="本定義的永久連結">¶</a><br /></dt>
-<dd><em class="refcount">Return value: New reference.</em><p>Create a <a class="reference internal" href="../library/exceptions.html#UnicodeTranslateError" title="UnicodeTranslateError"><code class="xref py py-class docutils literal notranslate"><span class="pre">UnicodeTranslateError</span></code></a> object with the attributes <em>object</em>,
-<em>length</em>, <em>start</em>, <em>end</em> and <em>reason</em>. <em>reason</em> is a UTF-8 encoded string.</p>
-<div class="deprecated">
-<p><span class="versionmodified deprecated">在 3.3 版本開始棄用: </span>3.11</p>
-<p><code class="docutils literal notranslate"><span class="pre">Py_UNICODE</span></code> is deprecated since Python 3.3. Please migrate to
-<code class="docutils literal notranslate"><span class="pre">PyObject_CallFunction(PyExc_UnicodeTranslateError,</span> <span class="pre">&quot;Onns&quot;,</span> <span class="pre">...)</span></code>.</p>
-</div>
 </dd></dl>
 
 <dl class="c function">
@@ -1428,7 +1450,7 @@ the variables:</p>
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.10/Doc/c-api/exceptions.rst"
+        <a href="https://github.com/python/cpython/blob/main/Doc/c-api/exceptions.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -1468,7 +1490,7 @@ the variables:</p>
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.8 Documentation</a> &#187;
+      <a href="../index.html">3.11.0rc2 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python/C API 參考手冊</a> &#187;</li>
@@ -1504,7 +1526,7 @@ the variables:</p>
 <br />
     <br />
 
-    最後更新於 10月 15, 2022。
+    最後更新於 10月 16, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 

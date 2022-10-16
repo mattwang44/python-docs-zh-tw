@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>shutil --- High-level file operations &#8212; Python 3.10.8 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>shutil --- High-level file operations &#8212; Python 3.11.0rc2 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -22,7 +22,7 @@
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.10.8 說明文件 中搜尋"
+          title="在 Python 3.11.0rc2 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -137,7 +137,7 @@
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.10/Doc/library/shutil.rst"
+        <a href="https://github.com/python/cpython/blob/main/Doc/library/shutil.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -174,7 +174,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.8 Documentation</a> &#187;
+      <a href="../index.html">3.11.0rc2 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -204,7 +204,7 @@
             
   <section id="module-shutil">
 <span id="shutil-high-level-file-operations"></span><h1><a class="reference internal" href="#module-shutil" title="shutil: High-level file operations, including copying."><code class="xref py py-mod docutils literal notranslate"><span class="pre">shutil</span></code></a> --- High-level file operations<a class="headerlink" href="#module-shutil" title="本標頭的永久連結">¶</a></h1>
-<p><strong>原始碼：</strong><a class="reference external" href="https://github.com/python/cpython/tree/3.10/Lib/shutil.py">Lib/shutil.py</a></p>
+<p><strong>原始碼：</strong><a class="reference external" href="https://github.com/python/cpython/tree/3.11/Lib/shutil.py">Lib/shutil.py</a></p>
 <hr class="docutils" id="index-0" />
 <p>The <a class="reference internal" href="#module-shutil" title="shutil: High-level file operations, including copying."><code class="xref py py-mod docutils literal notranslate"><span class="pre">shutil</span></code></a> module offers a number of high-level operations on files and
 collections of files.  In particular, functions are provided  which support file
@@ -466,12 +466,13 @@ copy the file more efficiently. See
 
 <dl class="py function">
 <dt class="sig sig-object py" id="shutil.rmtree">
-<span class="sig-prename descclassname"><span class="pre">shutil.</span></span><span class="sig-name descname"><span class="pre">rmtree</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ignore_errors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">onerror</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shutil.rmtree" title="本定義的永久連結">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">shutil.</span></span><span class="sig-name descname"><span class="pre">rmtree</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ignore_errors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">onerror</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dir_fd</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shutil.rmtree" title="本定義的永久連結">¶</a></dt>
 <dd><p id="index-1">Delete an entire directory tree; <em>path</em> must point to a directory (but not a
 symbolic link to a directory).  If <em>ignore_errors</em> is true, errors resulting
 from failed removals will be ignored; if false or omitted, such errors are
 handled by calling a handler specified by <em>onerror</em> or, if that is omitted,
 they raise an exception.</p>
+<p>This function can support <a class="reference internal" href="os.html#dir-fd"><span class="std std-ref">paths relative to directory descriptors</span></a>.</p>
 <div class="admonition note">
 <p class="admonition-title">備註</p>
 <p>On platforms that support the necessary fd-based functions a symlink
@@ -489,7 +490,7 @@ it depends on the platform and implementation.  The second parameter,
 <em>path</em>, will be the path name passed to <em>function</em>.  The third parameter,
 <em>excinfo</em>, will be the exception information returned by
 <a class="reference internal" href="sys.html#sys.exc_info" title="sys.exc_info"><code class="xref py py-func docutils literal notranslate"><span class="pre">sys.exc_info()</span></code></a>.  Exceptions raised by <em>onerror</em> will not be caught.</p>
-<p class="audit-hook">Raises an <a class="reference internal" href="sys.html#auditing"><span class="std std-ref">auditing event</span></a> <code class="docutils literal notranslate"><span class="pre">shutil.rmtree</span></code> with argument <code class="docutils literal notranslate"><span class="pre">path</span></code>.</p>
+<p class="audit-hook">Raises an <a class="reference internal" href="sys.html#auditing"><span class="std std-ref">auditing event</span></a> <code class="docutils literal notranslate"><span class="pre">shutil.rmtree</span></code> with arguments <code class="docutils literal notranslate"><span class="pre">path</span></code>, <code class="docutils literal notranslate"><span class="pre">dir_fd</span></code>.</p>
 <div class="versionchanged">
 <p><span class="versionmodified changed">在 3.3 版本變更: </span>Added a symlink attack resistant version that is used automatically
 if platform supports fd-based functions.</p>
@@ -497,6 +498,9 @@ if platform supports fd-based functions.</p>
 <div class="versionchanged">
 <p><span class="versionmodified changed">在 3.8 版本變更: </span>On Windows, will no longer delete the contents of a directory junction
 before removing the junction.</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">在 3.11 版本變更: </span><em>dir_fd</em> 參數。</p>
 </div>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="shutil.rmtree.avoids_symlink_attacks">
@@ -918,6 +922,10 @@ size used by many terminal emulators.</p>
 <div class="versionadded">
 <p><span class="versionmodified added">在 3.3 版本新加入.</span></p>
 </div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">在 3.11 版本變更: </span>The <code class="docutils literal notranslate"><span class="pre">fallback</span></code> values are also used if <a class="reference internal" href="os.html#os.get_terminal_size" title="os.get_terminal_size"><code class="xref py py-func docutils literal notranslate"><span class="pre">os.get_terminal_size()</span></code></a>
+returns zeroes.</p>
+</div>
 </dd></dl>
 
 </section>
@@ -995,7 +1003,7 @@ size used by many terminal emulators.</p>
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.10/Doc/library/shutil.rst"
+        <a href="https://github.com/python/cpython/blob/main/Doc/library/shutil.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -1035,7 +1043,7 @@ size used by many terminal emulators.</p>
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.8 Documentation</a> &#187;
+      <a href="../index.html">3.11.0rc2 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -1072,7 +1080,7 @@ size used by many terminal emulators.</p>
 <br />
     <br />
 
-    最後更新於 10月 15, 2022。
+    最後更新於 10月 16, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 

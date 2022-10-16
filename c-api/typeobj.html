@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>Type Objects &#8212; Python 3.10.8 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Type Objects &#8212; Python 3.11.0rc2 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -22,7 +22,7 @@
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.10.8 說明文件 中搜尋"
+          title="在 Python 3.11.0rc2 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -138,7 +138,7 @@
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.10/Doc/c-api/typeobj.rst"
+        <a href="https://github.com/python/cpython/blob/main/Doc/c-api/typeobj.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -175,7 +175,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.8 Documentation</a> &#187;
+      <a href="../index.html">3.11.0rc2 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python/C API 參考手冊</a> &#187;</li>
@@ -1455,7 +1455,7 @@ with the <em>vectorcallfunc</em> function.
 This can be done by setting <em>tp_call</em> to <a class="reference internal" href="call.html#c.PyVectorcall_Call" title="PyVectorcall_Call"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyVectorcall_Call()</span></code></a>.</p>
 <div class="admonition warning">
 <p class="admonition-title">警告</p>
-<p>It is not recommended for <a class="reference internal" href="#heap-types"><span class="std std-ref">heap types</span></a> to implement
+<p>It is not recommended for <a class="reference internal" href="#heap-types"><span class="std std-ref">mutable heap types</span></a> to implement
 the vectorcall protocol.
 When a user sets <code class="xref py py-attr docutils literal notranslate"><span class="pre">__call__</span></code> in Python code, only <em>tp_call</em> is updated,
 likely making it inconsistent with the vectorcall function.</p>
@@ -1471,8 +1471,9 @@ However, the <a class="reference internal" href="#Py_TPFLAGS_HAVE_VECTORCALL" ti
 always inherited. If it's not, then the subclass won't use
 <a class="reference internal" href="call.html#vectorcall"><span class="std std-ref">vectorcall</span></a>, except when
 <a class="reference internal" href="call.html#c.PyVectorcall_Call" title="PyVectorcall_Call"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyVectorcall_Call()</span></code></a> is explicitly called.
-This is in particular the case for <a class="reference internal" href="#heap-types"><span class="std std-ref">heap types</span></a>
-(including subclasses defined in Python).</p>
+This is in particular the case for types without the
+<a class="reference internal" href="#Py_TPFLAGS_IMMUTABLETYPE" title="Py_TPFLAGS_IMMUTABLETYPE"><code class="xref py py-const docutils literal notranslate"><span class="pre">Py_TPFLAGS_IMMUTABLETYPE</span></code></a> flag set (including subclasses defined in
+Python).</p>
 </dd></dl>
 
 <dl class="c member">
@@ -1806,9 +1807,9 @@ must be equivalent to <code class="docutils literal notranslate"><span class="pr
 <p><span class="versionmodified added">在 3.8 版本新加入.</span></p>
 </div>
 <p><strong>Inheritance:</strong></p>
-<p>This flag is never inherited by <a class="reference internal" href="#heap-types"><span class="std std-ref">heap types</span></a>.
-For extension types, it is inherited whenever
-<a class="reference internal" href="#c.PyTypeObject.tp_descr_get" title="PyTypeObject.tp_descr_get"><code class="xref c c-member docutils literal notranslate"><span class="pre">tp_descr_get</span></code></a> is inherited.</p>
+<p>This flag is never inherited by types without the
+<a class="reference internal" href="#Py_TPFLAGS_IMMUTABLETYPE" title="Py_TPFLAGS_IMMUTABLETYPE"><code class="xref py py-const docutils literal notranslate"><span class="pre">Py_TPFLAGS_IMMUTABLETYPE</span></code></a> flag set.  For extension types, it is
+inherited whenever <a class="reference internal" href="#c.PyTypeObject.tp_descr_get" title="PyTypeObject.tp_descr_get"><code class="xref c c-member docutils literal notranslate"><span class="pre">tp_descr_get</span></code></a> is inherited.</p>
 </dd></dl>
 
 <dl class="py data">
@@ -1880,9 +1881,9 @@ type structure.</p>
 the <a class="reference internal" href="call.html#vectorcall"><span class="std std-ref">vectorcall protocol</span></a>.
 See <a class="reference internal" href="#c.PyTypeObject.tp_vectorcall_offset" title="PyTypeObject.tp_vectorcall_offset"><code class="xref c c-member docutils literal notranslate"><span class="pre">tp_vectorcall_offset</span></code></a> for details.</p>
 <p><strong>Inheritance:</strong></p>
-<p>This bit is inherited for <a class="reference internal" href="#static-types"><span class="std std-ref">static subtypes</span></a> if
-<a class="reference internal" href="#c.PyTypeObject.tp_call" title="PyTypeObject.tp_call"><code class="xref c c-member docutils literal notranslate"><span class="pre">tp_call</span></code></a> is also inherited.
-<a class="reference internal" href="#heap-types"><span class="std std-ref">Heap types</span></a> do not inherit <code class="docutils literal notranslate"><span class="pre">Py_TPFLAGS_HAVE_VECTORCALL</span></code>.</p>
+<p>This bit is inherited for types with the
+<a class="reference internal" href="#Py_TPFLAGS_IMMUTABLETYPE" title="Py_TPFLAGS_IMMUTABLETYPE"><code class="xref py py-const docutils literal notranslate"><span class="pre">Py_TPFLAGS_IMMUTABLETYPE</span></code></a> flag set, if
+<a class="reference internal" href="#c.PyTypeObject.tp_call" title="PyTypeObject.tp_call"><code class="xref c c-member docutils literal notranslate"><span class="pre">tp_call</span></code></a> is also inherited.</p>
 <div class="versionadded">
 <p><span class="versionmodified added">在 3.9 版本新加入.</span></p>
 </div>
@@ -2373,18 +2374,11 @@ the end in that case, even though the dictionary is not included in the basic
 object layout.  On a system with a pointer size of 4 bytes,
 <a class="reference internal" href="#c.PyTypeObject.tp_dictoffset" title="PyTypeObject.tp_dictoffset"><code class="xref c c-member docutils literal notranslate"><span class="pre">tp_dictoffset</span></code></a> should be set to <code class="docutils literal notranslate"><span class="pre">-4</span></code> to indicate that the dictionary is
 at the very end of the structure.</p>
-<p>The real dictionary offset in an instance can be computed from a negative
-<a class="reference internal" href="#c.PyTypeObject.tp_dictoffset" title="PyTypeObject.tp_dictoffset"><code class="xref c c-member docutils literal notranslate"><span class="pre">tp_dictoffset</span></code></a> as follows:</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">dictoffset</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tp_basicsize</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">abs</span><span class="p">(</span><span class="n">ob_size</span><span class="p">)</span><span class="o">*</span><span class="n">tp_itemsize</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">tp_dictoffset</span><span class="w"></span>
-<span class="k">if</span><span class="w"> </span><span class="n">dictoffset</span><span class="w"> </span><span class="n">is</span><span class="w"> </span><span class="n">not</span><span class="w"> </span><span class="n">aligned</span><span class="w"> </span><span class="n">on</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="kt">void</span><span class="o">*</span><span class="p">)</span><span class="o">:</span><span class="w"></span>
-<span class="w">    </span><span class="n">round</span><span class="w"> </span><span class="n">up</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="kt">void</span><span class="o">*</span><span class="p">)</span><span class="w"></span>
-</pre></div>
-</div>
-<p>where <a class="reference internal" href="#c.PyTypeObject.tp_basicsize" title="PyTypeObject.tp_basicsize"><code class="xref c c-member docutils literal notranslate"><span class="pre">tp_basicsize</span></code></a>, <a class="reference internal" href="#c.PyTypeObject.tp_itemsize" title="PyTypeObject.tp_itemsize"><code class="xref c c-member docutils literal notranslate"><span class="pre">tp_itemsize</span></code></a> and <a class="reference internal" href="#c.PyTypeObject.tp_dictoffset" title="PyTypeObject.tp_dictoffset"><code class="xref c c-member docutils literal notranslate"><span class="pre">tp_dictoffset</span></code></a> are
-taken from the type object, and <code class="xref py py-attr docutils literal notranslate"><span class="pre">ob_size</span></code> is taken from the instance.  The
-absolute value is taken because ints use the sign of <code class="xref py py-attr docutils literal notranslate"><span class="pre">ob_size</span></code> to
-store the sign of the number.  (There's never a need to do this calculation
-yourself; it is done for you by <code class="xref c c-func docutils literal notranslate"><span class="pre">_PyObject_GetDictPtr()</span></code>.)</p>
+<p>The <a class="reference internal" href="#c.PyTypeObject.tp_dictoffset" title="PyTypeObject.tp_dictoffset"><code class="xref c c-member docutils literal notranslate"><span class="pre">tp_dictoffset</span></code></a> should be regarded as write-only.
+To get the pointer to the dictionary call <a class="reference internal" href="object.html#c.PyObject_GenericGetDict" title="PyObject_GenericGetDict"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyObject_GenericGetDict()</span></code></a>.
+Calling <a class="reference internal" href="object.html#c.PyObject_GenericGetDict" title="PyObject_GenericGetDict"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyObject_GenericGetDict()</span></code></a> may need to allocate memory for the
+dictionary, so it is may be more efficient to call <a class="reference internal" href="object.html#c.PyObject_GetAttr" title="PyObject_GetAttr"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyObject_GetAttr()</span></code></a>
+when accessing an attribute on the object.</p>
 <p><strong>Inheritance:</strong></p>
 <p>This field is inherited by subtypes, but see the rules listed below. A subtype
 may override this offset; this means that the subtype instances store the
@@ -3601,7 +3595,7 @@ to create instances (e.g. uses a separate factory func) using
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.10/Doc/c-api/typeobj.rst"
+        <a href="https://github.com/python/cpython/blob/main/Doc/c-api/typeobj.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -3641,7 +3635,7 @@ to create instances (e.g. uses a separate factory func) using
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.8 Documentation</a> &#187;
+      <a href="../index.html">3.11.0rc2 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python/C API 參考手冊</a> &#187;</li>
@@ -3678,7 +3672,7 @@ to create instances (e.g. uses a separate factory func) using
 <br />
     <br />
 
-    最後更新於 10月 15, 2022。
+    最後更新於 10月 16, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 

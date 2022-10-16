@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>Python 3.8 有什麼新功能 &#8212; Python 3.10.8 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python 3.8 有什麼新功能 &#8212; Python 3.11.0rc2 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -22,7 +22,7 @@
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.10.8 說明文件 中搜尋"
+          title="在 Python 3.11.0rc2 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -176,7 +176,7 @@
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.10/Doc/whatsnew/3.8.rst"
+        <a href="https://github.com/python/cpython/blob/main/Doc/whatsnew/3.8.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -213,7 +213,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.8 Documentation</a> &#187;
+      <a href="../index.html">3.11.0rc2 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Python 有什麼新功能？</a> &#187;</li>
@@ -718,7 +718,7 @@ version.  For example, <code class="docutils literal notranslate"><span class="p
 </section>
 <section id="asyncio">
 <h3>asyncio<a class="headerlink" href="#asyncio" title="本標頭的永久連結">¶</a></h3>
-<p><a class="reference internal" href="../library/asyncio-task.html#asyncio.run" title="asyncio.run"><code class="xref py py-func docutils literal notranslate"><span class="pre">asyncio.run()</span></code></a> has graduated from the provisional to stable API. This
+<p><a class="reference internal" href="../library/asyncio-runner.html#asyncio.run" title="asyncio.run"><code class="xref py py-func docutils literal notranslate"><span class="pre">asyncio.run()</span></code></a> has graduated from the provisional to stable API. This
 function can be used to execute a <a class="reference internal" href="../glossary.html#term-coroutine"><span class="xref std std-term">coroutine</span></a> and return the result while
 automatically managing the event loop. For example:</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">asyncio</span>
@@ -747,7 +747,7 @@ automatically managing the event loop. For example:</p>
 </pre></div>
 </div>
 <p>The actual implementation is significantly more complex. Thus,
-<a class="reference internal" href="../library/asyncio-task.html#asyncio.run" title="asyncio.run"><code class="xref py py-func docutils literal notranslate"><span class="pre">asyncio.run()</span></code></a> should be the preferred way of running asyncio programs.</p>
+<a class="reference internal" href="../library/asyncio-runner.html#asyncio.run" title="asyncio.run"><code class="xref py py-func docutils literal notranslate"><span class="pre">asyncio.run()</span></code></a> should be the preferred way of running asyncio programs.</p>
 <p>(Contributed by Yury Selivanov in <a class="reference external" href="https://bugs.python.org/issue?&#64;action=redirect&amp;bpo=32314">bpo-32314</a>.)</p>
 <p>Running <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">-m</span> <span class="pre">asyncio</span></code> launches a natively async REPL.  This allows rapid
 experimentation with code that has a top-level <a class="reference internal" href="../reference/expressions.html#await"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">await</span></code></a>.  There is no
@@ -1624,7 +1624,7 @@ deprecated now and will not be called in future Python versions.
 Add the <code class="xref py py-meth docutils literal notranslate"><span class="pre">visit_Constant()</span></code> method to handle all
 constant nodes.
 (Contributed by Serhiy Storchaka in <a class="reference external" href="https://bugs.python.org/issue?&#64;action=redirect&amp;bpo=36917">bpo-36917</a>.)</p></li>
-<li><p>The <a class="reference internal" href="../library/asyncio-task.html#asyncio.coroutine" title="asyncio.coroutine"><code class="xref py py-func docutils literal notranslate"><span class="pre">asyncio.coroutine()</span></code></a> <a class="reference internal" href="../glossary.html#term-decorator"><span class="xref std std-term">decorator</span></a> is deprecated and will be
+<li><p>The <code class="xref py py-func docutils literal notranslate"><span class="pre">asyncio.coroutine()</span></code> <a class="reference internal" href="../glossary.html#term-decorator"><span class="xref std std-term">decorator</span></a> is deprecated and will be
 removed in version 3.10.  Instead of <code class="docutils literal notranslate"><span class="pre">&#64;asyncio.coroutine</span></code>, use
 <a class="reference internal" href="../reference/compound_stmts.html#async-def"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">async</span> <span class="pre">def</span></code></a> instead.
 (Contributed by Andrew Svetlov in <a class="reference external" href="https://bugs.python.org/issue?&#64;action=redirect&amp;bpo=36921">bpo-36921</a>.)</p></li>
@@ -1641,15 +1641,15 @@ deprecated and will be removed in version 3.10 for the following:
 deprecated and will be removed in version 3.11.
 (Contributed by Yury Selivanov in <a class="reference external" href="https://bugs.python.org/issue?&#64;action=redirect&amp;bpo=34790">bpo-34790</a>.)</p></li>
 <li><p>The following functions and methods are deprecated in the <a class="reference internal" href="../library/gettext.html#module-gettext" title="gettext: Multilingual internationalization services."><code class="xref py py-mod docutils literal notranslate"><span class="pre">gettext</span></code></a>
-module: <a class="reference internal" href="../library/gettext.html#gettext.lgettext" title="gettext.lgettext"><code class="xref py py-func docutils literal notranslate"><span class="pre">lgettext()</span></code></a>, <a class="reference internal" href="../library/gettext.html#gettext.ldgettext" title="gettext.ldgettext"><code class="xref py py-func docutils literal notranslate"><span class="pre">ldgettext()</span></code></a>,
-<a class="reference internal" href="../library/gettext.html#gettext.lngettext" title="gettext.lngettext"><code class="xref py py-func docutils literal notranslate"><span class="pre">lngettext()</span></code></a> and <a class="reference internal" href="../library/gettext.html#gettext.ldngettext" title="gettext.ldngettext"><code class="xref py py-func docutils literal notranslate"><span class="pre">ldngettext()</span></code></a>.
+module: <code class="xref py py-func docutils literal notranslate"><span class="pre">lgettext()</span></code>, <code class="xref py py-func docutils literal notranslate"><span class="pre">ldgettext()</span></code>,
+<code class="xref py py-func docutils literal notranslate"><span class="pre">lngettext()</span></code> and <code class="xref py py-func docutils literal notranslate"><span class="pre">ldngettext()</span></code>.
 They return encoded bytes, and it's possible that you will get unexpected
 Unicode-related exceptions if there are encoding problems with the
 translated strings. It's much better to use alternatives which return
 Unicode strings in Python 3. These functions have been broken for a long time.</p>
-<p>Function <a class="reference internal" href="../library/gettext.html#gettext.bind_textdomain_codeset" title="gettext.bind_textdomain_codeset"><code class="xref py py-func docutils literal notranslate"><span class="pre">bind_textdomain_codeset()</span></code></a>, methods
-<a class="reference internal" href="../library/gettext.html#gettext.NullTranslations.output_charset" title="gettext.NullTranslations.output_charset"><code class="xref py py-meth docutils literal notranslate"><span class="pre">output_charset()</span></code></a> and
-<a class="reference internal" href="../library/gettext.html#gettext.NullTranslations.set_output_charset" title="gettext.NullTranslations.set_output_charset"><code class="xref py py-meth docutils literal notranslate"><span class="pre">set_output_charset()</span></code></a>, and the <em>codeset</em>
+<p>Function <code class="xref py py-func docutils literal notranslate"><span class="pre">bind_textdomain_codeset()</span></code>, methods
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">output_charset()</span></code> and
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">set_output_charset()</span></code>, and the <em>codeset</em>
 parameter of functions <a class="reference internal" href="../library/gettext.html#gettext.translation" title="gettext.translation"><code class="xref py py-func docutils literal notranslate"><span class="pre">translation()</span></code></a> and
 <a class="reference internal" href="../library/gettext.html#gettext.install" title="gettext.install"><code class="xref py py-func docutils literal notranslate"><span class="pre">install()</span></code></a> are also deprecated, since they are only used for
 the <code class="docutils literal notranslate"><span class="pre">l*gettext()</span></code> functions.
@@ -2029,7 +2029,7 @@ cleaning-up code for <a class="reference internal" href="../reference/simple_stm
 <a class="reference internal" href="../reference/simple_stmts.html#return"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">return</span></code></a>.</p>
 <p>Removed opcodes <code class="xref std std-opcode docutils literal notranslate"><span class="pre">BREAK_LOOP</span></code>, <code class="xref std std-opcode docutils literal notranslate"><span class="pre">CONTINUE_LOOP</span></code>,
 <code class="xref std std-opcode docutils literal notranslate"><span class="pre">SETUP_LOOP</span></code> and <code class="xref std std-opcode docutils literal notranslate"><span class="pre">SETUP_EXCEPT</span></code>.  Added new opcodes
-<a class="reference internal" href="../library/dis.html#opcode-ROT_FOUR"><code class="xref std std-opcode docutils literal notranslate"><span class="pre">ROT_FOUR</span></code></a>, <code class="xref std std-opcode docutils literal notranslate"><span class="pre">BEGIN_FINALLY</span></code>, <code class="xref std std-opcode docutils literal notranslate"><span class="pre">CALL_FINALLY</span></code> and
+<code class="xref std std-opcode docutils literal notranslate"><span class="pre">ROT_FOUR</span></code>, <code class="xref std std-opcode docutils literal notranslate"><span class="pre">BEGIN_FINALLY</span></code>, <code class="xref std std-opcode docutils literal notranslate"><span class="pre">CALL_FINALLY</span></code> and
 <code class="xref std std-opcode docutils literal notranslate"><span class="pre">POP_FINALLY</span></code>.  Changed the behavior of <code class="xref std std-opcode docutils literal notranslate"><span class="pre">END_FINALLY</span></code>
 and <code class="xref std std-opcode docutils literal notranslate"><span class="pre">WITH_CLEANUP_START</span></code>.</p>
 <p>(Contributed by Mark Shannon, Antoine Pitrou and Serhiy Storchaka in
@@ -2246,7 +2246,7 @@ to 3.8 by Achraf Merzouki.)</p>
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.10/Doc/whatsnew/3.8.rst"
+        <a href="https://github.com/python/cpython/blob/main/Doc/whatsnew/3.8.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -2286,7 +2286,7 @@ to 3.8 by Achraf Merzouki.)</p>
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.8 Documentation</a> &#187;
+      <a href="../index.html">3.11.0rc2 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 有什麼新功能？</a> &#187;</li>
@@ -2322,7 +2322,7 @@ to 3.8 by Achraf Merzouki.)</p>
 <br />
     <br />
 
-    最後更新於 10月 15, 2022。
+    最後更新於 10月 16, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 

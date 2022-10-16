@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>string --- Common string operations &#8212; Python 3.10.8 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>string --- Common string operations &#8212; Python 3.11.0rc2 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -22,7 +22,7 @@
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.10.8 說明文件 中搜尋"
+          title="在 Python 3.11.0rc2 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -111,6 +111,8 @@
 <li><a class="reference internal" href="#string.Template"><code class="docutils literal notranslate"><span class="pre">Template</span></code></a><ul>
 <li><a class="reference internal" href="#string.Template.substitute"><code class="docutils literal notranslate"><span class="pre">Template.substitute()</span></code></a></li>
 <li><a class="reference internal" href="#string.Template.safe_substitute"><code class="docutils literal notranslate"><span class="pre">Template.safe_substitute()</span></code></a></li>
+<li><a class="reference internal" href="#string.Template.is_valid"><code class="docutils literal notranslate"><span class="pre">Template.is_valid()</span></code></a></li>
+<li><a class="reference internal" href="#string.Template.get_identifiers"><code class="docutils literal notranslate"><span class="pre">Template.get_identifiers()</span></code></a></li>
 <li><a class="reference internal" href="#string.Template.template"><code class="docutils literal notranslate"><span class="pre">Template.template</span></code></a></li>
 </ul>
 </li>
@@ -140,7 +142,7 @@
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.10/Doc/library/string.rst"
+        <a href="https://github.com/python/cpython/blob/main/Doc/library/string.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -177,7 +179,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.8 Documentation</a> &#187;
+      <a href="../index.html">3.11.0rc2 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -207,7 +209,7 @@
             
   <section id="module-string">
 <span id="string-common-string-operations"></span><h1><a class="reference internal" href="#module-string" title="string: Common string operations."><code class="xref py py-mod docutils literal notranslate"><span class="pre">string</span></code></a> --- Common string operations<a class="headerlink" href="#module-string" title="本標頭的永久連結">¶</a></h1>
-<p><strong>原始碼：</strong><a class="reference external" href="https://github.com/python/cpython/tree/3.10/Lib/string.py">Lib/string.py</a></p>
+<p><strong>原始碼：</strong><a class="reference external" href="https://github.com/python/cpython/tree/3.11/Lib/string.py">Lib/string.py</a></p>
 <hr class="docutils" />
 <div class="admonition seealso">
 <p class="admonition-title">也參考</p>
@@ -495,7 +497,7 @@ the same result as if you had called <a class="reference internal" href="stdtype
 non-empty format specification typically modifies the result.</p>
 <p>The general form of a <em>standard format specifier</em> is:</p>
 <pre>
-<strong id="grammar-token-format-spec-format_spec">format_spec    </strong> ::=  [[<a class="reference internal" href="#grammar-token-format-spec-fill"><code class="xref docutils literal notranslate"><span class="pre">fill</span></code></a>]<a class="reference internal" href="#grammar-token-format-spec-align"><code class="xref docutils literal notranslate"><span class="pre">align</span></code></a>][<a class="reference internal" href="#grammar-token-format-spec-sign"><code class="xref docutils literal notranslate"><span class="pre">sign</span></code></a>][#][0][<a class="reference internal" href="#grammar-token-format-spec-width"><code class="xref docutils literal notranslate"><span class="pre">width</span></code></a>][<a class="reference internal" href="#grammar-token-format-spec-grouping_option"><code class="xref docutils literal notranslate"><span class="pre">grouping_option</span></code></a>][.<a class="reference internal" href="#grammar-token-format-spec-precision"><code class="xref docutils literal notranslate"><span class="pre">precision</span></code></a>][<a class="reference internal" href="#grammar-token-format-spec-type"><code class="xref docutils literal notranslate"><span class="pre">type</span></code></a>]
+<strong id="grammar-token-format-spec-format_spec">format_spec    </strong> ::=  [[<a class="reference internal" href="#grammar-token-format-spec-fill"><code class="xref docutils literal notranslate"><span class="pre">fill</span></code></a>]<a class="reference internal" href="#grammar-token-format-spec-align"><code class="xref docutils literal notranslate"><span class="pre">align</span></code></a>][<a class="reference internal" href="#grammar-token-format-spec-sign"><code class="xref docutils literal notranslate"><span class="pre">sign</span></code></a>][z][#][0][<a class="reference internal" href="#grammar-token-format-spec-width"><code class="xref docutils literal notranslate"><span class="pre">width</span></code></a>][<a class="reference internal" href="#grammar-token-format-spec-grouping_option"><code class="xref docutils literal notranslate"><span class="pre">grouping_option</span></code></a>][.<a class="reference internal" href="#grammar-token-format-spec-precision"><code class="xref docutils literal notranslate"><span class="pre">precision</span></code></a>][<a class="reference internal" href="#grammar-token-format-spec-type"><code class="xref docutils literal notranslate"><span class="pre">type</span></code></a>]
 <strong id="grammar-token-format-spec-fill">fill           </strong> ::=  &lt;any character&gt;
 <strong id="grammar-token-format-spec-align">align          </strong> ::=  &quot;&lt;&quot; | &quot;&gt;&quot; | &quot;=&quot; | &quot;^&quot;
 <strong id="grammar-token-format-spec-sign">sign           </strong> ::=  &quot;+&quot; | &quot;-&quot; | &quot; &quot;
@@ -570,7 +572,13 @@ positive numbers, and a minus sign on negative numbers.</p></td>
 </tbody>
 </table>
 </div></blockquote>
-<p id="index-5">The <code class="docutils literal notranslate"><span class="pre">'#'</span></code> option causes the &quot;alternate form&quot; to be used for the
+<p id="index-5">The <code class="docutils literal notranslate"><span class="pre">'z'</span></code> option coerces negative zero floating-point values to positive
+zero after rounding to the format precision.  This option is only valid for
+floating-point presentation types.</p>
+<div class="versionchanged">
+<p><span class="versionmodified changed">在 3.11 版本變更: </span>新增 <code class="docutils literal notranslate"><span class="pre">'z'</span></code> 選項（請見 <span class="target" id="index-17"></span><a class="pep reference external" href="https://peps.python.org/pep-0682/"><strong>PEP 682</strong></a>）。</p>
+</div>
+<p id="index-7">The <code class="docutils literal notranslate"><span class="pre">'#'</span></code> option causes the &quot;alternate form&quot; to be used for the
 conversion.  The alternate form is defined differently for different
 types.  This option is only valid for integer, float and complex
 types. For integers, when binary, octal, or hexadecimal output
@@ -581,20 +589,20 @@ decimal-point character, even if no digits follow it. Normally, a
 decimal-point character appears in the result of these conversions
 only if a digit follows it. In addition, for <code class="docutils literal notranslate"><span class="pre">'g'</span></code> and <code class="docutils literal notranslate"><span class="pre">'G'</span></code>
 conversions, trailing zeros are not removed from the result.</p>
-<p id="index-6">The <code class="docutils literal notranslate"><span class="pre">','</span></code> option signals the use of a comma for a thousands separator.
+<p id="index-8">The <code class="docutils literal notranslate"><span class="pre">','</span></code> option signals the use of a comma for a thousands separator.
 For a locale aware separator, use the <code class="docutils literal notranslate"><span class="pre">'n'</span></code> integer presentation type
 instead.</p>
 <div class="versionchanged">
-<p><span class="versionmodified changed">在 3.1 版本變更: </span>新增 <code class="docutils literal notranslate"><span class="pre">','</span></code> 選項（請見 <span class="target" id="index-14"></span><a class="pep reference external" href="https://peps.python.org/pep-0378/"><strong>PEP 378</strong></a>）。</p>
+<p><span class="versionmodified changed">在 3.1 版本變更: </span>新增 <code class="docutils literal notranslate"><span class="pre">','</span></code> 選項（請見 <span class="target" id="index-18"></span><a class="pep reference external" href="https://peps.python.org/pep-0378/"><strong>PEP 378</strong></a>）。</p>
 </div>
-<p id="index-8">The <code class="docutils literal notranslate"><span class="pre">'_'</span></code> option signals the use of an underscore for a thousands
+<p id="index-10">The <code class="docutils literal notranslate"><span class="pre">'_'</span></code> option signals the use of an underscore for a thousands
 separator for floating point presentation types and for integer
 presentation type <code class="docutils literal notranslate"><span class="pre">'d'</span></code>.  For integer presentation types <code class="docutils literal notranslate"><span class="pre">'b'</span></code>,
 <code class="docutils literal notranslate"><span class="pre">'o'</span></code>, <code class="docutils literal notranslate"><span class="pre">'x'</span></code>, and <code class="docutils literal notranslate"><span class="pre">'X'</span></code>, underscores will be inserted every 4
 digits.  For other presentation types, specifying this option is an
 error.</p>
 <div class="versionchanged">
-<p><span class="versionmodified changed">在 3.6 版本變更: </span>新增 <code class="docutils literal notranslate"><span class="pre">'_'</span></code> 選項（請見 <span class="target" id="index-15"></span><a class="pep reference external" href="https://peps.python.org/pep-0515/"><strong>PEP 515</strong></a>）。</p>
+<p><span class="versionmodified changed">在 3.6 版本變更: </span>新增 <code class="docutils literal notranslate"><span class="pre">'_'</span></code> 選項（請見 <span class="target" id="index-19"></span><a class="pep reference external" href="https://peps.python.org/pep-0515/"><strong>PEP 515</strong></a>）。</p>
 </div>
 <p><em>width</em> is a decimal integer defining the minimum total field width,
 including any prefixes, separators, and other formatting characters.
@@ -925,13 +933,13 @@ following examples.</p>
 <section id="template-strings">
 <span id="id1"></span><h2>Template strings<a class="headerlink" href="#template-strings" title="本標頭的永久連結">¶</a></h2>
 <p>Template strings provide simpler string substitutions as described in
-<span class="target" id="index-10"></span><a class="pep reference external" href="https://peps.python.org/pep-0292/"><strong>PEP 292</strong></a>.  A primary use case for template strings is for
+<span class="target" id="index-12"></span><a class="pep reference external" href="https://peps.python.org/pep-0292/"><strong>PEP 292</strong></a>.  A primary use case for template strings is for
 internationalization (i18n) since in that context, the simpler syntax and
 functionality makes it easier to translate than other built-in string
 formatting facilities in Python.  As an example of a library built on template
 strings for i18n, see the
 <a class="reference external" href="https://flufli18n.readthedocs.io/en/latest/">flufl.i18n</a> package.</p>
-<p id="index-11">Template strings support <code class="docutils literal notranslate"><span class="pre">$</span></code>-based substitutions, using the following rules:</p>
+<p id="index-13">Template strings support <code class="docutils literal notranslate"><span class="pre">$</span></code>-based substitutions, using the following rules:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">$$</span></code> is an escape; it is replaced with a single <code class="docutils literal notranslate"><span class="pre">$</span></code>.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">$identifier</span></code> names a substitution placeholder matching a mapping key of
@@ -976,6 +984,26 @@ raising an exception.  In another sense, <a class="reference internal" href="#st
 anything other than safe, since it will silently ignore malformed
 templates containing dangling delimiters, unmatched braces, or
 placeholders that are not valid Python identifiers.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="string.Template.is_valid">
+<span class="sig-name descname"><span class="pre">is_valid</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#string.Template.is_valid" title="本定義的永久連結">¶</a></dt>
+<dd><p>Returns false if the template has invalid placeholders that will cause
+<a class="reference internal" href="#string.Template.substitute" title="string.Template.substitute"><code class="xref py py-meth docutils literal notranslate"><span class="pre">substitute()</span></code></a> to raise <a class="reference internal" href="exceptions.html#ValueError" title="ValueError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code></a>.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">在 3.11 版本新加入.</span></p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="string.Template.get_identifiers">
+<span class="sig-name descname"><span class="pre">get_identifiers</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#string.Template.get_identifiers" title="本定義的永久連結">¶</a></dt>
+<dd><p>Returns a list of the valid identifiers in the template, in the order
+they first appear, ignoring any invalid identifiers.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">在 3.11 版本新加入.</span></p>
+</div>
 </dd></dl>
 
 <p><a class="reference internal" href="#string.Template" title="string.Template"><code class="xref py py-class docutils literal notranslate"><span class="pre">Template</span></code></a> instances also provide one public data attribute:</p>
@@ -1066,6 +1094,8 @@ not include either the delimiter or braces in the capturing group.</p></li>
 <li><p><em>invalid</em> -- This group matches any other delimiter pattern (usually a single
 delimiter), and it should appear last in the regular expression.</p></li>
 </ul>
+<p>The methods on this class will raise <a class="reference internal" href="exceptions.html#ValueError" title="ValueError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code></a> if the pattern matches
+the template without one of these named groups matching.</p>
 </section>
 <section id="helper-functions">
 <h2>Helper functions<a class="headerlink" href="#helper-functions" title="本標頭的永久連結">¶</a></h2>
@@ -1129,6 +1159,8 @@ split and join the words.</p>
 <li><a class="reference internal" href="#string.Template"><code class="docutils literal notranslate"><span class="pre">Template</span></code></a><ul>
 <li><a class="reference internal" href="#string.Template.substitute"><code class="docutils literal notranslate"><span class="pre">Template.substitute()</span></code></a></li>
 <li><a class="reference internal" href="#string.Template.safe_substitute"><code class="docutils literal notranslate"><span class="pre">Template.safe_substitute()</span></code></a></li>
+<li><a class="reference internal" href="#string.Template.is_valid"><code class="docutils literal notranslate"><span class="pre">Template.is_valid()</span></code></a></li>
+<li><a class="reference internal" href="#string.Template.get_identifiers"><code class="docutils literal notranslate"><span class="pre">Template.get_identifiers()</span></code></a></li>
 <li><a class="reference internal" href="#string.Template.template"><code class="docutils literal notranslate"><span class="pre">Template.template</span></code></a></li>
 </ul>
 </li>
@@ -1158,7 +1190,7 @@ split and join the words.</p>
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.10/Doc/library/string.rst"
+        <a href="https://github.com/python/cpython/blob/main/Doc/library/string.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -1198,7 +1230,7 @@ split and join the words.</p>
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.8 Documentation</a> &#187;
+      <a href="../index.html">3.11.0rc2 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -1235,7 +1267,7 @@ split and join the words.</p>
 <br />
     <br />
 
-    最後更新於 10月 15, 2022。
+    最後更新於 10月 16, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 

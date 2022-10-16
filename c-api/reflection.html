@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>Reflection &#8212; Python 3.10.8 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reflection &#8212; Python 3.11.0rc2 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -22,7 +22,7 @@
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.10.8 說明文件 中搜尋"
+          title="在 Python 3.11.0rc2 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -87,7 +87,7 @@
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.10/Doc/c-api/reflection.rst"
+        <a href="https://github.com/python/cpython/blob/main/Doc/c-api/reflection.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -124,7 +124,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.8 Documentation</a> &#187;
+      <a href="../index.html">3.11.0rc2 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python/C API 參考手冊</a> &#187;</li>
@@ -177,39 +177,10 @@ or <code class="docutils literal notranslate"><span class="pre">NULL</span></cod
 
 <dl class="c function">
 <dt class="sig sig-object c" id="c.PyEval_GetFrame">
-<a class="reference internal" href="veryhigh.html#c.PyFrameObject" title="PyFrameObject"><span class="n"><span class="pre">PyFrameObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">PyEval_GetFrame</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">void</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.PyEval_GetFrame" title="本定義的永久連結">¶</a><br /></dt>
+<a class="reference internal" href="frame.html#c.PyFrameObject" title="PyFrameObject"><span class="n"><span class="pre">PyFrameObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">PyEval_GetFrame</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">void</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.PyEval_GetFrame" title="本定義的永久連結">¶</a><br /></dt>
 <dd><em class="refcount">Return value: Borrowed reference.</em><em class="stableabi"> Part of the <a class="reference internal" href="stable.html#stable"><span class="std std-ref">Stable ABI</span></a>.</em><p>Return the current thread state's frame, which is <code class="docutils literal notranslate"><span class="pre">NULL</span></code> if no frame is
 currently executing.</p>
 <p>另請見 <a class="reference internal" href="init.html#c.PyThreadState_GetFrame" title="PyThreadState_GetFrame"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyThreadState_GetFrame()</span></code></a>。</p>
-</dd></dl>
-
-<dl class="c function">
-<dt class="sig sig-object c" id="c.PyFrame_GetBack">
-<a class="reference internal" href="veryhigh.html#c.PyFrameObject" title="PyFrameObject"><span class="n"><span class="pre">PyFrameObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">PyFrame_GetBack</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="veryhigh.html#c.PyFrameObject" title="PyFrameObject"><span class="n"><span class="pre">PyFrameObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">frame</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.PyFrame_GetBack" title="本定義的永久連結">¶</a><br /></dt>
-<dd><p>Get the <em>frame</em> next outer frame.</p>
-<p>Return a <a class="reference internal" href="../glossary.html#term-strong-reference"><span class="xref std std-term">strong reference</span></a>, or <code class="docutils literal notranslate"><span class="pre">NULL</span></code> if <em>frame</em> has no outer frame.</p>
-<p><em>frame</em> 不可為 <code class="docutils literal notranslate"><span class="pre">NULL</span></code>。</p>
-<div class="versionadded">
-<p><span class="versionmodified added">在 3.9 版本新加入.</span></p>
-</div>
-</dd></dl>
-
-<dl class="c function">
-<dt class="sig sig-object c" id="c.PyFrame_GetCode">
-<a class="reference internal" href="code.html#c.PyCodeObject" title="PyCodeObject"><span class="n"><span class="pre">PyCodeObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">PyFrame_GetCode</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="veryhigh.html#c.PyFrameObject" title="PyFrameObject"><span class="n"><span class="pre">PyFrameObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">frame</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.PyFrame_GetCode" title="本定義的永久連結">¶</a><br /></dt>
-<dd><em class="stableabi"> Part of the <a class="reference internal" href="stable.html#stable"><span class="std std-ref">Stable ABI</span></a> since version 3.10.</em><p>Get the <em>frame</em> code.</p>
-<p>Return a <a class="reference internal" href="../glossary.html#term-strong-reference"><span class="xref std std-term">strong reference</span></a>.</p>
-<p><em>frame</em> must not be <code class="docutils literal notranslate"><span class="pre">NULL</span></code>. The result (frame code) cannot be <code class="docutils literal notranslate"><span class="pre">NULL</span></code>.</p>
-<div class="versionadded">
-<p><span class="versionmodified added">在 3.9 版本新加入.</span></p>
-</div>
-</dd></dl>
-
-<dl class="c function">
-<dt class="sig sig-object c" id="c.PyFrame_GetLineNumber">
-<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PyFrame_GetLineNumber</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="veryhigh.html#c.PyFrameObject" title="PyFrameObject"><span class="n"><span class="pre">PyFrameObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">frame</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.PyFrame_GetLineNumber" title="本定義的永久連結">¶</a><br /></dt>
-<dd><em class="stableabi"> Part of the <a class="reference internal" href="stable.html#stable"><span class="std std-ref">Stable ABI</span></a> since version 3.10.</em><p>Return the line number that <em>frame</em> is currently executing.</p>
-<p><em>frame</em> 不可為 <code class="docutils literal notranslate"><span class="pre">NULL</span></code>。</p>
 </dd></dl>
 
 <dl class="c function">
@@ -253,7 +224,7 @@ Return values include &quot;()&quot; for functions and methods, &quot; construct
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.10/Doc/c-api/reflection.rst"
+        <a href="https://github.com/python/cpython/blob/main/Doc/c-api/reflection.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -293,7 +264,7 @@ Return values include &quot;()&quot; for functions and methods, &quot; construct
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.8 Documentation</a> &#187;
+      <a href="../index.html">3.11.0rc2 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python/C API 參考手冊</a> &#187;</li>
@@ -330,7 +301,7 @@ Return values include &quot;()&quot; for functions and methods, &quot; construct
 <br />
     <br />
 
-    最後更新於 10月 15, 2022。
+    最後更新於 10月 16, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 

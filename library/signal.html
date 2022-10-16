@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>signal --- Set handlers for asynchronous events &#8212; Python 3.10.8 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>signal --- Set handlers for asynchronous events &#8212; Python 3.11.0rc2 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -22,7 +22,7 @@
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.10.8 說明文件 中搜尋"
+          title="在 Python 3.11.0rc2 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -82,6 +82,9 @@
 </ul>
 </li>
 <li><a class="reference internal" href="#module-contents">模組內容</a><ul>
+<li><a class="reference internal" href="#signal.Signals"><code class="docutils literal notranslate"><span class="pre">Signals</span></code></a></li>
+<li><a class="reference internal" href="#signal.Handlers"><code class="docutils literal notranslate"><span class="pre">Handlers</span></code></a></li>
+<li><a class="reference internal" href="#signal.Sigmasks"><code class="docutils literal notranslate"><span class="pre">Sigmasks</span></code></a></li>
 <li><a class="reference internal" href="#signal.SIG_DFL"><code class="docutils literal notranslate"><span class="pre">SIG_DFL</span></code></a></li>
 <li><a class="reference internal" href="#signal.SIG_IGN"><code class="docutils literal notranslate"><span class="pre">SIG_IGN</span></code></a></li>
 <li><a class="reference internal" href="#signal.SIGABRT"><code class="docutils literal notranslate"><span class="pre">SIGABRT</span></code></a></li>
@@ -98,6 +101,7 @@
 <li><a class="reference internal" href="#signal.SIGKILL"><code class="docutils literal notranslate"><span class="pre">SIGKILL</span></code></a></li>
 <li><a class="reference internal" href="#signal.SIGPIPE"><code class="docutils literal notranslate"><span class="pre">SIGPIPE</span></code></a></li>
 <li><a class="reference internal" href="#signal.SIGSEGV"><code class="docutils literal notranslate"><span class="pre">SIGSEGV</span></code></a></li>
+<li><a class="reference internal" href="#signal.SIGSTKFLT"><code class="docutils literal notranslate"><span class="pre">SIGSTKFLT</span></code></a></li>
 <li><a class="reference internal" href="#signal.SIGTERM"><code class="docutils literal notranslate"><span class="pre">SIGTERM</span></code></a></li>
 <li><a class="reference internal" href="#signal.SIGUSR1"><code class="docutils literal notranslate"><span class="pre">SIGUSR1</span></code></a></li>
 <li><a class="reference internal" href="#signal.SIGUSR2"><code class="docutils literal notranslate"><span class="pre">SIGUSR2</span></code></a></li>
@@ -132,7 +136,7 @@
 <li><a class="reference internal" href="#signal.sigtimedwait"><code class="docutils literal notranslate"><span class="pre">sigtimedwait()</span></code></a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#example">範例</a></li>
+<li><a class="reference internal" href="#examples">範例</a></li>
 <li><a class="reference internal" href="#note-on-sigpipe">Note on SIGPIPE</a></li>
 <li><a class="reference internal" href="#note-on-signal-handlers-and-exceptions">Note on Signal Handlers and Exceptions</a></li>
 </ul>
@@ -155,7 +159,7 @@
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.10/Doc/library/signal.rst"
+        <a href="https://github.com/python/cpython/blob/main/Doc/library/signal.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -192,7 +196,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.8 Documentation</a> &#187;
+      <a href="../index.html">3.11.0rc2 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -236,6 +240,9 @@ has not changed it.</p>
 explicitly reset (Python emulates the BSD style interface regardless of the
 underlying implementation), with the exception of the handler for
 <a class="reference internal" href="#signal.SIGCHLD" title="signal.SIGCHLD"><code class="xref py py-const docutils literal notranslate"><span class="pre">SIGCHLD</span></code></a>, which follows the underlying implementation.</p>
+<p>On WebAssembly platforms <code class="docutils literal notranslate"><span class="pre">wasm32-emscripten</span></code> and <code class="docutils literal notranslate"><span class="pre">wasm32-wasi</span></code>, signals
+are emulated and therefore behave differently. Several functions and signals
+are not available on these platforms.</p>
 <section id="execution-of-python-signal-handlers">
 <h3>Execution of Python signal handlers<a class="headerlink" href="#execution-of-python-signal-handlers" title="本標頭的永久連結">¶</a></h3>
 <p>A Python signal handler does not get executed inside the low-level (C) signal
@@ -274,11 +281,40 @@ the synchronization primitives from the <a class="reference internal" href="thre
 <p><span class="versionmodified changed">在 3.5 版本變更: </span>signal (SIG*), handler (<a class="reference internal" href="#signal.SIG_DFL" title="signal.SIG_DFL"><code class="xref py py-const docutils literal notranslate"><span class="pre">SIG_DFL</span></code></a>, <a class="reference internal" href="#signal.SIG_IGN" title="signal.SIG_IGN"><code class="xref py py-const docutils literal notranslate"><span class="pre">SIG_IGN</span></code></a>) and sigmask
 (<a class="reference internal" href="#signal.SIG_BLOCK" title="signal.SIG_BLOCK"><code class="xref py py-const docutils literal notranslate"><span class="pre">SIG_BLOCK</span></code></a>, <a class="reference internal" href="#signal.SIG_UNBLOCK" title="signal.SIG_UNBLOCK"><code class="xref py py-const docutils literal notranslate"><span class="pre">SIG_UNBLOCK</span></code></a>, <a class="reference internal" href="#signal.SIG_SETMASK" title="signal.SIG_SETMASK"><code class="xref py py-const docutils literal notranslate"><span class="pre">SIG_SETMASK</span></code></a>)
 related constants listed below were turned into
-<a class="reference internal" href="enum.html#enum.IntEnum" title="enum.IntEnum"><code class="xref py py-class docutils literal notranslate"><span class="pre">enums</span></code></a>.
+<a class="reference internal" href="enum.html#enum.IntEnum" title="enum.IntEnum"><code class="xref py py-class docutils literal notranslate"><span class="pre">enums</span></code></a> (<a class="reference internal" href="#signal.Signals" title="signal.Signals"><code class="xref py py-class docutils literal notranslate"><span class="pre">Signals</span></code></a>, <a class="reference internal" href="#signal.Handlers" title="signal.Handlers"><code class="xref py py-class docutils literal notranslate"><span class="pre">Handlers</span></code></a> and <a class="reference internal" href="#signal.Sigmasks" title="signal.Sigmasks"><code class="xref py py-class docutils literal notranslate"><span class="pre">Sigmasks</span></code></a> respectively).
 <a class="reference internal" href="#signal.getsignal" title="signal.getsignal"><code class="xref py py-func docutils literal notranslate"><span class="pre">getsignal()</span></code></a>, <a class="reference internal" href="#signal.pthread_sigmask" title="signal.pthread_sigmask"><code class="xref py py-func docutils literal notranslate"><span class="pre">pthread_sigmask()</span></code></a>, <a class="reference internal" href="#signal.sigpending" title="signal.sigpending"><code class="xref py py-func docutils literal notranslate"><span class="pre">sigpending()</span></code></a> and
 <a class="reference internal" href="#signal.sigwait" title="signal.sigwait"><code class="xref py py-func docutils literal notranslate"><span class="pre">sigwait()</span></code></a> functions return human-readable
-<a class="reference internal" href="enum.html#enum.IntEnum" title="enum.IntEnum"><code class="xref py py-class docutils literal notranslate"><span class="pre">enums</span></code></a>.</p>
+<a class="reference internal" href="enum.html#enum.IntEnum" title="enum.IntEnum"><code class="xref py py-class docutils literal notranslate"><span class="pre">enums</span></code></a> as <a class="reference internal" href="#signal.Signals" title="signal.Signals"><code class="xref py py-class docutils literal notranslate"><span class="pre">Signals</span></code></a> objects.</p>
 </div>
+<p>The signal module defines three enums:</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="signal.Signals">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">signal.</span></span><span class="sig-name descname"><span class="pre">Signals</span></span><a class="headerlink" href="#signal.Signals" title="本定義的永久連結">¶</a></dt>
+<dd><p><a class="reference internal" href="enum.html#enum.IntEnum" title="enum.IntEnum"><code class="xref py py-class docutils literal notranslate"><span class="pre">enum.IntEnum</span></code></a> collection of SIG* constants and the CTRL_* constants.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">在 3.5 版本新加入.</span></p>
+</div>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="signal.Handlers">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">signal.</span></span><span class="sig-name descname"><span class="pre">Handlers</span></span><a class="headerlink" href="#signal.Handlers" title="本定義的永久連結">¶</a></dt>
+<dd><p><a class="reference internal" href="enum.html#enum.IntEnum" title="enum.IntEnum"><code class="xref py py-class docutils literal notranslate"><span class="pre">enum.IntEnum</span></code></a> collection the constants <a class="reference internal" href="#signal.SIG_DFL" title="signal.SIG_DFL"><code class="xref py py-const docutils literal notranslate"><span class="pre">SIG_DFL</span></code></a> and <a class="reference internal" href="#signal.SIG_IGN" title="signal.SIG_IGN"><code class="xref py py-const docutils literal notranslate"><span class="pre">SIG_IGN</span></code></a>.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">在 3.5 版本新加入.</span></p>
+</div>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="signal.Sigmasks">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">signal.</span></span><span class="sig-name descname"><span class="pre">Sigmasks</span></span><a class="headerlink" href="#signal.Sigmasks" title="本定義的永久連結">¶</a></dt>
+<dd><p><a class="reference internal" href="enum.html#enum.IntEnum" title="enum.IntEnum"><code class="xref py py-class docutils literal notranslate"><span class="pre">enum.IntEnum</span></code></a> collection the constants <a class="reference internal" href="#signal.SIG_BLOCK" title="signal.SIG_BLOCK"><code class="xref py py-const docutils literal notranslate"><span class="pre">SIG_BLOCK</span></code></a>, <a class="reference internal" href="#signal.SIG_UNBLOCK" title="signal.SIG_UNBLOCK"><code class="xref py py-const docutils literal notranslate"><span class="pre">SIG_UNBLOCK</span></code></a> and <a class="reference internal" href="#signal.SIG_SETMASK" title="signal.SIG_SETMASK"><code class="xref py py-const docutils literal notranslate"><span class="pre">SIG_SETMASK</span></code></a>.</p>
+<p class="availability"><a class="reference internal" href="intro.html#availability"><span class="std std-ref">適用</span></a>：Unix。</p>
+<div class="versionadded">
+<p><span class="versionmodified added">在 3.5 版本新加入.</span></p>
+</div>
+</dd></dl>
+
 <p>The variables defined in the <a class="reference internal" href="#module-signal" title="signal: Set handlers for asynchronous events."><code class="xref py py-mod docutils literal notranslate"><span class="pre">signal</span></code></a> module are:</p>
 <dl class="py data">
 <dt class="sig sig-object py" id="signal.SIG_DFL">
@@ -397,6 +433,19 @@ or modulo operation is zero.</p>
 </dd></dl>
 
 <dl class="py data">
+<dt class="sig sig-object py" id="signal.SIGSTKFLT">
+<span class="sig-prename descclassname"><span class="pre">signal.</span></span><span class="sig-name descname"><span class="pre">SIGSTKFLT</span></span><a class="headerlink" href="#signal.SIGSTKFLT" title="本定義的永久連結">¶</a></dt>
+<dd><blockquote>
+<div><p>Stack fault on coprocessor. The Linux kernel does not raise this signal: it
+can only be raised in user space.</p>
+</div></blockquote>
+<p class="availability"><a class="reference internal" href="intro.html#availability"><span class="std std-ref">適用</span></a>：Linux。</p>
+<div class="versionadded">
+<p><span class="versionmodified added">在 3.11 版本新加入.</span></p>
+</div>
+</dd></dl>
+
+<dl class="py data">
 <dt class="sig sig-object py" id="signal.SIGTERM">
 <span class="sig-prename descclassname"><span class="pre">signal.</span></span><span class="sig-name descname"><span class="pre">SIGTERM</span></span><a class="headerlink" href="#signal.SIGTERM" title="本定義的永久連結">¶</a></dt>
 <dd><p>Termination signal.</p>
@@ -460,7 +509,8 @@ only be used with <a class="reference internal" href="os.html#os.kill" title="os
 <dl class="py data">
 <dt class="sig sig-object py" id="signal.NSIG">
 <span class="sig-prename descclassname"><span class="pre">signal.</span></span><span class="sig-name descname"><span class="pre">NSIG</span></span><a class="headerlink" href="#signal.NSIG" title="本定義的永久連結">¶</a></dt>
-<dd><p>One more than the number of the highest signal number.</p>
+<dd><p>One more than the number of the highest signal number.
+Use <a class="reference internal" href="#signal.valid_signals" title="signal.valid_signals"><code class="xref py py-func docutils literal notranslate"><span class="pre">valid_signals()</span></code></a> to get valid signal numbers.</p>
 </dd></dl>
 
 <dl class="py data">
@@ -540,8 +590,7 @@ canceled (only one alarm can be scheduled at any time).  The returned value is
 then the number of seconds before any previously set alarm was to have been
 delivered. If <em>time</em> is zero, no alarm is scheduled, and any scheduled alarm is
 canceled.  If the return value is zero, no alarm is currently scheduled.</p>
-<p class="availability"><a class="reference internal" href="intro.html#availability"><span class="std std-ref">Availability</span></a>: Unix.  See the man page <em class="manpage"><a class="manpage reference external" href="https://manpages.debian.org/alarm(2)">alarm(2)</a></em> for further
-information.</p>
+<p class="availability"><a class="reference internal" href="intro.html#availability"><span class="std std-ref">適用</span></a>：Unix。</p>
 </dd></dl>
 
 <dl class="py function">
@@ -583,8 +632,7 @@ for internal use.</p>
 <span class="sig-prename descclassname"><span class="pre">signal.</span></span><span class="sig-name descname"><span class="pre">pause</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#signal.pause" title="本定義的永久連結">¶</a></dt>
 <dd><p>Cause the process to sleep until a signal is received; the appropriate handler
 will then be called.  Returns nothing.</p>
-<p class="availability"><a class="reference internal" href="intro.html#availability"><span class="std std-ref">Availability</span></a>: Unix.  See the man page <em class="manpage"><a class="manpage reference external" href="https://manpages.debian.org/signal(2)">signal(2)</a></em> for further
-information.</p>
+<p class="availability"><a class="reference internal" href="intro.html#availability"><span class="std std-ref">適用</span></a>：Unix。</p>
 <p>See also <a class="reference internal" href="#signal.sigwait" title="signal.sigwait"><code class="xref py py-func docutils literal notranslate"><span class="pre">sigwait()</span></code></a>, <a class="reference internal" href="#signal.sigwaitinfo" title="signal.sigwaitinfo"><code class="xref py py-func docutils literal notranslate"><span class="pre">sigwaitinfo()</span></code></a>, <a class="reference internal" href="#signal.sigtimedwait" title="signal.sigtimedwait"><code class="xref py py-func docutils literal notranslate"><span class="pre">sigtimedwait()</span></code></a> and
 <a class="reference internal" href="#signal.sigpending" title="signal.sigpending"><code class="xref py py-func docutils literal notranslate"><span class="pre">sigpending()</span></code></a>.</p>
 </dd></dl>
@@ -606,7 +654,7 @@ Python does not currently support the <em>siginfo</em> parameter; it must be
 <code class="docutils literal notranslate"><span class="pre">None</span></code>.  The <em>flags</em> argument is provided for future extensions; no flag
 values are currently defined.</p>
 <p>更多資訊請見 <em class="manpage"><a class="manpage reference external" href="https://manpages.debian.org/pidfd_send_signal(2)">pidfd_send_signal(2)</a></em> 手冊頁。</p>
-<p class="availability"><a class="reference internal" href="intro.html#availability"><span class="std std-ref">適用</span></a>：Linux 5.1+</p>
+<p class="availability"><a class="reference internal" href="intro.html#availability"><span class="std std-ref">適用</span></a>：Linux 5.1 以上</p>
 <div class="versionadded">
 <p><span class="versionmodified added">在 3.9 版本新加入.</span></p>
 </div>
@@ -628,8 +676,7 @@ for <em>thread_id</em>.</p>
 <p>If <em>signalnum</em> is 0, then no signal is sent, but error checking is still
 performed; this can be used to check if the target thread is still running.</p>
 <p class="audit-hook">Raises an <a class="reference internal" href="sys.html#auditing"><span class="std std-ref">auditing event</span></a> <code class="docutils literal notranslate"><span class="pre">signal.pthread_kill</span></code> with arguments <code class="docutils literal notranslate"><span class="pre">thread_id</span></code>, <code class="docutils literal notranslate"><span class="pre">signalnum</span></code>.</p>
-<p class="availability"><a class="reference internal" href="intro.html#availability"><span class="std std-ref">Availability</span></a>: Unix.  See the man page <em class="manpage"><a class="manpage reference external" href="https://manpages.debian.org/pthread_kill(3)">pthread_kill(3)</a></em> for further
-information.</p>
+<p class="availability"><a class="reference internal" href="intro.html#availability"><span class="std std-ref">適用</span></a>：Unix。</p>
 <p>另請參閱 <a class="reference internal" href="os.html#os.kill" title="os.kill"><code class="xref py py-func docutils literal notranslate"><span class="pre">os.kill()</span></code></a>。</p>
 <div class="versionadded">
 <p><span class="versionmodified added">在 3.3 版本新加入.</span></p>
@@ -658,8 +705,7 @@ mask including all signals.</p>
 <p>For example, <code class="docutils literal notranslate"><span class="pre">signal.pthread_sigmask(signal.SIG_BLOCK,</span> <span class="pre">[])</span></code> reads the
 signal mask of the calling thread.</p>
 <p><a class="reference internal" href="#signal.SIGKILL" title="signal.SIGKILL"><code class="xref py py-data docutils literal notranslate"><span class="pre">SIGKILL</span></code></a> and <code class="xref py py-data docutils literal notranslate"><span class="pre">SIGSTOP</span></code> cannot be blocked.</p>
-<p class="availability"><a class="reference internal" href="intro.html#availability"><span class="std std-ref">Availability</span></a>: Unix.  See the man page <em class="manpage"><a class="manpage reference external" href="https://manpages.debian.org/sigprocmask(2)">sigprocmask(2)</a></em> and
-<em class="manpage"><a class="manpage reference external" href="https://manpages.debian.org/pthread_sigmask(3)">pthread_sigmask(3)</a></em> for further information.</p>
+<p class="availability"><a class="reference internal" href="intro.html#availability"><span class="std std-ref">適用</span></a>：Unix。</p>
 <p>另請參閱 <a class="reference internal" href="#signal.pause" title="signal.pause"><code class="xref py py-func docutils literal notranslate"><span class="pre">pause()</span></code></a>、<a class="reference internal" href="#signal.sigpending" title="signal.sigpending"><code class="xref py py-func docutils literal notranslate"><span class="pre">sigpending()</span></code></a> 與 <a class="reference internal" href="#signal.sigwait" title="signal.sigwait"><code class="xref py py-func docutils literal notranslate"><span class="pre">sigwait()</span></code></a>。</p>
 <div class="versionadded">
 <p><span class="versionmodified added">在 3.3 版本新加入.</span></p>
@@ -740,8 +786,7 @@ are not confused by spurious warning messages.</p>
 <dd><p>Change system call restart behaviour: if <em>flag</em> is <a class="reference internal" href="constants.html#False" title="False"><code class="xref py py-const docutils literal notranslate"><span class="pre">False</span></code></a>, system
 calls will be restarted when interrupted by signal <em>signalnum</em>, otherwise
 system calls will be interrupted.  Returns nothing.</p>
-<p class="availability"><a class="reference internal" href="intro.html#availability"><span class="std std-ref">Availability</span></a>: Unix.  See the man page <em class="manpage"><a class="manpage reference external" href="https://manpages.debian.org/siginterrupt(3)">siginterrupt(3)</a></em>
-for further information.</p>
+<p class="availability"><a class="reference internal" href="intro.html#availability"><span class="std std-ref">適用</span></a>：Unix。</p>
 <p>Note that installing a signal handler with <a class="reference internal" href="#module-signal" title="signal: Set handlers for asynchronous events."><code class="xref py py-func docutils literal notranslate"><span class="pre">signal()</span></code></a> will reset the
 restart behaviour to interruptible by implicitly calling
 <code class="xref c c-func docutils literal notranslate"><span class="pre">siginterrupt()</span></code> with a true <em>flag</em> value for the given signal.</p>
@@ -778,8 +823,7 @@ Note that not all systems define the same set of signal names; an
 <dd><p>Examine the set of signals that are pending for delivery to the calling
 thread (i.e., the signals which have been raised while blocked).  Return the
 set of the pending signals.</p>
-<p class="availability"><a class="reference internal" href="intro.html#availability"><span class="std std-ref">Availability</span></a>: Unix.  See the man page <em class="manpage"><a class="manpage reference external" href="https://manpages.debian.org/sigpending(2)">sigpending(2)</a></em> for further
-information.</p>
+<p class="availability"><a class="reference internal" href="intro.html#availability"><span class="std std-ref">適用</span></a>：Unix。</p>
 <p>另請參閱 <a class="reference internal" href="#signal.pause" title="signal.pause"><code class="xref py py-func docutils literal notranslate"><span class="pre">pause()</span></code></a>、<a class="reference internal" href="#signal.pthread_sigmask" title="signal.pthread_sigmask"><code class="xref py py-func docutils literal notranslate"><span class="pre">pthread_sigmask()</span></code></a> 與 <a class="reference internal" href="#signal.sigwait" title="signal.sigwait"><code class="xref py py-func docutils literal notranslate"><span class="pre">sigwait()</span></code></a>。</p>
 <div class="versionadded">
 <p><span class="versionmodified added">在 3.3 版本新加入.</span></p>
@@ -792,8 +836,7 @@ information.</p>
 <dd><p>Suspend execution of the calling thread until the delivery of one of the
 signals specified in the signal set <em>sigset</em>.  The function accepts the signal
 (removes it from the pending list of signals), and returns the signal number.</p>
-<p class="availability"><a class="reference internal" href="intro.html#availability"><span class="std std-ref">Availability</span></a>: Unix.  See the man page <em class="manpage"><a class="manpage reference external" href="https://manpages.debian.org/sigwait(3)">sigwait(3)</a></em> for further
-information.</p>
+<p class="availability"><a class="reference internal" href="intro.html#availability"><span class="std std-ref">適用</span></a>：Unix。</p>
 <p>See also <a class="reference internal" href="#signal.pause" title="signal.pause"><code class="xref py py-func docutils literal notranslate"><span class="pre">pause()</span></code></a>, <a class="reference internal" href="#signal.pthread_sigmask" title="signal.pthread_sigmask"><code class="xref py py-func docutils literal notranslate"><span class="pre">pthread_sigmask()</span></code></a>, <a class="reference internal" href="#signal.sigpending" title="signal.sigpending"><code class="xref py py-func docutils literal notranslate"><span class="pre">sigpending()</span></code></a>,
 <a class="reference internal" href="#signal.sigwaitinfo" title="signal.sigwaitinfo"><code class="xref py py-func docutils literal notranslate"><span class="pre">sigwaitinfo()</span></code></a> and <a class="reference internal" href="#signal.sigtimedwait" title="signal.sigtimedwait"><code class="xref py py-func docutils literal notranslate"><span class="pre">sigtimedwait()</span></code></a>.</p>
 <div class="versionadded">
@@ -816,8 +859,7 @@ handler is not called for the delivered signal. The function raises an
 <code class="xref c c-type docutils literal notranslate"><span class="pre">siginfo_t</span></code> structure, namely: <code class="xref py py-attr docutils literal notranslate"><span class="pre">si_signo</span></code>, <code class="xref py py-attr docutils literal notranslate"><span class="pre">si_code</span></code>,
 <code class="xref py py-attr docutils literal notranslate"><span class="pre">si_errno</span></code>, <code class="xref py py-attr docutils literal notranslate"><span class="pre">si_pid</span></code>, <code class="xref py py-attr docutils literal notranslate"><span class="pre">si_uid</span></code>, <code class="xref py py-attr docutils literal notranslate"><span class="pre">si_status</span></code>,
 <code class="xref py py-attr docutils literal notranslate"><span class="pre">si_band</span></code>.</p>
-<p class="availability"><a class="reference internal" href="intro.html#availability"><span class="std std-ref">Availability</span></a>: Unix.  See the man page <em class="manpage"><a class="manpage reference external" href="https://manpages.debian.org/sigwaitinfo(2)">sigwaitinfo(2)</a></em> for further
-information.</p>
+<p class="availability"><a class="reference internal" href="intro.html#availability"><span class="std std-ref">適用</span></a>：Unix。</p>
 <p>另請參閱 <a class="reference internal" href="#signal.pause" title="signal.pause"><code class="xref py py-func docutils literal notranslate"><span class="pre">pause()</span></code></a>、<a class="reference internal" href="#signal.sigwait" title="signal.sigwait"><code class="xref py py-func docutils literal notranslate"><span class="pre">sigwait()</span></code></a> 與 <a class="reference internal" href="#signal.sigtimedwait" title="signal.sigtimedwait"><code class="xref py py-func docutils literal notranslate"><span class="pre">sigtimedwait()</span></code></a>。</p>
 <div class="versionadded">
 <p><span class="versionmodified added">在 3.3 版本新加入.</span></p>
@@ -835,8 +877,7 @@ the rationale).</p>
 <dd><p>Like <a class="reference internal" href="#signal.sigwaitinfo" title="signal.sigwaitinfo"><code class="xref py py-func docutils literal notranslate"><span class="pre">sigwaitinfo()</span></code></a>, but takes an additional <em>timeout</em> argument
 specifying a timeout. If <em>timeout</em> is specified as <code class="xref py py-const docutils literal notranslate"><span class="pre">0</span></code>, a poll is
 performed. Returns <a class="reference internal" href="constants.html#None" title="None"><code class="xref py py-const docutils literal notranslate"><span class="pre">None</span></code></a> if a timeout occurs.</p>
-<p class="availability"><a class="reference internal" href="intro.html#availability"><span class="std std-ref">Availability</span></a>: Unix.  See the man page <em class="manpage"><a class="manpage reference external" href="https://manpages.debian.org/sigtimedwait(2)">sigtimedwait(2)</a></em> for further
-information.</p>
+<p class="availability"><a class="reference internal" href="intro.html#availability"><span class="std std-ref">適用</span></a>：Unix。</p>
 <p>另請參閱 <a class="reference internal" href="#signal.pause" title="signal.pause"><code class="xref py py-func docutils literal notranslate"><span class="pre">pause()</span></code></a>、<a class="reference internal" href="#signal.sigwait" title="signal.sigwait"><code class="xref py py-func docutils literal notranslate"><span class="pre">sigwait()</span></code></a> 與 <a class="reference internal" href="#signal.sigwaitinfo" title="signal.sigwaitinfo"><code class="xref py py-func docutils literal notranslate"><span class="pre">sigwaitinfo()</span></code></a>。</p>
 <div class="versionadded">
 <p><span class="versionmodified added">在 3.3 版本新加入.</span></p>
@@ -849,8 +890,8 @@ exception (see <span class="target" id="index-1"></span><a class="pep reference 
 </dd></dl>
 
 </section>
-<section id="example">
-<span id="signal-example"></span><h2>範例<a class="headerlink" href="#example" title="本標頭的永久連結">¶</a></h2>
+<section id="examples">
+<span id="signal-example"></span><h2>範例<a class="headerlink" href="#examples" title="本標頭的永久連結">¶</a></h2>
 <p>Here is a minimal example program. It uses the <a class="reference internal" href="#signal.alarm" title="signal.alarm"><code class="xref py py-func docutils literal notranslate"><span class="pre">alarm()</span></code></a> function to limit
 the time spent waiting to open a file; this is useful if the file is for a
 serial device that may not be turned on, which would normally cause the
@@ -860,7 +901,8 @@ be sent, and the handler raises an exception.</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">signal</span><span class="o">,</span> <span class="nn">os</span>
 
 <span class="k">def</span> <span class="nf">handler</span><span class="p">(</span><span class="n">signum</span><span class="p">,</span> <span class="n">frame</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Signal handler called with signal&#39;</span><span class="p">,</span> <span class="n">signum</span><span class="p">)</span>
+    <span class="n">signame</span> <span class="o">=</span> <span class="n">signal</span><span class="o">.</span><span class="n">Signals</span><span class="p">(</span><span class="n">signum</span><span class="p">)</span><span class="o">.</span><span class="n">name</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Signal handler called with signal </span><span class="si">{</span><span class="n">signame</span><span class="si">}</span><span class="s1"> (</span><span class="si">{</span><span class="n">signum</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
     <span class="k">raise</span> <span class="ne">OSError</span><span class="p">(</span><span class="s2">&quot;Couldn&#39;t open device!&quot;</span><span class="p">)</span>
 
 <span class="c1"># Set the signal handler and a 5-second alarm</span>
@@ -992,6 +1034,9 @@ of gracefully shutting down.  Instead, they should install their own
 </ul>
 </li>
 <li><a class="reference internal" href="#module-contents">模組內容</a><ul>
+<li><a class="reference internal" href="#signal.Signals"><code class="docutils literal notranslate"><span class="pre">Signals</span></code></a></li>
+<li><a class="reference internal" href="#signal.Handlers"><code class="docutils literal notranslate"><span class="pre">Handlers</span></code></a></li>
+<li><a class="reference internal" href="#signal.Sigmasks"><code class="docutils literal notranslate"><span class="pre">Sigmasks</span></code></a></li>
 <li><a class="reference internal" href="#signal.SIG_DFL"><code class="docutils literal notranslate"><span class="pre">SIG_DFL</span></code></a></li>
 <li><a class="reference internal" href="#signal.SIG_IGN"><code class="docutils literal notranslate"><span class="pre">SIG_IGN</span></code></a></li>
 <li><a class="reference internal" href="#signal.SIGABRT"><code class="docutils literal notranslate"><span class="pre">SIGABRT</span></code></a></li>
@@ -1008,6 +1053,7 @@ of gracefully shutting down.  Instead, they should install their own
 <li><a class="reference internal" href="#signal.SIGKILL"><code class="docutils literal notranslate"><span class="pre">SIGKILL</span></code></a></li>
 <li><a class="reference internal" href="#signal.SIGPIPE"><code class="docutils literal notranslate"><span class="pre">SIGPIPE</span></code></a></li>
 <li><a class="reference internal" href="#signal.SIGSEGV"><code class="docutils literal notranslate"><span class="pre">SIGSEGV</span></code></a></li>
+<li><a class="reference internal" href="#signal.SIGSTKFLT"><code class="docutils literal notranslate"><span class="pre">SIGSTKFLT</span></code></a></li>
 <li><a class="reference internal" href="#signal.SIGTERM"><code class="docutils literal notranslate"><span class="pre">SIGTERM</span></code></a></li>
 <li><a class="reference internal" href="#signal.SIGUSR1"><code class="docutils literal notranslate"><span class="pre">SIGUSR1</span></code></a></li>
 <li><a class="reference internal" href="#signal.SIGUSR2"><code class="docutils literal notranslate"><span class="pre">SIGUSR2</span></code></a></li>
@@ -1042,7 +1088,7 @@ of gracefully shutting down.  Instead, they should install their own
 <li><a class="reference internal" href="#signal.sigtimedwait"><code class="docutils literal notranslate"><span class="pre">sigtimedwait()</span></code></a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#example">範例</a></li>
+<li><a class="reference internal" href="#examples">範例</a></li>
 <li><a class="reference internal" href="#note-on-sigpipe">Note on SIGPIPE</a></li>
 <li><a class="reference internal" href="#note-on-signal-handlers-and-exceptions">Note on Signal Handlers and Exceptions</a></li>
 </ul>
@@ -1065,7 +1111,7 @@ of gracefully shutting down.  Instead, they should install their own
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.10/Doc/library/signal.rst"
+        <a href="https://github.com/python/cpython/blob/main/Doc/library/signal.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -1105,7 +1151,7 @@ of gracefully shutting down.  Instead, they should install their own
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.8 Documentation</a> &#187;
+      <a href="../index.html">3.11.0rc2 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -1142,7 +1188,7 @@ of gracefully shutting down.  Instead, they should install their own
 <br />
     <br />
 
-    最後更新於 10月 15, 2022。
+    最後更新於 10月 16, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 

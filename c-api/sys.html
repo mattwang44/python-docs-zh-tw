@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>作業系統工具 &#8212; Python 3.10.8 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>作業系統工具 &#8212; Python 3.11.0rc2 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -22,7 +22,7 @@
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.10.8 說明文件 中搜尋"
+          title="在 Python 3.11.0rc2 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -96,7 +96,7 @@
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.10/Doc/c-api/sys.rst"
+        <a href="https://github.com/python/cpython/blob/main/Doc/c-api/sys.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -133,7 +133,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.8 Documentation</a> &#187;
+      <a href="../index.html">3.11.0rc2 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python/C API 參考手冊</a> &#187;</li>
@@ -269,9 +269,9 @@ to be called.</p>
 <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PyOS_CheckStack</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c.PyOS_CheckStack" title="本定義的永久連結">¶</a><br /></dt>
 <dd><em class="stableabi"> Part of the <a class="reference internal" href="stable.html#stable"><span class="std std-ref">Stable ABI</span></a> on platforms with USE_STACKCHECK since version 3.7.</em><p>Return true when the interpreter runs out of stack space.  This is a reliable
 check, but is only available when <code class="xref py py-const docutils literal notranslate"><span class="pre">USE_STACKCHECK</span></code> is defined (currently
-on Windows using the Microsoft Visual C++ compiler).  <code class="xref py py-const docutils literal notranslate"><span class="pre">USE_STACKCHECK</span></code>
-will be defined automatically; you should never change the definition in your
-own code.</p>
+on certain versions of Windows using the Microsoft Visual C++ compiler).
+<code class="xref py py-const docutils literal notranslate"><span class="pre">USE_STACKCHECK</span></code> will be defined automatically; you should never
+change the definition in your own code.</p>
 </dd></dl>
 
 <dl class="c function">
@@ -406,27 +406,46 @@ called prior to <a class="reference internal" href="init.html#c.Py_Initialize" t
 <dl class="c function">
 <dt class="sig sig-object c" id="c.PySys_AddWarnOption">
 <span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PySys_AddWarnOption</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">wchar_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">s</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.PySys_AddWarnOption" title="本定義的永久連結">¶</a><br /></dt>
-<dd><em class="stableabi"> Part of the <a class="reference internal" href="stable.html#stable"><span class="std std-ref">Stable ABI</span></a>.</em><p>Append <em>s</em> to <a class="reference internal" href="../library/sys.html#sys.warnoptions" title="sys.warnoptions"><code class="xref py py-data docutils literal notranslate"><span class="pre">sys.warnoptions</span></code></a>. This function must be called prior
+<dd><em class="stableabi"> Part of the <a class="reference internal" href="stable.html#stable"><span class="std std-ref">Stable ABI</span></a>.</em><p>This API is kept for backward compatibility: setting
+<a class="reference internal" href="init_config.html#c.PyConfig.warnoptions" title="PyConfig.warnoptions"><code class="xref c c-member docutils literal notranslate"><span class="pre">PyConfig.warnoptions</span></code></a> should be used instead, see <a class="reference internal" href="init_config.html#init-config"><span class="std std-ref">Python
+Initialization Configuration</span></a>.</p>
+<p>Append <em>s</em> to <a class="reference internal" href="../library/sys.html#sys.warnoptions" title="sys.warnoptions"><code class="xref py py-data docutils literal notranslate"><span class="pre">sys.warnoptions</span></code></a>. This function must be called prior
 to <a class="reference internal" href="init.html#c.Py_Initialize" title="Py_Initialize"><code class="xref c c-func docutils literal notranslate"><span class="pre">Py_Initialize()</span></code></a> in order to affect the warnings filter list.</p>
+<div class="deprecated">
+<p><span class="versionmodified deprecated">在 3.11 版本開始棄用.</span></p>
+</div>
 </dd></dl>
 
 <dl class="c function">
 <dt class="sig sig-object c" id="c.PySys_AddWarnOptionUnicode">
 <span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PySys_AddWarnOptionUnicode</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">unicode</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.PySys_AddWarnOptionUnicode" title="本定義的永久連結">¶</a><br /></dt>
-<dd><em class="stableabi"> Part of the <a class="reference internal" href="stable.html#stable"><span class="std std-ref">Stable ABI</span></a>.</em><p>Append <em>unicode</em> to <a class="reference internal" href="../library/sys.html#sys.warnoptions" title="sys.warnoptions"><code class="xref py py-data docutils literal notranslate"><span class="pre">sys.warnoptions</span></code></a>.</p>
+<dd><em class="stableabi"> Part of the <a class="reference internal" href="stable.html#stable"><span class="std std-ref">Stable ABI</span></a>.</em><p>This API is kept for backward compatibility: setting
+<a class="reference internal" href="init_config.html#c.PyConfig.warnoptions" title="PyConfig.warnoptions"><code class="xref c c-member docutils literal notranslate"><span class="pre">PyConfig.warnoptions</span></code></a> should be used instead, see <a class="reference internal" href="init_config.html#init-config"><span class="std std-ref">Python
+Initialization Configuration</span></a>.</p>
+<p>Append <em>unicode</em> to <a class="reference internal" href="../library/sys.html#sys.warnoptions" title="sys.warnoptions"><code class="xref py py-data docutils literal notranslate"><span class="pre">sys.warnoptions</span></code></a>.</p>
 <p>Note: this function is not currently usable from outside the CPython
 implementation, as it must be called prior to the implicit import of
 <a class="reference internal" href="../library/warnings.html#module-warnings" title="warnings: Issue warning messages and control their disposition."><code class="xref py py-mod docutils literal notranslate"><span class="pre">warnings</span></code></a> in <a class="reference internal" href="init.html#c.Py_Initialize" title="Py_Initialize"><code class="xref c c-func docutils literal notranslate"><span class="pre">Py_Initialize()</span></code></a> to be effective, but can't be
 called until enough of the runtime has been initialized to permit the
 creation of Unicode objects.</p>
+<div class="deprecated">
+<p><span class="versionmodified deprecated">在 3.11 版本開始棄用.</span></p>
+</div>
 </dd></dl>
 
 <dl class="c function">
 <dt class="sig sig-object c" id="c.PySys_SetPath">
 <span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PySys_SetPath</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">wchar_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">path</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.PySys_SetPath" title="本定義的永久連結">¶</a><br /></dt>
-<dd><em class="stableabi"> Part of the <a class="reference internal" href="stable.html#stable"><span class="std std-ref">Stable ABI</span></a>.</em><p>Set <a class="reference internal" href="../library/sys.html#sys.path" title="sys.path"><code class="xref py py-data docutils literal notranslate"><span class="pre">sys.path</span></code></a> to a list object of paths found in <em>path</em> which should
+<dd><em class="stableabi"> Part of the <a class="reference internal" href="stable.html#stable"><span class="std std-ref">Stable ABI</span></a>.</em><p>This API is kept for backward compatibility: setting
+<a class="reference internal" href="init_config.html#c.PyConfig.module_search_paths" title="PyConfig.module_search_paths"><code class="xref c c-member docutils literal notranslate"><span class="pre">PyConfig.module_search_paths</span></code></a> and
+<a class="reference internal" href="init_config.html#c.PyConfig.module_search_paths_set" title="PyConfig.module_search_paths_set"><code class="xref c c-member docutils literal notranslate"><span class="pre">PyConfig.module_search_paths_set</span></code></a> should be used instead, see
+<a class="reference internal" href="init_config.html#init-config"><span class="std std-ref">Python Initialization Configuration</span></a>.</p>
+<p>Set <a class="reference internal" href="../library/sys.html#sys.path" title="sys.path"><code class="xref py py-data docutils literal notranslate"><span class="pre">sys.path</span></code></a> to a list object of paths found in <em>path</em> which should
 be a list of paths separated with the platform's search path delimiter
 (<code class="docutils literal notranslate"><span class="pre">:</span></code> on Unix, <code class="docutils literal notranslate"><span class="pre">;</span></code> on Windows).</p>
+<div class="deprecated">
+<p><span class="versionmodified deprecated">在 3.11 版本開始棄用.</span></p>
+</div>
 </dd></dl>
 
 <dl class="c function">
@@ -476,11 +495,17 @@ instead.</p>
 <dl class="c function">
 <dt class="sig sig-object c" id="c.PySys_AddXOption">
 <span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PySys_AddXOption</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">wchar_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">s</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.PySys_AddXOption" title="本定義的永久連結">¶</a><br /></dt>
-<dd><em class="stableabi"> Part of the <a class="reference internal" href="stable.html#stable"><span class="std std-ref">Stable ABI</span></a> since version 3.7.</em><p>Parse <em>s</em> as a set of <a class="reference internal" href="../using/cmdline.html#cmdoption-X"><code class="xref std std-option docutils literal notranslate"><span class="pre">-X</span></code></a> options and add them to the current
+<dd><em class="stableabi"> Part of the <a class="reference internal" href="stable.html#stable"><span class="std std-ref">Stable ABI</span></a> since version 3.7.</em><p>This API is kept for backward compatibility: setting
+<a class="reference internal" href="init_config.html#c.PyConfig.xoptions" title="PyConfig.xoptions"><code class="xref c c-member docutils literal notranslate"><span class="pre">PyConfig.xoptions</span></code></a> should be used instead, see <a class="reference internal" href="init_config.html#init-config"><span class="std std-ref">Python
+Initialization Configuration</span></a>.</p>
+<p>Parse <em>s</em> as a set of <a class="reference internal" href="../using/cmdline.html#cmdoption-X"><code class="xref std std-option docutils literal notranslate"><span class="pre">-X</span></code></a> options and add them to the current
 options mapping as returned by <a class="reference internal" href="#c.PySys_GetXOptions" title="PySys_GetXOptions"><code class="xref c c-func docutils literal notranslate"><span class="pre">PySys_GetXOptions()</span></code></a>. This function
 may be called prior to <a class="reference internal" href="init.html#c.Py_Initialize" title="Py_Initialize"><code class="xref c c-func docutils literal notranslate"><span class="pre">Py_Initialize()</span></code></a>.</p>
 <div class="versionadded">
 <p><span class="versionmodified added">在 3.2 版本新加入.</span></p>
+</div>
+<div class="deprecated">
+<p><span class="versionmodified deprecated">在 3.11 版本開始棄用.</span></p>
 </div>
 </dd></dl>
 
@@ -628,7 +653,7 @@ the cleanup function, no Python APIs should be called by <em>func</em>.</p>
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.10/Doc/c-api/sys.rst"
+        <a href="https://github.com/python/cpython/blob/main/Doc/c-api/sys.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -668,7 +693,7 @@ the cleanup function, no Python APIs should be called by <em>func</em>.</p>
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.8 Documentation</a> &#187;
+      <a href="../index.html">3.11.0rc2 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python/C API 參考手冊</a> &#187;</li>
@@ -705,7 +730,7 @@ the cleanup function, no Python APIs should be called by <em>func</em>.</p>
 <br />
     <br />
 
-    最後更新於 10月 15, 2022。
+    最後更新於 10月 16, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 

@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>如何使用 Logging 模組 &#8212; Python 3.10.8 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>如何使用 Logging 模組 &#8212; Python 3.11.0rc2 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -22,7 +22,7 @@
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.10.8 說明文件 中搜尋"
+          title="在 Python 3.11.0rc2 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -128,7 +128,7 @@
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.10/Doc/howto/logging.rst"
+        <a href="https://github.com/python/cpython/blob/main/Doc/howto/logging.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -165,7 +165,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.8 Documentation</a> &#187;
+      <a href="../index.html">3.11.0rc2 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Python 如何達成任務</a> &#187;</li>
@@ -939,6 +939,15 @@ libraries, then the logger name specified can be 'orgname.foo' rather than
 just 'foo'.</p>
 <div class="admonition note">
 <p class="admonition-title">備註</p>
+<p>It is strongly advised that you <em>do not log to the root logger</em>
+in your library. Instead, use a logger with a unique and easily
+identifiable name, such as the <code class="docutils literal notranslate"><span class="pre">__name__</span></code> for your library's top-level package
+or module. Logging to the root logger will make it difficult or impossible for
+the application developer to configure the logging verbosity or handlers of
+your library as they wish.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">備註</p>
 <p>It is strongly advised that you <em>do not add any handlers other
 than</em> <a class="reference internal" href="../library/logging.handlers.html#logging.NullHandler" title="logging.NullHandler"><code class="xref py py-class docutils literal notranslate"><span class="pre">NullHandler</span></code></a> <em>to your library's loggers</em>. This is
 because the configuration of handlers is the prerogative of the application
@@ -1264,7 +1273,7 @@ take up any memory.</p>
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.10/Doc/howto/logging.rst"
+        <a href="https://github.com/python/cpython/blob/main/Doc/howto/logging.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -1304,7 +1313,7 @@ take up any memory.</p>
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.8 Documentation</a> &#187;
+      <a href="../index.html">3.11.0rc2 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 如何達成任務</a> &#187;</li>
@@ -1340,7 +1349,7 @@ take up any memory.</p>
 <br />
     <br />
 
-    最後更新於 10月 15, 2022。
+    最後更新於 10月 16, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 

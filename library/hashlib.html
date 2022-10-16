@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>hashlib --- Secure hashes and message digests &#8212; Python 3.10.8 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hashlib --- Secure hashes and message digests &#8212; Python 3.11.0rc2 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -22,7 +22,7 @@
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.10.8 說明文件 中搜尋"
+          title="在 Python 3.11.0rc2 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -94,6 +94,10 @@
 <li><a class="reference internal" href="#hashlib.shake.hexdigest"><code class="docutils literal notranslate"><span class="pre">shake.hexdigest()</span></code></a></li>
 </ul>
 </li>
+<li><a class="reference internal" href="#file-hashing">File hashing</a><ul>
+<li><a class="reference internal" href="#hashlib.file_digest"><code class="docutils literal notranslate"><span class="pre">file_digest()</span></code></a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#key-derivation">Key derivation</a><ul>
 <li><a class="reference internal" href="#hashlib.pbkdf2_hmac"><code class="docutils literal notranslate"><span class="pre">pbkdf2_hmac()</span></code></a></li>
 <li><a class="reference internal" href="#hashlib.scrypt"><code class="docutils literal notranslate"><span class="pre">scrypt()</span></code></a></li>
@@ -148,7 +152,7 @@
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.10/Doc/library/hashlib.rst"
+        <a href="https://github.com/python/cpython/blob/main/Doc/library/hashlib.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -185,7 +189,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.8 Documentation</a> &#187;
+      <a href="../index.html">3.11.0rc2 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -215,7 +219,7 @@
             
   <section id="module-hashlib">
 <span id="hashlib-secure-hashes-and-message-digests"></span><h1><a class="reference internal" href="#module-hashlib" title="hashlib: Secure hash and message digest algorithms."><code class="xref py py-mod docutils literal notranslate"><span class="pre">hashlib</span></code></a> --- Secure hashes and message digests<a class="headerlink" href="#module-hashlib" title="本標頭的永久連結">¶</a></h1>
-<p><strong>原始碼：</strong><a class="reference external" href="https://github.com/python/cpython/tree/3.10/Lib/hashlib.py">Lib/hashlib.py</a></p>
+<p><strong>原始碼：</strong><a class="reference external" href="https://github.com/python/cpython/tree/3.11/Lib/hashlib.py">Lib/hashlib.py</a></p>
 <span class="target" id="index-0"></span><hr class="docutils" />
 <p>This module implements a common interface to many different secure hash and
 message digest algorithms.  Included are the FIPS secure hash algorithms SHA1,
@@ -276,23 +280,21 @@ that the hashing algorithm is not used in a security context, e.g. as a
 non-cryptographic one-way compression function.</p>
 <p>Hashlib now uses SHA3 and SHAKE from OpenSSL 1.1.1 and newer.</p>
 </div>
-<p>For example, to obtain the digest of the byte string <code class="docutils literal notranslate"><span class="pre">b'Nobody</span> <span class="pre">inspects</span> <span class="pre">the</span>
-<span class="pre">spammish</span> <span class="pre">repetition'</span></code>:</p>
+<p>For example, to obtain the digest of the byte string <code class="docutils literal notranslate"><span class="pre">b&quot;Nobody</span> <span class="pre">inspects</span> <span class="pre">the</span>
+<span class="pre">spammish</span> <span class="pre">repetition&quot;</span></code>:</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">hashlib</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">m</span> <span class="o">=</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">sha256</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">m</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="sa">b</span><span class="s2">&quot;Nobody inspects&quot;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">m</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="sa">b</span><span class="s2">&quot; the spammish repetition&quot;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">m</span><span class="o">.</span><span class="n">digest</span><span class="p">()</span>
 <span class="go">b&#39;\x03\x1e\xdd}Ae\x15\x93\xc5\xfe\\\x00o\xa5u+7\xfd\xdf\xf7\xbcN\x84:\xa6\xaf\x0c\x95\x0fK\x94\x06&#39;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span><span class="o">.</span><span class="n">digest_size</span>
-<span class="go">32</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span><span class="o">.</span><span class="n">block_size</span>
-<span class="go">64</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()</span>
+<span class="go">&#39;031edd7d41651593c5fe5c006fa5752b37fddff7bc4e843aa6af0c950f4b9406&#39;</span>
 </pre></div>
 </div>
 <p>More condensed:</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">hashlib</span><span class="o">.</span><span class="n">sha224</span><span class="p">(</span><span class="sa">b</span><span class="s2">&quot;Nobody inspects the spammish repetition&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()</span>
-<span class="go">&#39;a4337bc45a8fc544c03f52dc550cd6e1e87021bc896588bd79e901e2&#39;</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">hashlib</span><span class="o">.</span><span class="n">sha256</span><span class="p">(</span><span class="sa">b</span><span class="s2">&quot;Nobody inspects the spammish repetition&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()</span>
+<span class="go">&#39;031edd7d41651593c5fe5c006fa5752b37fddff7bc4e843aa6af0c950f4b9406&#39;</span>
 </pre></div>
 </div>
 <dl class="py function">
@@ -424,6 +426,50 @@ the whole range from 0 to 255.</p>
 <dd><p>Like <a class="reference internal" href="#hashlib.shake.digest" title="hashlib.shake.digest"><code class="xref py py-meth docutils literal notranslate"><span class="pre">digest()</span></code></a> except the digest is returned as a string object of
 double length, containing only hexadecimal digits.  This may be used to
 exchange the value safely in email or other non-binary environments.</p>
+</dd></dl>
+
+</section>
+<section id="file-hashing">
+<h2>File hashing<a class="headerlink" href="#file-hashing" title="本標頭的永久連結">¶</a></h2>
+<p>The hashlib module provides a helper function for efficient hashing of
+a file or file-like object.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="hashlib.file_digest">
+<span class="sig-prename descclassname"><span class="pre">hashlib.</span></span><span class="sig-name descname"><span class="pre">file_digest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fileobj</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">digest</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">/</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hashlib.file_digest" title="本定義的永久連結">¶</a></dt>
+<dd><p>Return a digest object that has been updated with contents of file object.</p>
+<p><em>fileobj</em> must be a file-like object opened for reading in binary mode.
+It accepts file objects from  builtin <a class="reference internal" href="functions.html#open" title="open"><code class="xref py py-func docutils literal notranslate"><span class="pre">open()</span></code></a>, <a class="reference internal" href="io.html#io.BytesIO" title="io.BytesIO"><code class="xref py py-class docutils literal notranslate"><span class="pre">BytesIO</span></code></a>
+instances, SocketIO objects from <a class="reference internal" href="socket.html#socket.socket.makefile" title="socket.socket.makefile"><code class="xref py py-meth docutils literal notranslate"><span class="pre">socket.socket.makefile()</span></code></a>, and
+similar. The function may bypass Python's I/O and use the file descriptor
+from <a class="reference internal" href="io.html#io.IOBase.fileno" title="io.IOBase.fileno"><code class="xref py py-meth docutils literal notranslate"><span class="pre">fileno()</span></code></a> directly. <em>fileobj</em> must be assumed to be
+in an unknown state after this function returns or raises. It is up to
+the caller to close <em>fileobj</em>.</p>
+<p><em>digest</em> must either be a hash algorithm name as a <em>str</em>, a hash
+constructor, or a callable that returns a hash object.</p>
+<p>範例：</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">io</span><span class="o">,</span> <span class="nn">hashlib</span><span class="o">,</span> <span class="nn">hmac</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">hashlib</span><span class="o">.</span><span class="vm">__file__</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="n">digest</span> <span class="o">=</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">file_digest</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="s2">&quot;sha256&quot;</span><span class="p">)</span>
+<span class="gp">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">digest</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()</span>  
+<span class="go">&#39;...&#39;</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">buf</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">BytesIO</span><span class="p">(</span><span class="sa">b</span><span class="s2">&quot;somedata&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mac1</span> <span class="o">=</span> <span class="n">hmac</span><span class="o">.</span><span class="n">HMAC</span><span class="p">(</span><span class="sa">b</span><span class="s2">&quot;key&quot;</span><span class="p">,</span> <span class="n">digestmod</span><span class="o">=</span><span class="n">hashlib</span><span class="o">.</span><span class="n">sha512</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">digest</span> <span class="o">=</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">file_digest</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="k">lambda</span><span class="p">:</span> <span class="n">mac1</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">digest</span> <span class="ow">is</span> <span class="n">mac1</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mac2</span> <span class="o">=</span> <span class="n">hmac</span><span class="o">.</span><span class="n">HMAC</span><span class="p">(</span><span class="sa">b</span><span class="s2">&quot;key&quot;</span><span class="p">,</span> <span class="sa">b</span><span class="s2">&quot;somedata&quot;</span><span class="p">,</span> <span class="n">digestmod</span><span class="o">=</span><span class="n">hashlib</span><span class="o">.</span><span class="n">sha512</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mac1</span><span class="o">.</span><span class="n">digest</span><span class="p">()</span> <span class="o">==</span> <span class="n">mac2</span><span class="o">.</span><span class="n">digest</span><span class="p">()</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified added">在 3.11 版本新加入.</span></p>
+</div>
 </dd></dl>
 
 </section>
@@ -967,6 +1013,10 @@ what that means regarding their use.</p>
 <li><a class="reference internal" href="#hashlib.shake.hexdigest"><code class="docutils literal notranslate"><span class="pre">shake.hexdigest()</span></code></a></li>
 </ul>
 </li>
+<li><a class="reference internal" href="#file-hashing">File hashing</a><ul>
+<li><a class="reference internal" href="#hashlib.file_digest"><code class="docutils literal notranslate"><span class="pre">file_digest()</span></code></a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#key-derivation">Key derivation</a><ul>
 <li><a class="reference internal" href="#hashlib.pbkdf2_hmac"><code class="docutils literal notranslate"><span class="pre">pbkdf2_hmac()</span></code></a></li>
 <li><a class="reference internal" href="#hashlib.scrypt"><code class="docutils literal notranslate"><span class="pre">scrypt()</span></code></a></li>
@@ -1021,7 +1071,7 @@ what that means regarding their use.</p>
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.10/Doc/library/hashlib.rst"
+        <a href="https://github.com/python/cpython/blob/main/Doc/library/hashlib.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -1061,7 +1111,7 @@ what that means regarding their use.</p>
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.8 Documentation</a> &#187;
+      <a href="../index.html">3.11.0rc2 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -1098,7 +1148,7 @@ what that means regarding their use.</p>
 <br />
     <br />
 
-    最後更新於 10月 15, 2022。
+    最後更新於 10月 16, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 

@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>dbm --- Interfaces to Unix &#34;databases&#34; &#8212; Python 3.10.8 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>dbm --- Interfaces to Unix &#34;databases&#34; &#8212; Python 3.11.0rc2 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -22,7 +22,7 @@
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.10.8 說明文件 中搜尋"
+          title="在 Python 3.11.0rc2 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -123,7 +123,7 @@
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.10/Doc/library/dbm.rst"
+        <a href="https://github.com/python/cpython/blob/main/Doc/library/dbm.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -160,7 +160,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.8 Documentation</a> &#187;
+      <a href="../index.html">3.11.0rc2 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -190,7 +190,7 @@
             
   <section id="module-dbm">
 <span id="dbm-interfaces-to-unix-databases"></span><h1><a class="reference internal" href="#module-dbm" title="dbm: Interfaces to various Unix &quot;database&quot; formats."><code class="xref py py-mod docutils literal notranslate"><span class="pre">dbm</span></code></a> --- Interfaces to Unix &quot;databases&quot;<a class="headerlink" href="#module-dbm" title="本標頭的永久連結">¶</a></h1>
-<p><strong>原始碼：</strong><a class="reference external" href="https://github.com/python/cpython/tree/3.10/Lib/dbm/__init__.py">Lib/dbm/__init__.py</a></p>
+<p><strong>原始碼：</strong><a class="reference external" href="https://github.com/python/cpython/tree/3.11/Lib/dbm/__init__.py">Lib/dbm/__init__.py</a></p>
 <hr class="docutils" />
 <p><a class="reference internal" href="#module-dbm" title="dbm: Interfaces to various Unix &quot;database&quot; formats."><code class="xref py py-mod docutils literal notranslate"><span class="pre">dbm</span></code></a> is a generic interface to variants of the DBM database ---
 <a class="reference internal" href="#module-dbm.gnu" title="dbm.gnu: GNU's reinterpretation of dbm. (Unix)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">dbm.gnu</span></code></a> or <a class="reference internal" href="#module-dbm.ndbm" title="dbm.ndbm: The standard &quot;database&quot; interface, based on ndbm. (Unix)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">dbm.ndbm</span></code></a>.  If none of these modules is installed, the
@@ -217,6 +217,9 @@ file's format can't be guessed; or a string containing the required module
 name, such as <code class="docutils literal notranslate"><span class="pre">'dbm.ndbm'</span></code> or <code class="docutils literal notranslate"><span class="pre">'dbm.gnu'</span></code>.</p>
 </dd></dl>
 
+<div class="versionchanged">
+<p><span class="versionmodified changed">在 3.11 版本變更: </span>Accepts <a class="reference internal" href="../glossary.html#term-path-like-object"><span class="xref std std-term">path-like object</span></a> for filename.</p>
+</div>
 <dl class="py function">
 <dt class="sig sig-object py" id="dbm.open">
 <span class="sig-prename descclassname"><span class="pre">dbm.</span></span><span class="sig-name descname"><span class="pre">open</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flag</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'r'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0o666</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dbm.open" title="本定義的永久連結">¶</a></dt>
@@ -266,6 +269,9 @@ available, as well as <code class="xref py py-meth docutils literal notranslate"
 <p><span class="versionmodified changed">在 3.8 版本變更: </span>Deleting a key from a read-only database raises database module specific error
 instead of <a class="reference internal" href="exceptions.html#KeyError" title="KeyError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">KeyError</span></code></a>.</p>
 </div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">在 3.11 版本變更: </span>Accepts <a class="reference internal" href="../glossary.html#term-path-like-object"><span class="xref std std-term">path-like object</span></a> for file.</p>
+</div>
 <p>Key and values are always stored as bytes. This means that when
 strings are used they are implicitly converted to the default encoding before
 being stored.</p>
@@ -312,7 +318,7 @@ then prints out the contents of the database:</p>
 <p>The individual submodules are described in the following sections.</p>
 <section id="module-dbm.gnu">
 <span id="dbm-gnu-gnu-s-reinterpretation-of-dbm"></span><h2><a class="reference internal" href="#module-dbm.gnu" title="dbm.gnu: GNU's reinterpretation of dbm. (Unix)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">dbm.gnu</span></code></a> --- GNU's reinterpretation of dbm<a class="headerlink" href="#module-dbm.gnu" title="本標頭的永久連結">¶</a></h2>
-<p><strong>原始碼：</strong><a class="reference external" href="https://github.com/python/cpython/tree/3.10/Lib/dbm/gnu.py">Lib/dbm/gnu.py</a></p>
+<p><strong>原始碼：</strong><a class="reference external" href="https://github.com/python/cpython/tree/3.11/Lib/dbm/gnu.py">Lib/dbm/gnu.py</a></p>
 <hr class="docutils" />
 <p>This module is quite similar to the <a class="reference internal" href="#module-dbm" title="dbm: Interfaces to various Unix &quot;database&quot; formats."><code class="xref py py-mod docutils literal notranslate"><span class="pre">dbm</span></code></a> module, but uses the GNU library
 <code class="docutils literal notranslate"><span class="pre">gdbm</span></code> instead to provide some additional functionality.  Please note that the
@@ -391,6 +397,9 @@ to the file.</p></td>
 database has to be created.  It defaults to octal <code class="docutils literal notranslate"><span class="pre">0o666</span></code>.</p>
 <p>In addition to the dictionary-like methods, <code class="docutils literal notranslate"><span class="pre">gdbm</span></code> objects have the
 following methods:</p>
+<div class="versionchanged">
+<p><span class="versionmodified changed">在 3.11 版本變更: </span>Accepts <a class="reference internal" href="../glossary.html#term-path-like-object"><span class="xref std std-term">path-like object</span></a> for filename.</p>
+</div>
 <dl class="py method">
 <dt class="sig sig-object py" id="dbm.gnu.gdbm.firstkey">
 <span class="sig-prename descclassname"><span class="pre">gdbm.</span></span><span class="sig-name descname"><span class="pre">firstkey</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#dbm.gnu.gdbm.firstkey" title="本定義的永久連結">¶</a></dt>
@@ -442,7 +451,7 @@ unwritten data to be written to the disk.</p>
 </section>
 <section id="module-dbm.ndbm">
 <span id="dbm-ndbm-interface-based-on-ndbm"></span><h2><a class="reference internal" href="#module-dbm.ndbm" title="dbm.ndbm: The standard &quot;database&quot; interface, based on ndbm. (Unix)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">dbm.ndbm</span></code></a> --- Interface based on ndbm<a class="headerlink" href="#module-dbm.ndbm" title="本標頭的永久連結">¶</a></h2>
-<p><strong>原始碼：</strong><a class="reference external" href="https://github.com/python/cpython/tree/3.10/Lib/dbm/ndbm.py">Lib/dbm/ndbm.py</a></p>
+<p><strong>原始碼：</strong><a class="reference external" href="https://github.com/python/cpython/tree/3.11/Lib/dbm/ndbm.py">Lib/dbm/ndbm.py</a></p>
 <hr class="docutils" />
 <p>The <a class="reference internal" href="#module-dbm.ndbm" title="dbm.ndbm: The standard &quot;database&quot; interface, based on ndbm. (Unix)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">dbm.ndbm</span></code></a> module provides an interface to the Unix &quot;(n)dbm&quot; library.
 Dbm objects behave like mappings (dictionaries), except that keys and values are
@@ -500,6 +509,9 @@ database has to be created.  It defaults to octal <code class="docutils literal 
 modified by the prevailing umask).</p>
 <p>In addition to the dictionary-like methods, <code class="docutils literal notranslate"><span class="pre">ndbm</span></code> objects
 provide the following method:</p>
+<div class="versionchanged">
+<p><span class="versionmodified changed">在 3.11 版本變更: </span>Accepts <a class="reference internal" href="../glossary.html#term-path-like-object"><span class="xref std std-term">path-like object</span></a> for filename.</p>
+</div>
 <dl class="py method">
 <dt class="sig sig-object py" id="dbm.ndbm.ndbm.close">
 <span class="sig-prename descclassname"><span class="pre">ndbm.</span></span><span class="sig-name descname"><span class="pre">close</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#dbm.ndbm.ndbm.close" title="本定義的永久連結">¶</a></dt>
@@ -511,7 +523,7 @@ provide the following method:</p>
 </section>
 <section id="module-dbm.dumb">
 <span id="dbm-dumb-portable-dbm-implementation"></span><h2><a class="reference internal" href="#module-dbm.dumb" title="dbm.dumb: Portable implementation of the simple DBM interface."><code class="xref py py-mod docutils literal notranslate"><span class="pre">dbm.dumb</span></code></a> --- Portable DBM implementation<a class="headerlink" href="#module-dbm.dumb" title="本標頭的永久連結">¶</a></h2>
-<p><strong>原始碼：</strong><a class="reference external" href="https://github.com/python/cpython/tree/3.10/Lib/dbm/dumb.py">Lib/dbm/dumb.py</a></p>
+<p><strong>原始碼：</strong><a class="reference external" href="https://github.com/python/cpython/tree/3.11/Lib/dbm/dumb.py">Lib/dbm/dumb.py</a></p>
 <div class="admonition note" id="index-0">
 <p class="admonition-title">備註</p>
 <p>The <a class="reference internal" href="#module-dbm.dumb" title="dbm.dumb: Portable implementation of the simple DBM interface."><code class="xref py py-mod docutils literal notranslate"><span class="pre">dbm.dumb</span></code></a> module is intended as a last resort fallback for the
@@ -582,6 +594,9 @@ Python's AST compiler.</p>
 <p><span class="versionmodified changed">在 3.8 版本變更: </span>A database opened with flags <code class="docutils literal notranslate"><span class="pre">'r'</span></code> is now read-only.  Opening with
 flags <code class="docutils literal notranslate"><span class="pre">'r'</span></code> and <code class="docutils literal notranslate"><span class="pre">'w'</span></code> no longer creates a database if it does not
 exist.</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">在 3.11 版本變更: </span>Accepts <a class="reference internal" href="../glossary.html#term-path-like-object"><span class="xref std std-term">path-like object</span></a> for filename.</p>
 </div>
 <p>In addition to the methods provided by the
 <a class="reference internal" href="collections.abc.html#collections.abc.MutableMapping" title="collections.abc.MutableMapping"><code class="xref py py-class docutils literal notranslate"><span class="pre">collections.abc.MutableMapping</span></code></a> class, <code class="xref py py-class docutils literal notranslate"><span class="pre">dumbdbm</span></code> objects
@@ -662,7 +677,7 @@ by the <code class="xref py py-meth docutils literal notranslate"><span class="p
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.10/Doc/library/dbm.rst"
+        <a href="https://github.com/python/cpython/blob/main/Doc/library/dbm.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -702,7 +717,7 @@ by the <code class="xref py py-meth docutils literal notranslate"><span class="p
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.8 Documentation</a> &#187;
+      <a href="../index.html">3.11.0rc2 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -739,7 +754,7 @@ by the <code class="xref py py-meth docutils literal notranslate"><span class="p
 <br />
     <br />
 
-    最後更新於 10月 15, 2022。
+    最後更新於 10月 16, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 

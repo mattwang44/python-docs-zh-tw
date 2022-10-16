@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>re --- Regular expression operations &#8212; Python 3.10.8 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>re --- Regular expression operations &#8212; Python 3.11.0rc2 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -22,7 +22,7 @@
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.10.8 說明文件 中搜尋"
+          title="在 Python 3.11.0rc2 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -79,6 +79,7 @@
 <li><a class="reference internal" href="#regular-expression-syntax">Regular Expression Syntax</a></li>
 <li><a class="reference internal" href="#module-contents">模組內容</a><ul>
 <li><a class="reference internal" href="#flags">Flags</a><ul>
+<li><a class="reference internal" href="#re.RegexFlag"><code class="docutils literal notranslate"><span class="pre">RegexFlag</span></code></a></li>
 <li><a class="reference internal" href="#re.A"><code class="docutils literal notranslate"><span class="pre">A</span></code></a></li>
 <li><a class="reference internal" href="#re.ASCII"><code class="docutils literal notranslate"><span class="pre">ASCII</span></code></a></li>
 <li><a class="reference internal" href="#re.DEBUG"><code class="docutils literal notranslate"><span class="pre">DEBUG</span></code></a></li>
@@ -88,6 +89,7 @@
 <li><a class="reference internal" href="#re.LOCALE"><code class="docutils literal notranslate"><span class="pre">LOCALE</span></code></a></li>
 <li><a class="reference internal" href="#re.M"><code class="docutils literal notranslate"><span class="pre">M</span></code></a></li>
 <li><a class="reference internal" href="#re.MULTILINE"><code class="docutils literal notranslate"><span class="pre">MULTILINE</span></code></a></li>
+<li><a class="reference internal" href="#re.NOFLAG"><code class="docutils literal notranslate"><span class="pre">NOFLAG</span></code></a></li>
 <li><a class="reference internal" href="#re.S"><code class="docutils literal notranslate"><span class="pre">S</span></code></a></li>
 <li><a class="reference internal" href="#re.DOTALL"><code class="docutils literal notranslate"><span class="pre">DOTALL</span></code></a></li>
 <li><a class="reference internal" href="#re.X"><code class="docutils literal notranslate"><span class="pre">X</span></code></a></li>
@@ -185,7 +187,7 @@
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.10/Doc/library/re.rst"
+        <a href="https://github.com/python/cpython/blob/main/Doc/library/re.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -222,7 +224,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.8 Documentation</a> &#187;
+      <a href="../index.html">3.11.0rc2 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -252,7 +254,7 @@
             
   <section id="module-re">
 <span id="re-regular-expression-operations"></span><h1><a class="reference internal" href="#module-re" title="re: Regular expression operations."><code class="xref py py-mod docutils literal notranslate"><span class="pre">re</span></code></a> --- Regular expression operations<a class="headerlink" href="#module-re" title="本標頭的永久連結">¶</a></h1>
-<p><strong>原始碼：</strong><a class="reference external" href="https://github.com/python/cpython/tree/3.10/Lib/re.py">Lib/re.py</a></p>
+<p><strong>原始碼：</strong><a class="reference external" href="https://github.com/python/cpython/tree/3.11/Lib/re/">Lib/re/</a></p>
 <hr class="docutils" />
 <p>This module provides regular expression matching operations similar to
 those found in Perl.</p>
@@ -316,7 +318,7 @@ strings to be matched <code class="docutils literal notranslate"><span class="pr
 <p>Some characters, like <code class="docutils literal notranslate"><span class="pre">'|'</span></code> or <code class="docutils literal notranslate"><span class="pre">'('</span></code>, are special. Special
 characters either stand for classes of ordinary characters, or affect
 how the regular expressions around them are interpreted.</p>
-<p>Repetition qualifiers (<code class="docutils literal notranslate"><span class="pre">*</span></code>, <code class="docutils literal notranslate"><span class="pre">+</span></code>, <code class="docutils literal notranslate"><span class="pre">?</span></code>, <code class="docutils literal notranslate"><span class="pre">{m,n}</span></code>, etc) cannot be
+<p>Repetition operators or quantifiers (<code class="docutils literal notranslate"><span class="pre">*</span></code>, <code class="docutils literal notranslate"><span class="pre">+</span></code>, <code class="docutils literal notranslate"><span class="pre">?</span></code>, <code class="docutils literal notranslate"><span class="pre">{m,n}</span></code>, etc) cannot be
 directly nested. This avoids ambiguity with the non-greedy modifier suffix
 <code class="docutils literal notranslate"><span class="pre">?</span></code>, and with other modifiers in other implementations. To apply a second
 repetition to an inner repetition, parentheses may be used. For example,
@@ -361,16 +363,39 @@ match just 'a'.</p>
 </dd>
 </dl>
 <dl class="simple" id="index-6">
-<dt><code class="docutils literal notranslate"><span class="pre">*?</span></code>, <code class="docutils literal notranslate"><span class="pre">+?</span></code>, <code class="docutils literal notranslate"><span class="pre">??</span></code></dt><dd><p>The <code class="docutils literal notranslate"><span class="pre">'*'</span></code>, <code class="docutils literal notranslate"><span class="pre">'+'</span></code>, and <code class="docutils literal notranslate"><span class="pre">'?'</span></code> qualifiers are all <em class="dfn">greedy</em>; they match
+<dt><code class="docutils literal notranslate"><span class="pre">*?</span></code>, <code class="docutils literal notranslate"><span class="pre">+?</span></code>, <code class="docutils literal notranslate"><span class="pre">??</span></code></dt><dd><p>The <code class="docutils literal notranslate"><span class="pre">'*'</span></code>, <code class="docutils literal notranslate"><span class="pre">'+'</span></code>, and <code class="docutils literal notranslate"><span class="pre">'?'</span></code> quantifiers are all <em class="dfn">greedy</em>; they match
 as much text as possible.  Sometimes this behaviour isn't desired; if the RE
 <code class="docutils literal notranslate"><span class="pre">&lt;.*&gt;</span></code> is matched against <code class="docutils literal notranslate"><span class="pre">'&lt;a&gt;</span> <span class="pre">b</span> <span class="pre">&lt;c&gt;'</span></code>, it will match the entire
-string, and not just <code class="docutils literal notranslate"><span class="pre">'&lt;a&gt;'</span></code>.  Adding <code class="docutils literal notranslate"><span class="pre">?</span></code> after the qualifier makes it
+string, and not just <code class="docutils literal notranslate"><span class="pre">'&lt;a&gt;'</span></code>.  Adding <code class="docutils literal notranslate"><span class="pre">?</span></code> after the quantifier makes it
 perform the match in <em class="dfn">non-greedy</em> or <em class="dfn">minimal</em> fashion; as <em>few</em>
 characters as possible will be matched.  Using the RE <code class="docutils literal notranslate"><span class="pre">&lt;.*?&gt;</span></code> will match
 only <code class="docutils literal notranslate"><span class="pre">'&lt;a&gt;'</span></code>.</p>
 </dd>
 </dl>
-<dl class="simple" id="index-7">
+<dl id="index-7">
+<dt><code class="docutils literal notranslate"><span class="pre">*+</span></code>, <code class="docutils literal notranslate"><span class="pre">++</span></code>, <code class="docutils literal notranslate"><span class="pre">?+</span></code></dt><dd><p>Like the <code class="docutils literal notranslate"><span class="pre">'*'</span></code>, <code class="docutils literal notranslate"><span class="pre">'+'</span></code>, and <code class="docutils literal notranslate"><span class="pre">'?'</span></code> quantifiers, those where <code class="docutils literal notranslate"><span class="pre">'+'</span></code> is
+appended also match as many times as possible.
+However, unlike the true greedy quantifiers, these do not allow
+back-tracking when the expression following it fails to match.
+These are known as <em class="dfn">possessive</em> quantifiers.
+For example, <code class="docutils literal notranslate"><span class="pre">a*a</span></code> will match <code class="docutils literal notranslate"><span class="pre">'aaaa'</span></code> because the <code class="docutils literal notranslate"><span class="pre">a*</span></code> will match
+all 4 <code class="docutils literal notranslate"><span class="pre">'a'</span></code>s, but, when the final <code class="docutils literal notranslate"><span class="pre">'a'</span></code> is encountered, the
+expression is backtracked so that in the end the <code class="docutils literal notranslate"><span class="pre">a*</span></code> ends up matching
+3 <code class="docutils literal notranslate"><span class="pre">'a'</span></code>s total, and the fourth <code class="docutils literal notranslate"><span class="pre">'a'</span></code> is matched by the final <code class="docutils literal notranslate"><span class="pre">'a'</span></code>.
+However, when <code class="docutils literal notranslate"><span class="pre">a*+a</span></code> is used to match <code class="docutils literal notranslate"><span class="pre">'aaaa'</span></code>, the <code class="docutils literal notranslate"><span class="pre">a*+</span></code> will
+match all 4 <code class="docutils literal notranslate"><span class="pre">'a'</span></code>, but when the final <code class="docutils literal notranslate"><span class="pre">'a'</span></code> fails to find any more
+characters to match, the expression cannot be backtracked and will thus
+fail to match.
+<code class="docutils literal notranslate"><span class="pre">x*+</span></code>, <code class="docutils literal notranslate"><span class="pre">x++</span></code> and <code class="docutils literal notranslate"><span class="pre">x?+</span></code> are equivalent to <code class="docutils literal notranslate"><span class="pre">(?&gt;x*)</span></code>, <code class="docutils literal notranslate"><span class="pre">(?&gt;x+)</span></code>
+and <code class="docutils literal notranslate"><span class="pre">(?&gt;x?)</span></code> correspondingly.</p>
+<blockquote>
+<div><div class="versionadded">
+<p><span class="versionmodified added">在 3.11 版本新加入.</span></p>
+</div>
+</div></blockquote>
+</dd>
+</dl>
+<dl id="index-8">
 <dt><code class="docutils literal notranslate"><span class="pre">{m}</span></code></dt><dd><p>Specifies that exactly <em>m</em> copies of the previous RE should be matched; fewer
 matches cause the entire RE not to match.  For example, <code class="docutils literal notranslate"><span class="pre">a{6}</span></code> will match
 exactly six <code class="docutils literal notranslate"><span class="pre">'a'</span></code> characters, but not five.</p>
@@ -385,12 +410,27 @@ modifier would be confused with the previously described form.</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">{m,n}?</span></code></dt><dd><p>Causes the resulting RE to match from <em>m</em> to <em>n</em> repetitions of the preceding
 RE, attempting to match as <em>few</em> repetitions as possible.  This is the
-non-greedy version of the previous qualifier.  For example, on the
+non-greedy version of the previous quantifier.  For example, on the
 6-character string <code class="docutils literal notranslate"><span class="pre">'aaaaaa'</span></code>, <code class="docutils literal notranslate"><span class="pre">a{3,5}</span></code> will match 5 <code class="docutils literal notranslate"><span class="pre">'a'</span></code> characters,
 while <code class="docutils literal notranslate"><span class="pre">a{3,5}?</span></code> will only match 3 characters.</p>
 </dd>
+<dt><code class="docutils literal notranslate"><span class="pre">{m,n}+</span></code></dt><dd><p>Causes the resulting RE to match from <em>m</em> to <em>n</em> repetitions of the
+preceding RE, attempting to match as many repetitions as possible
+<em>without</em> establishing any backtracking points.
+This is the possessive version of the quantifier above.
+For example, on the 6-character string <code class="docutils literal notranslate"><span class="pre">'aaaaaa'</span></code>, <code class="docutils literal notranslate"><span class="pre">a{3,5}+aa</span></code>
+attempt to match 5 <code class="docutils literal notranslate"><span class="pre">'a'</span></code> characters, then, requiring 2 more <code class="docutils literal notranslate"><span class="pre">'a'</span></code>s,
+will need more characters than available and thus fail, while
+<code class="docutils literal notranslate"><span class="pre">a{3,5}aa</span></code> will match with <code class="docutils literal notranslate"><span class="pre">a{3,5}</span></code> capturing 5, then 4 <code class="docutils literal notranslate"><span class="pre">'a'</span></code>s
+by backtracking and then the final 2 <code class="docutils literal notranslate"><span class="pre">'a'</span></code>s are matched by the final
+<code class="docutils literal notranslate"><span class="pre">aa</span></code> in the pattern.
+<code class="docutils literal notranslate"><span class="pre">x{m,n}+</span></code> is equivalent to <code class="docutils literal notranslate"><span class="pre">(?&gt;x{m,n})</span></code>.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">在 3.11 版本新加入.</span></p>
+</div>
+</dd>
 </dl>
-<dl id="index-8">
+<dl id="index-9">
 <dt><code class="docutils literal notranslate"><span class="pre">\</span></code></dt><dd><p>Either escapes special characters (permitting you to match characters like
 <code class="docutils literal notranslate"><span class="pre">'*'</span></code>, <code class="docutils literal notranslate"><span class="pre">'?'</span></code>, and so forth), or signals a special sequence; special
 sequences are discussed below.</p>
@@ -403,13 +443,13 @@ is complicated and hard to understand, so it's highly recommended that you use
 raw strings for all but the simplest expressions.</p>
 </dd>
 </dl>
-<dl id="index-9">
+<dl id="index-10">
 <dt><code class="docutils literal notranslate"><span class="pre">[]</span></code></dt><dd><p>Used to indicate a set of characters.  In a set:</p>
 <ul class="simple">
 <li><p>Characters can be listed individually, e.g. <code class="docutils literal notranslate"><span class="pre">[amk]</span></code> will match <code class="docutils literal notranslate"><span class="pre">'a'</span></code>,
 <code class="docutils literal notranslate"><span class="pre">'m'</span></code>, or <code class="docutils literal notranslate"><span class="pre">'k'</span></code>.</p></li>
 </ul>
-<ul class="simple" id="index-10">
+<ul class="simple" id="index-11">
 <li><p>Ranges of characters can be indicated by giving two characters and separating
 them by a <code class="docutils literal notranslate"><span class="pre">'-'</span></code>, for example <code class="docutils literal notranslate"><span class="pre">[a-z]</span></code> will match any lowercase ASCII letter,
 <code class="docutils literal notranslate"><span class="pre">[0-5][0-9]</span></code> will match all the two-digits numbers from <code class="docutils literal notranslate"><span class="pre">00</span></code> to <code class="docutils literal notranslate"><span class="pre">59</span></code>, and
@@ -420,12 +460,12 @@ them by a <code class="docutils literal notranslate"><span class="pre">'-'</span
 <code class="docutils literal notranslate"><span class="pre">[(+*)]</span></code> will match any of the literal characters <code class="docutils literal notranslate"><span class="pre">'('</span></code>, <code class="docutils literal notranslate"><span class="pre">'+'</span></code>,
 <code class="docutils literal notranslate"><span class="pre">'*'</span></code>, or <code class="docutils literal notranslate"><span class="pre">')'</span></code>.</p></li>
 </ul>
-<ul class="simple" id="index-11">
+<ul class="simple" id="index-12">
 <li><p>Character classes such as <code class="docutils literal notranslate"><span class="pre">\w</span></code> or <code class="docutils literal notranslate"><span class="pre">\S</span></code> (defined below) are also accepted
 inside a set, although the characters they match depends on whether
 <a class="reference internal" href="#re.ASCII" title="re.ASCII"><code class="xref py py-const docutils literal notranslate"><span class="pre">ASCII</span></code></a> or <a class="reference internal" href="#re.LOCALE" title="re.LOCALE"><code class="xref py py-const docutils literal notranslate"><span class="pre">LOCALE</span></code></a> mode is in force.</p></li>
 </ul>
-<ul class="simple" id="index-12">
+<ul class="simple" id="index-13">
 <li><p>Characters that are not within a range can be matched by <em class="dfn">complementing</em>
 the set.  If the first character of the set is <code class="docutils literal notranslate"><span class="pre">'^'</span></code>, all the characters
 that are <em>not</em> in the set will be matched.  For example, <code class="docutils literal notranslate"><span class="pre">[^5]</span></code> will match
@@ -451,7 +491,7 @@ that will change semantically in the future.</p>
 </div>
 </dd>
 </dl>
-<dl class="simple" id="index-13">
+<dl class="simple" id="index-14">
 <dt><code class="docutils literal notranslate"><span class="pre">|</span></code></dt><dd><p><code class="docutils literal notranslate"><span class="pre">A|B</span></code>, where <em>A</em> and <em>B</em> can be arbitrary REs, creates a regular expression that
 will match either <em>A</em> or <em>B</em>.  An arbitrary number of REs can be separated by the
 <code class="docutils literal notranslate"><span class="pre">'|'</span></code> in this way.  This can be used inside groups (see below) as well.  As
@@ -463,7 +503,7 @@ greedy.  To match a literal <code class="docutils literal notranslate"><span cla
 character class, as in <code class="docutils literal notranslate"><span class="pre">[|]</span></code>.</p>
 </dd>
 </dl>
-<dl class="simple" id="index-14">
+<dl class="simple" id="index-15">
 <dt><code class="docutils literal notranslate"><span class="pre">(...)</span></code></dt><dd><p>Matches whatever regular expression is inside the parentheses, and indicates the
 start and end of a group; the contents of a group can be retrieved after a match
 has been performed, and can be matched later in the string with the <code class="docutils literal notranslate"><span class="pre">\number</span></code>
@@ -471,7 +511,7 @@ special sequence, described below.  To match the literals <code class="docutils 
 use <code class="docutils literal notranslate"><span class="pre">\(</span></code> or <code class="docutils literal notranslate"><span class="pre">\)</span></code>, or enclose them inside a character class: <code class="docutils literal notranslate"><span class="pre">[(]</span></code>, <code class="docutils literal notranslate"><span class="pre">[)]</span></code>.</p>
 </dd>
 </dl>
-<dl class="simple" id="index-15">
+<dl id="index-16">
 <dt><code class="docutils literal notranslate"><span class="pre">(?...)</span></code></dt><dd><p>This is an extension notation (a <code class="docutils literal notranslate"><span class="pre">'?'</span></code> following a <code class="docutils literal notranslate"><span class="pre">'('</span></code> is not meaningful
 otherwise).  The first character after the <code class="docutils literal notranslate"><span class="pre">'?'</span></code> determines what the meaning
 and further syntax of the construct is. Extensions usually do not create a new
@@ -490,9 +530,12 @@ This is useful if you wish to include the flags as part of the
 regular expression, instead of passing a <em>flag</em> argument to the
 <a class="reference internal" href="#re.compile" title="re.compile"><code class="xref py py-func docutils literal notranslate"><span class="pre">re.compile()</span></code></a> function.  Flags should be used first in the
 expression string.</p>
+<div class="versionchanged">
+<p><span class="versionmodified changed">在 3.11 版本變更: </span>This construction can only be used at the start of the expression.</p>
+</div>
 </dd>
 </dl>
-<dl id="index-16">
+<dl id="index-17">
 <dt><code class="docutils literal notranslate"><span class="pre">(?:...)</span></code></dt><dd><p>A non-capturing version of regular parentheses.  Matches whatever regular
 expression is inside the parentheses, but the substring matched by the group
 <em>cannot</em> be retrieved after performing a match or referenced later in the
@@ -523,8 +566,23 @@ original matching mode is restored outside of the group.</p>
 <p><span class="versionmodified changed">在 3.7 版本變更: </span>The letters <code class="docutils literal notranslate"><span class="pre">'a'</span></code>, <code class="docutils literal notranslate"><span class="pre">'L'</span></code> and <code class="docutils literal notranslate"><span class="pre">'u'</span></code> also can be used in a group.</p>
 </div>
 </dd>
+<dt><code class="docutils literal notranslate"><span class="pre">(?&gt;...)</span></code></dt><dd><p>Attempts to match <code class="docutils literal notranslate"><span class="pre">...</span></code> as if it was a separate regular expression, and
+if successful, continues to match the rest of the pattern following it.
+If the subsequent pattern fails to match, the stack can only be unwound
+to a point <em>before</em> the <code class="docutils literal notranslate"><span class="pre">(?&gt;...)</span></code> because once exited, the expression,
+known as an <em class="dfn">atomic group</em>, has thrown away all stack points within
+itself.
+Thus, <code class="docutils literal notranslate"><span class="pre">(?&gt;.*).</span></code> would never match anything because first the <code class="docutils literal notranslate"><span class="pre">.*</span></code>
+would match all characters possible, then, having nothing left to match,
+the final <code class="docutils literal notranslate"><span class="pre">.</span></code> would fail to match.
+Since there are no stack points saved in the Atomic Group, and there is
+no stack point before it, the entire expression would thus fail to match.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">在 3.11 版本新加入.</span></p>
+</div>
+</dd>
 </dl>
-<dl id="index-17">
+<dl id="index-18">
 <dt><code class="docutils literal notranslate"><span class="pre">(?P&lt;name&gt;...)</span></code></dt><dd><p>Similar to regular parentheses, but the substring matched by the group is
 accessible via the symbolic group name <em>name</em>.  Group names must be valid
 Python identifiers, and each group name must be defined only once within a
@@ -565,30 +623,33 @@ argument of <code class="docutils literal notranslate"><span class="pre">re.sub(
 </tr>
 </tbody>
 </table>
+<div class="deprecated">
+<p><span class="versionmodified deprecated">在 3.11 版本開始棄用: </span>Group names containing non-ASCII characters in bytes patterns.</p>
+</div>
 </dd>
 </dl>
-<dl class="simple" id="index-18">
+<dl class="simple" id="index-19">
 <dt><code class="docutils literal notranslate"><span class="pre">(?P=name)</span></code></dt><dd><p>A backreference to a named group; it matches whatever text was matched by the
 earlier group named <em>name</em>.</p>
 </dd>
 </dl>
-<dl class="simple" id="index-19">
+<dl class="simple" id="index-20">
 <dt><code class="docutils literal notranslate"><span class="pre">(?#...)</span></code></dt><dd><p>A comment; the contents of the parentheses are simply ignored.</p>
 </dd>
 </dl>
-<dl class="simple" id="index-20">
+<dl class="simple" id="index-21">
 <dt><code class="docutils literal notranslate"><span class="pre">(?=...)</span></code></dt><dd><p>Matches if <code class="docutils literal notranslate"><span class="pre">...</span></code> matches next, but doesn't consume any of the string.  This is
 called a <em class="dfn">lookahead assertion</em>.  For example, <code class="docutils literal notranslate"><span class="pre">Isaac</span> <span class="pre">(?=Asimov)</span></code> will match
 <code class="docutils literal notranslate"><span class="pre">'Isaac</span> <span class="pre">'</span></code> only if it's followed by <code class="docutils literal notranslate"><span class="pre">'Asimov'</span></code>.</p>
 </dd>
 </dl>
-<dl class="simple" id="index-21">
+<dl class="simple" id="index-22">
 <dt><code class="docutils literal notranslate"><span class="pre">(?!...)</span></code></dt><dd><p>Matches if <code class="docutils literal notranslate"><span class="pre">...</span></code> doesn't match next.  This is a <em class="dfn">negative lookahead assertion</em>.
 For example, <code class="docutils literal notranslate"><span class="pre">Isaac</span> <span class="pre">(?!Asimov)</span></code> will match <code class="docutils literal notranslate"><span class="pre">'Isaac</span> <span class="pre">'</span></code> only if it's <em>not</em>
 followed by <code class="docutils literal notranslate"><span class="pre">'Asimov'</span></code>.</p>
 </dd>
 </dl>
-<dl id="index-22">
+<dl id="index-23">
 <dt><code class="docutils literal notranslate"><span class="pre">(?&lt;=...)</span></code></dt><dd><p>Matches if the current position in the string is preceded by a match for <code class="docutils literal notranslate"><span class="pre">...</span></code>
 that ends at the current position.  This is called a <em class="dfn">positive lookbehind
 assertion</em>. <code class="docutils literal notranslate"><span class="pre">(?&lt;=abc)def</span></code> will find a match in <code class="docutils literal notranslate"><span class="pre">'abcdef'</span></code>, since the
@@ -615,7 +676,7 @@ beginning of the string being searched; you will most likely want to use the
 </div>
 </dd>
 </dl>
-<dl class="simple" id="index-23">
+<dl id="index-24">
 <dt><code class="docutils literal notranslate"><span class="pre">(?&lt;!...)</span></code></dt><dd><p>Matches if the current position in the string is not preceded by a match for
 <code class="docutils literal notranslate"><span class="pre">...</span></code>.  This is called a <em class="dfn">negative lookbehind assertion</em>.  Similar to
 positive lookbehind assertions, the contained pattern must only match strings of
@@ -628,13 +689,16 @@ optional and can be omitted. For example,
 <code class="docutils literal notranslate"><span class="pre">(&lt;)?(\w+&#64;\w+(?:\.\w+)+)(?(1)&gt;|$)</span></code> is a poor email matching pattern, which
 will match with <code class="docutils literal notranslate"><span class="pre">'&lt;user&#64;host.com&gt;'</span></code> as well as <code class="docutils literal notranslate"><span class="pre">'user&#64;host.com'</span></code>, but
 not with <code class="docutils literal notranslate"><span class="pre">'&lt;user&#64;host.com'</span></code> nor <code class="docutils literal notranslate"><span class="pre">'user&#64;host.com&gt;'</span></code>.</p>
+<div class="deprecated">
+<p><span class="versionmodified deprecated">在 3.11 版本開始棄用: </span>Group <em>id</em> containing anything except ASCII digits.</p>
+</div>
 </dd>
 </dl>
 <p>The special sequences consist of <code class="docutils literal notranslate"><span class="pre">'\'</span></code> and a character from the list below.
 If the ordinary character is not an ASCII digit or an ASCII letter, then the
 resulting RE will match the second character.  For example, <code class="docutils literal notranslate"><span class="pre">\$</span></code> matches the
 character <code class="docutils literal notranslate"><span class="pre">'$'</span></code>.</p>
-<dl class="simple" id="index-24">
+<dl class="simple" id="index-25">
 <dt><code class="docutils literal notranslate"><span class="pre">\number</span></code></dt><dd><p>Matches the contents of the group of the same number.  Groups are numbered
 starting from 1.  For example, <code class="docutils literal notranslate"><span class="pre">(.+)</span> <span class="pre">\1</span></code> matches <code class="docutils literal notranslate"><span class="pre">'the</span> <span class="pre">the'</span></code> or <code class="docutils literal notranslate"><span class="pre">'55</span> <span class="pre">55'</span></code>,
 but not <code class="docutils literal notranslate"><span class="pre">'thethe'</span></code> (note the space after the group).  This special sequence
@@ -645,11 +709,11 @@ a group match, but as the character with octal value <em>number</em>. Inside the
 characters.</p>
 </dd>
 </dl>
-<dl class="simple" id="index-25">
+<dl class="simple" id="index-26">
 <dt><code class="docutils literal notranslate"><span class="pre">\A</span></code></dt><dd><p>Matches only at the start of the string.</p>
 </dd>
 </dl>
-<dl id="index-26">
+<dl id="index-27">
 <dt><code class="docutils literal notranslate"><span class="pre">\b</span></code></dt><dd><p>Matches the empty string, but only at the beginning or end of a word.
 A word is defined as a sequence of word characters.  Note that formally,
 <code class="docutils literal notranslate"><span class="pre">\b</span></code> is defined as the boundary between a <code class="docutils literal notranslate"><span class="pre">\w</span></code> and a <code class="docutils literal notranslate"><span class="pre">\W</span></code> character
@@ -663,7 +727,7 @@ Inside a character range, <code class="docutils literal notranslate"><span class
 compatibility with Python's string literals.</p>
 </dd>
 </dl>
-<dl class="simple" id="index-27">
+<dl class="simple" id="index-28">
 <dt><code class="docutils literal notranslate"><span class="pre">\B</span></code></dt><dd><p>Matches the empty string, but only when it is <em>not</em> at the beginning or end
 of a word.  This means that <code class="docutils literal notranslate"><span class="pre">r'py\B'</span></code> matches <code class="docutils literal notranslate"><span class="pre">'python'</span></code>, <code class="docutils literal notranslate"><span class="pre">'py3'</span></code>,
 <code class="docutils literal notranslate"><span class="pre">'py2'</span></code>, but not <code class="docutils literal notranslate"><span class="pre">'py'</span></code>, <code class="docutils literal notranslate"><span class="pre">'py.'</span></code>, or <code class="docutils literal notranslate"><span class="pre">'py!'</span></code>.
@@ -673,7 +737,7 @@ be changed by using the <a class="reference internal" href="#re.ASCII" title="re
 determined by the current locale if the <a class="reference internal" href="#re.LOCALE" title="re.LOCALE"><code class="xref py py-const docutils literal notranslate"><span class="pre">LOCALE</span></code></a> flag is used.</p>
 </dd>
 </dl>
-<dl class="simple" id="index-28">
+<dl class="simple" id="index-29">
 <dt><code class="docutils literal notranslate"><span class="pre">\d</span></code></dt><dd><dl class="simple">
 <dt>For Unicode (str) patterns:</dt><dd><p>Matches any Unicode decimal digit (that is, any character in
 Unicode character category [Nd]).  This includes <code class="docutils literal notranslate"><span class="pre">[0-9]</span></code>, and
@@ -685,13 +749,13 @@ used only <code class="docutils literal notranslate"><span class="pre">[0-9]</sp
 </dl>
 </dd>
 </dl>
-<dl class="simple" id="index-29">
+<dl class="simple" id="index-30">
 <dt><code class="docutils literal notranslate"><span class="pre">\D</span></code></dt><dd><p>Matches any character which is not a decimal digit. This is
 the opposite of <code class="docutils literal notranslate"><span class="pre">\d</span></code>. If the <a class="reference internal" href="#re.ASCII" title="re.ASCII"><code class="xref py py-const docutils literal notranslate"><span class="pre">ASCII</span></code></a> flag is used this
 becomes the equivalent of <code class="docutils literal notranslate"><span class="pre">[^0-9]</span></code>.</p>
 </dd>
 </dl>
-<dl class="simple" id="index-30">
+<dl class="simple" id="index-31">
 <dt><code class="docutils literal notranslate"><span class="pre">\s</span></code></dt><dd><dl class="simple">
 <dt>For Unicode (str) patterns:</dt><dd><p>Matches Unicode whitespace characters (which includes
 <code class="docutils literal notranslate"><span class="pre">[</span> <span class="pre">\t\n\r\f\v]</span></code>, and also many other characters, for example the
@@ -705,13 +769,13 @@ this is equivalent to <code class="docutils literal notranslate"><span class="pr
 </dl>
 </dd>
 </dl>
-<dl class="simple" id="index-31">
+<dl class="simple" id="index-32">
 <dt><code class="docutils literal notranslate"><span class="pre">\S</span></code></dt><dd><p>Matches any character which is not a whitespace character. This is
 the opposite of <code class="docutils literal notranslate"><span class="pre">\s</span></code>. If the <a class="reference internal" href="#re.ASCII" title="re.ASCII"><code class="xref py py-const docutils literal notranslate"><span class="pre">ASCII</span></code></a> flag is used this
 becomes the equivalent of <code class="docutils literal notranslate"><span class="pre">[^</span> <span class="pre">\t\n\r\f\v]</span></code>.</p>
 </dd>
 </dl>
-<dl class="simple" id="index-32">
+<dl class="simple" id="index-33">
 <dt><code class="docutils literal notranslate"><span class="pre">\w</span></code></dt><dd><dl class="simple">
 <dt>For Unicode (str) patterns:</dt><dd><p>Matches Unicode word characters; this includes most characters
 that can be part of a word in any language, as well as numbers and
@@ -726,7 +790,7 @@ and the underscore.</p>
 </dl>
 </dd>
 </dl>
-<dl class="simple" id="index-33">
+<dl class="simple" id="index-34">
 <dt><code class="docutils literal notranslate"><span class="pre">\W</span></code></dt><dd><p>Matches any character which is not a word character. This is
 the opposite of <code class="docutils literal notranslate"><span class="pre">\w</span></code>. If the <a class="reference internal" href="#re.ASCII" title="re.ASCII"><code class="xref py py-const docutils literal notranslate"><span class="pre">ASCII</span></code></a> flag is used this
 becomes the equivalent of <code class="docutils literal notranslate"><span class="pre">[^a-zA-Z0-9_]</span></code>.  If the <a class="reference internal" href="#re.LOCALE" title="re.LOCALE"><code class="xref py py-const docutils literal notranslate"><span class="pre">LOCALE</span></code></a> flag is
@@ -734,11 +798,11 @@ used, matches characters which are neither alphanumeric in the current locale
 nor the underscore.</p>
 </dd>
 </dl>
-<dl class="simple" id="index-34">
+<dl class="simple" id="index-35">
 <dt><code class="docutils literal notranslate"><span class="pre">\Z</span></code></dt><dd><p>Matches only at the end of the string.</p>
 </dd>
 </dl>
-<p id="index-35">Most of the standard escapes supported by Python string literals are also
+<p id="index-36">Most of the standard escapes supported by Python string literals are also
 accepted by the regular expression parser:</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span>\<span class="n">a</span>      \<span class="n">b</span>      \<span class="n">f</span>      \<span class="n">n</span>
 \<span class="n">N</span>      \<span class="n">r</span>      \<span class="n">t</span>      \<span class="n">u</span>
@@ -774,9 +838,18 @@ form.</p>
 <section id="flags">
 <h3>Flags<a class="headerlink" href="#flags" title="本標頭的永久連結">¶</a></h3>
 <div class="versionchanged">
-<p><span class="versionmodified changed">在 3.6 版本變更: </span>Flag constants are now instances of <code class="xref py py-class docutils literal notranslate"><span class="pre">RegexFlag</span></code>, which is a subclass of
+<p><span class="versionmodified changed">在 3.6 版本變更: </span>Flag constants are now instances of <a class="reference internal" href="#re.RegexFlag" title="re.RegexFlag"><code class="xref py py-class docutils literal notranslate"><span class="pre">RegexFlag</span></code></a>, which is a subclass of
 <a class="reference internal" href="enum.html#enum.IntFlag" title="enum.IntFlag"><code class="xref py py-class docutils literal notranslate"><span class="pre">enum.IntFlag</span></code></a>.</p>
 </div>
+<dl class="py class">
+<dt class="sig sig-object py" id="re.RegexFlag">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">re.</span></span><span class="sig-name descname"><span class="pre">RegexFlag</span></span><a class="headerlink" href="#re.RegexFlag" title="本定義的永久連結">¶</a></dt>
+<dd><p>An <a class="reference internal" href="enum.html#enum.IntFlag" title="enum.IntFlag"><code class="xref py py-class docutils literal notranslate"><span class="pre">enum.IntFlag</span></code></a> class containing the regex options listed below.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">在 3.11 版本新加入: </span>- added to <code class="docutils literal notranslate"><span class="pre">__all__</span></code></p>
+</div>
+</dd></dl>
+
 <dl class="py data">
 <dt class="sig sig-object py" id="re.A">
 <span class="sig-prename descclassname"><span class="pre">re.</span></span><span class="sig-name descname"><span class="pre">A</span></span><a class="headerlink" href="#re.A" title="本定義的永久連結">¶</a></dt>
@@ -859,6 +932,22 @@ Corresponds to the inline flag <code class="docutils literal notranslate"><span 
 </dd></dl>
 
 <dl class="py data">
+<dt class="sig sig-object py" id="re.NOFLAG">
+<span class="sig-prename descclassname"><span class="pre">re.</span></span><span class="sig-name descname"><span class="pre">NOFLAG</span></span><a class="headerlink" href="#re.NOFLAG" title="本定義的永久連結">¶</a></dt>
+<dd><p>Indicates no flag being applied, the value is <code class="docutils literal notranslate"><span class="pre">0</span></code>.  This flag may be used
+as a default value for a function keyword argument or as a base value that
+will be conditionally ORed with other flags.  Example of use as a default
+value:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">myfunc</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">flag</span><span class="o">=</span><span class="n">re</span><span class="o">.</span><span class="n">NOFLAG</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">flag</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified added">在 3.11 版本新加入.</span></p>
+</div>
+</dd></dl>
+
+<dl class="py data">
 <dt class="sig sig-object py" id="re.S">
 <span class="sig-prename descclassname"><span class="pre">re.</span></span><span class="sig-name descname"><span class="pre">S</span></span><a class="headerlink" href="#re.S" title="本定義的永久連結">¶</a></dt>
 <dt class="sig sig-object py" id="re.DOTALL">
@@ -873,7 +962,7 @@ Corresponds to the inline flag <code class="docutils literal notranslate"><span 
 <span class="sig-prename descclassname"><span class="pre">re.</span></span><span class="sig-name descname"><span class="pre">X</span></span><a class="headerlink" href="#re.X" title="本定義的永久連結">¶</a></dt>
 <dt class="sig sig-object py" id="re.VERBOSE">
 <span class="sig-prename descclassname"><span class="pre">re.</span></span><span class="sig-name descname"><span class="pre">VERBOSE</span></span><a class="headerlink" href="#re.VERBOSE" title="本定義的永久連結">¶</a></dt>
-<dd><p id="index-36">This flag allows you to write regular expressions that look nicer and are
+<dd><p id="index-37">This flag allows you to write regular expressions that look nicer and are
 more readable by allowing you to visually separate logical sections of the
 pattern and add comments. Whitespace within the pattern is ignored, except
 when in a character class, or when preceded by an unescaped backslash,
@@ -1076,7 +1165,7 @@ replaced; <em>count</em> must be a non-negative integer.  If omitted or zero, al
 occurrences will be replaced. Empty matches for the pattern are replaced only
 when not adjacent to a previous empty match, so <code class="docutils literal notranslate"><span class="pre">sub('x*',</span> <span class="pre">'-',</span> <span class="pre">'abxd')</span></code> returns
 <code class="docutils literal notranslate"><span class="pre">'-a-b--d-'</span></code>.</p>
-<p id="index-37">In string-type <em>repl</em> arguments, in addition to the character escapes and
+<p id="index-38">In string-type <em>repl</em> arguments, in addition to the character escapes and
 backreferences described above,
 <code class="docutils literal notranslate"><span class="pre">\g&lt;name&gt;</span></code> will use the substring matched by the group named <code class="docutils literal notranslate"><span class="pre">name</span></code>, as
 defined by the <code class="docutils literal notranslate"><span class="pre">(?P&lt;name&gt;...)</span></code> syntax. <code class="docutils literal notranslate"><span class="pre">\g&lt;number&gt;</span></code> uses the corresponding
@@ -1102,6 +1191,10 @@ now are errors.</p>
 <div class="versionchanged">
 <p><span class="versionmodified changed">在 3.7 版本變更: </span>Empty matches for the pattern are replaced when adjacent to a previous
 non-empty match.</p>
+</div>
+<div class="deprecated">
+<p><span class="versionmodified deprecated">在 3.11 版本開始棄用: </span>Group <em>id</em> containing anything except ASCII digits.
+Group names containing non-ASCII characters in bytes replacement strings.</p>
 </div>
 </dd></dl>
 
@@ -1437,6 +1530,14 @@ an individual group from a match:</p>
 <span class="go">&#39;Newton&#39;</span>
 </pre></div>
 </div>
+<p>Named groups are supported as well:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">m</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;(?P&lt;first_name&gt;\w+) (?P&lt;last_name&gt;\w+)&quot;</span><span class="p">,</span> <span class="s2">&quot;Isaac Newton&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span><span class="p">[</span><span class="s1">&#39;first_name&#39;</span><span class="p">]</span>
+<span class="go">&#39;Isaac&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span><span class="p">[</span><span class="s1">&#39;last_name&#39;</span><span class="p">]</span>
+<span class="go">&#39;Newton&#39;</span>
+</pre></div>
+</div>
 <div class="versionadded">
 <p><span class="versionmodified added">在 3.6 版本新加入.</span></p>
 </div>
@@ -1620,7 +1721,7 @@ To match this with a regular expression, one could use backreferences as such:</
 </section>
 <section id="simulating-scanf">
 <h3>Simulating scanf()<a class="headerlink" href="#simulating-scanf" title="本標頭的永久連結">¶</a></h3>
-<p id="index-38">Python does not currently have an equivalent to <code class="xref c c-func docutils literal notranslate"><span class="pre">scanf()</span></code>.  Regular
+<p id="index-39">Python does not currently have an equivalent to <code class="xref c c-func docutils literal notranslate"><span class="pre">scanf()</span></code>.  Regular
 expressions are generally more powerful, though also more verbose, than
 <code class="xref c c-func docutils literal notranslate"><span class="pre">scanf()</span></code> format strings.  The table below offers some more-or-less
 equivalent mappings between <code class="xref c c-func docutils literal notranslate"><span class="pre">scanf()</span></code> format tokens and regular
@@ -1928,6 +2029,7 @@ great detail.</p>
 <li><a class="reference internal" href="#regular-expression-syntax">Regular Expression Syntax</a></li>
 <li><a class="reference internal" href="#module-contents">模組內容</a><ul>
 <li><a class="reference internal" href="#flags">Flags</a><ul>
+<li><a class="reference internal" href="#re.RegexFlag"><code class="docutils literal notranslate"><span class="pre">RegexFlag</span></code></a></li>
 <li><a class="reference internal" href="#re.A"><code class="docutils literal notranslate"><span class="pre">A</span></code></a></li>
 <li><a class="reference internal" href="#re.ASCII"><code class="docutils literal notranslate"><span class="pre">ASCII</span></code></a></li>
 <li><a class="reference internal" href="#re.DEBUG"><code class="docutils literal notranslate"><span class="pre">DEBUG</span></code></a></li>
@@ -1937,6 +2039,7 @@ great detail.</p>
 <li><a class="reference internal" href="#re.LOCALE"><code class="docutils literal notranslate"><span class="pre">LOCALE</span></code></a></li>
 <li><a class="reference internal" href="#re.M"><code class="docutils literal notranslate"><span class="pre">M</span></code></a></li>
 <li><a class="reference internal" href="#re.MULTILINE"><code class="docutils literal notranslate"><span class="pre">MULTILINE</span></code></a></li>
+<li><a class="reference internal" href="#re.NOFLAG"><code class="docutils literal notranslate"><span class="pre">NOFLAG</span></code></a></li>
 <li><a class="reference internal" href="#re.S"><code class="docutils literal notranslate"><span class="pre">S</span></code></a></li>
 <li><a class="reference internal" href="#re.DOTALL"><code class="docutils literal notranslate"><span class="pre">DOTALL</span></code></a></li>
 <li><a class="reference internal" href="#re.X"><code class="docutils literal notranslate"><span class="pre">X</span></code></a></li>
@@ -2034,7 +2137,7 @@ great detail.</p>
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.10/Doc/library/re.rst"
+        <a href="https://github.com/python/cpython/blob/main/Doc/library/re.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -2074,7 +2177,7 @@ great detail.</p>
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.8 Documentation</a> &#187;
+      <a href="../index.html">3.11.0rc2 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -2111,7 +2214,7 @@ great detail.</p>
 <br />
     <br />
 
-    最後更新於 10月 15, 2022。
+    最後更新於 10月 16, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 

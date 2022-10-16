@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>Unicode物件與編碼 &#8212; Python 3.10.8 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unicode物件與編碼 &#8212; Python 3.11.0rc2 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -22,7 +22,7 @@
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.10.8 說明文件 中搜尋"
+          title="在 Python 3.11.0rc2 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -122,7 +122,7 @@
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.10/Doc/c-api/unicode.rst"
+        <a href="https://github.com/python/cpython/blob/main/Doc/c-api/unicode.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -159,7 +159,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.8 Documentation</a> &#187;
+      <a href="../index.html">3.11.0rc2 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python/C API 參考手冊</a> &#187;</li>
@@ -269,8 +269,8 @@ that deal with Unicode objects take and return <a class="reference internal" hre
 is exposed to Python code as <code class="docutils literal notranslate"><span class="pre">str</span></code>.</p>
 </dd></dl>
 
-<p>The following APIs are really C macros and can be used to do fast checks and to
-access internal read-only data of Unicode objects:</p>
+<p>The following APIs are C macros and static inlined functions for fast checks and
+access to internal read-only data of Unicode objects:</p>
 <dl class="c function">
 <dt class="sig sig-object c" id="c.PyUnicode_Check">
 <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PyUnicode_Check</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">o</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.PyUnicode_Check" title="本定義的永久連結">¶</a><br /></dt>
@@ -347,7 +347,7 @@ canonical representation has the correct character size; use
 
 <dl class="c function">
 <dt class="sig sig-object c" id="c.PyUnicode_KIND">
-<span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PyUnicode_KIND</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">o</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.PyUnicode_KIND" title="本定義的永久連結">¶</a><br /></dt>
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PyUnicode_KIND</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">o</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.PyUnicode_KIND" title="本定義的永久連結">¶</a><br /></dt>
 <dd><p>Return one of the PyUnicode kind constants (see above) that indicate how many
 bytes per character this Unicode object uses to store its data.  <em>o</em> has to
 be a Unicode object in the &quot;canonical&quot; representation (not checked).</p>
@@ -370,9 +370,9 @@ object in the &quot;canonical&quot; representation (not checked).</p>
 <dt class="sig sig-object c" id="c.PyUnicode_WRITE">
 <span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PyUnicode_WRITE</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n"><span class="pre">kind</span></span>, <span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">data</span></span>, <a class="reference internal" href="intro.html#c.Py_ssize_t" title="Py_ssize_t"><span class="n"><span class="pre">Py_ssize_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">index</span></span>, <a class="reference internal" href="#c.Py_UCS4" title="Py_UCS4"><span class="n"><span class="pre">Py_UCS4</span></span></a><span class="w"> </span><span class="n"><span class="pre">value</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.PyUnicode_WRITE" title="本定義的永久連結">¶</a><br /></dt>
 <dd><p>Write into a canonical representation <em>data</em> (as obtained with
-<a class="reference internal" href="#c.PyUnicode_DATA" title="PyUnicode_DATA"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyUnicode_DATA()</span></code></a>).  This macro does not do any sanity checks and is
+<a class="reference internal" href="#c.PyUnicode_DATA" title="PyUnicode_DATA"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyUnicode_DATA()</span></code></a>).  This function performs no sanity checks, and is
 intended for usage in loops.  The caller should cache the <em>kind</em> value and
-<em>data</em> pointer as obtained from other macro calls.  <em>index</em> is the index in
+<em>data</em> pointer as obtained from other calls.  <em>index</em> is the index in
 the string (starts at 0) and <em>value</em> is the new code point value which should
 be written to that location.</p>
 <div class="versionadded">
@@ -401,9 +401,9 @@ do multiple consecutive reads.</p>
 </div>
 </dd></dl>
 
-<dl class="c macro">
+<dl class="c function">
 <dt class="sig sig-object c" id="c.PyUnicode_MAX_CHAR_VALUE">
-<span class="sig-name descname"><span class="n"><span class="pre">PyUnicode_MAX_CHAR_VALUE</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">o</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.PyUnicode_MAX_CHAR_VALUE" title="本定義的永久連結">¶</a><br /></dt>
+<a class="reference internal" href="#c.Py_UCS4" title="Py_UCS4"><span class="n"><span class="pre">Py_UCS4</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PyUnicode_MAX_CHAR_VALUE</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">o</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.PyUnicode_MAX_CHAR_VALUE" title="本定義的永久連結">¶</a><br /></dt>
 <dd><p>Return the maximum code point that is suitable for creating another string
 based on <em>o</em>, which must be in the &quot;canonical&quot; representation.  This is
 always an approximation but more efficient than iterating over the string.</p>
@@ -447,7 +447,7 @@ to be truncated when used in most C functions.  The <code class="docutils litera
 casts the pointer to <span class="c-expr sig sig-inline c"><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="p">*</span></span>.  The <em>o</em> argument has to be
 a Unicode object (not checked).</p>
 <div class="versionchanged">
-<p><span class="versionmodified changed">在 3.3 版本變更: </span>This macro is now inefficient -- because in many cases the
+<p><span class="versionmodified changed">在 3.3 版本變更: </span>This function is now inefficient -- because in many cases the
 <a class="reference internal" href="#c.Py_UNICODE" title="Py_UNICODE"><code class="xref c c-type docutils literal notranslate"><span class="pre">Py_UNICODE</span></code></a> representation does not exist and needs to be created
 -- and can fail (return <code class="docutils literal notranslate"><span class="pre">NULL</span></code> with an exception set).  Try to port the
 code to use the new <code class="xref c c-func docutils literal notranslate"><span class="pre">PyUnicode_nBYTE_DATA()</span></code> macros or use
@@ -649,6 +649,11 @@ created using this function are not resizable.</p>
 <a class="reference internal" href="#c.PyUnicode_1BYTE_KIND" title="PyUnicode_1BYTE_KIND"><code class="xref c c-macro docutils literal notranslate"><span class="pre">PyUnicode_1BYTE_KIND</span></code></a> etc., as returned by
 <a class="reference internal" href="#c.PyUnicode_KIND" title="PyUnicode_KIND"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyUnicode_KIND()</span></code></a>).  The <em>buffer</em> must point to an array of <em>size</em>
 units of 1, 2 or 4 bytes per character, as given by the kind.</p>
+<p>If necessary, the input <em>buffer</em> is copied and transformed into the
+canonical representation.  For example, if the <em>buffer</em> is a UCS4 string
+(<a class="reference internal" href="#c.PyUnicode_4BYTE_KIND" title="PyUnicode_4BYTE_KIND"><code class="xref c c-macro docutils literal notranslate"><span class="pre">PyUnicode_4BYTE_KIND</span></code></a>) and it consists only of codepoints in
+the UCS1 range, it will be transformed into UCS1
+(<a class="reference internal" href="#c.PyUnicode_1BYTE_KIND" title="PyUnicode_1BYTE_KIND"><code class="xref c c-macro docutils literal notranslate"><span class="pre">PyUnicode_1BYTE_KIND</span></code></a>).</p>
 <div class="versionadded">
 <p><span class="versionmodified added">在 3.3 版本新加入.</span></p>
 </div>
@@ -901,8 +906,8 @@ its reference count is one).</p>
 <dt class="sig sig-object c" id="c.PyUnicode_ReadChar">
 <a class="reference internal" href="#c.Py_UCS4" title="Py_UCS4"><span class="n"><span class="pre">Py_UCS4</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PyUnicode_ReadChar</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">unicode</span></span>, <a class="reference internal" href="intro.html#c.Py_ssize_t" title="Py_ssize_t"><span class="n"><span class="pre">Py_ssize_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">index</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.PyUnicode_ReadChar" title="本定義的永久連結">¶</a><br /></dt>
 <dd><em class="stableabi"> Part of the <a class="reference internal" href="stable.html#stable"><span class="std std-ref">Stable ABI</span></a> since version 3.7.</em><p>Read a character from a string.  This function checks that <em>unicode</em> is a
-Unicode object and the index is not out of bounds, in contrast to the macro
-version <a class="reference internal" href="#c.PyUnicode_READ_CHAR" title="PyUnicode_READ_CHAR"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyUnicode_READ_CHAR()</span></code></a>.</p>
+Unicode object and the index is not out of bounds, in contrast to
+<a class="reference internal" href="#c.PyUnicode_READ_CHAR" title="PyUnicode_READ_CHAR"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyUnicode_READ_CHAR()</span></code></a>, which performs no error checking.</p>
 <div class="versionadded">
 <p><span class="versionmodified added">在 3.3 版本新加入.</span></p>
 </div>
@@ -985,18 +990,6 @@ used in most C functions.</p>
 <p><span class="versionmodified">Deprecated since version 3.3, will be removed in version 3.12: </span>Part of the old-style Unicode API, please migrate to using
 <a class="reference internal" href="#c.PyUnicode_AsUCS4" title="PyUnicode_AsUCS4"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyUnicode_AsUCS4()</span></code></a>, <a class="reference internal" href="#c.PyUnicode_AsWideChar" title="PyUnicode_AsWideChar"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyUnicode_AsWideChar()</span></code></a>,
 <a class="reference internal" href="#c.PyUnicode_ReadChar" title="PyUnicode_ReadChar"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyUnicode_ReadChar()</span></code></a> or similar new APIs.</p>
-</div>
-</dd></dl>
-
-<dl class="c function">
-<dt class="sig sig-object c" id="c.PyUnicode_TransformDecimalToASCII">
-<a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">PyUnicode_TransformDecimalToASCII</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.Py_UNICODE" title="Py_UNICODE"><span class="n"><span class="pre">Py_UNICODE</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">s</span></span>, <a class="reference internal" href="intro.html#c.Py_ssize_t" title="Py_ssize_t"><span class="n"><span class="pre">Py_ssize_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">size</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.PyUnicode_TransformDecimalToASCII" title="本定義的永久連結">¶</a><br /></dt>
-<dd><em class="refcount">Return value: New reference.</em><p>Create a Unicode object by replacing all decimal digits in
-<a class="reference internal" href="#c.Py_UNICODE" title="Py_UNICODE"><code class="xref c c-type docutils literal notranslate"><span class="pre">Py_UNICODE</span></code></a> buffer of the given <em>size</em> by ASCII digits 0--9
-according to their decimal value.  Return <code class="docutils literal notranslate"><span class="pre">NULL</span></code> if an exception occurs.</p>
-<div class="deprecated-removed">
-<p><span class="versionmodified">Deprecated since version 3.3, will be removed in version 3.11: </span>Part of the old-style <a class="reference internal" href="#c.Py_UNICODE" title="Py_UNICODE"><code class="xref c c-type docutils literal notranslate"><span class="pre">Py_UNICODE</span></code></a> API; please migrate to using
-<a class="reference internal" href="#c.Py_UNICODE_TODECIMAL" title="Py_UNICODE_TODECIMAL"><code class="xref c c-func docutils literal notranslate"><span class="pre">Py_UNICODE_TODECIMAL()</span></code></a>.</p>
 </div>
 </dd></dl>
 
@@ -1304,20 +1297,6 @@ using the Python codec registry. Return <code class="docutils literal notranslat
 the codec.</p>
 </dd></dl>
 
-<dl class="c function">
-<dt class="sig sig-object c" id="c.PyUnicode_Encode">
-<a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">PyUnicode_Encode</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.Py_UNICODE" title="Py_UNICODE"><span class="n"><span class="pre">Py_UNICODE</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">s</span></span>, <a class="reference internal" href="intro.html#c.Py_ssize_t" title="Py_ssize_t"><span class="n"><span class="pre">Py_ssize_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">size</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">encoding</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">errors</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.PyUnicode_Encode" title="本定義的永久連結">¶</a><br /></dt>
-<dd><em class="refcount">Return value: New reference.</em><p>Encode the <a class="reference internal" href="#c.Py_UNICODE" title="Py_UNICODE"><code class="xref c c-type docutils literal notranslate"><span class="pre">Py_UNICODE</span></code></a> buffer <em>s</em> of the given <em>size</em> and return a Python
-bytes object.  <em>encoding</em> and <em>errors</em> have the same meaning as the
-parameters of the same name in the Unicode <a class="reference internal" href="../library/stdtypes.html#str.encode" title="str.encode"><code class="xref py py-meth docutils literal notranslate"><span class="pre">encode()</span></code></a> method.  The codec
-to be used is looked up using the Python codec registry.  Return <code class="docutils literal notranslate"><span class="pre">NULL</span></code> if an
-exception was raised by the codec.</p>
-<div class="deprecated-removed">
-<p><span class="versionmodified">Deprecated since version 3.3, will be removed in version 3.11: </span>Part of the old-style <a class="reference internal" href="#c.Py_UNICODE" title="Py_UNICODE"><code class="xref c c-type docutils literal notranslate"><span class="pre">Py_UNICODE</span></code></a> API; please migrate to using
-<a class="reference internal" href="#c.PyUnicode_AsEncodedString" title="PyUnicode_AsEncodedString"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyUnicode_AsEncodedString()</span></code></a>.</p>
-</div>
-</dd></dl>
-
 </section>
 <section id="utf-8-codecs">
 <h3>UTF-8 Codecs<a class="headerlink" href="#utf-8-codecs" title="本標頭的永久連結">¶</a></h3>
@@ -1383,19 +1362,6 @@ pointers to it become invalid when the Unicode object is garbage collected.</p>
 </div>
 </dd></dl>
 
-<dl class="c function">
-<dt class="sig sig-object c" id="c.PyUnicode_EncodeUTF8">
-<a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">PyUnicode_EncodeUTF8</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.Py_UNICODE" title="Py_UNICODE"><span class="n"><span class="pre">Py_UNICODE</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">s</span></span>, <a class="reference internal" href="intro.html#c.Py_ssize_t" title="Py_ssize_t"><span class="n"><span class="pre">Py_ssize_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">size</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">errors</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.PyUnicode_EncodeUTF8" title="本定義的永久連結">¶</a><br /></dt>
-<dd><em class="refcount">Return value: New reference.</em><p>Encode the <a class="reference internal" href="#c.Py_UNICODE" title="Py_UNICODE"><code class="xref c c-type docutils literal notranslate"><span class="pre">Py_UNICODE</span></code></a> buffer <em>s</em> of the given <em>size</em> using UTF-8 and
-return a Python bytes object.  Return <code class="docutils literal notranslate"><span class="pre">NULL</span></code> if an exception was raised by
-the codec.</p>
-<div class="deprecated-removed">
-<p><span class="versionmodified">Deprecated since version 3.3, will be removed in version 3.11: </span>Part of the old-style <a class="reference internal" href="#c.Py_UNICODE" title="Py_UNICODE"><code class="xref c c-type docutils literal notranslate"><span class="pre">Py_UNICODE</span></code></a> API; please migrate to using
-<a class="reference internal" href="#c.PyUnicode_AsUTF8String" title="PyUnicode_AsUTF8String"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyUnicode_AsUTF8String()</span></code></a>, <a class="reference internal" href="#c.PyUnicode_AsUTF8AndSize" title="PyUnicode_AsUTF8AndSize"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyUnicode_AsUTF8AndSize()</span></code></a> or
-<a class="reference internal" href="#c.PyUnicode_AsEncodedString" title="PyUnicode_AsEncodedString"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyUnicode_AsEncodedString()</span></code></a>.</p>
-</div>
-</dd></dl>
-
 </section>
 <section id="utf-32-codecs">
 <h3>UTF-32 Codecs<a class="headerlink" href="#utf-32-codecs" title="本標頭的永久連結">¶</a></h3>
@@ -1439,27 +1405,6 @@ that have been decoded will be stored in <em>consumed</em>.</p>
 <dd><em class="refcount">Return value: New reference.</em><em class="stableabi"> Part of the <a class="reference internal" href="stable.html#stable"><span class="std std-ref">Stable ABI</span></a>.</em><p>Return a Python byte string using the UTF-32 encoding in native byte
 order. The string always starts with a BOM mark.  Error handling is &quot;strict&quot;.
 Return <code class="docutils literal notranslate"><span class="pre">NULL</span></code> if an exception was raised by the codec.</p>
-</dd></dl>
-
-<dl class="c function">
-<dt class="sig sig-object c" id="c.PyUnicode_EncodeUTF32">
-<a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">PyUnicode_EncodeUTF32</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.Py_UNICODE" title="Py_UNICODE"><span class="n"><span class="pre">Py_UNICODE</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">s</span></span>, <a class="reference internal" href="intro.html#c.Py_ssize_t" title="Py_ssize_t"><span class="n"><span class="pre">Py_ssize_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">size</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">errors</span></span>, <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n"><span class="pre">byteorder</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.PyUnicode_EncodeUTF32" title="本定義的永久連結">¶</a><br /></dt>
-<dd><em class="refcount">Return value: New reference.</em><p>Return a Python bytes object holding the UTF-32 encoded value of the Unicode
-data in <em>s</em>.  Output is written according to the following byte order:</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">byteorder</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">-1</span><span class="o">:</span><span class="w"> </span><span class="n">little</span><span class="w"> </span><span class="n">endian</span><span class="w"></span>
-<span class="n">byteorder</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="o">:</span><span class="w">  </span><span class="n">native</span><span class="w"> </span><span class="n">byte</span><span class="w"> </span><span class="n">order</span><span class="w"> </span><span class="p">(</span><span class="n">writes</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">BOM</span><span class="w"> </span><span class="n">mark</span><span class="p">)</span><span class="w"></span>
-<span class="n">byteorder</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="o">:</span><span class="w">  </span><span class="n">big</span><span class="w"> </span><span class="n">endian</span><span class="w"></span>
-</pre></div>
-</div>
-<p>If byteorder is <code class="docutils literal notranslate"><span class="pre">0</span></code>, the output string will always start with the Unicode BOM
-mark (U+FEFF). In the other two modes, no BOM mark is prepended.</p>
-<p>If <code class="docutils literal notranslate"><span class="pre">Py_UNICODE_WIDE</span></code> is not defined, surrogate pairs will be output
-as a single code point.</p>
-<p>Return <code class="docutils literal notranslate"><span class="pre">NULL</span></code> if an exception was raised by the codec.</p>
-<div class="deprecated-removed">
-<p><span class="versionmodified">Deprecated since version 3.3, will be removed in version 3.11: </span>Part of the old-style <a class="reference internal" href="#c.Py_UNICODE" title="Py_UNICODE"><code class="xref c c-type docutils literal notranslate"><span class="pre">Py_UNICODE</span></code></a> API; please migrate to using
-<a class="reference internal" href="#c.PyUnicode_AsUTF32String" title="PyUnicode_AsUTF32String"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyUnicode_AsUTF32String()</span></code></a> or <a class="reference internal" href="#c.PyUnicode_AsEncodedString" title="PyUnicode_AsEncodedString"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyUnicode_AsEncodedString()</span></code></a>.</p>
-</div>
 </dd></dl>
 
 </section>
@@ -1508,28 +1453,6 @@ order. The string always starts with a BOM mark.  Error handling is &quot;strict
 Return <code class="docutils literal notranslate"><span class="pre">NULL</span></code> if an exception was raised by the codec.</p>
 </dd></dl>
 
-<dl class="c function">
-<dt class="sig sig-object c" id="c.PyUnicode_EncodeUTF16">
-<a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">PyUnicode_EncodeUTF16</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.Py_UNICODE" title="Py_UNICODE"><span class="n"><span class="pre">Py_UNICODE</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">s</span></span>, <a class="reference internal" href="intro.html#c.Py_ssize_t" title="Py_ssize_t"><span class="n"><span class="pre">Py_ssize_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">size</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">errors</span></span>, <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n"><span class="pre">byteorder</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.PyUnicode_EncodeUTF16" title="本定義的永久連結">¶</a><br /></dt>
-<dd><em class="refcount">Return value: New reference.</em><p>Return a Python bytes object holding the UTF-16 encoded value of the Unicode
-data in <em>s</em>.  Output is written according to the following byte order:</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">byteorder</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">-1</span><span class="o">:</span><span class="w"> </span><span class="n">little</span><span class="w"> </span><span class="n">endian</span><span class="w"></span>
-<span class="n">byteorder</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="o">:</span><span class="w">  </span><span class="n">native</span><span class="w"> </span><span class="n">byte</span><span class="w"> </span><span class="n">order</span><span class="w"> </span><span class="p">(</span><span class="n">writes</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">BOM</span><span class="w"> </span><span class="n">mark</span><span class="p">)</span><span class="w"></span>
-<span class="n">byteorder</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="o">:</span><span class="w">  </span><span class="n">big</span><span class="w"> </span><span class="n">endian</span><span class="w"></span>
-</pre></div>
-</div>
-<p>If byteorder is <code class="docutils literal notranslate"><span class="pre">0</span></code>, the output string will always start with the Unicode BOM
-mark (U+FEFF). In the other two modes, no BOM mark is prepended.</p>
-<p>If <code class="docutils literal notranslate"><span class="pre">Py_UNICODE_WIDE</span></code> is defined, a single <a class="reference internal" href="#c.Py_UNICODE" title="Py_UNICODE"><code class="xref c c-type docutils literal notranslate"><span class="pre">Py_UNICODE</span></code></a> value may get
-represented as a surrogate pair. If it is not defined, each <a class="reference internal" href="#c.Py_UNICODE" title="Py_UNICODE"><code class="xref c c-type docutils literal notranslate"><span class="pre">Py_UNICODE</span></code></a>
-values is interpreted as a UCS-2 character.</p>
-<p>Return <code class="docutils literal notranslate"><span class="pre">NULL</span></code> if an exception was raised by the codec.</p>
-<div class="deprecated-removed">
-<p><span class="versionmodified">Deprecated since version 3.3, will be removed in version 3.11: </span>Part of the old-style <a class="reference internal" href="#c.Py_UNICODE" title="Py_UNICODE"><code class="xref c c-type docutils literal notranslate"><span class="pre">Py_UNICODE</span></code></a> API; please migrate to using
-<a class="reference internal" href="#c.PyUnicode_AsUTF16String" title="PyUnicode_AsUTF16String"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyUnicode_AsUTF16String()</span></code></a> or <a class="reference internal" href="#c.PyUnicode_AsEncodedString" title="PyUnicode_AsEncodedString"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyUnicode_AsEncodedString()</span></code></a>.</p>
-</div>
-</dd></dl>
-
 </section>
 <section id="utf-7-codecs">
 <h3>UTF-7 Codecs<a class="headerlink" href="#utf-7-codecs" title="本標頭的永久連結">¶</a></h3>
@@ -1548,22 +1471,6 @@ values is interpreted as a UCS-2 character.</p>
 <em>consumed</em> is not <code class="docutils literal notranslate"><span class="pre">NULL</span></code>, trailing incomplete UTF-7 base-64 sections will not
 be treated as an error.  Those bytes will not be decoded and the number of
 bytes that have been decoded will be stored in <em>consumed</em>.</p>
-</dd></dl>
-
-<dl class="c function">
-<dt class="sig sig-object c" id="c.PyUnicode_EncodeUTF7">
-<a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">PyUnicode_EncodeUTF7</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.Py_UNICODE" title="Py_UNICODE"><span class="n"><span class="pre">Py_UNICODE</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">s</span></span>, <a class="reference internal" href="intro.html#c.Py_ssize_t" title="Py_ssize_t"><span class="n"><span class="pre">Py_ssize_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">size</span></span>, <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n"><span class="pre">base64SetO</span></span>, <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n"><span class="pre">base64WhiteSpace</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">errors</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.PyUnicode_EncodeUTF7" title="本定義的永久連結">¶</a><br /></dt>
-<dd><em class="refcount">Return value: New reference.</em><p>Encode the <a class="reference internal" href="#c.Py_UNICODE" title="Py_UNICODE"><code class="xref c c-type docutils literal notranslate"><span class="pre">Py_UNICODE</span></code></a> buffer of the given size using UTF-7 and
-return a Python bytes object.  Return <code class="docutils literal notranslate"><span class="pre">NULL</span></code> if an exception was raised by
-the codec.</p>
-<p>If <em>base64SetO</em> is nonzero, &quot;Set O&quot; (punctuation that has no otherwise
-special meaning) will be encoded in base-64.  If <em>base64WhiteSpace</em> is
-nonzero, whitespace will be encoded in base-64.  Both are set to zero for the
-Python &quot;utf-7&quot; codec.</p>
-<div class="deprecated-removed">
-<p><span class="versionmodified">Deprecated since version 3.3, will be removed in version 3.11: </span>Part of the old-style <a class="reference internal" href="#c.Py_UNICODE" title="Py_UNICODE"><code class="xref c c-type docutils literal notranslate"><span class="pre">Py_UNICODE</span></code></a> API; please migrate to using
-<a class="reference internal" href="#c.PyUnicode_AsEncodedString" title="PyUnicode_AsEncodedString"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyUnicode_AsEncodedString()</span></code></a>.</p>
-</div>
 </dd></dl>
 
 </section>
@@ -1585,17 +1492,6 @@ bytes object.  Error handling is &quot;strict&quot;.  Return <code class="docuti
 raised by the codec.</p>
 </dd></dl>
 
-<dl class="c function">
-<dt class="sig sig-object c" id="c.PyUnicode_EncodeUnicodeEscape">
-<a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">PyUnicode_EncodeUnicodeEscape</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.Py_UNICODE" title="Py_UNICODE"><span class="n"><span class="pre">Py_UNICODE</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">s</span></span>, <a class="reference internal" href="intro.html#c.Py_ssize_t" title="Py_ssize_t"><span class="n"><span class="pre">Py_ssize_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">size</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.PyUnicode_EncodeUnicodeEscape" title="本定義的永久連結">¶</a><br /></dt>
-<dd><em class="refcount">Return value: New reference.</em><p>Encode the <a class="reference internal" href="#c.Py_UNICODE" title="Py_UNICODE"><code class="xref c c-type docutils literal notranslate"><span class="pre">Py_UNICODE</span></code></a> buffer of the given <em>size</em> using Unicode-Escape and
-return a bytes object.  Return <code class="docutils literal notranslate"><span class="pre">NULL</span></code> if an exception was raised by the codec.</p>
-<div class="deprecated-removed">
-<p><span class="versionmodified">Deprecated since version 3.3, will be removed in version 3.11: </span>Part of the old-style <a class="reference internal" href="#c.Py_UNICODE" title="Py_UNICODE"><code class="xref c c-type docutils literal notranslate"><span class="pre">Py_UNICODE</span></code></a> API; please migrate to using
-<a class="reference internal" href="#c.PyUnicode_AsUnicodeEscapeString" title="PyUnicode_AsUnicodeEscapeString"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyUnicode_AsUnicodeEscapeString()</span></code></a>.</p>
-</div>
-</dd></dl>
-
 </section>
 <section id="raw-unicode-escape-codecs">
 <h3>Raw-Unicode-Escape Codecs<a class="headerlink" href="#raw-unicode-escape-codecs" title="本標頭的永久連結">¶</a></h3>
@@ -1613,18 +1509,6 @@ encoded string <em>s</em>.  Return <code class="docutils literal notranslate"><s
 <dd><em class="refcount">Return value: New reference.</em><em class="stableabi"> Part of the <a class="reference internal" href="stable.html#stable"><span class="std std-ref">Stable ABI</span></a>.</em><p>Encode a Unicode object using Raw-Unicode-Escape and return the result as
 a bytes object.  Error handling is &quot;strict&quot;.  Return <code class="docutils literal notranslate"><span class="pre">NULL</span></code> if an exception
 was raised by the codec.</p>
-</dd></dl>
-
-<dl class="c function">
-<dt class="sig sig-object c" id="c.PyUnicode_EncodeRawUnicodeEscape">
-<a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">PyUnicode_EncodeRawUnicodeEscape</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.Py_UNICODE" title="Py_UNICODE"><span class="n"><span class="pre">Py_UNICODE</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">s</span></span>, <a class="reference internal" href="intro.html#c.Py_ssize_t" title="Py_ssize_t"><span class="n"><span class="pre">Py_ssize_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">size</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.PyUnicode_EncodeRawUnicodeEscape" title="本定義的永久連結">¶</a><br /></dt>
-<dd><em class="refcount">Return value: New reference.</em><p>Encode the <a class="reference internal" href="#c.Py_UNICODE" title="Py_UNICODE"><code class="xref c c-type docutils literal notranslate"><span class="pre">Py_UNICODE</span></code></a> buffer of the given <em>size</em> using Raw-Unicode-Escape
-and return a bytes object.  Return <code class="docutils literal notranslate"><span class="pre">NULL</span></code> if an exception was raised by the codec.</p>
-<div class="deprecated-removed">
-<p><span class="versionmodified">Deprecated since version 3.3, will be removed in version 3.11: </span>Part of the old-style <a class="reference internal" href="#c.Py_UNICODE" title="Py_UNICODE"><code class="xref c c-type docutils literal notranslate"><span class="pre">Py_UNICODE</span></code></a> API; please migrate to using
-<a class="reference internal" href="#c.PyUnicode_AsRawUnicodeEscapeString" title="PyUnicode_AsRawUnicodeEscapeString"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyUnicode_AsRawUnicodeEscapeString()</span></code></a> or
-<a class="reference internal" href="#c.PyUnicode_AsEncodedString" title="PyUnicode_AsEncodedString"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyUnicode_AsEncodedString()</span></code></a>.</p>
-</div>
 </dd></dl>
 
 </section>
@@ -1647,19 +1531,6 @@ object.  Error handling is &quot;strict&quot;.  Return <code class="docutils lit
 raised by the codec.</p>
 </dd></dl>
 
-<dl class="c function">
-<dt class="sig sig-object c" id="c.PyUnicode_EncodeLatin1">
-<a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">PyUnicode_EncodeLatin1</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.Py_UNICODE" title="Py_UNICODE"><span class="n"><span class="pre">Py_UNICODE</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">s</span></span>, <a class="reference internal" href="intro.html#c.Py_ssize_t" title="Py_ssize_t"><span class="n"><span class="pre">Py_ssize_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">size</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">errors</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.PyUnicode_EncodeLatin1" title="本定義的永久連結">¶</a><br /></dt>
-<dd><em class="refcount">Return value: New reference.</em><p>Encode the <a class="reference internal" href="#c.Py_UNICODE" title="Py_UNICODE"><code class="xref c c-type docutils literal notranslate"><span class="pre">Py_UNICODE</span></code></a> buffer of the given <em>size</em> using Latin-1 and
-return a Python bytes object.  Return <code class="docutils literal notranslate"><span class="pre">NULL</span></code> if an exception was raised by
-the codec.</p>
-<div class="deprecated-removed">
-<p><span class="versionmodified">Deprecated since version 3.3, will be removed in version 3.11: </span>Part of the old-style <a class="reference internal" href="#c.Py_UNICODE" title="Py_UNICODE"><code class="xref c c-type docutils literal notranslate"><span class="pre">Py_UNICODE</span></code></a> API; please migrate to using
-<a class="reference internal" href="#c.PyUnicode_AsLatin1String" title="PyUnicode_AsLatin1String"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyUnicode_AsLatin1String()</span></code></a> or
-<a class="reference internal" href="#c.PyUnicode_AsEncodedString" title="PyUnicode_AsEncodedString"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyUnicode_AsEncodedString()</span></code></a>.</p>
-</div>
-</dd></dl>
-
 </section>
 <section id="ascii-codecs">
 <h3>ASCII Codecs<a class="headerlink" href="#ascii-codecs" title="本標頭的永久連結">¶</a></h3>
@@ -1678,19 +1549,6 @@ codes generate errors.</p>
 <dd><em class="refcount">Return value: New reference.</em><em class="stableabi"> Part of the <a class="reference internal" href="stable.html#stable"><span class="std std-ref">Stable ABI</span></a>.</em><p>Encode a Unicode object using ASCII and return the result as Python bytes
 object.  Error handling is &quot;strict&quot;.  Return <code class="docutils literal notranslate"><span class="pre">NULL</span></code> if an exception was
 raised by the codec.</p>
-</dd></dl>
-
-<dl class="c function">
-<dt class="sig sig-object c" id="c.PyUnicode_EncodeASCII">
-<a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">PyUnicode_EncodeASCII</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.Py_UNICODE" title="Py_UNICODE"><span class="n"><span class="pre">Py_UNICODE</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">s</span></span>, <a class="reference internal" href="intro.html#c.Py_ssize_t" title="Py_ssize_t"><span class="n"><span class="pre">Py_ssize_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">size</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">errors</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.PyUnicode_EncodeASCII" title="本定義的永久連結">¶</a><br /></dt>
-<dd><em class="refcount">Return value: New reference.</em><p>Encode the <a class="reference internal" href="#c.Py_UNICODE" title="Py_UNICODE"><code class="xref c c-type docutils literal notranslate"><span class="pre">Py_UNICODE</span></code></a> buffer of the given <em>size</em> using ASCII and
-return a Python bytes object.  Return <code class="docutils literal notranslate"><span class="pre">NULL</span></code> if an exception was raised by
-the codec.</p>
-<div class="deprecated-removed">
-<p><span class="versionmodified">Deprecated since version 3.3, will be removed in version 3.11: </span>Part of the old-style <a class="reference internal" href="#c.Py_UNICODE" title="Py_UNICODE"><code class="xref c c-type docutils literal notranslate"><span class="pre">Py_UNICODE</span></code></a> API; please migrate to using
-<a class="reference internal" href="#c.PyUnicode_AsASCIIString" title="PyUnicode_AsASCIIString"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyUnicode_AsASCIIString()</span></code></a> or
-<a class="reference internal" href="#c.PyUnicode_AsEncodedString" title="PyUnicode_AsEncodedString"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyUnicode_AsEncodedString()</span></code></a>.</p>
-</div>
 </dd></dl>
 
 </section>
@@ -1729,19 +1587,6 @@ ordinals (ones which cause a <a class="reference internal" href="../library/exce
 <code class="docutils literal notranslate"><span class="pre">None</span></code> are treated as &quot;undefined mapping&quot; and cause an error.</p>
 </dd></dl>
 
-<dl class="c function">
-<dt class="sig sig-object c" id="c.PyUnicode_EncodeCharmap">
-<a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">PyUnicode_EncodeCharmap</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.Py_UNICODE" title="Py_UNICODE"><span class="n"><span class="pre">Py_UNICODE</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">s</span></span>, <a class="reference internal" href="intro.html#c.Py_ssize_t" title="Py_ssize_t"><span class="n"><span class="pre">Py_ssize_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">size</span></span>, <a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">mapping</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">errors</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.PyUnicode_EncodeCharmap" title="本定義的永久連結">¶</a><br /></dt>
-<dd><em class="refcount">Return value: New reference.</em><p>Encode the <a class="reference internal" href="#c.Py_UNICODE" title="Py_UNICODE"><code class="xref c c-type docutils literal notranslate"><span class="pre">Py_UNICODE</span></code></a> buffer of the given <em>size</em> using the given
-<em>mapping</em> object and return the result as a bytes object.  Return <code class="docutils literal notranslate"><span class="pre">NULL</span></code> if
-an exception was raised by the codec.</p>
-<div class="deprecated-removed">
-<p><span class="versionmodified">Deprecated since version 3.3, will be removed in version 3.11: </span>Part of the old-style <a class="reference internal" href="#c.Py_UNICODE" title="Py_UNICODE"><code class="xref c c-type docutils literal notranslate"><span class="pre">Py_UNICODE</span></code></a> API; please migrate to using
-<a class="reference internal" href="#c.PyUnicode_AsCharmapString" title="PyUnicode_AsCharmapString"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyUnicode_AsCharmapString()</span></code></a> or
-<a class="reference internal" href="#c.PyUnicode_AsEncodedString" title="PyUnicode_AsEncodedString"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyUnicode_AsEncodedString()</span></code></a>.</p>
-</div>
-</dd></dl>
-
 <p>The following codec API is special in that maps Unicode to Unicode.</p>
 <dl class="c function">
 <dt class="sig sig-object c" id="c.PyUnicode_Translate">
@@ -1756,18 +1601,6 @@ and sequences work well.  Unmapped character ordinals (ones which cause a
 <a class="reference internal" href="../library/exceptions.html#LookupError" title="LookupError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">LookupError</span></code></a>) are left untouched and are copied as-is.</p>
 <p><em>errors</em> has the usual meaning for codecs. It may be <code class="docutils literal notranslate"><span class="pre">NULL</span></code> which indicates to
 use the default error handling.</p>
-</dd></dl>
-
-<dl class="c function">
-<dt class="sig sig-object c" id="c.PyUnicode_TranslateCharmap">
-<a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">PyUnicode_TranslateCharmap</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.Py_UNICODE" title="Py_UNICODE"><span class="n"><span class="pre">Py_UNICODE</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">s</span></span>, <a class="reference internal" href="intro.html#c.Py_ssize_t" title="Py_ssize_t"><span class="n"><span class="pre">Py_ssize_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">size</span></span>, <a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">mapping</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">errors</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.PyUnicode_TranslateCharmap" title="本定義的永久連結">¶</a><br /></dt>
-<dd><em class="refcount">Return value: New reference.</em><p>Translate a <a class="reference internal" href="#c.Py_UNICODE" title="Py_UNICODE"><code class="xref c c-type docutils literal notranslate"><span class="pre">Py_UNICODE</span></code></a> buffer of the given <em>size</em> by applying a
-character <em>mapping</em> table to it and return the resulting Unicode object.
-Return <code class="docutils literal notranslate"><span class="pre">NULL</span></code> when an exception was raised by the codec.</p>
-<div class="deprecated-removed">
-<p><span class="versionmodified">Deprecated since version 3.3, will be removed in version 3.11: </span>Part of the old-style <a class="reference internal" href="#c.Py_UNICODE" title="Py_UNICODE"><code class="xref c c-type docutils literal notranslate"><span class="pre">Py_UNICODE</span></code></a> API; please migrate to using
-<a class="reference internal" href="#c.PyUnicode_Translate" title="PyUnicode_Translate"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyUnicode_Translate()</span></code></a>. or <a class="reference internal" href="codec.html#codec-registry"><span class="std std-ref">generic codec based API</span></a></p>
-</div>
 </dd></dl>
 
 </section>
@@ -1809,19 +1642,6 @@ bytes object.  Return <code class="docutils literal notranslate"><span class="pr
 <code class="xref c c-data docutils literal notranslate"><span class="pre">CP_ACP</span></code> code page to get the MBCS encoder.</p>
 <div class="versionadded">
 <p><span class="versionmodified added">在 3.3 版本新加入.</span></p>
-</div>
-</dd></dl>
-
-<dl class="c function">
-<dt class="sig sig-object c" id="c.PyUnicode_EncodeMBCS">
-<a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">PyUnicode_EncodeMBCS</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.Py_UNICODE" title="Py_UNICODE"><span class="n"><span class="pre">Py_UNICODE</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">s</span></span>, <a class="reference internal" href="intro.html#c.Py_ssize_t" title="Py_ssize_t"><span class="n"><span class="pre">Py_ssize_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">size</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">errors</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.PyUnicode_EncodeMBCS" title="本定義的永久連結">¶</a><br /></dt>
-<dd><em class="refcount">Return value: New reference.</em><p>Encode the <a class="reference internal" href="#c.Py_UNICODE" title="Py_UNICODE"><code class="xref c c-type docutils literal notranslate"><span class="pre">Py_UNICODE</span></code></a> buffer of the given <em>size</em> using MBCS and return
-a Python bytes object.  Return <code class="docutils literal notranslate"><span class="pre">NULL</span></code> if an exception was raised by the
-codec.</p>
-<div class="deprecated-removed">
-<p><span class="versionmodified">Deprecated since version 3.3, will be removed in version 4.0: </span>Part of the old-style <a class="reference internal" href="#c.Py_UNICODE" title="Py_UNICODE"><code class="xref c c-type docutils literal notranslate"><span class="pre">Py_UNICODE</span></code></a> API; please migrate to using
-<a class="reference internal" href="#c.PyUnicode_AsMBCSString" title="PyUnicode_AsMBCSString"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyUnicode_AsMBCSString()</span></code></a>, <a class="reference internal" href="#c.PyUnicode_EncodeCodePage" title="PyUnicode_EncodeCodePage"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyUnicode_EncodeCodePage()</span></code></a> or
-<a class="reference internal" href="#c.PyUnicode_AsEncodedString" title="PyUnicode_AsEncodedString"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyUnicode_AsEncodedString()</span></code></a>.</p>
 </div>
 </dd></dl>
 
@@ -2046,7 +1866,7 @@ interned string object with the same value.</p>
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.10/Doc/c-api/unicode.rst"
+        <a href="https://github.com/python/cpython/blob/main/Doc/c-api/unicode.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -2086,7 +1906,7 @@ interned string object with the same value.</p>
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.8 Documentation</a> &#187;
+      <a href="../index.html">3.11.0rc2 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python/C API 參考手冊</a> &#187;</li>
@@ -2123,7 +1943,7 @@ interned string object with the same value.</p>
 <br />
     <br />
 
-    最後更新於 10月 15, 2022。
+    最後更新於 10月 16, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 

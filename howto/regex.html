@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>如何使用正規表達式 &#8212; Python 3.10.8 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>如何使用正規表達式 &#8212; Python 3.11.0rc2 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -22,7 +22,7 @@
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.10.8 說明文件 中搜尋"
+          title="在 Python 3.11.0rc2 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -130,7 +130,7 @@
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.10/Doc/howto/regex.rst"
+        <a href="https://github.com/python/cpython/blob/main/Doc/howto/regex.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -167,7 +167,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.8 Documentation</a> &#187;
+      <a href="../index.html">3.11.0rc2 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Python 如何達成任務</a> &#187;</li>
@@ -393,19 +393,19 @@ careful attention to the difference between <code class="docutils literal notran
 while <code class="docutils literal notranslate"><span class="pre">+</span></code> requires at least <em>one</em> occurrence.  To use a similar example,
 <code class="docutils literal notranslate"><span class="pre">ca+t</span></code> will match <code class="docutils literal notranslate"><span class="pre">'cat'</span></code> (1 <code class="docutils literal notranslate"><span class="pre">'a'</span></code>), <code class="docutils literal notranslate"><span class="pre">'caaat'</span></code> (3 <code class="docutils literal notranslate"><span class="pre">'a'</span></code>s), but won't
 match <code class="docutils literal notranslate"><span class="pre">'ct'</span></code>.</p>
-<p>There are two more repeating qualifiers.  The question mark character, <code class="docutils literal notranslate"><span class="pre">?</span></code>,
+<p>There are two more repeating operators or quantifiers.  The question mark character, <code class="docutils literal notranslate"><span class="pre">?</span></code>,
 matches either once or zero times; you can think of it as marking something as
 being optional.  For example, <code class="docutils literal notranslate"><span class="pre">home-?brew</span></code> matches either <code class="docutils literal notranslate"><span class="pre">'homebrew'</span></code> or
 <code class="docutils literal notranslate"><span class="pre">'home-brew'</span></code>.</p>
-<p>The most complicated repeated qualifier is <code class="docutils literal notranslate"><span class="pre">{m,n}</span></code>, where <em>m</em> and <em>n</em> are
-decimal integers.  This qualifier means there must be at least <em>m</em> repetitions,
+<p>The most complicated quantifier is <code class="docutils literal notranslate"><span class="pre">{m,n}</span></code>, where <em>m</em> and <em>n</em> are
+decimal integers.  This quantifier means there must be at least <em>m</em> repetitions,
 and at most <em>n</em>.  For example, <code class="docutils literal notranslate"><span class="pre">a/{1,3}b</span></code> will match <code class="docutils literal notranslate"><span class="pre">'a/b'</span></code>, <code class="docutils literal notranslate"><span class="pre">'a//b'</span></code>, and
 <code class="docutils literal notranslate"><span class="pre">'a///b'</span></code>.  It won't match <code class="docutils literal notranslate"><span class="pre">'ab'</span></code>, which has no slashes, or <code class="docutils literal notranslate"><span class="pre">'a////b'</span></code>, which
 has four.</p>
 <p>You can omit either <em>m</em> or <em>n</em>; in that case, a reasonable value is assumed for
 the missing value.  Omitting <em>m</em> is interpreted as a lower limit of 0, while
 omitting <em>n</em> results in an upper bound of infinity.</p>
-<p>Readers of a reductionist bent may notice that the three other qualifiers can
+<p>Readers of a reductionist bent may notice that the three other quantifiers can
 all be expressed using this notation.  <code class="docutils literal notranslate"><span class="pre">{0,}</span></code> is the same as <code class="docutils literal notranslate"><span class="pre">*</span></code>, <code class="docutils literal notranslate"><span class="pre">{1,}</span></code>
 is equivalent to <code class="docutils literal notranslate"><span class="pre">+</span></code>, and <code class="docutils literal notranslate"><span class="pre">{0,1}</span></code> is the same as <code class="docutils literal notranslate"><span class="pre">?</span></code>.  It's better to use
 <code class="docutils literal notranslate"><span class="pre">*</span></code>, <code class="docutils literal notranslate"><span class="pre">+</span></code>, or <code class="docutils literal notranslate"><span class="pre">?</span></code> when you can, simply because they're shorter and easier
@@ -546,7 +546,7 @@ containing information about the match: where it starts and ends, the substring
 it matched, and more.</p>
 <p>You can learn about this by interactively experimenting with the <a class="reference internal" href="../library/re.html#module-re" title="re: Regular expression operations."><code class="xref py py-mod docutils literal notranslate"><span class="pre">re</span></code></a>
 module.  If you have <a class="reference internal" href="../library/tkinter.html#module-tkinter" title="tkinter: Interface to Tcl/Tk for graphical user interfaces"><code class="xref py py-mod docutils literal notranslate"><span class="pre">tkinter</span></code></a> available, you may also want to look at
-<a class="reference external" href="https://github.com/python/cpython/tree/3.10/Tools/demo/redemo.py">Tools/demo/redemo.py</a>, a demonstration program included with the
+<a class="reference external" href="https://github.com/python/cpython/tree/3.11/Tools/demo/redemo.py">Tools/demo/redemo.py</a>, a demonstration program included with the
 Python distribution.  It allows you to enter REs and strings, and displays
 whether the RE matches or fails. <code class="file docutils literal notranslate"><span class="pre">redemo.py</span></code> can be quite useful when
 trying to debug a complicated RE.</p>
@@ -966,7 +966,7 @@ which matches the header's value.</p>
 <p>Groups are marked by the <code class="docutils literal notranslate"><span class="pre">'('</span></code>, <code class="docutils literal notranslate"><span class="pre">')'</span></code> metacharacters. <code class="docutils literal notranslate"><span class="pre">'('</span></code> and <code class="docutils literal notranslate"><span class="pre">')'</span></code>
 have much the same meaning as they do in mathematical expressions; they group
 together the expressions contained inside them, and you can repeat the contents
-of a group with a repeating qualifier, such as <code class="docutils literal notranslate"><span class="pre">*</span></code>, <code class="docutils literal notranslate"><span class="pre">+</span></code>, <code class="docutils literal notranslate"><span class="pre">?</span></code>, or
+of a group with a quantifier, such as <code class="docutils literal notranslate"><span class="pre">*</span></code>, <code class="docutils literal notranslate"><span class="pre">+</span></code>, <code class="docutils literal notranslate"><span class="pre">?</span></code>, or
 <code class="docutils literal notranslate"><span class="pre">{m,n}</span></code>.  For example, <code class="docutils literal notranslate"><span class="pre">(ab)*</span></code> will match zero or more repetitions of
 <code class="docutils literal notranslate"><span class="pre">ab</span></code>.</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">p</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">&#39;(ab)*&#39;</span><span class="p">)</span>
@@ -1446,7 +1446,7 @@ match at the end of the string, so the regular expression engine has to
 backtrack character by character until it finds a match for the <code class="docutils literal notranslate"><span class="pre">&gt;</span></code>.   The
 final match extends from the <code class="docutils literal notranslate"><span class="pre">'&lt;'</span></code> in <code class="docutils literal notranslate"><span class="pre">'&lt;html&gt;'</span></code> to the <code class="docutils literal notranslate"><span class="pre">'&gt;'</span></code> in
 <code class="docutils literal notranslate"><span class="pre">'&lt;/title&gt;'</span></code>, which isn't what you want.</p>
-<p>In this case, the solution is to use the non-greedy qualifiers <code class="docutils literal notranslate"><span class="pre">*?</span></code>, <code class="docutils literal notranslate"><span class="pre">+?</span></code>,
+<p>In this case, the solution is to use the non-greedy quantifiers <code class="docutils literal notranslate"><span class="pre">*?</span></code>, <code class="docutils literal notranslate"><span class="pre">+?</span></code>,
 <code class="docutils literal notranslate"><span class="pre">??</span></code>, or <code class="docutils literal notranslate"><span class="pre">{m,n}?</span></code>, which match as <em>little</em> text as possible.  In the above
 example, the <code class="docutils literal notranslate"><span class="pre">'&gt;'</span></code> is tried immediately after the first <code class="docutils literal notranslate"><span class="pre">'&lt;'</span></code> matches, and
 when it fails, the engine advances a character at a time, retrying the <code class="docutils literal notranslate"><span class="pre">'&gt;'</span></code>
@@ -1574,7 +1574,7 @@ it out from your library.</p>
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.10/Doc/howto/regex.rst"
+        <a href="https://github.com/python/cpython/blob/main/Doc/howto/regex.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -1614,7 +1614,7 @@ it out from your library.</p>
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.8 Documentation</a> &#187;
+      <a href="../index.html">3.11.0rc2 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 如何達成任務</a> &#187;</li>
@@ -1650,7 +1650,7 @@ it out from your library.</p>
 <br />
     <br />
 
-    最後更新於 10月 15, 2022。
+    最後更新於 10月 16, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 

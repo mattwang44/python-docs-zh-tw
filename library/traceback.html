@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>traceback --- Print or retrieve a stack traceback &#8212; Python 3.10.8 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>traceback --- Print or retrieve a stack traceback &#8212; Python 3.11.0rc2 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -22,7 +22,7 @@
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.10.8 說明文件 中搜尋"
+          title="在 Python 3.11.0rc2 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -97,6 +97,7 @@
 <li><a class="reference internal" href="#traceback.TracebackException.__cause__"><code class="docutils literal notranslate"><span class="pre">TracebackException.__cause__</span></code></a></li>
 <li><a class="reference internal" href="#traceback.TracebackException.__context__"><code class="docutils literal notranslate"><span class="pre">TracebackException.__context__</span></code></a></li>
 <li><a class="reference internal" href="#traceback.TracebackException.__suppress_context__"><code class="docutils literal notranslate"><span class="pre">TracebackException.__suppress_context__</span></code></a></li>
+<li><a class="reference internal" href="#traceback.TracebackException.__notes__"><code class="docutils literal notranslate"><span class="pre">TracebackException.__notes__</span></code></a></li>
 <li><a class="reference internal" href="#traceback.TracebackException.stack"><code class="docutils literal notranslate"><span class="pre">TracebackException.stack</span></code></a></li>
 <li><a class="reference internal" href="#traceback.TracebackException.exc_type"><code class="docutils literal notranslate"><span class="pre">TracebackException.exc_type</span></code></a></li>
 <li><a class="reference internal" href="#traceback.TracebackException.filename"><code class="docutils literal notranslate"><span class="pre">TracebackException.filename</span></code></a></li>
@@ -105,6 +106,7 @@
 <li><a class="reference internal" href="#traceback.TracebackException.offset"><code class="docutils literal notranslate"><span class="pre">TracebackException.offset</span></code></a></li>
 <li><a class="reference internal" href="#traceback.TracebackException.msg"><code class="docutils literal notranslate"><span class="pre">TracebackException.msg</span></code></a></li>
 <li><a class="reference internal" href="#traceback.TracebackException.from_exception"><code class="docutils literal notranslate"><span class="pre">TracebackException.from_exception()</span></code></a></li>
+<li><a class="reference internal" href="#traceback.TracebackException.print"><code class="docutils literal notranslate"><span class="pre">TracebackException.print()</span></code></a></li>
 <li><a class="reference internal" href="#traceback.TracebackException.format"><code class="docutils literal notranslate"><span class="pre">TracebackException.format()</span></code></a></li>
 <li><a class="reference internal" href="#traceback.TracebackException.format_exception_only"><code class="docutils literal notranslate"><span class="pre">TracebackException.format_exception_only()</span></code></a></li>
 </ul>
@@ -116,6 +118,7 @@
 <li><a class="reference internal" href="#traceback.StackSummary.extract"><code class="docutils literal notranslate"><span class="pre">StackSummary.extract()</span></code></a></li>
 <li><a class="reference internal" href="#traceback.StackSummary.from_list"><code class="docutils literal notranslate"><span class="pre">StackSummary.from_list()</span></code></a></li>
 <li><a class="reference internal" href="#traceback.StackSummary.format"><code class="docutils literal notranslate"><span class="pre">StackSummary.format()</span></code></a></li>
+<li><a class="reference internal" href="#traceback.StackSummary.format_frame_summary"><code class="docutils literal notranslate"><span class="pre">StackSummary.format_frame_summary()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -145,7 +148,7 @@
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.10/Doc/library/traceback.rst"
+        <a href="https://github.com/python/cpython/blob/main/Doc/library/traceback.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -182,7 +185,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.8 Documentation</a> &#187;
+      <a href="../index.html">3.11.0rc2 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -212,7 +215,7 @@
             
   <section id="module-traceback">
 <span id="traceback-print-or-retrieve-a-stack-traceback"></span><h1><a class="reference internal" href="#module-traceback" title="traceback: Print or retrieve a stack traceback."><code class="xref py py-mod docutils literal notranslate"><span class="pre">traceback</span></code></a> --- Print or retrieve a stack traceback<a class="headerlink" href="#module-traceback" title="本標頭的永久連結">¶</a></h1>
-<p><strong>原始碼：</strong><a class="reference external" href="https://github.com/python/cpython/tree/3.10/Lib/traceback.py">Lib/traceback.py</a></p>
+<p><strong>原始碼：</strong><a class="reference external" href="https://github.com/python/cpython/tree/3.11/Lib/traceback.py">Lib/traceback.py</a></p>
 <hr class="docutils" />
 <p>This module provides a standard interface to extract, format and print stack
 traces of Python programs.  It exactly mimics the behavior of the Python
@@ -457,6 +460,17 @@ capture data for later printing in a lightweight fashion.</p>
 </dd></dl>
 
 <dl class="py attribute">
+<dt class="sig sig-object py" id="traceback.TracebackException.__notes__">
+<span class="sig-name descname"><span class="pre">__notes__</span></span><a class="headerlink" href="#traceback.TracebackException.__notes__" title="本定義的永久連結">¶</a></dt>
+<dd><p>The <code class="docutils literal notranslate"><span class="pre">__notes__</span></code> value from the original exception, or <code class="docutils literal notranslate"><span class="pre">None</span></code>
+if the exception does not have any notes. If it is not <code class="docutils literal notranslate"><span class="pre">None</span></code>
+is it formatted in the traceback after the exception string.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">在 3.11 版本新加入.</span></p>
+</div>
+</dd></dl>
+
+<dl class="py attribute">
 <dt class="sig sig-object py" id="traceback.TracebackException.stack">
 <span class="sig-name descname"><span class="pre">stack</span></span><a class="headerlink" href="#traceback.TracebackException.stack" title="本定義的永久連結">¶</a></dt>
 <dd><p>A <a class="reference internal" href="#traceback.StackSummary" title="traceback.StackSummary"><code class="xref py py-class docutils literal notranslate"><span class="pre">StackSummary</span></code></a> representing the traceback.</p>
@@ -504,6 +518,16 @@ capture data for later printing in a lightweight fashion.</p>
 <dd><p>Capture an exception for later rendering. <em>limit</em>, <em>lookup_lines</em> and
 <em>capture_locals</em> are as for the <a class="reference internal" href="#traceback.StackSummary" title="traceback.StackSummary"><code class="xref py py-class docutils literal notranslate"><span class="pre">StackSummary</span></code></a> class.</p>
 <p>Note that when locals are captured, they are also shown in the traceback.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="traceback.TracebackException.print">
+<span class="sig-name descname"><span class="pre">print</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chain</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#traceback.TracebackException.print" title="本定義的永久連結">¶</a></dt>
+<dd><p>Print to <em>file</em> (default <code class="docutils literal notranslate"><span class="pre">sys.stderr</span></code>) the exception information returned by
+<a class="reference internal" href="functions.html#format" title="format"><code class="xref py py-meth docutils literal notranslate"><span class="pre">format()</span></code></a>.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">在 3.11 版本新加入.</span></p>
+</div>
 </dd></dl>
 
 <dl class="py method">
@@ -585,6 +609,18 @@ number of further repetitions.</p>
 </div>
 </dd></dl>
 
+<dl class="py method">
+<dt class="sig sig-object py" id="traceback.StackSummary.format_frame_summary">
+<span class="sig-name descname"><span class="pre">format_frame_summary</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">frame_summary</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#traceback.StackSummary.format_frame_summary" title="本定義的永久連結">¶</a></dt>
+<dd><p>Returns a string for printing one of the frames involved in the stack.
+This method is called for each <a class="reference internal" href="#traceback.FrameSummary" title="traceback.FrameSummary"><code class="xref py py-class docutils literal notranslate"><span class="pre">FrameSummary</span></code></a> object to be
+printed by <a class="reference internal" href="#traceback.StackSummary.format" title="traceback.StackSummary.format"><code class="xref py py-meth docutils literal notranslate"><span class="pre">StackSummary.format()</span></code></a>. If it returns <code class="docutils literal notranslate"><span class="pre">None</span></code>, the
+frame is omitted from the output.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">在 3.11 版本新加入.</span></p>
+</div>
+</dd></dl>
+
 </dd></dl>
 
 </section>
@@ -593,7 +629,7 @@ number of further repetitions.</p>
 <div class="versionadded">
 <p><span class="versionmodified added">在 3.5 版本新加入.</span></p>
 </div>
-<p><a class="reference internal" href="#traceback.FrameSummary" title="traceback.FrameSummary"><code class="xref py py-class docutils literal notranslate"><span class="pre">FrameSummary</span></code></a> objects represent a single frame in a traceback.</p>
+<p>A <a class="reference internal" href="#traceback.FrameSummary" title="traceback.FrameSummary"><code class="xref py py-class docutils literal notranslate"><span class="pre">FrameSummary</span></code></a> object represents a single frame in a traceback.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="traceback.FrameSummary">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">traceback.</span></span><span class="sig-name descname"><span class="pre">FrameSummary</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lineno</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lookup_line</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">locals</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">line</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#traceback.FrameSummary" title="本定義的永久連結">¶</a></dt>
@@ -688,18 +724,18 @@ Traceback (most recent call last):
 IndexError: tuple index out of range
 *** format_exception:
 [&#39;Traceback (most recent call last):\n&#39;,
- &#39;  File &quot;&lt;doctest...&gt;&quot;, line 10, in &lt;module&gt;\n    lumberjack()\n&#39;,
- &#39;  File &quot;&lt;doctest...&gt;&quot;, line 4, in lumberjack\n    bright_side_of_life()\n&#39;,
- &#39;  File &quot;&lt;doctest...&gt;&quot;, line 7, in bright_side_of_life\n    return tuple()[0]\n&#39;,
+ &#39;  File &quot;&lt;doctest default[0]&gt;&quot;, line 10, in &lt;module&gt;\n    lumberjack()\n&#39;,
+ &#39;  File &quot;&lt;doctest default[0]&gt;&quot;, line 4, in lumberjack\n    bright_side_of_life()\n&#39;,
+ &#39;  File &quot;&lt;doctest default[0]&gt;&quot;, line 7, in bright_side_of_life\n    return tuple()[0]\n           ~~~~~~~^^^\n&#39;,
  &#39;IndexError: tuple index out of range\n&#39;]
 *** extract_tb:
 [&lt;FrameSummary file &lt;doctest...&gt;, line 10 in &lt;module&gt;&gt;,
  &lt;FrameSummary file &lt;doctest...&gt;, line 4 in lumberjack&gt;,
  &lt;FrameSummary file &lt;doctest...&gt;, line 7 in bright_side_of_life&gt;]
 *** format_tb:
-[&#39;  File &quot;&lt;doctest...&gt;&quot;, line 10, in &lt;module&gt;\n    lumberjack()\n&#39;,
- &#39;  File &quot;&lt;doctest...&gt;&quot;, line 4, in lumberjack\n    bright_side_of_life()\n&#39;,
- &#39;  File &quot;&lt;doctest...&gt;&quot;, line 7, in bright_side_of_life\n    return tuple()[0]\n&#39;]
+[&#39;  File &quot;&lt;doctest default[0]&gt;&quot;, line 10, in &lt;module&gt;\n    lumberjack()\n&#39;,
+ &#39;  File &quot;&lt;doctest default[0]&gt;&quot;, line 4, in lumberjack\n    bright_side_of_life()\n&#39;,
+ &#39;  File &quot;&lt;doctest default[0]&gt;&quot;, line 7, in bright_side_of_life\n    return tuple()[0]\n           ~~~~~~~^^^\n&#39;]
 *** tb_lineno: 10
 </pre></div>
 </div>
@@ -774,6 +810,7 @@ IndexError: tuple index out of range
 <li><a class="reference internal" href="#traceback.TracebackException.__cause__"><code class="docutils literal notranslate"><span class="pre">TracebackException.__cause__</span></code></a></li>
 <li><a class="reference internal" href="#traceback.TracebackException.__context__"><code class="docutils literal notranslate"><span class="pre">TracebackException.__context__</span></code></a></li>
 <li><a class="reference internal" href="#traceback.TracebackException.__suppress_context__"><code class="docutils literal notranslate"><span class="pre">TracebackException.__suppress_context__</span></code></a></li>
+<li><a class="reference internal" href="#traceback.TracebackException.__notes__"><code class="docutils literal notranslate"><span class="pre">TracebackException.__notes__</span></code></a></li>
 <li><a class="reference internal" href="#traceback.TracebackException.stack"><code class="docutils literal notranslate"><span class="pre">TracebackException.stack</span></code></a></li>
 <li><a class="reference internal" href="#traceback.TracebackException.exc_type"><code class="docutils literal notranslate"><span class="pre">TracebackException.exc_type</span></code></a></li>
 <li><a class="reference internal" href="#traceback.TracebackException.filename"><code class="docutils literal notranslate"><span class="pre">TracebackException.filename</span></code></a></li>
@@ -782,6 +819,7 @@ IndexError: tuple index out of range
 <li><a class="reference internal" href="#traceback.TracebackException.offset"><code class="docutils literal notranslate"><span class="pre">TracebackException.offset</span></code></a></li>
 <li><a class="reference internal" href="#traceback.TracebackException.msg"><code class="docutils literal notranslate"><span class="pre">TracebackException.msg</span></code></a></li>
 <li><a class="reference internal" href="#traceback.TracebackException.from_exception"><code class="docutils literal notranslate"><span class="pre">TracebackException.from_exception()</span></code></a></li>
+<li><a class="reference internal" href="#traceback.TracebackException.print"><code class="docutils literal notranslate"><span class="pre">TracebackException.print()</span></code></a></li>
 <li><a class="reference internal" href="#traceback.TracebackException.format"><code class="docutils literal notranslate"><span class="pre">TracebackException.format()</span></code></a></li>
 <li><a class="reference internal" href="#traceback.TracebackException.format_exception_only"><code class="docutils literal notranslate"><span class="pre">TracebackException.format_exception_only()</span></code></a></li>
 </ul>
@@ -793,6 +831,7 @@ IndexError: tuple index out of range
 <li><a class="reference internal" href="#traceback.StackSummary.extract"><code class="docutils literal notranslate"><span class="pre">StackSummary.extract()</span></code></a></li>
 <li><a class="reference internal" href="#traceback.StackSummary.from_list"><code class="docutils literal notranslate"><span class="pre">StackSummary.from_list()</span></code></a></li>
 <li><a class="reference internal" href="#traceback.StackSummary.format"><code class="docutils literal notranslate"><span class="pre">StackSummary.format()</span></code></a></li>
+<li><a class="reference internal" href="#traceback.StackSummary.format_frame_summary"><code class="docutils literal notranslate"><span class="pre">StackSummary.format_frame_summary()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -822,7 +861,7 @@ IndexError: tuple index out of range
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.10/Doc/library/traceback.rst"
+        <a href="https://github.com/python/cpython/blob/main/Doc/library/traceback.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -862,7 +901,7 @@ IndexError: tuple index out of range
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.8 Documentation</a> &#187;
+      <a href="../index.html">3.11.0rc2 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -899,7 +938,7 @@ IndexError: tuple index out of range
 <br />
     <br />
 
-    最後更新於 10月 15, 2022。
+    最後更新於 10月 16, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 

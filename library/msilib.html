@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>msilib --- 讀寫 Microsoft Installer 檔案 &#8212; Python 3.10.8 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>msilib --- 讀寫 Microsoft Installer 檔案 &#8212; Python 3.11.0rc2 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -22,7 +22,7 @@
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.10.8 說明文件 中搜尋"
+          title="在 Python 3.11.0rc2 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -193,7 +193,7 @@
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.10/Doc/library/msilib.rst"
+        <a href="https://github.com/python/cpython/blob/main/Doc/library/msilib.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -230,7 +230,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.8 Documentation</a> &#187;
+      <a href="../index.html">3.11.0rc2 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -260,9 +260,9 @@
             
   <section id="module-msilib">
 <span id="msilib-read-and-write-microsoft-installer-files"></span><h1><a class="reference internal" href="#module-msilib" title="msilib: Creation of Microsoft Installer files, and CAB files.（已棄用） (Windows)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">msilib</span></code></a> --- 讀寫 Microsoft Installer 檔案<a class="headerlink" href="#module-msilib" title="本標頭的永久連結">¶</a></h1>
-<p><strong>原始碼：</strong><a class="reference external" href="https://github.com/python/cpython/tree/3.10/Lib/msilib/__init__.py">Lib/msilib/__init__.py</a></p>
-<div class="deprecated" id="index-0">
-<p><span class="versionmodified deprecated">在 3.11 版本開始棄用: </span><a class="reference internal" href="#module-msilib" title="msilib: Creation of Microsoft Installer files, and CAB files.（已棄用） (Windows)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">msilib</span></code></a> 模組 (module) 即將被棄用（詳見 <span class="target" id="index-3"></span><a class="pep reference external" href="https://peps.python.org/pep-0594/#msilib"><strong>PEP 594</strong></a>）。</p>
+<p><strong>原始碼：</strong><a class="reference external" href="https://github.com/python/cpython/tree/3.11/Lib/msilib/__init__.py">Lib/msilib/__init__.py</a></p>
+<div class="deprecated-removed" id="index-0">
+<p><span class="versionmodified">Deprecated since version 3.11, will be removed in version 3.13: </span><a class="reference internal" href="#module-msilib" title="msilib: Creation of Microsoft Installer files, and CAB files.（已棄用） (Windows)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">msilib</span></code></a> 模組 (module) 即將被棄用（詳見 <span class="target" id="index-3"></span><a class="pep reference external" href="https://peps.python.org/pep-0594/#msilib"><strong>PEP 594</strong></a>）。</p>
 </div>
 <hr class="docutils" />
 <p>The <a class="reference internal" href="#module-msilib" title="msilib: Creation of Microsoft Installer files, and CAB files.（已棄用） (Windows)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">msilib</span></code></a> supports the creation of Microsoft Installer (<code class="docutils literal notranslate"><span class="pre">.msi</span></code>) files.
@@ -270,10 +270,9 @@ Because these files often contain an embedded &quot;cabinet&quot; file (<code cl
 exposes an API to create CAB files. Support for reading <code class="docutils literal notranslate"><span class="pre">.cab</span></code> files is
 currently not implemented; read support for the <code class="docutils literal notranslate"><span class="pre">.msi</span></code> database is possible.</p>
 <p>This package aims to provide complete access to all tables in an <code class="docutils literal notranslate"><span class="pre">.msi</span></code> file,
-therefore, it is a fairly low-level API. Two primary applications of this
-package are the <a class="reference internal" href="distutils.html#module-distutils" title="distutils: Support for building and installing Python modules into an existing Python installation."><code class="xref py py-mod docutils literal notranslate"><span class="pre">distutils</span></code></a> command <code class="docutils literal notranslate"><span class="pre">bdist_msi</span></code>, and the creation of
-Python installer package itself (although that currently uses a different
-version of <code class="docutils literal notranslate"><span class="pre">msilib</span></code>).</p>
+therefore, it is a fairly low-level API. One primary application of this
+package is the creation of Python installer package itself (although that currently
+uses a different version of <code class="docutils literal notranslate"><span class="pre">msilib</span></code>).</p>
 <p>The package contents can be roughly split into four parts: low-level CAB
 routines, low-level MSI routines, higher-level MSI routines, and standard table
 structures.</p>
@@ -368,7 +367,7 @@ name <em>name</em>.</p>
 <dt class="sig sig-object py" id="msilib.gen_uuid">
 <span class="sig-prename descclassname"><span class="pre">msilib.</span></span><span class="sig-name descname"><span class="pre">gen_uuid</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#msilib.gen_uuid" title="本定義的永久連結">¶</a></dt>
 <dd><p>Return a new UUID, in the format that MSI typically requires (i.e. in curly
-braces, and with all hexdigits in upper-case).</p>
+braces, and with all hexdigits in uppercase).</p>
 </dd></dl>
 
 <div class="admonition seealso">
@@ -690,9 +689,7 @@ specified.</p>
 <section id="gui-classes">
 <span id="msi-gui"></span><h2>GUI classes<a class="headerlink" href="#gui-classes" title="本標頭的永久連結">¶</a></h2>
 <p><a class="reference internal" href="#module-msilib" title="msilib: Creation of Microsoft Installer files, and CAB files.（已棄用） (Windows)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">msilib</span></code></a> provides several classes that wrap the GUI tables in an MSI
-database. However, no standard user interface is provided; use
-<a class="reference internal" href="../distutils/apiref.html#module-distutils.command.bdist_msi" title="distutils.command.bdist_msi: Build a binary distribution as a Windows MSI file"><code class="xref py py-mod docutils literal notranslate"><span class="pre">bdist_msi</span></code></a> to create MSI files with a user-interface
-for installing Python packages.</p>
+database. However, no standard user interface is provided.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="msilib.Control">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">msilib.</span></span><span class="sig-name descname"><span class="pre">Control</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dlg</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#msilib.Control" title="本定義的永久連結">¶</a></dt>
@@ -955,7 +952,7 @@ standard installer actions.</p>
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.10/Doc/library/msilib.rst"
+        <a href="https://github.com/python/cpython/blob/main/Doc/library/msilib.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -995,7 +992,7 @@ standard installer actions.</p>
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.8 Documentation</a> &#187;
+      <a href="../index.html">3.11.0rc2 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -1032,7 +1029,7 @@ standard installer actions.</p>
 <br />
     <br />
 
-    最後更新於 10月 15, 2022。
+    最後更新於 10月 16, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 

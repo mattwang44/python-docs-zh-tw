@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>簡介 &#8212; Python 3.10.8 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>簡介 &#8212; Python 3.11.0rc2 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -22,7 +22,7 @@
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.10.8 說明文件 中搜尋"
+          title="在 Python 3.11.0rc2 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -110,7 +110,7 @@
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.10/Doc/c-api/intro.rst"
+        <a href="https://github.com/python/cpython/blob/main/Doc/c-api/intro.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -147,7 +147,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.8 Documentation</a> &#187;
+      <a href="../index.html">3.11.0rc2 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Python/C API 參考手冊</a> &#187;</li>
@@ -258,6 +258,117 @@ defined closer to where they are useful (e.g. <a class="reference internal" href
 Others of a more general utility are defined here.  This is not necessarily a
 complete listing.</p>
 <dl class="c macro">
+<dt class="sig sig-object c" id="c.Py_ABS">
+<span class="sig-name descname"><span class="n"><span class="pre">Py_ABS</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">x</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.Py_ABS" title="本定義的永久連結">¶</a><br /></dt>
+<dd><p>回傳 <code class="docutils literal notranslate"><span class="pre">x</span></code> 的絕對值。</p>
+<div class="versionadded">
+<p><span class="versionmodified added">在 3.3 版本新加入.</span></p>
+</div>
+</dd></dl>
+
+<dl class="c macro">
+<dt class="sig sig-object c" id="c.Py_ALWAYS_INLINE">
+<span class="sig-name descname"><span class="n"><span class="pre">Py_ALWAYS_INLINE</span></span></span><a class="headerlink" href="#c.Py_ALWAYS_INLINE" title="本定義的永久連結">¶</a><br /></dt>
+<dd><p>Ask the compiler to always inline a static inline function. The compiler can
+ignore it and decides to not inline the function.</p>
+<p>It can be used to inline performance critical static inline functions when
+building Python in debug mode with function inlining disabled. For example,
+MSC disables function inlining when building in debug mode.</p>
+<p>Marking blindly a static inline function with Py_ALWAYS_INLINE can result in
+worse performances (due to increased code size for example). The compiler is
+usually smarter than the developer for the cost/benefit analysis.</p>
+<p>If Python is <a class="reference internal" href="../using/configure.html#debug-build"><span class="std std-ref">built in debug mode</span></a> (if the <code class="docutils literal notranslate"><span class="pre">Py_DEBUG</span></code>
+macro is defined), the <a class="reference internal" href="#c.Py_ALWAYS_INLINE" title="Py_ALWAYS_INLINE"><code class="xref c c-macro docutils literal notranslate"><span class="pre">Py_ALWAYS_INLINE</span></code></a> macro does nothing.</p>
+<p>It must be specified before the function return type. Usage:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="kr">inline</span><span class="w"> </span><span class="n">Py_ALWAYS_INLINE</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">random</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="mi">4</span><span class="p">;</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified added">在 3.11 版本新加入.</span></p>
+</div>
+</dd></dl>
+
+<dl class="c macro">
+<dt class="sig sig-object c" id="c.Py_CHARMASK">
+<span class="sig-name descname"><span class="n"><span class="pre">Py_CHARMASK</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">c</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.Py_CHARMASK" title="本定義的永久連結">¶</a><br /></dt>
+<dd><p>Argument must be a character or an integer in the range [-128, 127] or [0,
+255].  This macro returns <code class="docutils literal notranslate"><span class="pre">c</span></code> cast to an <code class="docutils literal notranslate"><span class="pre">unsigned</span> <span class="pre">char</span></code>.</p>
+</dd></dl>
+
+<dl class="c macro">
+<dt class="sig sig-object c" id="c.Py_DEPRECATED">
+<span class="sig-name descname"><span class="n"><span class="pre">Py_DEPRECATED</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">version</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.Py_DEPRECATED" title="本定義的永久連結">¶</a><br /></dt>
+<dd><p>Use this for deprecated declarations.  The macro must be placed before the
+symbol name.</p>
+<p>範例：</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">Py_DEPRECATED</span><span class="p">(</span><span class="mf">3.8</span><span class="p">)</span><span class="w"> </span><span class="n">PyAPI_FUNC</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="w"> </span><span class="n">Py_OldFunction</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">在 3.8 版本變更: </span>MSVC support was added.</p>
+</div>
+</dd></dl>
+
+<dl class="c macro">
+<dt class="sig sig-object c" id="c.Py_GETENV">
+<span class="sig-name descname"><span class="n"><span class="pre">Py_GETENV</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">s</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.Py_GETENV" title="本定義的永久連結">¶</a><br /></dt>
+<dd><p>Like <code class="docutils literal notranslate"><span class="pre">getenv(s)</span></code>, but returns <code class="docutils literal notranslate"><span class="pre">NULL</span></code> if <a class="reference internal" href="../using/cmdline.html#cmdoption-E"><code class="xref std std-option docutils literal notranslate"><span class="pre">-E</span></code></a> was passed on the
+command line (i.e. if <code class="docutils literal notranslate"><span class="pre">Py_IgnoreEnvironmentFlag</span></code> is set).</p>
+</dd></dl>
+
+<dl class="c macro">
+<dt class="sig sig-object c" id="c.Py_MAX">
+<span class="sig-name descname"><span class="n"><span class="pre">Py_MAX</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">x</span></span>, <span class="n"><span class="pre">y</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.Py_MAX" title="本定義的永久連結">¶</a><br /></dt>
+<dd><p>Return the maximum value between <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code>.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">在 3.3 版本新加入.</span></p>
+</div>
+</dd></dl>
+
+<dl class="c macro">
+<dt class="sig sig-object c" id="c.Py_MEMBER_SIZE">
+<span class="sig-name descname"><span class="n"><span class="pre">Py_MEMBER_SIZE</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">type</span></span>, <span class="n"><span class="pre">member</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.Py_MEMBER_SIZE" title="本定義的永久連結">¶</a><br /></dt>
+<dd><p>Return the size of a structure (<code class="docutils literal notranslate"><span class="pre">type</span></code>) <code class="docutils literal notranslate"><span class="pre">member</span></code> in bytes.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">在 3.6 版本新加入.</span></p>
+</div>
+</dd></dl>
+
+<dl class="c macro">
+<dt class="sig sig-object c" id="c.Py_MIN">
+<span class="sig-name descname"><span class="n"><span class="pre">Py_MIN</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">x</span></span>, <span class="n"><span class="pre">y</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.Py_MIN" title="本定義的永久連結">¶</a><br /></dt>
+<dd><p>Return the minimum value between <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code>.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">在 3.3 版本新加入.</span></p>
+</div>
+</dd></dl>
+
+<dl class="c macro">
+<dt class="sig sig-object c" id="c.Py_NO_INLINE">
+<span class="sig-name descname"><span class="n"><span class="pre">Py_NO_INLINE</span></span></span><a class="headerlink" href="#c.Py_NO_INLINE" title="本定義的永久連結">¶</a><br /></dt>
+<dd><p>Disable inlining on a function. For example, it reduces the C stack
+consumption: useful on LTO+PGO builds which heavily inline code (see
+<a class="reference external" href="https://bugs.python.org/issue?&#64;action=redirect&amp;bpo=33720">bpo-33720</a>).</p>
+<p>Usage:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">Py_NO_INLINE</span><span class="w"> </span><span class="k">static</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">random</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="mi">4</span><span class="p">;</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified added">在 3.11 版本新加入.</span></p>
+</div>
+</dd></dl>
+
+<dl class="c macro">
+<dt class="sig sig-object c" id="c.Py_STRINGIFY">
+<span class="sig-name descname"><span class="n"><span class="pre">Py_STRINGIFY</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">x</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.Py_STRINGIFY" title="本定義的永久連結">¶</a><br /></dt>
+<dd><p>Convert <code class="docutils literal notranslate"><span class="pre">x</span></code> to a C string.  E.g. <code class="docutils literal notranslate"><span class="pre">Py_STRINGIFY(123)</span></code> returns
+<code class="docutils literal notranslate"><span class="pre">&quot;123&quot;</span></code>.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">在 3.4 版本新加入.</span></p>
+</div>
+</dd></dl>
+
+<dl class="c macro">
 <dt class="sig sig-object c" id="c.Py_UNREACHABLE">
 <span class="sig-name descname"><span class="n"><span class="pre">Py_UNREACHABLE</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c.Py_UNREACHABLE" title="本定義的永久連結">¶</a><br /></dt>
 <dd><p>Use this when you have a code path that cannot be reached by design.
@@ -280,86 +391,12 @@ be reported to caller, <a class="reference internal" href="sys.html#c.Py_FatalEr
 </dd></dl>
 
 <dl class="c macro">
-<dt class="sig sig-object c" id="c.Py_ABS">
-<span class="sig-name descname"><span class="n"><span class="pre">Py_ABS</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">x</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.Py_ABS" title="本定義的永久連結">¶</a><br /></dt>
-<dd><p>回傳 <code class="docutils literal notranslate"><span class="pre">x</span></code> 的絕對值。</p>
-<div class="versionadded">
-<p><span class="versionmodified added">在 3.3 版本新加入.</span></p>
-</div>
-</dd></dl>
-
-<dl class="c macro">
-<dt class="sig sig-object c" id="c.Py_MIN">
-<span class="sig-name descname"><span class="n"><span class="pre">Py_MIN</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">x</span></span>, <span class="n"><span class="pre">y</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.Py_MIN" title="本定義的永久連結">¶</a><br /></dt>
-<dd><p>Return the minimum value between <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code>.</p>
-<div class="versionadded">
-<p><span class="versionmodified added">在 3.3 版本新加入.</span></p>
-</div>
-</dd></dl>
-
-<dl class="c macro">
-<dt class="sig sig-object c" id="c.Py_MAX">
-<span class="sig-name descname"><span class="n"><span class="pre">Py_MAX</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">x</span></span>, <span class="n"><span class="pre">y</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.Py_MAX" title="本定義的永久連結">¶</a><br /></dt>
-<dd><p>Return the maximum value between <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code>.</p>
-<div class="versionadded">
-<p><span class="versionmodified added">在 3.3 版本新加入.</span></p>
-</div>
-</dd></dl>
-
-<dl class="c macro">
-<dt class="sig sig-object c" id="c.Py_STRINGIFY">
-<span class="sig-name descname"><span class="n"><span class="pre">Py_STRINGIFY</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">x</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.Py_STRINGIFY" title="本定義的永久連結">¶</a><br /></dt>
-<dd><p>Convert <code class="docutils literal notranslate"><span class="pre">x</span></code> to a C string.  E.g. <code class="docutils literal notranslate"><span class="pre">Py_STRINGIFY(123)</span></code> returns
-<code class="docutils literal notranslate"><span class="pre">&quot;123&quot;</span></code>.</p>
-<div class="versionadded">
-<p><span class="versionmodified added">在 3.4 版本新加入.</span></p>
-</div>
-</dd></dl>
-
-<dl class="c macro">
-<dt class="sig sig-object c" id="c.Py_MEMBER_SIZE">
-<span class="sig-name descname"><span class="n"><span class="pre">Py_MEMBER_SIZE</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">type</span></span>, <span class="n"><span class="pre">member</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.Py_MEMBER_SIZE" title="本定義的永久連結">¶</a><br /></dt>
-<dd><p>Return the size of a structure (<code class="docutils literal notranslate"><span class="pre">type</span></code>) <code class="docutils literal notranslate"><span class="pre">member</span></code> in bytes.</p>
-<div class="versionadded">
-<p><span class="versionmodified added">在 3.6 版本新加入.</span></p>
-</div>
-</dd></dl>
-
-<dl class="c macro">
-<dt class="sig sig-object c" id="c.Py_CHARMASK">
-<span class="sig-name descname"><span class="n"><span class="pre">Py_CHARMASK</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">c</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.Py_CHARMASK" title="本定義的永久連結">¶</a><br /></dt>
-<dd><p>Argument must be a character or an integer in the range [-128, 127] or [0,
-255].  This macro returns <code class="docutils literal notranslate"><span class="pre">c</span></code> cast to an <code class="docutils literal notranslate"><span class="pre">unsigned</span> <span class="pre">char</span></code>.</p>
-</dd></dl>
-
-<dl class="c macro">
-<dt class="sig sig-object c" id="c.Py_GETENV">
-<span class="sig-name descname"><span class="n"><span class="pre">Py_GETENV</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">s</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.Py_GETENV" title="本定義的永久連結">¶</a><br /></dt>
-<dd><p>Like <code class="docutils literal notranslate"><span class="pre">getenv(s)</span></code>, but returns <code class="docutils literal notranslate"><span class="pre">NULL</span></code> if <a class="reference internal" href="../using/cmdline.html#cmdoption-E"><code class="xref std std-option docutils literal notranslate"><span class="pre">-E</span></code></a> was passed on the
-command line (i.e. if <code class="docutils literal notranslate"><span class="pre">Py_IgnoreEnvironmentFlag</span></code> is set).</p>
-</dd></dl>
-
-<dl class="c macro">
 <dt class="sig sig-object c" id="c.Py_UNUSED">
 <span class="sig-name descname"><span class="n"><span class="pre">Py_UNUSED</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">arg</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.Py_UNUSED" title="本定義的永久連結">¶</a><br /></dt>
 <dd><p>Use this for unused arguments in a function definition to silence compiler
 warnings. Example: <code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">func(int</span> <span class="pre">a,</span> <span class="pre">int</span> <span class="pre">Py_UNUSED(b))</span> <span class="pre">{</span> <span class="pre">return</span> <span class="pre">a;</span> <span class="pre">}</span></code>.</p>
 <div class="versionadded">
 <p><span class="versionmodified added">在 3.4 版本新加入.</span></p>
-</div>
-</dd></dl>
-
-<dl class="c macro">
-<dt class="sig sig-object c" id="c.Py_DEPRECATED">
-<span class="sig-name descname"><span class="n"><span class="pre">Py_DEPRECATED</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">version</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.Py_DEPRECATED" title="本定義的永久連結">¶</a><br /></dt>
-<dd><p>Use this for deprecated declarations.  The macro must be placed before the
-symbol name.</p>
-<p>範例：</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">Py_DEPRECATED</span><span class="p">(</span><span class="mf">3.8</span><span class="p">)</span><span class="w"> </span><span class="n">PyAPI_FUNC</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="w"> </span><span class="n">Py_OldFunction</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span><span class="w"></span>
-</pre></div>
-</div>
-<div class="versionchanged">
-<p><span class="versionmodified changed">在 3.8 版本變更: </span>MSVC support was added.</p>
 </div>
 </dd></dl>
 
@@ -772,10 +809,10 @@ interpreter can only be used after the interpreter has been initialized.</p>
 the table of loaded modules, and creates the fundamental modules
 <a class="reference internal" href="../library/builtins.html#module-builtins" title="builtins: The module that provides the built-in namespace."><code class="xref py py-mod docutils literal notranslate"><span class="pre">builtins</span></code></a>, <a class="reference internal" href="../library/__main__.html#module-__main__" title="__main__: The environment where top-level code is run. Covers command-line interfaces, import-time behavior, and ``__name__ == '__main__'``."><code class="xref py py-mod docutils literal notranslate"><span class="pre">__main__</span></code></a>, and <a class="reference internal" href="../library/sys.html#module-sys" title="sys: Access system-specific parameters and functions."><code class="xref py py-mod docutils literal notranslate"><span class="pre">sys</span></code></a>.  It also
 initializes the module search path (<code class="docutils literal notranslate"><span class="pre">sys.path</span></code>).</p>
-<p id="index-24"><a class="reference internal" href="init.html#c.Py_Initialize" title="Py_Initialize"><code class="xref c c-func docutils literal notranslate"><span class="pre">Py_Initialize()</span></code></a> does not set the &quot;script argument list&quot;  (<code class="docutils literal notranslate"><span class="pre">sys.argv</span></code>).
-If this variable is needed by Python code that will be executed later, it must
-be set explicitly with a call to  <code class="docutils literal notranslate"><span class="pre">PySys_SetArgvEx(argc,</span> <span class="pre">argv,</span> <span class="pre">updatepath)</span></code>
-after the call to <a class="reference internal" href="init.html#c.Py_Initialize" title="Py_Initialize"><code class="xref c c-func docutils literal notranslate"><span class="pre">Py_Initialize()</span></code></a>.</p>
+<p><a class="reference internal" href="init.html#c.Py_Initialize" title="Py_Initialize"><code class="xref c c-func docutils literal notranslate"><span class="pre">Py_Initialize()</span></code></a> does not set the &quot;script argument list&quot;  (<code class="docutils literal notranslate"><span class="pre">sys.argv</span></code>).
+If this variable is needed by Python code that will be executed later, setting
+<a class="reference internal" href="init_config.html#c.PyConfig.argv" title="PyConfig.argv"><code class="xref c c-member docutils literal notranslate"><span class="pre">PyConfig.argv</span></code></a> and <a class="reference internal" href="init_config.html#c.PyConfig.parse_argv" title="PyConfig.parse_argv"><code class="xref c c-member docutils literal notranslate"><span class="pre">PyConfig.parse_argv</span></code></a> must be set: see
+<a class="reference internal" href="init_config.html#init-config"><span class="std std-ref">Python Initialization Configuration</span></a>.</p>
 <p>On most systems (in particular, on Unix and Windows, although the details are
 slightly different), <a class="reference internal" href="init.html#c.Py_Initialize" title="Py_Initialize"><code class="xref c c-func docutils literal notranslate"><span class="pre">Py_Initialize()</span></code></a> calculates the module search path
 based upon its best guess for the location of the standard Python interpreter
@@ -783,22 +820,22 @@ executable, assuming that the Python library is found in a fixed location
 relative to the Python interpreter executable.  In particular, it looks for a
 directory named <code class="file docutils literal notranslate"><span class="pre">lib/python</span><em><span class="pre">X.Y</span></em></code> relative to the parent directory
 where the executable named <code class="file docutils literal notranslate"><span class="pre">python</span></code> is found on the shell command search
-path (the environment variable <span class="target" id="index-25"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PATH</span></code>).</p>
+path (the environment variable <span class="target" id="index-24"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PATH</span></code>).</p>
 <p>For instance, if the Python executable is found in
 <code class="file docutils literal notranslate"><span class="pre">/usr/local/bin/python</span></code>, it will assume that the libraries are in
 <code class="file docutils literal notranslate"><span class="pre">/usr/local/lib/python</span><em><span class="pre">X.Y</span></em></code>.  (In fact, this particular path is also
 the &quot;fallback&quot; location, used when no executable file named <code class="file docutils literal notranslate"><span class="pre">python</span></code> is
-found along <span class="target" id="index-26"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PATH</span></code>.)  The user can override this behavior by setting the
-environment variable <span class="target" id="index-27"></span><a class="reference internal" href="../using/cmdline.html#envvar-PYTHONHOME"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PYTHONHOME</span></code></a>, or insert additional directories in
-front of the standard path by setting <span class="target" id="index-28"></span><a class="reference internal" href="../using/cmdline.html#envvar-PYTHONPATH"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PYTHONPATH</span></code></a>.</p>
-<p id="index-29">The embedding application can steer the search by calling
+found along <span class="target" id="index-25"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PATH</span></code>.)  The user can override this behavior by setting the
+environment variable <span class="target" id="index-26"></span><a class="reference internal" href="../using/cmdline.html#envvar-PYTHONHOME"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PYTHONHOME</span></code></a>, or insert additional directories in
+front of the standard path by setting <span class="target" id="index-27"></span><a class="reference internal" href="../using/cmdline.html#envvar-PYTHONPATH"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PYTHONPATH</span></code></a>.</p>
+<p id="index-28">The embedding application can steer the search by calling
 <code class="docutils literal notranslate"><span class="pre">Py_SetProgramName(file)</span></code> <em>before</em> calling  <a class="reference internal" href="init.html#c.Py_Initialize" title="Py_Initialize"><code class="xref c c-func docutils literal notranslate"><span class="pre">Py_Initialize()</span></code></a>.  Note that
-<span class="target" id="index-30"></span><a class="reference internal" href="../using/cmdline.html#envvar-PYTHONHOME"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PYTHONHOME</span></code></a> still overrides this and <span class="target" id="index-31"></span><a class="reference internal" href="../using/cmdline.html#envvar-PYTHONPATH"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PYTHONPATH</span></code></a> is still
+<span class="target" id="index-29"></span><a class="reference internal" href="../using/cmdline.html#envvar-PYTHONHOME"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PYTHONHOME</span></code></a> still overrides this and <span class="target" id="index-30"></span><a class="reference internal" href="../using/cmdline.html#envvar-PYTHONPATH"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PYTHONPATH</span></code></a> is still
 inserted in front of the standard path.  An application that requires total
 control has to provide its own implementation of <a class="reference internal" href="init.html#c.Py_GetPath" title="Py_GetPath"><code class="xref c c-func docutils literal notranslate"><span class="pre">Py_GetPath()</span></code></a>,
 <a class="reference internal" href="init.html#c.Py_GetPrefix" title="Py_GetPrefix"><code class="xref c c-func docutils literal notranslate"><span class="pre">Py_GetPrefix()</span></code></a>, <a class="reference internal" href="init.html#c.Py_GetExecPrefix" title="Py_GetExecPrefix"><code class="xref c c-func docutils literal notranslate"><span class="pre">Py_GetExecPrefix()</span></code></a>, and
 <a class="reference internal" href="init.html#c.Py_GetProgramFullPath" title="Py_GetProgramFullPath"><code class="xref c c-func docutils literal notranslate"><span class="pre">Py_GetProgramFullPath()</span></code></a> (all defined in <code class="file docutils literal notranslate"><span class="pre">Modules/getpath.c</span></code>).</p>
-<p id="index-32">Sometimes, it is desirable to &quot;uninitialize&quot; Python.  For instance,  the
+<p id="index-31">Sometimes, it is desirable to &quot;uninitialize&quot; Python.  For instance,  the
 application may want to start over (make another call to
 <a class="reference internal" href="init.html#c.Py_Initialize" title="Py_Initialize"><code class="xref c c-func docutils literal notranslate"><span class="pre">Py_Initialize()</span></code></a>) or the application is simply done with its  use of
 Python and wants to free memory allocated by Python.  This can be accomplished
@@ -883,7 +920,7 @@ for more detailed information.</p>
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.10/Doc/c-api/intro.rst"
+        <a href="https://github.com/python/cpython/blob/main/Doc/c-api/intro.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -923,7 +960,7 @@ for more detailed information.</p>
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.8 Documentation</a> &#187;
+      <a href="../index.html">3.11.0rc2 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python/C API 參考手冊</a> &#187;</li>
@@ -959,7 +996,7 @@ for more detailed information.</p>
 <br />
     <br />
 
-    最後更新於 10月 15, 2022。
+    最後更新於 10月 16, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 

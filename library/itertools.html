@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>itertools --- Functions creating iterators for efficient looping &#8212; Python 3.10.8 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>itertools --- Functions creating iterators for efficient looping &#8212; Python 3.11.0rc2 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -22,7 +22,7 @@
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.10.8 說明文件 中搜尋"
+          title="在 Python 3.11.0rc2 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -122,7 +122,7 @@
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.10/Doc/library/itertools.rst"
+        <a href="https://github.com/python/cpython/blob/main/Doc/library/itertools.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -159,7 +159,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.8 Documentation</a> &#187;
+      <a href="../index.html">3.11.0rc2 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -588,7 +588,7 @@ used as an argument to <a class="reference internal" href="functions.html#map" t
 Also, used with <a class="reference internal" href="functions.html#zip" title="zip"><code class="xref py py-func docutils literal notranslate"><span class="pre">zip()</span></code></a> to add sequence numbers.  Roughly equivalent to:</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">count</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
     <span class="c1"># count(10) --&gt; 10 11 12 13 14 ...</span>
-    <span class="c1"># count(2.5, 0.5) -&gt; 2.5 3.0 3.5 ...</span>
+    <span class="c1"># count(2.5, 0.5) --&gt; 2.5 3.0 3.5 ...</span>
     <span class="n">n</span> <span class="o">=</span> <span class="n">start</span>
     <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
         <span class="k">yield</span> <span class="n">n</span>
@@ -1003,7 +1003,7 @@ itertools as building blocks.</p>
 <p>Substantially all of these recipes and many, many others can be installed from
 the <a class="reference external" href="https://pypi.org/project/more-itertools/">more-itertools project</a> found
 on the Python Package Index:</p>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">more</span><span class="o">-</span><span class="n">itertools</span>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">more</span><span class="o">-</span><span class="n">itertools</span>
 </pre></div>
 </div>
 <p>The extended tools offer the same high performance as the underlying toolset.
@@ -1019,7 +1019,7 @@ which incur interpreter overhead.</p>
 
 <span class="k">def</span> <span class="nf">prepend</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">iterator</span><span class="p">):</span>
     <span class="s2">&quot;Prepend a single value in front of an iterator&quot;</span>
-    <span class="c1"># prepend(1, [2, 3, 4]) -&gt; 1 2 3 4</span>
+    <span class="c1"># prepend(1, [2, 3, 4]) --&gt; 1 2 3 4</span>
     <span class="k">return</span> <span class="n">chain</span><span class="p">([</span><span class="n">value</span><span class="p">],</span> <span class="n">iterator</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">tabulate</span><span class="p">(</span><span class="n">function</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
@@ -1055,10 +1055,7 @@ which incur interpreter overhead.</p>
     <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">pred</span><span class="p">,</span> <span class="n">iterable</span><span class="p">))</span>
 
 <span class="k">def</span> <span class="nf">pad_none</span><span class="p">(</span><span class="n">iterable</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Returns the sequence elements and then returns None indefinitely.</span>
-
-<span class="sd">    Useful for emulating the behavior of the built-in map() function.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="s2">&quot;Returns the sequence elements and then returns None indefinitely.&quot;</span>
     <span class="k">return</span> <span class="n">chain</span><span class="p">(</span><span class="n">iterable</span><span class="p">,</span> <span class="n">repeat</span><span class="p">(</span><span class="kc">None</span><span class="p">))</span>
 
 <span class="k">def</span> <span class="nf">ncycles</span><span class="p">(</span><span class="n">iterable</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
@@ -1079,6 +1076,39 @@ which incur interpreter overhead.</p>
     <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">chain</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">repeat</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)):</span>
         <span class="n">window</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
         <span class="k">yield</span> <span class="nb">sum</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">operator</span><span class="o">.</span><span class="n">mul</span><span class="p">,</span> <span class="n">kernel</span><span class="p">,</span> <span class="n">window</span><span class="p">))</span>
+
+<span class="k">def</span> <span class="nf">polynomial_from_roots</span><span class="p">(</span><span class="n">roots</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Compute a polynomial&#39;s coefficients from its roots.</span>
+
+<span class="sd">       (x - 5) (x + 4) (x - 3)  expands to:   x³ -4x² -17x + 60</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># polynomial_from_roots([5, -4, 3]) --&gt; [1, -4, -17, 60]</span>
+    <span class="n">roots</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">operator</span><span class="o">.</span><span class="n">neg</span><span class="p">,</span> <span class="n">roots</span><span class="p">))</span>
+    <span class="k">return</span> <span class="p">[</span>
+        <span class="nb">sum</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">prod</span><span class="p">,</span> <span class="n">combinations</span><span class="p">(</span><span class="n">roots</span><span class="p">,</span> <span class="n">k</span><span class="p">)))</span>
+        <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">roots</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="p">]</span>
+
+<span class="k">def</span> <span class="nf">iter_index</span><span class="p">(</span><span class="n">seq</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="s2">&quot;Return indices where a value occurs in a sequence.&quot;</span>
+    <span class="c1"># iter_index(&#39;AABCADEAF&#39;, &#39;A&#39;) --&gt; 0 1 4 7</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="n">start</span> <span class="o">-</span> <span class="mi">1</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="k">yield</span> <span class="p">(</span><span class="n">i</span> <span class="o">:=</span> <span class="n">seq</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+    <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+        <span class="k">pass</span>
+
+<span class="k">def</span> <span class="nf">sieve</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="s2">&quot;Primes less than n&quot;</span>
+    <span class="c1"># sieve(30) --&gt; 2 3 5 7 11 13 17 19 23 29</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="nb">bytearray</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span> <span class="o">*</span> <span class="p">(</span><span class="n">n</span> <span class="o">//</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="n">data</span><span class="p">[:</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span>
+    <span class="n">limit</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">isqrt</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">compress</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">limit</span><span class="p">),</span> <span class="n">data</span><span class="p">):</span>
+        <span class="n">data</span><span class="p">[</span><span class="n">p</span><span class="o">*</span><span class="n">p</span> <span class="p">:</span> <span class="n">n</span> <span class="p">:</span> <span class="n">p</span><span class="o">+</span><span class="n">p</span><span class="p">]</span> <span class="o">=</span> <span class="nb">bytes</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">p</span><span class="o">*</span><span class="n">p</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">p</span><span class="o">+</span><span class="n">p</span><span class="p">)))</span>
+    <span class="n">data</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">iter_index</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="k">if</span> <span class="n">n</span> <span class="o">&gt;</span> <span class="mi">2</span> <span class="k">else</span> <span class="nb">iter</span><span class="p">([])</span>
 
 <span class="k">def</span> <span class="nf">flatten</span><span class="p">(</span><span class="n">list_of_lists</span><span class="p">):</span>
     <span class="s2">&quot;Flatten one level of nesting&quot;</span>
@@ -1108,14 +1138,21 @@ which incur interpreter overhead.</p>
     <span class="k">else</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Expected fill, strict, or ignore&#39;</span><span class="p">)</span>
 
+<span class="k">def</span> <span class="nf">batched</span><span class="p">(</span><span class="n">iterable</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+    <span class="s2">&quot;Batch data into lists of length n. The last batch may be shorter.&quot;</span>
+    <span class="c1"># batched(&#39;ABCDEFG&#39;, 3) --&gt; ABC DEF G</span>
+    <span class="n">it</span> <span class="o">=</span> <span class="nb">iter</span><span class="p">(</span><span class="n">iterable</span><span class="p">)</span>
+    <span class="k">while</span> <span class="p">(</span><span class="n">batch</span> <span class="o">:=</span> <span class="nb">list</span><span class="p">(</span><span class="n">islice</span><span class="p">(</span><span class="n">it</span><span class="p">,</span> <span class="n">n</span><span class="p">))):</span>
+        <span class="k">yield</span> <span class="n">batch</span>
+
 <span class="k">def</span> <span class="nf">triplewise</span><span class="p">(</span><span class="n">iterable</span><span class="p">):</span>
     <span class="s2">&quot;Return overlapping triplets from an iterable&quot;</span>
-    <span class="c1"># triplewise(&#39;ABCDEFG&#39;) -&gt; ABC BCD CDE DEF EFG</span>
+    <span class="c1"># triplewise(&#39;ABCDEFG&#39;) --&gt; ABC BCD CDE DEF EFG</span>
     <span class="k">for</span> <span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">_</span><span class="p">),</span> <span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span> <span class="ow">in</span> <span class="n">pairwise</span><span class="p">(</span><span class="n">pairwise</span><span class="p">(</span><span class="n">iterable</span><span class="p">)):</span>
         <span class="k">yield</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span>
 
 <span class="k">def</span> <span class="nf">sliding_window</span><span class="p">(</span><span class="n">iterable</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
-    <span class="c1"># sliding_window(&#39;ABCDEFG&#39;, 4) -&gt; ABCD BCDE CDEF DEFG</span>
+    <span class="c1"># sliding_window(&#39;ABCDEFG&#39;, 4) --&gt; ABCD BCDE CDEF DEFG</span>
     <span class="n">it</span> <span class="o">=</span> <span class="nb">iter</span><span class="p">(</span><span class="n">iterable</span><span class="p">)</span>
     <span class="n">window</span> <span class="o">=</span> <span class="n">collections</span><span class="o">.</span><span class="n">deque</span><span class="p">(</span><span class="n">islice</span><span class="p">(</span><span class="n">it</span><span class="p">,</span> <span class="n">n</span><span class="p">),</span> <span class="n">maxlen</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">window</span><span class="p">)</span> <span class="o">==</span> <span class="n">n</span><span class="p">:</span>
@@ -1272,12 +1309,7 @@ which incur interpreter overhead.</p>
     <span class="s2">&quot;Equivalent to list(combinations(iterable, r))[index]&quot;</span>
     <span class="n">pool</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">iterable</span><span class="p">)</span>
     <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">pool</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">r</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">r</span> <span class="o">&gt;</span> <span class="n">n</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span>
-    <span class="n">c</span> <span class="o">=</span> <span class="mi">1</span>
-    <span class="n">k</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">n</span><span class="o">-</span><span class="n">r</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
-        <span class="n">c</span> <span class="o">=</span> <span class="n">c</span> <span class="o">*</span> <span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="n">k</span> <span class="o">+</span> <span class="n">i</span><span class="p">)</span> <span class="o">//</span> <span class="n">i</span>
+    <span class="n">c</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">comb</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">r</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">index</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
         <span class="n">index</span> <span class="o">+=</span> <span class="n">c</span>
     <span class="k">if</span> <span class="n">index</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">index</span> <span class="o">&gt;=</span> <span class="n">c</span><span class="p">:</span>
@@ -1352,7 +1384,7 @@ which incur interpreter overhead.</p>
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.10/Doc/library/itertools.rst"
+        <a href="https://github.com/python/cpython/blob/main/Doc/library/itertools.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -1392,7 +1424,7 @@ which incur interpreter overhead.</p>
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.8 Documentation</a> &#187;
+      <a href="../index.html">3.11.0rc2 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -1429,7 +1461,7 @@ which incur interpreter overhead.</p>
 <br />
     <br />
 
-    最後更新於 10月 15, 2022。
+    最後更新於 10月 16, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 

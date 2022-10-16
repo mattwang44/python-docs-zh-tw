@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>wsgiref --- WSGI Utilities and Reference Implementation &#8212; Python 3.10.8 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>wsgiref --- WSGI Utilities and Reference Implementation &#8212; Python 3.11.0rc2 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -22,7 +22,7 @@
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.10.8 說明文件 中搜尋"
+          title="在 Python 3.11.0rc2 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -148,6 +148,15 @@
 <li><a class="reference internal" href="#wsgiref.handlers.read_environ"><code class="docutils literal notranslate"><span class="pre">read_environ()</span></code></a></li>
 </ul>
 </li>
+<li><a class="reference internal" href="#module-wsgiref.types"><code class="xref py py-mod docutils literal notranslate"><span class="pre">wsgiref.types</span></code> -- WSGI types for static type checking</a><ul>
+<li><a class="reference internal" href="#wsgiref.types.StartResponse"><code class="docutils literal notranslate"><span class="pre">StartResponse</span></code></a></li>
+<li><a class="reference internal" href="#wsgiref.types.WSGIEnvironment"><code class="docutils literal notranslate"><span class="pre">WSGIEnvironment</span></code></a></li>
+<li><a class="reference internal" href="#wsgiref.types.WSGIApplication"><code class="docutils literal notranslate"><span class="pre">WSGIApplication</span></code></a></li>
+<li><a class="reference internal" href="#wsgiref.types.InputStream"><code class="docutils literal notranslate"><span class="pre">InputStream</span></code></a></li>
+<li><a class="reference internal" href="#wsgiref.types.ErrorStream"><code class="docutils literal notranslate"><span class="pre">ErrorStream</span></code></a></li>
+<li><a class="reference internal" href="#wsgiref.types.FileWrapper"><code class="docutils literal notranslate"><span class="pre">FileWrapper</span></code></a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#examples">範例</a></li>
 </ul>
 </li>
@@ -169,7 +178,7 @@
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.10/Doc/library/wsgiref.rst"
+        <a href="https://github.com/python/cpython/blob/main/Doc/library/wsgiref.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -206,7 +215,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.8 Documentation</a> &#187;
+      <a href="../index.html">3.11.0rc2 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -249,6 +258,7 @@ an existing framework.</p>
 be used to add WSGI support to a web server or framework.  It provides utilities
 for manipulating WSGI environment variables and response headers, base classes
 for implementing WSGI servers, a demo HTTP server that serves WSGI applications,
+types for static type checking,
 and a validation tool that checks WSGI servers and applications for conformance
 to the WSGI specification (<span class="target" id="index-0"></span><a class="pep reference external" href="https://peps.python.org/pep-3333/"><strong>PEP 3333</strong></a>).</p>
 <p>See <a class="reference external" href="https://wsgi.readthedocs.io/">wsgi.readthedocs.io</a> for more information about WSGI, and links
@@ -259,7 +269,9 @@ to tutorials and other resources.</p>
 environments.  A WSGI environment is a dictionary containing HTTP request
 variables as described in <span class="target" id="index-1"></span><a class="pep reference external" href="https://peps.python.org/pep-3333/"><strong>PEP 3333</strong></a>.  All of the functions taking an <em>environ</em>
 parameter expect a WSGI-compliant dictionary to be supplied; please see
-<span class="target" id="index-2"></span><a class="pep reference external" href="https://peps.python.org/pep-3333/"><strong>PEP 3333</strong></a> for a detailed specification.</p>
+<span class="target" id="index-2"></span><a class="pep reference external" href="https://peps.python.org/pep-3333/"><strong>PEP 3333</strong></a> for a detailed specification and
+<a class="reference internal" href="#wsgiref.types.WSGIEnvironment" title="wsgiref.types.WSGIEnvironment"><code class="xref py py-data docutils literal notranslate"><span class="pre">WSGIEnvironment</span></code></a> for a type alias that can be used
+in type annotations.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="wsgiref.util.guess_scheme">
 <span class="sig-prename descclassname"><span class="pre">wsgiref.util.</span></span><span class="sig-name descname"><span class="pre">guess_scheme</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">environ</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#wsgiref.util.guess_scheme" title="本定義的永久連結">¶</a></dt>
@@ -363,9 +375,10 @@ also provides these miscellaneous utilities:</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="wsgiref.util.FileWrapper">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">wsgiref.util.</span></span><span class="sig-name descname"><span class="pre">FileWrapper</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filelike</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">blksize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">8192</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#wsgiref.util.FileWrapper" title="本定義的永久連結">¶</a></dt>
-<dd><p>A wrapper to convert a file-like object to an <a class="reference internal" href="../glossary.html#term-iterator"><span class="xref std std-term">iterator</span></a>.  The resulting objects
-support both <code class="xref py py-meth docutils literal notranslate"><span class="pre">__getitem__()</span></code> and <code class="xref py py-meth docutils literal notranslate"><span class="pre">__iter__()</span></code> iteration styles, for
-compatibility with Python 2.1 and Jython. As the object is iterated over, the
+<dd><p>A concrete implementation of the <a class="reference internal" href="#wsgiref.types.FileWrapper" title="wsgiref.types.FileWrapper"><code class="xref py py-class docutils literal notranslate"><span class="pre">wsgiref.types.FileWrapper</span></code></a>
+protocol used to convert a file-like object to an <a class="reference internal" href="../glossary.html#term-iterator"><span class="xref std std-term">iterator</span></a>.
+The resulting objects
+are <a class="reference internal" href="../glossary.html#term-iterable"><span class="xref std std-term">iterable</span></a>s. As the object is iterated over, the
 optional <em>blksize</em> parameter will be repeatedly passed to the <em>filelike</em>
 object's <code class="xref py py-meth docutils literal notranslate"><span class="pre">read()</span></code> method to obtain bytestrings to yield.  When <code class="xref py py-meth docutils literal notranslate"><span class="pre">read()</span></code>
 returns an empty bytestring, iteration is ended and is not resumable.</p>
@@ -384,8 +397,8 @@ method when called.</p>
     <span class="nb">print</span><span class="p">(</span><span class="n">chunk</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="deprecated">
-<p><span class="versionmodified deprecated">在 3.8 版本開始棄用: </span>Support for <code class="xref py py-meth docutils literal notranslate"><span class="pre">sequence</span> <span class="pre">protocol</span></code> is deprecated.</p>
+<div class="versionchanged">
+<p><span class="versionmodified changed">在 3.11 版本變更: </span>Support for <code class="xref py py-meth docutils literal notranslate"><span class="pre">__getitem__()</span></code> method has been removed.</p>
 </div>
 </dd></dl>
 
@@ -547,7 +560,8 @@ subclasses:</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="wsgiref.simple_server.WSGIRequestHandler.get_environ">
 <span class="sig-name descname"><span class="pre">get_environ</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#wsgiref.simple_server.WSGIRequestHandler.get_environ" title="本定義的永久連結">¶</a></dt>
-<dd><p>Returns a dictionary containing the WSGI environment for a request.  The default
+<dd><p>Return a <a class="reference internal" href="#wsgiref.types.WSGIEnvironment" title="wsgiref.types.WSGIEnvironment"><code class="xref py py-data docutils literal notranslate"><span class="pre">WSGIEnvironment</span></code></a> dictionary for a
+request.  The default
 implementation copies the contents of the <a class="reference internal" href="#wsgiref.simple_server.WSGIServer" title="wsgiref.simple_server.WSGIServer"><code class="xref py py-class docutils literal notranslate"><span class="pre">WSGIServer</span></code></a> object's
 <code class="xref py py-attr docutils literal notranslate"><span class="pre">base_environ</span></code> dictionary attribute and then adds various headers derived
 from the HTTP request.  Each call to this method should return a new dictionary
@@ -743,14 +757,16 @@ is a no-op (i.e., if <a class="reference internal" href="#wsgiref.handlers.BaseH
 <dl class="py method">
 <dt class="sig sig-object py" id="wsgiref.handlers.BaseHandler.get_stdin">
 <span class="sig-name descname"><span class="pre">get_stdin</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#wsgiref.handlers.BaseHandler.get_stdin" title="本定義的永久連結">¶</a></dt>
-<dd><p>Return an input stream object suitable for use as the <code class="docutils literal notranslate"><span class="pre">wsgi.input</span></code> of the
+<dd><p>Return an object compatible with <a class="reference internal" href="#wsgiref.types.InputStream" title="wsgiref.types.InputStream"><code class="xref py py-class docutils literal notranslate"><span class="pre">InputStream</span></code></a>
+suitable for use as the <code class="docutils literal notranslate"><span class="pre">wsgi.input</span></code> of the
 request currently being processed.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="wsgiref.handlers.BaseHandler.get_stderr">
 <span class="sig-name descname"><span class="pre">get_stderr</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#wsgiref.handlers.BaseHandler.get_stderr" title="本定義的永久連結">¶</a></dt>
-<dd><p>Return an output stream object suitable for use as the <code class="docutils literal notranslate"><span class="pre">wsgi.errors</span></code> of the
+<dd><p>Return an object compatible with <a class="reference internal" href="#wsgiref.types.ErrorStream" title="wsgiref.types.ErrorStream"><code class="xref py py-class docutils literal notranslate"><span class="pre">ErrorStream</span></code></a>
+suitable for use as the <code class="docutils literal notranslate"><span class="pre">wsgi.errors</span></code> of the
 request currently being processed.</p>
 </dd></dl>
 
@@ -898,8 +914,9 @@ Handling&quot; feature:</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="wsgiref.handlers.BaseHandler.wsgi_file_wrapper">
 <span class="sig-name descname"><span class="pre">wsgi_file_wrapper</span></span><a class="headerlink" href="#wsgiref.handlers.BaseHandler.wsgi_file_wrapper" title="本定義的永久連結">¶</a></dt>
-<dd><p>A <code class="docutils literal notranslate"><span class="pre">wsgi.file_wrapper</span></code> factory, or <code class="docutils literal notranslate"><span class="pre">None</span></code>.  The default value of this
-attribute is the <a class="reference internal" href="#wsgiref.util.FileWrapper" title="wsgiref.util.FileWrapper"><code class="xref py py-class docutils literal notranslate"><span class="pre">wsgiref.util.FileWrapper</span></code></a> class.</p>
+<dd><p>A <code class="docutils literal notranslate"><span class="pre">wsgi.file_wrapper</span></code> factory, compatible with
+<a class="reference internal" href="#wsgiref.types.FileWrapper" title="wsgiref.types.FileWrapper"><code class="xref py py-class docutils literal notranslate"><span class="pre">wsgiref.types.FileWrapper</span></code></a>, or <code class="docutils literal notranslate"><span class="pre">None</span></code>.  The default value
+of this attribute is the <a class="reference internal" href="#wsgiref.util.FileWrapper" title="wsgiref.util.FileWrapper"><code class="xref py py-class docutils literal notranslate"><span class="pre">wsgiref.util.FileWrapper</span></code></a> class.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -954,26 +971,76 @@ directly.</p>
 </dd></dl>
 
 </section>
+<section id="module-wsgiref.types">
+<span id="wsgiref-types-wsgi-types-for-static-type-checking"></span><h2><a class="reference internal" href="#module-wsgiref.types" title="wsgiref.types: WSGI types for static type checking"><code class="xref py py-mod docutils literal notranslate"><span class="pre">wsgiref.types</span></code></a> -- WSGI types for static type checking<a class="headerlink" href="#module-wsgiref.types" title="本標頭的永久連結">¶</a></h2>
+<p>This module provides various types for static type checking as described
+in <span class="target" id="index-17"></span><a class="pep reference external" href="https://peps.python.org/pep-3333/"><strong>PEP 3333</strong></a>.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">在 3.11 版本新加入.</span></p>
+</div>
+<dl class="py class">
+<dt class="sig sig-object py" id="wsgiref.types.StartResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">wsgiref.types.</span></span><span class="sig-name descname"><span class="pre">StartResponse</span></span><a class="headerlink" href="#wsgiref.types.StartResponse" title="本定義的永久連結">¶</a></dt>
+<dd><p>A <a class="reference internal" href="typing.html#typing.Protocol" title="typing.Protocol"><code class="xref py py-class docutils literal notranslate"><span class="pre">typing.Protocol</span></code></a> describing <a class="reference external" href="https://peps.python.org/pep-3333/#the-start-response-callable">start_response()</a>
+callables (<span class="target" id="index-18"></span><a class="pep reference external" href="https://peps.python.org/pep-3333/"><strong>PEP 3333</strong></a>).</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="wsgiref.types.WSGIEnvironment">
+<span class="sig-prename descclassname"><span class="pre">wsgiref.types.</span></span><span class="sig-name descname"><span class="pre">WSGIEnvironment</span></span><a class="headerlink" href="#wsgiref.types.WSGIEnvironment" title="本定義的永久連結">¶</a></dt>
+<dd><p>A type alias describing a WSGI environment dictionary.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="wsgiref.types.WSGIApplication">
+<span class="sig-prename descclassname"><span class="pre">wsgiref.types.</span></span><span class="sig-name descname"><span class="pre">WSGIApplication</span></span><a class="headerlink" href="#wsgiref.types.WSGIApplication" title="本定義的永久連結">¶</a></dt>
+<dd><p>A type alias describing a WSGI application callable.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="wsgiref.types.InputStream">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">wsgiref.types.</span></span><span class="sig-name descname"><span class="pre">InputStream</span></span><a class="headerlink" href="#wsgiref.types.InputStream" title="本定義的永久連結">¶</a></dt>
+<dd><p>A <a class="reference internal" href="typing.html#typing.Protocol" title="typing.Protocol"><code class="xref py py-class docutils literal notranslate"><span class="pre">typing.Protocol</span></code></a> describing a <a class="reference external" href="https://peps.python.org/pep-3333/#input-and-error-streams">WSGI Input Stream</a>.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="wsgiref.types.ErrorStream">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">wsgiref.types.</span></span><span class="sig-name descname"><span class="pre">ErrorStream</span></span><a class="headerlink" href="#wsgiref.types.ErrorStream" title="本定義的永久連結">¶</a></dt>
+<dd><p>A <a class="reference internal" href="typing.html#typing.Protocol" title="typing.Protocol"><code class="xref py py-class docutils literal notranslate"><span class="pre">typing.Protocol</span></code></a> describing a <a class="reference external" href="https://peps.python.org/pep-3333/#input-and-error-streams">WSGI Error Stream</a>.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="wsgiref.types.FileWrapper">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">wsgiref.types.</span></span><span class="sig-name descname"><span class="pre">FileWrapper</span></span><a class="headerlink" href="#wsgiref.types.FileWrapper" title="本定義的永久連結">¶</a></dt>
+<dd><p>A <a class="reference internal" href="typing.html#typing.Protocol" title="typing.Protocol"><code class="xref py py-class docutils literal notranslate"><span class="pre">typing.Protocol</span></code></a> describing a <a class="reference external" href="https://peps.python.org/pep-3333/#optional-platform-specific-file-handling">file wrapper</a>.
+See <a class="reference internal" href="#wsgiref.util.FileWrapper" title="wsgiref.util.FileWrapper"><code class="xref py py-class docutils literal notranslate"><span class="pre">wsgiref.util.FileWrapper</span></code></a> for a concrete implementation of this
+protocol.</p>
+</dd></dl>
+
+</section>
 <section id="examples">
 <h2>範例<a class="headerlink" href="#examples" title="本標頭的永久連結">¶</a></h2>
 <p>This is a working &quot;Hello World&quot; WSGI application:</p>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">wsgiref.simple_server</span> <span class="kn">import</span> <span class="n">make_server</span>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Every WSGI application must have an application object - a callable</span>
+<span class="sd">object that accepts two arguments. For that purpose, we&#39;re going to</span>
+<span class="sd">use a function (note that you&#39;re not limited to a function, you can</span>
+<span class="sd">use a class for example). The first argument passed to the function</span>
+<span class="sd">is a dictionary containing CGI-style environment variables and the</span>
+<span class="sd">second variable is the callable object.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">wsgiref.simple_server</span> <span class="kn">import</span> <span class="n">make_server</span>
 
-<span class="c1"># Every WSGI application must have an application object - a callable</span>
-<span class="c1"># object that accepts two arguments. For that purpose, we&#39;re going to</span>
-<span class="c1"># use a function (note that you&#39;re not limited to a function, you can</span>
-<span class="c1"># use a class for example). The first argument passed to the function</span>
-<span class="c1"># is a dictionary containing CGI-style environment variables and the</span>
-<span class="c1"># second variable is the callable object.</span>
+
 <span class="k">def</span> <span class="nf">hello_world_app</span><span class="p">(</span><span class="n">environ</span><span class="p">,</span> <span class="n">start_response</span><span class="p">):</span>
-    <span class="n">status</span> <span class="o">=</span> <span class="s1">&#39;200 OK&#39;</span>  <span class="c1"># HTTP Status</span>
-    <span class="n">headers</span> <span class="o">=</span> <span class="p">[(</span><span class="s1">&#39;Content-type&#39;</span><span class="p">,</span> <span class="s1">&#39;text/plain; charset=utf-8&#39;</span><span class="p">)]</span>  <span class="c1"># HTTP Headers</span>
+    <span class="n">status</span> <span class="o">=</span> <span class="s2">&quot;200 OK&quot;</span>  <span class="c1"># HTTP Status</span>
+    <span class="n">headers</span> <span class="o">=</span> <span class="p">[(</span><span class="s2">&quot;Content-type&quot;</span><span class="p">,</span> <span class="s2">&quot;text/plain; charset=utf-8&quot;</span><span class="p">)]</span>  <span class="c1"># HTTP Headers</span>
     <span class="n">start_response</span><span class="p">(</span><span class="n">status</span><span class="p">,</span> <span class="n">headers</span><span class="p">)</span>
 
     <span class="c1"># The returned object is going to be printed</span>
     <span class="k">return</span> <span class="p">[</span><span class="sa">b</span><span class="s2">&quot;Hello World&quot;</span><span class="p">]</span>
 
-<span class="k">with</span> <span class="n">make_server</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="mi">8000</span><span class="p">,</span> <span class="n">hello_world_app</span><span class="p">)</span> <span class="k">as</span> <span class="n">httpd</span><span class="p">:</span>
+<span class="k">with</span> <span class="n">make_server</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="mi">8000</span><span class="p">,</span> <span class="n">hello_world_app</span><span class="p">)</span> <span class="k">as</span> <span class="n">httpd</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Serving on port 8000...&quot;</span><span class="p">)</span>
 
     <span class="c1"># Serve until process is killed</span>
@@ -982,37 +1049,42 @@ directly.</p>
 </div>
 <p>Example of a WSGI application serving the current directory, accept optional
 directory and port number (default: 8000) on the command line:</p>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python3</span>
-<span class="sd">&#39;&#39;&#39;</span>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">Small wsgiref based web server. Takes a path to serve from and an</span>
 <span class="sd">optional port number (defaults to 8000), then tries to serve files.</span>
-<span class="sd">Mime types are guessed from the file names, 404 errors are raised</span>
-<span class="sd">if the file is not found. Used for the make serve target in Doc.</span>
-<span class="sd">&#39;&#39;&#39;</span>
-<span class="kn">import</span> <span class="nn">sys</span>
-<span class="kn">import</span> <span class="nn">os</span>
+<span class="sd">MIME types are guessed from the file names, 404 errors are raised</span>
+<span class="sd">if the file is not found.</span>
+<span class="sd">&quot;&quot;&quot;</span>
 <span class="kn">import</span> <span class="nn">mimetypes</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">from</span> <span class="nn">wsgiref</span> <span class="kn">import</span> <span class="n">simple_server</span><span class="p">,</span> <span class="n">util</span>
 
+
 <span class="k">def</span> <span class="nf">app</span><span class="p">(</span><span class="n">environ</span><span class="p">,</span> <span class="n">respond</span><span class="p">):</span>
+    <span class="c1"># Get the file name and MIME type</span>
+    <span class="n">fn</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">environ</span><span class="p">[</span><span class="s2">&quot;PATH_INFO&quot;</span><span class="p">][</span><span class="mi">1</span><span class="p">:])</span>
+    <span class="k">if</span> <span class="s2">&quot;.&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">fn</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">sep</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
+        <span class="n">fn</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">fn</span><span class="p">,</span> <span class="s2">&quot;index.html&quot;</span><span class="p">)</span>
+    <span class="n">mime_type</span> <span class="o">=</span> <span class="n">mimetypes</span><span class="o">.</span><span class="n">guess_type</span><span class="p">(</span><span class="n">fn</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
 
-    <span class="n">fn</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">environ</span><span class="p">[</span><span class="s1">&#39;PATH_INFO&#39;</span><span class="p">][</span><span class="mi">1</span><span class="p">:])</span>
-    <span class="k">if</span> <span class="s1">&#39;.&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">fn</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">sep</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
-        <span class="n">fn</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">fn</span><span class="p">,</span> <span class="s1">&#39;index.html&#39;</span><span class="p">)</span>
-    <span class="nb">type</span> <span class="o">=</span> <span class="n">mimetypes</span><span class="o">.</span><span class="n">guess_type</span><span class="p">(</span><span class="n">fn</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-
+    <span class="c1"># Return 200 OK if file exists, otherwise 404 Not Found</span>
     <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">fn</span><span class="p">):</span>
-        <span class="n">respond</span><span class="p">(</span><span class="s1">&#39;200 OK&#39;</span><span class="p">,</span> <span class="p">[(</span><span class="s1">&#39;Content-Type&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="p">)])</span>
+        <span class="n">respond</span><span class="p">(</span><span class="s2">&quot;200 OK&quot;</span><span class="p">,</span> <span class="p">[(</span><span class="s2">&quot;Content-Type&quot;</span><span class="p">,</span> <span class="n">mime_type</span><span class="p">)])</span>
         <span class="k">return</span> <span class="n">util</span><span class="o">.</span><span class="n">FileWrapper</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">fn</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">))</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="n">respond</span><span class="p">(</span><span class="s1">&#39;404 Not Found&#39;</span><span class="p">,</span> <span class="p">[(</span><span class="s1">&#39;Content-Type&#39;</span><span class="p">,</span> <span class="s1">&#39;text/plain&#39;</span><span class="p">)])</span>
-        <span class="k">return</span> <span class="p">[</span><span class="sa">b</span><span class="s1">&#39;not found&#39;</span><span class="p">]</span>
+        <span class="n">respond</span><span class="p">(</span><span class="s2">&quot;404 Not Found&quot;</span><span class="p">,</span> <span class="p">[(</span><span class="s2">&quot;Content-Type&quot;</span><span class="p">,</span> <span class="s2">&quot;text/plain&quot;</span><span class="p">)])</span>
+        <span class="k">return</span> <span class="p">[</span><span class="sa">b</span><span class="s2">&quot;not found&quot;</span><span class="p">]</span>
 
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="c1"># Get the path and port from command-line arguments</span>
     <span class="n">path</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="k">else</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span>
     <span class="n">port</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">2</span> <span class="k">else</span> <span class="mi">8000</span>
-    <span class="n">httpd</span> <span class="o">=</span> <span class="n">simple_server</span><span class="o">.</span><span class="n">make_server</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">port</span><span class="p">,</span> <span class="n">app</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Serving </span><span class="si">{}</span><span class="s2"> on port </span><span class="si">{}</span><span class="s2">, control-C to stop&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">port</span><span class="p">))</span>
+
+    <span class="c1"># Make and start the server until control-c</span>
+    <span class="n">httpd</span> <span class="o">=</span> <span class="n">simple_server</span><span class="o">.</span><span class="n">make_server</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">port</span><span class="p">,</span> <span class="n">app</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Serving </span><span class="si">{</span><span class="n">path</span><span class="si">}</span><span class="s2"> on port </span><span class="si">{</span><span class="n">port</span><span class="si">}</span><span class="s2">, control-C to stop&quot;</span><span class="p">)</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="n">httpd</span><span class="o">.</span><span class="n">serve_forever</span><span class="p">()</span>
     <span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>
@@ -1106,6 +1178,15 @@ directory and port number (default: 8000) on the command line:</p>
 <li><a class="reference internal" href="#wsgiref.handlers.read_environ"><code class="docutils literal notranslate"><span class="pre">read_environ()</span></code></a></li>
 </ul>
 </li>
+<li><a class="reference internal" href="#module-wsgiref.types"><code class="xref py py-mod docutils literal notranslate"><span class="pre">wsgiref.types</span></code> -- WSGI types for static type checking</a><ul>
+<li><a class="reference internal" href="#wsgiref.types.StartResponse"><code class="docutils literal notranslate"><span class="pre">StartResponse</span></code></a></li>
+<li><a class="reference internal" href="#wsgiref.types.WSGIEnvironment"><code class="docutils literal notranslate"><span class="pre">WSGIEnvironment</span></code></a></li>
+<li><a class="reference internal" href="#wsgiref.types.WSGIApplication"><code class="docutils literal notranslate"><span class="pre">WSGIApplication</span></code></a></li>
+<li><a class="reference internal" href="#wsgiref.types.InputStream"><code class="docutils literal notranslate"><span class="pre">InputStream</span></code></a></li>
+<li><a class="reference internal" href="#wsgiref.types.ErrorStream"><code class="docutils literal notranslate"><span class="pre">ErrorStream</span></code></a></li>
+<li><a class="reference internal" href="#wsgiref.types.FileWrapper"><code class="docutils literal notranslate"><span class="pre">FileWrapper</span></code></a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#examples">範例</a></li>
 </ul>
 </li>
@@ -1127,7 +1208,7 @@ directory and port number (default: 8000) on the command line:</p>
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.10/Doc/library/wsgiref.rst"
+        <a href="https://github.com/python/cpython/blob/main/Doc/library/wsgiref.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -1167,7 +1248,7 @@ directory and port number (default: 8000) on the command line:</p>
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.8 Documentation</a> &#187;
+      <a href="../index.html">3.11.0rc2 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -1204,7 +1285,7 @@ directory and port number (default: 8000) on the command line:</p>
 <br />
     <br />
 
-    最後更新於 10月 15, 2022。
+    最後更新於 10月 16, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 

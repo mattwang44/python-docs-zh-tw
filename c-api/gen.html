@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>產生器物件 &#8212; Python 3.10.8 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>產生器物件 &#8212; Python 3.11.0rc2 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -22,14 +22,14 @@
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.10.8 說明文件 中搜尋"
+          title="在 Python 3.11.0rc2 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="搜尋" href="../search.html" />
     <link rel="copyright" title="版權" href="../copyright.html" />
     <link rel="next" title="Coroutine（協程）物件" href="coro.html" />
-    <link rel="prev" title="Capsules" href="capsule.html" />
+    <link rel="prev" title="Frame Objects" href="frame.html" />
     <link rel="canonical" href="https://docs.python.org/3/c-api/gen.html" />
     
       
@@ -74,8 +74,8 @@
             <div class="language_switcher_placeholder"></div>
   <div>
     <h4>上個主題</h4>
-    <p class="topless"><a href="capsule.html"
-                          title="上一章">Capsules</a></p>
+    <p class="topless"><a href="frame.html"
+                          title="上一章">Frame Objects</a></p>
   </div>
   <div>
     <h4>下個主題</h4>
@@ -87,7 +87,7 @@
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.10/Doc/c-api/gen.rst"
+        <a href="https://github.com/python/cpython/blob/main/Doc/c-api/gen.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -111,7 +111,7 @@
           <a href="coro.html" title="Coroutine（協程）物件"
              accesskey="N">下一頁</a> |</li>
         <li class="right" >
-          <a href="capsule.html" title="Capsules"
+          <a href="frame.html" title="Frame Objects"
              accesskey="P">上一頁</a> |</li>
 
           <li><img src="../_static/py.svg" alt="python logo" style="vertical-align: middle; margin-top: -1px"/></li>
@@ -124,7 +124,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.8 Documentation</a> &#187;
+      <a href="../index.html">3.11.0rc2 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python/C API 參考手冊</a> &#187;</li>
@@ -185,7 +185,7 @@ function always succeeds.</p>
 
 <dl class="c function">
 <dt class="sig sig-object c" id="c.PyGen_New">
-<a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">PyGen_New</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="veryhigh.html#c.PyFrameObject" title="PyFrameObject"><span class="n"><span class="pre">PyFrameObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">frame</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.PyGen_New" title="本定義的永久連結">¶</a><br /></dt>
+<a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">PyGen_New</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="frame.html#c.PyFrameObject" title="PyFrameObject"><span class="n"><span class="pre">PyFrameObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">frame</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.PyGen_New" title="本定義的永久連結">¶</a><br /></dt>
 <dd><em class="refcount">Return value: New reference.</em><p>Create and return a new generator object based on the <em>frame</em> object.
 A reference to <em>frame</em> is stolen by this function. The argument must not be
 <code class="docutils literal notranslate"><span class="pre">NULL</span></code>.</p>
@@ -193,7 +193,7 @@ A reference to <em>frame</em> is stolen by this function. The argument must not 
 
 <dl class="c function">
 <dt class="sig sig-object c" id="c.PyGen_NewWithQualName">
-<a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">PyGen_NewWithQualName</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="veryhigh.html#c.PyFrameObject" title="PyFrameObject"><span class="n"><span class="pre">PyFrameObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">frame</span></span>, <a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">name</span></span>, <a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">qualname</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.PyGen_NewWithQualName" title="本定義的永久連結">¶</a><br /></dt>
+<a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">PyGen_NewWithQualName</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="frame.html#c.PyFrameObject" title="PyFrameObject"><span class="n"><span class="pre">PyFrameObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">frame</span></span>, <a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">name</span></span>, <a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">qualname</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.PyGen_NewWithQualName" title="本定義的永久連結">¶</a><br /></dt>
 <dd><em class="refcount">Return value: New reference.</em><p>Create and return a new generator object based on the <em>frame</em> object,
 with <code class="docutils literal notranslate"><span class="pre">__name__</span></code> and <code class="docutils literal notranslate"><span class="pre">__qualname__</span></code> set to <em>name</em> and <em>qualname</em>.
 A reference to <em>frame</em> is stolen by this function.  The <em>frame</em> argument
@@ -211,8 +211,8 @@ must not be <code class="docutils literal notranslate"><span class="pre">NULL</s
         <div class="sphinxsidebarwrapper">
   <div>
     <h4>上個主題</h4>
-    <p class="topless"><a href="capsule.html"
-                          title="上一章">Capsules</a></p>
+    <p class="topless"><a href="frame.html"
+                          title="上一章">Frame Objects</a></p>
   </div>
   <div>
     <h4>下個主題</h4>
@@ -224,7 +224,7 @@ must not be <code class="docutils literal notranslate"><span class="pre">NULL</s
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.10/Doc/c-api/gen.rst"
+        <a href="https://github.com/python/cpython/blob/main/Doc/c-api/gen.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -251,7 +251,7 @@ must not be <code class="docutils literal notranslate"><span class="pre">NULL</s
           <a href="coro.html" title="Coroutine（協程）物件"
              >下一頁</a> |</li>
         <li class="right" >
-          <a href="capsule.html" title="Capsules"
+          <a href="frame.html" title="Frame Objects"
              >上一頁</a> |</li>
 
           <li><img src="../_static/py.svg" alt="python logo" style="vertical-align: middle; margin-top: -1px"/></li>
@@ -264,7 +264,7 @@ must not be <code class="docutils literal notranslate"><span class="pre">NULL</s
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.8 Documentation</a> &#187;
+      <a href="../index.html">3.11.0rc2 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python/C API 參考手冊</a> &#187;</li>
@@ -301,7 +301,7 @@ must not be <code class="docutils literal notranslate"><span class="pre">NULL</s
 <br />
     <br />
 
-    最後更新於 10月 15, 2022。
+    最後更新於 10月 16, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 

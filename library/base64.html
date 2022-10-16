@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>base64 —— Base16、Base32、Base64、Base85 資料編碼 &#8212; Python 3.10.8 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>base64 —— Base16、Base32、Base64、Base85 資料編碼 &#8212; Python 3.11.0rc2 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -22,13 +22,13 @@
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.10.8 說明文件 中搜尋"
+          title="在 Python 3.11.0rc2 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="搜尋" href="../search.html" />
     <link rel="copyright" title="版權" href="../copyright.html" />
-    <link rel="next" title="binhex --- Encode and decode binhex4 files" href="binhex.html" />
+    <link rel="next" title="binascii --- Convert between binary and ASCII" href="binascii.html" />
     <link rel="prev" title="mimetypes --- Map filenames to MIME types" href="mimetypes.html" />
     <link rel="canonical" href="https://docs.python.org/3/library/base64.html" />
     
@@ -109,15 +109,15 @@
   </div>
   <div>
     <h4>下個主題</h4>
-    <p class="topless"><a href="binhex.html"
-                          title="下一章"><code class="xref py py-mod docutils literal notranslate"><span class="pre">binhex</span></code> --- Encode and decode binhex4 files</a></p>
+    <p class="topless"><a href="binascii.html"
+                          title="下一章"><code class="xref py py-mod docutils literal notranslate"><span class="pre">binascii</span></code> --- Convert between binary and ASCII</a></p>
   </div>
   <div role="note" aria-label="source link">
     <h3>此頁面</h3>
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.10/Doc/library/base64.rst"
+        <a href="https://github.com/python/cpython/blob/main/Doc/library/base64.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -138,7 +138,7 @@
           <a href="../py-modindex.html" title="Python 模組索引"
              >模組</a> |</li>
         <li class="right" >
-          <a href="binhex.html" title="binhex --- Encode and decode binhex4 files"
+          <a href="binascii.html" title="binascii --- Convert between binary and ASCII"
              accesskey="N">下一頁</a> |</li>
         <li class="right" >
           <a href="mimetypes.html" title="mimetypes --- Map filenames to MIME types"
@@ -154,7 +154,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.8 Documentation</a> &#187;
+      <a href="../index.html">3.11.0rc2 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -184,7 +184,7 @@
             
   <section id="module-base64">
 <span id="base64-base16-base32-base64-base85-data-encodings"></span><h1><a class="reference internal" href="#module-base64" title="base64: RFC 4648: Base16, Base32, Base64 Data Encodings; Base85 and Ascii85"><code class="xref py py-mod docutils literal notranslate"><span class="pre">base64</span></code></a> —— Base16、Base32、Base64、Base85 資料編碼<a class="headerlink" href="#module-base64" title="本標頭的永久連結">¶</a></h1>
-<p><strong>原始碼：</strong><a class="reference external" href="https://github.com/python/cpython/tree/3.10/Lib/base64.py">Lib/base64.py</a></p>
+<p><strong>原始碼：</strong><a class="reference external" href="https://github.com/python/cpython/tree/3.11/Lib/base64.py">Lib/base64.py</a></p>
 <hr class="docutils" id="index-0" />
 <p>這個模組提供將二進位資料編碼成可顯示 ASCII 字元以及解碼回原始資料的功能，包括了<span class="target" id="index-15"></span><a class="rfc reference external" href="https://datatracker.ietf.org/doc/html/rfc4648.html"><strong>RFC 4648</strong></a>中的 Base16、Base32、Base64 等編碼方式，以及標準 Ascii85、Base85 編碼等。</p>
 <p><span class="target" id="index-16"></span><a class="rfc reference external" href="https://datatracker.ietf.org/doc/html/rfc4648.html"><strong>RFC 4648</strong></a>標準編碼可以使電子郵件、URL，或是 HTTP POST 內容等傳輸管道安全地傳遞資料。這些編碼演算法與<strong class="program">uuencode</strong> 並不相同。</p>
@@ -234,6 +234,7 @@ in the normal base-64 alphabet nor the alternative alphabet are
 discarded prior to the padding check.  If <em>validate</em> is <code class="docutils literal notranslate"><span class="pre">True</span></code>,
 these non-alphabet characters in the input result in a
 <a class="reference internal" href="binascii.html#binascii.Error" title="binascii.Error"><code class="xref py py-exc docutils literal notranslate"><span class="pre">binascii.Error</span></code></a>.</p>
+<p>For more information about the strict base64 check, see <a class="reference internal" href="binascii.html#binascii.a2b_base64" title="binascii.a2b_base64"><code class="xref py py-func docutils literal notranslate"><span class="pre">binascii.a2b_base64()</span></code></a></p>
 </dd></dl>
 
 <dl class="py function">
@@ -515,15 +516,15 @@ base64 encoding.</p>
   </div>
   <div>
     <h4>下個主題</h4>
-    <p class="topless"><a href="binhex.html"
-                          title="下一章"><code class="xref py py-mod docutils literal notranslate"><span class="pre">binhex</span></code> --- Encode and decode binhex4 files</a></p>
+    <p class="topless"><a href="binascii.html"
+                          title="下一章"><code class="xref py py-mod docutils literal notranslate"><span class="pre">binascii</span></code> --- Convert between binary and ASCII</a></p>
   </div>
   <div role="note" aria-label="source link">
     <h3>此頁面</h3>
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.10/Doc/library/base64.rst"
+        <a href="https://github.com/python/cpython/blob/main/Doc/library/base64.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -547,7 +548,7 @@ base64 encoding.</p>
           <a href="../py-modindex.html" title="Python 模組索引"
              >模組</a> |</li>
         <li class="right" >
-          <a href="binhex.html" title="binhex --- Encode and decode binhex4 files"
+          <a href="binascii.html" title="binascii --- Convert between binary and ASCII"
              >下一頁</a> |</li>
         <li class="right" >
           <a href="mimetypes.html" title="mimetypes --- Map filenames to MIME types"
@@ -563,7 +564,7 @@ base64 encoding.</p>
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.10.8 Documentation</a> &#187;
+      <a href="../index.html">3.11.0rc2 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -600,7 +601,7 @@ base64 encoding.</p>
 <br />
     <br />
 
-    最後更新於 10月 15, 2022。
+    最後更新於 10月 16, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 
