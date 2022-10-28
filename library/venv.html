@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>venv --- Creation of virtual environments &#8212; Python 3.11.0rc2 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>venv --- Creation of virtual environments &#8212; Python 3.12.0a0 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -22,7 +22,7 @@
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.11.0rc2 說明文件 中搜尋"
+          title="在 Python 3.12.0a0 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -77,6 +77,7 @@
     <ul>
 <li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">venv</span></code> --- Creation of virtual environments</a><ul>
 <li><a class="reference internal" href="#creating-virtual-environments">Creating virtual environments</a></li>
+<li><a class="reference internal" href="#how-venvs-work">How venvs work</a></li>
 <li><a class="reference internal" href="#api">API</a><ul>
 <li><a class="reference internal" href="#venv.EnvBuilder"><code class="docutils literal notranslate"><span class="pre">EnvBuilder</span></code></a><ul>
 <li><a class="reference internal" href="#venv.EnvBuilder.create"><code class="docutils literal notranslate"><span class="pre">EnvBuilder.create()</span></code></a></li>
@@ -150,7 +151,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.11.0rc2 Documentation</a> &#187;
+      <a href="../index.html">3.12.0a0 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -183,15 +184,19 @@
 <div class="versionadded">
 <p><span class="versionmodified added">在 3.3 版本新加入.</span></p>
 </div>
-<p><strong>原始碼：</strong><a class="reference external" href="https://github.com/python/cpython/tree/3.11/Lib/venv/">Lib/venv/</a></p>
+<p><strong>原始碼：</strong><a class="reference external" href="https://github.com/python/cpython/tree/main/Lib/venv/">Lib/venv/</a></p>
 <hr class="docutils" id="index-0" />
-<p>The <a class="reference internal" href="#module-venv" title="venv: Creation of virtual environments."><code class="xref py py-mod docutils literal notranslate"><span class="pre">venv</span></code></a> module provides support for creating lightweight &quot;virtual
-environments&quot; with their own site directories, optionally isolated from system
-site directories.  Each virtual environment has its own Python binary (which
-matches the version of the binary that was used to create this environment) and
-can have its own independent set of installed Python packages in its site
-directories.</p>
-<p>更多關於 Python 虛擬環境的資訊請見 <span class="target" id="index-5"></span><a class="pep reference external" href="https://peps.python.org/pep-0405/"><strong>PEP 405</strong></a>。</p>
+<p id="venv-intro"><span id="venv-def"></span>The <code class="xref py py-mod docutils literal notranslate"><span class="pre">venv</span></code> module supports creating lightweight &quot;virtual environments&quot;,
+each with their own independent set of Python packages installed in
+their <a class="reference internal" href="site.html#module-site" title="site: Module responsible for site-specific configuration."><code class="xref py py-mod docutils literal notranslate"><span class="pre">site</span></code></a> directories.
+A virtual environment is created on top of an existing
+Python installation, known as the virtual environment's &quot;base&quot; Python, and may
+optionally be isolated from the packages in the base environment,
+so only those explicitly installed in the virtual environment are available.</p>
+<p>When used from within a virtual environment, common installation tools such as
+<a class="reference external" href="https://pypi.org/project/pip/">pip</a> will install Python packages into a virtual environment
+without needing to be told to do so explicitly.</p>
+<p>See <span class="target" id="index-1"></span><a class="pep reference external" href="https://peps.python.org/pep-0405/"><strong>PEP 405</strong></a> for more background on Python virtual environments.</p>
 <div class="admonition seealso">
 <p class="admonition-title">也參考</p>
 <p><a class="reference external" href="https://packaging.python.org/guides/installing-using-pip-and-virtual-environments/#creating-a-virtual-environment">Python Packaging User Guide: Creating and using virtual environments</a></p>
@@ -225,7 +230,7 @@ Python 3.3 and 3.4, and is <a class="reference external" href="https://docs.pyth
 <p><span class="versionmodified changed">在 3.5 版本變更: </span>The use of <code class="docutils literal notranslate"><span class="pre">venv</span></code> is now recommended for creating virtual environments.</p>
 </div>
 <p>On Windows, invoke the <code class="docutils literal notranslate"><span class="pre">venv</span></code> command as follows:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>c:\&gt;c:\Python35\python -m venv c:\path\to\myenv
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>c:\&gt;Python35\python -m venv c:\path\to\myenv
 </pre></div>
 </div>
 <p>Alternatively, if you configured the <code class="docutils literal notranslate"><span class="pre">PATH</span></code> and <code class="docutils literal notranslate"><span class="pre">PATHEXT</span></code> variables for
@@ -301,10 +306,25 @@ invoked to bootstrap <code class="docutils literal notranslate"><span class="pre
 <p>Multiple paths can be given to <code class="docutils literal notranslate"><span class="pre">venv</span></code>, in which case an identical virtual
 environment will be created, according to the given options, at each provided
 path.</p>
-<p>Once a virtual environment has been created, it can be &quot;activated&quot; using a
-script in the virtual environment's binary directory. The invocation of the
-script is platform-specific (<cite>&lt;venv&gt;</cite> must be replaced by the path of the
-directory containing the virtual environment):</p>
+</section>
+<section id="how-venvs-work">
+<span id="venv-explanation"></span><h2>How venvs work<a class="headerlink" href="#how-venvs-work" title="本標頭的永久連結">¶</a></h2>
+<p>When a Python interpreter is running from a virtual environment,
+<a class="reference internal" href="sys.html#sys.prefix" title="sys.prefix"><code class="xref py py-data docutils literal notranslate"><span class="pre">sys.prefix</span></code></a> and <a class="reference internal" href="sys.html#sys.exec_prefix" title="sys.exec_prefix"><code class="xref py py-data docutils literal notranslate"><span class="pre">sys.exec_prefix</span></code></a>
+point to the directories of the virtual environment,
+whereas <a class="reference internal" href="sys.html#sys.base_prefix" title="sys.base_prefix"><code class="xref py py-data docutils literal notranslate"><span class="pre">sys.base_prefix</span></code></a> and <a class="reference internal" href="sys.html#sys.base_exec_prefix" title="sys.base_exec_prefix"><code class="xref py py-data docutils literal notranslate"><span class="pre">sys.base_exec_prefix</span></code></a>
+point to those of the base Python used to create the environment.
+It is sufficient to check
+<code class="docutils literal notranslate"><span class="pre">sys.prefix</span> <span class="pre">==</span> <span class="pre">sys.base_prefix</span></code> to determine if the current interpreter is
+running from a virtual environment.</p>
+<p>A virtual environment may be &quot;activated&quot; using a script in its binary directory
+(<code class="docutils literal notranslate"><span class="pre">bin</span></code> on POSIX; <code class="docutils literal notranslate"><span class="pre">Scripts</span></code> on Windows).
+This will prepend that directory to your <code class="xref std std-envvar docutils literal notranslate"><span class="pre">PATH</span></code>, so that running
+<strong class="program">!python</strong> will invoke the environment's Python interpreter
+and you can run installed scripts without having to use their full path.
+The invocation of the activation script is platform-specific
+(<code class="samp docutils literal notranslate"><em><span class="pre">&lt;venv&gt;</span></em></code> must be replaced by the path to the directory
+containing the virtual environment):</p>
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>平台</p></th>
@@ -313,94 +333,53 @@ directory containing the virtual environment):</p>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>POSIX</p></td>
+<tr class="row-even"><td rowspan="4"><p>POSIX</p></td>
 <td><p>bash/zsh</p></td>
-<td><p>$ source &lt;venv&gt;/bin/activate</p></td>
+<td><p><code class="samp docutils literal notranslate"><span class="pre">$</span> <span class="pre">source</span> <em><span class="pre">&lt;venv&gt;</span></em><span class="pre">/bin/activate</span></code></p></td>
 </tr>
-<tr class="row-odd"><td></td>
-<td><p>fish</p></td>
-<td><p>$ source &lt;venv&gt;/bin/activate.fish</p></td>
+<tr class="row-odd"><td><p>fish</p></td>
+<td><p><code class="samp docutils literal notranslate"><span class="pre">$</span> <span class="pre">source</span> <em><span class="pre">&lt;venv&gt;</span></em><span class="pre">/bin/activate.fish</span></code></p></td>
 </tr>
-<tr class="row-even"><td></td>
-<td><p>csh/tcsh</p></td>
-<td><p>$ source &lt;venv&gt;/bin/activate.csh</p></td>
+<tr class="row-even"><td><p>csh/tcsh</p></td>
+<td><p><code class="samp docutils literal notranslate"><span class="pre">$</span> <span class="pre">source</span> <em><span class="pre">&lt;venv&gt;</span></em><span class="pre">/bin/activate.csh</span></code></p></td>
 </tr>
-<tr class="row-odd"><td></td>
-<td><p>PowerShell Core</p></td>
-<td><p>$ &lt;venv&gt;/bin/Activate.ps1</p></td>
+<tr class="row-odd"><td><p>PowerShell</p></td>
+<td><p><code class="samp docutils literal notranslate"><span class="pre">$</span> <em><span class="pre">&lt;venv&gt;</span></em><span class="pre">/bin/Activate.ps1</span></code></p></td>
 </tr>
-<tr class="row-even"><td><p>Windows</p></td>
+<tr class="row-even"><td rowspan="2"><p>Windows</p></td>
 <td><p>cmd.exe</p></td>
-<td><p>C:\&gt; &lt;venv&gt;\Scripts\activate.bat</p></td>
+<td><p><code class="samp docutils literal notranslate"><span class="pre">C:\&gt;</span> <em><span class="pre">&lt;venv&gt;</span></em><span class="pre">\Scripts\activate.bat</span></code></p></td>
 </tr>
-<tr class="row-odd"><td></td>
-<td><p>PowerShell</p></td>
-<td><p>PS C:\&gt; &lt;venv&gt;\Scripts\Activate.ps1</p></td>
+<tr class="row-odd"><td><p>PowerShell</p></td>
+<td><p><code class="samp docutils literal notranslate"><span class="pre">PS</span> <span class="pre">C:\&gt;</span> <em><span class="pre">&lt;venv&gt;</span></em><span class="pre">\Scripts\Activate.ps1</span></code></p></td>
 </tr>
 </tbody>
 </table>
-<p>When a virtual environment is active, the <span class="target" id="index-2"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">VIRTUAL_ENV</span></code> environment
-variable is set to the path of the virtual environment. This can be used to
-check if one is running inside a virtual environment.</p>
-<p>You don't specifically <em>need</em> to activate an environment; activation just
-prepends the virtual environment's binary directory to your path, so that
-&quot;python&quot; invokes the virtual environment's Python interpreter and you can run
-installed scripts without having to use their full path. However, all scripts
-installed in a virtual environment should be runnable without activating it,
-and run with the virtual environment's Python automatically.</p>
-<p>You can deactivate a virtual environment by typing &quot;deactivate&quot; in your shell.
-The exact mechanism is platform-specific and is an internal implementation
-detail (typically a script or shell function will be used).</p>
 <div class="versionadded">
-<p><span class="versionmodified added">在 3.4 版本新加入: </span><code class="docutils literal notranslate"><span class="pre">fish</span></code> and <code class="docutils literal notranslate"><span class="pre">csh</span></code> activation scripts.</p>
+<p><span class="versionmodified added">在 3.4 版本新加入: </span><strong class="program">!fish</strong> and <strong class="program">!csh</strong> activation scripts.</p>
 </div>
 <div class="versionadded">
 <p><span class="versionmodified added">在 3.8 版本新加入: </span>PowerShell activation scripts installed under POSIX for PowerShell Core
 support.</p>
 </div>
-<div class="admonition note" id="venv-def">
-<p class="admonition-title">備註</p>
-<p>A virtual environment is a Python environment such that the Python
-interpreter, libraries and scripts installed into it are isolated from those
-installed in other virtual environments, and (by default) any libraries
-installed in a &quot;system&quot; Python, i.e., one which is installed as part of your
-operating system.</p>
-<p>A virtual environment is a directory tree which contains Python executable
-files and other files which indicate that it is a virtual environment.</p>
-<p>Common installation tools such as <a class="reference external" href="https://pypi.org/project/setuptools/">setuptools</a> and <a class="reference external" href="https://pypi.org/project/pip/">pip</a> work as
-expected with virtual environments. In other words, when a virtual
-environment is active, they install Python packages into the virtual
-environment without needing to be told to do so explicitly.</p>
-<p>When a virtual environment is active (i.e., the virtual environment's Python
-interpreter is running), the attributes <a class="reference internal" href="sys.html#sys.prefix" title="sys.prefix"><code class="xref py py-attr docutils literal notranslate"><span class="pre">sys.prefix</span></code></a> and
-<a class="reference internal" href="sys.html#sys.exec_prefix" title="sys.exec_prefix"><code class="xref py py-attr docutils literal notranslate"><span class="pre">sys.exec_prefix</span></code></a> point to the base directory of the virtual
-environment, whereas <a class="reference internal" href="sys.html#sys.base_prefix" title="sys.base_prefix"><code class="xref py py-attr docutils literal notranslate"><span class="pre">sys.base_prefix</span></code></a> and
-<a class="reference internal" href="sys.html#sys.base_exec_prefix" title="sys.base_exec_prefix"><code class="xref py py-attr docutils literal notranslate"><span class="pre">sys.base_exec_prefix</span></code></a> point to the non-virtual environment Python
-installation which was used to create the virtual environment. If a virtual
-environment is not active, then <a class="reference internal" href="sys.html#sys.prefix" title="sys.prefix"><code class="xref py py-attr docutils literal notranslate"><span class="pre">sys.prefix</span></code></a> is the same as
-<a class="reference internal" href="sys.html#sys.base_prefix" title="sys.base_prefix"><code class="xref py py-attr docutils literal notranslate"><span class="pre">sys.base_prefix</span></code></a> and <a class="reference internal" href="sys.html#sys.exec_prefix" title="sys.exec_prefix"><code class="xref py py-attr docutils literal notranslate"><span class="pre">sys.exec_prefix</span></code></a> is the same as
-<a class="reference internal" href="sys.html#sys.base_exec_prefix" title="sys.base_exec_prefix"><code class="xref py py-attr docutils literal notranslate"><span class="pre">sys.base_exec_prefix</span></code></a> (they all point to a non-virtual environment
-Python installation).</p>
-<p>When a virtual environment is active, any options that change the
-installation path will be ignored from all <a class="reference internal" href="distutils.html#module-distutils" title="distutils: Support for building and installing Python modules into an existing Python installation."><code class="xref py py-mod docutils literal notranslate"><span class="pre">distutils</span></code></a> configuration
-files to prevent projects being inadvertently installed outside of the
-virtual environment.</p>
-<p>When working in a command shell, users can make a virtual environment active
-by running an <code class="docutils literal notranslate"><span class="pre">activate</span></code> script in the virtual environment's executables
-directory (the precise filename and command to use the file is
-shell-dependent), which prepends the virtual environment's directory for
-executables to the <code class="docutils literal notranslate"><span class="pre">PATH</span></code> environment variable for the running shell. There
-should be no need in other circumstances to activate a virtual
-environment; scripts installed into virtual environments have a &quot;shebang&quot;
-line which points to the virtual environment's Python interpreter. This means
-that the script will run with that interpreter regardless of the value of
-<code class="docutils literal notranslate"><span class="pre">PATH</span></code>. On Windows, &quot;shebang&quot; line processing is supported if you have the
-Python Launcher for Windows installed (this was added to Python in 3.3 - see
-<span class="target" id="index-3"></span><a class="pep reference external" href="https://peps.python.org/pep-0397/"><strong>PEP 397</strong></a> for more details). Thus, double-clicking an installed script in a
-Windows Explorer window should run the script with the correct interpreter
-without there needing to be any reference to its virtual environment in
-<code class="docutils literal notranslate"><span class="pre">PATH</span></code>.</p>
-</div>
+<p>You don't specifically <em>need</em> to activate a virtual environment,
+as you can just specify the full path to that environment's
+Python interpreter when invoking Python.
+Furthermore, all scripts installed in the environment
+should be runnable without activating it.</p>
+<p>In order to achieve this, scripts installed into virtual environments have
+a &quot;shebang&quot; line which points to the environment's Python interpreter,
+i.e. <code class="samp docutils literal notranslate"><span class="pre">#!/</span><em><span class="pre">&lt;path-to-venv&gt;</span></em><span class="pre">/bin/python</span></code>.
+This means that the script will run with that interpreter regardless of the
+value of <code class="xref std std-envvar docutils literal notranslate"><span class="pre">PATH</span></code>. On Windows, &quot;shebang&quot; line processing is supported if
+you have the <a class="reference internal" href="../using/windows.html#launcher"><span class="std std-ref">Python Launcher for Windows</span></a> installed. Thus, double-clicking an installed
+script in a Windows Explorer window should run it with the correct interpreter
+without the environment needing to be activated or on the <code class="xref std std-envvar docutils literal notranslate"><span class="pre">PATH</span></code>.</p>
+<p>When a virtual environment has been activated, the <code class="xref std std-envvar docutils literal notranslate"><span class="pre">VIRTUAL_ENV</span></code>
+environment variable is set to the path of the environment.
+Since explicitly activating a virtual environment is not required to use it,
+<code class="xref std std-envvar docutils literal notranslate"><span class="pre">VIRTUAL_ENV</span></code> cannot be relied upon to determine
+whether a virtual environment is being used.</p>
 <div class="admonition warning">
 <p class="admonition-title">警告</p>
 <p>Because scripts installed in environments should not expect the
@@ -417,6 +396,9 @@ because you moved a parent directory of it, you should recreate the
 environment in its new location. Otherwise, software installed into the
 environment may not work as expected.</p>
 </div>
+<p>You can deactivate a virtual environment by typing <code class="docutils literal notranslate"><span class="pre">deactivate</span></code> in your shell.
+The exact mechanism is platform-specific and is an internal implementation
+detail (typically, a script or shell function will be used).</p>
 </section>
 <section id="api">
 <span id="venv-api"></span><h2>API<a class="headerlink" href="#api" title="本標頭的永久連結">¶</a></h2>
@@ -496,6 +478,35 @@ is just a holder for attributes (such as paths) for use by the other
 methods.  If the <a class="reference internal" href="#venv.EnvBuilder" title="venv.EnvBuilder"><code class="xref py py-class docutils literal notranslate"><span class="pre">EnvBuilder</span></code></a> is created with the arg
 <code class="docutils literal notranslate"><span class="pre">clear=True</span></code>, contents of the environment directory will be cleared
 and then all necessary subdirectories will be recreated.</p>
+<p>The returned context object is a <a class="reference internal" href="types.html#types.SimpleNamespace" title="types.SimpleNamespace"><code class="xref py py-class docutils literal notranslate"><span class="pre">types.SimpleNamespace</span></code></a> with the
+following attributes:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">env_dir</span></code> - The location of the virtual environment. Used for
+<code class="docutils literal notranslate"><span class="pre">__VENV_DIR__</span></code> in activation scripts (see <a class="reference internal" href="#venv.EnvBuilder.install_scripts" title="venv.EnvBuilder.install_scripts"><code class="xref py py-meth docutils literal notranslate"><span class="pre">install_scripts()</span></code></a>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">env_name</span></code> - The name of the virtual environment. Used for
+<code class="docutils literal notranslate"><span class="pre">__VENV_NAME__</span></code> in activation scripts (see <a class="reference internal" href="#venv.EnvBuilder.install_scripts" title="venv.EnvBuilder.install_scripts"><code class="xref py py-meth docutils literal notranslate"><span class="pre">install_scripts()</span></code></a>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">prompt</span></code> - The prompt to be used by the activation scripts. Used for
+<code class="docutils literal notranslate"><span class="pre">__VENV_PROMPT__</span></code> in activation scripts (see <a class="reference internal" href="#venv.EnvBuilder.install_scripts" title="venv.EnvBuilder.install_scripts"><code class="xref py py-meth docutils literal notranslate"><span class="pre">install_scripts()</span></code></a>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">executable</span></code> - The underlying Python executable used by the virtual
+environment. This takes into account the case where a virtual environment
+is created from another virtual environment.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">inc_path</span></code> - The include path for the virtual environment.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">lib_path</span></code> - The purelib path for the virtual environment.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">bin_path</span></code> - The script path for the virtual environment.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">bin_name</span></code> - The name of the script path relative to the virtual
+environment location. Used for <code class="docutils literal notranslate"><span class="pre">__VENV_BIN_NAME__</span></code> in activation
+scripts (see <a class="reference internal" href="#venv.EnvBuilder.install_scripts" title="venv.EnvBuilder.install_scripts"><code class="xref py py-meth docutils literal notranslate"><span class="pre">install_scripts()</span></code></a>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">env_exe</span></code> - The name of the Python interpreter in the virtual
+environment. Used for <code class="docutils literal notranslate"><span class="pre">__VENV_PYTHON__</span></code> in activation scripts
+(see <a class="reference internal" href="#venv.EnvBuilder.install_scripts" title="venv.EnvBuilder.install_scripts"><code class="xref py py-meth docutils literal notranslate"><span class="pre">install_scripts()</span></code></a>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">env_exec_cmd</span></code> - The name of the Python interpreter, taking into
+account filesystem redirections. This can be used to run Python in
+the virtual environment.</p></li>
+</ul>
+<div class="versionchanged">
+<p><span class="versionmodified changed">在 3.12 版本變更: </span>The attribute <code class="docutils literal notranslate"><span class="pre">lib_path</span></code> was added to the context, and the context
+object was documented.</p>
+</div>
 <div class="versionchanged">
 <p><span class="versionmodified changed">在 3.11 版本變更: </span>The <em>venv</em>
 <a class="reference internal" href="sysconfig.html#installation-paths"><span class="std std-ref">sysconfig installation scheme</span></a>
@@ -840,6 +851,7 @@ subclass which installs setuptools and pip into a created virtual environment:</
     <ul>
 <li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">venv</span></code> --- Creation of virtual environments</a><ul>
 <li><a class="reference internal" href="#creating-virtual-environments">Creating virtual environments</a></li>
+<li><a class="reference internal" href="#how-venvs-work">How venvs work</a></li>
 <li><a class="reference internal" href="#api">API</a><ul>
 <li><a class="reference internal" href="#venv.EnvBuilder"><code class="docutils literal notranslate"><span class="pre">EnvBuilder</span></code></a><ul>
 <li><a class="reference internal" href="#venv.EnvBuilder.create"><code class="docutils literal notranslate"><span class="pre">EnvBuilder.create()</span></code></a></li>
@@ -916,7 +928,7 @@ subclass which installs setuptools and pip into a created virtual environment:</
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.11.0rc2 Documentation</a> &#187;
+      <a href="../index.html">3.12.0a0 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -953,11 +965,11 @@ subclass which installs setuptools and pip into a created virtual environment:</
 <br />
     <br />
 
-    最後更新於 10月 16, 2022。
+    最後更新於 10月 28, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 
-    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.2.3 建立。
+    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0 建立。
     </div>
 
   </body>

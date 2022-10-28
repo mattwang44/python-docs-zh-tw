@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>Logging Cookbook &#8212; Python 3.11.0rc2 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logging Cookbook &#8212; Python 3.12.0a0 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -22,7 +22,7 @@
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.11.0rc2 說明文件 中搜尋"
+          title="在 Python 3.12.0a0 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -194,7 +194,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.11.0rc2 Documentation</a> &#187;
+      <a href="../index.html">3.12.0a0 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Python 如何達成任務</a> &#187;</li>
@@ -934,7 +934,7 @@ serialization.</p>
 <p>To run a logging listener in production, you may need to use a process-management tool
 such as <a class="reference external" href="http://supervisord.org/">Supervisor</a>. <a class="reference external" href="https://gist.github.com/vsajip/4b227eeec43817465ca835ca66f75e2b">Here</a> is a Gist which
 provides the bare-bones files to run the above functionality using Supervisor: you
-will need to change the <cite>/path/to/</cite> parts in the Gist to reflect the actual paths you
+will need to change the <code class="docutils literal notranslate"><span class="pre">/path/to/</span></code> parts in the Gist to reflect the actual paths you
 want to use.</p>
 </section>
 </section>
@@ -2990,7 +2990,7 @@ messages as specified in the script.</p>
 <section id="formatting-times-using-utc-gmt-via-configuration">
 <span id="utc-formatting"></span><h2>Formatting times using UTC (GMT) via configuration<a class="headerlink" href="#formatting-times-using-utc-gmt-via-configuration" title="本標頭的永久連結">¶</a></h2>
 <p>Sometimes you want to format times using UTC, which can be done using a class
-such as <cite>UTCFormatter</cite>, shown below:</p>
+such as <code class="docutils literal notranslate"><span class="pre">UTCFormatter</span></code>, shown below:</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">logging</span>
 <span class="kn">import</span> <span class="nn">time</span>
 
@@ -3675,6 +3675,62 @@ instance). Then, you'd get this kind of result:</p>
 <p>Of course, the examples above show output according to the format used by
 <a class="reference internal" href="../library/logging.html#logging.basicConfig" title="logging.basicConfig"><code class="xref py py-func docutils literal notranslate"><span class="pre">basicConfig()</span></code></a>, but you can use a different formatter when you
 configure logging.</p>
+<p>Note that with the above scheme, you are somewhat at the mercy of buffering and
+the sequence of write calls which you are intercepting. For example, with the
+definition of <code class="docutils literal notranslate"><span class="pre">LoggerWriter</span></code> above, if you have the snippet</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span> <span class="o">=</span> <span class="n">LoggerWriter</span><span class="p">(</span><span class="n">logger</span><span class="p">,</span> <span class="n">logging</span><span class="o">.</span><span class="n">WARNING</span><span class="p">)</span>
+<span class="mi">1</span> <span class="o">/</span> <span class="mi">0</span>
+</pre></div>
+</div>
+<p>then running the script results in</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>WARNING:demo:Traceback (most recent call last):
+
+WARNING:demo:  File &quot;/home/runner/cookbook-loggerwriter/test.py&quot;, line 53, in &lt;module&gt;
+
+WARNING:demo:
+WARNING:demo:main()
+WARNING:demo:  File &quot;/home/runner/cookbook-loggerwriter/test.py&quot;, line 49, in main
+
+WARNING:demo:
+WARNING:demo:1 / 0
+WARNING:demo:ZeroDivisionError
+WARNING:demo::
+WARNING:demo:division by zero
+</pre></div>
+</div>
+<p>As you can see, this output isn't ideal. That's because the underlying code
+which writes to <code class="docutils literal notranslate"><span class="pre">sys.stderr</span></code> makes mutiple writes, each of which results in a
+separate logged line (for example, the last three lines above). To get around
+this problem, you need to buffer things and only output log lines when newlines
+are seen. Let's use a slghtly better implementation of <code class="docutils literal notranslate"><span class="pre">LoggerWriter</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">BufferingLoggerWriter</span><span class="p">(</span><span class="n">LoggerWriter</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">logger</span><span class="p">,</span> <span class="n">level</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">logger</span><span class="p">,</span> <span class="n">level</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">buffer</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+
+    <span class="k">def</span> <span class="nf">write</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">):</span>
+        <span class="k">if</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">message</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">buffer</span> <span class="o">+=</span> <span class="n">message</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">parts</span> <span class="o">=</span> <span class="n">message</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">buffer</span><span class="p">:</span>
+                <span class="n">s</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">buffer</span> <span class="o">+</span> <span class="n">parts</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">level</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">buffer</span> <span class="o">=</span> <span class="n">parts</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+            <span class="k">for</span> <span class="n">part</span> <span class="ow">in</span> <span class="n">parts</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">level</span><span class="p">,</span> <span class="n">part</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This just buffers up stuff until a newline is seen, and then logs complete
+lines. With this approach, you get better output:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>WARNING:demo:Traceback (most recent call last):
+WARNING:demo:  File &quot;/home/runner/cookbook-loggerwriter/main.py&quot;, line 55, in &lt;module&gt;
+WARNING:demo:    main()
+WARNING:demo:  File &quot;/home/runner/cookbook-loggerwriter/main.py&quot;, line 52, in main
+WARNING:demo:    1/0
+WARNING:demo:ZeroDivisionError: division by zero
+</pre></div>
+</div>
 </section>
 <section id="patterns-to-avoid">
 <h2>Patterns to avoid<a class="headerlink" href="#patterns-to-avoid" title="本標頭的永久連結">¶</a></h2>
@@ -3893,7 +3949,7 @@ more fine-grained than that).</p>
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.11.0rc2 Documentation</a> &#187;
+      <a href="../index.html">3.12.0a0 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 如何達成任務</a> &#187;</li>
@@ -3929,11 +3985,11 @@ more fine-grained than that).</p>
 <br />
     <br />
 
-    最後更新於 10月 16, 2022。
+    最後更新於 10月 28, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 
-    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.2.3 建立。
+    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0 建立。
     </div>
 
   </body>

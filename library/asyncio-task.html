@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>Coroutines and Tasks &#8212; Python 3.11.0rc2 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coroutines and Tasks &#8212; Python 3.12.0a0 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -22,7 +22,7 @@
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.11.0rc2 說明文件 中搜尋"
+          title="在 Python 3.12.0a0 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -142,6 +142,7 @@
 <li><a class="reference internal" href="#asyncio.Task.get_stack"><code class="docutils literal notranslate"><span class="pre">Task.get_stack()</span></code></a></li>
 <li><a class="reference internal" href="#asyncio.Task.print_stack"><code class="docutils literal notranslate"><span class="pre">Task.print_stack()</span></code></a></li>
 <li><a class="reference internal" href="#asyncio.Task.get_coro"><code class="docutils literal notranslate"><span class="pre">Task.get_coro()</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.Task.get_context"><code class="docutils literal notranslate"><span class="pre">Task.get_context()</span></code></a></li>
 <li><a class="reference internal" href="#asyncio.Task.get_name"><code class="docutils literal notranslate"><span class="pre">Task.get_name()</span></code></a></li>
 <li><a class="reference internal" href="#asyncio.Task.set_name"><code class="docutils literal notranslate"><span class="pre">Task.set_name()</span></code></a></li>
 <li><a class="reference internal" href="#asyncio.Task.cancel"><code class="docutils literal notranslate"><span class="pre">Task.cancel()</span></code></a></li>
@@ -209,7 +210,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.11.0rc2 Documentation</a> &#187;
+      <a href="../index.html">3.12.0a0 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -838,7 +839,7 @@ deadline is not set.</p>
 <dt class="sig sig-object py" id="asyncio.Timeout.reschedule">
 <span class="sig-name descname"><span class="pre">reschedule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">when</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="functions.html#float" title="float"><span class="pre">float</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="constants.html#None" title="None"><span class="pre">None</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#asyncio.Timeout.reschedule" title="本定義的永久連結">¶</a></dt>
 <dd><p>Change the time the timeout will trigger.</p>
-<p>If <em>when</em> is <cite>None</cite>, any current deadline will be removed, and the
+<p>If <em>when</em> is <code class="docutils literal notranslate"><span class="pre">None</span></code>, any current deadline will be removed, and the
 context manager will wait indefinitely.</p>
 <p>If <em>when</em> is a float, it is set as the new deadline.</p>
 <p>if <em>when</em> is in the past, the timeout will trigger on the next
@@ -1076,16 +1077,16 @@ they were run in the main thread. For example:</p>
 <span class="c1"># finished main at 19:50:54</span>
 </pre></div>
 </div>
-<p>Directly calling <cite>blocking_io()</cite> in any coroutine would block the event loop
+<p>Directly calling <code class="docutils literal notranslate"><span class="pre">blocking_io()</span></code> in any coroutine would block the event loop
 for its duration, resulting in an additional 1 second of run time. Instead,
-by using <cite>asyncio.to_thread()</cite>, we can run it in a separate thread without
+by using <code class="docutils literal notranslate"><span class="pre">asyncio.to_thread()</span></code>, we can run it in a separate thread without
 blocking the event loop.</p>
 <div class="admonition note">
 <p class="admonition-title">備註</p>
-<p>Due to the <a class="reference internal" href="../glossary.html#term-GIL"><span class="xref std std-term">GIL</span></a>, <cite>asyncio.to_thread()</cite> can typically only be used
+<p>Due to the <a class="reference internal" href="../glossary.html#term-GIL"><span class="xref std std-term">GIL</span></a>, <code class="docutils literal notranslate"><span class="pre">asyncio.to_thread()</span></code> can typically only be used
 to make IO-bound functions non-blocking. However, for extension modules
 that release the GIL or alternative Python implementations that don't
-have one, <cite>asyncio.to_thread()</cite> can also be used for CPU-bound functions.</p>
+have one, <code class="docutils literal notranslate"><span class="pre">asyncio.to_thread()</span></code> can also be used for CPU-bound functions.</p>
 </div>
 <div class="versionadded">
 <p><span class="versionmodified added">在 3.9 版本新加入.</span></p>
@@ -1296,6 +1297,16 @@ is written; by default output is written to <a class="reference internal" href="
 <dd><p>Return the coroutine object wrapped by the <a class="reference internal" href="#asyncio.Task" title="asyncio.Task"><code class="xref py py-class docutils literal notranslate"><span class="pre">Task</span></code></a>.</p>
 <div class="versionadded">
 <p><span class="versionmodified added">在 3.8 版本新加入.</span></p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="asyncio.Task.get_context">
+<span class="sig-name descname"><span class="pre">get_context</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#asyncio.Task.get_context" title="本定義的永久連結">¶</a></dt>
+<dd><p>Return the <a class="reference internal" href="contextvars.html#contextvars.Context" title="contextvars.Context"><code class="xref py py-class docutils literal notranslate"><span class="pre">contextvars.Context</span></code></a> object
+associated with the task.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">在 3.12 版本新加入.</span></p>
 </div>
 </dd></dl>
 
@@ -1526,6 +1537,7 @@ used by end-user code.  See <a class="reference internal" href="#asyncio.Task.un
 <li><a class="reference internal" href="#asyncio.Task.get_stack"><code class="docutils literal notranslate"><span class="pre">Task.get_stack()</span></code></a></li>
 <li><a class="reference internal" href="#asyncio.Task.print_stack"><code class="docutils literal notranslate"><span class="pre">Task.print_stack()</span></code></a></li>
 <li><a class="reference internal" href="#asyncio.Task.get_coro"><code class="docutils literal notranslate"><span class="pre">Task.get_coro()</span></code></a></li>
+<li><a class="reference internal" href="#asyncio.Task.get_context"><code class="docutils literal notranslate"><span class="pre">Task.get_context()</span></code></a></li>
 <li><a class="reference internal" href="#asyncio.Task.get_name"><code class="docutils literal notranslate"><span class="pre">Task.get_name()</span></code></a></li>
 <li><a class="reference internal" href="#asyncio.Task.set_name"><code class="docutils literal notranslate"><span class="pre">Task.set_name()</span></code></a></li>
 <li><a class="reference internal" href="#asyncio.Task.cancel"><code class="docutils literal notranslate"><span class="pre">Task.cancel()</span></code></a></li>
@@ -1596,7 +1608,7 @@ used by end-user code.  See <a class="reference internal" href="#asyncio.Task.un
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.11.0rc2 Documentation</a> &#187;
+      <a href="../index.html">3.12.0a0 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -1634,11 +1646,11 @@ used by end-user code.  See <a class="reference internal" href="#asyncio.Task.un
 <br />
     <br />
 
-    最後更新於 10月 16, 2022。
+    最後更新於 10月 28, 2022。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 
-    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.2.3 建立。
+    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0 建立。
     </div>
 
   </body>
