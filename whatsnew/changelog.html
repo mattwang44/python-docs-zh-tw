@@ -1090,6 +1090,8 @@
 <ul class="simple">
 <li><p><a class="reference external" href="https://github.com/python/cpython/issues/101046">gh-101046</a>: Fix a possible memory leak in the parser when raising
 <a class="reference internal" href="../library/exceptions.html#MemoryError" title="MemoryError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">MemoryError</span></code></a>. Patch by Pablo Galindo</p></li>
+<li><p><a class="reference external" href="https://github.com/python/cpython/issues/101037">gh-101037</a>: Fix potential memory underallocation issue for instances
+of <a class="reference internal" href="../library/functions.html#int" title="int"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a> subclasses with value zero.</p></li>
 <li><p><a class="reference external" href="https://github.com/python/cpython/issues/100942">gh-100942</a>: Fixed segfault in property.getter/setter/deleter that
 occurred when a property subclass overrode the <code class="docutils literal notranslate"><span class="pre">__new__</span></code> method to
 return a non-property instance.</p></li>
@@ -1115,11 +1117,15 @@ a value of 0.</p></li>
 <section id="library">
 <h3>Library<a class="headerlink" href="#library" title="本標頭的永久連結">¶</a></h3>
 <ul class="simple">
+<li><p><a class="reference external" href="https://github.com/python/cpython/issues/101143">gh-101143</a>: Remove unused references to <a class="reference internal" href="../library/asyncio-eventloop.html#asyncio.TimerHandle" title="asyncio.TimerHandle"><code class="xref py py-class docutils literal notranslate"><span class="pre">TimerHandle</span></code></a>
+in <code class="docutils literal notranslate"><span class="pre">asyncio.base_events.BaseEventLoop._add_callback</span></code>.</p></li>
 <li><p><a class="reference external" href="https://github.com/python/cpython/issues/101144">gh-101144</a>: Make <a class="reference internal" href="../library/zipfile.html#zipfile.Path.open" title="zipfile.Path.open"><code class="xref py py-func docutils literal notranslate"><span class="pre">zipfile.Path.open()</span></code></a> and
 <a class="reference internal" href="../library/zipfile.html#zipfile.Path.read_text" title="zipfile.Path.read_text"><code class="xref py py-func docutils literal notranslate"><span class="pre">zipfile.Path.read_text()</span></code></a> also accept <code class="docutils literal notranslate"><span class="pre">encoding</span></code> as a positional
 argument. This was the behavior in Python 3.9 and earlier.  3.10
 introduced a regression where supplying it as a positional argument would
 lead to a <a class="reference internal" href="../library/exceptions.html#TypeError" title="TypeError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">TypeError</span></code></a>.</p></li>
+<li><p><a class="reference external" href="https://github.com/python/cpython/issues/101015">gh-101015</a>: Fix <a class="reference internal" href="../library/typing.html#typing.get_type_hints" title="typing.get_type_hints"><code class="xref py py-func docutils literal notranslate"><span class="pre">typing.get_type_hints()</span></code></a> on <code class="docutils literal notranslate"><span class="pre">'*tuple[...]'</span></code>
+and <code class="docutils literal notranslate"><span class="pre">*tuple[...]</span></code>. It must not drop the <code class="docutils literal notranslate"><span class="pre">Unpack</span></code> part.</p></li>
 <li><p><a class="reference external" href="https://github.com/python/cpython/issues/100573">gh-100573</a>: Fix a Windows <a class="reference internal" href="../library/asyncio.html#module-asyncio" title="asyncio: Asynchronous I/O."><code class="xref py py-mod docutils literal notranslate"><span class="pre">asyncio</span></code></a> bug with named pipes where a
 client doing <code class="docutils literal notranslate"><span class="pre">os.stat()</span></code> on the pipe would cause an error in the server
 that disabled serving future requests.</p></li>
@@ -29578,7 +29584,7 @@ Kilburn.</p></li>
 <br />
     <br />
 
-    最後更新於 1月 21, 2023。
+    最後更新於 1月 23, 2023。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 
