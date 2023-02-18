@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>os.path --- Common pathname manipulations &#8212; Python 3.11.1 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>os.path --- Common pathname manipulations &#8212; Python 3.11.2 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -19,7 +19,7 @@
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.11.1 說明文件 中搜尋"
+          title="在 Python 3.11.2 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -160,7 +160,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.11.1 Documentation</a> &#187;
+      <a href="../index.html">3.11.2 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -263,7 +263,9 @@ empty string (<code class="docutils literal notranslate"><span class="pre">''</s
 and relative pathnames, the <em>paths</em> are on the different drives or
 if <em>paths</em> is empty.  Unlike <a class="reference internal" href="#os.path.commonprefix" title="os.path.commonprefix"><code class="xref py py-func docutils literal notranslate"><span class="pre">commonprefix()</span></code></a>, this returns a
 valid path.</p>
-<p class="availability"><a class="reference internal" href="intro.html#availability"><span class="std std-ref">適用</span></a>：Unix、Windows。</p>
+<div class="availability docutils container">
+<p><a class="reference internal" href="intro.html#availability"><span class="std std-ref">適用</span></a>：Unix、Windows。</p>
+</div>
 <div class="versionadded">
 <p><span class="versionmodified added">在 3.5 版本新加入.</span></p>
 </div>
@@ -482,11 +484,11 @@ to see if it is different from the input path.</p>
 <span class="sig-prename descclassname"><span class="pre">os.path.</span></span><span class="sig-name descname"><span class="pre">join</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">paths</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#os.path.join" title="本定義的永久連結">¶</a></dt>
 <dd><p>Join one or more path segments intelligently.  The return value is the
 concatenation of <em>path</em> and all members of <em>*paths</em>, with exactly one
-directory separator following each non-empty part except the last. That is,
-if the last part is empty, the result will end in a separator. If
-a segment is an absolute path (which on Windows requires both a drive and a
-root), then all previous segments are ignored and joining continues from the
-absolute path segment.</p>
+directory separator following each non-empty part, except the last. That is,
+the result will only end in a separator if the last part is either empty or
+ends in a separator. If a segment is an absolute path (which on Windows
+requires both a drive and a root), then all previous segments are ignored and
+joining continues from the absolute path segment.</p>
 <p>On Windows, the drive is not reset when a rooted path segment (e.g.,
 <code class="docutils literal notranslate"><span class="pre">r'\foo'</span></code>) is encountered. If a segment is on a different drive or is an
 absolute path, all previous segments are ignored and the drive is reset. Note
@@ -573,7 +575,9 @@ filesystem is not accessed to confirm the existence or nature of <em>path</em> o
 <em>start</em>.  On Windows, <a class="reference internal" href="exceptions.html#ValueError" title="ValueError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code></a> is raised when <em>path</em> and <em>start</em>
 are on different drives.</p>
 <p><em>start</em> defaults to <a class="reference internal" href="os.html#os.curdir" title="os.curdir"><code class="xref py py-attr docutils literal notranslate"><span class="pre">os.curdir</span></code></a>.</p>
-<p class="availability"><a class="reference internal" href="intro.html#availability"><span class="std std-ref">適用</span></a>：Unix、Windows。</p>
+<div class="availability docutils container">
+<p><a class="reference internal" href="intro.html#availability"><span class="std std-ref">適用</span></a>：Unix、Windows。</p>
+</div>
 <div class="versionchanged">
 <p><span class="versionmodified changed">在 3.6 版本變更: </span>Accepts a <a class="reference internal" href="../glossary.html#term-path-like-object"><span class="xref std std-term">path-like object</span></a>.</p>
 </div>
@@ -585,7 +589,9 @@ are on different drives.</p>
 <dd><p>Return <code class="docutils literal notranslate"><span class="pre">True</span></code> if both pathname arguments refer to the same file or directory.
 This is determined by the device number and i-node number and raises an
 exception if an <a class="reference internal" href="os.html#os.stat" title="os.stat"><code class="xref py py-func docutils literal notranslate"><span class="pre">os.stat()</span></code></a> call on either pathname fails.</p>
-<p class="availability"><a class="reference internal" href="intro.html#availability"><span class="std std-ref">適用</span></a>：Unix、Windows。</p>
+<div class="availability docutils container">
+<p><a class="reference internal" href="intro.html#availability"><span class="std std-ref">適用</span></a>：Unix、Windows。</p>
+</div>
 <div class="versionchanged">
 <p><span class="versionmodified changed">在 3.2 版本變更: </span>新增對 Windows 的支援。</p>
 </div>
@@ -601,7 +607,9 @@ exception if an <a class="reference internal" href="os.html#os.stat" title="os.s
 <dt class="sig sig-object py" id="os.path.sameopenfile">
 <span class="sig-prename descclassname"><span class="pre">os.path.</span></span><span class="sig-name descname"><span class="pre">sameopenfile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fp1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fp2</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#os.path.sameopenfile" title="本定義的永久連結">¶</a></dt>
 <dd><p>Return <code class="docutils literal notranslate"><span class="pre">True</span></code> if the file descriptors <em>fp1</em> and <em>fp2</em> refer to the same file.</p>
-<p class="availability"><a class="reference internal" href="intro.html#availability"><span class="std std-ref">適用</span></a>：Unix、Windows。</p>
+<div class="availability docutils container">
+<p><a class="reference internal" href="intro.html#availability"><span class="std std-ref">適用</span></a>：Unix、Windows。</p>
+</div>
 <div class="versionchanged">
 <p><span class="versionmodified changed">在 3.2 版本變更: </span>新增對 Windows 的支援。</p>
 </div>
@@ -617,7 +625,9 @@ exception if an <a class="reference internal" href="os.html#os.stat" title="os.s
 These structures may have been returned by <a class="reference internal" href="os.html#os.fstat" title="os.fstat"><code class="xref py py-func docutils literal notranslate"><span class="pre">os.fstat()</span></code></a>,
 <a class="reference internal" href="os.html#os.lstat" title="os.lstat"><code class="xref py py-func docutils literal notranslate"><span class="pre">os.lstat()</span></code></a>, or <a class="reference internal" href="os.html#os.stat" title="os.stat"><code class="xref py py-func docutils literal notranslate"><span class="pre">os.stat()</span></code></a>.  This function implements the
 underlying comparison used by <a class="reference internal" href="#os.path.samefile" title="os.path.samefile"><code class="xref py py-func docutils literal notranslate"><span class="pre">samefile()</span></code></a> and <a class="reference internal" href="#os.path.sameopenfile" title="os.path.sameopenfile"><code class="xref py py-func docutils literal notranslate"><span class="pre">sameopenfile()</span></code></a>.</p>
-<p class="availability"><a class="reference internal" href="intro.html#availability"><span class="std std-ref">適用</span></a>：Unix、Windows。</p>
+<div class="availability docutils container">
+<p><a class="reference internal" href="intro.html#availability"><span class="std std-ref">適用</span></a>：Unix、Windows。</p>
+</div>
 <div class="versionchanged">
 <p><span class="versionmodified changed">在 3.4 版本變更: </span>新增對 Windows 的支援。</p>
 </div>
@@ -810,7 +820,7 @@ imposed by the file system).</p>
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.11.1 Documentation</a> &#187;
+      <a href="../index.html">3.11.2 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -847,7 +857,7 @@ imposed by the file system).</p>
 <br />
     <br />
 
-    最後更新於 1月 23, 2023。
+    最後更新於 2月 18, 2023。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 
