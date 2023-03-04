@@ -780,6 +780,10 @@ is modified.</p>
 <p>On Unix, keys and values use <a class="reference internal" href="sys.html#sys.getfilesystemencoding" title="sys.getfilesystemencoding"><code class="xref py py-func docutils literal notranslate"><span class="pre">sys.getfilesystemencoding()</span></code></a> and
 <code class="docutils literal notranslate"><span class="pre">'surrogateescape'</span></code> error handler. Use <a class="reference internal" href="#os.environb" title="os.environb"><code class="xref py py-data docutils literal notranslate"><span class="pre">environb</span></code></a> if you would like
 to use a different encoding.</p>
+<p>On Windows, the keys are converted to uppercase. This also applies when
+getting, setting, or deleting an item. For example,
+<code class="docutils literal notranslate"><span class="pre">environ['monty']</span> <span class="pre">=</span> <span class="pre">'python'</span></code> maps the key <code class="docutils literal notranslate"><span class="pre">'MONTY'</span></code> to the value
+<code class="docutils literal notranslate"><span class="pre">'python'</span></code>.</p>
 <div class="admonition note">
 <p class="admonition-title">備註</p>
 <p>Calling <a class="reference internal" href="#os.putenv" title="os.putenv"><code class="xref py py-func docutils literal notranslate"><span class="pre">putenv()</span></code></a> directly does not change <a class="reference internal" href="#os.environ" title="os.environ"><code class="xref py py-data docutils literal notranslate"><span class="pre">os.environ</span></code></a>, so it's better
@@ -6529,7 +6533,7 @@ block in these cases, but instead immediately raises <a class="reference interna
 <br />
     <br />
 
-    最後更新於 2月 18, 2023。
+    最後更新於 3月 04, 2023。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 
