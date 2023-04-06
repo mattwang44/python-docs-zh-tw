@@ -6,10 +6,10 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>Python 3.11 有什麼新功能 &#8212; Python 3.11.2 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python 3.11 有什麼新功能 &#8212; Python 3.11.3 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
+    <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?digest=2d3badd06fe70b34b68db01f99471ce1624ffe4a" />
     
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/doctools.js"></script>
@@ -19,7 +19,7 @@
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.11.2 說明文件 中搜尋"
+          title="在 Python 3.11.3 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -144,7 +144,13 @@
 </ul>
 </li>
 <li><a class="reference internal" href="#misc">雜項</a></li>
-<li><a class="reference internal" href="#faq">FAQ</a></li>
+<li><a class="reference internal" href="#faq">FAQ</a><ul>
+<li><a class="reference internal" href="#how-should-i-write-my-code-to-utilize-these-speedups">我該如何在程式碼中獲取這些加速？</a></li>
+<li><a class="reference internal" href="#will-cpython-3-11-use-more-memory">Python 3.11 會不會使用更多記憶體？</a></li>
+<li><a class="reference internal" href="#i-don-t-see-any-speedups-in-my-workload-why">我在我的程式當中沒感覺到任何加速，為什麼？</a></li>
+<li><a class="reference internal" href="#is-there-a-jit-compiler">有用到 JIT 編譯器嗎？</a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#about">關於</a></li>
 </ul>
 </li>
@@ -229,7 +235,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.11.2 Documentation</a> &#187;
+      <a href="../index.html">3.11.3 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Python 有什麼新功能？</a> &#187;</li>
@@ -260,10 +266,10 @@
 <h1>Python 3.11 有什麼新功能<a class="headerlink" href="#what-s-new-in-python-3-11" title="本標頭的永久連結">¶</a></h1>
 <dl class="field-list simple">
 <dt class="field-odd">發行版本<span class="colon">:</span></dt>
-<dd class="field-odd"><p>3.11.2</p>
+<dd class="field-odd"><p>3.11.3</p>
 </dd>
 <dt class="field-even">日期<span class="colon">:</span></dt>
-<dd class="field-even"><p>3月 04, 2023</p>
+<dd class="field-even"><p>4月 06, 2023</p>
 </dd>
 <dt class="field-odd">編輯者<span class="colon">:</span></dt>
 <dd class="field-odd"><p>Pablo Galindo Salgado</p>
@@ -355,7 +361,7 @@
 <p>詳情請見 <span class="target" id="index-88"></span><a class="pep reference external" href="https://peps.python.org/pep-0657/"><strong>PEP 657</strong></a>。（由 Pablo Galindo、Batuhan Taskaya 與 Ammar Askar 於 <a class="reference external" href="https://bugs.python.org/issue?&#64;action=redirect&amp;bpo=43950">bpo-43950</a> 中所貢獻。）</p>
 <div class="admonition note">
 <p class="admonition-title">備註</p>
-<p>這個特性必須要將欄的位置 (column position) 儲存於 <a class="reference internal" href="../c-api/code.html#codeobjects"><span class="std std-ref">Code Objects</span></a>，這可能會導致直譯器用於編譯 Python 檔案的記憶體使用量與硬碟使用量增加。為了避免儲存多餘的資訊且停用印出多餘的回溯資訊，請用 <a class="reference internal" href="../using/cmdline.html#cmdoption-X"><code class="xref std std-option docutils literal notranslate"><span class="pre">-X</span> <span class="pre">no_debug_ranges</span></code></a> 命令列選項或是 <span class="target" id="index-89"></span><a class="reference internal" href="../using/cmdline.html#envvar-PYTHONNODEBUGRANGES"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PYTHONNODEBUGRANGES</span></code></a> 環境變數。</p>
+<p>這個特性必須要將欄的位置 (column position) 儲存於 <a class="reference internal" href="../c-api/code.html#codeobjects"><span class="std std-ref">程式碼物件</span></a>，這可能會導致直譯器用於編譯 Python 檔案的記憶體使用量與硬碟使用量增加。為了避免儲存多餘的資訊且停用印出多餘的回溯資訊，請用 <a class="reference internal" href="../using/cmdline.html#cmdoption-X"><code class="xref std std-option docutils literal notranslate"><span class="pre">-X</span> <span class="pre">no_debug_ranges</span></code></a> 命令列選項或是 <span class="target" id="index-89"></span><a class="reference internal" href="../using/cmdline.html#envvar-PYTHONNODEBUGRANGES"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PYTHONNODEBUGRANGES</span></code></a> 環境變數。</p>
 </div>
 </section>
 <section id="pep-654-exception-groups-and-except">
@@ -844,18 +850,18 @@
 </section>
 <section id="faster-cpython">
 <span id="whatsnew311-faster-cpython"></span><h2>更快的 CPython<a class="headerlink" href="#faster-cpython" title="本標頭的永久連結">¶</a></h2>
-<p>當使用基準量測套裝軟體 <a class="reference external" href="https://github.com/python/pyperformance">pyperformance</a> 量測並以 GCC 於 Ubuntu Linux 上編譯，Python 3.11 平均比 Python 3.10 <a class="reference external" href="https://github.com/faster-cpython/ideas#published-results">快了 25%</a>。根據程式工作量可能有所不同，加速程度可能高達 10-60%。</p>
-<p>這個計畫著重於 Python 的兩個地方：更快的啟動 (faster startup) 與更快的運行程式 (faster runtime)。其他不在此計畫的最佳化項目列於 <a class="reference internal" href="#optimizations">Optimizations</a>。</p>
+<p>當使用基準量測套裝軟體 <a class="reference external" href="https://github.com/python/pyperformance">pyperformance</a> 量測並以 GCC 於 Ubuntu Linux 上編譯，Python 3.11 平均比 Python 3.10 <a class="reference external" href="https://github.com/faster-cpython/ideas#published-results">快了 25%</a>。根據程式工作量可能有所不同，整體加速程度可達 10-60%。</p>
+<p>此計畫專注在 Python 的 <a class="reference internal" href="#whatsnew311-faster-startup"><span class="std std-ref">更快的啟動</span></a> 和 <a class="reference internal" href="#whatsnew311-faster-runtime"><span class="std std-ref">更快的運行程式</span></a>。不在此專案內的最佳化被獨立列出在 <a class="reference internal" href="#whatsnew311-optimizations"><span class="std std-ref">最佳化</span></a>。</p>
 <section id="faster-startup">
 <span id="whatsnew311-faster-startup"></span><h3>更快的啟動<a class="headerlink" href="#faster-startup" title="本標頭的永久連結">¶</a></h3>
 <section id="frozen-imports-static-code-objects">
 <span id="whatsnew311-faster-imports"></span><h4>凍結引入 (Frozen imports) / 靜態程式碼物件 (Static code objects)<a class="headerlink" href="#frozen-imports-static-code-objects" title="本標頭的永久連結">¶</a></h4>
-<p>Python 將位元組碼於 <a class="reference internal" href="../tutorial/modules.html#tut-pycache"><span class="std std-ref">__pycache__</span></a> 目錄中存為快取來加速模組的載入。</p>
+<p>Python 將<a class="reference internal" href="../glossary.html#term-bytecode"><span class="xref std std-term">位元組碼</span></a>於 <a class="reference internal" href="../tutorial/modules.html#tut-pycache"><span class="std std-ref">__pycache__</span></a> 目錄中存為快取來加速模組的載入。</p>
 <p>在先前的 3.10 中，執行 Python 模組會像是這樣：</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Read __pycache__ -&gt; Unmarshal -&gt; Heap allocated code object -&gt; Evaluate
 </pre></div>
 </div>
-<p>在 Python 3.11 中，核心模組在 Python 啟動時必須被「凍結」，這意味著它們的程式碼物件（和位元組碼）是由直譯器靜態分配的。這將模組執行過程中的步驟減少為：</p>
+<p>在 Python 3.11 中，核心模組在 Python 啟動時必須被「凍結」，這意味著它們的<a class="reference internal" href="../c-api/code.html#codeobjects"><span class="std std-ref">程式碼物件</span></a>（和位元組碼）是由直譯器靜態分配的。這將模組執行過程中的步驟減少為：</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Statically allocated code object -&gt; Evaluate
 </pre></div>
 </div>
@@ -867,26 +873,26 @@
 <span id="whatsnew311-faster-runtime"></span><h3>更快的運行程式<a class="headerlink" href="#faster-runtime" title="本標頭的永久連結">¶</a></h3>
 <section id="cheaper-lazy-python-frames">
 <span id="whatsnew311-lazy-python-frames"></span><h4>所需資源更少 (cheaper) 且惰性的 (lazy)) Python 幀 (frame)<a class="headerlink" href="#cheaper-lazy-python-frames" title="本標頭的永久連結">¶</a></h4>
-<p>每當 Python 呼叫 Python 函數時，就會建立 Python 幀。該幀保存執行資訊。以下是針對幀而做的新最佳化：</p>
+<p>每當 Python 呼叫 Python 函數時，就會建立保存執行資訊的 Python 幀。以下是針對幀而做的新最佳化：</p>
 <ul class="simple">
 <li><p>使幀的建立過程更有效率。</p></li>
 <li><p>在 C 堆疊 (stack) 中盡量重複利用幀的空間來避免記憶體分配。</p></li>
 <li><p>讓內部幀結構只包含必要資訊，使其更加精簡。在過去，幀必須帶有額外的偵錯與記憶體管理的資訊。</p></li>
 </ul>
-<p>舊式幀物件現在僅在除錯器或 Python 自我檢查函式（例如 <code class="docutils literal notranslate"><span class="pre">sys._getframe</span></code> 或 <code class="docutils literal notranslate"><span class="pre">inspect.currentframe</span></code>）請求時才建立。對於大多數使用者程式碼，根本不會建立任何幀物件。結果幾乎所有 Python 函式呼叫都顯著加速。我們以 pyperformance 測得了 3-7% 的加速。</p>
+<p>舊式<a class="reference internal" href="../reference/datamodel.html#frame-objects"><span class="std std-ref">幀物件</span></a>現在僅在除錯器或 Python 自我檢查函式（例如 <a class="reference internal" href="../library/sys.html#sys._getframe" title="sys._getframe"><code class="xref py py-func docutils literal notranslate"><span class="pre">sys._getframe()</span></code></a> 或 <a class="reference internal" href="../library/inspect.html#inspect.currentframe" title="inspect.currentframe"><code class="xref py py-func docutils literal notranslate"><span class="pre">inspect.currentframe()</span></code></a>）請求時才建立。對於大多數使用者程式碼，根本不會建立任何幀物件。結果幾乎所有 Python 函式呼叫都顯著加速。我們以 pyperformance 測得了 3-7% 的加速。</p>
 <p>（由 Mark Shannon 於 <a class="reference external" href="https://bugs.python.org/issue?&#64;action=redirect&amp;bpo=44590">bpo-44590</a> 中所貢獻。）</p>
 </section>
 <section id="inlined-python-function-calls">
 <span id="whatsnew311-inline-calls"></span><span id="inline-calls"></span><h4>行內 Python 函式呼叫<a class="headerlink" href="#inlined-python-function-calls" title="本標頭的永久連結">¶</a></h4>
 <p>在 Python 函式呼叫期間，Python 將呼叫一個正在求值的 C 函式來直譯該函式的程式碼，這有效地將純 Python 遞迴限制在對 C 堆疊的安全範圍內。</p>
 <p>在 3.11 中，當 CPython 檢測到 Python 程式碼呼叫另一個 Python 函式時，它會設立一個新框架 (frame)，並「跳轉」到新框架內的新程式碼，這避免了呼叫整個 C 直譯函式。</p>
-<p>現在大多數 Python 函式的呼叫不會佔用 C 堆疊空間，這加快了大多數此類呼叫的速度。在斐波那契 (fibonacci) 或階乘等簡單遞迴函式中，觀察到 1.7 倍的加速。這也意味著遞迴函式可以遞迴得更深（如果使用者有增加遞迴限制）。我們在 pyperformance 測得 1-3% 的改進。</p>
+<p>現在大多數 Python 函式的呼叫因為不會佔用 C 堆疊空間而被加速。在斐波那契 (fibonacci) 或階乘等簡單遞迴函式中，觀察到 1.7 倍的加速。這也意味著遞迴函式可以遞迴得更深（如果使用者有增加<a class="reference internal" href="../library/sys.html#sys.setrecursionlimit" title="sys.setrecursionlimit"><code class="xref py py-func docutils literal notranslate"><span class="pre">遞迴限制</span></code></a>）。我們在 pyperformance 測得 1-3% 的改進。</p>
 <p>（由 Pablo Galindo 與 Mark Shannon 於 <a class="reference external" href="https://bugs.python.org/issue?&#64;action=redirect&amp;bpo=45256">bpo-45256</a> 中所貢獻。）</p>
 </section>
 <section id="pep-659-specializing-adaptive-interpreter">
 <span id="whatsnew311-pep659"></span><h4>PEP 659：特化的適應性直譯器<a class="headerlink" href="#pep-659-specializing-adaptive-interpreter" title="本標頭的永久連結">¶</a></h4>
 <p><span class="target" id="index-111"></span><a class="pep reference external" href="https://peps.python.org/pep-0659/"><strong>PEP 659</strong></a> 是加速 CPython 專案的關鍵部分之一。一般的想法是，雖然 Python 是一種動態語言，但大多數程式碼都有物件和型別很少去更改的區域。這個概念被稱為<em>型別穩定 (type stability)</em>。</p>
-<p>在運行時間，Python 將嘗試在執行中的程式碼內尋找常用模式和型別穩定，然後 Python 將用更特化的操作替換當前操作。這種特化操作運用了僅適用於那些用例/型別的快速路徑，這通常優於它們的泛用對應 (generic counterparts)。這也引入了另一個稱為<em>行內快取 (inline caching)</em>的概念，其中 Python 將繁重操作的結果直接快取在位元組碼中。</p>
+<p>在運行時間，Python 將嘗試在執行中的程式碼內尋找常用模式和型別穩定，然後 Python 將用更特化的操作替換當前操作。這種特化操作運用了僅適用於那些用例/型別的快速路徑，這通常優於它們的泛用對應 (generic counterparts)。這也引入了另一個稱為<em>行內快取 (inline caching)</em>的概念，其中 Python 將繁重操作的結果直接快取在<a class="reference internal" href="../glossary.html#term-bytecode"><span class="xref std std-term">位元組碼</span></a>中。</p>
 <p>特化程式 (specializer) 還將某些常用指示 (common instruction) 組合成一個超級指示 (superinstruction)，這減少了執行期間的開銷。</p>
 <p>Python 只會在看到「熱」（被多次執行的）程式碼時特化，這可以防止 Python 將時間浪費在只運行一次的程式碼上。當程式碼過於動態或用途發生變化時，Python 也可以去特化 (de-specialize)。特化會定期被嘗試執行，而嘗試的成本也不會太高，這讓特化得以適應新的環境。</p>
 <p>（PEP 由 Mark Shannon 撰寫、概念啟發自 Stefan Brunthaler。詳情請見 <span class="target" id="index-112"></span><a class="pep reference external" href="https://peps.python.org/pep-0659/"><strong>PEP 659</strong></a>。由 Mark Shannon 和 Brandt Bucher 實作，Irit Katriel 和 Dennis Sweeney 亦提供了額外的幫助。）</p>
@@ -901,8 +907,11 @@
 </thead>
 <tbody>
 <tr class="row-even"><td><p>二元操作</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">x+x;</span> <span class="pre">x*x;</span> <span class="pre">x-x;</span></code></p></td>
-<td><p>常見型別如 <code class="docutils literal notranslate"><span class="pre">int</span></code>、<code class="docutils literal notranslate"><span class="pre">float</span></code> 與 <code class="docutils literal notranslate"><span class="pre">str</span></code> 的二元加法、乘法與減法，為底層型別採取了特製的快速路徑。</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">+</span> <span class="pre">x</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">-</span> <span class="pre">x</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">*</span> <span class="pre">x</span></code></p>
+</td>
+<td><p>常見型別如 <a class="reference internal" href="../library/functions.html#int" title="int"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>、<a class="reference internal" href="../library/functions.html#float" title="float"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a> 與 <a class="reference internal" href="../library/stdtypes.html#str" title="str"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a> 的二元加法、乘法與減法，為底層型別採取了特製的快速路徑。</p></td>
 <td><p>10%</p></td>
 <td><p>Mark Shannon,
 Dong-hee Na,
@@ -911,8 +920,8 @@ Dennis Sweeney</p></td>
 </tr>
 <tr class="row-odd"><td><p>下標</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">a[i]</span></code></p></td>
-<td><p>下標容器型別如 <code class="docutils literal notranslate"><span class="pre">list</span></code>、<code class="docutils literal notranslate"><span class="pre">tuple</span></code> 和 <code class="docutils literal notranslate"><span class="pre">dict</span></code> 直接索引底層的資料結構。</p>
-<p>下標自定義 <code class="docutils literal notranslate"><span class="pre">__getitem__</span></code> 也是行內的，類似於 <a class="reference internal" href="#inline-calls"><span class="std std-ref">行內 Python 函式呼叫</span></a>。</p>
+<td><p>下標容器型別如 <a class="reference internal" href="../library/stdtypes.html#list" title="list"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>、<a class="reference internal" href="../library/stdtypes.html#tuple" title="tuple"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a> 和 <a class="reference internal" href="../library/stdtypes.html#dict" title="dict"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a> 直接索引底層的資料結構。</p>
+<p>下標自定義 <a class="reference internal" href="../reference/datamodel.html#object.__getitem__" title="object.__getitem__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__getitem__()</span></code></a> 也是行內的，類似於 <a class="reference internal" href="#inline-calls"><span class="std std-ref">行內 Python 函式呼叫</span></a>。</p>
 </td>
 <td><p>10-25%</p></td>
 <td><p>Irit Katriel,
@@ -925,24 +934,26 @@ Mark Shannon</p></td>
 <td><p>Dennis Sweeney</p></td>
 </tr>
 <tr class="row-odd"><td><p>呼叫</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">f(arg)</span></code>
-<code class="docutils literal notranslate"><span class="pre">C(arg)</span></code></p></td>
-<td><p>常見內建 (C) 函式和型別的呼叫，例如 <code class="docutils literal notranslate"><span class="pre">len</span></code> 和 <code class="docutils literal notranslate"><span class="pre">str</span></code>，會直接呼叫它們的 C 版本底層，這避免了通過內部呼叫的慣例。</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">f(arg)</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">C(arg)</span></code></p>
+</td>
+<td><p>常見內建 (C) 函式和型別的呼叫，例如 <a class="reference internal" href="../library/functions.html#len" title="len"><code class="xref py py-func docutils literal notranslate"><span class="pre">len()</span></code></a> 和 <a class="reference internal" href="../library/stdtypes.html#str" title="str"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>，會直接呼叫它們的 C 版本底層，這避免了通過內部呼叫的慣例。</p></td>
 <td><p>20%</p></td>
 <td><p>Mark Shannon,
 Ken Jin</p></td>
 </tr>
 <tr class="row-even"><td><p>載入全域變數</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">print</span></code>
-<code class="docutils literal notranslate"><span class="pre">len</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">print</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">len</span></code></p>
+</td>
 <td><p>全域/內建之命名空間內的物件索引被快取起來。載入全域與內建變數不需要任何命名空間的查找。</p></td>
-<td><p><a class="footnote-reference brackets" href="#id4" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a></p></td>
+<td><p><a class="footnote-reference brackets" href="#load-global" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a></p></td>
 <td><p>Mark Shannon</p></td>
 </tr>
 <tr class="row-odd"><td><p>載入屬性</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">o.attr</span></code></p></td>
 <td><p>和載入全域變數類似，類別/物件之命名空間內的屬性索引被快取起來。在大部分情況中，載入屬性不需要任何命名空間的查找。</p></td>
-<td><p><a class="footnote-reference brackets" href="#id5" id="id3" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a></p></td>
+<td><p><a class="footnote-reference brackets" href="#load-attr" id="id3" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a></p></td>
 <td><p>Mark Shannon</p></td>
 </tr>
 <tr class="row-even"><td><p>載入要呼叫的方法</p></td>
@@ -960,18 +971,18 @@ Mark Shannon</p></td>
 </tr>
 <tr class="row-even"><td><p>拆解 (unpack) 序列</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">*seq</span></code></p></td>
-<td><p>為像是 <code class="docutils literal notranslate"><span class="pre">list</span></code> 和 <code class="docutils literal notranslate"><span class="pre">tuple</span></code> 的常見容器所特化，避免了內部呼叫慣例。</p></td>
+<td><p>為像是 <a class="reference internal" href="../library/stdtypes.html#list" title="list"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a> 和 <a class="reference internal" href="../library/stdtypes.html#tuple" title="tuple"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a> 的常見容器所特化，避免了內部呼叫慣例。</p></td>
 <td><p>8%</p></td>
 <td><p>Brandt Bucher</p></td>
 </tr>
 </tbody>
 </table>
 <aside class="footnote-list brackets">
-<aside class="footnote brackets" id="id4" role="note">
+<aside class="footnote brackets" id="load-global" role="note">
 <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">1</a><span class="fn-bracket">]</span></span>
 <p>類似的最佳化自從 Python 3.8 就存在。3.11 特別處理了更多形式並減少效能開銷 (overhead)。</p>
 </aside>
-<aside class="footnote brackets" id="id5" role="note">
+<aside class="footnote brackets" id="load-attr" role="note">
 <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id3">2</a><span class="fn-bracket">]</span></span>
 <p>類似的最佳化自從 Python 3.10 就存在。3.11 特別處理了更多形式。此外，所有屬性載入也被 <a class="reference external" href="https://bugs.python.org/issue?&#64;action=redirect&amp;bpo=45947">bpo-45947</a> 所加速。</p>
 </aside>
@@ -982,33 +993,30 @@ Mark Shannon</p></td>
 <span id="whatsnew311-faster-cpython-misc"></span><h3>雜項<a class="headerlink" href="#misc" title="本標頭的永久連結">¶</a></h3>
 <ul class="simple">
 <li><p>物件現在因為使用了惰性建立的物件命名空間所以需要更少的記憶體。它們的命名空間字典現在也更自由地共享鍵。（由 Mark Shannon 於 <a class="reference external" href="https://bugs.python.org/issue?&#64;action=redirect&amp;bpo=45340">bpo-45340</a> 和 <a class="reference external" href="https://bugs.python.org/issue?&#64;action=redirect&amp;bpo=40116">bpo-40116</a> 貢獻。 ）</p></li>
+<li><p>實作了「無代價 (Zero-cost)」的例外，消除了在沒有例外被引發時的 <a class="reference internal" href="../reference/compound_stmts.html#try"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">try</span></code></a> 陳述式開銷。（由 Mark Shannon 於 :issue:ˋ40222` 貢獻。）</p></li>
 <li><p>在直譯器內使用更簡潔的例外表示法將捕獲一個例外所需的時間減少了大約 10%。 由 Irit Katriel 在 <a class="reference external" href="https://bugs.python.org/issue?&#64;action=redirect&amp;bpo=45711">bpo-45711</a> 中貢獻。）</p></li>
+<li><p><a class="reference internal" href="../library/re.html#module-re" title="re: Regular expression operations."><code class="xref py py-mod docutils literal notranslate"><span class="pre">re</span></code></a> 的正則表達式比對引擎部分被重構，且現在會有支援的平台上使用 computed gotos（或者「執行緒程式碼 (threaded code)」），因此 Python 3.11 在執行 <a class="reference external" href="https://pyperformance.readthedocs.io/benchmarks.html#regex-dna">pyperformance正則表達式基準量測</a>的表現上比起 Python 3.10 快了 10%。（由 Brandt Bucher 於 <a class="reference external" href="https://github.com/python/cpython/issues/91404">gh-91404</a> 中貢獻。）</p></li>
 </ul>
 </section>
 <section id="faq">
 <span id="whatsnew311-faster-cpython-faq"></span><h3>FAQ<a class="headerlink" href="#faq" title="本標頭的永久連結">¶</a></h3>
-<div class="line-block">
-<div class="line">問：我該如何在程式碼中獲取這些加速？</div>
-<div class="line"><br /></div>
-<div class="line">答：你不需要改變你的程式碼。撰寫符合 Python 風格 (Pythonic) 且依循常見最佳實踐的程式碼就好。CPython 加速計畫中，我們為所觀察到的常見程式編寫模式來做最佳化。</div>
-<div class="line"><br /></div>
-<div class="line"><br /></div>
-<div class="line">問：Python 3.11 會不會使用更多記憶體？</div>
-<div class="line"><br /></div>
-<div class="line">答：也許不會。我們預期不會有超出 3.10 20% 的記憶體使用量。這數字會和上述禎物件與物件字典的記憶體最佳化而有所偏差。</div>
-<div class="line"><br /></div>
-<div class="line"><br /></div>
-<div class="line">問：我在我的程式當中沒感覺到任何加速，為什麼？</div>
-<div class="line"><br /></div>
-<div class="line">答：某些程式中不會有顯著的好處。如果你的程式花了大部分的時間在 I/O 操作上，或已經將大部分計算用像是 numpy 的 C 擴充函式庫處理，那就不會有明顯的加速。這個計畫是對純 Python 的工作負荷最有幫助。</div>
-<div class="line"><br /></div>
-<div class="line">此外，pyperformance 數值為一個幾何平均數 (geometric mean)。即便在 pyperformance 基準量測中，某些測試稍微慢了一些，但其他加快了將近兩倍！</div>
-<div class="line"><br /></div>
-<div class="line"><br /></div>
-<div class="line">問：有用到 JIT 編譯器嗎？</div>
-<div class="line"><br /></div>
-<div class="line">答：沒有，我們還在探索其他最佳化方式。</div>
-</div>
+<section id="how-should-i-write-my-code-to-utilize-these-speedups">
+<span id="faster-cpython-faq-my-code"></span><h4>我該如何在程式碼中獲取這些加速？<a class="headerlink" href="#how-should-i-write-my-code-to-utilize-these-speedups" title="本標頭的永久連結">¶</a></h4>
+<p>撰寫符合 Python 風格 (Pythonic) 且依循常見最佳實踐的程式碼就好，你不需要改變你的程式碼。CPython 加速計畫中，我們為所觀察到的常見程式編寫模式來做最佳化。</p>
+</section>
+<section id="will-cpython-3-11-use-more-memory">
+<span id="faster-cpython-faq-memory"></span><h4>Python 3.11 會不會使用更多記憶體？<a class="headerlink" href="#will-cpython-3-11-use-more-memory" title="本標頭的永久連結">¶</a></h4>
+<p>也許不會。我們預期不會有超出 3.10 20% 的記憶體使用量。這數字會和上述禎物件與物件字典的記憶體最佳化而有所偏差。</p>
+</section>
+<section id="i-don-t-see-any-speedups-in-my-workload-why">
+<span id="faster-cpython-ymmv"></span><h4>我在我的程式當中沒感覺到任何加速，為什麼？<a class="headerlink" href="#i-don-t-see-any-speedups-in-my-workload-why" title="本標頭的永久連結">¶</a></h4>
+<p>某些程式中不會有顯著的好處。如果你的程式花了大部分的時間在 I/O 操作上，或已經將大部分計算用像是 numpy 的 C 擴充函式庫處理，那就不會有明顯的加速。這個計畫是對純 Python 的工作負荷最有幫助。</p>
+<p>此外，pyperformance 數值為一個幾何平均數 (geometric mean)。即便在 pyperformance 基準量測中，某些測試稍微慢了一些，但其他加快了將近兩倍！</p>
+</section>
+<section id="is-there-a-jit-compiler">
+<span id="faster-cpython-jit"></span><h4>有用到 JIT 編譯器嗎？<a class="headerlink" href="#is-there-a-jit-compiler" title="本標頭的永久連結">¶</a></h4>
+<p>沒有，我們還在探索其他最佳化方式。</p>
+</section>
 </section>
 <section id="about">
 <span id="whatsnew311-faster-cpython-about"></span><h3>關於<a class="headerlink" href="#about" title="本標頭的永久連結">¶</a></h3>
@@ -1101,7 +1109,7 @@ Mark Shannon</p></td>
 <div class="line"><a class="reference internal" href="../library/dis.html#opcode-POP_JUMP_FORWARD_IF_TRUE"><code class="xref std std-opcode docutils literal notranslate"><span class="pre">POP_JUMP_FORWARD_IF_*</span></code></a></div>
 </div>
 </td>
-<td><p>參見 <a class="footnote-reference brackets" href="#bytecode-jump" id="id6" role="doc-noteref"><span class="fn-bracket">[</span>3<span class="fn-bracket">]</span></a>；每個方向的 <code class="docutils literal notranslate"><span class="pre">TRUE</span></code>、<code class="docutils literal notranslate"><span class="pre">FALSE</span></code>、<code class="docutils literal notranslate"><span class="pre">NONE</span></code> 和 <code class="docutils literal notranslate"><span class="pre">NOT_NONE</span></code> 變體</p></td>
+<td><p>參見 <a class="footnote-reference brackets" href="#bytecode-jump" id="id4" role="doc-noteref"><span class="fn-bracket">[</span>3<span class="fn-bracket">]</span></a>；每個方向的 <code class="docutils literal notranslate"><span class="pre">TRUE</span></code>、<code class="docutils literal notranslate"><span class="pre">FALSE</span></code>、<code class="docutils literal notranslate"><span class="pre">NONE</span></code> 和 <code class="docutils literal notranslate"><span class="pre">NOT_NONE</span></code> 變體</p></td>
 </tr>
 <tr class="row-odd"><td><div class="line-block">
 <div class="line"><code class="xref std std-opcode docutils literal notranslate"><span class="pre">SETUP_WITH</span></code></div>
@@ -1115,7 +1123,7 @@ Mark Shannon</p></td>
 </table>
 <aside class="footnote-list brackets">
 <aside class="footnote brackets" id="bytecode-jump" role="note">
-<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id6">3</a><span class="fn-bracket">]</span></span>
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id4">3</a><span class="fn-bracket">]</span></span>
 <p>所有跳位操作碼 (jump opcode) 現在都是相對的，包括現有的 <a class="reference internal" href="../library/dis.html#opcode-JUMP_IF_TRUE_OR_POP"><code class="xref std std-opcode docutils literal notranslate"><span class="pre">JUMP_IF_TRUE_OR_POP</span></code></a> 和 <a class="reference internal" href="../library/dis.html#opcode-JUMP_IF_FALSE_OR_POP"><code class="xref std std-opcode docutils literal notranslate"><span class="pre">JUMP_IF_FALSE_OR_POP</span></code></a>。該引數現在是當前指示 (instruction) 的偏移量而不是絕對位置。</p>
 </aside>
 </aside>
@@ -1397,14 +1405,19 @@ Mark Shannon</p></td>
 <span id="whatsnew311-build-changes"></span><h2>建置變更<a class="headerlink" href="#build-changes" title="本標頭的永久連結">¶</a></h2>
 <ul>
 <li><p>CPython 現在有 <span class="target" id="index-117"></span><a class="pep reference external" href="https://peps.python.org/pep-0011/"><strong>PEP 11</strong></a> <span class="target" id="index-118"></span><a class="pep reference external" href="https://peps.python.org/pep-0011/#tier-3"><strong>Tier 3 支援</strong></a> 以用於交叉編譯至 <a class="reference external" href="https://webassembly.org/">WebAssembly</a> 平台 <a class="reference external" href="https://emscripten.org/">Emscripten</a>（<code class="docutils literal notranslate"><span class="pre">wasm32-unknown-emscripten</span></code>，即瀏覽器中的 Python）和 <a class="reference external" href="https://wasi.dev/">WebAssembly 系統介面 (WASI)</a> (<code class="docutils literal notranslate"><span class="pre">wasm32-unknown-wasi</span></code>)。這個靈感來自過往的貢獻，例如 <a class="reference external" href="https://pyodide.org/">Pyodide</a>。這些平台提供了有限的 POSIX API 子集；Python 標準函式庫功能和與網路、行程、執行緒、訊號、mmap、用戶/群組相關的模組不開放使用或無法正常使用。（Emscripten 由 Christian Heimes 和 Ethan Smith 在 <a class="reference external" href="https://github.com/python/cpython/issues/84461">gh-84461</a> 貢獻，WASI 由 Christian Heimes 在 <a class="reference external" href="https://github.com/python/cpython/issues/90473">gh-90473</a> 貢獻；平台在 <a class="reference external" href="https://github.com/python/cpython/issues/95085">gh-95085</a> 中推廣）</p></li>
-<li><p>建置 Python 現在必須要有：</p>
+<li><p>Building CPython now requires:</p>
 <ul class="simple">
-<li><p><a class="reference external" href="https://en.cppreference.com/w/c/11">C11</a> 編譯器。<a class="reference external" href="https://en.wikipedia.org/wiki/C11_(C_standard_revision)#Optional_features">可選的 C11 特性</a> 並非必要。（由 Victor Stinner 於 <a class="reference external" href="https://bugs.python.org/issue?&#64;action=redirect&amp;bpo=46656">bpo-46656</a> 中貢獻。）</p></li>
+<li><p>A <a class="reference external" href="https://en.cppreference.com/w/c/11">C11</a> compiler and standard library.
+<a class="reference external" href="https://en.wikipedia.org/wiki/C11_(C_standard_revision)#Optional_features">Optional C11 features</a>
+are not required.
+(Contributed by Victor Stinner in <a class="reference external" href="https://bugs.python.org/issue?&#64;action=redirect&amp;bpo=46656">bpo-46656</a>,
+<a class="reference external" href="https://bugs.python.org/issue?&#64;action=redirect&amp;bpo=45440">bpo-45440</a> and <a class="reference external" href="https://bugs.python.org/issue?&#64;action=redirect&amp;bpo=46640">bpo-46640</a>.)</p></li>
 <li><p>對 <a class="reference external" href="https://en.wikipedia.org/wiki/IEEE_754">IEEE 754</a> 浮點數的支援（由 Victor Stinner 於 <a class="reference external" href="https://bugs.python.org/issue?&#64;action=redirect&amp;bpo=46917">bpo-46917</a> 中所貢獻。）</p></li>
-<li><p>支援<a class="reference external" href="https://en.wikipedia.org/wiki/NaN#Floating_point">浮點非數字 (floating point NaN)</a>，因為 <code class="xref c c-macro docutils literal notranslate"><span class="pre">Py_NO_NAN</span></code> 巨集已被刪除。 （由 Victor Stinner 在 <a class="reference external" href="https://bugs.python.org/issue?&#64;action=redirect&amp;bpo=46656">bpo-46656</a> 中貢獻。）</p></li>
-<li><p><a class="reference external" href="https://en.cppreference.com/w/c/99">C99</a> <code class="docutils literal notranslate"><span class="pre">&lt;math.h&gt;</span></code> 標頭檔提供了 <code class="xref c c-func docutils literal notranslate"><span class="pre">copysign()</span></code>、<code class="xref c c-func docutils literal notranslate"><span class="pre">hypot()</span></code>、<code class="xref c c-func docutils literal notranslate"><span class="pre">isfinite()</span></code>、<code class="xref c c-func docutils literal notranslate"><span class="pre">isinf()</span></code>、<code class="xref c c-func docutils literal notranslate"><span class="pre">isnan()</span></code> 和 <code class="xref c c-func docutils literal notranslate"><span class="pre">round()</span></code> 函數（由 Victor Stinner 在 <a class="reference external" href="https://bugs.python.org/issue?&#64;action=redirect&amp;bpo=45440">bpo-45440</a> 中貢獻)；和一個 <code class="xref c c-data docutils literal notranslate"><span class="pre">NAN</span></code> 常數或 <code class="xref c c-func docutils literal notranslate"><span class="pre">__builtin_nan()</span></code> 函式（由 Victor Stinner 在 <a class="reference external" href="https://bugs.python.org/issue?&#64;action=redirect&amp;bpo=46640">bpo-46640</a> 中貢獻）。</p></li>
 </ul>
 </li>
+<li><p>The <code class="xref c c-macro docutils literal notranslate"><span class="pre">Py_NO_NAN</span></code> macro has been removed.
+Since CPython now requires IEEE 754 floats, NaN values are always available.
+(Contributed by Victor Stinner in <a class="reference external" href="https://bugs.python.org/issue?&#64;action=redirect&amp;bpo=46656">bpo-46656</a>.)</p></li>
 <li><p><a class="reference internal" href="../library/tkinter.html#module-tkinter" title="tkinter: Interface to Tcl/Tk for graphical user interfaces"><code class="xref py py-mod docutils literal notranslate"><span class="pre">tkinter</span></code></a> 套件現在必須要有 <a class="reference external" href="https://www.tcl.tk">Tcl/Tk</a> 8.5.12 或更新的版本。（由 Serhiy Storchaka 於 <a class="reference external" href="https://bugs.python.org/issue?&#64;action=redirect&amp;bpo=46996">bpo-46996</a> 中所貢獻。）</p></li>
 <li><p>大多數 stdlib 擴充模組的依賴套件、編譯器旗標 (compiler flag) 和鏈接器旗標 (linker flags) 現在可以透過 <strong class="program">configure</strong> 檢測出來。（當可用時）<a class="reference external" href="https://www.freedesktop.org/wiki/Software/pkg-config/">pkg-config</a> 會檢測出 libffi、libnsl、libsqlite3、zlib、bzip2、liblzma、libcrypt、Tcl/Tk 和 uuid 旗標。<a class="reference internal" href="../library/tkinter.html#module-tkinter" title="tkinter: Interface to Tcl/Tk for graphical user interfaces"><code class="xref py py-mod docutils literal notranslate"><span class="pre">tkinter</span></code></a> 現在需要一個 pkg-config 命令來檢測 <a class="reference external" href="https://www.tcl.tk">Tcl/Tk</a> 標頭檔和函式庫的開發設定。（由 Christian Heimes 和 Erlend Egeberg Aasland 在 <a class="reference external" href="https://bugs.python.org/issue?&#64;action=redirect&amp;bpo=45847">bpo-45847</a>、<a class="reference external" href="https://bugs.python.org/issue?&#64;action=redirect&amp;bpo=45747">bpo-45747</a> 和 <a class="reference external" href="https://bugs.python.org/issue?&#64;action=redirect&amp;bpo=45763">bpo-45763</a> 中貢獻。）</p></li>
 <li><p>libpython 不再鏈接到 libcrypt。 （由 Mike Gilbert 在 <a class="reference external" href="https://bugs.python.org/issue?&#64;action=redirect&amp;bpo=45433">bpo-45433</a> 中貢獻。）</p></li>
@@ -1423,7 +1436,7 @@ Mark Shannon</p></td>
 <section id="c-api-changes">
 <span id="whatsnew311-c-api"></span><h2>C API 變更<a class="headerlink" href="#c-api-changes" title="本標頭的永久連結">¶</a></h2>
 <section id="whatsnew311-c-api-new-features">
-<span id="id7"></span><h3>新增特性<a class="headerlink" href="#whatsnew311-c-api-new-features" title="本標頭的永久連結">¶</a></h3>
+<span id="id5"></span><h3>新增特性<a class="headerlink" href="#whatsnew311-c-api-new-features" title="本標頭的永久連結">¶</a></h3>
 <ul>
 <li><p>新增 <a class="reference internal" href="../c-api/type.html#c.PyType_GetName" title="PyType_GetName"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyType_GetName()</span></code></a> 函式來取得型別的短名。（由 Hai Shi 於 <a class="reference external" href="https://bugs.python.org/issue?&#64;action=redirect&amp;bpo=42035">bpo-42035</a> 中所貢獻。）</p></li>
 <li><p>新增 <a class="reference internal" href="../c-api/type.html#c.PyType_GetQualName" title="PyType_GetQualName"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyType_GetQualName()</span></code></a> 函式來取得型別的合格名稱 (qualified name)。（由 Hai Shi 於 <a class="reference external" href="https://bugs.python.org/issue?&#64;action=redirect&amp;bpo=42035">bpo-42035</a> 中所貢獻。）</p></li>
@@ -1455,7 +1468,7 @@ Mark Shannon</p></td>
 </ul>
 </section>
 <section id="whatsnew311-c-api-porting">
-<span id="id8"></span><h3>移植至 Python 3.11<a class="headerlink" href="#whatsnew311-c-api-porting" title="本標頭的永久連結">¶</a></h3>
+<span id="id6"></span><h3>移植至 Python 3.11<a class="headerlink" href="#whatsnew311-c-api-porting" title="本標頭的永久連結">¶</a></h3>
 <ul id="whatsnew311-pep670">
 <li><p>一些巨集已轉換為行內靜態函式以避免<a class="reference external" href="https://gcc.gnu.org/onlinedocs/cpp/Macro-Pitfalls.html">巨集陷阱 (macro pitfalls)</a>。這種變化對用戶來說應該是透明的，因為替換函式會將它們的引數轉換為預期的型別，以避免由於靜態型別檢查而產生的編譯器警告。但是，當受限 C API 設置為 &gt;=3.11 時，這些轉換不會完成，使用者需要將引數轉換為他們期望的型別。有關更多詳細資訊，請參閱 <span class="target" id="index-119"></span><a class="pep reference external" href="https://peps.python.org/pep-0670/"><strong>PEP 670</strong></a>。 （由 Victor Stinner 和 Erlend E. Aasland 在 <a class="reference external" href="https://github.com/python/cpython/issues/89653">gh-89653</a> 中貢獻。）</p></li>
 <li><p><a class="reference internal" href="../c-api/exceptions.html#c.PyErr_SetExcInfo" title="PyErr_SetExcInfo"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyErr_SetExcInfo()</span></code></a> 不再使用 <code class="docutils literal notranslate"><span class="pre">type</span></code> 和 <code class="docutils literal notranslate"><span class="pre">traceback</span></code> 引數，直譯器現在從例外實例（<code class="docutils literal notranslate"><span class="pre">value</span></code> 引數）中獲得這些值。該函式仍會偷用這三個引數的參照。（由 Irit Katriel 在 <a class="reference external" href="https://bugs.python.org/issue?&#64;action=redirect&amp;bpo=45711">bpo-45711</a> 中貢獻。）</p></li>
@@ -1636,7 +1649,7 @@ Mark Shannon</p></td>
 </ul>
 </section>
 <section id="whatsnew311-c-api-deprecated">
-<span id="id9"></span><h3>已棄用<a class="headerlink" href="#whatsnew311-c-api-deprecated" title="本標頭的永久連結">¶</a></h3>
+<span id="id7"></span><h3>已棄用<a class="headerlink" href="#whatsnew311-c-api-deprecated" title="本標頭的永久連結">¶</a></h3>
 <ul>
 <li><p>棄用以下用來配置 Python 初始化的函式：</p>
 <ul class="simple">
@@ -1659,7 +1672,7 @@ Mark Shannon</p></td>
 </ul>
 </section>
 <section id="whatsnew311-c-api-pending-removal">
-<span id="id10"></span><h3>Python 3.12 中待決議的移除項目<a class="headerlink" href="#whatsnew311-c-api-pending-removal" title="本標頭的永久連結">¶</a></h3>
+<span id="id8"></span><h3>Python 3.12 中待決議的移除項目<a class="headerlink" href="#whatsnew311-c-api-pending-removal" title="本標頭的永久連結">¶</a></h3>
 <p>以下 C API 已於先前 Python 發布版本中棄用，並將於 Python 3.12 中移除。</p>
 <ul class="simple">
 <li><p><a class="reference internal" href="../c-api/unicode.html#c.PyUnicode_AS_DATA" title="PyUnicode_AS_DATA"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyUnicode_AS_DATA()</span></code></a></p></li>
@@ -1681,7 +1694,7 @@ Mark Shannon</p></td>
 </ul>
 </section>
 <section id="whatsnew311-c-api-removed">
-<span id="id11"></span><h3>已移除<a class="headerlink" href="#whatsnew311-c-api-removed" title="本標頭的永久連結">¶</a></h3>
+<span id="id9"></span><h3>已移除<a class="headerlink" href="#whatsnew311-c-api-removed" title="本標頭的永久連結">¶</a></h3>
 <ul>
 <li><p>移除 <code class="xref c c-func docutils literal notranslate"><span class="pre">PyFrame_BlockSetup()</span></code> 和 <code class="xref c c-func docutils literal notranslate"><span class="pre">PyFrame_BlockPop()</span></code>。（由 Mark Shannon 於 <a class="reference external" href="https://bugs.python.org/issue?&#64;action=redirect&amp;bpo=40222">bpo-40222</a> 中所貢獻。）</p></li>
 <li><p>移除以下使用到 <code class="docutils literal notranslate"><span class="pre">errno</span></code> 變數的數學巨集：</p>
@@ -1819,7 +1832,13 @@ Mark Shannon</p></td>
 </ul>
 </li>
 <li><a class="reference internal" href="#misc">雜項</a></li>
-<li><a class="reference internal" href="#faq">FAQ</a></li>
+<li><a class="reference internal" href="#faq">FAQ</a><ul>
+<li><a class="reference internal" href="#how-should-i-write-my-code-to-utilize-these-speedups">我該如何在程式碼中獲取這些加速？</a></li>
+<li><a class="reference internal" href="#will-cpython-3-11-use-more-memory">Python 3.11 會不會使用更多記憶體？</a></li>
+<li><a class="reference internal" href="#i-don-t-see-any-speedups-in-my-workload-why">我在我的程式當中沒感覺到任何加速，為什麼？</a></li>
+<li><a class="reference internal" href="#is-there-a-jit-compiler">有用到 JIT 編譯器嗎？</a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#about">關於</a></li>
 </ul>
 </li>
@@ -1907,7 +1926,7 @@ Mark Shannon</p></td>
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.11.2 Documentation</a> &#187;
+      <a href="../index.html">3.11.3 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 有什麼新功能？</a> &#187;</li>
@@ -1943,7 +1962,7 @@ Mark Shannon</p></td>
 <br />
     <br />
 
-    最後更新於 3月 04, 2023。
+    最後更新於 4月 06, 2023。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 
