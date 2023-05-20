@@ -1,15 +1,15 @@
-
 <!DOCTYPE html>
 
 <html lang="zh-TW">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>shutil --- High-level file operations &#8212; Python 3.11.3 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?digest=2d3badd06fe70b34b68db01f99471ce1624ffe4a" />
+    <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?digest=845a48175c3935ba0d7ff16b8ed0072d62fd099f" />
+    <link id="pygments_dark_css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css" href="../_static/pygments_dark.css" />
     
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/doctools.js"></script>
@@ -40,35 +40,47 @@
         }
       }
     </style>
-<link rel="shortcut icon" type="image/png" href="../_static/py.svg" />
+<link rel="stylesheet" href="../_static/pydoctheme_dark.css" media="(prefers-color-scheme: dark)" id="pydoctheme_dark_css">
+    <link rel="shortcut icon" type="image/png" href="../_static/py.svg" />
             <script type="text/javascript" src="../_static/copybutton.js"></script>
-            <script type="text/javascript" src="../_static/menu.js"></script> 
+            <script type="text/javascript" src="../_static/menu.js"></script>
+            <script type="text/javascript" src="../_static/themetoggle.js"></script> 
 
   </head>
 <body>
 <div class="mobile-nav">
     <input type="checkbox" id="menuToggler" class="toggler__input" aria-controls="navigation"
            aria-pressed="false" aria-expanded="false" role="button" aria-label="Menu" />
-    <label for="menuToggler" class="toggler__label">
-        <span></span>
-    </label>
     <nav class="nav-content" role="navigation">
-         <a href="https://www.python.org/" class="nav-logo">
-             <img src="../_static/py.svg" alt="Logo"/>
-         </a>
-        <div class="version_switcher_placeholder"></div>
-        <form role="search" class="search" action="../search.html" method="get">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" class="search-icon">
-                <path fill-rule="nonzero"
-                        d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 001.48-5.34c-.47-2.78-2.79-5-5.59-5.34a6.505 6.505 0 00-7.27 7.27c.34 2.8 2.56 5.12 5.34 5.59a6.5 6.5 0 005.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0 .41-.41.41-1.08 0-1.49L15.5 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" fill="#444"></path>
-            </svg>
-            <input type="text" name="q" aria-label="快速搜尋"/>
-            <input type="submit" value="前往"/>
-        </form>
+        <label for="menuToggler" class="toggler__label">
+            <span></span>
+        </label>
+        <span class="nav-items-wrapper">
+            <a href="https://www.python.org/" class="nav-logo">
+                <img src="../_static/py.svg" alt="Logo"/>
+            </a>
+            <span class="version_switcher_placeholder"></span>
+            <form role="search" class="search" action="../search.html" method="get">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" class="search-icon">
+                    <path fill-rule="nonzero" fill="currentColor" d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 001.48-5.34c-.47-2.78-2.79-5-5.59-5.34a6.505 6.505 0 00-7.27 7.27c.34 2.8 2.56 5.12 5.34 5.59a6.5 6.5 0 005.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0 .41-.41.41-1.08 0-1.49L15.5 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
+                </svg>
+                <input placeholder="快速搜尋" aria-label="快速搜尋" type="search" name="q" />
+                <input type="submit" value="前往"/>
+            </form>
+        </span>
     </nav>
     <div class="menu-wrapper">
         <nav class="menu" role="navigation" aria-label="main navigation">
             <div class="language_switcher_placeholder"></div>
+            
+<label class="theme-selector-label">
+    Theme
+    <select class="theme-selector" oninput="activateTheme(this.value)">
+        <option value="auto" selected>Auto</option>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+    </select>
+</label>
   <div>
     <h3><a href="../contents.html">目錄</a></h3>
     <ul>
@@ -182,14 +194,21 @@
 
     <div class="inline-search" role="search">
         <form class="inline-search" action="../search.html" method="get">
-          <input placeholder="快速搜尋" aria-label="快速搜尋" type="text" name="q" />
+          <input placeholder="快速搜尋" aria-label="快速搜尋" type="search" name="q" />
           <input type="submit" value="前往" />
-          <input type="hidden" name="check_keywords" value="yes" />
-          <input type="hidden" name="area" value="default" />
         </form>
     </div>
                      |
                 </li>
+            <li class="right">
+<label class="theme-selector-label">
+    Theme
+    <select class="theme-selector" oninput="activateTheme(this.value)">
+        <option value="auto" selected>Auto</option>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+    </select>
+</label> |</li>
             
       </ul>
     </div>    
@@ -776,7 +795,7 @@ list of archivers.  Defaults to an empty string.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="shutil.unpack_archive">
-<span class="sig-prename descclassname"><span class="pre">shutil.</span></span><span class="sig-name descname"><span class="pre">unpack_archive</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="optional">[</span>, <em class="sig-param"><span class="n"><span class="pre">extract_dir</span></span></em><span class="optional">[</span>, <em class="sig-param"><span class="n"><span class="pre">format</span></span></em><span class="optional">]</span><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#shutil.unpack_archive" title="本定義的永久連結">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">shutil.</span></span><span class="sig-name descname"><span class="pre">unpack_archive</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="optional">[</span>, <em class="sig-param"><span class="n"><span class="pre">extract_dir</span></span></em><span class="optional">[</span>, <em class="sig-param"><span class="n"><span class="pre">format</span></span></em><span class="optional">[</span>, <em class="sig-param"><span class="n"><span class="pre">filter</span></span></em><span class="optional">]</span><span class="optional">]</span><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#shutil.unpack_archive" title="本定義的永久連結">¶</a></dt>
 <dd><p>Unpack an archive. <em>filename</em> is the full path of the archive.</p>
 <p><em>extract_dir</em> is the name of the target directory where the archive is
 unpacked. If not provided, the current working directory is used.</p>
@@ -786,6 +805,14 @@ unpacked. If not provided, the current working directory is used.</p>
 will use the archive file name extension and see if an unpacker was
 registered for that extension.  In case none is found,
 a <a class="reference internal" href="exceptions.html#ValueError" title="ValueError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code></a> is raised.</p>
+<p>The keyword-only <em>filter</em> argument, which was added in Python 3.11.4,
+is passed to the underlying unpacking function.
+For zip files, <em>filter</em> is not accepted.
+For tar files, it is recommended to set it to <code class="docutils literal notranslate"><span class="pre">'data'</span></code>,
+unless using features specific to tar and UNIX-like filesystems.
+(See <a class="reference internal" href="tarfile.html#tarfile-extraction-filter"><span class="std std-ref">Extraction filters</span></a> for details.)
+The <code class="docutils literal notranslate"><span class="pre">'data'</span></code> filter will become the default for tar files
+in Python 3.14.</p>
 <p class="audit-hook">引發一個附帶引數 <code class="docutils literal notranslate"><span class="pre">filename</span></code>、<code class="docutils literal notranslate"><span class="pre">extract_dir</span></code>、<code class="docutils literal notranslate"><span class="pre">format</span></code> 的<a class="reference internal" href="sys.html#auditing"><span class="std std-ref">稽核事件</span></a> <code class="docutils literal notranslate"><span class="pre">shutil.unpack_archive</span></code>。</p>
 <div class="admonition warning">
 <p class="admonition-title">警告</p>
@@ -797,6 +824,9 @@ starting with &quot;/&quot; or filenames with two dots &quot;..&quot;.</p>
 <div class="versionchanged">
 <p><span class="versionmodified changed">在 3.7 版的變更: </span>Accepts a <a class="reference internal" href="../glossary.html#term-path-like-object"><span class="xref std std-term">path-like object</span></a> for <em>filename</em> and <em>extract_dir</em>.</p>
 </div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">在 3.11.4 版的變更: </span>Added the <em>filter</em> argument.</p>
+</div>
 </dd></dl>
 
 <dl class="py function">
@@ -806,10 +836,15 @@ starting with &quot;/&quot; or filenames with two dots &quot;..&quot;.</p>
 <em>extensions</em> is a list of extensions corresponding to the format, like
 <code class="docutils literal notranslate"><span class="pre">.zip</span></code> for Zip files.</p>
 <p><em>function</em> is the callable that will be used to unpack archives. The
-callable will receive the path of the archive, followed by the directory
-the archive must be extracted to.</p>
-<p>When provided, <em>extra_args</em> is a sequence of <code class="docutils literal notranslate"><span class="pre">(name,</span> <span class="pre">value)</span></code> tuples that
-will be passed as keywords arguments to the callable.</p>
+callable will receive:</p>
+<ul class="simple">
+<li><p>the path of the archive, as a positional argument;</p></li>
+<li><p>the directory the archive must be extracted to, as a positional argument;</p></li>
+<li><p>possibly a <em>filter</em> keyword argument, if it was given to
+<a class="reference internal" href="#shutil.unpack_archive" title="shutil.unpack_archive"><code class="xref py py-func docutils literal notranslate"><span class="pre">unpack_archive()</span></code></a>;</p></li>
+<li><p>additional keyword arguments, specified by <em>extra_args</em> as a sequence
+of <code class="docutils literal notranslate"><span class="pre">(name,</span> <span class="pre">value)</span></code> tuples.</p></li>
+</ul>
 <p><em>description</em> can be provided to describe the format, and will be returned
 by the <a class="reference internal" href="#shutil.get_unpack_formats" title="shutil.get_unpack_formats"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_unpack_formats()</span></code></a> function.</p>
 </dd></dl>
@@ -1055,14 +1090,21 @@ returns zeroes.</p>
 
     <div class="inline-search" role="search">
         <form class="inline-search" action="../search.html" method="get">
-          <input placeholder="快速搜尋" aria-label="快速搜尋" type="text" name="q" />
+          <input placeholder="快速搜尋" aria-label="快速搜尋" type="search" name="q" />
           <input type="submit" value="前往" />
-          <input type="hidden" name="check_keywords" value="yes" />
-          <input type="hidden" name="area" value="default" />
         </form>
     </div>
                      |
                 </li>
+            <li class="right">
+<label class="theme-selector-label">
+    Theme
+    <select class="theme-selector" oninput="activateTheme(this.value)">
+        <option value="auto" selected>Auto</option>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+    </select>
+</label> |</li>
             
       </ul>
     </div>  
@@ -1081,11 +1123,11 @@ returns zeroes.</p>
 <br />
     <br />
 
-    最後更新於 4月 26, 2023。
+    最後更新於 5月 20, 2023。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 
-    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 6.2.1 建立。
+    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.0.1 建立。
     </div>
 
   </body>
