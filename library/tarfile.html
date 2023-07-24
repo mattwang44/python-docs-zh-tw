@@ -1234,7 +1234,7 @@ reused in custom filters:</p>
 <span class="sig-prename descclassname"><span class="pre">tarfile.</span></span><span class="sig-name descname"><span class="pre">tar_filter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">member</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tarfile.tar_filter" title="本定義的永久連結">¶</a></dt>
 <dd><p>Implements the <code class="docutils literal notranslate"><span class="pre">'tar'</span></code> filter.</p>
 <ul class="simple">
-<li><p>Strip leading slashes (<code class="docutils literal notranslate"><span class="pre">/</span></code> and <a class="reference internal" href="os.html#os.sep" title="os.sep"><code class="xref py py-attr docutils literal notranslate"><span class="pre">os.sep</span></code></a>) from filenames.</p></li>
+<li><p>Strip leading slashes (<code class="docutils literal notranslate"><span class="pre">/</span></code> and <a class="reference internal" href="os.html#os.sep" title="os.sep"><code class="xref py py-data docutils literal notranslate"><span class="pre">os.sep</span></code></a>) from filenames.</p></li>
 <li><p><a class="reference internal" href="#tarfile-extraction-refuse"><span class="std std-ref">Refuse</span></a> to extract files with absolute
 paths (in case the name is absolute
 even after stripping slashes, e.g. <code class="docutils literal notranslate"><span class="pre">C:/foo</span></code> on Windows).
@@ -1243,7 +1243,7 @@ This raises <a class="reference internal" href="#tarfile.AbsolutePathError" titl
 path (after following symlinks) would end up outside the destination.
 This raises <a class="reference internal" href="#tarfile.OutsideDestinationError" title="tarfile.OutsideDestinationError"><code class="xref py py-class docutils literal notranslate"><span class="pre">OutsideDestinationError</span></code></a>.</p></li>
 <li><p>Clear high mode bits (setuid, setgid, sticky) and group/other write bits
-(<code class="xref py py-attr docutils literal notranslate"><span class="pre">S_IWOTH</span></code>).</p></li>
+(<code class="xref py py-const docutils literal notranslate"><span class="pre">S_IWOTH</span></code>).</p></li>
 </ul>
 <p>Return the modified <code class="docutils literal notranslate"><span class="pre">TarInfo</span></code> member.</p>
 </dd></dl>
@@ -1267,10 +1267,10 @@ This raises <a class="reference internal" href="#tarfile.SpecialFileError" title
 <li><p>For regular files, including hard links:</p>
 <ul class="simple">
 <li><p>Set the owner read and write permissions
-(<code class="xref py py-attr docutils literal notranslate"><span class="pre">S_IWUSR</span></code>).</p></li>
+(<code class="xref py py-const docutils literal notranslate"><span class="pre">S_IWUSR</span></code>).</p></li>
 <li><p>Remove the group &amp; other executable permission
-(<code class="xref py py-attr docutils literal notranslate"><span class="pre">S_IXOTH</span></code>)
-if the owner doesn’t have it (<a class="reference internal" href="stat.html#stat.S_IXUSR" title="stat.S_IXUSR"><code class="xref py py-attr docutils literal notranslate"><span class="pre">S_IXUSR</span></code></a>).</p></li>
+(<code class="xref py py-const docutils literal notranslate"><span class="pre">S_IXOTH</span></code>)
+if the owner doesn’t have it (<a class="reference internal" href="stat.html#stat.S_IXUSR" title="stat.S_IXUSR"><code class="xref py py-const docutils literal notranslate"><span class="pre">S_IXUSR</span></code></a>).</p></li>
 </ul>
 </li>
 <li><p>For other files (directories), set <code class="docutils literal notranslate"><span class="pre">mode</span></code> to <code class="docutils literal notranslate"><span class="pre">None</span></code>, so
@@ -1819,7 +1819,7 @@ surrogate characters are stored.</p>
 <br />
     <br />
 
-    最後更新於 7月 18, 2023。
+    最後更新於 7月 24, 2023。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 

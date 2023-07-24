@@ -492,12 +492,12 @@ status code 0, indicating success:</p>
 <p>Note that importing <code class="docutils literal notranslate"><span class="pre">__main__</span></code> doesn't cause any issues with unintentionally
 running top-level code meant for script use which is put in the
 <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">__name__</span> <span class="pre">==</span> <span class="pre">&quot;__main__&quot;</span></code> block of the <code class="docutils literal notranslate"><span class="pre">start</span></code> module. Why does this work?</p>
-<p>Python inserts an empty <code class="docutils literal notranslate"><span class="pre">__main__</span></code> module in <a class="reference internal" href="sys.html#sys.modules" title="sys.modules"><code class="xref py py-attr docutils literal notranslate"><span class="pre">sys.modules</span></code></a> at
+<p>Python inserts an empty <code class="docutils literal notranslate"><span class="pre">__main__</span></code> module in <a class="reference internal" href="sys.html#sys.modules" title="sys.modules"><code class="xref py py-data docutils literal notranslate"><span class="pre">sys.modules</span></code></a> at
 interpreter startup, and populates it by running top-level code. In our example
 this is the <code class="docutils literal notranslate"><span class="pre">start</span></code> module which runs line by line and imports <code class="docutils literal notranslate"><span class="pre">namely</span></code>.
 In turn, <code class="docutils literal notranslate"><span class="pre">namely</span></code> imports <code class="docutils literal notranslate"><span class="pre">__main__</span></code> (which is really <code class="docutils literal notranslate"><span class="pre">start</span></code>). That's an
 import cycle! Fortunately, since the partially populated <code class="docutils literal notranslate"><span class="pre">__main__</span></code>
-module is present in <a class="reference internal" href="sys.html#sys.modules" title="sys.modules"><code class="xref py py-attr docutils literal notranslate"><span class="pre">sys.modules</span></code></a>, Python passes that to <code class="docutils literal notranslate"><span class="pre">namely</span></code>.
+module is present in <a class="reference internal" href="sys.html#sys.modules" title="sys.modules"><code class="xref py py-data docutils literal notranslate"><span class="pre">sys.modules</span></code></a>, Python passes that to <code class="docutils literal notranslate"><span class="pre">namely</span></code>.
 See <a class="reference internal" href="../reference/import.html#import-dunder-main"><span class="std std-ref">Special considerations for __main__</span></a> in the
 import system's reference for details on how this works.</p>
 <p>The Python REPL is another example of a &quot;top-level environment&quot;, so anything
@@ -649,7 +649,7 @@ attribute as it's interactive.</p>
 <br />
     <br />
 
-    最後更新於 7月 18, 2023。
+    最後更新於 7月 24, 2023。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 

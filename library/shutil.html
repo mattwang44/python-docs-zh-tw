@@ -582,6 +582,12 @@ copy the file more efficiently. See
 with the attributes <em>total</em>, <em>used</em> and <em>free</em>, which are the amount of
 total, used and free space, in bytes. <em>path</em> may be a file or a
 directory.</p>
+<div class="admonition note">
+<p class="admonition-title">備註</p>
+<p>On Unix filesystems, <em>path</em> must point to a path within a <strong>mounted</strong>
+filesystem partition. On those platforms, CPython doesn't attempt to
+retrieve disk usage information from non-mounted filesystems.</p>
+</div>
 <div class="versionadded">
 <p><span class="versionmodified added">在 3.3 版新加入.</span></p>
 </div>
@@ -617,7 +623,7 @@ called.  If no <em>cmd</em> would be called, return <code class="docutils litera
 <p><em>mode</em> is a permission mask passed to <a class="reference internal" href="os.html#os.access" title="os.access"><code class="xref py py-func docutils literal notranslate"><span class="pre">os.access()</span></code></a>, by default
 determining if the file exists and executable.</p>
 <p>When no <em>path</em> is specified, the results of <a class="reference internal" href="os.html#os.environ" title="os.environ"><code class="xref py py-func docutils literal notranslate"><span class="pre">os.environ()</span></code></a> are used,
-returning either the &quot;PATH&quot; value or a fallback of <a class="reference internal" href="os.html#os.defpath" title="os.defpath"><code class="xref py py-attr docutils literal notranslate"><span class="pre">os.defpath</span></code></a>.</p>
+returning either the &quot;PATH&quot; value or a fallback of <a class="reference internal" href="os.html#os.defpath" title="os.defpath"><code class="xref py py-data docutils literal notranslate"><span class="pre">os.defpath</span></code></a>.</p>
 <p>On Windows, the current directory is prepended to the <em>path</em> if <em>mode</em> does
 not include <code class="docutils literal notranslate"><span class="pre">os.X_OK</span></code>. When the <em>mode</em> does include <code class="docutils literal notranslate"><span class="pre">os.X_OK</span></code>, the
 Windows API <code class="docutils literal notranslate"><span class="pre">NeedCurrentDirectoryForExePathW</span></code> will be consulted to
@@ -1156,7 +1162,7 @@ returns zeroes.</p>
 <br />
     <br />
 
-    最後更新於 7月 18, 2023。
+    最後更新於 7月 24, 2023。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 

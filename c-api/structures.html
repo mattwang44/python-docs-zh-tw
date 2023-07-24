@@ -87,16 +87,7 @@
     <ul>
 <li><a class="reference internal" href="#">通用物件結構</a><ul>
 <li><a class="reference internal" href="#base-object-types-and-macros">Base object types and macros</a></li>
-<li><a class="reference internal" href="#implementing-functions-and-methods">Implementing functions and methods</a><ul>
-<li><a class="reference internal" href="#METH_VARARGS"><code class="docutils literal notranslate"><span class="pre">METH_VARARGS</span></code></a></li>
-<li><a class="reference internal" href="#METH_FASTCALL"><code class="docutils literal notranslate"><span class="pre">METH_FASTCALL</span></code></a></li>
-<li><a class="reference internal" href="#METH_NOARGS"><code class="docutils literal notranslate"><span class="pre">METH_NOARGS</span></code></a></li>
-<li><a class="reference internal" href="#METH_O"><code class="docutils literal notranslate"><span class="pre">METH_O</span></code></a></li>
-<li><a class="reference internal" href="#METH_CLASS"><code class="docutils literal notranslate"><span class="pre">METH_CLASS</span></code></a></li>
-<li><a class="reference internal" href="#METH_STATIC"><code class="docutils literal notranslate"><span class="pre">METH_STATIC</span></code></a></li>
-<li><a class="reference internal" href="#METH_COEXIST"><code class="docutils literal notranslate"><span class="pre">METH_COEXIST</span></code></a></li>
-</ul>
-</li>
+<li><a class="reference internal" href="#implementing-functions-and-methods">Implementing functions and methods</a></li>
 <li><a class="reference internal" href="#accessing-attributes-of-extension-types">Accessing attributes of extension types</a><ul>
 <li><a class="reference internal" href="#member-flags">Member flags</a></li>
 <li><a class="reference internal" href="#member-types">Member types</a></li>
@@ -390,7 +381,7 @@ reference.</p>
 <dt class="sig sig-object c" id="c.PyCFunctionWithKeywords">
 <span class="k"><span class="pre">type</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PyCFunctionWithKeywords</span></span></span><a class="headerlink" href="#c.PyCFunctionWithKeywords" title="本定義的永久連結">¶</a><br /></dt>
 <dd><em class="stableabi"> Part of the <a class="reference internal" href="stable.html#stable"><span class="std std-ref">Stable ABI</span></a>.</em><p>Type of the functions used to implement Python callables in C
-with signature <code class="xref py py-const docutils literal notranslate"><span class="pre">METH_VARARGS</span> <span class="pre">|</span> <span class="pre">METH_KEYWORDS</span></code>.
+with signature <a class="reference internal" href="#meth-varargs-meth-keywords"><span class="std std-ref">METH_VARARGS | METH_KEYWORDS</span></a>.
 The function signature is:</p>
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">PyObject</span><span class="w"> </span><span class="o">*</span><span class="nf">PyCFunctionWithKeywords</span><span class="p">(</span><span class="n">PyObject</span><span class="w"> </span><span class="o">*</span><span class="n">self</span><span class="p">,</span>
 <span class="w">                                  </span><span class="n">PyObject</span><span class="w"> </span><span class="o">*</span><span class="n">args</span><span class="p">,</span>
@@ -403,7 +394,7 @@ The function signature is:</p>
 <dt class="sig sig-object c" id="c._PyCFunctionFast">
 <span class="k"><span class="pre">type</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_PyCFunctionFast</span></span></span><a class="headerlink" href="#c._PyCFunctionFast" title="本定義的永久連結">¶</a><br /></dt>
 <dd><p>Type of the functions used to implement Python callables in C
-with signature <a class="reference internal" href="#METH_FASTCALL" title="METH_FASTCALL"><code class="xref py py-const docutils literal notranslate"><span class="pre">METH_FASTCALL</span></code></a>.
+with signature <a class="reference internal" href="#c.METH_FASTCALL" title="METH_FASTCALL"><code class="xref c c-macro docutils literal notranslate"><span class="pre">METH_FASTCALL</span></code></a>.
 The function signature is:</p>
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">PyObject</span><span class="w"> </span><span class="o">*</span><span class="nf">_PyCFunctionFast</span><span class="p">(</span><span class="n">PyObject</span><span class="w"> </span><span class="o">*</span><span class="n">self</span><span class="p">,</span>
 <span class="w">                           </span><span class="n">PyObject</span><span class="w"> </span><span class="o">*</span><span class="k">const</span><span class="w"> </span><span class="o">*</span><span class="n">args</span><span class="p">,</span>
@@ -416,7 +407,7 @@ The function signature is:</p>
 <dt class="sig sig-object c" id="c._PyCFunctionFastWithKeywords">
 <span class="k"><span class="pre">type</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_PyCFunctionFastWithKeywords</span></span></span><a class="headerlink" href="#c._PyCFunctionFastWithKeywords" title="本定義的永久連結">¶</a><br /></dt>
 <dd><p>Type of the functions used to implement Python callables in C
-with signature <code class="xref py py-const docutils literal notranslate"><span class="pre">METH_FASTCALL</span> <span class="pre">|</span> <span class="pre">METH_KEYWORDS</span></code>.
+with signature <a class="reference internal" href="#meth-fastcall-meth-keywords"><span class="std std-ref">METH_FASTCALL | METH_KEYWORDS</span></a>.
 The function signature is:</p>
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">PyObject</span><span class="w"> </span><span class="o">*</span><span class="nf">_PyCFunctionFastWithKeywords</span><span class="p">(</span><span class="n">PyObject</span><span class="w"> </span><span class="o">*</span><span class="n">self</span><span class="p">,</span>
 <span class="w">                                       </span><span class="n">PyObject</span><span class="w"> </span><span class="o">*</span><span class="k">const</span><span class="w"> </span><span class="o">*</span><span class="n">args</span><span class="p">,</span>
@@ -430,7 +421,7 @@ The function signature is:</p>
 <dt class="sig sig-object c" id="c.PyCMethod">
 <span class="k"><span class="pre">type</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PyCMethod</span></span></span><a class="headerlink" href="#c.PyCMethod" title="本定義的永久連結">¶</a><br /></dt>
 <dd><p>Type of the functions used to implement Python callables in C
-with signature <code class="xref py py-const docutils literal notranslate"><span class="pre">METH_METHOD</span> <span class="pre">|</span> <span class="pre">METH_FASTCALL</span> <span class="pre">|</span> <span class="pre">METH_KEYWORDS</span></code>.
+with signature <a class="reference internal" href="#meth-method-meth-fastcall-meth-keywords"><span class="std std-ref">METH_METHOD | METH_FASTCALL | METH_KEYWORDS</span></a>.
 The function signature is:</p>
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">PyObject</span><span class="w"> </span><span class="o">*</span><span class="n">PyCMethod</span><span class="p">(</span><span class="n">PyObject</span><span class="w"> </span><span class="o">*</span><span class="n">self</span><span class="p">,</span>
 <span class="w">                    </span><span class="n">PyTypeObject</span><span class="w"> </span><span class="o">*</span><span class="n">defining_class</span><span class="p">,</span>
@@ -485,9 +476,9 @@ specific C type of the <em>self</em> object.</p>
 The individual flags indicate either a calling convention or a binding
 convention.</p>
 <p>There are these calling conventions:</p>
-<dl class="py data">
-<dt class="sig sig-object py" id="METH_VARARGS">
-<span class="sig-name descname"><span class="pre">METH_VARARGS</span></span><a class="headerlink" href="#METH_VARARGS" title="本定義的永久連結">¶</a></dt>
+<dl class="c macro">
+<dt class="sig sig-object c" id="c.METH_VARARGS">
+<span class="sig-name descname"><span class="n"><span class="pre">METH_VARARGS</span></span></span><a class="headerlink" href="#c.METH_VARARGS" title="本定義的永久連結">¶</a><br /></dt>
 <dd><p>This is the typical calling convention, where the methods have the type
 <a class="reference internal" href="#c.PyCFunction" title="PyCFunction"><code class="xref c c-type docutils literal notranslate"><span class="pre">PyCFunction</span></code></a>. The function expects two <span class="c-expr sig sig-inline c"><a class="reference internal" href="#c.PyObject" title="PyObject"><span class="n">PyObject</span></a><span class="p">*</span></span> values.
 The first one is the <em>self</em> object for methods; for module functions, it is
@@ -496,19 +487,26 @@ object representing all arguments. This parameter is typically processed
 using <a class="reference internal" href="arg.html#c.PyArg_ParseTuple" title="PyArg_ParseTuple"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyArg_ParseTuple()</span></code></a> or <a class="reference internal" href="arg.html#c.PyArg_UnpackTuple" title="PyArg_UnpackTuple"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyArg_UnpackTuple()</span></code></a>.</p>
 </dd></dl>
 
-<dl class="py data">
-<dt class="sig sig-object py">
-<span class="sig-name descname"><span class="pre">METH_VARARGS</span> <span class="pre">|</span> <span class="pre">METH_KEYWORDS</span></span></dt>
-<dd><p>Methods with these flags must be of type <a class="reference internal" href="#c.PyCFunctionWithKeywords" title="PyCFunctionWithKeywords"><code class="xref c c-type docutils literal notranslate"><span class="pre">PyCFunctionWithKeywords</span></code></a>.
+<dl class="c macro">
+<dt class="sig sig-object c" id="c.METH_KEYWORDS">
+<span class="sig-name descname"><span class="n"><span class="pre">METH_KEYWORDS</span></span></span><a class="headerlink" href="#c.METH_KEYWORDS" title="本定義的永久連結">¶</a><br /></dt>
+<dd><p>Can only be used in certain combinations with other flags:
+<a class="reference internal" href="#meth-varargs-meth-keywords"><span class="std std-ref">METH_VARARGS | METH_KEYWORDS</span></a>,
+<a class="reference internal" href="#meth-fastcall-meth-keywords"><span class="std std-ref">METH_FASTCALL | METH_KEYWORDS</span></a> and
+<a class="reference internal" href="#meth-method-meth-fastcall-meth-keywords"><span class="std std-ref">METH_METHOD | METH_FASTCALL | METH_KEYWORDS</span></a>.</p>
+</dd></dl>
+
+<dl class="simple" id="meth-varargs-meth-keywords">
+<dt><span class="c-expr sig sig-inline c"><a class="reference internal" href="#c.METH_VARARGS" title="METH_VARARGS"><span class="n">METH_VARARGS</span></a><span class="w"> </span><span class="o">|</span><span class="w"> </span><a class="reference internal" href="#c.METH_KEYWORDS" title="METH_KEYWORDS"><span class="n">METH_KEYWORDS</span></a></span></dt><dd><p>Methods with these flags must be of type <a class="reference internal" href="#c.PyCFunctionWithKeywords" title="PyCFunctionWithKeywords"><code class="xref c c-type docutils literal notranslate"><span class="pre">PyCFunctionWithKeywords</span></code></a>.
 The function expects three parameters: <em>self</em>, <em>args</em>, <em>kwargs</em> where
 <em>kwargs</em> is a dictionary of all the keyword arguments or possibly <code class="docutils literal notranslate"><span class="pre">NULL</span></code>
 if there are no keyword arguments.  The parameters are typically processed
 using <a class="reference internal" href="arg.html#c.PyArg_ParseTupleAndKeywords" title="PyArg_ParseTupleAndKeywords"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyArg_ParseTupleAndKeywords()</span></code></a>.</p>
-</dd></dl>
-
-<dl class="py data">
-<dt class="sig sig-object py" id="METH_FASTCALL">
-<span class="sig-name descname"><span class="pre">METH_FASTCALL</span></span><a class="headerlink" href="#METH_FASTCALL" title="本定義的永久連結">¶</a></dt>
+</dd>
+</dl>
+<dl class="c macro">
+<dt class="sig sig-object c" id="c.METH_FASTCALL">
+<span class="sig-name descname"><span class="n"><span class="pre">METH_FASTCALL</span></span></span><a class="headerlink" href="#c.METH_FASTCALL" title="本定義的永久連結">¶</a><br /></dt>
 <dd><p>Fast calling convention supporting only positional arguments.
 The methods have the type <a class="reference internal" href="#c._PyCFunctionFast" title="_PyCFunctionFast"><code class="xref c c-type docutils literal notranslate"><span class="pre">_PyCFunctionFast</span></code></a>.
 The first parameter is <em>self</em>, the second parameter is a C array
@@ -522,10 +520,8 @@ parameter is the number of arguments (the length of the array).</p>
 </div>
 </dd></dl>
 
-<dl class="py data">
-<dt class="sig sig-object py">
-<span class="sig-name descname"><span class="pre">METH_FASTCALL</span> <span class="pre">|</span> <span class="pre">METH_KEYWORDS</span></span></dt>
-<dd><p>Extension of <a class="reference internal" href="#METH_FASTCALL" title="METH_FASTCALL"><code class="xref py py-const docutils literal notranslate"><span class="pre">METH_FASTCALL</span></code></a> supporting also keyword arguments,
+<dl id="meth-fastcall-meth-keywords">
+<dt><span class="c-expr sig sig-inline c"><a class="reference internal" href="#c.METH_FASTCALL" title="METH_FASTCALL"><span class="n">METH_FASTCALL</span></a><span class="w"> </span><span class="o">|</span><span class="w"> </span><a class="reference internal" href="#c.METH_KEYWORDS" title="METH_KEYWORDS"><span class="n">METH_KEYWORDS</span></a></span></dt><dd><p>Extension of <a class="reference internal" href="#c.METH_FASTCALL" title="METH_FASTCALL"><code class="xref c c-macro docutils literal notranslate"><span class="pre">METH_FASTCALL</span></code></a> supporting also keyword arguments,
 with methods of type <a class="reference internal" href="#c._PyCFunctionFastWithKeywords" title="_PyCFunctionFastWithKeywords"><code class="xref c c-type docutils literal notranslate"><span class="pre">_PyCFunctionFastWithKeywords</span></code></a>.
 Keyword arguments are passed the same way as in the
 <a class="reference internal" href="call.html#vectorcall"><span class="std std-ref">vectorcall protocol</span></a>:
@@ -537,13 +533,19 @@ arguments are stored in the <em>args</em> array, after the positional arguments.
 <div class="versionadded">
 <p><span class="versionmodified added">在 3.7 版新加入.</span></p>
 </div>
+</dd>
+</dl>
+<dl class="c macro">
+<dt class="sig sig-object c" id="c.METH_METHOD">
+<span class="sig-name descname"><span class="n"><span class="pre">METH_METHOD</span></span></span><a class="headerlink" href="#c.METH_METHOD" title="本定義的永久連結">¶</a><br /></dt>
+<dd><p>Can only be used in the combination with other flags:
+<a class="reference internal" href="#meth-method-meth-fastcall-meth-keywords"><span class="std std-ref">METH_METHOD | METH_FASTCALL | METH_KEYWORDS</span></a>.</p>
 </dd></dl>
 
-<dl class="py data">
-<dt class="sig sig-object py">
-<span class="sig-name descname"><span class="pre">METH_METHOD</span> <span class="pre">|</span> <span class="pre">METH_FASTCALL</span> <span class="pre">|</span> <span class="pre">METH_KEYWORDS</span></span></dt>
-<dd><p>Extension of <code class="xref py py-const docutils literal notranslate"><span class="pre">METH_FASTCALL</span> <span class="pre">|</span> <span class="pre">METH_KEYWORDS</span></code> supporting the <em>defining
-class</em>, that is, the class that contains the method in question.
+<dl id="meth-method-meth-fastcall-meth-keywords">
+<dt><span class="c-expr sig sig-inline c"><a class="reference internal" href="#c.METH_METHOD" title="METH_METHOD"><span class="n">METH_METHOD</span></a><span class="w"> </span><span class="o">|</span><span class="w"> </span><a class="reference internal" href="#c.METH_FASTCALL" title="METH_FASTCALL"><span class="n">METH_FASTCALL</span></a><span class="w"> </span><span class="o">|</span><span class="w"> </span><a class="reference internal" href="#c.METH_KEYWORDS" title="METH_KEYWORDS"><span class="n">METH_KEYWORDS</span></a></span></dt><dd><p>Extension of <a class="reference internal" href="#meth-fastcall-meth-keywords"><span class="std std-ref">METH_FASTCALL | METH_KEYWORDS</span></a>
+supporting the <em>defining class</em>, that is,
+the class that contains the method in question.
 The defining class might be a superclass of <code class="docutils literal notranslate"><span class="pre">Py_TYPE(self)</span></code>.</p>
 <p>The method needs to be of type <a class="reference internal" href="#c.PyCMethod" title="PyCMethod"><code class="xref c c-type docutils literal notranslate"><span class="pre">PyCMethod</span></code></a>, the same as for
 <code class="docutils literal notranslate"><span class="pre">METH_FASTCALL</span> <span class="pre">|</span> <span class="pre">METH_KEYWORDS</span></code> with <code class="docutils literal notranslate"><span class="pre">defining_class</span></code> argument added after
@@ -551,13 +553,13 @@ The defining class might be a superclass of <code class="docutils literal notran
 <div class="versionadded">
 <p><span class="versionmodified added">在 3.9 版新加入.</span></p>
 </div>
-</dd></dl>
-
-<dl class="py data">
-<dt class="sig sig-object py" id="METH_NOARGS">
-<span class="sig-name descname"><span class="pre">METH_NOARGS</span></span><a class="headerlink" href="#METH_NOARGS" title="本定義的永久連結">¶</a></dt>
+</dd>
+</dl>
+<dl class="c macro">
+<dt class="sig sig-object c" id="c.METH_NOARGS">
+<span class="sig-name descname"><span class="n"><span class="pre">METH_NOARGS</span></span></span><a class="headerlink" href="#c.METH_NOARGS" title="本定義的永久連結">¶</a><br /></dt>
 <dd><p>Methods without parameters don't need to check whether arguments are given if
-they are listed with the <a class="reference internal" href="#METH_NOARGS" title="METH_NOARGS"><code class="xref py py-const docutils literal notranslate"><span class="pre">METH_NOARGS</span></code></a> flag.  They need to be of type
+they are listed with the <a class="reference internal" href="#c.METH_NOARGS" title="METH_NOARGS"><code class="xref c c-macro docutils literal notranslate"><span class="pre">METH_NOARGS</span></code></a> flag.  They need to be of type
 <a class="reference internal" href="#c.PyCFunction" title="PyCFunction"><code class="xref c c-type docutils literal notranslate"><span class="pre">PyCFunction</span></code></a>.  The first parameter is typically named <em>self</em> and will
 hold a reference to the module or object instance.  In all cases the second
 parameter will be <code class="docutils literal notranslate"><span class="pre">NULL</span></code>.</p>
@@ -565,10 +567,10 @@ parameter will be <code class="docutils literal notranslate"><span class="pre">N
 <a class="reference internal" href="intro.html#c.Py_UNUSED" title="Py_UNUSED"><code class="xref c c-macro docutils literal notranslate"><span class="pre">Py_UNUSED</span></code></a> can be used to prevent a compiler warning.</p>
 </dd></dl>
 
-<dl class="py data">
-<dt class="sig sig-object py" id="METH_O">
-<span class="sig-name descname"><span class="pre">METH_O</span></span><a class="headerlink" href="#METH_O" title="本定義的永久連結">¶</a></dt>
-<dd><p>Methods with a single object argument can be listed with the <a class="reference internal" href="#METH_O" title="METH_O"><code class="xref py py-const docutils literal notranslate"><span class="pre">METH_O</span></code></a>
+<dl class="c macro">
+<dt class="sig sig-object c" id="c.METH_O">
+<span class="sig-name descname"><span class="n"><span class="pre">METH_O</span></span></span><a class="headerlink" href="#c.METH_O" title="本定義的永久連結">¶</a><br /></dt>
+<dd><p>Methods with a single object argument can be listed with the <a class="reference internal" href="#c.METH_O" title="METH_O"><code class="xref c c-macro docutils literal notranslate"><span class="pre">METH_O</span></code></a>
 flag, instead of invoking <a class="reference internal" href="arg.html#c.PyArg_ParseTuple" title="PyArg_ParseTuple"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyArg_ParseTuple()</span></code></a> with a <code class="docutils literal notranslate"><span class="pre">&quot;O&quot;</span></code> argument.
 They have the type <a class="reference internal" href="#c.PyCFunction" title="PyCFunction"><code class="xref c c-type docutils literal notranslate"><span class="pre">PyCFunction</span></code></a>, with the <em>self</em> parameter, and a
 <span class="c-expr sig sig-inline c"><a class="reference internal" href="#c.PyObject" title="PyObject"><span class="n">PyObject</span></a><span class="p">*</span></span> parameter representing the single argument.</p>
@@ -578,18 +580,18 @@ They have the type <a class="reference internal" href="#c.PyCFunction" title="Py
 binding when use with methods of classes.  These may not be used for functions
 defined for modules.  At most one of these flags may be set for any given
 method.</p>
-<dl class="py data">
-<dt class="sig sig-object py" id="METH_CLASS">
-<span class="sig-name descname"><span class="pre">METH_CLASS</span></span><a class="headerlink" href="#METH_CLASS" title="本定義的永久連結">¶</a></dt>
+<dl class="c macro">
+<dt class="sig sig-object c" id="c.METH_CLASS">
+<span class="sig-name descname"><span class="n"><span class="pre">METH_CLASS</span></span></span><a class="headerlink" href="#c.METH_CLASS" title="本定義的永久連結">¶</a><br /></dt>
 <dd><p id="index-0">The method will be passed the type object as the first parameter rather
 than an instance of the type.  This is used to create <em>class methods</em>,
 similar to what is created when using the <a class="reference internal" href="../library/functions.html#classmethod" title="classmethod"><code class="xref py py-func docutils literal notranslate"><span class="pre">classmethod()</span></code></a> built-in
 function.</p>
 </dd></dl>
 
-<dl class="py data">
-<dt class="sig sig-object py" id="METH_STATIC">
-<span class="sig-name descname"><span class="pre">METH_STATIC</span></span><a class="headerlink" href="#METH_STATIC" title="本定義的永久連結">¶</a></dt>
+<dl class="c macro">
+<dt class="sig sig-object c" id="c.METH_STATIC">
+<span class="sig-name descname"><span class="n"><span class="pre">METH_STATIC</span></span></span><a class="headerlink" href="#c.METH_STATIC" title="本定義的永久連結">¶</a><br /></dt>
 <dd><p id="index-1">The method will be passed <code class="docutils literal notranslate"><span class="pre">NULL</span></code> as the first parameter rather than an
 instance of the type.  This is used to create <em>static methods</em>, similar to
 what is created when using the <a class="reference internal" href="../library/functions.html#staticmethod" title="staticmethod"><code class="xref py py-func docutils literal notranslate"><span class="pre">staticmethod()</span></code></a> built-in function.</p>
@@ -597,9 +599,9 @@ what is created when using the <a class="reference internal" href="../library/fu
 
 <p>One other constant controls whether a method is loaded in place of another
 definition with the same method name.</p>
-<dl class="py data">
-<dt class="sig sig-object py" id="METH_COEXIST">
-<span class="sig-name descname"><span class="pre">METH_COEXIST</span></span><a class="headerlink" href="#METH_COEXIST" title="本定義的永久連結">¶</a></dt>
+<dl class="c macro">
+<dt class="sig sig-object c" id="c.METH_COEXIST">
+<span class="sig-name descname"><span class="n"><span class="pre">METH_COEXIST</span></span></span><a class="headerlink" href="#c.METH_COEXIST" title="本定義的永久連結">¶</a><br /></dt>
 <dd><p>The method will be loaded in place of existing definitions.  Without
 <em>METH_COEXIST</em>, the default is to skip repeated definitions.  Since slot
 wrappers are loaded before the method table, the existence of a
@@ -676,8 +678,8 @@ These must be defined with <code class="docutils literal notranslate"><span clas
 <p>The legacy offsets <a class="reference internal" href="typeobj.html#c.PyTypeObject.tp_dictoffset" title="PyTypeObject.tp_dictoffset"><code class="xref c c-member docutils literal notranslate"><span class="pre">tp_dictoffset</span></code></a> and
 <a class="reference internal" href="typeobj.html#c.PyTypeObject.tp_weaklistoffset" title="PyTypeObject.tp_weaklistoffset"><code class="xref c c-member docutils literal notranslate"><span class="pre">tp_weaklistoffset</span></code></a> can be defined similarly using
 <code class="docutils literal notranslate"><span class="pre">&quot;__dictoffset__&quot;</span></code> and <code class="docutils literal notranslate"><span class="pre">&quot;__weaklistoffset__&quot;</span></code> members, but extensions
-are strongly encouraged to use <a class="reference internal" href="typeobj.html#Py_TPFLAGS_MANAGED_DICT" title="Py_TPFLAGS_MANAGED_DICT"><code class="xref py py-const docutils literal notranslate"><span class="pre">Py_TPFLAGS_MANAGED_DICT</span></code></a> and
-<a class="reference internal" href="typeobj.html#Py_TPFLAGS_MANAGED_WEAKREF" title="Py_TPFLAGS_MANAGED_WEAKREF"><code class="xref py py-const docutils literal notranslate"><span class="pre">Py_TPFLAGS_MANAGED_WEAKREF</span></code></a> instead.</p>
+are strongly encouraged to use <a class="reference internal" href="typeobj.html#c.Py_TPFLAGS_MANAGED_DICT" title="Py_TPFLAGS_MANAGED_DICT"><code class="xref c c-macro docutils literal notranslate"><span class="pre">Py_TPFLAGS_MANAGED_DICT</span></code></a> and
+<a class="reference internal" href="typeobj.html#c.Py_TPFLAGS_MANAGED_WEAKREF" title="Py_TPFLAGS_MANAGED_WEAKREF"><code class="xref c c-macro docutils literal notranslate"><span class="pre">Py_TPFLAGS_MANAGED_WEAKREF</span></code></a> instead.</p>
 <div class="versionchanged">
 <p><span class="versionmodified changed">在 3.12 版的變更: </span><code class="docutils literal notranslate"><span class="pre">PyMemberDef</span></code> is always available.
 Previously, it required including <code class="docutils literal notranslate"><span class="pre">&quot;structmember.h&quot;</span></code>.</p>
@@ -741,15 +743,15 @@ class creation, Python clears it and sets
 </dd></dl>
 
 <div class="versionchanged" id="index-2">
-<p><span class="versionmodified changed">在 3.10 版的變更: </span>The <code class="xref py py-const docutils literal notranslate"><span class="pre">RESTRICTED</span></code>, <code class="xref py py-const docutils literal notranslate"><span class="pre">READ_RESTRICTED</span></code> and
-<code class="xref py py-const docutils literal notranslate"><span class="pre">WRITE_RESTRICTED</span></code> macros available with
+<p><span class="versionmodified changed">在 3.10 版的變更: </span>The <code class="xref c c-macro docutils literal notranslate"><span class="pre">RESTRICTED</span></code>, <code class="xref c c-macro docutils literal notranslate"><span class="pre">READ_RESTRICTED</span></code> and
+<code class="xref c c-macro docutils literal notranslate"><span class="pre">WRITE_RESTRICTED</span></code> macros available with
 <code class="docutils literal notranslate"><span class="pre">#include</span> <span class="pre">&quot;structmember.h&quot;</span></code> are deprecated.
-<code class="xref py py-const docutils literal notranslate"><span class="pre">READ_RESTRICTED</span></code> and <code class="xref py py-const docutils literal notranslate"><span class="pre">RESTRICTED</span></code> are equivalent to
-<code class="xref py py-const docutils literal notranslate"><span class="pre">Py_AUDIT_READ</span></code>; <code class="xref py py-const docutils literal notranslate"><span class="pre">WRITE_RESTRICTED</span></code> does nothing.</p>
+<code class="xref c c-macro docutils literal notranslate"><span class="pre">READ_RESTRICTED</span></code> and <code class="xref c c-macro docutils literal notranslate"><span class="pre">RESTRICTED</span></code> are equivalent to
+<a class="reference internal" href="#c.Py_AUDIT_READ" title="Py_AUDIT_READ"><code class="xref c c-macro docutils literal notranslate"><span class="pre">Py_AUDIT_READ</span></code></a>; <code class="xref c c-macro docutils literal notranslate"><span class="pre">WRITE_RESTRICTED</span></code> does nothing.</p>
 </div>
 <div class="versionchanged" id="index-3">
-<p><span class="versionmodified changed">在 3.12 版的變更: </span>The <code class="xref py py-const docutils literal notranslate"><span class="pre">READONLY</span></code> macro was renamed to <code class="xref py py-const docutils literal notranslate"><span class="pre">Py_READONLY</span></code>.
-The <code class="xref py py-const docutils literal notranslate"><span class="pre">PY_AUDIT_READ</span></code> macro was renamed with the <code class="docutils literal notranslate"><span class="pre">Py_</span></code> prefix.
+<p><span class="versionmodified changed">在 3.12 版的變更: </span>The <code class="xref c c-macro docutils literal notranslate"><span class="pre">READONLY</span></code> macro was renamed to <a class="reference internal" href="#c.Py_READONLY" title="Py_READONLY"><code class="xref c c-macro docutils literal notranslate"><span class="pre">Py_READONLY</span></code></a>.
+The <code class="xref c c-macro docutils literal notranslate"><span class="pre">PY_AUDIT_READ</span></code> macro was renamed with the <code class="docutils literal notranslate"><span class="pre">Py_</span></code> prefix.
 The new names are now always available.
 Previously, these required <code class="docutils literal notranslate"><span class="pre">#include</span> <span class="pre">&quot;structmember.h&quot;</span></code>.
 The header is still available and it provides the old names.</p>
@@ -1039,16 +1041,7 @@ Should return <code class="docutils literal notranslate"><span class="pre">0</sp
     <ul>
 <li><a class="reference internal" href="#">通用物件結構</a><ul>
 <li><a class="reference internal" href="#base-object-types-and-macros">Base object types and macros</a></li>
-<li><a class="reference internal" href="#implementing-functions-and-methods">Implementing functions and methods</a><ul>
-<li><a class="reference internal" href="#METH_VARARGS"><code class="docutils literal notranslate"><span class="pre">METH_VARARGS</span></code></a></li>
-<li><a class="reference internal" href="#METH_FASTCALL"><code class="docutils literal notranslate"><span class="pre">METH_FASTCALL</span></code></a></li>
-<li><a class="reference internal" href="#METH_NOARGS"><code class="docutils literal notranslate"><span class="pre">METH_NOARGS</span></code></a></li>
-<li><a class="reference internal" href="#METH_O"><code class="docutils literal notranslate"><span class="pre">METH_O</span></code></a></li>
-<li><a class="reference internal" href="#METH_CLASS"><code class="docutils literal notranslate"><span class="pre">METH_CLASS</span></code></a></li>
-<li><a class="reference internal" href="#METH_STATIC"><code class="docutils literal notranslate"><span class="pre">METH_STATIC</span></code></a></li>
-<li><a class="reference internal" href="#METH_COEXIST"><code class="docutils literal notranslate"><span class="pre">METH_COEXIST</span></code></a></li>
-</ul>
-</li>
+<li><a class="reference internal" href="#implementing-functions-and-methods">Implementing functions and methods</a></li>
 <li><a class="reference internal" href="#accessing-attributes-of-extension-types">Accessing attributes of extension types</a><ul>
 <li><a class="reference internal" href="#member-flags">Member flags</a></li>
 <li><a class="reference internal" href="#member-types">Member types</a></li>
@@ -1159,7 +1152,7 @@ Should return <code class="docutils literal notranslate"><span class="pre">0</sp
 <br />
     <br />
 
-    最後更新於 7月 18, 2023。
+    最後更新於 7月 24, 2023。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 

@@ -434,7 +434,7 @@ little-endian (least-significant byte first) platforms.</p>
 <dd><p>A tuple of strings containing the names of all modules that are compiled into this
 Python interpreter.  (This information is not available in any other way ---
 <code class="docutils literal notranslate"><span class="pre">modules.keys()</span></code> only lists the imported modules.)</p>
-<p>另請參閱 <a class="reference internal" href="#sys.stdlib_module_names" title="sys.stdlib_module_names"><code class="xref py py-attr docutils literal notranslate"><span class="pre">sys.stdlib_module_names</span></code></a> 清單。</p>
+<p>另請參閱 <a class="reference internal" href="#sys.stdlib_module_names" title="sys.stdlib_module_names"><code class="xref py py-data docutils literal notranslate"><span class="pre">sys.stdlib_module_names</span></code></a> 清單。</p>
 </dd></dl>
 
 <dl class="py function">
@@ -849,6 +849,9 @@ flags. The attributes are read only.</p>
 <tr class="row-even"><td><p><code class="xref py py-const docutils literal notranslate"><span class="pre">int_max_str_digits</span></code></p></td>
 <td><p><a class="reference internal" href="../using/cmdline.html#cmdoption-X"><code class="xref std std-option docutils literal notranslate"><span class="pre">-X</span> <span class="pre">int_max_str_digits</span></code></a> (<a class="reference internal" href="stdtypes.html#int-max-str-digits"><span class="std std-ref">integer string conversion length limitation</span></a>)</p></td>
 </tr>
+<tr class="row-odd"><td><p><code class="xref py py-const docutils literal notranslate"><span class="pre">warn_default_encoding</span></code></p></td>
+<td><p><a class="reference internal" href="../using/cmdline.html#cmdoption-X"><code class="xref std std-option docutils literal notranslate"><span class="pre">-X</span> <span class="pre">warn_default_encoding</span></code></a></p></td>
+</tr>
 </tbody>
 </table>
 <div class="versionchanged">
@@ -867,6 +870,9 @@ flags. The attributes are read only.</p>
 <p><span class="versionmodified changed">在 3.7 版的變更: </span>Added the <code class="docutils literal notranslate"><span class="pre">dev_mode</span></code> attribute for the new <a class="reference internal" href="devmode.html#devmode"><span class="std std-ref">Python Development
 Mode</span></a> and the <code class="docutils literal notranslate"><span class="pre">utf8_mode</span></code> attribute for the new  <a class="reference internal" href="../using/cmdline.html#cmdoption-X"><code class="xref std std-option docutils literal notranslate"><span class="pre">-X</span></code></a>
 <code class="docutils literal notranslate"><span class="pre">utf8</span></code> flag.</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">在 3.10 版的變更: </span>新增 <code class="docutils literal notranslate"><span class="pre">warn_default_encoding</span></code> 屬性，用於 <a class="reference internal" href="../using/cmdline.html#cmdoption-X"><code class="xref std std-option docutils literal notranslate"><span class="pre">-X</span></code></a> <code class="docutils literal notranslate"><span class="pre">warn_default_encoding</span></code> 旗標。</p>
 </div>
 <div class="versionchanged">
 <p><span class="versionmodified changed">在 3.11 版的變更: </span>新增 <code class="docutils literal notranslate"><span class="pre">safe_path</span></code> 屬性，用於 <a class="reference internal" href="../using/cmdline.html#cmdoption-P"><code class="xref std std-option docutils literal notranslate"><span class="pre">-P</span></code></a> 選項。</p>
@@ -1050,7 +1056,7 @@ implementation.</p>
 <dd><p>Return the current value of the flags that are used for
 <code class="xref c c-func docutils literal notranslate"><span class="pre">dlopen()</span></code> calls.  Symbolic names for the flag values can be
 found in the <a class="reference internal" href="os.html#module-os" title="os: Miscellaneous operating system interfaces."><code class="xref py py-mod docutils literal notranslate"><span class="pre">os</span></code></a> module (<code class="docutils literal notranslate"><span class="pre">RTLD_xxx</span></code> constants, e.g.
-<a class="reference internal" href="os.html#os.RTLD_LAZY" title="os.RTLD_LAZY"><code class="xref py py-data docutils literal notranslate"><span class="pre">os.RTLD_LAZY</span></code></a>).</p>
+<a class="reference internal" href="os.html#os.RTLD_LAZY" title="os.RTLD_LAZY"><code class="xref py py-const docutils literal notranslate"><span class="pre">os.RTLD_LAZY</span></code></a>).</p>
 <div class="availability docutils container">
 <p><a class="reference internal" href="intro.html#availability"><span class="std std-ref">適用</span></a>：Unix。</p>
 </div>
@@ -1696,20 +1702,20 @@ version, it is therefore recommended to use the following idiom:</p>
 </tbody>
 </table>
 <div class="versionchanged">
-<p><span class="versionmodified changed">在 3.3 版的變更: </span>On Linux, <a class="reference internal" href="#sys.platform" title="sys.platform"><code class="xref py py-attr docutils literal notranslate"><span class="pre">sys.platform</span></code></a> doesn't contain the major version anymore.
+<p><span class="versionmodified changed">在 3.3 版的變更: </span>On Linux, <a class="reference internal" href="#sys.platform" title="sys.platform"><code class="xref py py-data docutils literal notranslate"><span class="pre">sys.platform</span></code></a> doesn't contain the major version anymore.
 It is always <code class="docutils literal notranslate"><span class="pre">'linux'</span></code>, instead of <code class="docutils literal notranslate"><span class="pre">'linux2'</span></code> or <code class="docutils literal notranslate"><span class="pre">'linux3'</span></code>.  Since
 older Python versions include the version number, it is recommended to
 always use the <code class="docutils literal notranslate"><span class="pre">startswith</span></code> idiom presented above.</p>
 </div>
 <div class="versionchanged">
-<p><span class="versionmodified changed">在 3.8 版的變更: </span>On AIX, <a class="reference internal" href="#sys.platform" title="sys.platform"><code class="xref py py-attr docutils literal notranslate"><span class="pre">sys.platform</span></code></a> doesn't contain the major version anymore.
+<p><span class="versionmodified changed">在 3.8 版的變更: </span>On AIX, <a class="reference internal" href="#sys.platform" title="sys.platform"><code class="xref py py-data docutils literal notranslate"><span class="pre">sys.platform</span></code></a> doesn't contain the major version anymore.
 It is always <code class="docutils literal notranslate"><span class="pre">'aix'</span></code>, instead of <code class="docutils literal notranslate"><span class="pre">'aix5'</span></code> or <code class="docutils literal notranslate"><span class="pre">'aix7'</span></code>.  Since
 older Python versions include the version number, it is recommended to
 always use the <code class="docutils literal notranslate"><span class="pre">startswith</span></code> idiom presented above.</p>
 </div>
 <div class="admonition seealso">
 <p class="admonition-title">也參考</p>
-<p><a class="reference internal" href="os.html#os.name" title="os.name"><code class="xref py py-attr docutils literal notranslate"><span class="pre">os.name</span></code></a> has a coarser granularity.  <a class="reference internal" href="os.html#os.uname" title="os.uname"><code class="xref py py-func docutils literal notranslate"><span class="pre">os.uname()</span></code></a> gives
+<p><a class="reference internal" href="os.html#os.name" title="os.name"><code class="xref py py-data docutils literal notranslate"><span class="pre">os.name</span></code></a> has a coarser granularity.  <a class="reference internal" href="os.html#os.uname" title="os.uname"><code class="xref py py-func docutils literal notranslate"><span class="pre">os.uname()</span></code></a> gives
 system-dependent version information.</p>
 <p>The <a class="reference internal" href="platform.html#module-platform" title="platform: Retrieves as much platform identifying data as possible."><code class="xref py py-mod docutils literal notranslate"><span class="pre">platform</span></code></a> module provides detailed checks for the
 system's identity.</p>
@@ -1779,7 +1785,7 @@ lazy resolving of symbols when importing a module, if called as
 <code class="docutils literal notranslate"><span class="pre">sys.setdlopenflags(0)</span></code>.  To share symbols across extension modules, call as
 <code class="docutils literal notranslate"><span class="pre">sys.setdlopenflags(os.RTLD_GLOBAL)</span></code>.  Symbolic names for the flag values
 can be found in the <a class="reference internal" href="os.html#module-os" title="os: Miscellaneous operating system interfaces."><code class="xref py py-mod docutils literal notranslate"><span class="pre">os</span></code></a> module (<code class="docutils literal notranslate"><span class="pre">RTLD_xxx</span></code> constants, e.g.
-<a class="reference internal" href="os.html#os.RTLD_LAZY" title="os.RTLD_LAZY"><code class="xref py py-data docutils literal notranslate"><span class="pre">os.RTLD_LAZY</span></code></a>).</p>
+<a class="reference internal" href="os.html#os.RTLD_LAZY" title="os.RTLD_LAZY"><code class="xref py py-const docutils literal notranslate"><span class="pre">os.RTLD_LAZY</span></code></a>).</p>
 <div class="availability docutils container">
 <p><a class="reference internal" href="intro.html#availability"><span class="std std-ref">適用</span></a>：Unix。</p>
 </div>
@@ -2558,7 +2564,7 @@ means, or not at all.</p>
 <br />
     <br />
 
-    最後更新於 7月 18, 2023。
+    最後更新於 7月 24, 2023。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 

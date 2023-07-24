@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Unicode物件與編碼 &#8212; Python 3.12.0b4 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unicode 物件與編解碼器 &#8212; Python 3.12.0b4 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?digest=845a48175c3935ba0d7ff16b8ed0072d62fd099f" />
@@ -85,7 +85,7 @@
   <div>
     <h3><a href="../contents.html">目錄</a></h3>
     <ul>
-<li><a class="reference internal" href="#">Unicode物件與編碼</a><ul>
+<li><a class="reference internal" href="#">Unicode 物件與編解碼器</a><ul>
 <li><a class="reference internal" href="#unicode-objects">Unicode Objects</a><ul>
 <li><a class="reference internal" href="#unicode-type">Unicode Type</a></li>
 <li><a class="reference internal" href="#unicode-character-properties">Unicode Character Properties</a></li>
@@ -97,14 +97,14 @@
 </li>
 <li><a class="reference internal" href="#built-in-codecs">Built-in Codecs</a><ul>
 <li><a class="reference internal" href="#generic-codecs">Generic Codecs</a></li>
-<li><a class="reference internal" href="#utf-8-codecs">UTF-8 Codecs</a></li>
-<li><a class="reference internal" href="#utf-32-codecs">UTF-32 Codecs</a></li>
-<li><a class="reference internal" href="#utf-16-codecs">UTF-16 Codecs</a></li>
-<li><a class="reference internal" href="#utf-7-codecs">UTF-7 Codecs</a></li>
+<li><a class="reference internal" href="#utf-8-codecs">UTF-8 編解碼器</a></li>
+<li><a class="reference internal" href="#utf-32-codecs">UTF-32 編解碼器</a></li>
+<li><a class="reference internal" href="#utf-16-codecs">UTF-16 編解碼器</a></li>
+<li><a class="reference internal" href="#utf-7-codecs">UTF-7 編解碼器</a></li>
 <li><a class="reference internal" href="#unicode-escape-codecs">Unicode-Escape Codecs</a></li>
 <li><a class="reference internal" href="#raw-unicode-escape-codecs">Raw-Unicode-Escape Codecs</a></li>
-<li><a class="reference internal" href="#latin-1-codecs">Latin-1 Codecs</a></li>
-<li><a class="reference internal" href="#ascii-codecs">ASCII Codecs</a></li>
+<li><a class="reference internal" href="#latin-1-codecs">Latin-1 編解碼器</a></li>
+<li><a class="reference internal" href="#ascii-codecs">ASCII 編解碼器</a></li>
 <li><a class="reference internal" href="#character-map-codecs">Character Map Codecs</a></li>
 <li><a class="reference internal" href="#mbcs-codecs-for-windows">MBCS codecs for Windows</a></li>
 <li><a class="reference internal" href="#methods-slots">Methods &amp; Slots</a></li>
@@ -173,7 +173,7 @@
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python/C API 參考手冊</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="concrete.html" accesskey="U">具體物件層</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">Unicode物件與編碼</a></li>
+        <li class="nav-item nav-item-this"><a href="">Unicode 物件與編解碼器</a></li>
                 <li class="right">
                     
 
@@ -204,7 +204,7 @@
           <div class="body" role="main">
             
   <section id="unicode-objects-and-codecs">
-<span id="unicodeobjects"></span><h1>Unicode物件與編碼<a class="headerlink" href="#unicode-objects-and-codecs" title="本標頭的永久連結">¶</a></h1>
+<span id="unicodeobjects"></span><h1>Unicode 物件與編解碼器<a class="headerlink" href="#unicode-objects-and-codecs" title="本標頭的永久連結">¶</a></h1>
 <section id="unicode-objects">
 <h2>Unicode Objects<a class="headerlink" href="#unicode-objects" title="本標頭的永久連結">¶</a></h2>
 <p>Since the implementation of <span class="target" id="index-0"></span><a class="pep reference external" href="https://peps.python.org/pep-0393/"><strong>PEP 393</strong></a> in Python 3.3, Unicode objects internally
@@ -241,7 +241,7 @@ single Unicode characters, use <a class="reference internal" href="#c.Py_UCS4" t
 <dl class="c type">
 <dt class="sig sig-object c" id="c.Py_UNICODE">
 <span class="k"><span class="pre">type</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Py_UNICODE</span></span></span><a class="headerlink" href="#c.Py_UNICODE" title="本定義的永久連結">¶</a><br /></dt>
-<dd><p>This is a typedef of <span class="c-expr sig sig-inline c"><span class="n">wchar_t</span></span>, which is a 16-bit type or 32-bit type
+<dd><p>This is a typedef of <code class="xref c c-type docutils literal notranslate"><span class="pre">wchar_t</span></code>, which is a 16-bit type or 32-bit type
 depending on the platform.</p>
 <div class="versionchanged">
 <p><span class="versionmodified changed">在 3.3 版的變更: </span>In previous versions, this was a 16-bit type or a 32-bit type depending on
@@ -688,19 +688,19 @@ flag if both are given).</p></td>
 </thead>
 <tbody>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">l</span></code></p></td>
-<td><p><span class="c-expr sig sig-inline c"><span class="kt">long</span></span> or <span class="c-expr sig sig-inline c"><span class="kt">unsigned</span><span class="w"> </span><span class="kt">long</span></span></p></td>
+<td><p><span class="c-expr sig sig-inline c"><span class="kt">long</span></span> 或 <span class="c-expr sig sig-inline c"><span class="kt">unsigned</span><span class="w"> </span><span class="kt">long</span></span></p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ll</span></code></p></td>
-<td><p><span class="c-expr sig sig-inline c"><span class="kt">long</span><span class="w"> </span><span class="kt">long</span></span> or <span class="c-expr sig sig-inline c"><span class="kt">unsigned</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="kt">long</span></span></p></td>
+<td><p><span class="c-expr sig sig-inline c"><span class="kt">long</span><span class="w"> </span><span class="kt">long</span></span> 或 <span class="c-expr sig sig-inline c"><span class="kt">unsigned</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="kt">long</span></span></p></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">j</span></code></p></td>
-<td><p><span class="c-expr sig sig-inline c"><span class="n">intmax_t</span></span> or <span class="c-expr sig sig-inline c"><span class="n">uintmax_t</span></span></p></td>
+<td><p><code class="xref c c-type docutils literal notranslate"><span class="pre">intmax_t</span></code> 或 <code class="xref c c-type docutils literal notranslate"><span class="pre">uintmax_t</span></code></p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">z</span></code></p></td>
-<td><p><span class="c-expr sig sig-inline c"><span class="n">size_t</span></span> or <span class="c-expr sig sig-inline c"><span class="n">ssize_t</span></span></p></td>
+<td><p><code class="xref c c-type docutils literal notranslate"><span class="pre">size_t</span></code> 或 <code class="xref c c-type docutils literal notranslate"><span class="pre">ssize_t</span></code></p></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">t</span></code></p></td>
-<td><p><span class="c-expr sig sig-inline c"><span class="n">ptrdiff_t</span></span></p></td>
+<td><p><code class="xref c c-type docutils literal notranslate"><span class="pre">ptrdiff_t</span></code></p></td>
 </tr>
 </tbody>
 </table>
@@ -781,7 +781,7 @@ if the first parameter is <code class="docutils literal notranslate"><span class
 <div class="admonition note">
 <p class="admonition-title">備註</p>
 <p>The width formatter unit is number of characters rather than bytes.
-The precision formatter unit is number of bytes or <span class="c-expr sig sig-inline c"><span class="n">wchar_t</span></span>
+The precision formatter unit is number of bytes or <code class="xref c c-type docutils literal notranslate"><span class="pre">wchar_t</span></code>
 items (if the length modifier <code class="docutils literal notranslate"><span class="pre">l</span></code> is used) for <code class="docutils literal notranslate"><span class="pre">&quot;%s&quot;</span></code> and
 <code class="docutils literal notranslate"><span class="pre">&quot;%V&quot;</span></code> (if the <code class="docutils literal notranslate"><span class="pre">PyObject*</span></code> argument is <code class="docutils literal notranslate"><span class="pre">NULL</span></code>), and a number of
 characters for <code class="docutils literal notranslate"><span class="pre">&quot;%A&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;%U&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;%S&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;%R&quot;</span></code> and <code class="docutils literal notranslate"><span class="pre">&quot;%V&quot;</span></code>
@@ -1104,11 +1104,11 @@ object can contain null bytes.</p>
 </section>
 <section id="wchar-t-support">
 <h3>wchar_t Support<a class="headerlink" href="#wchar-t-support" title="本標頭的永久連結">¶</a></h3>
-<p><span class="c-expr sig sig-inline c"><span class="n">wchar_t</span></span> support for platforms which support it:</p>
+<p><code class="xref c c-type docutils literal notranslate"><span class="pre">wchar_t</span></code> support for platforms which support it:</p>
 <dl class="c function">
 <dt class="sig sig-object c" id="c.PyUnicode_FromWideChar">
 <a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">PyUnicode_FromWideChar</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">wchar_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">w</span></span>, <a class="reference internal" href="intro.html#c.Py_ssize_t" title="Py_ssize_t"><span class="n"><span class="pre">Py_ssize_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">size</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.PyUnicode_FromWideChar" title="本定義的永久連結">¶</a><br /></dt>
-<dd><em class="refcount">回傳值：新的參照。</em><em class="stableabi"> Part of the <a class="reference internal" href="stable.html#stable"><span class="std std-ref">Stable ABI</span></a>.</em><p>Create a Unicode object from the <span class="c-expr sig sig-inline c"><span class="n">wchar_t</span></span> buffer <em>w</em> of the given <em>size</em>.
+<dd><em class="refcount">回傳值：新的參照。</em><em class="stableabi"> Part of the <a class="reference internal" href="stable.html#stable"><span class="std std-ref">Stable ABI</span></a>.</em><p>Create a Unicode object from the <code class="xref c c-type docutils literal notranslate"><span class="pre">wchar_t</span></code> buffer <em>w</em> of the given <em>size</em>.
 Passing <code class="docutils literal notranslate"><span class="pre">-1</span></code> as the <em>size</em> indicates that the function must itself compute the length,
 using wcslen.
 Return <code class="docutils literal notranslate"><span class="pre">NULL</span></code> on failure.</p>
@@ -1117,9 +1117,9 @@ Return <code class="docutils literal notranslate"><span class="pre">NULL</span><
 <dl class="c function">
 <dt class="sig sig-object c" id="c.PyUnicode_AsWideChar">
 <a class="reference internal" href="intro.html#c.Py_ssize_t" title="Py_ssize_t"><span class="n"><span class="pre">Py_ssize_t</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PyUnicode_AsWideChar</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">unicode</span></span>, <span class="n"><span class="pre">wchar_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">w</span></span>, <a class="reference internal" href="intro.html#c.Py_ssize_t" title="Py_ssize_t"><span class="n"><span class="pre">Py_ssize_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">size</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.PyUnicode_AsWideChar" title="本定義的永久連結">¶</a><br /></dt>
-<dd><em class="stableabi"> Part of the <a class="reference internal" href="stable.html#stable"><span class="std std-ref">Stable ABI</span></a>.</em><p>Copy the Unicode object contents into the <span class="c-expr sig sig-inline c"><span class="n">wchar_t</span></span> buffer <em>w</em>.  At most
-<em>size</em> <span class="c-expr sig sig-inline c"><span class="n">wchar_t</span></span> characters are copied (excluding a possibly trailing
-null termination character).  Return the number of <span class="c-expr sig sig-inline c"><span class="n">wchar_t</span></span> characters
+<dd><em class="stableabi"> Part of the <a class="reference internal" href="stable.html#stable"><span class="std std-ref">Stable ABI</span></a>.</em><p>Copy the Unicode object contents into the <code class="xref c c-type docutils literal notranslate"><span class="pre">wchar_t</span></code> buffer <em>w</em>.  At most
+<em>size</em> <code class="xref c c-type docutils literal notranslate"><span class="pre">wchar_t</span></code> characters are copied (excluding a possibly trailing
+null termination character).  Return the number of <code class="xref c c-type docutils literal notranslate"><span class="pre">wchar_t</span></code> characters
 copied or <code class="docutils literal notranslate"><span class="pre">-1</span></code> in case of an error.  Note that the resulting <span class="c-expr sig sig-inline c"><span class="n">wchar_t</span><span class="p">*</span></span>
 string may or may not be null-terminated.  It is the responsibility of the caller
 to make sure that the <span class="c-expr sig sig-inline c"><span class="n">wchar_t</span><span class="p">*</span></span> string is null-terminated in case this is
@@ -1134,7 +1134,7 @@ when used with most C functions.</p>
 <dd><em class="stableabi"> Part of the <a class="reference internal" href="stable.html#stable"><span class="std std-ref">Stable ABI</span></a> since version 3.7.</em><p>Convert the Unicode object to a wide character string. The output string
 always ends with a null character. If <em>size</em> is not <code class="docutils literal notranslate"><span class="pre">NULL</span></code>, write the number
 of wide characters (excluding the trailing null termination character) into
-<em>*size</em>. Note that the resulting <span class="c-expr sig sig-inline c"><span class="n">wchar_t</span></span> string might contain
+<em>*size</em>. Note that the resulting <code class="xref c c-type docutils literal notranslate"><span class="pre">wchar_t</span></code> string might contain
 null characters, which would cause the string to be truncated when used with
 most C functions. If <em>size</em> is <code class="docutils literal notranslate"><span class="pre">NULL</span></code> and the <span class="c-expr sig sig-inline c"><span class="n">wchar_t</span><span class="p">*</span></span> string
 contains null characters a <a class="reference internal" href="../library/exceptions.html#ValueError" title="ValueError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code></a> is raised.</p>
@@ -1194,7 +1194,7 @@ the codec.</p>
 
 </section>
 <section id="utf-8-codecs">
-<h3>UTF-8 Codecs<a class="headerlink" href="#utf-8-codecs" title="本標頭的永久連結">¶</a></h3>
+<h3>UTF-8 編解碼器<a class="headerlink" href="#utf-8-codecs" title="本標頭的永久連結">¶</a></h3>
 <p>These are the UTF-8 codec APIs:</p>
 <dl class="c function">
 <dt class="sig sig-object c" id="c.PyUnicode_DecodeUTF8">
@@ -1259,7 +1259,7 @@ pointers to it become invalid when the Unicode object is garbage collected.</p>
 
 </section>
 <section id="utf-32-codecs">
-<h3>UTF-32 Codecs<a class="headerlink" href="#utf-32-codecs" title="本標頭的永久連結">¶</a></h3>
+<h3>UTF-32 編解碼器<a class="headerlink" href="#utf-32-codecs" title="本標頭的永久連結">¶</a></h3>
 <p>These are the UTF-32 codec APIs:</p>
 <dl class="c function">
 <dt class="sig sig-object c" id="c.PyUnicode_DecodeUTF32">
@@ -1304,7 +1304,7 @@ Return <code class="docutils literal notranslate"><span class="pre">NULL</span><
 
 </section>
 <section id="utf-16-codecs">
-<h3>UTF-16 Codecs<a class="headerlink" href="#utf-16-codecs" title="本標頭的永久連結">¶</a></h3>
+<h3>UTF-16 編解碼器<a class="headerlink" href="#utf-16-codecs" title="本標頭的永久連結">¶</a></h3>
 <p>These are the UTF-16 codec APIs:</p>
 <dl class="c function">
 <dt class="sig sig-object c" id="c.PyUnicode_DecodeUTF16">
@@ -1350,7 +1350,7 @@ Return <code class="docutils literal notranslate"><span class="pre">NULL</span><
 
 </section>
 <section id="utf-7-codecs">
-<h3>UTF-7 Codecs<a class="headerlink" href="#utf-7-codecs" title="本標頭的永久連結">¶</a></h3>
+<h3>UTF-7 編解碼器<a class="headerlink" href="#utf-7-codecs" title="本標頭的永久連結">¶</a></h3>
 <p>These are the UTF-7 codec APIs:</p>
 <dl class="c function">
 <dt class="sig sig-object c" id="c.PyUnicode_DecodeUTF7">
@@ -1408,7 +1408,7 @@ was raised by the codec.</p>
 
 </section>
 <section id="latin-1-codecs">
-<h3>Latin-1 Codecs<a class="headerlink" href="#latin-1-codecs" title="本標頭的永久連結">¶</a></h3>
+<h3>Latin-1 編解碼器<a class="headerlink" href="#latin-1-codecs" title="本標頭的永久連結">¶</a></h3>
 <p>These are the Latin-1 codec APIs: Latin-1 corresponds to the first 256 Unicode
 ordinals and only these are accepted by the codecs during encoding.</p>
 <dl class="c function">
@@ -1428,7 +1428,7 @@ raised by the codec.</p>
 
 </section>
 <section id="ascii-codecs">
-<h3>ASCII Codecs<a class="headerlink" href="#ascii-codecs" title="本標頭的永久連結">¶</a></h3>
+<h3>ASCII 編解碼器<a class="headerlink" href="#ascii-codecs" title="本標頭的永久連結">¶</a></h3>
 <p>These are the ASCII codec APIs.  Only 7-bit ASCII data is accepted. All other
 codes generate errors.</p>
 <dl class="c function">
@@ -1534,7 +1534,7 @@ raised by the codec.</p>
 <a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">PyUnicode_EncodeCodePage</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n"><span class="pre">code_page</span></span>, <a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">unicode</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">errors</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.PyUnicode_EncodeCodePage" title="本定義的永久連結">¶</a><br /></dt>
 <dd><em class="refcount">回傳值：新的參照。</em><em class="stableabi"> Part of the <a class="reference internal" href="stable.html#stable"><span class="std std-ref">Stable ABI</span></a> on Windows since version 3.7.</em><p>Encode the Unicode object using the specified code page and return a Python
 bytes object.  Return <code class="docutils literal notranslate"><span class="pre">NULL</span></code> if an exception was raised by the codec. Use
-<code class="xref c c-data docutils literal notranslate"><span class="pre">CP_ACP</span></code> code page to get the MBCS encoder.</p>
+<code class="xref c c-macro docutils literal notranslate"><span class="pre">CP_ACP</span></code> code page to get the MBCS encoder.</p>
 <div class="versionadded">
 <p><span class="versionmodified added">在 3.3 版新加入.</span></p>
 </div>
@@ -1655,11 +1655,11 @@ ISO-8859-1 if it contains non-ASCII characters.</p>
 <dd><em class="refcount">回傳值：新的參照。</em><em class="stableabi"> Part of the <a class="reference internal" href="stable.html#stable"><span class="std std-ref">Stable ABI</span></a>.</em><p>Rich compare two Unicode strings and return one of the following:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">NULL</span></code> in case an exception was raised</p></li>
-<li><p><code class="xref py py-const docutils literal notranslate"><span class="pre">Py_True</span></code> or <code class="xref py py-const docutils literal notranslate"><span class="pre">Py_False</span></code> for successful comparisons</p></li>
-<li><p><code class="xref py py-const docutils literal notranslate"><span class="pre">Py_NotImplemented</span></code> in case the type combination is unknown</p></li>
+<li><p><a class="reference internal" href="bool.html#c.Py_True" title="Py_True"><code class="xref c c-data docutils literal notranslate"><span class="pre">Py_True</span></code></a> or <a class="reference internal" href="bool.html#c.Py_False" title="Py_False"><code class="xref c c-data docutils literal notranslate"><span class="pre">Py_False</span></code></a> for successful comparisons</p></li>
+<li><p><a class="reference internal" href="object.html#c.Py_NotImplemented" title="Py_NotImplemented"><code class="xref c c-data docutils literal notranslate"><span class="pre">Py_NotImplemented</span></code></a> in case the type combination is unknown</p></li>
 </ul>
-<p>Possible values for <em>op</em> are <code class="xref py py-const docutils literal notranslate"><span class="pre">Py_GT</span></code>, <code class="xref py py-const docutils literal notranslate"><span class="pre">Py_GE</span></code>, <code class="xref py py-const docutils literal notranslate"><span class="pre">Py_EQ</span></code>,
-<code class="xref py py-const docutils literal notranslate"><span class="pre">Py_NE</span></code>, <code class="xref py py-const docutils literal notranslate"><span class="pre">Py_LT</span></code>, and <code class="xref py py-const docutils literal notranslate"><span class="pre">Py_LE</span></code>.</p>
+<p>Possible values for <em>op</em> are <code class="xref c c-macro docutils literal notranslate"><span class="pre">Py_GT</span></code>, <code class="xref c c-macro docutils literal notranslate"><span class="pre">Py_GE</span></code>, <code class="xref c c-macro docutils literal notranslate"><span class="pre">Py_EQ</span></code>,
+<code class="xref c c-macro docutils literal notranslate"><span class="pre">Py_NE</span></code>, <code class="xref c c-macro docutils literal notranslate"><span class="pre">Py_LT</span></code>, and <code class="xref c c-macro docutils literal notranslate"><span class="pre">Py_LE</span></code>.</p>
 </dd></dl>
 
 <dl class="c function">
@@ -1714,7 +1714,7 @@ interned string object with the same value.</p>
   <div>
     <h3><a href="../contents.html">目錄</a></h3>
     <ul>
-<li><a class="reference internal" href="#">Unicode物件與編碼</a><ul>
+<li><a class="reference internal" href="#">Unicode 物件與編解碼器</a><ul>
 <li><a class="reference internal" href="#unicode-objects">Unicode Objects</a><ul>
 <li><a class="reference internal" href="#unicode-type">Unicode Type</a></li>
 <li><a class="reference internal" href="#unicode-character-properties">Unicode Character Properties</a></li>
@@ -1726,14 +1726,14 @@ interned string object with the same value.</p>
 </li>
 <li><a class="reference internal" href="#built-in-codecs">Built-in Codecs</a><ul>
 <li><a class="reference internal" href="#generic-codecs">Generic Codecs</a></li>
-<li><a class="reference internal" href="#utf-8-codecs">UTF-8 Codecs</a></li>
-<li><a class="reference internal" href="#utf-32-codecs">UTF-32 Codecs</a></li>
-<li><a class="reference internal" href="#utf-16-codecs">UTF-16 Codecs</a></li>
-<li><a class="reference internal" href="#utf-7-codecs">UTF-7 Codecs</a></li>
+<li><a class="reference internal" href="#utf-8-codecs">UTF-8 編解碼器</a></li>
+<li><a class="reference internal" href="#utf-32-codecs">UTF-32 編解碼器</a></li>
+<li><a class="reference internal" href="#utf-16-codecs">UTF-16 編解碼器</a></li>
+<li><a class="reference internal" href="#utf-7-codecs">UTF-7 編解碼器</a></li>
 <li><a class="reference internal" href="#unicode-escape-codecs">Unicode-Escape Codecs</a></li>
 <li><a class="reference internal" href="#raw-unicode-escape-codecs">Raw-Unicode-Escape Codecs</a></li>
-<li><a class="reference internal" href="#latin-1-codecs">Latin-1 Codecs</a></li>
-<li><a class="reference internal" href="#ascii-codecs">ASCII Codecs</a></li>
+<li><a class="reference internal" href="#latin-1-codecs">Latin-1 編解碼器</a></li>
+<li><a class="reference internal" href="#ascii-codecs">ASCII 編解碼器</a></li>
 <li><a class="reference internal" href="#character-map-codecs">Character Map Codecs</a></li>
 <li><a class="reference internal" href="#mbcs-codecs-for-windows">MBCS codecs for Windows</a></li>
 <li><a class="reference internal" href="#methods-slots">Methods &amp; Slots</a></li>
@@ -1805,7 +1805,7 @@ interned string object with the same value.</p>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python/C API 參考手冊</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="concrete.html" >具體物件層</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">Unicode物件與編碼</a></li>
+        <li class="nav-item nav-item-this"><a href="">Unicode 物件與編解碼器</a></li>
                 <li class="right">
                     
 
@@ -1844,7 +1844,7 @@ interned string object with the same value.</p>
 <br />
     <br />
 
-    最後更新於 7月 18, 2023。
+    最後更新於 7月 24, 2023。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 

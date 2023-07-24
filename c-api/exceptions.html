@@ -351,7 +351,7 @@ has returned an error and set the C variable <code class="xref c c-data docutils
 tuple object whose first item is the integer <code class="xref c c-data docutils literal notranslate"><span class="pre">errno</span></code> value and whose
 second item is the corresponding error message (gotten from <code class="xref c c-func docutils literal notranslate"><span class="pre">strerror()</span></code>),
 and then calls <code class="docutils literal notranslate"><span class="pre">PyErr_SetObject(type,</span> <span class="pre">object)</span></code>.  On Unix, when the
-<code class="xref c c-data docutils literal notranslate"><span class="pre">errno</span></code> value is <code class="xref py py-const docutils literal notranslate"><span class="pre">EINTR</span></code>, indicating an interrupted system call,
+<code class="xref c c-data docutils literal notranslate"><span class="pre">errno</span></code> value is <code class="xref c c-macro docutils literal notranslate"><span class="pre">EINTR</span></code>, indicating an interrupted system call,
 this calls <a class="reference internal" href="#c.PyErr_CheckSignals" title="PyErr_CheckSignals"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyErr_CheckSignals()</span></code></a>, and if that set the error indicator,
 leaves it set to that.  The function always returns <code class="docutils literal notranslate"><span class="pre">NULL</span></code>, so a wrapper
 function around a system call can write <code class="docutils literal notranslate"><span class="pre">return</span> <span class="pre">PyErr_SetFromErrno(type);</span></code>
@@ -858,7 +858,7 @@ Python interpreter, it does nothing and returns <code class="docutils literal no
 be interruptible by user requests (such as by pressing Ctrl-C).</p>
 <div class="admonition note">
 <p class="admonition-title">備註</p>
-<p>The default Python signal handler for <code class="xref py py-const docutils literal notranslate"><span class="pre">SIGINT</span></code> raises the
+<p>The default Python signal handler for <code class="xref c c-macro docutils literal notranslate"><span class="pre">SIGINT</span></code> raises the
 <a class="reference internal" href="../library/exceptions.html#KeyboardInterrupt" title="KeyboardInterrupt"><code class="xref py py-exc docutils literal notranslate"><span class="pre">KeyboardInterrupt</span></code></a> exception.</p>
 </div>
 </dd></dl>
@@ -866,7 +866,7 @@ be interruptible by user requests (such as by pressing Ctrl-C).</p>
 <dl class="c function">
 <dt class="sig sig-object c" id="c.PyErr_SetInterrupt">
 <span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PyErr_SetInterrupt</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c.PyErr_SetInterrupt" title="本定義的永久連結">¶</a><br /></dt>
-<dd><em class="stableabi"> Part of the <a class="reference internal" href="stable.html#stable"><span class="std std-ref">Stable ABI</span></a>.</em><p id="index-2">Simulate the effect of a <code class="xref py py-const docutils literal notranslate"><span class="pre">SIGINT</span></code> signal arriving.
+<dd><em class="stableabi"> Part of the <a class="reference internal" href="stable.html#stable"><span class="std std-ref">Stable ABI</span></a>.</em><p id="index-2">Simulate the effect of a <code class="xref c c-macro docutils literal notranslate"><span class="pre">SIGINT</span></code> signal arriving.
 This is equivalent to <code class="docutils literal notranslate"><span class="pre">PyErr_SetInterruptEx(SIGINT)</span></code>.</p>
 <div class="admonition note">
 <p class="admonition-title">備註</p>
@@ -886,7 +886,7 @@ and wants Python signal handlers to be invoked as expected when an
 interruption is requested (for example when the user presses Ctrl-C
 to interrupt an operation).</p>
 <p>If the given signal isn't handled by Python (it was set to
-<a class="reference internal" href="../library/signal.html#signal.SIG_DFL" title="signal.SIG_DFL"><code class="xref py py-data docutils literal notranslate"><span class="pre">signal.SIG_DFL</span></code></a> or <a class="reference internal" href="../library/signal.html#signal.SIG_IGN" title="signal.SIG_IGN"><code class="xref py py-data docutils literal notranslate"><span class="pre">signal.SIG_IGN</span></code></a>), it will be ignored.</p>
+<a class="reference internal" href="../library/signal.html#signal.SIG_DFL" title="signal.SIG_DFL"><code class="xref py py-const docutils literal notranslate"><span class="pre">signal.SIG_DFL</span></code></a> or <a class="reference internal" href="../library/signal.html#signal.SIG_IGN" title="signal.SIG_IGN"><code class="xref py py-const docutils literal notranslate"><span class="pre">signal.SIG_IGN</span></code></a>), it will be ignored.</p>
 <p>If <em>signum</em> is outside of the allowed range of signal numbers, <code class="docutils literal notranslate"><span class="pre">-1</span></code>
 is returned.  Otherwise, <code class="docutils literal notranslate"><span class="pre">0</span></code> is returned.  The error indicator is
 never changed by this function.</p>
@@ -982,7 +982,7 @@ This steals a reference to <em>ctx</em>.</p>
 <dl class="c function">
 <dt class="sig sig-object c" id="c.PyException_GetCause">
 <a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">PyException_GetCause</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">ex</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.PyException_GetCause" title="本定義的永久連結">¶</a><br /></dt>
-<dd><em class="refcount">回傳值：新的參照。</em><em class="stableabi"> Part of the <a class="reference internal" href="stable.html#stable"><span class="std std-ref">Stable ABI</span></a>.</em><p>Return the cause (either an exception instance, or <a class="reference internal" href="../library/constants.html#None" title="None"><code class="xref py py-const docutils literal notranslate"><span class="pre">None</span></code></a>,
+<dd><em class="refcount">回傳值：新的參照。</em><em class="stableabi"> Part of the <a class="reference internal" href="stable.html#stable"><span class="std std-ref">Stable ABI</span></a>.</em><p>Return the cause (either an exception instance, or <code class="docutils literal notranslate"><span class="pre">None</span></code>,
 set by <code class="docutils literal notranslate"><span class="pre">raise</span> <span class="pre">...</span> <span class="pre">from</span> <span class="pre">...</span></code>) associated with the exception as a new
 reference, as accessible from Python through <code class="xref py py-attr docutils literal notranslate"><span class="pre">__cause__</span></code>.</p>
 </dd></dl>
@@ -992,7 +992,7 @@ reference, as accessible from Python through <code class="xref py py-attr docuti
 <span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PyException_SetCause</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">ex</span></span>, <a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">cause</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.PyException_SetCause" title="本定義的永久連結">¶</a><br /></dt>
 <dd><em class="stableabi"> Part of the <a class="reference internal" href="stable.html#stable"><span class="std std-ref">Stable ABI</span></a>.</em><p>Set the cause associated with the exception to <em>cause</em>.  Use <code class="docutils literal notranslate"><span class="pre">NULL</span></code> to clear
 it.  There is no type check to make sure that <em>cause</em> is either an exception
-instance or <a class="reference internal" href="../library/constants.html#None" title="None"><code class="xref py py-const docutils literal notranslate"><span class="pre">None</span></code></a>.  This steals a reference to <em>cause</em>.</p>
+instance or <code class="docutils literal notranslate"><span class="pre">None</span></code>.  This steals a reference to <em>cause</em>.</p>
 <p><code class="xref py py-attr docutils literal notranslate"><span class="pre">__suppress_context__</span></code> is implicitly set to <code class="docutils literal notranslate"><span class="pre">True</span></code> by this function.</p>
 </dd></dl>
 
@@ -1136,7 +1136,7 @@ because the <a class="reference internal" href="call.html#call"><span class="std
 <dt class="sig sig-object c" id="c.Py_EnterRecursiveCall">
 <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Py_EnterRecursiveCall</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">where</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.Py_EnterRecursiveCall" title="本定義的永久連結">¶</a><br /></dt>
 <dd><em class="stableabi"> Part of the <a class="reference internal" href="stable.html#stable"><span class="std std-ref">Stable ABI</span></a> since version 3.9.</em><p>Marks a point where a recursive C-level call is about to be performed.</p>
-<p>If <code class="xref py py-const docutils literal notranslate"><span class="pre">USE_STACKCHECK</span></code> is defined, this function checks if the OS
+<p>If <code class="xref c c-macro docutils literal notranslate"><span class="pre">USE_STACKCHECK</span></code> is defined, this function checks if the OS
 stack overflowed using <a class="reference internal" href="sys.html#c.PyOS_CheckStack" title="PyOS_CheckStack"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyOS_CheckStack()</span></code></a>.  In this is the case, it
 sets a <a class="reference internal" href="../library/exceptions.html#MemoryError" title="MemoryError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">MemoryError</span></code></a> and returns a nonzero value.</p>
 <p>The function then checks if the recursion limit is reached.  If this is the
@@ -1661,7 +1661,7 @@ the variables:</p>
 <br />
     <br />
 
-    最後更新於 7月 18, 2023。
+    最後更新於 7月 24, 2023。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 

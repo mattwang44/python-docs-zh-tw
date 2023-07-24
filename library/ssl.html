@@ -520,7 +520,7 @@ CA certificates instead.</p>
 <p>The settings are: <a class="reference internal" href="#ssl.PROTOCOL_TLS_CLIENT" title="ssl.PROTOCOL_TLS_CLIENT"><code class="xref py py-data docutils literal notranslate"><span class="pre">PROTOCOL_TLS_CLIENT</span></code></a> or
 <a class="reference internal" href="#ssl.PROTOCOL_TLS_SERVER" title="ssl.PROTOCOL_TLS_SERVER"><code class="xref py py-data docutils literal notranslate"><span class="pre">PROTOCOL_TLS_SERVER</span></code></a>, <a class="reference internal" href="#ssl.OP_NO_SSLv2" title="ssl.OP_NO_SSLv2"><code class="xref py py-data docutils literal notranslate"><span class="pre">OP_NO_SSLv2</span></code></a>, and <a class="reference internal" href="#ssl.OP_NO_SSLv3" title="ssl.OP_NO_SSLv3"><code class="xref py py-data docutils literal notranslate"><span class="pre">OP_NO_SSLv3</span></code></a>
 with high encryption cipher suites without RC4 and
-without unauthenticated cipher suites. Passing <a class="reference internal" href="#ssl.Purpose.SERVER_AUTH" title="ssl.Purpose.SERVER_AUTH"><code class="xref py py-data docutils literal notranslate"><span class="pre">SERVER_AUTH</span></code></a>
+without unauthenticated cipher suites. Passing <a class="reference internal" href="#ssl.Purpose.SERVER_AUTH" title="ssl.Purpose.SERVER_AUTH"><code class="xref py py-const docutils literal notranslate"><span class="pre">SERVER_AUTH</span></code></a>
 as <em>purpose</em> sets <a class="reference internal" href="#ssl.SSLContext.verify_mode" title="ssl.SSLContext.verify_mode"><code class="xref py py-data docutils literal notranslate"><span class="pre">verify_mode</span></code></a> to <a class="reference internal" href="#ssl.CERT_REQUIRED" title="ssl.CERT_REQUIRED"><code class="xref py py-data docutils literal notranslate"><span class="pre">CERT_REQUIRED</span></code></a>
 and either loads CA certificates (when at least one of <em>cafile</em>, <em>capath</em> or
 <em>cadata</em> is given) or uses <a class="reference internal" href="#ssl.SSLContext.load_default_certs" title="ssl.SSLContext.load_default_certs"><code class="xref py py-meth docutils literal notranslate"><span class="pre">SSLContext.load_default_certs()</span></code></a> to load
@@ -2177,9 +2177,9 @@ default locations. On Windows it loads CA certs from the <code class="docutils l
 <a class="reference internal" href="#ssl.SSLContext.set_default_verify_paths" title="ssl.SSLContext.set_default_verify_paths"><code class="xref py py-meth docutils literal notranslate"><span class="pre">SSLContext.set_default_verify_paths()</span></code></a>. In the future the method may
 load CA certificates from other locations, too.</p>
 <p>The <em>purpose</em> flag specifies what kind of CA certificates are loaded. The
-default settings <a class="reference internal" href="#ssl.Purpose.SERVER_AUTH" title="ssl.Purpose.SERVER_AUTH"><code class="xref py py-data docutils literal notranslate"><span class="pre">Purpose.SERVER_AUTH</span></code></a> loads certificates, that are
+default settings <a class="reference internal" href="#ssl.Purpose.SERVER_AUTH" title="ssl.Purpose.SERVER_AUTH"><code class="xref py py-const docutils literal notranslate"><span class="pre">Purpose.SERVER_AUTH</span></code></a> loads certificates, that are
 flagged and trusted for TLS web server authentication (client side
-sockets). <a class="reference internal" href="#ssl.Purpose.CLIENT_AUTH" title="ssl.Purpose.CLIENT_AUTH"><code class="xref py py-data docutils literal notranslate"><span class="pre">Purpose.CLIENT_AUTH</span></code></a> loads CA certificates for client
+sockets). <a class="reference internal" href="#ssl.Purpose.CLIENT_AUTH" title="ssl.Purpose.CLIENT_AUTH"><code class="xref py py-const docutils literal notranslate"><span class="pre">Purpose.CLIENT_AUTH</span></code></a> loads CA certificates for client
 certificate verification on the server side.</p>
 <div class="versionadded">
 <p><span class="versionmodified added">在 3.4 版新加入.</span></p>
@@ -2436,7 +2436,7 @@ supported curve.</p>
 <dd><p>Wrap an existing Python socket <em>sock</em> and return an instance of
 <a class="reference internal" href="#ssl.SSLContext.sslsocket_class" title="ssl.SSLContext.sslsocket_class"><code class="xref py py-attr docutils literal notranslate"><span class="pre">SSLContext.sslsocket_class</span></code></a> (default <a class="reference internal" href="#ssl.SSLSocket" title="ssl.SSLSocket"><code class="xref py py-class docutils literal notranslate"><span class="pre">SSLSocket</span></code></a>). The
 returned SSL socket is tied to the context, its settings and certificates.
-<em>sock</em> must be a <a class="reference internal" href="socket.html#socket.SOCK_STREAM" title="socket.SOCK_STREAM"><code class="xref py py-data docutils literal notranslate"><span class="pre">SOCK_STREAM</span></code></a> socket; other
+<em>sock</em> must be a <a class="reference internal" href="socket.html#socket.SOCK_STREAM" title="socket.SOCK_STREAM"><code class="xref py py-const docutils literal notranslate"><span class="pre">SOCK_STREAM</span></code></a> socket; other
 socket types are unsupported.</p>
 <p>The parameter <code class="docutils literal notranslate"><span class="pre">server_side</span></code> is a boolean which identifies whether
 server-side or client-side behavior is desired from this socket.</p>
@@ -3320,7 +3320,7 @@ disabled by default.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">client_context</span><span class="o">.</span><span class="n">maximum_version</span> <span class="o">=</span> <span class="n">ssl</span><span class="o">.</span><span class="n">TLSVersion</span><span class="o">.</span><span class="n">TLSv1_3</span>
 </pre></div>
 </div>
-<p>The SSL context created above will only allow TLSv1.2 and later (if
+<p>The SSL context created above will only allow TLSv1.3 and later (if
 supported by your system) connections to a server. <a class="reference internal" href="#ssl.PROTOCOL_TLS_CLIENT" title="ssl.PROTOCOL_TLS_CLIENT"><code class="xref py py-const docutils literal notranslate"><span class="pre">PROTOCOL_TLS_CLIENT</span></code></a>
 implies certificate validation and hostname checks by default. You have to
 load certificates into the context.</p>
@@ -3740,7 +3740,7 @@ signature algorithm configuration, and rekeying are not supported yet.</p></li>
 <br />
     <br />
 
-    最後更新於 7月 18, 2023。
+    最後更新於 7月 24, 2023。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 

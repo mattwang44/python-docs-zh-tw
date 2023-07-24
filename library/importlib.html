@@ -696,7 +696,7 @@ It is not set on all modules (e.g. built-in modules).</p>
 <dt><a class="reference internal" href="../reference/import.html#path__" title="__path__"><code class="xref py py-attr docutils literal notranslate"><span class="pre">__path__</span></code></a></dt><dd><p>The list of locations where the package's submodules will be found.
 Most of the time this is a single directory.
 The import system passes this attribute to <code class="docutils literal notranslate"><span class="pre">__import__()</span></code> and to finders
-in the same way as <a class="reference internal" href="sys.html#sys.path" title="sys.path"><code class="xref py py-attr docutils literal notranslate"><span class="pre">sys.path</span></code></a> but just for the package.
+in the same way as <a class="reference internal" href="sys.html#sys.path" title="sys.path"><code class="xref py py-data docutils literal notranslate"><span class="pre">sys.path</span></code></a> but just for the package.
 It is not set on non-package modules so it can be used
 as an indicator that the module is a package.</p>
 </dd>
@@ -977,7 +977,7 @@ purposes. Raise <a class="reference internal" href="exceptions.html#OSError" tit
 path. Any intermediate directories which do not exist are to be created
 automatically.</p>
 <p>When writing to the path fails because the path is read-only
-(<a class="reference internal" href="errno.html#errno.EACCES" title="errno.EACCES"><code class="xref py py-attr docutils literal notranslate"><span class="pre">errno.EACCES</span></code></a>/<a class="reference internal" href="exceptions.html#PermissionError" title="PermissionError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">PermissionError</span></code></a>), do not propagate the
+(<a class="reference internal" href="errno.html#errno.EACCES" title="errno.EACCES"><code class="xref py py-const docutils literal notranslate"><span class="pre">errno.EACCES</span></code></a>/<a class="reference internal" href="exceptions.html#PermissionError" title="PermissionError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">PermissionError</span></code></a>), do not propagate the
 exception.</p>
 <div class="versionchanged">
 <p><span class="versionmodified changed">在 3.4 版的變更: </span>No longer raises <a class="reference internal" href="exceptions.html#NotImplementedError" title="NotImplementedError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">NotImplementedError</span></code></a> when called.</p>
@@ -1246,7 +1246,7 @@ to call <a class="reference internal" href="#importlib.invalidate_caches" title=
 <dl class="py method">
 <dt class="sig sig-object py" id="importlib.machinery.FileFinder.path_hook">
 <em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">path_hook</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">loader_details</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#importlib.machinery.FileFinder.path_hook" title="本定義的永久連結">¶</a></dt>
-<dd><p>A class method which returns a closure for use on <a class="reference internal" href="sys.html#sys.path_hooks" title="sys.path_hooks"><code class="xref py py-attr docutils literal notranslate"><span class="pre">sys.path_hooks</span></code></a>.
+<dd><p>A class method which returns a closure for use on <a class="reference internal" href="sys.html#sys.path_hooks" title="sys.path_hooks"><code class="xref py py-data docutils literal notranslate"><span class="pre">sys.path_hooks</span></code></a>.
 An instance of <a class="reference internal" href="#importlib.machinery.FileFinder" title="importlib.machinery.FileFinder"><code class="xref py py-class docutils literal notranslate"><span class="pre">FileFinder</span></code></a> is returned by the closure using the
 path argument given to the closure directly and <em>loader_details</em>
 indirectly.</p>
@@ -1654,10 +1654,10 @@ import attempts.</p>
 <dt class="sig sig-object py" id="importlib.util.find_spec">
 <span class="sig-prename descclassname"><span class="pre">importlib.util.</span></span><span class="sig-name descname"><span class="pre">find_spec</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">package</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#importlib.util.find_spec" title="本定義的永久連結">¶</a></dt>
 <dd><p>Find the <a class="reference internal" href="../glossary.html#term-module-spec"><span class="xref std std-term">spec</span></a> for a module, optionally relative to
-the specified <strong>package</strong> name. If the module is in <a class="reference internal" href="sys.html#sys.modules" title="sys.modules"><code class="xref py py-attr docutils literal notranslate"><span class="pre">sys.modules</span></code></a>,
+the specified <strong>package</strong> name. If the module is in <a class="reference internal" href="sys.html#sys.modules" title="sys.modules"><code class="xref py py-data docutils literal notranslate"><span class="pre">sys.modules</span></code></a>,
 then <code class="docutils literal notranslate"><span class="pre">sys.modules[name].__spec__</span></code> is returned (unless the spec would be
 <code class="docutils literal notranslate"><span class="pre">None</span></code> or is not set, in which case <a class="reference internal" href="exceptions.html#ValueError" title="ValueError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code></a> is raised).
-Otherwise a search using <a class="reference internal" href="sys.html#sys.meta_path" title="sys.meta_path"><code class="xref py py-attr docutils literal notranslate"><span class="pre">sys.meta_path</span></code></a> is done. <code class="docutils literal notranslate"><span class="pre">None</span></code> is
+Otherwise a search using <a class="reference internal" href="sys.html#sys.meta_path" title="sys.meta_path"><code class="xref py py-data docutils literal notranslate"><span class="pre">sys.meta_path</span></code></a> is done. <code class="docutils literal notranslate"><span class="pre">None</span></code> is
 returned if no spec is found.</p>
 <p>If <strong>name</strong> is for a submodule (contains a dot), the parent module is
 automatically imported.</p>
@@ -1739,7 +1739,7 @@ is used for the module is required. For those same reasons, the loader's
 <a class="reference internal" href="#importlib.abc.Loader.create_module" title="importlib.abc.Loader.create_module"><code class="xref py py-meth docutils literal notranslate"><span class="pre">create_module()</span></code></a> method must return <code class="docutils literal notranslate"><span class="pre">None</span></code> or a
 type for which its <code class="docutils literal notranslate"><span class="pre">__class__</span></code> attribute can be mutated along with not
 using <a class="reference internal" href="../glossary.html#term-__slots__"><span class="xref std std-term">slots</span></a>. Finally, modules which substitute the object
-placed into <a class="reference internal" href="sys.html#sys.modules" title="sys.modules"><code class="xref py py-attr docutils literal notranslate"><span class="pre">sys.modules</span></code></a> will not work as there is no way to properly
+placed into <a class="reference internal" href="sys.html#sys.modules" title="sys.modules"><code class="xref py py-data docutils literal notranslate"><span class="pre">sys.modules</span></code></a> will not work as there is no way to properly
 replace the module references throughout the interpreter safely;
 <a class="reference internal" href="exceptions.html#ValueError" title="ValueError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code></a> is raised if such a substitution is detected.</p>
 <div class="admonition note">
@@ -1857,9 +1857,9 @@ import, then you should use <a class="reference internal" href="#importlib.util.
 <a class="reference internal" href="../glossary.html#term-importer"><span class="xref std std-term">importer</span></a>. This means managing both the <a class="reference internal" href="../glossary.html#term-finder"><span class="xref std std-term">finder</span></a> and <a class="reference internal" href="../glossary.html#term-loader"><span class="xref std std-term">loader</span></a>
 side of things. For finders there are two flavours to choose from depending on
 your needs: a <a class="reference internal" href="../glossary.html#term-meta-path-finder"><span class="xref std std-term">meta path finder</span></a> or a <a class="reference internal" href="../glossary.html#term-path-entry-finder"><span class="xref std std-term">path entry finder</span></a>. The
-former is what you would put on <a class="reference internal" href="sys.html#sys.meta_path" title="sys.meta_path"><code class="xref py py-attr docutils literal notranslate"><span class="pre">sys.meta_path</span></code></a> while the latter is what
-you create using a <a class="reference internal" href="../glossary.html#term-path-entry-hook"><span class="xref std std-term">path entry hook</span></a> on <a class="reference internal" href="sys.html#sys.path_hooks" title="sys.path_hooks"><code class="xref py py-attr docutils literal notranslate"><span class="pre">sys.path_hooks</span></code></a> which works
-with <a class="reference internal" href="sys.html#sys.path" title="sys.path"><code class="xref py py-attr docutils literal notranslate"><span class="pre">sys.path</span></code></a> entries to potentially create a finder. This example will
+former is what you would put on <a class="reference internal" href="sys.html#sys.meta_path" title="sys.meta_path"><code class="xref py py-data docutils literal notranslate"><span class="pre">sys.meta_path</span></code></a> while the latter is what
+you create using a <a class="reference internal" href="../glossary.html#term-path-entry-hook"><span class="xref std std-term">path entry hook</span></a> on <a class="reference internal" href="sys.html#sys.path_hooks" title="sys.path_hooks"><code class="xref py py-data docutils literal notranslate"><span class="pre">sys.path_hooks</span></code></a> which works
+with <a class="reference internal" href="sys.html#sys.path" title="sys.path"><code class="xref py py-data docutils literal notranslate"><span class="pre">sys.path</span></code></a> entries to potentially create a finder. This example will
 show you how to register your own importers so that import will use them (for
 creating an importer for yourself, read the documentation for the appropriate
 classes defined within this package):</p>
@@ -2194,7 +2194,7 @@ approximate implementation of
 <br />
     <br />
 
-    最後更新於 7月 18, 2023。
+    最後更新於 7月 24, 2023。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 
