@@ -36,7 +36,7 @@ msgstr "以下章節描述了直譯器中内建的標準型別。"
 msgid ""
 "The principal built-in types are numerics, sequences, mappings, classes, "
 "instances and exceptions."
-msgstr "主要內建型別為數字、序列、映射、class（類別）、實例和例外。"
+msgstr "主要內建型別為數字、序列、對映、class（類別）、實例和例外。"
 
 #: ../../library/stdtypes.rst:18
 msgid ""
@@ -5034,32 +5034,44 @@ msgstr ""
 
 #: ../../library/stdtypes.rst:4751
 msgid "Context Manager Types"
-msgstr ""
+msgstr "情境管理器型別"
 
 #: ../../library/stdtypes.rst:4758
+#, fuzzy
 msgid ""
 "Python's :keyword:`with` statement supports the concept of a runtime context "
 "defined by a context manager.  This is implemented using a pair of methods "
 "that allow user-defined classes to define a runtime context that is entered "
 "before the statement body is executed and exited when the statement ends:"
 msgstr ""
+"Python 的 :keyword:`with` 陳述式支援由情境管理器 (context manager) 定義的執行"
+"環境情境 (runtime context) 的概念。這是使用一對方法實作的，這些方法允許使用者"
+"定義的類別定義執行環境情境，該情境在執行陳述式主體之前進入，並在陳述式結束時"
+"退出："
 
 #: ../../library/stdtypes.rst:4766
+#, fuzzy
 msgid ""
 "Enter the runtime context and return either this object or another object "
 "related to the runtime context. The value returned by this method is bound "
 "to the identifier in the :keyword:`!as` clause of :keyword:`with` statements "
 "using this context manager."
 msgstr ""
+"輸入執行環境情境並回傳此物件或與執行環境情境相關的另一個物件。此方法回傳的值"
+"綁定到使用此情境管理器的 with 陳述式的 !as 子句中的標識符。"
 
 #: ../../library/stdtypes.rst:4771
+#, fuzzy
 msgid ""
 "An example of a context manager that returns itself is a :term:`file "
 "object`. File objects return themselves from __enter__() to allow :func:"
 "`open` to be used as the context expression in a :keyword:`with` statement."
 msgstr ""
+"回傳自身的情境管理器的一個範例是 :term:`file object`。檔案物件從 __enter__() "
+"回傳自身，以允許將 :func:`open` 用作 :keyword:`with` 陳述式中的情境表達式。"
 
 #: ../../library/stdtypes.rst:4775
+#, fuzzy
 msgid ""
 "An example of a context manager that returns a related object is the one "
 "returned by :func:`decimal.localcontext`. These managers set the active "
@@ -5068,8 +5080,13 @@ msgid ""
 "the body of the :keyword:`with` statement without affecting code outside "
 "the :keyword:`!with` statement."
 msgstr ""
+"回傳相關物件的情境管理器的一個範例是由 :func:`decimal.localcontext` 回傳的物"
+"件。這些管理器將活動十進位情境設定為原始十進位情境的副本，然後回傳該副本。這"
+"允許對 :keyword:`with` 陳述式主體中的當前十進位情境進行更改，而不會影響 :"
+"keyword:`!with` 陳述式外部的程式碼。"
 
 #: ../../library/stdtypes.rst:4785
+#, fuzzy
 msgid ""
 "Exit the runtime context and return a Boolean flag indicating if any "
 "exception that occurred should be suppressed. If an exception occurred while "
@@ -5077,8 +5094,12 @@ msgid ""
 "the exception type, value and traceback information. Otherwise, all three "
 "arguments are ``None``."
 msgstr ""
+"退出執行環境情境並回傳一個布林旗標，指示是否應抑制發生的任何例外。如果在執"
+"行 :keyword:`with` 陳述式主體時發生例外，則參數包含例外型別、值和回溯資訊。否"
+"則，所有三個參數都是 ``None``。"
 
 #: ../../library/stdtypes.rst:4790
+#, fuzzy
 msgid ""
 "Returning a true value from this method will cause the :keyword:`with` "
 "statement to suppress the exception and continue execution with the "
@@ -5088,8 +5109,12 @@ msgid ""
 "replace any exception that occurred in the body of the :keyword:`!with` "
 "statement."
 msgstr ""
+"從此方法回傳 true 值將導致 :keyword:`with` 陳述式抑制例外並繼續執行緊隨 :"
+"keyword:`!with` 陳述式之後的陳述式。否則，該方法執行完畢後，例外將繼續傳播。"
+"執行此方法期間發生的例外將替換 :keyword:`!with` 陳述式主體中發生的任何例外。"
 
 #: ../../library/stdtypes.rst:4797
+#, fuzzy
 msgid ""
 "The exception passed in should never be reraised explicitly - instead, this "
 "method should return a false value to indicate that the method completed "
@@ -5097,8 +5122,12 @@ msgid ""
 "context management code to easily detect whether or not an :meth:`__exit__` "
 "method has actually failed."
 msgstr ""
+"傳入的例外不應顯式重新引發 - 相反，此方法應回傳 false 值以指示該方法已成功完"
+"成並且不希望抑制引發的例外。這允許情境管理程式碼輕鬆檢測 :meth:`__exit__` 方"
+"法是否實際上失敗。"
 
 #: ../../library/stdtypes.rst:4803
+#, fuzzy
 msgid ""
 "Python defines several context managers to support easy thread "
 "synchronisation, prompt closure of files or other objects, and simpler "
@@ -5106,8 +5135,12 @@ msgid ""
 "are not treated specially beyond their implementation of the context "
 "management protocol. See the :mod:`contextlib` module for some examples."
 msgstr ""
+"Python 定義了多個情境管理器來支援簡單的執行緒同步、文件或其他物件的提示關閉以"
+"及對活動十進位算術情境的更簡單操作。除了情境管理協議的實作之外，不會對特定型"
+"別進行特殊處理。有關一些範例，請參閱 :mod:`contextlib` 模組。"
 
 #: ../../library/stdtypes.rst:4809
+#, fuzzy
 msgid ""
 "Python's :term:`generator`\\s and the :class:`contextlib.contextmanager` "
 "decorator provide a convenient way to implement these protocols.  If a "
@@ -5116,8 +5149,14 @@ msgid ""
 "`~contextmanager.__enter__` and :meth:`~contextmanager.__exit__` methods, "
 "rather than the iterator produced by an undecorated generator function."
 msgstr ""
+"Python 的 生成器 和 :class:`contextlib.contextmanager` 裝飾器提供了一種便捷的"
+"方法來實作這些協議。如果生成器函式用 :class:`contextlib.contextmanager` 裝飾"
+"器裝飾，它將回傳一個實作必要的 :meth:`~contextmanager.__enter__` 和 :meth:"
+"`~contextmanager.__exit__` 方法的情境管理器，而不是由未裝飾的生成器函式生成的"
+"疊代器。"
 
 #: ../../library/stdtypes.rst:4816
+#, fuzzy
 msgid ""
 "Note that there is no specific slot for any of these methods in the type "
 "structure for Python objects in the Python/C API. Extension types wanting to "
@@ -5125,24 +5164,34 @@ msgid ""
 "Compared to the overhead of setting up the runtime context, the overhead of "
 "a single class dictionary lookup is negligible."
 msgstr ""
+"請注意，Python/C API 中 Python 物件的型別結構中的任何方法都沒有特定的槽。想要"
+"定義這些方法的擴充型別必須將它們作為普通的 Python 可訪問方法提供。與設定運行"
+"時情境的開銷相比，單個類字典查找的開銷可以忽略不計。"
 
 #: ../../library/stdtypes.rst:4824
+#, fuzzy
 msgid ""
 "Type Annotation Types --- :ref:`Generic Alias <types-genericalias>`, :ref:"
 "`Union <types-union>`"
 msgstr ""
+"型別註釋型別 --- :ref:`泛型別名 (Generic Alias) <types-genericalias>`, :ref:"
+"`Union <types-union>`"
 
 #: ../../library/stdtypes.rst:4829
+#, fuzzy
 msgid ""
 "The core built-in types for :term:`type annotations <annotation>` are :ref:"
 "`Generic Alias <types-genericalias>` and :ref:`Union <types-union>`."
 msgstr ""
+":term:`型別註釋 <annotation>` 的核心內建型別是\\ :ref:`泛型別名 <types-"
+"genericalias>`\\ 和 :ref:`Union <types-union>`。"
 
 #: ../../library/stdtypes.rst:4836
 msgid "Generic Alias Type"
-msgstr ""
+msgstr "泛型別名型別"
 
 #: ../../library/stdtypes.rst:4842
+#, fuzzy
 msgid ""
 "``GenericAlias`` objects are generally created by :ref:`subscripting "
 "<subscriptions>` a class. They are most often used with :ref:`container "
@@ -5151,20 +5200,31 @@ msgid ""
 "the ``list`` class with the argument :class:`int`. ``GenericAlias`` objects "
 "are intended primarily for use with :term:`type annotations <annotation>`."
 msgstr ""
+"“GenericAlias” 物件通常是通過訂閱 <subscriptions>` 類來建立的。它們最常與容器"
+"類 <sequence-types> 一起使用，例如 list 或 dict。例如，``list[int]`` 是一個"
+"``GenericAlias`` 物件，它是通過使用參數 :class:`int` 對``list`` 類新增下標而"
+"建立的。 ``GenericAlias`` 物件主要用於與型別註釋 <annotation>` 一起使用。"
 
 #: ../../library/stdtypes.rst:4852
+#, fuzzy
 msgid ""
 "It is generally only possible to subscript a class if the class implements "
 "the special method :meth:`~object.__class_getitem__`."
 msgstr ""
+"通常只有當類實作特殊方法 :meth:`~object.__class_getitem__` 時才可以為該類別新"
+"增下標。"
 
 #: ../../library/stdtypes.rst:4855
+#, fuzzy
 msgid ""
 "A ``GenericAlias`` object acts as a proxy for a :term:`generic type`, "
 "implementing *parameterized generics*."
 msgstr ""
+"``GenericAlias`` 物件作為泛型型別的代理，實作\\ *參數化泛型 (parameterized "
+"generics)*。"
 
 #: ../../library/stdtypes.rst:4858
+#, fuzzy
 msgid ""
 "For a container class, the argument(s) supplied to a :ref:`subscription "
 "<subscriptions>` of the class may indicate the type(s) of the elements an "
@@ -5172,8 +5232,12 @@ msgid ""
 "to signify a :class:`set` in which all the elements are of type :class:"
 "`bytes`."
 msgstr ""
+"對於容器類別，提供給該類別的\\ :ref:`訂閱 (subscription) <subscriptions>` 的"
+"參數可以指示物件包含的元素的型別。例如，``set[bytes]`` 可以在型別註釋中使用來"
+"表示一個 :class:`set`，其中所有元素都是 :class:`bytes` 型別。"
 
 #: ../../library/stdtypes.rst:4864
+#, fuzzy
 msgid ""
 "For a class which defines :meth:`~object.__class_getitem__` but is not a "
 "container, the argument(s) supplied to a subscription of the class will "
@@ -5181,16 +5245,24 @@ msgid ""
 "object. For example, :mod:`regular expressions <re>` can be used on both "
 "the :class:`str` data type and the :class:`bytes` data type:"
 msgstr ""
+"對於定義 :meth:`~object.__class_getitem__` 但不是容器的類，提供給該類訂閱的參"
+"數通常會指示物件上定義的一個或多個方法的回傳型別。例如，正則表達式 <re> 可以"
+"用於 str 資料型別和 bytes 資料型別："
 
 #: ../../library/stdtypes.rst:4870
+#, fuzzy
 msgid ""
 "If ``x = re.search('foo', 'foo')``, ``x`` will be a :ref:`re.Match <match-"
 "objects>` object where the return values of ``x.group(0)`` and ``x[0]`` will "
 "both be of type :class:`str`. We can represent this kind of object in type "
 "annotations with the ``GenericAlias`` ``re.Match[str]``."
 msgstr ""
+"如果 ``x = re.search('foo', 'foo')`` ， ``x`` 將是一個 :ref:`re.Match <match-"
+"objects>` 物件，其中 ``x.group(0)`` 和 ``x[0]`` 的回傳值都將是 :class:`str` "
+"型別。我們可以用“GenericAlias”“re.Match[str]”在型別註釋中表示這種物件。"
 
 #: ../../library/stdtypes.rst:4876
+#, fuzzy
 msgid ""
 "If ``y = re.search(b'bar', b'bar')``, (note the ``b`` for :class:`bytes`), "
 "``y`` will also be an instance of ``re.Match``, but the return values of ``y."
@@ -5198,6 +5270,10 @@ msgid ""
 "annotations, we would represent this variety of :ref:`re.Match <match-"
 "objects>` objects with ``re.Match[bytes]``."
 msgstr ""
+"如果 y = re.search(b'bar', b'bar')``，（注意 :class:`bytes` 的 ``b``）， "
+"``y`` 也將是 ``re.Match`` 的實例，但 ``y.group(0)`` 和 ``y[0]`` 的回傳值都將"
+"是 :class:`bytes` 型別。在型別註釋中，我們將用 re.Match[bytes] 來表示各種 re."
+"Match <match-objects> 物件。"
 
 #: ../../library/stdtypes.rst:4882
 msgid ""
@@ -5205,13 +5281,21 @@ msgid ""
 "GenericAlias`, which can also be used to create ``GenericAlias`` objects "
 "directly."
 msgstr ""
+"``GenericAlias`` 物件是 :class:`types.GenericAlias` 類別的實例，也可以用來直"
+"接建立 ``GenericAlias`` 物件。"
 
 #: ../../library/stdtypes.rst:4888
+#, fuzzy
 msgid ""
 "Creates a ``GenericAlias`` representing a type ``T`` parameterized by types "
 "*X*, *Y*, and more depending on the ``T`` used. For example, a function "
 "expecting a :class:`list` containing :class:`float` elements::"
 msgstr ""
+"建立一個 ``GenericAlias`` 表示型別 ``T`` 參數化的型別 *X*、*Y* 等，具體取決於"
+"所使用的 ``T`` 。例如，一個函式需要一個包含 :class:`float` 元素的 :class:"
+"`list`：\n"
+"\n"
+"::"
 
 #: ../../library/stdtypes.rst:4896
 msgid ""
@@ -5220,14 +5304,24 @@ msgid ""
 "the value type.  In this example, the function expects a ``dict`` with keys "
 "of type :class:`str` and values of type :class:`int`::"
 msgstr ""
+":term:`mapping` 物件的另一個範例為 :class:`dict` 的使用，它是需要兩個型別參數"
+"的泛型型別，分別表示鍵型別和值型別。在此範例中，該函式需要一個 ``dict``，其帶"
+"有 :class:`str` 型別的鍵和 :class:`int` 型別的值：\n"
+"\n"
+"::"
 
 #: ../../library/stdtypes.rst:4904
 msgid ""
 "The builtin functions :func:`isinstance` and :func:`issubclass` do not "
 "accept ``GenericAlias`` types for their second argument::"
 msgstr ""
+"內建函式 :func:`isinstance` 和 :func:`issubclass` 不接受 ``GenericAlias`` 型"
+"別作為第二個引數：\n"
+"\n"
+"::"
 
 #: ../../library/stdtypes.rst:4912
+#, fuzzy
 msgid ""
 "The Python runtime does not enforce :term:`type annotations <annotation>`. "
 "This extends to generic types and their type parameters. When creating a "
@@ -5235,41 +5329,61 @@ msgid ""
 "not checked against their type. For example, the following code is "
 "discouraged, but will run without errors::"
 msgstr ""
+"Python 執行環境不強制執行\\ :term:`型別註釋 <annotation>`。這擴充到泛型型別及"
+"其型別參數。當從 ``GenericAlias`` 建立容器物件時，不會檢查容器中的元素的型"
+"別。例如，不鼓勵使用以下程式碼，但執行環境不會出現錯誤：\n"
+"\n"
+"::"
 
 #: ../../library/stdtypes.rst:4922
 msgid ""
 "Furthermore, parameterized generics erase type parameters during object "
 "creation::"
 msgstr ""
+"此外，參數化泛型在物件建立期間會消除型別參數：\n"
+"\n"
+"::"
 
 #: ../../library/stdtypes.rst:4933
 msgid ""
 "Calling :func:`repr` or :func:`str` on a generic shows the parameterized "
 "type::"
 msgstr ""
+"在泛型上呼叫 :func:`repr` 或 :func:`str` 會顯示參數化型別：\n"
+"\n"
+"::"
 
 #: ../../library/stdtypes.rst:4941
 msgid ""
 "The :meth:`~object.__getitem__` method of generic containers will raise an "
 "exception to disallow mistakes like ``dict[str][str]``::"
 msgstr ""
+"泛型容器的 :meth:`~object.__getitem__` 方法會引發例外以防止像是 ``dict[str]"
+"[str]`` 的錯誤出現：\n"
+"\n"
+"::"
 
 #: ../../library/stdtypes.rst:4949
+#, fuzzy
 msgid ""
 "However, such expressions are valid when :ref:`type variables <generics>` "
 "are used.  The index must have as many elements as there are type variable "
 "items in the ``GenericAlias`` object's :attr:`~genericalias.__args__`. ::"
 msgstr ""
+"但是，當使用型別變數 <generics> 時，此類表達式是有效的。索引的元素數量必須與 "
+"GenericAlias 物件的 :attr:`~genericalias.__args__` 中的型別變數項一樣多。\n"
+"\n"
+"::"
 
 #: ../../library/stdtypes.rst:4960
 msgid "Standard Generic Classes"
-msgstr ""
+msgstr "標準泛型類別"
 
 #: ../../library/stdtypes.rst:4962
 msgid ""
 "The following standard library classes support parameterized generics. This "
 "list is non-exhaustive."
-msgstr ""
+msgstr "以下標準函式庫類別支援參數化泛型。此列表並沒有完整列完全部。"
 
 #: ../../library/stdtypes.rst:4965
 msgid ":class:`tuple`"
@@ -5489,78 +5603,104 @@ msgstr ":class:`weakref.WeakValueDictionary`"
 
 #: ../../library/stdtypes.rst:5023
 msgid "Special Attributes of ``GenericAlias`` objects"
-msgstr ""
+msgstr "``GenericAlias`` 物件的特殊屬性"
 
 #: ../../library/stdtypes.rst:5025
 msgid "All parameterized generics implement special read-only attributes."
-msgstr ""
+msgstr "所有參數化泛型都有實作特殊的唯讀屬性。"
 
 #: ../../library/stdtypes.rst:5029
 msgid "This attribute points at the non-parameterized generic class::"
 msgstr ""
+"該屬性指向非參數化泛型類別：\n"
+"\n"
+"::"
 
 #: ../../library/stdtypes.rst:5037
+#, fuzzy
 msgid ""
 "This attribute is a :class:`tuple` (possibly of length 1) of generic types "
 "passed to the original :meth:`~object.__class_getitem__` of the generic "
 "class::"
 msgstr ""
+"此屬性是傳遞給泛型類的原始 :meth:`~object.__class_getitem__` 的泛型型別的 :"
+"class:`tuple` （可能長度為 1）：\n"
+"\n"
+"::"
 
 #: ../../library/stdtypes.rst:5047
+#, fuzzy
 msgid ""
 "This attribute is a lazily computed tuple (possibly empty) of unique type "
 "variables found in ``__args__``::"
 msgstr ""
+"該屬性是在 ``__args__`` 中找到的唯一型別變數的延遲計算元組（可能為空）：\n"
+"\n"
+"::"
 
 #: ../../library/stdtypes.rst:5058
+#, fuzzy
 msgid ""
 "A ``GenericAlias`` object with :class:`typing.ParamSpec` parameters may not "
 "have correct ``__parameters__`` after substitution because :class:`typing."
 "ParamSpec` is intended primarily for static type checking."
 msgstr ""
+"具有 :class:`typing.ParamSpec` 參數的 ``GenericAlias`` 物件在替換後可能沒有正"
+"確的 ``__parameters__`` ，因為 :class:`typing.ParamSpec` 主要用於靜態型別檢"
+"查。"
 
 #: ../../library/stdtypes.rst:5065
+#, fuzzy
 msgid ""
 "A boolean that is true if the alias has been unpacked using the ``*`` "
 "operator (see :data:`~typing.TypeVarTuple`)."
 msgstr ""
+"如果別名已使用 ``*`` 運算子，則為 true 的布林值（請參閱 :data:`~typing."
+"TypeVarTuple`）。"
 
 #: ../../library/stdtypes.rst:5074
 msgid ":pep:`484` - Type Hints"
-msgstr ""
+msgstr ":pep:`484` - 型別提示"
 
 #: ../../library/stdtypes.rst:5074
 msgid "Introducing Python's framework for type annotations."
-msgstr ""
+msgstr "介紹 Python 的型別註釋框架。"
 
 #: ../../library/stdtypes.rst:5079
 msgid ":pep:`585` - Type Hinting Generics In Standard Collections"
-msgstr ""
+msgstr ":pep:`585` - 標準集合中的型別提示泛型"
 
 #: ../../library/stdtypes.rst:5077
+#, fuzzy
 msgid ""
 "Introducing the ability to natively parameterize standard-library classes, "
 "provided they implement the special class method :meth:`~object."
 "__class_getitem__`."
 msgstr ""
+"引入參數化標準函式庫類別的功能，前提是它們有實作特殊的類別方法 :meth:"
+"`~object.__class_getitem__`。"
 
 #: ../../library/stdtypes.rst:5082
 msgid ""
 ":ref:`Generics`, :ref:`user-defined generics <user-defined-generics>` and :"
 "class:`typing.Generic`"
 msgstr ""
+":ref:`Generics`、:ref:`使用者定義泛型 <user-define-generics>` 和 :class:"
+"`typing.Generic`"
 
 #: ../../library/stdtypes.rst:5082
+#, fuzzy
 msgid ""
 "Documentation on how to implement generic classes that can be parameterized "
 "at runtime and understood by static type-checkers."
-msgstr ""
+msgstr "有關如何實作可以在執行環境參數化並由靜態型別檢查器理解的泛型類的文檔。"
 
 #: ../../library/stdtypes.rst:5091
 msgid "Union Type"
-msgstr ""
+msgstr "聯集型別"
 
 #: ../../library/stdtypes.rst:5097
+#, fuzzy
 msgid ""
 "A union object holds the value of the ``|`` (bitwise or) operation on "
 "multiple :ref:`type objects <bltin-type-objects>`.  These types are intended "
@@ -5568,6 +5708,9 @@ msgid ""
 "expression enables cleaner type hinting syntax compared to :data:`typing."
 "Union`."
 msgstr ""
+"聯集物件保存多個型別物件 <bltin-type-objects>` 上的“|”（按位或）運算的值。這"
+"些型別主要用於型別註釋 <annotation>`。與 Typing.Union 相比，聯集型別表達式可"
+"以實作更清晰的型別提示語法。"
 
 #: ../../library/stdtypes.rst:5104
 msgid ""
@@ -5576,8 +5719,14 @@ msgid ""
 "example, the following function expects an argument of type :class:`int` or :"
 "class:`float`::"
 msgstr ""
+"定義一個包含 *X*、*Y* 等型別的聯集物件。``X | Y`` 表示 X 或 Y。它相當於 "
+"``typing.Union[X, Y]``。例如，以下函式需要一個 :class:`int` 或 :class:"
+"`float` 型別的參數：\n"
+"\n"
+"::"
 
 #: ../../library/stdtypes.rst:5114
+#, fuzzy
 msgid ""
 "The ``|`` operand cannot be used at runtime to define unions where one or "
 "more members is a forward reference. For example, ``int | \"Foo\"``, where "
@@ -5585,599 +5734,98 @@ msgid ""
 "For unions which include forward references, present the whole expression as "
 "a string, e.g. ``\"int | Foo\"``."
 msgstr ""
+"執行環境不能使用 ``|`` 操作數來定義其中一個或多個成員是前向引用的聯集。例如，"
+"``int | \"Foo\"``，其中``\"Foo\"`` 是對尚未定義的類別的引用，將在執行環境失"
+"敗。對於包含前向引用的聯集，將整個表達式呈現為字串，例如 ``\"int | Foo\"``。"
 
 #: ../../library/stdtypes.rst:5122
+#, fuzzy
 msgid ""
 "Union objects can be tested for equality with other union objects.  Details:"
-msgstr ""
+msgstr "可以測試聯集物件與其他聯集物件的相等性。細節："
 
 #: ../../library/stdtypes.rst:5124
 msgid "Unions of unions are flattened::"
 msgstr ""
+"聯集的聯集會被攤平：\n"
+"\n"
+"::"
 
 #: ../../library/stdtypes.rst:5128
 msgid "Redundant types are removed::"
 msgstr ""
+"刪除冗餘的型別：\n"
+"\n"
+"::"
 
 #: ../../library/stdtypes.rst:5132
 msgid "When comparing unions, the order is ignored::"
 msgstr ""
+"比較聯集時，其中的順序會被忽略：\n"
+"\n"
+"::"
 
 #: ../../library/stdtypes.rst:5136
 msgid "It is compatible with :data:`typing.Union`::"
 msgstr ""
+"它與 :data:`typing.Union` 相容：\n"
+"\n"
+"::"
 
 #: ../../library/stdtypes.rst:5140
 msgid "Optional types can be spelled as a union with ``None``::"
 msgstr ""
+"可選型別可以被轉換為與 ``None`` 的聯集：\n"
+"\n"
+"::"
 
 #: ../../library/stdtypes.rst:5147
+#, fuzzy
 msgid ""
 "Calls to :func:`isinstance` and :func:`issubclass` are also supported with a "
 "union object::"
 msgstr ""
+"聯集物件還支援呼叫:func:`isinstance` 和:func:`issubclass`：\n"
+"\n"
+"::"
 
 #: ../../library/stdtypes.rst:5153
+#, fuzzy
 msgid ""
 "However, :ref:`parameterized generics <types-genericalias>` in union objects "
 "cannot be checked::"
 msgstr ""
+"但是，無法檢查聯集物件中的參數化泛型 <types-genericalias>`：\n"
+"\n"
+"::"
 
 #: ../../library/stdtypes.rst:5161
+#, fuzzy
 msgid ""
 "The user-exposed type for the union object can be accessed from :data:`types."
 "UnionType` and used for :func:`isinstance` checks.  An object cannot be "
 "instantiated from the type::"
 msgstr ""
+"聯集物件的使用者公開型別可以從 types.UnionType 訪問並用於 isinstance 檢查。物"
+"件不能從型別實例化：\n"
+"\n"
+"::"
 
 #: ../../library/stdtypes.rst:5174
+#, fuzzy
 msgid ""
 "The :meth:`__or__` method for type objects was added to support the syntax "
 "``X | Y``.  If a metaclass implements :meth:`__or__`, the Union may override "
 "it::"
 msgstr ""
-
-#: ../../library/stdtypes.rst:5192
-msgid ":pep:`604` -- PEP proposing the ``X | Y`` syntax and the Union type."
-msgstr ""
-
-#: ../../library/stdtypes.rst:5200
-msgid "Other Built-in Types"
-msgstr ""
-
-#: ../../library/stdtypes.rst:5202
-msgid ""
-"The interpreter supports several other kinds of objects. Most of these "
-"support only one or two operations."
-msgstr ""
-
-#: ../../library/stdtypes.rst:5209
-msgid "Modules"
-msgstr "模組"
-
-#: ../../library/stdtypes.rst:5211
-msgid ""
-"The only special operation on a module is attribute access: ``m.name``, "
-"where *m* is a module and *name* accesses a name defined in *m*'s symbol "
-"table. Module attributes can be assigned to.  (Note that the :keyword:"
-"`import` statement is not, strictly speaking, an operation on a module "
-"object; ``import foo`` does not require a module object named *foo* to "
-"exist, rather it requires an (external) *definition* for a module named "
-"*foo* somewhere.)"
-msgstr ""
-
-#: ../../library/stdtypes.rst:5218
-msgid ""
-"A special attribute of every module is :attr:`~object.__dict__`. This is the "
-"dictionary containing the module's symbol table. Modifying this dictionary "
-"will actually change the module's symbol table, but direct assignment to "
-"the :attr:`~object.__dict__` attribute is not possible (you can write ``m."
-"__dict__['a'] = 1``, which defines ``m.a`` to be ``1``, but you can't write "
-"``m.__dict__ = {}``).  Modifying :attr:`~object.__dict__` directly is not "
-"recommended."
-msgstr ""
-
-#: ../../library/stdtypes.rst:5226
-msgid ""
-"Modules built into the interpreter are written like this: ``<module "
-"'sys' (built-in)>``.  If loaded from a file, they are written as ``<module "
-"'os' from '/usr/local/lib/pythonX.Y/os.pyc'>``."
-msgstr ""
-
-#: ../../library/stdtypes.rst:5234
-msgid "Classes and Class Instances"
-msgstr ""
-
-#: ../../library/stdtypes.rst:5236
-msgid "See :ref:`objects` and :ref:`class` for these."
-msgstr ""
-
-#: ../../library/stdtypes.rst:5242
-msgid "Functions"
-msgstr "函式"
-
-#: ../../library/stdtypes.rst:5244
-msgid ""
-"Function objects are created by function definitions.  The only operation on "
-"a function object is to call it: ``func(argument-list)``."
-msgstr ""
-
-#: ../../library/stdtypes.rst:5247
-msgid ""
-"There are really two flavors of function objects: built-in functions and "
-"user-defined functions.  Both support the same operation (to call the "
-"function), but the implementation is different, hence the different object "
-"types."
-msgstr ""
-
-#: ../../library/stdtypes.rst:5251
-msgid "See :ref:`function` for more information."
-msgstr "更多資訊請見 :ref:`function`\\ 。"
-
-#: ../../library/stdtypes.rst:5257
-msgid "Methods"
-msgstr ""
-
-#: ../../library/stdtypes.rst:5261
-msgid ""
-"Methods are functions that are called using the attribute notation. There "
-"are two flavors: built-in methods (such as :meth:`append` on lists) and "
-"class instance methods.  Built-in methods are described with the types that "
-"support them."
-msgstr ""
-
-#: ../../library/stdtypes.rst:5266
-msgid ""
-"If you access a method (a function defined in a class namespace) through an "
-"instance, you get a special object: a :dfn:`bound method` (also called :dfn:"
-"`instance method`) object. When called, it will add the ``self`` argument to "
-"the argument list.  Bound methods have two special read-only attributes: ``m."
-"__self__`` is the object on which the method operates, and ``m.__func__`` is "
-"the function implementing the method.  Calling ``m(arg-1, arg-2, ..., arg-"
-"n)`` is completely equivalent to calling ``m.__func__(m.__self__, arg-1, "
-"arg-2, ..., arg-n)``."
-msgstr ""
-
-#: ../../library/stdtypes.rst:5275
-msgid ""
-"Like function objects, bound method objects support getting arbitrary "
-"attributes.  However, since method attributes are actually stored on the "
-"underlying function object (``meth.__func__``), setting method attributes on "
-"bound methods is disallowed.  Attempting to set an attribute on a method "
-"results in an :exc:`AttributeError` being raised.  In order to set a method "
-"attribute, you need to explicitly set it on the underlying function object::"
-msgstr ""
-
-#: ../../library/stdtypes.rst:5295 ../../library/stdtypes.rst:5326
-msgid "See :ref:`types` for more information."
-msgstr "更多資訊請見 :ref:`types`\\ 。"
-
-#: ../../library/stdtypes.rst:5303
-msgid "Code Objects"
-msgstr ""
-
-#: ../../library/stdtypes.rst:5309
-msgid ""
-"Code objects are used by the implementation to represent \"pseudo-compiled\" "
-"executable Python code such as a function body. They differ from function "
-"objects because they don't contain a reference to their global execution "
-"environment.  Code objects are returned by the built-in :func:`compile` "
-"function and can be extracted from function objects through their :attr:"
-"`__code__` attribute. See also the :mod:`code` module."
-msgstr ""
-
-#: ../../library/stdtypes.rst:5316
-msgid ""
-"Accessing ``__code__`` raises an :ref:`auditing event <auditing>` ``object."
-"__getattr__`` with arguments ``obj`` and ``\"__code__\"``."
-msgstr ""
-"存取 ``__code__`` 會引發一個附帶引數 ``obj`` 與 ``\"__code__\"`` 的\\ :ref:`"
-"稽核事件 <auditing>` ``object.__getattr__``。"
-
-#: ../../library/stdtypes.rst:5323
-msgid ""
-"A code object can be executed or evaluated by passing it (instead of a "
-"source string) to the :func:`exec` or :func:`eval`  built-in functions."
-msgstr ""
-
-#: ../../library/stdtypes.rst:5332
-msgid "Type Objects"
-msgstr ""
-
-#: ../../library/stdtypes.rst:5338
-msgid ""
-"Type objects represent the various object types.  An object's type is "
-"accessed by the built-in function :func:`type`.  There are no special "
-"operations on types.  The standard module :mod:`types` defines names for all "
-"standard built-in types."
-msgstr ""
-
-#: ../../library/stdtypes.rst:5343
-msgid "Types are written like this: ``<class 'int'>``."
-msgstr ""
-
-#: ../../library/stdtypes.rst:5349
-msgid "The Null Object"
-msgstr ""
-
-#: ../../library/stdtypes.rst:5351
-msgid ""
-"This object is returned by functions that don't explicitly return a value.  "
-"It supports no special operations.  There is exactly one null object, named "
-"``None`` (a built-in name).  ``type(None)()`` produces the same singleton."
-msgstr ""
-
-#: ../../library/stdtypes.rst:5355
-msgid "It is written as ``None``."
-msgstr ""
-
-#: ../../library/stdtypes.rst:5362
-msgid "The Ellipsis Object"
-msgstr ""
-
-#: ../../library/stdtypes.rst:5364
-msgid ""
-"This object is commonly used by slicing (see :ref:`slicings`).  It supports "
-"no special operations.  There is exactly one ellipsis object, named :const:"
-"`Ellipsis` (a built-in name).  ``type(Ellipsis)()`` produces the :const:"
-"`Ellipsis` singleton."
-msgstr ""
-
-#: ../../library/stdtypes.rst:5369
-msgid "It is written as ``Ellipsis`` or ``...``."
-msgstr ""
-
-#: ../../library/stdtypes.rst:5375
-msgid "The NotImplemented Object"
-msgstr ""
-
-#: ../../library/stdtypes.rst:5377
-msgid ""
-"This object is returned from comparisons and binary operations when they are "
-"asked to operate on types they don't support. See :ref:`comparisons` for "
-"more information.  There is exactly one ``NotImplemented`` object. "
-"``type(NotImplemented)()`` produces the singleton instance."
-msgstr ""
-
-#: ../../library/stdtypes.rst:5382
-msgid "It is written as ``NotImplemented``."
-msgstr ""
-
-#: ../../library/stdtypes.rst:5388
-msgid "Boolean Values"
-msgstr ""
-
-#: ../../library/stdtypes.rst:5390
-msgid ""
-"Boolean values are the two constant objects ``False`` and ``True``.  They "
-"are used to represent truth values (although other values can also be "
-"considered false or true).  In numeric contexts (for example when used as "
-"the argument to an arithmetic operator), they behave like the integers 0 and "
-"1, respectively. The built-in function :func:`bool` can be used to convert "
-"any value to a Boolean, if the value can be interpreted as a truth value "
-"(see section :ref:`truth` above)."
-msgstr ""
-
-#: ../../library/stdtypes.rst:5403
-msgid "They are written as ``False`` and ``True``, respectively."
-msgstr ""
-
-#: ../../library/stdtypes.rst:5409
-msgid "Internal Objects"
-msgstr ""
-
-#: ../../library/stdtypes.rst:5411
-msgid ""
-"See :ref:`types` for this information.  It describes stack frame objects, "
-"traceback objects, and slice objects."
-msgstr ""
-
-#: ../../library/stdtypes.rst:5418
-msgid "Special Attributes"
-msgstr ""
-
-#: ../../library/stdtypes.rst:5420
-msgid ""
-"The implementation adds a few special read-only attributes to several object "
-"types, where they are relevant.  Some of these are not reported by the :func:"
-"`dir` built-in function."
-msgstr ""
-
-#: ../../library/stdtypes.rst:5427
-msgid ""
-"A dictionary or other mapping object used to store an object's (writable) "
-"attributes."
-msgstr ""
-
-#: ../../library/stdtypes.rst:5433
-msgid "The class to which a class instance belongs."
-msgstr ""
-
-#: ../../library/stdtypes.rst:5438
-msgid "The tuple of base classes of a class object."
-msgstr ""
-
-#: ../../library/stdtypes.rst:5443
-msgid ""
-"The name of the class, function, method, descriptor, or generator instance."
-msgstr ""
-
-#: ../../library/stdtypes.rst:5449
-msgid ""
-"The :term:`qualified name` of the class, function, method, descriptor, or "
-"generator instance."
-msgstr ""
-
-#: ../../library/stdtypes.rst:5457
-msgid ""
-"This attribute is a tuple of classes that are considered when looking for "
-"base classes during method resolution."
-msgstr ""
-
-#: ../../library/stdtypes.rst:5463
-msgid ""
-"This method can be overridden by a metaclass to customize the method "
-"resolution order for its instances.  It is called at class instantiation, "
-"and its result is stored in :attr:`~class.__mro__`."
-msgstr ""
-
-#: ../../library/stdtypes.rst:5470
-msgid ""
-"Each class keeps a list of weak references to its immediate subclasses.  "
-"This method returns a list of all those references still alive.  The list is "
-"in definition order.  Example::"
-msgstr ""
-
-#: ../../library/stdtypes.rst:5481
-msgid "Integer string conversion length limitation"
-msgstr ""
-
-#: ../../library/stdtypes.rst:5483
-msgid ""
-"CPython has a global limit for converting between :class:`int` and :class:"
-"`str` to mitigate denial of service attacks. This limit *only* applies to "
-"decimal or other non-power-of-two number bases. Hexadecimal, octal, and "
-"binary conversions are unlimited. The limit can be configured."
-msgstr ""
-
-#: ../../library/stdtypes.rst:5488
-msgid ""
-"The :class:`int` type in CPython is an arbitrary length number stored in "
-"binary form (commonly known as a \"bignum\"). There exists no algorithm that "
-"can convert a string to a binary integer or a binary integer to a string in "
-"linear time, *unless* the base is a power of 2. Even the best known "
-"algorithms for base 10 have sub-quadratic complexity. Converting a large "
-"value such as ``int('1' * 500_000)`` can take over a second on a fast CPU."
-msgstr ""
-
-#: ../../library/stdtypes.rst:5495
-msgid ""
-"Limiting conversion size offers a practical way to avoid `CVE-2020-10735 "
-"<https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-10735>`_."
-msgstr ""
-
-#: ../../library/stdtypes.rst:5498
-msgid ""
-"The limit is applied to the number of digit characters in the input or "
-"output string when a non-linear conversion algorithm would be involved.  "
-"Underscores and the sign are not counted towards the limit."
-msgstr ""
-
-#: ../../library/stdtypes.rst:5502
-msgid ""
-"When an operation would exceed the limit, a :exc:`ValueError` is raised:"
-msgstr ""
-
-#: ../../library/stdtypes.rst:5524
-msgid ""
-"The default limit is 4300 digits as provided in :data:`sys.int_info."
-"default_max_str_digits <sys.int_info>`. The lowest limit that can be "
-"configured is 640 digits as provided in :data:`sys.int_info."
-"str_digits_check_threshold <sys.int_info>`."
-msgstr ""
-
-#: ../../library/stdtypes.rst:5529
-msgid "Verification:"
-msgstr ""
-
-#: ../../library/stdtypes.rst:5544
-msgid "Affected APIs"
-msgstr ""
-
-#: ../../library/stdtypes.rst:5546
-msgid ""
-"The limitation only applies to potentially slow conversions between :class:"
-"`int` and :class:`str` or :class:`bytes`:"
-msgstr ""
-
-#: ../../library/stdtypes.rst:5549
-msgid "``int(string)`` with default base 10."
-msgstr ""
-
-#: ../../library/stdtypes.rst:5550
-msgid "``int(string, base)`` for all bases that are not a power of 2."
-msgstr ""
-
-#: ../../library/stdtypes.rst:5551
-msgid "``str(integer)``."
-msgstr "``str(integer)``。"
-
-#: ../../library/stdtypes.rst:5552
-msgid "``repr(integer)``."
-msgstr "``repr(integer)``。"
-
-#: ../../library/stdtypes.rst:5553
-msgid ""
-"any other string conversion to base 10, for example ``f\"{integer}\"``, "
-"``\"{}\".format(integer)``, or ``b\"%d\" % integer``."
-msgstr ""
-
-#: ../../library/stdtypes.rst:5556
-msgid "The limitations do not apply to functions with a linear algorithm:"
-msgstr ""
-
-#: ../../library/stdtypes.rst:5558
-msgid "``int(string, base)`` with base 2, 4, 8, 16, or 32."
-msgstr ""
-
-#: ../../library/stdtypes.rst:5559
-msgid ":func:`int.from_bytes` and :func:`int.to_bytes`."
-msgstr ""
-
-#: ../../library/stdtypes.rst:5560
-msgid ":func:`hex`, :func:`oct`, :func:`bin`."
-msgstr ""
-
-#: ../../library/stdtypes.rst:5561
-msgid ":ref:`formatspec` for hex, octal, and binary numbers."
-msgstr ""
-
-#: ../../library/stdtypes.rst:5562
-msgid ":class:`str` to :class:`float`."
-msgstr ""
-
-#: ../../library/stdtypes.rst:5563
-msgid ":class:`str` to :class:`decimal.Decimal`."
-msgstr ""
-
-#: ../../library/stdtypes.rst:5566
-msgid "Configuring the limit"
-msgstr ""
-
-#: ../../library/stdtypes.rst:5568
-msgid ""
-"Before Python starts up you can use an environment variable or an "
-"interpreter command line flag to configure the limit:"
-msgstr ""
-
-#: ../../library/stdtypes.rst:5571
-msgid ""
-":envvar:`PYTHONINTMAXSTRDIGITS`, e.g. ``PYTHONINTMAXSTRDIGITS=640 python3`` "
-"to set the limit to 640 or ``PYTHONINTMAXSTRDIGITS=0 python3`` to disable "
-"the limitation."
-msgstr ""
-
-#: ../../library/stdtypes.rst:5574
-msgid ""
-":option:`-X int_max_str_digits <-X>`, e.g. ``python3 -X "
-"int_max_str_digits=640``"
-msgstr ""
-
-#: ../../library/stdtypes.rst:5576
-msgid ""
-":data:`sys.flags.int_max_str_digits` contains the value of :envvar:"
-"`PYTHONINTMAXSTRDIGITS` or :option:`-X int_max_str_digits <-X>`. If both the "
-"env var and the ``-X`` option are set, the ``-X`` option takes precedence. A "
-"value of *-1* indicates that both were unset, thus a value of :data:`sys."
-"int_info.default_max_str_digits` was used during initialization."
-msgstr ""
-
-#: ../../library/stdtypes.rst:5582
-msgid ""
-"From code, you can inspect the current limit and set a new one using these :"
-"mod:`sys` APIs:"
-msgstr ""
-
-#: ../../library/stdtypes.rst:5585
-msgid ""
-":func:`sys.get_int_max_str_digits` and :func:`sys.set_int_max_str_digits` "
-"are a getter and setter for the interpreter-wide limit. Subinterpreters have "
-"their own limit."
-msgstr ""
-
-#: ../../library/stdtypes.rst:5589
-msgid ""
-"Information about the default and minimum can be found in :attr:`sys."
-"int_info`:"
-msgstr ""
-
-#: ../../library/stdtypes.rst:5591
-msgid ""
-":data:`sys.int_info.default_max_str_digits <sys.int_info>` is the compiled-"
-"in default limit."
-msgstr ""
-
-#: ../../library/stdtypes.rst:5593
-msgid ""
-":data:`sys.int_info.str_digits_check_threshold <sys.int_info>` is the lowest "
-"accepted value for the limit (other than 0 which disables it)."
-msgstr ""
-
-#: ../../library/stdtypes.rst:5600
-msgid ""
-"Setting a low limit *can* lead to problems. While rare, code exists that "
-"contains integer constants in decimal in their source that exceed the "
-"minimum threshold. A consequence of setting the limit is that Python source "
-"code containing decimal integer literals longer than the limit will "
-"encounter an error during parsing, usually at startup time or import time or "
-"even at installation time - anytime an up to date ``.pyc`` does not already "
-"exist for the code. A workaround for source that contains such large "
-"constants is to convert them to ``0x`` hexadecimal form as it has no limit."
-msgstr ""
-
-#: ../../library/stdtypes.rst:5609
-msgid ""
-"Test your application thoroughly if you use a low limit. Ensure your tests "
-"run with the limit set early via the environment or flag so that it applies "
-"during startup and even during any installation step that may invoke Python "
-"to precompile ``.py`` sources to ``.pyc`` files."
-msgstr ""
-
-#: ../../library/stdtypes.rst:5615
-msgid "Recommended configuration"
-msgstr ""
-
-#: ../../library/stdtypes.rst:5617
-msgid ""
-"The default :data:`sys.int_info.default_max_str_digits` is expected to be "
-"reasonable for most applications. If your application requires a different "
-"limit, set it from your main entry point using Python version agnostic code "
-"as these APIs were added in security patch releases in versions before 3.12."
-msgstr ""
-
-#: ../../library/stdtypes.rst:5622
-msgid "Example::"
-msgstr ""
-"範例：\n"
+"新增了型別物件的 __or__` 方法來支援語法 ``X |是的``。如果元類實作 :meth:"
+"`__or__`，則 Union 可以覆蓋它：\n"
 "\n"
 "::"
 
-#: ../../library/stdtypes.rst:5634
-msgid "If you need to disable it entirely, set it to ``0``."
-msgstr ""
-
-#: ../../library/stdtypes.rst:5638
-msgid "Footnotes"
-msgstr "註解"
-
-#: ../../library/stdtypes.rst:5639
-msgid ""
-"Additional information on these special methods may be found in the Python "
-"Reference Manual (:ref:`customization`)."
-msgstr ""
-
-#: ../../library/stdtypes.rst:5642
-msgid ""
-"As a consequence, the list ``[1, 2]`` is considered equal to ``[1.0, 2.0]``, "
-"and similarly for tuples."
-msgstr ""
-
-#: ../../library/stdtypes.rst:5645
-msgid "They must have since the parser can't tell the type of the operands."
-msgstr ""
-
-#: ../../library/stdtypes.rst:5647
-msgid ""
-"Cased characters are those with general category property being one of "
-"\"Lu\" (Letter, uppercase), \"Ll\" (Letter, lowercase), or \"Lt\" (Letter, "
-"titlecase)."
-msgstr ""
-
-#: ../../library/stdtypes.rst:5650
-msgid ""
-"To format only a tuple you should therefore provide a singleton tuple whose "
-"only element is the tuple to be formatted."
-msgstr ""
+#: ../../library/stdtypes.rst:5192
+msgid ":pep:`604` -- PEP proposing the ``X | Y`` syntax and the Union type."
+msgstr ":pep:`604` -- PEP 提議 ``X | Y`` 語法和 Union 型別。"
 
 #: ../../library/stdtypes.rst:13
 msgid "built-in"
@@ -6925,7 +6573,3 @@ msgstr "..."
 #: ../../library/stdtypes.rst:5358
 msgid "ellipsis literal"
 msgstr "ellipsis literal（刪節號）"
-
-#: ../../library/stdtypes.rst:5398
-msgid "values"
-msgstr "values"
