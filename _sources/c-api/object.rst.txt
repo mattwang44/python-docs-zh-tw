@@ -256,7 +256,7 @@ Object Protocol
 
    Normally only class objects, i.e. instances of :class:`type` or a derived
    class, are considered classes.  However, objects can override this by having
-   a :attr:`__bases__` attribute (which must be a tuple of base classes).
+   a :attr:`~class.__bases__` attribute (which must be a tuple of base classes).
 
 
 .. c:function:: int PyObject_IsInstance(PyObject *inst, PyObject *cls)
@@ -273,10 +273,10 @@ Object Protocol
    is an instance of *cls* if its class is a subclass of *cls*.
 
    An instance *inst* can override what is considered its class by having a
-   :attr:`__class__` attribute.
+   :attr:`~instance.__class__` attribute.
 
    An object *cls* can override if it is considered a class, and what its base
-   classes are, by having a :attr:`__bases__` attribute (which must be a tuple
+   classes are, by having a :attr:`~class.__bases__` attribute (which must be a tuple
    of base classes).
 
 
@@ -399,3 +399,42 @@ Object Protocol
    returns ``NULL`` if the object cannot be iterated.
 
    .. versionadded:: 3.10
+
+.. c:function:: void *PyObject_GetTypeData(PyObject *o, PyTypeObject *cls)
+
+   Get a pointer to subclass-specific data reserved for *cls*.
+
+   The object *o* must be an instance of *cls*, and *cls* must have been
+   created using negative :c:member:`PyType_Spec.basicsize`.
+   Python does not check this.
+
+   On error, set an exception and return ``NULL``.
+
+   .. versionadded:: 3.12
+
+.. c:function:: Py_ssize_t PyType_GetTypeDataSize(PyTypeObject *cls)
+
+   Return the size of the instance memory space reserved for *cls*, i.e. the size of the
+   memory :c:func:`PyObject_GetTypeData` returns.
+
+   This may be larger than requested using :c:member:`-PyType_Spec.basicsize <PyType_Spec.basicsize>`;
+   it is safe to use this larger size (e.g. with :c:func:`!memset`).
+
+   The type *cls* **must** have been created using
+   negative :c:member:`PyType_Spec.basicsize`.
+   Python does not check this.
+
+   On error, set an exception and return a negative value.
+
+   .. versionadded:: 3.12
+
+.. c:function:: void *PyObject_GetItemData(PyObject *o)
+
+   Get a pointer to per-item data for a class with
+   :c:macro:`Py_TPFLAGS_ITEMS_AT_END`.
+
+   On error, set an exception and return ``NULL``.
+   :py:exc:`TypeError` is raised if *o* does not have
+   :c:macro:`Py_TPFLAGS_ITEMS_AT_END` set.
+
+   .. versionadded:: 3.12

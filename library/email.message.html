@@ -5,13 +5,13 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>email.message: Representing an email message &#8212; Python 3.11.4 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>email.message: Representing an email message &#8212; Python 3.12.0b4 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=92fd9be5" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?digest=845a48175c3935ba0d7ff16b8ed0072d62fd099f" />
     <link id="pygments_dark_css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css" href="../_static/pygments_dark.css?v=e15ddae3" />
     
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=c65d1968"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=ee8be3a1"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
     <script src="../_static/translations.js?v=d9a6981e"></script>
@@ -19,7 +19,7 @@
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.11.4 說明文件 中搜尋"
+          title="在 Python 3.12.0b4 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -160,7 +160,7 @@
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.11/Doc/library/email.message.rst"
+        <a href="https://github.com/python/cpython/blob/main/Doc/library/email.message.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -197,7 +197,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.11.4 Documentation</a> &#187;
+      <a href="../index.html">3.12.0b4 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -235,7 +235,7 @@
             
   <section id="module-email.message">
 <span id="email-message-representing-an-email-message"></span><h1><a class="reference internal" href="#module-email.message" title="email.message: The base class representing email messages."><code class="xref py py-mod docutils literal notranslate"><span class="pre">email.message</span></code></a>: Representing an email message<a class="headerlink" href="#module-email.message" title="本標頭的永久連結">¶</a></h1>
-<p><strong>原始碼：</strong><a class="reference external" href="https://github.com/python/cpython/tree/3.11/Lib/email/message.py">Lib/email/message.py</a></p>
+<p><strong>原始碼：</strong><a class="reference external" href="https://github.com/python/cpython/tree/3.12/Lib/email/message.py">Lib/email/message.py</a></p>
 <hr class="docutils" />
 <div class="versionadded">
 <p><span class="versionmodified added">在 3.6 版新加入: </span><a class="footnote-reference brackets" href="#id2" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a></p>
@@ -289,7 +289,7 @@ string.  <em>unixfrom</em> defaults to <code class="docutils literal notranslate
 with the base <a class="reference internal" href="email.compat32-message.html#email.message.Message" title="email.message.Message"><code class="xref py py-class docutils literal notranslate"><span class="pre">Message</span></code></a> class <em>maxheaderlen</em> is
 accepted, but defaults to <code class="docutils literal notranslate"><span class="pre">None</span></code>, which means that by default the line
 length is controlled by the
-<code class="xref py py-attr docutils literal notranslate"><span class="pre">max_line_length</span></code> of the policy.  The
+<a class="reference internal" href="email.policy.html#email.policy.Policy.max_line_length" title="email.policy.Policy.max_line_length"><code class="xref py py-attr docutils literal notranslate"><span class="pre">max_line_length</span></code></a> of the policy.  The
 <em>policy</em> argument may be used to override the default policy obtained
 from the message instance.  This can be used to control some of the
 formatting produced by the method, since the specified <em>policy</em> will be
@@ -437,7 +437,7 @@ message with field name <em>name</em>, delete the field first, e.g.:</p>
 <span class="n">msg</span><span class="p">[</span><span class="s1">&#39;subject&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;Python roolz!&#39;</span>
 </pre></div>
 </div>
-<p>If the <code class="xref py py-mod docutils literal notranslate"><span class="pre">policy</span></code> defines certain headers to be unique (as the standard
+<p>If the <a class="reference internal" href="email.policy.html#module-email.policy" title="email.policy: Controlling the parsing and generating of messages"><code class="xref py py-mod docutils literal notranslate"><span class="pre">policy</span></code></a> defines certain headers to be unique (as the standard
 policies do), this method may raise a <a class="reference internal" href="exceptions.html#ValueError" title="ValueError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code></a> when an attempt
 is made to assign a value to such a header when one already exists.  This
 behavior is intentional for consistency's sake, but do not depend on it
@@ -606,7 +606,7 @@ will be updated in place.</p>
 <p>Use of the <em>requote</em> parameter with <a class="reference internal" href="#email.message.EmailMessage" title="email.message.EmailMessage"><code class="xref py py-class docutils literal notranslate"><span class="pre">EmailMessage</span></code></a> objects is
 deprecated.</p>
 <p>Note that existing parameter values of headers may be accessed through
-the <code class="xref py py-attr docutils literal notranslate"><span class="pre">params</span></code> attribute of the
+the <a class="reference internal" href="email.headerregistry.html#email.headerregistry.ParameterizedMIMEHeader.params" title="email.headerregistry.ParameterizedMIMEHeader.params"><code class="xref py py-attr docutils literal notranslate"><span class="pre">params</span></code></a> attribute of the
 header value (for example, <code class="docutils literal notranslate"><span class="pre">msg['Content-Type'].params['charset']</span></code>).</p>
 <div class="versionchanged">
 <p><span class="versionmodified changed">在 3.4 版的變更: </span><code class="docutils literal notranslate"><span class="pre">replace</span></code> keyword was added.</p>
@@ -920,7 +920,7 @@ options to the <code class="docutils literal notranslate"><span class="pre">cont
 <dl class="py method">
 <dt class="sig sig-object py" id="email.message.EmailMessage.clear_content">
 <span class="sig-name descname"><span class="pre">clear_content</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#email.message.EmailMessage.clear_content" title="本定義的永久連結">¶</a></dt>
-<dd><p>Remove the payload and all of the <code class="xref py py-exc docutils literal notranslate"><span class="pre">Content-</span></code> headers, leaving
+<dd><p>Remove the payload and all of the <em class="mailheader">!Content-</em> headers, leaving
 all other headers intact and in their original order.</p>
 </dd></dl>
 
@@ -1070,7 +1070,7 @@ not need their own <em class="mailheader">MIME-Version</em> headers.</p>
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.11/Doc/library/email.message.rst"
+        <a href="https://github.com/python/cpython/blob/main/Doc/library/email.message.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -1110,7 +1110,7 @@ not need their own <em class="mailheader">MIME-Version</em> headers.</p>
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.11.4 Documentation</a> &#187;
+      <a href="../index.html">3.12.0b4 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -1155,11 +1155,11 @@ not need their own <em class="mailheader">MIME-Version</em> headers.</p>
 <br />
     <br />
 
-    最後更新於 7月 26, 2023。
+    最後更新於 7月 29, 2023。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 
-    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.1.0 建立。
+    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.1.1 建立。
     </div>
 
   </body>

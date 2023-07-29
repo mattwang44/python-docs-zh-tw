@@ -5,13 +5,13 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>6. Expressions &#8212; Python 3.11.4 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>6. Expressions &#8212; Python 3.12.0b4 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=92fd9be5" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?digest=845a48175c3935ba0d7ff16b8ed0072d62fd099f" />
     <link id="pygments_dark_css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css" href="../_static/pygments_dark.css?v=e15ddae3" />
     
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=c65d1968"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=ee8be3a1"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
     <script src="../_static/translations.js?v=d9a6981e"></script>
@@ -19,7 +19,7 @@
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.11.4 說明文件 中搜尋"
+          title="在 Python 3.12.0b4 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -163,7 +163,7 @@
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.11/Doc/reference/expressions.rst"
+        <a href="https://github.com/python/cpython/blob/main/Doc/reference/expressions.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -200,7 +200,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.11.4 Documentation</a> &#187;
+      <a href="../index.html">3.12.0b4 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Python 語言參考手冊</a> &#187;</li>
@@ -634,6 +634,10 @@ should be an exception instance. If the <em>value</em> is not provided, the
 is provided, it is set on the exception, otherwise any existing
 <code class="xref py py-attr docutils literal notranslate"><span class="pre">__traceback__</span></code> attribute stored in <em>value</em> may
 be cleared.</p>
+<div class="versionchanged">
+<p><span class="versionmodified changed">在 3.12 版的變更: </span>The second signature (type[, value[, traceback]]) is deprecated and
+may be removed in a future version of Python.</p>
+</div>
 </dd></dl>
 
 <span class="target" id="index-33"></span><dl class="py method">
@@ -732,7 +736,7 @@ This  <em>finalizer</em> may be registered by calling <a class="reference intern
 When first iterated over, an asynchronous generator-iterator will store the
 registered <em>finalizer</em> to be called upon finalization. For a reference example
 of a <em>finalizer</em> method see the implementation of
-<code class="docutils literal notranslate"><span class="pre">asyncio.Loop.shutdown_asyncgens</span></code> in <a class="reference external" href="https://github.com/python/cpython/tree/3.11/Lib/asyncio/base_events.py">Lib/asyncio/base_events.py</a>.</p>
+<code class="docutils literal notranslate"><span class="pre">asyncio.Loop.shutdown_asyncgens</span></code> in <a class="reference external" href="https://github.com/python/cpython/tree/3.12/Lib/asyncio/base_events.py">Lib/asyncio/base_events.py</a>.</p>
 <p>The expression <code class="docutils literal notranslate"><span class="pre">yield</span> <span class="pre">from</span> <span class="pre">&lt;expr&gt;</span></code> is a syntax error when used in an
 asynchronous generator function.</p>
 </section>
@@ -787,6 +791,10 @@ raised by the awaitable.
 If the generator function does not catch the passed-in exception, or
 raises a different exception, then when the awaitable is run that exception
 propagates to the caller of the awaitable.</p>
+<div class="versionchanged">
+<p><span class="versionmodified changed">在 3.12 版的變更: </span>The second signature (type[, value[, traceback]]) is deprecated and
+may be removed in a future version of Python.</p>
+</div>
 </dd></dl>
 
 <span class="target" id="index-37"></span><dl class="py method">
@@ -1398,7 +1406,7 @@ control flow statements, the following values are interpreted as false:
 <code class="docutils literal notranslate"><span class="pre">False</span></code>, <code class="docutils literal notranslate"><span class="pre">None</span></code>, numeric zero of all types, and empty strings and containers
 (including strings, tuples, lists, dictionaries, sets and frozensets).  All
 other values are interpreted as true.  User-defined objects can customize their
-truth value by providing a <code class="xref py py-meth docutils literal notranslate"><span class="pre">__bool__()</span></code> method.</p>
+truth value by providing a <a class="reference internal" href="datamodel.html#object.__bool__" title="object.__bool__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__bool__()</span></code></a> method.</p>
 <p id="index-83">The operator <a class="reference internal" href="#not"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">not</span></code></a> yields <code class="docutils literal notranslate"><span class="pre">True</span></code> if its argument is false, <code class="docutils literal notranslate"><span class="pre">False</span></code>
 otherwise.</p>
 <p id="index-84">The expression <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">and</span> <span class="pre">y</span></code> first evaluates <em>x</em>; if <em>x</em> is false, its value is
@@ -1747,7 +1755,7 @@ precedence applies.</p>
     <ul class="this-page-menu">
       <li><a href="../bugs.html">回報錯誤</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/3.11/Doc/reference/expressions.rst"
+        <a href="https://github.com/python/cpython/blob/main/Doc/reference/expressions.rst"
             rel="nofollow">顯示原始碼
         </a>
       </li>
@@ -1787,7 +1795,7 @@ precedence applies.</p>
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.11.4 Documentation</a> &#187;
+      <a href="../index.html">3.12.0b4 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 語言參考手冊</a> &#187;</li>
@@ -1830,11 +1838,11 @@ precedence applies.</p>
 <br />
     <br />
 
-    最後更新於 7月 26, 2023。
+    最後更新於 7月 29, 2023。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 
-    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.1.0 建立。
+    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.1.1 建立。
     </div>
 
   </body>

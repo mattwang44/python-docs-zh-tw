@@ -584,6 +584,11 @@ is already executing raises a :exc:`ValueError` exception.
    :attr:`~BaseException.__traceback__` attribute stored in *value* may
    be cleared.
 
+   .. versionchanged:: 3.12
+
+      The second signature \(type\[, value\[, traceback\]\]\) is deprecated and
+      may be removed in a future version of Python.
+
 .. index:: pair: exception; GeneratorExit
 
 
@@ -752,6 +757,11 @@ which are used to control the execution of a generator function.
    If the generator function does not catch the passed-in exception, or
    raises a different exception, then when the awaitable is run that exception
    propagates to the caller of the awaitable.
+
+   .. versionchanged:: 3.12
+
+      The second signature \(type\[, value\[, traceback\]\]\) is deprecated and
+      may be removed in a future version of Python.
 
 .. index:: pair: exception; GeneratorExit
 
@@ -1707,7 +1717,7 @@ control flow statements, the following values are interpreted as false:
 ``False``, ``None``, numeric zero of all types, and empty strings and containers
 (including strings, tuples, lists, dictionaries, sets and frozensets).  All
 other values are interpreted as true.  User-defined objects can customize their
-truth value by providing a :meth:`__bool__` method.
+truth value by providing a :meth:`~object.__bool__` method.
 
 .. index:: pair: operator; not
 
