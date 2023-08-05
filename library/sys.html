@@ -5,10 +5,9 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>sys --- 系統特定的參數與函式 &#8212; Python 3.12.0b4 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+    <title>sys --- 系統特定的參數與函式 &#8212; Python 3.12.0b4 說明文件</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=92fd9be5" />
-    <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?digest=845a48175c3935ba0d7ff16b8ed0072d62fd099f" />
+    <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?v=aa5eeaf2" />
     <link id="pygments_dark_css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css" href="../_static/pygments_dark.css?v=e15ddae3" />
     
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=ee8be3a1"></script>
@@ -27,7 +26,9 @@
     <link rel="copyright" title="版權" href="../copyright.html" />
     <link rel="next" title="sysconfig --- Provide access to Python&#39;s configuration information" href="sysconfig.html" />
     <link rel="prev" title="Python Runtime Services" href="python.html" />
-    <script defer data-domain="docs.python.org" src="https://plausible.io/js/script.js"></script>
+    
+      <script defer data-domain="docs.python.org" src="https://plausible.io/js/script.js"></script>
+    
     <link rel="canonical" href="https://docs.python.org/3/library/sys.html" />
     
       
@@ -47,179 +48,7 @@
             <script type="text/javascript" src="../_static/menu.js"></script>
             <script type="text/javascript" src="../_static/themetoggle.js"></script> 
 
-  </head>
-<body>
-<div class="mobile-nav">
-    <input type="checkbox" id="menuToggler" class="toggler__input" aria-controls="navigation"
-           aria-pressed="false" aria-expanded="false" role="button" aria-label="Menu" />
-    <nav class="nav-content" role="navigation">
-        <label for="menuToggler" class="toggler__label">
-            <span></span>
-        </label>
-        <span class="nav-items-wrapper">
-            <a href="https://www.python.org/" class="nav-logo">
-                <img src="../_static/py.svg" alt="Logo"/>
-            </a>
-            <span class="version_switcher_placeholder"></span>
-            <form role="search" class="search" action="../search.html" method="get">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" class="search-icon">
-                    <path fill-rule="nonzero" fill="currentColor" d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 001.48-5.34c-.47-2.78-2.79-5-5.59-5.34a6.505 6.505 0 00-7.27 7.27c.34 2.8 2.56 5.12 5.34 5.59a6.5 6.5 0 005.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0 .41-.41.41-1.08 0-1.49L15.5 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
-                </svg>
-                <input placeholder="快速搜尋" aria-label="快速搜尋" type="search" name="q" />
-                <input type="submit" value="前往"/>
-            </form>
-        </span>
-    </nav>
-    <div class="menu-wrapper">
-        <nav class="menu" role="navigation" aria-label="main navigation">
-            <div class="language_switcher_placeholder"></div>
-            
-<label class="theme-selector-label">
-    Theme
-    <select class="theme-selector" oninput="activateTheme(this.value)">
-        <option value="auto" selected>Auto</option>
-        <option value="light">Light</option>
-        <option value="dark">Dark</option>
-    </select>
-</label>
-  <div>
-    <h3><a href="../contents.html">目錄</a></h3>
-    <ul>
-<li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sys</span></code> --- 系統特定的參數與函式</a><ul>
-<li><a class="reference internal" href="#sys.abiflags"><code class="docutils literal notranslate"><span class="pre">abiflags</span></code></a></li>
-<li><a class="reference internal" href="#sys.addaudithook"><code class="docutils literal notranslate"><span class="pre">addaudithook()</span></code></a></li>
-<li><a class="reference internal" href="#sys.argv"><code class="docutils literal notranslate"><span class="pre">argv</span></code></a></li>
-<li><a class="reference internal" href="#sys.audit"><code class="docutils literal notranslate"><span class="pre">audit()</span></code></a></li>
-<li><a class="reference internal" href="#sys.base_exec_prefix"><code class="docutils literal notranslate"><span class="pre">base_exec_prefix</span></code></a></li>
-<li><a class="reference internal" href="#sys.base_prefix"><code class="docutils literal notranslate"><span class="pre">base_prefix</span></code></a></li>
-<li><a class="reference internal" href="#sys.byteorder"><code class="docutils literal notranslate"><span class="pre">byteorder</span></code></a></li>
-<li><a class="reference internal" href="#sys.builtin_module_names"><code class="docutils literal notranslate"><span class="pre">builtin_module_names</span></code></a></li>
-<li><a class="reference internal" href="#sys.call_tracing"><code class="docutils literal notranslate"><span class="pre">call_tracing()</span></code></a></li>
-<li><a class="reference internal" href="#sys.copyright"><code class="docutils literal notranslate"><span class="pre">copyright</span></code></a></li>
-<li><a class="reference internal" href="#sys._clear_type_cache"><code class="docutils literal notranslate"><span class="pre">_clear_type_cache()</span></code></a></li>
-<li><a class="reference internal" href="#sys._current_frames"><code class="docutils literal notranslate"><span class="pre">_current_frames()</span></code></a></li>
-<li><a class="reference internal" href="#sys._current_exceptions"><code class="docutils literal notranslate"><span class="pre">_current_exceptions()</span></code></a></li>
-<li><a class="reference internal" href="#sys.breakpointhook"><code class="docutils literal notranslate"><span class="pre">breakpointhook()</span></code></a></li>
-<li><a class="reference internal" href="#sys._debugmallocstats"><code class="docutils literal notranslate"><span class="pre">_debugmallocstats()</span></code></a></li>
-<li><a class="reference internal" href="#sys.dllhandle"><code class="docutils literal notranslate"><span class="pre">dllhandle</span></code></a></li>
-<li><a class="reference internal" href="#sys.displayhook"><code class="docutils literal notranslate"><span class="pre">displayhook()</span></code></a></li>
-<li><a class="reference internal" href="#sys.dont_write_bytecode"><code class="docutils literal notranslate"><span class="pre">dont_write_bytecode</span></code></a></li>
-<li><a class="reference internal" href="#sys._emscripten_info"><code class="docutils literal notranslate"><span class="pre">_emscripten_info</span></code></a></li>
-<li><a class="reference internal" href="#sys.pycache_prefix"><code class="docutils literal notranslate"><span class="pre">pycache_prefix</span></code></a></li>
-<li><a class="reference internal" href="#sys.excepthook"><code class="docutils literal notranslate"><span class="pre">excepthook()</span></code></a></li>
-<li><a class="reference internal" href="#sys.__breakpointhook__"><code class="docutils literal notranslate"><span class="pre">__breakpointhook__</span></code></a></li>
-<li><a class="reference internal" href="#sys.__displayhook__"><code class="docutils literal notranslate"><span class="pre">__displayhook__</span></code></a></li>
-<li><a class="reference internal" href="#sys.__excepthook__"><code class="docutils literal notranslate"><span class="pre">__excepthook__</span></code></a></li>
-<li><a class="reference internal" href="#sys.__unraisablehook__"><code class="docutils literal notranslate"><span class="pre">__unraisablehook__</span></code></a></li>
-<li><a class="reference internal" href="#sys.exception"><code class="docutils literal notranslate"><span class="pre">exception()</span></code></a></li>
-<li><a class="reference internal" href="#sys.exc_info"><code class="docutils literal notranslate"><span class="pre">exc_info()</span></code></a></li>
-<li><a class="reference internal" href="#sys.exec_prefix"><code class="docutils literal notranslate"><span class="pre">exec_prefix</span></code></a></li>
-<li><a class="reference internal" href="#sys.executable"><code class="docutils literal notranslate"><span class="pre">executable</span></code></a></li>
-<li><a class="reference internal" href="#sys.exit"><code class="docutils literal notranslate"><span class="pre">exit()</span></code></a></li>
-<li><a class="reference internal" href="#sys.flags"><code class="docutils literal notranslate"><span class="pre">flags</span></code></a></li>
-<li><a class="reference internal" href="#sys.float_info"><code class="docutils literal notranslate"><span class="pre">float_info</span></code></a></li>
-<li><a class="reference internal" href="#sys.float_repr_style"><code class="docutils literal notranslate"><span class="pre">float_repr_style</span></code></a></li>
-<li><a class="reference internal" href="#sys.getallocatedblocks"><code class="docutils literal notranslate"><span class="pre">getallocatedblocks()</span></code></a></li>
-<li><a class="reference internal" href="#sys.getunicodeinternedsize"><code class="docutils literal notranslate"><span class="pre">getunicodeinternedsize()</span></code></a></li>
-<li><a class="reference internal" href="#sys.getandroidapilevel"><code class="docutils literal notranslate"><span class="pre">getandroidapilevel()</span></code></a></li>
-<li><a class="reference internal" href="#sys.getdefaultencoding"><code class="docutils literal notranslate"><span class="pre">getdefaultencoding()</span></code></a></li>
-<li><a class="reference internal" href="#sys.getdlopenflags"><code class="docutils literal notranslate"><span class="pre">getdlopenflags()</span></code></a></li>
-<li><a class="reference internal" href="#sys.getfilesystemencoding"><code class="docutils literal notranslate"><span class="pre">getfilesystemencoding()</span></code></a></li>
-<li><a class="reference internal" href="#sys.getfilesystemencodeerrors"><code class="docutils literal notranslate"><span class="pre">getfilesystemencodeerrors()</span></code></a></li>
-<li><a class="reference internal" href="#sys.get_int_max_str_digits"><code class="docutils literal notranslate"><span class="pre">get_int_max_str_digits()</span></code></a></li>
-<li><a class="reference internal" href="#sys.getrefcount"><code class="docutils literal notranslate"><span class="pre">getrefcount()</span></code></a></li>
-<li><a class="reference internal" href="#sys.getrecursionlimit"><code class="docutils literal notranslate"><span class="pre">getrecursionlimit()</span></code></a></li>
-<li><a class="reference internal" href="#sys.getsizeof"><code class="docutils literal notranslate"><span class="pre">getsizeof()</span></code></a></li>
-<li><a class="reference internal" href="#sys.getswitchinterval"><code class="docutils literal notranslate"><span class="pre">getswitchinterval()</span></code></a></li>
-<li><a class="reference internal" href="#sys._getframe"><code class="docutils literal notranslate"><span class="pre">_getframe()</span></code></a></li>
-<li><a class="reference internal" href="#sys._getframemodulename"><code class="docutils literal notranslate"><span class="pre">_getframemodulename()</span></code></a></li>
-<li><a class="reference internal" href="#sys.getprofile"><code class="docutils literal notranslate"><span class="pre">getprofile()</span></code></a></li>
-<li><a class="reference internal" href="#sys.gettrace"><code class="docutils literal notranslate"><span class="pre">gettrace()</span></code></a></li>
-<li><a class="reference internal" href="#sys.getwindowsversion"><code class="docutils literal notranslate"><span class="pre">getwindowsversion()</span></code></a></li>
-<li><a class="reference internal" href="#sys.get_asyncgen_hooks"><code class="docutils literal notranslate"><span class="pre">get_asyncgen_hooks()</span></code></a></li>
-<li><a class="reference internal" href="#sys.get_coroutine_origin_tracking_depth"><code class="docutils literal notranslate"><span class="pre">get_coroutine_origin_tracking_depth()</span></code></a></li>
-<li><a class="reference internal" href="#sys.hash_info"><code class="docutils literal notranslate"><span class="pre">hash_info</span></code></a></li>
-<li><a class="reference internal" href="#sys.hexversion"><code class="docutils literal notranslate"><span class="pre">hexversion</span></code></a></li>
-<li><a class="reference internal" href="#sys.implementation"><code class="docutils literal notranslate"><span class="pre">implementation</span></code></a></li>
-<li><a class="reference internal" href="#sys.int_info"><code class="docutils literal notranslate"><span class="pre">int_info</span></code></a></li>
-<li><a class="reference internal" href="#sys.__interactivehook__"><code class="docutils literal notranslate"><span class="pre">__interactivehook__</span></code></a></li>
-<li><a class="reference internal" href="#sys.intern"><code class="docutils literal notranslate"><span class="pre">intern()</span></code></a></li>
-<li><a class="reference internal" href="#sys.is_finalizing"><code class="docutils literal notranslate"><span class="pre">is_finalizing()</span></code></a></li>
-<li><a class="reference internal" href="#sys.last_exc"><code class="docutils literal notranslate"><span class="pre">last_exc</span></code></a></li>
-<li><a class="reference internal" href="#sys.last_type"><code class="docutils literal notranslate"><span class="pre">last_type</span></code></a></li>
-<li><a class="reference internal" href="#sys.last_value"><code class="docutils literal notranslate"><span class="pre">last_value</span></code></a></li>
-<li><a class="reference internal" href="#sys.last_traceback"><code class="docutils literal notranslate"><span class="pre">last_traceback</span></code></a></li>
-<li><a class="reference internal" href="#sys.maxsize"><code class="docutils literal notranslate"><span class="pre">maxsize</span></code></a></li>
-<li><a class="reference internal" href="#sys.maxunicode"><code class="docutils literal notranslate"><span class="pre">maxunicode</span></code></a></li>
-<li><a class="reference internal" href="#sys.meta_path"><code class="docutils literal notranslate"><span class="pre">meta_path</span></code></a></li>
-<li><a class="reference internal" href="#sys.modules"><code class="docutils literal notranslate"><span class="pre">modules</span></code></a></li>
-<li><a class="reference internal" href="#sys.orig_argv"><code class="docutils literal notranslate"><span class="pre">orig_argv</span></code></a></li>
-<li><a class="reference internal" href="#sys.path"><code class="docutils literal notranslate"><span class="pre">path</span></code></a></li>
-<li><a class="reference internal" href="#sys.path_hooks"><code class="docutils literal notranslate"><span class="pre">path_hooks</span></code></a></li>
-<li><a class="reference internal" href="#sys.path_importer_cache"><code class="docutils literal notranslate"><span class="pre">path_importer_cache</span></code></a></li>
-<li><a class="reference internal" href="#sys.platform"><code class="docutils literal notranslate"><span class="pre">platform</span></code></a></li>
-<li><a class="reference internal" href="#sys.platlibdir"><code class="docutils literal notranslate"><span class="pre">platlibdir</span></code></a></li>
-<li><a class="reference internal" href="#sys.prefix"><code class="docutils literal notranslate"><span class="pre">prefix</span></code></a></li>
-<li><a class="reference internal" href="#sys.ps1"><code class="docutils literal notranslate"><span class="pre">ps1</span></code></a></li>
-<li><a class="reference internal" href="#sys.ps2"><code class="docutils literal notranslate"><span class="pre">ps2</span></code></a></li>
-<li><a class="reference internal" href="#sys.setdlopenflags"><code class="docutils literal notranslate"><span class="pre">setdlopenflags()</span></code></a></li>
-<li><a class="reference internal" href="#sys.set_int_max_str_digits"><code class="docutils literal notranslate"><span class="pre">set_int_max_str_digits()</span></code></a></li>
-<li><a class="reference internal" href="#sys.setprofile"><code class="docutils literal notranslate"><span class="pre">setprofile()</span></code></a></li>
-<li><a class="reference internal" href="#sys.setrecursionlimit"><code class="docutils literal notranslate"><span class="pre">setrecursionlimit()</span></code></a></li>
-<li><a class="reference internal" href="#sys.setswitchinterval"><code class="docutils literal notranslate"><span class="pre">setswitchinterval()</span></code></a></li>
-<li><a class="reference internal" href="#sys.settrace"><code class="docutils literal notranslate"><span class="pre">settrace()</span></code></a></li>
-<li><a class="reference internal" href="#sys.set_asyncgen_hooks"><code class="docutils literal notranslate"><span class="pre">set_asyncgen_hooks()</span></code></a></li>
-<li><a class="reference internal" href="#sys.set_coroutine_origin_tracking_depth"><code class="docutils literal notranslate"><span class="pre">set_coroutine_origin_tracking_depth()</span></code></a></li>
-<li><a class="reference internal" href="#sys.activate_stack_trampoline"><code class="docutils literal notranslate"><span class="pre">activate_stack_trampoline()</span></code></a></li>
-<li><a class="reference internal" href="#sys.deactivate_stack_trampoline"><code class="docutils literal notranslate"><span class="pre">deactivate_stack_trampoline()</span></code></a></li>
-<li><a class="reference internal" href="#sys.is_stack_trampoline_active"><code class="docutils literal notranslate"><span class="pre">is_stack_trampoline_active()</span></code></a></li>
-<li><a class="reference internal" href="#sys._enablelegacywindowsfsencoding"><code class="docutils literal notranslate"><span class="pre">_enablelegacywindowsfsencoding()</span></code></a></li>
-<li><a class="reference internal" href="#sys.stdin"><code class="docutils literal notranslate"><span class="pre">stdin</span></code></a></li>
-<li><a class="reference internal" href="#sys.stdout"><code class="docutils literal notranslate"><span class="pre">stdout</span></code></a></li>
-<li><a class="reference internal" href="#sys.stderr"><code class="docutils literal notranslate"><span class="pre">stderr</span></code></a></li>
-<li><a class="reference internal" href="#sys.__stdin__"><code class="docutils literal notranslate"><span class="pre">__stdin__</span></code></a></li>
-<li><a class="reference internal" href="#sys.__stdout__"><code class="docutils literal notranslate"><span class="pre">__stdout__</span></code></a></li>
-<li><a class="reference internal" href="#sys.__stderr__"><code class="docutils literal notranslate"><span class="pre">__stderr__</span></code></a></li>
-<li><a class="reference internal" href="#sys.stdlib_module_names"><code class="docutils literal notranslate"><span class="pre">stdlib_module_names</span></code></a></li>
-<li><a class="reference internal" href="#sys.thread_info"><code class="docutils literal notranslate"><span class="pre">thread_info</span></code></a></li>
-<li><a class="reference internal" href="#sys.tracebacklimit"><code class="docutils literal notranslate"><span class="pre">tracebacklimit</span></code></a></li>
-<li><a class="reference internal" href="#sys.unraisablehook"><code class="docutils literal notranslate"><span class="pre">unraisablehook()</span></code></a></li>
-<li><a class="reference internal" href="#sys.version"><code class="docutils literal notranslate"><span class="pre">version</span></code></a></li>
-<li><a class="reference internal" href="#sys.api_version"><code class="docutils literal notranslate"><span class="pre">api_version</span></code></a></li>
-<li><a class="reference internal" href="#sys.version_info"><code class="docutils literal notranslate"><span class="pre">version_info</span></code></a></li>
-<li><a class="reference internal" href="#sys.warnoptions"><code class="docutils literal notranslate"><span class="pre">warnoptions</span></code></a></li>
-<li><a class="reference internal" href="#sys.winver"><code class="docutils literal notranslate"><span class="pre">winver</span></code></a></li>
-<li><a class="reference internal" href="#sys._xoptions"><code class="docutils literal notranslate"><span class="pre">_xoptions</span></code></a></li>
-</ul>
-</li>
-</ul>
-
-  </div>
-  <div>
-    <h4>上個主題</h4>
-    <p class="topless"><a href="python.html"
-                          title="上一章">Python Runtime Services</a></p>
-  </div>
-  <div>
-    <h4>下個主題</h4>
-    <p class="topless"><a href="sysconfig.html"
-                          title="下一章"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sysconfig</span></code> --- Provide access to Python's configuration information</a></p>
-  </div>
-  <div role="note" aria-label="source link">
-    <h3>此頁面</h3>
-    <ul class="this-page-menu">
-      <li><a href="../bugs.html">回報錯誤</a></li>
-      <li>
-        <a href="https://github.com/python/cpython/blob/main/Doc/library/sys.rst"
-            rel="nofollow">顯示原始碼
-        </a>
-      </li>
-    </ul>
-  </div>
-        </nav>
-    </div>
-</div>
-
+  </head><body>
   
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>瀏覽</h3>
@@ -278,6 +107,7 @@
     </div>    
 
     <div class="document">
+
       <div class="documentwrapper">
         <div class="bodywrapper">
           <div class="body" role="main">
@@ -2350,6 +2180,177 @@ means, or not at all.</p>
           </div>
         </div>
       </div>
+<div class="mobile-nav">
+    <input type="checkbox" id="menuToggler" class="toggler__input" aria-controls="navigation"
+           aria-pressed="false" aria-expanded="false" role="button" aria-label="Menu" />
+    <nav class="nav-content" role="navigation">
+        <label for="menuToggler" class="toggler__label">
+            <span></span>
+        </label>
+        <span class="nav-items-wrapper">
+            <a href="https://www.python.org/" class="nav-logo">
+                <img src="../_static/py.svg" alt="Logo"/>
+            </a>
+            <span class="version_switcher_placeholder"></span>
+            <form role="search" class="search" action="../search.html" method="get">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" class="search-icon">
+                    <path fill-rule="nonzero" fill="currentColor" d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 001.48-5.34c-.47-2.78-2.79-5-5.59-5.34a6.505 6.505 0 00-7.27 7.27c.34 2.8 2.56 5.12 5.34 5.59a6.5 6.5 0 005.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0 .41-.41.41-1.08 0-1.49L15.5 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
+                </svg>
+                <input placeholder="快速搜尋" aria-label="快速搜尋" type="search" name="q" />
+                <input type="submit" value="前往"/>
+            </form>
+        </span>
+    </nav>
+    <div class="menu-wrapper">
+        <nav class="menu" role="navigation" aria-label="main navigation">
+            <div class="language_switcher_placeholder"></div>
+            
+<label class="theme-selector-label">
+    Theme
+    <select class="theme-selector" oninput="activateTheme(this.value)">
+        <option value="auto" selected>Auto</option>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+    </select>
+</label>
+  <div>
+    <h3><a href="../contents.html">目錄</a></h3>
+    <ul>
+<li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sys</span></code> --- 系統特定的參數與函式</a><ul>
+<li><a class="reference internal" href="#sys.abiflags"><code class="docutils literal notranslate"><span class="pre">abiflags</span></code></a></li>
+<li><a class="reference internal" href="#sys.addaudithook"><code class="docutils literal notranslate"><span class="pre">addaudithook()</span></code></a></li>
+<li><a class="reference internal" href="#sys.argv"><code class="docutils literal notranslate"><span class="pre">argv</span></code></a></li>
+<li><a class="reference internal" href="#sys.audit"><code class="docutils literal notranslate"><span class="pre">audit()</span></code></a></li>
+<li><a class="reference internal" href="#sys.base_exec_prefix"><code class="docutils literal notranslate"><span class="pre">base_exec_prefix</span></code></a></li>
+<li><a class="reference internal" href="#sys.base_prefix"><code class="docutils literal notranslate"><span class="pre">base_prefix</span></code></a></li>
+<li><a class="reference internal" href="#sys.byteorder"><code class="docutils literal notranslate"><span class="pre">byteorder</span></code></a></li>
+<li><a class="reference internal" href="#sys.builtin_module_names"><code class="docutils literal notranslate"><span class="pre">builtin_module_names</span></code></a></li>
+<li><a class="reference internal" href="#sys.call_tracing"><code class="docutils literal notranslate"><span class="pre">call_tracing()</span></code></a></li>
+<li><a class="reference internal" href="#sys.copyright"><code class="docutils literal notranslate"><span class="pre">copyright</span></code></a></li>
+<li><a class="reference internal" href="#sys._clear_type_cache"><code class="docutils literal notranslate"><span class="pre">_clear_type_cache()</span></code></a></li>
+<li><a class="reference internal" href="#sys._current_frames"><code class="docutils literal notranslate"><span class="pre">_current_frames()</span></code></a></li>
+<li><a class="reference internal" href="#sys._current_exceptions"><code class="docutils literal notranslate"><span class="pre">_current_exceptions()</span></code></a></li>
+<li><a class="reference internal" href="#sys.breakpointhook"><code class="docutils literal notranslate"><span class="pre">breakpointhook()</span></code></a></li>
+<li><a class="reference internal" href="#sys._debugmallocstats"><code class="docutils literal notranslate"><span class="pre">_debugmallocstats()</span></code></a></li>
+<li><a class="reference internal" href="#sys.dllhandle"><code class="docutils literal notranslate"><span class="pre">dllhandle</span></code></a></li>
+<li><a class="reference internal" href="#sys.displayhook"><code class="docutils literal notranslate"><span class="pre">displayhook()</span></code></a></li>
+<li><a class="reference internal" href="#sys.dont_write_bytecode"><code class="docutils literal notranslate"><span class="pre">dont_write_bytecode</span></code></a></li>
+<li><a class="reference internal" href="#sys._emscripten_info"><code class="docutils literal notranslate"><span class="pre">_emscripten_info</span></code></a></li>
+<li><a class="reference internal" href="#sys.pycache_prefix"><code class="docutils literal notranslate"><span class="pre">pycache_prefix</span></code></a></li>
+<li><a class="reference internal" href="#sys.excepthook"><code class="docutils literal notranslate"><span class="pre">excepthook()</span></code></a></li>
+<li><a class="reference internal" href="#sys.__breakpointhook__"><code class="docutils literal notranslate"><span class="pre">__breakpointhook__</span></code></a></li>
+<li><a class="reference internal" href="#sys.__displayhook__"><code class="docutils literal notranslate"><span class="pre">__displayhook__</span></code></a></li>
+<li><a class="reference internal" href="#sys.__excepthook__"><code class="docutils literal notranslate"><span class="pre">__excepthook__</span></code></a></li>
+<li><a class="reference internal" href="#sys.__unraisablehook__"><code class="docutils literal notranslate"><span class="pre">__unraisablehook__</span></code></a></li>
+<li><a class="reference internal" href="#sys.exception"><code class="docutils literal notranslate"><span class="pre">exception()</span></code></a></li>
+<li><a class="reference internal" href="#sys.exc_info"><code class="docutils literal notranslate"><span class="pre">exc_info()</span></code></a></li>
+<li><a class="reference internal" href="#sys.exec_prefix"><code class="docutils literal notranslate"><span class="pre">exec_prefix</span></code></a></li>
+<li><a class="reference internal" href="#sys.executable"><code class="docutils literal notranslate"><span class="pre">executable</span></code></a></li>
+<li><a class="reference internal" href="#sys.exit"><code class="docutils literal notranslate"><span class="pre">exit()</span></code></a></li>
+<li><a class="reference internal" href="#sys.flags"><code class="docutils literal notranslate"><span class="pre">flags</span></code></a></li>
+<li><a class="reference internal" href="#sys.float_info"><code class="docutils literal notranslate"><span class="pre">float_info</span></code></a></li>
+<li><a class="reference internal" href="#sys.float_repr_style"><code class="docutils literal notranslate"><span class="pre">float_repr_style</span></code></a></li>
+<li><a class="reference internal" href="#sys.getallocatedblocks"><code class="docutils literal notranslate"><span class="pre">getallocatedblocks()</span></code></a></li>
+<li><a class="reference internal" href="#sys.getunicodeinternedsize"><code class="docutils literal notranslate"><span class="pre">getunicodeinternedsize()</span></code></a></li>
+<li><a class="reference internal" href="#sys.getandroidapilevel"><code class="docutils literal notranslate"><span class="pre">getandroidapilevel()</span></code></a></li>
+<li><a class="reference internal" href="#sys.getdefaultencoding"><code class="docutils literal notranslate"><span class="pre">getdefaultencoding()</span></code></a></li>
+<li><a class="reference internal" href="#sys.getdlopenflags"><code class="docutils literal notranslate"><span class="pre">getdlopenflags()</span></code></a></li>
+<li><a class="reference internal" href="#sys.getfilesystemencoding"><code class="docutils literal notranslate"><span class="pre">getfilesystemencoding()</span></code></a></li>
+<li><a class="reference internal" href="#sys.getfilesystemencodeerrors"><code class="docutils literal notranslate"><span class="pre">getfilesystemencodeerrors()</span></code></a></li>
+<li><a class="reference internal" href="#sys.get_int_max_str_digits"><code class="docutils literal notranslate"><span class="pre">get_int_max_str_digits()</span></code></a></li>
+<li><a class="reference internal" href="#sys.getrefcount"><code class="docutils literal notranslate"><span class="pre">getrefcount()</span></code></a></li>
+<li><a class="reference internal" href="#sys.getrecursionlimit"><code class="docutils literal notranslate"><span class="pre">getrecursionlimit()</span></code></a></li>
+<li><a class="reference internal" href="#sys.getsizeof"><code class="docutils literal notranslate"><span class="pre">getsizeof()</span></code></a></li>
+<li><a class="reference internal" href="#sys.getswitchinterval"><code class="docutils literal notranslate"><span class="pre">getswitchinterval()</span></code></a></li>
+<li><a class="reference internal" href="#sys._getframe"><code class="docutils literal notranslate"><span class="pre">_getframe()</span></code></a></li>
+<li><a class="reference internal" href="#sys._getframemodulename"><code class="docutils literal notranslate"><span class="pre">_getframemodulename()</span></code></a></li>
+<li><a class="reference internal" href="#sys.getprofile"><code class="docutils literal notranslate"><span class="pre">getprofile()</span></code></a></li>
+<li><a class="reference internal" href="#sys.gettrace"><code class="docutils literal notranslate"><span class="pre">gettrace()</span></code></a></li>
+<li><a class="reference internal" href="#sys.getwindowsversion"><code class="docutils literal notranslate"><span class="pre">getwindowsversion()</span></code></a></li>
+<li><a class="reference internal" href="#sys.get_asyncgen_hooks"><code class="docutils literal notranslate"><span class="pre">get_asyncgen_hooks()</span></code></a></li>
+<li><a class="reference internal" href="#sys.get_coroutine_origin_tracking_depth"><code class="docutils literal notranslate"><span class="pre">get_coroutine_origin_tracking_depth()</span></code></a></li>
+<li><a class="reference internal" href="#sys.hash_info"><code class="docutils literal notranslate"><span class="pre">hash_info</span></code></a></li>
+<li><a class="reference internal" href="#sys.hexversion"><code class="docutils literal notranslate"><span class="pre">hexversion</span></code></a></li>
+<li><a class="reference internal" href="#sys.implementation"><code class="docutils literal notranslate"><span class="pre">implementation</span></code></a></li>
+<li><a class="reference internal" href="#sys.int_info"><code class="docutils literal notranslate"><span class="pre">int_info</span></code></a></li>
+<li><a class="reference internal" href="#sys.__interactivehook__"><code class="docutils literal notranslate"><span class="pre">__interactivehook__</span></code></a></li>
+<li><a class="reference internal" href="#sys.intern"><code class="docutils literal notranslate"><span class="pre">intern()</span></code></a></li>
+<li><a class="reference internal" href="#sys.is_finalizing"><code class="docutils literal notranslate"><span class="pre">is_finalizing()</span></code></a></li>
+<li><a class="reference internal" href="#sys.last_exc"><code class="docutils literal notranslate"><span class="pre">last_exc</span></code></a></li>
+<li><a class="reference internal" href="#sys.last_type"><code class="docutils literal notranslate"><span class="pre">last_type</span></code></a></li>
+<li><a class="reference internal" href="#sys.last_value"><code class="docutils literal notranslate"><span class="pre">last_value</span></code></a></li>
+<li><a class="reference internal" href="#sys.last_traceback"><code class="docutils literal notranslate"><span class="pre">last_traceback</span></code></a></li>
+<li><a class="reference internal" href="#sys.maxsize"><code class="docutils literal notranslate"><span class="pre">maxsize</span></code></a></li>
+<li><a class="reference internal" href="#sys.maxunicode"><code class="docutils literal notranslate"><span class="pre">maxunicode</span></code></a></li>
+<li><a class="reference internal" href="#sys.meta_path"><code class="docutils literal notranslate"><span class="pre">meta_path</span></code></a></li>
+<li><a class="reference internal" href="#sys.modules"><code class="docutils literal notranslate"><span class="pre">modules</span></code></a></li>
+<li><a class="reference internal" href="#sys.orig_argv"><code class="docutils literal notranslate"><span class="pre">orig_argv</span></code></a></li>
+<li><a class="reference internal" href="#sys.path"><code class="docutils literal notranslate"><span class="pre">path</span></code></a></li>
+<li><a class="reference internal" href="#sys.path_hooks"><code class="docutils literal notranslate"><span class="pre">path_hooks</span></code></a></li>
+<li><a class="reference internal" href="#sys.path_importer_cache"><code class="docutils literal notranslate"><span class="pre">path_importer_cache</span></code></a></li>
+<li><a class="reference internal" href="#sys.platform"><code class="docutils literal notranslate"><span class="pre">platform</span></code></a></li>
+<li><a class="reference internal" href="#sys.platlibdir"><code class="docutils literal notranslate"><span class="pre">platlibdir</span></code></a></li>
+<li><a class="reference internal" href="#sys.prefix"><code class="docutils literal notranslate"><span class="pre">prefix</span></code></a></li>
+<li><a class="reference internal" href="#sys.ps1"><code class="docutils literal notranslate"><span class="pre">ps1</span></code></a></li>
+<li><a class="reference internal" href="#sys.ps2"><code class="docutils literal notranslate"><span class="pre">ps2</span></code></a></li>
+<li><a class="reference internal" href="#sys.setdlopenflags"><code class="docutils literal notranslate"><span class="pre">setdlopenflags()</span></code></a></li>
+<li><a class="reference internal" href="#sys.set_int_max_str_digits"><code class="docutils literal notranslate"><span class="pre">set_int_max_str_digits()</span></code></a></li>
+<li><a class="reference internal" href="#sys.setprofile"><code class="docutils literal notranslate"><span class="pre">setprofile()</span></code></a></li>
+<li><a class="reference internal" href="#sys.setrecursionlimit"><code class="docutils literal notranslate"><span class="pre">setrecursionlimit()</span></code></a></li>
+<li><a class="reference internal" href="#sys.setswitchinterval"><code class="docutils literal notranslate"><span class="pre">setswitchinterval()</span></code></a></li>
+<li><a class="reference internal" href="#sys.settrace"><code class="docutils literal notranslate"><span class="pre">settrace()</span></code></a></li>
+<li><a class="reference internal" href="#sys.set_asyncgen_hooks"><code class="docutils literal notranslate"><span class="pre">set_asyncgen_hooks()</span></code></a></li>
+<li><a class="reference internal" href="#sys.set_coroutine_origin_tracking_depth"><code class="docutils literal notranslate"><span class="pre">set_coroutine_origin_tracking_depth()</span></code></a></li>
+<li><a class="reference internal" href="#sys.activate_stack_trampoline"><code class="docutils literal notranslate"><span class="pre">activate_stack_trampoline()</span></code></a></li>
+<li><a class="reference internal" href="#sys.deactivate_stack_trampoline"><code class="docutils literal notranslate"><span class="pre">deactivate_stack_trampoline()</span></code></a></li>
+<li><a class="reference internal" href="#sys.is_stack_trampoline_active"><code class="docutils literal notranslate"><span class="pre">is_stack_trampoline_active()</span></code></a></li>
+<li><a class="reference internal" href="#sys._enablelegacywindowsfsencoding"><code class="docutils literal notranslate"><span class="pre">_enablelegacywindowsfsencoding()</span></code></a></li>
+<li><a class="reference internal" href="#sys.stdin"><code class="docutils literal notranslate"><span class="pre">stdin</span></code></a></li>
+<li><a class="reference internal" href="#sys.stdout"><code class="docutils literal notranslate"><span class="pre">stdout</span></code></a></li>
+<li><a class="reference internal" href="#sys.stderr"><code class="docutils literal notranslate"><span class="pre">stderr</span></code></a></li>
+<li><a class="reference internal" href="#sys.__stdin__"><code class="docutils literal notranslate"><span class="pre">__stdin__</span></code></a></li>
+<li><a class="reference internal" href="#sys.__stdout__"><code class="docutils literal notranslate"><span class="pre">__stdout__</span></code></a></li>
+<li><a class="reference internal" href="#sys.__stderr__"><code class="docutils literal notranslate"><span class="pre">__stderr__</span></code></a></li>
+<li><a class="reference internal" href="#sys.stdlib_module_names"><code class="docutils literal notranslate"><span class="pre">stdlib_module_names</span></code></a></li>
+<li><a class="reference internal" href="#sys.thread_info"><code class="docutils literal notranslate"><span class="pre">thread_info</span></code></a></li>
+<li><a class="reference internal" href="#sys.tracebacklimit"><code class="docutils literal notranslate"><span class="pre">tracebacklimit</span></code></a></li>
+<li><a class="reference internal" href="#sys.unraisablehook"><code class="docutils literal notranslate"><span class="pre">unraisablehook()</span></code></a></li>
+<li><a class="reference internal" href="#sys.version"><code class="docutils literal notranslate"><span class="pre">version</span></code></a></li>
+<li><a class="reference internal" href="#sys.api_version"><code class="docutils literal notranslate"><span class="pre">api_version</span></code></a></li>
+<li><a class="reference internal" href="#sys.version_info"><code class="docutils literal notranslate"><span class="pre">version_info</span></code></a></li>
+<li><a class="reference internal" href="#sys.warnoptions"><code class="docutils literal notranslate"><span class="pre">warnoptions</span></code></a></li>
+<li><a class="reference internal" href="#sys.winver"><code class="docutils literal notranslate"><span class="pre">winver</span></code></a></li>
+<li><a class="reference internal" href="#sys._xoptions"><code class="docutils literal notranslate"><span class="pre">_xoptions</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>上個主題</h4>
+    <p class="topless"><a href="python.html"
+                          title="上一章">Python Runtime Services</a></p>
+  </div>
+  <div>
+    <h4>下個主題</h4>
+    <p class="topless"><a href="sysconfig.html"
+                          title="下一章"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sysconfig</span></code> --- Provide access to Python's configuration information</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>此頁面</h3>
+    <ul class="this-page-menu">
+      <li><a href="../bugs.html">回報錯誤</a></li>
+      <li>
+        <a href="https://github.com/python/cpython/blob/main/Doc/library/sys.rst"
+            rel="nofollow">顯示原始碼
+        </a>
+      </li>
+    </ul>
+  </div>
+        </nav>
+    </div>
+</div>
+
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
   <div>
@@ -2564,11 +2565,11 @@ means, or not at all.</p>
 <br />
     <br />
 
-    最後更新於 7月 29, 2023。
+    最後更新於 8月 05, 2023。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 
-    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.1.1 建立。
+    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.1.2 建立。
     </div>
 
   </body>

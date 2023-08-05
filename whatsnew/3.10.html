@@ -5,10 +5,9 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Python 3.10 有什麼新功能 &#8212; Python 3.12.0b4 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+    <title>Python 3.10 有什麼新功能 &#8212; Python 3.12.0b4 說明文件</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=92fd9be5" />
-    <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?digest=845a48175c3935ba0d7ff16b8ed0072d62fd099f" />
+    <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?v=aa5eeaf2" />
     <link id="pygments_dark_css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css" href="../_static/pygments_dark.css?v=e15ddae3" />
     
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=ee8be3a1"></script>
@@ -27,7 +26,9 @@
     <link rel="copyright" title="版權" href="../copyright.html" />
     <link rel="next" title="Python 3.9 有什麼新功能" href="3.9.html" />
     <link rel="prev" title="Python 3.11 有什麼新功能" href="3.11.html" />
-    <script defer data-domain="docs.python.org" src="https://plausible.io/js/script.js"></script>
+    
+      <script defer data-domain="docs.python.org" src="https://plausible.io/js/script.js"></script>
+    
     <link rel="canonical" href="https://docs.python.org/3/whatsnew/3.10.html" />
     
       
@@ -47,192 +48,7 @@
             <script type="text/javascript" src="../_static/menu.js"></script>
             <script type="text/javascript" src="../_static/themetoggle.js"></script> 
 
-  </head>
-<body>
-<div class="mobile-nav">
-    <input type="checkbox" id="menuToggler" class="toggler__input" aria-controls="navigation"
-           aria-pressed="false" aria-expanded="false" role="button" aria-label="Menu" />
-    <nav class="nav-content" role="navigation">
-        <label for="menuToggler" class="toggler__label">
-            <span></span>
-        </label>
-        <span class="nav-items-wrapper">
-            <a href="https://www.python.org/" class="nav-logo">
-                <img src="../_static/py.svg" alt="Logo"/>
-            </a>
-            <span class="version_switcher_placeholder"></span>
-            <form role="search" class="search" action="../search.html" method="get">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" class="search-icon">
-                    <path fill-rule="nonzero" fill="currentColor" d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 001.48-5.34c-.47-2.78-2.79-5-5.59-5.34a6.505 6.505 0 00-7.27 7.27c.34 2.8 2.56 5.12 5.34 5.59a6.5 6.5 0 005.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0 .41-.41.41-1.08 0-1.49L15.5 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
-                </svg>
-                <input placeholder="快速搜尋" aria-label="快速搜尋" type="search" name="q" />
-                <input type="submit" value="前往"/>
-            </form>
-        </span>
-    </nav>
-    <div class="menu-wrapper">
-        <nav class="menu" role="navigation" aria-label="main navigation">
-            <div class="language_switcher_placeholder"></div>
-            
-<label class="theme-selector-label">
-    Theme
-    <select class="theme-selector" oninput="activateTheme(this.value)">
-        <option value="auto" selected>Auto</option>
-        <option value="light">Light</option>
-        <option value="dark">Dark</option>
-    </select>
-</label>
-  <div>
-    <h3><a href="../contents.html">目錄</a></h3>
-    <ul>
-<li><a class="reference internal" href="#">Python 3.10 有什麼新功能</a><ul>
-<li><a class="reference internal" href="#summary-release-highlights">摘要 -- 發布重點</a></li>
-<li><a class="reference internal" href="#new-features">新功能</a><ul>
-<li><a class="reference internal" href="#parenthesized-context-managers">帶括號的情境管理器</a></li>
-<li><a class="reference internal" href="#better-error-messages">更好的錯誤訊息</a><ul>
-<li><a class="reference internal" href="#syntaxerrors">SyntaxErrors</a></li>
-<li><a class="reference internal" href="#indentationerrors">IndentationErrors</a></li>
-<li><a class="reference internal" href="#attributeerrors">AttributeErrors</a></li>
-<li><a class="reference internal" href="#nameerrors">NameErrors</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#pep-626-precise-line-numbers-for-debugging-and-other-tools">PEP 626：用於除錯和其他工具的精確列號</a></li>
-<li><a class="reference internal" href="#pep-634-structural-pattern-matching">PEP 634：結構模式匹配</a><ul>
-<li><a class="reference internal" href="#syntax-and-operations">語法和操作</a></li>
-<li><a class="reference internal" href="#declarative-approach">宣告式方法 (Declarative approach)</a></li>
-<li><a class="reference internal" href="#simple-pattern-match-to-a-literal">簡單模式：與字面值匹配</a><ul>
-<li><a class="reference internal" href="#behavior-without-the-wildcard">沒有萬用字元 (wildcard) 的行為</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#patterns-with-a-literal-and-variable">具有字面值和變數的模式</a></li>
-<li><a class="reference internal" href="#patterns-and-classes">模式和類別</a><ul>
-<li><a class="reference internal" href="#patterns-with-positional-parameters">具有位置參數的模式</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#nested-patterns">巢狀模式</a></li>
-<li><a class="reference internal" href="#complex-patterns-and-the-wildcard">複雜模式和萬用字元</a></li>
-<li><a class="reference internal" href="#guard">Guard</a></li>
-<li><a class="reference internal" href="#other-key-features">其他主要功能</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#optional-encodingwarning-and-encoding-locale-option">可選的 <code class="docutils literal notranslate"><span class="pre">EncodingWarning</span></code> 和 <code class="docutils literal notranslate"><span class="pre">encoding=&quot;locale&quot;</span></code> 選項</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#new-features-related-to-type-hints">與型別提示相關的新功能</a><ul>
-<li><a class="reference internal" href="#pep-604-new-type-union-operator">PEP 604：新型聯集運算子</a></li>
-<li><a class="reference internal" href="#pep-612-parameter-specification-variables">PEP 612：參數規範變數</a></li>
-<li><a class="reference internal" href="#pep-613-typealias">PEP 613：型別別名 (TypeAlias)</a></li>
-<li><a class="reference internal" href="#pep-647-user-defined-type-guards">PEP 647：使用者定義的型別防護</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#other-language-changes">其他語言更動</a></li>
-<li><a class="reference internal" href="#new-modules">新模組</a></li>
-<li><a class="reference internal" href="#improved-modules">改進的模組</a><ul>
-<li><a class="reference internal" href="#asyncio">asyncio</a></li>
-<li><a class="reference internal" href="#argparse">argparse</a></li>
-<li><a class="reference internal" href="#array">array</a></li>
-<li><a class="reference internal" href="#asynchat-asyncore-smtpd">asynchat, asyncore, smtpd</a></li>
-<li><a class="reference internal" href="#base64">base64</a></li>
-<li><a class="reference internal" href="#bdb">bdb</a></li>
-<li><a class="reference internal" href="#bisect">bisect</a></li>
-<li><a class="reference internal" href="#codecs">codecs</a></li>
-<li><a class="reference internal" href="#collections-abc">collections.abc</a></li>
-<li><a class="reference internal" href="#contextlib">contextlib</a></li>
-<li><a class="reference internal" href="#curses">curses</a></li>
-<li><a class="reference internal" href="#dataclasses">dataclasses</a><ul>
-<li><a class="reference internal" href="#slots">__slots__</a></li>
-<li><a class="reference internal" href="#keyword-only-fields">僅限關鍵字欄位 (Keyword-only fields)</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#distutils">distutils</a></li>
-<li><a class="reference internal" href="#doctest">doctest</a></li>
-<li><a class="reference internal" href="#encodings">encodings</a></li>
-<li><a class="reference internal" href="#enum">enum</a></li>
-<li><a class="reference internal" href="#fileinput">fileinput</a></li>
-<li><a class="reference internal" href="#faulthandler">faulthandler</a></li>
-<li><a class="reference internal" href="#gc">gc</a></li>
-<li><a class="reference internal" href="#glob">glob</a></li>
-<li><a class="reference internal" href="#hashlib">hashlib</a></li>
-<li><a class="reference internal" href="#hmac">hmac</a></li>
-<li><a class="reference internal" href="#idle-and-idlelib">IDLE 和 idlelib</a></li>
-<li><a class="reference internal" href="#importlib-metadata">importlib.metadata</a></li>
-<li><a class="reference internal" href="#inspect">inspect</a></li>
-<li><a class="reference internal" href="#itertools">itertools</a></li>
-<li><a class="reference internal" href="#linecache">linecache</a></li>
-<li><a class="reference internal" href="#os">os</a></li>
-<li><a class="reference internal" href="#os-path">os.path</a></li>
-<li><a class="reference internal" href="#pathlib">pathlib</a></li>
-<li><a class="reference internal" href="#platform">platform</a></li>
-<li><a class="reference internal" href="#pprint">pprint</a></li>
-<li><a class="reference internal" href="#py-compile">py_compile</a></li>
-<li><a class="reference internal" href="#pyclbr">pyclbr</a></li>
-<li><a class="reference internal" href="#shelve">shelve</a></li>
-<li><a class="reference internal" href="#statistics">statistics</a></li>
-<li><a class="reference internal" href="#site">site</a></li>
-<li><a class="reference internal" href="#socket">socket</a></li>
-<li><a class="reference internal" href="#ssl">ssl</a></li>
-<li><a class="reference internal" href="#sqlite3">sqlite3</a></li>
-<li><a class="reference internal" href="#sys">sys</a></li>
-<li><a class="reference internal" href="#thread">_thread</a></li>
-<li><a class="reference internal" href="#threading">threading</a></li>
-<li><a class="reference internal" href="#traceback">traceback</a></li>
-<li><a class="reference internal" href="#types">types</a></li>
-<li><a class="reference internal" href="#typing">typing</a></li>
-<li><a class="reference internal" href="#unittest">unittest</a></li>
-<li><a class="reference internal" href="#urllib-parse">urllib.parse</a></li>
-<li><a class="reference internal" href="#xml">xml</a></li>
-<li><a class="reference internal" href="#zipimport">zipimport</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#optimizations">最佳化</a></li>
-<li><a class="reference internal" href="#deprecated">已棄用</a></li>
-<li><a class="reference internal" href="#removed">已刪除</a></li>
-<li><a class="reference internal" href="#porting-to-python-3-10">移植到 Python 3.10</a><ul>
-<li><a class="reference internal" href="#changes-in-the-python-syntax">Python 語法的變化</a></li>
-<li><a class="reference internal" href="#changes-in-the-python-api">Python API 的變化</a></li>
-<li><a class="reference internal" href="#changes-in-the-c-api">C API 中的改動</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#cpython-bytecode-changes">CPython 位元組碼更改</a></li>
-<li><a class="reference internal" href="#build-changes">建置變更</a></li>
-<li><a class="reference internal" href="#c-api-changes">C API 變更</a><ul>
-<li><a class="reference internal" href="#pep-652-maintaining-the-stable-abi">PEP 652：維護穩定 ABI</a></li>
-<li><a class="reference internal" href="#id1">新功能</a></li>
-<li><a class="reference internal" href="#id2">移植到 Python 3.10</a></li>
-<li><a class="reference internal" href="#id3">已棄用</a></li>
-<li><a class="reference internal" href="#id4">已刪除</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-
-  </div>
-  <div>
-    <h4>上個主題</h4>
-    <p class="topless"><a href="3.11.html"
-                          title="上一章">Python 3.11 有什麼新功能</a></p>
-  </div>
-  <div>
-    <h4>下個主題</h4>
-    <p class="topless"><a href="3.9.html"
-                          title="下一章">Python 3.9 有什麼新功能</a></p>
-  </div>
-  <div role="note" aria-label="source link">
-    <h3>此頁面</h3>
-    <ul class="this-page-menu">
-      <li><a href="../bugs.html">回報錯誤</a></li>
-      <li>
-        <a href="https://github.com/python/cpython/blob/main/Doc/whatsnew/3.10.rst"
-            rel="nofollow">顯示原始碼
-        </a>
-      </li>
-    </ul>
-  </div>
-        </nav>
-    </div>
-</div>
-
+  </head><body>
   
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>瀏覽</h3>
@@ -290,6 +106,7 @@
     </div>    
 
     <div class="document">
+
       <div class="documentwrapper">
         <div class="bodywrapper">
           <div class="body" role="main">
@@ -1499,6 +1316,190 @@ this transition.</p></li>
           </div>
         </div>
       </div>
+<div class="mobile-nav">
+    <input type="checkbox" id="menuToggler" class="toggler__input" aria-controls="navigation"
+           aria-pressed="false" aria-expanded="false" role="button" aria-label="Menu" />
+    <nav class="nav-content" role="navigation">
+        <label for="menuToggler" class="toggler__label">
+            <span></span>
+        </label>
+        <span class="nav-items-wrapper">
+            <a href="https://www.python.org/" class="nav-logo">
+                <img src="../_static/py.svg" alt="Logo"/>
+            </a>
+            <span class="version_switcher_placeholder"></span>
+            <form role="search" class="search" action="../search.html" method="get">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" class="search-icon">
+                    <path fill-rule="nonzero" fill="currentColor" d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 001.48-5.34c-.47-2.78-2.79-5-5.59-5.34a6.505 6.505 0 00-7.27 7.27c.34 2.8 2.56 5.12 5.34 5.59a6.5 6.5 0 005.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0 .41-.41.41-1.08 0-1.49L15.5 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
+                </svg>
+                <input placeholder="快速搜尋" aria-label="快速搜尋" type="search" name="q" />
+                <input type="submit" value="前往"/>
+            </form>
+        </span>
+    </nav>
+    <div class="menu-wrapper">
+        <nav class="menu" role="navigation" aria-label="main navigation">
+            <div class="language_switcher_placeholder"></div>
+            
+<label class="theme-selector-label">
+    Theme
+    <select class="theme-selector" oninput="activateTheme(this.value)">
+        <option value="auto" selected>Auto</option>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+    </select>
+</label>
+  <div>
+    <h3><a href="../contents.html">目錄</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Python 3.10 有什麼新功能</a><ul>
+<li><a class="reference internal" href="#summary-release-highlights">摘要 -- 發布重點</a></li>
+<li><a class="reference internal" href="#new-features">新功能</a><ul>
+<li><a class="reference internal" href="#parenthesized-context-managers">帶括號的情境管理器</a></li>
+<li><a class="reference internal" href="#better-error-messages">更好的錯誤訊息</a><ul>
+<li><a class="reference internal" href="#syntaxerrors">SyntaxErrors</a></li>
+<li><a class="reference internal" href="#indentationerrors">IndentationErrors</a></li>
+<li><a class="reference internal" href="#attributeerrors">AttributeErrors</a></li>
+<li><a class="reference internal" href="#nameerrors">NameErrors</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#pep-626-precise-line-numbers-for-debugging-and-other-tools">PEP 626：用於除錯和其他工具的精確列號</a></li>
+<li><a class="reference internal" href="#pep-634-structural-pattern-matching">PEP 634：結構模式匹配</a><ul>
+<li><a class="reference internal" href="#syntax-and-operations">語法和操作</a></li>
+<li><a class="reference internal" href="#declarative-approach">宣告式方法 (Declarative approach)</a></li>
+<li><a class="reference internal" href="#simple-pattern-match-to-a-literal">簡單模式：與字面值匹配</a><ul>
+<li><a class="reference internal" href="#behavior-without-the-wildcard">沒有萬用字元 (wildcard) 的行為</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#patterns-with-a-literal-and-variable">具有字面值和變數的模式</a></li>
+<li><a class="reference internal" href="#patterns-and-classes">模式和類別</a><ul>
+<li><a class="reference internal" href="#patterns-with-positional-parameters">具有位置參數的模式</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#nested-patterns">巢狀模式</a></li>
+<li><a class="reference internal" href="#complex-patterns-and-the-wildcard">複雜模式和萬用字元</a></li>
+<li><a class="reference internal" href="#guard">Guard</a></li>
+<li><a class="reference internal" href="#other-key-features">其他主要功能</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#optional-encodingwarning-and-encoding-locale-option">可選的 <code class="docutils literal notranslate"><span class="pre">EncodingWarning</span></code> 和 <code class="docutils literal notranslate"><span class="pre">encoding=&quot;locale&quot;</span></code> 選項</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#new-features-related-to-type-hints">與型別提示相關的新功能</a><ul>
+<li><a class="reference internal" href="#pep-604-new-type-union-operator">PEP 604：新型聯集運算子</a></li>
+<li><a class="reference internal" href="#pep-612-parameter-specification-variables">PEP 612：參數規範變數</a></li>
+<li><a class="reference internal" href="#pep-613-typealias">PEP 613：型別別名 (TypeAlias)</a></li>
+<li><a class="reference internal" href="#pep-647-user-defined-type-guards">PEP 647：使用者定義的型別防護</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#other-language-changes">其他語言更動</a></li>
+<li><a class="reference internal" href="#new-modules">新模組</a></li>
+<li><a class="reference internal" href="#improved-modules">改進的模組</a><ul>
+<li><a class="reference internal" href="#asyncio">asyncio</a></li>
+<li><a class="reference internal" href="#argparse">argparse</a></li>
+<li><a class="reference internal" href="#array">array</a></li>
+<li><a class="reference internal" href="#asynchat-asyncore-smtpd">asynchat, asyncore, smtpd</a></li>
+<li><a class="reference internal" href="#base64">base64</a></li>
+<li><a class="reference internal" href="#bdb">bdb</a></li>
+<li><a class="reference internal" href="#bisect">bisect</a></li>
+<li><a class="reference internal" href="#codecs">codecs</a></li>
+<li><a class="reference internal" href="#collections-abc">collections.abc</a></li>
+<li><a class="reference internal" href="#contextlib">contextlib</a></li>
+<li><a class="reference internal" href="#curses">curses</a></li>
+<li><a class="reference internal" href="#dataclasses">dataclasses</a><ul>
+<li><a class="reference internal" href="#slots">__slots__</a></li>
+<li><a class="reference internal" href="#keyword-only-fields">僅限關鍵字欄位 (Keyword-only fields)</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#distutils">distutils</a></li>
+<li><a class="reference internal" href="#doctest">doctest</a></li>
+<li><a class="reference internal" href="#encodings">encodings</a></li>
+<li><a class="reference internal" href="#enum">enum</a></li>
+<li><a class="reference internal" href="#fileinput">fileinput</a></li>
+<li><a class="reference internal" href="#faulthandler">faulthandler</a></li>
+<li><a class="reference internal" href="#gc">gc</a></li>
+<li><a class="reference internal" href="#glob">glob</a></li>
+<li><a class="reference internal" href="#hashlib">hashlib</a></li>
+<li><a class="reference internal" href="#hmac">hmac</a></li>
+<li><a class="reference internal" href="#idle-and-idlelib">IDLE 和 idlelib</a></li>
+<li><a class="reference internal" href="#importlib-metadata">importlib.metadata</a></li>
+<li><a class="reference internal" href="#inspect">inspect</a></li>
+<li><a class="reference internal" href="#itertools">itertools</a></li>
+<li><a class="reference internal" href="#linecache">linecache</a></li>
+<li><a class="reference internal" href="#os">os</a></li>
+<li><a class="reference internal" href="#os-path">os.path</a></li>
+<li><a class="reference internal" href="#pathlib">pathlib</a></li>
+<li><a class="reference internal" href="#platform">platform</a></li>
+<li><a class="reference internal" href="#pprint">pprint</a></li>
+<li><a class="reference internal" href="#py-compile">py_compile</a></li>
+<li><a class="reference internal" href="#pyclbr">pyclbr</a></li>
+<li><a class="reference internal" href="#shelve">shelve</a></li>
+<li><a class="reference internal" href="#statistics">statistics</a></li>
+<li><a class="reference internal" href="#site">site</a></li>
+<li><a class="reference internal" href="#socket">socket</a></li>
+<li><a class="reference internal" href="#ssl">ssl</a></li>
+<li><a class="reference internal" href="#sqlite3">sqlite3</a></li>
+<li><a class="reference internal" href="#sys">sys</a></li>
+<li><a class="reference internal" href="#thread">_thread</a></li>
+<li><a class="reference internal" href="#threading">threading</a></li>
+<li><a class="reference internal" href="#traceback">traceback</a></li>
+<li><a class="reference internal" href="#types">types</a></li>
+<li><a class="reference internal" href="#typing">typing</a></li>
+<li><a class="reference internal" href="#unittest">unittest</a></li>
+<li><a class="reference internal" href="#urllib-parse">urllib.parse</a></li>
+<li><a class="reference internal" href="#xml">xml</a></li>
+<li><a class="reference internal" href="#zipimport">zipimport</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#optimizations">最佳化</a></li>
+<li><a class="reference internal" href="#deprecated">已棄用</a></li>
+<li><a class="reference internal" href="#removed">已刪除</a></li>
+<li><a class="reference internal" href="#porting-to-python-3-10">移植到 Python 3.10</a><ul>
+<li><a class="reference internal" href="#changes-in-the-python-syntax">Python 語法的變化</a></li>
+<li><a class="reference internal" href="#changes-in-the-python-api">Python API 的變化</a></li>
+<li><a class="reference internal" href="#changes-in-the-c-api">C API 中的改動</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#cpython-bytecode-changes">CPython 位元組碼更改</a></li>
+<li><a class="reference internal" href="#build-changes">建置變更</a></li>
+<li><a class="reference internal" href="#c-api-changes">C API 變更</a><ul>
+<li><a class="reference internal" href="#pep-652-maintaining-the-stable-abi">PEP 652：維護穩定 ABI</a></li>
+<li><a class="reference internal" href="#id1">新功能</a></li>
+<li><a class="reference internal" href="#id2">移植到 Python 3.10</a></li>
+<li><a class="reference internal" href="#id3">已棄用</a></li>
+<li><a class="reference internal" href="#id4">已刪除</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>上個主題</h4>
+    <p class="topless"><a href="3.11.html"
+                          title="上一章">Python 3.11 有什麼新功能</a></p>
+  </div>
+  <div>
+    <h4>下個主題</h4>
+    <p class="topless"><a href="3.9.html"
+                          title="下一章">Python 3.9 有什麼新功能</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>此頁面</h3>
+    <ul class="this-page-menu">
+      <li><a href="../bugs.html">回報錯誤</a></li>
+      <li>
+        <a href="https://github.com/python/cpython/blob/main/Doc/whatsnew/3.10.rst"
+            rel="nofollow">顯示原始碼
+        </a>
+      </li>
+    </ul>
+  </div>
+        </nav>
+    </div>
+</div>
+
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
   <div>
@@ -1725,11 +1726,11 @@ this transition.</p></li>
 <br />
     <br />
 
-    最後更新於 7月 29, 2023。
+    最後更新於 8月 05, 2023。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 
-    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.1.1 建立。
+    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.1.2 建立。
     </div>
 
   </body>

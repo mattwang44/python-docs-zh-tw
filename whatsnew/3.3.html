@@ -5,10 +5,9 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Python 3.3 有什麼新功能 &#8212; Python 3.12.0b4 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+    <title>Python 3.3 有什麼新功能 &#8212; Python 3.12.0b4 說明文件</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=92fd9be5" />
-    <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?digest=845a48175c3935ba0d7ff16b8ed0072d62fd099f" />
+    <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?v=aa5eeaf2" />
     <link id="pygments_dark_css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css" href="../_static/pygments_dark.css?v=e15ddae3" />
     
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=ee8be3a1"></script>
@@ -27,7 +26,9 @@
     <link rel="copyright" title="版權" href="../copyright.html" />
     <link rel="next" title="Python 3.2 有什麼新功能" href="3.2.html" />
     <link rel="prev" title="Python 3.4 有什麼新功能" href="3.4.html" />
-    <script defer data-domain="docs.python.org" src="https://plausible.io/js/script.js"></script>
+    
+      <script defer data-domain="docs.python.org" src="https://plausible.io/js/script.js"></script>
+    
     <link rel="canonical" href="https://docs.python.org/3/whatsnew/3.3.html" />
     
       
@@ -47,201 +48,7 @@
             <script type="text/javascript" src="../_static/menu.js"></script>
             <script type="text/javascript" src="../_static/themetoggle.js"></script> 
 
-  </head>
-<body>
-<div class="mobile-nav">
-    <input type="checkbox" id="menuToggler" class="toggler__input" aria-controls="navigation"
-           aria-pressed="false" aria-expanded="false" role="button" aria-label="Menu" />
-    <nav class="nav-content" role="navigation">
-        <label for="menuToggler" class="toggler__label">
-            <span></span>
-        </label>
-        <span class="nav-items-wrapper">
-            <a href="https://www.python.org/" class="nav-logo">
-                <img src="../_static/py.svg" alt="Logo"/>
-            </a>
-            <span class="version_switcher_placeholder"></span>
-            <form role="search" class="search" action="../search.html" method="get">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" class="search-icon">
-                    <path fill-rule="nonzero" fill="currentColor" d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 001.48-5.34c-.47-2.78-2.79-5-5.59-5.34a6.505 6.505 0 00-7.27 7.27c.34 2.8 2.56 5.12 5.34 5.59a6.5 6.5 0 005.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0 .41-.41.41-1.08 0-1.49L15.5 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
-                </svg>
-                <input placeholder="快速搜尋" aria-label="快速搜尋" type="search" name="q" />
-                <input type="submit" value="前往"/>
-            </form>
-        </span>
-    </nav>
-    <div class="menu-wrapper">
-        <nav class="menu" role="navigation" aria-label="main navigation">
-            <div class="language_switcher_placeholder"></div>
-            
-<label class="theme-selector-label">
-    Theme
-    <select class="theme-selector" oninput="activateTheme(this.value)">
-        <option value="auto" selected>Auto</option>
-        <option value="light">Light</option>
-        <option value="dark">Dark</option>
-    </select>
-</label>
-  <div>
-    <h3><a href="../contents.html">目錄</a></h3>
-    <ul>
-<li><a class="reference internal" href="#">Python 3.3 有什麼新功能</a><ul>
-<li><a class="reference internal" href="#summary-release-highlights">Summary -- Release highlights</a></li>
-<li><a class="reference internal" href="#pep-405-virtual-environments">PEP 405: Virtual Environments</a></li>
-<li><a class="reference internal" href="#pep-420-implicit-namespace-packages">PEP 420: Implicit Namespace Packages</a></li>
-<li><a class="reference internal" href="#pep-3118-new-memoryview-implementation-and-buffer-protocol-documentation">PEP 3118: New memoryview implementation and buffer protocol documentation</a><ul>
-<li><a class="reference internal" href="#features">Features</a></li>
-<li><a class="reference internal" href="#api-changes">API changes</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#pep-393-flexible-string-representation">PEP 393: Flexible String Representation</a><ul>
-<li><a class="reference internal" href="#functionality">Functionality</a></li>
-<li><a class="reference internal" href="#performance-and-resource-usage">Performance and resource usage</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#pep-397-python-launcher-for-windows">PEP 397: Python Launcher for Windows</a></li>
-<li><a class="reference internal" href="#pep-3151-reworking-the-os-and-io-exception-hierarchy">PEP 3151: Reworking the OS and IO exception hierarchy</a></li>
-<li><a class="reference internal" href="#pep-380-syntax-for-delegating-to-a-subgenerator">PEP 380: Syntax for Delegating to a Subgenerator</a></li>
-<li><a class="reference internal" href="#pep-409-suppressing-exception-context">PEP 409: Suppressing exception context</a></li>
-<li><a class="reference internal" href="#pep-414-explicit-unicode-literals">PEP 414: Explicit Unicode literals</a></li>
-<li><a class="reference internal" href="#pep-3155-qualified-name-for-classes-and-functions">PEP 3155: Qualified name for classes and functions</a></li>
-<li><a class="reference internal" href="#pep-412-key-sharing-dictionary">PEP 412: Key-Sharing Dictionary</a></li>
-<li><a class="reference internal" href="#pep-362-function-signature-object">PEP 362: Function Signature Object</a></li>
-<li><a class="reference internal" href="#pep-421-adding-sys-implementation">PEP 421: Adding sys.implementation</a><ul>
-<li><a class="reference internal" href="#simplenamespace">SimpleNamespace</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#using-importlib-as-the-implementation-of-import">Using importlib as the Implementation of Import</a><ul>
-<li><a class="reference internal" href="#new-apis">New APIs</a></li>
-<li><a class="reference internal" href="#visible-changes">Visible Changes</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#other-language-changes">其他語言更動</a></li>
-<li><a class="reference internal" href="#a-finer-grained-import-lock">A Finer-Grained Import Lock</a></li>
-<li><a class="reference internal" href="#builtin-functions-and-types">Builtin functions and types</a></li>
-<li><a class="reference internal" href="#new-modules">新模組</a><ul>
-<li><a class="reference internal" href="#faulthandler">faulthandler</a></li>
-<li><a class="reference internal" href="#ipaddress">ipaddress</a></li>
-<li><a class="reference internal" href="#lzma">lzma</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#improved-modules">Improved Modules</a><ul>
-<li><a class="reference internal" href="#abc">abc</a></li>
-<li><a class="reference internal" href="#array">array</a></li>
-<li><a class="reference internal" href="#base64">base64</a></li>
-<li><a class="reference internal" href="#binascii">binascii</a></li>
-<li><a class="reference internal" href="#bz2">bz2</a></li>
-<li><a class="reference internal" href="#codecs">codecs</a></li>
-<li><a class="reference internal" href="#collections">collections</a></li>
-<li><a class="reference internal" href="#contextlib">contextlib</a></li>
-<li><a class="reference internal" href="#crypt">crypt</a></li>
-<li><a class="reference internal" href="#curses">curses</a></li>
-<li><a class="reference internal" href="#datetime">datetime</a></li>
-<li><a class="reference internal" href="#decimal">decimal</a><ul>
-<li><a class="reference internal" href="#id1">Features</a></li>
-<li><a class="reference internal" href="#id2">API changes</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#email">email</a><ul>
-<li><a class="reference internal" href="#policy-framework">Policy Framework</a></li>
-<li><a class="reference internal" href="#provisional-policy-with-new-header-api">Provisional Policy with New Header API</a></li>
-<li><a class="reference internal" href="#other-api-changes">Other API Changes</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#ftplib">ftplib</a></li>
-<li><a class="reference internal" href="#functools">functools</a></li>
-<li><a class="reference internal" href="#gc">gc</a></li>
-<li><a class="reference internal" href="#hmac">hmac</a></li>
-<li><a class="reference internal" href="#http">http</a></li>
-<li><a class="reference internal" href="#html">html</a></li>
-<li><a class="reference internal" href="#imaplib">imaplib</a></li>
-<li><a class="reference internal" href="#inspect">inspect</a></li>
-<li><a class="reference internal" href="#io">io</a></li>
-<li><a class="reference internal" href="#itertools">itertools</a></li>
-<li><a class="reference internal" href="#logging">logging</a></li>
-<li><a class="reference internal" href="#math">math</a></li>
-<li><a class="reference internal" href="#mmap">mmap</a></li>
-<li><a class="reference internal" href="#multiprocessing">multiprocessing</a></li>
-<li><a class="reference internal" href="#nntplib">nntplib</a></li>
-<li><a class="reference internal" href="#os">os</a></li>
-<li><a class="reference internal" href="#pdb">pdb</a></li>
-<li><a class="reference internal" href="#pickle">pickle</a></li>
-<li><a class="reference internal" href="#pydoc">pydoc</a></li>
-<li><a class="reference internal" href="#re">re</a></li>
-<li><a class="reference internal" href="#sched">sched</a></li>
-<li><a class="reference internal" href="#select">select</a></li>
-<li><a class="reference internal" href="#shlex">shlex</a></li>
-<li><a class="reference internal" href="#shutil">shutil</a></li>
-<li><a class="reference internal" href="#signal">signal</a></li>
-<li><a class="reference internal" href="#smtpd">smtpd</a></li>
-<li><a class="reference internal" href="#smtplib">smtplib</a></li>
-<li><a class="reference internal" href="#socket">socket</a></li>
-<li><a class="reference internal" href="#socketserver">socketserver</a></li>
-<li><a class="reference internal" href="#sqlite3">sqlite3</a></li>
-<li><a class="reference internal" href="#ssl">ssl</a></li>
-<li><a class="reference internal" href="#stat">stat</a></li>
-<li><a class="reference internal" href="#struct">struct</a></li>
-<li><a class="reference internal" href="#subprocess">subprocess</a></li>
-<li><a class="reference internal" href="#sys">sys</a></li>
-<li><a class="reference internal" href="#tarfile">tarfile</a></li>
-<li><a class="reference internal" href="#tempfile">tempfile</a></li>
-<li><a class="reference internal" href="#textwrap">textwrap</a></li>
-<li><a class="reference internal" href="#threading">threading</a></li>
-<li><a class="reference internal" href="#time">time</a></li>
-<li><a class="reference internal" href="#types">types</a></li>
-<li><a class="reference internal" href="#unittest">unittest</a></li>
-<li><a class="reference internal" href="#urllib">urllib</a></li>
-<li><a class="reference internal" href="#webbrowser">webbrowser</a></li>
-<li><a class="reference internal" href="#xml-etree-elementtree">xml.etree.ElementTree</a></li>
-<li><a class="reference internal" href="#zlib">zlib</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#optimizations">Optimizations</a></li>
-<li><a class="reference internal" href="#build-and-c-api-changes">Build and C API Changes</a></li>
-<li><a class="reference internal" href="#deprecated">Deprecated</a><ul>
-<li><a class="reference internal" href="#unsupported-operating-systems">Unsupported Operating Systems</a></li>
-<li><a class="reference internal" href="#deprecated-python-modules-functions-and-methods">Deprecated Python modules, functions and methods</a></li>
-<li><a class="reference internal" href="#deprecated-functions-and-types-of-the-c-api">Deprecated functions and types of the C API</a></li>
-<li><a class="reference internal" href="#deprecated-features">Deprecated features</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#porting-to-python-3-3">Porting to Python 3.3</a><ul>
-<li><a class="reference internal" href="#porting-python-code">Porting Python code</a></li>
-<li><a class="reference internal" href="#porting-c-code">Porting C code</a></li>
-<li><a class="reference internal" href="#building-c-extensions">Building C extensions</a></li>
-<li><a class="reference internal" href="#command-line-switch-changes">Command Line Switch Changes</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-
-  </div>
-  <div>
-    <h4>上個主題</h4>
-    <p class="topless"><a href="3.4.html"
-                          title="上一章">Python 3.4 有什麼新功能</a></p>
-  </div>
-  <div>
-    <h4>下個主題</h4>
-    <p class="topless"><a href="3.2.html"
-                          title="下一章">Python 3.2 有什麼新功能</a></p>
-  </div>
-  <div role="note" aria-label="source link">
-    <h3>此頁面</h3>
-    <ul class="this-page-menu">
-      <li><a href="../bugs.html">回報錯誤</a></li>
-      <li>
-        <a href="https://github.com/python/cpython/blob/main/Doc/whatsnew/3.3.rst"
-            rel="nofollow">顯示原始碼
-        </a>
-      </li>
-    </ul>
-  </div>
-        </nav>
-    </div>
-</div>
-
+  </head><body>
   
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>瀏覽</h3>
@@ -299,6 +106,7 @@
     </div>    
 
     <div class="document">
+
       <div class="documentwrapper">
         <div class="bodywrapper">
           <div class="body" role="main">
@@ -2504,6 +2312,199 @@ previous versions, it did.</p>
           </div>
         </div>
       </div>
+<div class="mobile-nav">
+    <input type="checkbox" id="menuToggler" class="toggler__input" aria-controls="navigation"
+           aria-pressed="false" aria-expanded="false" role="button" aria-label="Menu" />
+    <nav class="nav-content" role="navigation">
+        <label for="menuToggler" class="toggler__label">
+            <span></span>
+        </label>
+        <span class="nav-items-wrapper">
+            <a href="https://www.python.org/" class="nav-logo">
+                <img src="../_static/py.svg" alt="Logo"/>
+            </a>
+            <span class="version_switcher_placeholder"></span>
+            <form role="search" class="search" action="../search.html" method="get">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" class="search-icon">
+                    <path fill-rule="nonzero" fill="currentColor" d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 001.48-5.34c-.47-2.78-2.79-5-5.59-5.34a6.505 6.505 0 00-7.27 7.27c.34 2.8 2.56 5.12 5.34 5.59a6.5 6.5 0 005.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0 .41-.41.41-1.08 0-1.49L15.5 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
+                </svg>
+                <input placeholder="快速搜尋" aria-label="快速搜尋" type="search" name="q" />
+                <input type="submit" value="前往"/>
+            </form>
+        </span>
+    </nav>
+    <div class="menu-wrapper">
+        <nav class="menu" role="navigation" aria-label="main navigation">
+            <div class="language_switcher_placeholder"></div>
+            
+<label class="theme-selector-label">
+    Theme
+    <select class="theme-selector" oninput="activateTheme(this.value)">
+        <option value="auto" selected>Auto</option>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+    </select>
+</label>
+  <div>
+    <h3><a href="../contents.html">目錄</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Python 3.3 有什麼新功能</a><ul>
+<li><a class="reference internal" href="#summary-release-highlights">Summary -- Release highlights</a></li>
+<li><a class="reference internal" href="#pep-405-virtual-environments">PEP 405: Virtual Environments</a></li>
+<li><a class="reference internal" href="#pep-420-implicit-namespace-packages">PEP 420: Implicit Namespace Packages</a></li>
+<li><a class="reference internal" href="#pep-3118-new-memoryview-implementation-and-buffer-protocol-documentation">PEP 3118: New memoryview implementation and buffer protocol documentation</a><ul>
+<li><a class="reference internal" href="#features">Features</a></li>
+<li><a class="reference internal" href="#api-changes">API changes</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#pep-393-flexible-string-representation">PEP 393: Flexible String Representation</a><ul>
+<li><a class="reference internal" href="#functionality">Functionality</a></li>
+<li><a class="reference internal" href="#performance-and-resource-usage">Performance and resource usage</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#pep-397-python-launcher-for-windows">PEP 397: Python Launcher for Windows</a></li>
+<li><a class="reference internal" href="#pep-3151-reworking-the-os-and-io-exception-hierarchy">PEP 3151: Reworking the OS and IO exception hierarchy</a></li>
+<li><a class="reference internal" href="#pep-380-syntax-for-delegating-to-a-subgenerator">PEP 380: Syntax for Delegating to a Subgenerator</a></li>
+<li><a class="reference internal" href="#pep-409-suppressing-exception-context">PEP 409: Suppressing exception context</a></li>
+<li><a class="reference internal" href="#pep-414-explicit-unicode-literals">PEP 414: Explicit Unicode literals</a></li>
+<li><a class="reference internal" href="#pep-3155-qualified-name-for-classes-and-functions">PEP 3155: Qualified name for classes and functions</a></li>
+<li><a class="reference internal" href="#pep-412-key-sharing-dictionary">PEP 412: Key-Sharing Dictionary</a></li>
+<li><a class="reference internal" href="#pep-362-function-signature-object">PEP 362: Function Signature Object</a></li>
+<li><a class="reference internal" href="#pep-421-adding-sys-implementation">PEP 421: Adding sys.implementation</a><ul>
+<li><a class="reference internal" href="#simplenamespace">SimpleNamespace</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#using-importlib-as-the-implementation-of-import">Using importlib as the Implementation of Import</a><ul>
+<li><a class="reference internal" href="#new-apis">New APIs</a></li>
+<li><a class="reference internal" href="#visible-changes">Visible Changes</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#other-language-changes">其他語言更動</a></li>
+<li><a class="reference internal" href="#a-finer-grained-import-lock">A Finer-Grained Import Lock</a></li>
+<li><a class="reference internal" href="#builtin-functions-and-types">Builtin functions and types</a></li>
+<li><a class="reference internal" href="#new-modules">新模組</a><ul>
+<li><a class="reference internal" href="#faulthandler">faulthandler</a></li>
+<li><a class="reference internal" href="#ipaddress">ipaddress</a></li>
+<li><a class="reference internal" href="#lzma">lzma</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#improved-modules">Improved Modules</a><ul>
+<li><a class="reference internal" href="#abc">abc</a></li>
+<li><a class="reference internal" href="#array">array</a></li>
+<li><a class="reference internal" href="#base64">base64</a></li>
+<li><a class="reference internal" href="#binascii">binascii</a></li>
+<li><a class="reference internal" href="#bz2">bz2</a></li>
+<li><a class="reference internal" href="#codecs">codecs</a></li>
+<li><a class="reference internal" href="#collections">collections</a></li>
+<li><a class="reference internal" href="#contextlib">contextlib</a></li>
+<li><a class="reference internal" href="#crypt">crypt</a></li>
+<li><a class="reference internal" href="#curses">curses</a></li>
+<li><a class="reference internal" href="#datetime">datetime</a></li>
+<li><a class="reference internal" href="#decimal">decimal</a><ul>
+<li><a class="reference internal" href="#id1">Features</a></li>
+<li><a class="reference internal" href="#id2">API changes</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#email">email</a><ul>
+<li><a class="reference internal" href="#policy-framework">Policy Framework</a></li>
+<li><a class="reference internal" href="#provisional-policy-with-new-header-api">Provisional Policy with New Header API</a></li>
+<li><a class="reference internal" href="#other-api-changes">Other API Changes</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#ftplib">ftplib</a></li>
+<li><a class="reference internal" href="#functools">functools</a></li>
+<li><a class="reference internal" href="#gc">gc</a></li>
+<li><a class="reference internal" href="#hmac">hmac</a></li>
+<li><a class="reference internal" href="#http">http</a></li>
+<li><a class="reference internal" href="#html">html</a></li>
+<li><a class="reference internal" href="#imaplib">imaplib</a></li>
+<li><a class="reference internal" href="#inspect">inspect</a></li>
+<li><a class="reference internal" href="#io">io</a></li>
+<li><a class="reference internal" href="#itertools">itertools</a></li>
+<li><a class="reference internal" href="#logging">logging</a></li>
+<li><a class="reference internal" href="#math">math</a></li>
+<li><a class="reference internal" href="#mmap">mmap</a></li>
+<li><a class="reference internal" href="#multiprocessing">multiprocessing</a></li>
+<li><a class="reference internal" href="#nntplib">nntplib</a></li>
+<li><a class="reference internal" href="#os">os</a></li>
+<li><a class="reference internal" href="#pdb">pdb</a></li>
+<li><a class="reference internal" href="#pickle">pickle</a></li>
+<li><a class="reference internal" href="#pydoc">pydoc</a></li>
+<li><a class="reference internal" href="#re">re</a></li>
+<li><a class="reference internal" href="#sched">sched</a></li>
+<li><a class="reference internal" href="#select">select</a></li>
+<li><a class="reference internal" href="#shlex">shlex</a></li>
+<li><a class="reference internal" href="#shutil">shutil</a></li>
+<li><a class="reference internal" href="#signal">signal</a></li>
+<li><a class="reference internal" href="#smtpd">smtpd</a></li>
+<li><a class="reference internal" href="#smtplib">smtplib</a></li>
+<li><a class="reference internal" href="#socket">socket</a></li>
+<li><a class="reference internal" href="#socketserver">socketserver</a></li>
+<li><a class="reference internal" href="#sqlite3">sqlite3</a></li>
+<li><a class="reference internal" href="#ssl">ssl</a></li>
+<li><a class="reference internal" href="#stat">stat</a></li>
+<li><a class="reference internal" href="#struct">struct</a></li>
+<li><a class="reference internal" href="#subprocess">subprocess</a></li>
+<li><a class="reference internal" href="#sys">sys</a></li>
+<li><a class="reference internal" href="#tarfile">tarfile</a></li>
+<li><a class="reference internal" href="#tempfile">tempfile</a></li>
+<li><a class="reference internal" href="#textwrap">textwrap</a></li>
+<li><a class="reference internal" href="#threading">threading</a></li>
+<li><a class="reference internal" href="#time">time</a></li>
+<li><a class="reference internal" href="#types">types</a></li>
+<li><a class="reference internal" href="#unittest">unittest</a></li>
+<li><a class="reference internal" href="#urllib">urllib</a></li>
+<li><a class="reference internal" href="#webbrowser">webbrowser</a></li>
+<li><a class="reference internal" href="#xml-etree-elementtree">xml.etree.ElementTree</a></li>
+<li><a class="reference internal" href="#zlib">zlib</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#optimizations">Optimizations</a></li>
+<li><a class="reference internal" href="#build-and-c-api-changes">Build and C API Changes</a></li>
+<li><a class="reference internal" href="#deprecated">Deprecated</a><ul>
+<li><a class="reference internal" href="#unsupported-operating-systems">Unsupported Operating Systems</a></li>
+<li><a class="reference internal" href="#deprecated-python-modules-functions-and-methods">Deprecated Python modules, functions and methods</a></li>
+<li><a class="reference internal" href="#deprecated-functions-and-types-of-the-c-api">Deprecated functions and types of the C API</a></li>
+<li><a class="reference internal" href="#deprecated-features">Deprecated features</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#porting-to-python-3-3">Porting to Python 3.3</a><ul>
+<li><a class="reference internal" href="#porting-python-code">Porting Python code</a></li>
+<li><a class="reference internal" href="#porting-c-code">Porting C code</a></li>
+<li><a class="reference internal" href="#building-c-extensions">Building C extensions</a></li>
+<li><a class="reference internal" href="#command-line-switch-changes">Command Line Switch Changes</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>上個主題</h4>
+    <p class="topless"><a href="3.4.html"
+                          title="上一章">Python 3.4 有什麼新功能</a></p>
+  </div>
+  <div>
+    <h4>下個主題</h4>
+    <p class="topless"><a href="3.2.html"
+                          title="下一章">Python 3.2 有什麼新功能</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>此頁面</h3>
+    <ul class="this-page-menu">
+      <li><a href="../bugs.html">回報錯誤</a></li>
+      <li>
+        <a href="https://github.com/python/cpython/blob/main/Doc/whatsnew/3.3.rst"
+            rel="nofollow">顯示原始碼
+        </a>
+      </li>
+    </ul>
+  </div>
+        </nav>
+    </div>
+</div>
+
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
   <div>
@@ -2739,11 +2740,11 @@ previous versions, it did.</p>
 <br />
     <br />
 
-    最後更新於 7月 29, 2023。
+    最後更新於 8月 05, 2023。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 
-    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.1.1 建立。
+    使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.1.2 建立。
     </div>
 
   </body>
