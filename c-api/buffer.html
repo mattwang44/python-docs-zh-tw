@@ -5,12 +5,12 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>緩衝協定 (Buffer Protocol) &#8212; Python 3.12.0b4 說明文件</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=92fd9be5" />
+    <title>緩衝協定 (Buffer Protocol) &#8212; Python 3.12.0rc1 說明文件</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?v=aa5eeaf2" />
-    <link id="pygments_dark_css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css" href="../_static/pygments_dark.css?v=e15ddae3" />
+    <link id="pygments_dark_css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css" href="../_static/pygments_dark.css?v=b20cc3f5" />
     
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=ee8be3a1"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=f6a7b3df"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
     <script src="../_static/translations.js?v=d9a6981e"></script>
@@ -18,7 +18,7 @@
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.12.0b4 說明文件 中搜尋"
+          title="在 Python 3.12.0rc1 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -76,7 +76,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.12.0b4 Documentation</a> &#187;
+      <a href="../index.html">3.12.0rc1 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python/C API 參考手冊</a> &#187;</li>
@@ -188,7 +188,9 @@ the memory block.</p>
 <dt class="sig sig-object c" id="c.Py_buffer.obj">
 <a class="reference internal" href="structures.html#c.PyObject" title="PyObject"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">obj</span></span></span><a class="headerlink" href="#c.Py_buffer.obj" title="本定義的永久連結">¶</a><br /></dt>
 <dd><p>A new reference to the exporting object. The reference is owned by
-the consumer and automatically decremented and set to <code class="docutils literal notranslate"><span class="pre">NULL</span></code> by
+the consumer and automatically released
+(i.e. reference count decremented)
+and set to <code class="docutils literal notranslate"><span class="pre">NULL</span></code> by
 <a class="reference internal" href="#c.PyBuffer_Release" title="PyBuffer_Release"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyBuffer_Release()</span></code></a>. The field is the equivalent of the return
 value of any standard C-API function.</p>
 <p>As a special case, for <em>temporary</em> buffers that are wrapped by
@@ -695,7 +697,8 @@ must be called exactly once.</p>
 <dl class="c function">
 <dt class="sig sig-object c" id="c.PyBuffer_Release">
 <span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PyBuffer_Release</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.Py_buffer" title="Py_buffer"><span class="n"><span class="pre">Py_buffer</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">view</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.PyBuffer_Release" title="本定義的永久連結">¶</a><br /></dt>
-<dd><em class="stableabi"> Part of the <a class="reference internal" href="stable.html#stable"><span class="std std-ref">Stable ABI</span></a> since version 3.11.</em><p>Release the buffer <em>view</em> and decrement the reference count for
+<dd><em class="stableabi"> Part of the <a class="reference internal" href="stable.html#stable"><span class="std std-ref">Stable ABI</span></a> since version 3.11.</em><p>Release the buffer <em>view</em> and release the <a class="reference internal" href="../glossary.html#term-strong-reference"><span class="xref std std-term">strong reference</span></a>
+(i.e. decrement the reference count) to the view's supporting object,
 <code class="docutils literal notranslate"><span class="pre">view-&gt;obj</span></code>. This function MUST be called when the buffer
 is no longer being used, otherwise reference leaks may occur.</p>
 <p>It is an error to call this function on a buffer that was not obtained via
@@ -948,7 +951,7 @@ unmodified. Otherwise, <em>exporter</em> MUST be <code class="docutils literal n
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.12.0b4 Documentation</a> &#187;
+      <a href="../index.html">3.12.0rc1 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python/C API 參考手冊</a> &#187;</li>
@@ -992,7 +995,7 @@ unmodified. Otherwise, <em>exporter</em> MUST be <code class="docutils literal n
 <br />
     <br />
 
-    最後更新於 8月 05, 2023。
+    最後更新於 8月 10, 2023。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 

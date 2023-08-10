@@ -5,12 +5,12 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Argument Clinic How-To &#8212; Python 3.12.0b4 說明文件</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=92fd9be5" />
+    <title>Argument Clinic How-To &#8212; Python 3.12.0rc1 說明文件</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?v=aa5eeaf2" />
-    <link id="pygments_dark_css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css" href="../_static/pygments_dark.css?v=e15ddae3" />
+    <link id="pygments_dark_css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css" href="../_static/pygments_dark.css?v=b20cc3f5" />
     
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=ee8be3a1"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=f6a7b3df"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
     <script src="../_static/translations.js?v=d9a6981e"></script>
@@ -18,7 +18,7 @@
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.12.0b4 說明文件 中搜尋"
+          title="在 Python 3.12.0rc1 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -76,7 +76,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.12.0b4 Documentation</a> &#187;
+      <a href="../index.html">3.12.0rc1 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Python 如何達成任務</a> &#187;</li>
@@ -281,6 +281,84 @@ process a single source file, like this:</p>
 <dt class="sig sig-object std" id="cmdoption-.-Tools-clinic-clinic.py-h-f-o-OUTPUT-v-converters-make-srcdir-SRCDIR-FILE-...-arg-FILE">
 <span class="sig-name descname"><span class="pre">FILE</span></span><span class="sig-prename descclassname"> <span class="pre">...</span></span><a class="headerlink" href="#cmdoption-.-Tools-clinic-clinic.py-h-f-o-OUTPUT-v-converters-make-srcdir-SRCDIR-FILE-...-arg-FILE" title="本定義的永久連結">¶</a></dt>
 <dd><p>The list of files to process.</p>
+</dd></dl>
+
+</section>
+<section id="module-clinic">
+<span id="classes-for-extending-argument-clinic"></span><span id="clinic-classes"></span><h3>Classes for extending Argument Clinic<a class="headerlink" href="#module-clinic" title="本標頭的永久連結">¶</a></h3>
+<dl class="py class">
+<dt class="sig sig-object py" id="clinic.CConverter">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">clinic.</span></span><span class="sig-name descname"><span class="pre">CConverter</span></span><a class="headerlink" href="#clinic.CConverter" title="本定義的永久連結">¶</a></dt>
+<dd><p>The base class for all converters.
+See <a class="reference internal" href="#clinic-howto-custom-converter"><span class="std std-ref">How to write a custom converter</span></a> for how to subclass this class.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="clinic.CConverter.type">
+<span class="sig-name descname"><span class="pre">type</span></span><a class="headerlink" href="#clinic.CConverter.type" title="本定義的永久連結">¶</a></dt>
+<dd><p>The C type to use for this variable.
+<code class="xref py py-attr docutils literal notranslate"><span class="pre">type</span></code> should be a Python string specifying the type,
+e.g. <code class="docutils literal notranslate"><span class="pre">'int'</span></code>.
+If this is a pointer type, the type string should end with <code class="docutils literal notranslate"><span class="pre">'</span> <span class="pre">*'</span></code>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="clinic.CConverter.default">
+<span class="sig-name descname"><span class="pre">default</span></span><a class="headerlink" href="#clinic.CConverter.default" title="本定義的永久連結">¶</a></dt>
+<dd><p>The Python default value for this parameter, as a Python value.
+Or the magic value <code class="docutils literal notranslate"><span class="pre">unspecified</span></code> if there is no default.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="clinic.CConverter.py_default">
+<span class="sig-name descname"><span class="pre">py_default</span></span><a class="headerlink" href="#clinic.CConverter.py_default" title="本定義的永久連結">¶</a></dt>
+<dd><p><code class="xref py py-attr docutils literal notranslate"><span class="pre">default</span></code> as it should appear in Python code,
+as a string.
+Or <code class="docutils literal notranslate"><span class="pre">None</span></code> if there is no default.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="clinic.CConverter.c_default">
+<span class="sig-name descname"><span class="pre">c_default</span></span><a class="headerlink" href="#clinic.CConverter.c_default" title="本定義的永久連結">¶</a></dt>
+<dd><p><code class="xref py py-attr docutils literal notranslate"><span class="pre">default</span></code> as it should appear in C code,
+as a string.
+Or <code class="docutils literal notranslate"><span class="pre">None</span></code> if there is no default.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="clinic.CConverter.c_ignored_default">
+<span class="sig-name descname"><span class="pre">c_ignored_default</span></span><a class="headerlink" href="#clinic.CConverter.c_ignored_default" title="本定義的永久連結">¶</a></dt>
+<dd><p>The default value used to initialize the C variable when
+there is no default, but not specifying a default may
+result in an &quot;uninitialized variable&quot; warning.  This can
+easily happen when using option groups—although
+properly written code will never actually use this value,
+the variable does get passed in to the impl, and the
+C compiler will complain about the &quot;use&quot; of the
+uninitialized value.  This value should always be a
+non-empty string.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="clinic.CConverter.converter">
+<span class="sig-name descname"><span class="pre">converter</span></span><a class="headerlink" href="#clinic.CConverter.converter" title="本定義的永久連結">¶</a></dt>
+<dd><p>The name of the C converter function, as a string.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="clinic.CConverter.impl_by_reference">
+<span class="sig-name descname"><span class="pre">impl_by_reference</span></span><a class="headerlink" href="#clinic.CConverter.impl_by_reference" title="本定義的永久連結">¶</a></dt>
+<dd><p>A boolean value.  If true,
+Argument Clinic will add a <code class="docutils literal notranslate"><span class="pre">&amp;</span></code> in front of the name of
+the variable when passing it into the impl function.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="clinic.CConverter.parse_by_reference">
+<span class="sig-name descname"><span class="pre">parse_by_reference</span></span><a class="headerlink" href="#clinic.CConverter.parse_by_reference" title="本定義的永久連結">¶</a></dt>
+<dd><p>A boolean value.  If true,
+Argument Clinic will add a <code class="docutils literal notranslate"><span class="pre">&amp;</span></code> in front of the name of
+the variable when passing it into <a class="reference internal" href="../c-api/arg.html#c.PyArg_ParseTuple" title="PyArg_ParseTuple"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyArg_ParseTuple()</span></code></a>.</p>
+</dd></dl>
+
 </dd></dl>
 
 </section>
@@ -1366,98 +1444,23 @@ state.  Example from the <code class="docutils literal notranslate"><span class=
 <p>也請見 <span class="target" id="index-5"></span><a class="pep reference external" href="https://peps.python.org/pep-0573/"><strong>PEP 573</strong></a>。</p>
 </section>
 <section id="how-to-write-a-custom-converter">
-<h3>How to write a custom converter<a class="headerlink" href="#how-to-write-a-custom-converter" title="本標頭的永久連結">¶</a></h3>
-<p>As we hinted at in the previous section... you can write your own converters!
-A converter is simply a Python class that inherits from <code class="xref py py-class docutils literal notranslate"><span class="pre">CConverter</span></code>.
-The main purpose of a custom converter is if you have a parameter using
-the <code class="docutils literal notranslate"><span class="pre">O&amp;</span></code> format unit—parsing this parameter means calling
+<span id="clinic-howto-custom-converter"></span><h3>How to write a custom converter<a class="headerlink" href="#how-to-write-a-custom-converter" title="本標頭的永久連結">¶</a></h3>
+<p>A converter is a Python class that inherits from <a class="reference internal" href="#clinic.CConverter" title="clinic.CConverter"><code class="xref py py-class docutils literal notranslate"><span class="pre">CConverter</span></code></a>.
+The main purpose of a custom converter, is for parameters parsed with
+the <code class="docutils literal notranslate"><span class="pre">O&amp;</span></code> format unit --- parsing such a parameter means calling
 a <a class="reference internal" href="../c-api/arg.html#c.PyArg_ParseTuple" title="PyArg_ParseTuple"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyArg_ParseTuple()</span></code></a> &quot;converter function&quot;.</p>
-<p>Your converter class should be named <code class="docutils literal notranslate"><span class="pre">*something*_converter</span></code>.
-If the name follows this convention, then your converter class
-will be automatically registered with Argument Clinic; its name
-will be the name of your class with the <code class="docutils literal notranslate"><span class="pre">_converter</span></code> suffix
-stripped off.  (This is accomplished with a metaclass.)</p>
-<p>You shouldn't subclass <code class="xref py py-meth docutils literal notranslate"><span class="pre">CConverter.__init__()</span></code>.  Instead, you should
-write a <code class="xref py py-meth docutils literal notranslate"><span class="pre">converter_init()</span></code> function. <code class="xref py py-meth docutils literal notranslate"><span class="pre">converter_init()</span></code>
-always accepts a <em>self</em> parameter; after that, all additional
-parameters <em>must</em> be keyword-only.  Any arguments passed in to
-the converter in Argument Clinic will be passed along to your
-<code class="xref py py-meth docutils literal notranslate"><span class="pre">converter_init()</span></code>.</p>
-<p>There are some additional members of <code class="xref py py-class docutils literal notranslate"><span class="pre">CConverter</span></code> you may wish
-to specify in your subclass.  Here's the current list:</p>
-<span class="target" id="module-clinic"></span><dl class="py class">
-<dt class="sig sig-object py" id="clinic.CConverter">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">clinic.</span></span><span class="sig-name descname"><span class="pre">CConverter</span></span><a class="headerlink" href="#clinic.CConverter" title="本定義的永久連結">¶</a></dt>
-<dd><dl class="py attribute">
-<dt class="sig sig-object py" id="clinic.CConverter.type">
-<span class="sig-name descname"><span class="pre">type</span></span><a class="headerlink" href="#clinic.CConverter.type" title="本定義的永久連結">¶</a></dt>
-<dd><p>The C type to use for this variable.
-<code class="xref py py-attr docutils literal notranslate"><span class="pre">type</span></code> should be a Python string specifying the type,
-e.g. <code class="docutils literal notranslate"><span class="pre">'int'</span></code>.
-If this is a pointer type, the type string should end with <code class="docutils literal notranslate"><span class="pre">'</span> <span class="pre">*'</span></code>.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="clinic.CConverter.default">
-<span class="sig-name descname"><span class="pre">default</span></span><a class="headerlink" href="#clinic.CConverter.default" title="本定義的永久連結">¶</a></dt>
-<dd><p>The Python default value for this parameter, as a Python value.
-Or the magic value <code class="docutils literal notranslate"><span class="pre">unspecified</span></code> if there is no default.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="clinic.CConverter.py_default">
-<span class="sig-name descname"><span class="pre">py_default</span></span><a class="headerlink" href="#clinic.CConverter.py_default" title="本定義的永久連結">¶</a></dt>
-<dd><p><code class="xref py py-attr docutils literal notranslate"><span class="pre">default</span></code> as it should appear in Python code,
-as a string.
-Or <code class="docutils literal notranslate"><span class="pre">None</span></code> if there is no default.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="clinic.CConverter.c_default">
-<span class="sig-name descname"><span class="pre">c_default</span></span><a class="headerlink" href="#clinic.CConverter.c_default" title="本定義的永久連結">¶</a></dt>
-<dd><p><code class="xref py py-attr docutils literal notranslate"><span class="pre">default</span></code> as it should appear in C code,
-as a string.
-Or <code class="docutils literal notranslate"><span class="pre">None</span></code> if there is no default.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="clinic.CConverter.c_ignored_default">
-<span class="sig-name descname"><span class="pre">c_ignored_default</span></span><a class="headerlink" href="#clinic.CConverter.c_ignored_default" title="本定義的永久連結">¶</a></dt>
-<dd><p>The default value used to initialize the C variable when
-there is no default, but not specifying a default may
-result in an &quot;uninitialized variable&quot; warning.  This can
-easily happen when using option groups—although
-properly written code will never actually use this value,
-the variable does get passed in to the impl, and the
-C compiler will complain about the &quot;use&quot; of the
-uninitialized value.  This value should always be a
-non-empty string.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="clinic.CConverter.converter">
-<span class="sig-name descname"><span class="pre">converter</span></span><a class="headerlink" href="#clinic.CConverter.converter" title="本定義的永久連結">¶</a></dt>
-<dd><p>The name of the C converter function, as a string.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="clinic.CConverter.impl_by_reference">
-<span class="sig-name descname"><span class="pre">impl_by_reference</span></span><a class="headerlink" href="#clinic.CConverter.impl_by_reference" title="本定義的永久連結">¶</a></dt>
-<dd><p>A boolean value.  If true,
-Argument Clinic will add a <code class="docutils literal notranslate"><span class="pre">&amp;</span></code> in front of the name of
-the variable when passing it into the impl function.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="clinic.CConverter.parse_by_reference">
-<span class="sig-name descname"><span class="pre">parse_by_reference</span></span><a class="headerlink" href="#clinic.CConverter.parse_by_reference" title="本定義的永久連結">¶</a></dt>
-<dd><p>A boolean value.  If true,
-Argument Clinic will add a <code class="docutils literal notranslate"><span class="pre">&amp;</span></code> in front of the name of
-the variable when passing it into <a class="reference internal" href="../c-api/arg.html#c.PyArg_ParseTuple" title="PyArg_ParseTuple"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyArg_ParseTuple()</span></code></a>.</p>
-</dd></dl>
-
-</dd></dl>
-
+<p>Your converter class should be named <code class="samp docutils literal notranslate"><em><span class="pre">ConverterName</span></em><span class="pre">_converter</span></code>.
+By following this convention, your converter class will be automatically
+registered with Argument Clinic, with its <em>converter name</em> being the name of
+your converter class with the <code class="docutils literal notranslate"><span class="pre">_converter</span></code> suffix stripped off.</p>
+<p>Instead of subclassing <code class="xref py py-meth docutils literal notranslate"><span class="pre">CConverter.__init__()</span></code>,
+write a <code class="xref py py-meth docutils literal notranslate"><span class="pre">converter_init()</span></code> method.
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">converter_init()</span></code> always accepts a <em>self</em> parameter.
+After <em>self</em>, all additional parameters <strong>must</strong> be keyword-only.
+Any arguments passed to the converter in Argument Clinic
+will be passed along to your <code class="xref py py-meth docutils literal notranslate"><span class="pre">converter_init()</span></code> method.
+See <a class="reference internal" href="#clinic.CConverter" title="clinic.CConverter"><code class="xref py py-class docutils literal notranslate"><span class="pre">CConverter</span></code></a> for a list of members you may wish to specify in
+your subclass.</p>
 <p>Here's the simplest example of a custom converter, from <a class="reference external" href="https://github.com/python/cpython/tree/3.12/Modules/zlibmodule.c">Modules/zlibmodule.c</a>:</p>
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cm">/*[python input]</span>
 
@@ -1469,15 +1472,15 @@ the variable when passing it into <a class="reference internal" href="../c-api/a
 <span class="cm">/*[python end generated code: output=da39a3ee5e6b4b0d input=35521e4e733823c7]*/</span>
 </pre></div>
 </div>
-<p>This block adds a converter to Argument Clinic named <code class="docutils literal notranslate"><span class="pre">ssize_t</span></code>.  Parameters
-declared as <code class="docutils literal notranslate"><span class="pre">ssize_t</span></code> will be declared as type <a class="reference internal" href="../c-api/intro.html#c.Py_ssize_t" title="Py_ssize_t"><code class="xref c c-type docutils literal notranslate"><span class="pre">Py_ssize_t</span></code></a>, and will
-be parsed by the <code class="docutils literal notranslate"><span class="pre">'O&amp;'</span></code> format unit, which will call the
-<code class="docutils literal notranslate"><span class="pre">ssize_t_converter</span></code> converter function.  <code class="docutils literal notranslate"><span class="pre">ssize_t</span></code> variables
-automatically support default values.</p>
+<p>This block adds a converter named <code class="docutils literal notranslate"><span class="pre">ssize_t</span></code> to Argument Clinic.
+Parameters declared as <code class="docutils literal notranslate"><span class="pre">ssize_t</span></code> will be declared with type <a class="reference internal" href="../c-api/intro.html#c.Py_ssize_t" title="Py_ssize_t"><code class="xref c c-type docutils literal notranslate"><span class="pre">Py_ssize_t</span></code></a>,
+and will be parsed by the <code class="docutils literal notranslate"><span class="pre">'O&amp;'</span></code> format unit,
+which will call the <code class="xref c c-func docutils literal notranslate"><span class="pre">ssize_t_converter()</span></code> converter C function.
+<code class="docutils literal notranslate"><span class="pre">ssize_t</span></code> variables automatically support default values.</p>
 <p>More sophisticated custom converters can insert custom C code to
 handle initialization and cleanup.
 You can see more examples of custom converters in the CPython
-source tree; grep the C files for the string <code class="xref py py-class docutils literal notranslate"><span class="pre">CConverter</span></code>.</p>
+source tree; grep the C files for the string <code class="docutils literal notranslate"><span class="pre">CConverter</span></code>.</p>
 </section>
 <section id="how-to-write-a-custom-return-converter">
 <h3>How to write a custom return converter<a class="headerlink" href="#how-to-write-a-custom-return-converter" title="本標頭的永久連結">¶</a></h3>
@@ -1902,6 +1905,20 @@ blocks embedded in Python files look slightly different.  They look like this:</
 <li><a class="reference internal" href="#reference">Reference</a><ul>
 <li><a class="reference internal" href="#terminology">Terminology</a></li>
 <li><a class="reference internal" href="#command-line-interface">Command-line interface</a></li>
+<li><a class="reference internal" href="#module-clinic">Classes for extending Argument Clinic</a><ul>
+<li><a class="reference internal" href="#clinic.CConverter"><code class="docutils literal notranslate"><span class="pre">CConverter</span></code></a><ul>
+<li><a class="reference internal" href="#clinic.CConverter.type"><code class="docutils literal notranslate"><span class="pre">CConverter.type</span></code></a></li>
+<li><a class="reference internal" href="#clinic.CConverter.default"><code class="docutils literal notranslate"><span class="pre">CConverter.default</span></code></a></li>
+<li><a class="reference internal" href="#clinic.CConverter.py_default"><code class="docutils literal notranslate"><span class="pre">CConverter.py_default</span></code></a></li>
+<li><a class="reference internal" href="#clinic.CConverter.c_default"><code class="docutils literal notranslate"><span class="pre">CConverter.c_default</span></code></a></li>
+<li><a class="reference internal" href="#clinic.CConverter.c_ignored_default"><code class="docutils literal notranslate"><span class="pre">CConverter.c_ignored_default</span></code></a></li>
+<li><a class="reference internal" href="#clinic.CConverter.converter"><code class="docutils literal notranslate"><span class="pre">CConverter.converter</span></code></a></li>
+<li><a class="reference internal" href="#clinic.CConverter.impl_by_reference"><code class="docutils literal notranslate"><span class="pre">CConverter.impl_by_reference</span></code></a></li>
+<li><a class="reference internal" href="#clinic.CConverter.parse_by_reference"><code class="docutils literal notranslate"><span class="pre">CConverter.parse_by_reference</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a class="reference internal" href="#tutorial">Tutorial</a></li>
@@ -1923,20 +1940,7 @@ blocks embedded in Python files look slightly different.  They look like this:</
 <li><a class="reference internal" href="#how-to-call-python-code">How to call Python code</a></li>
 <li><a class="reference internal" href="#how-to-use-the-self-converter">How to use the &quot;self converter&quot;</a></li>
 <li><a class="reference internal" href="#how-to-use-the-defining-class-converter">How to use the &quot;defining class&quot; converter</a></li>
-<li><a class="reference internal" href="#how-to-write-a-custom-converter">How to write a custom converter</a><ul>
-<li><a class="reference internal" href="#clinic.CConverter"><code class="docutils literal notranslate"><span class="pre">CConverter</span></code></a><ul>
-<li><a class="reference internal" href="#clinic.CConverter.type"><code class="docutils literal notranslate"><span class="pre">CConverter.type</span></code></a></li>
-<li><a class="reference internal" href="#clinic.CConverter.default"><code class="docutils literal notranslate"><span class="pre">CConverter.default</span></code></a></li>
-<li><a class="reference internal" href="#clinic.CConverter.py_default"><code class="docutils literal notranslate"><span class="pre">CConverter.py_default</span></code></a></li>
-<li><a class="reference internal" href="#clinic.CConverter.c_default"><code class="docutils literal notranslate"><span class="pre">CConverter.c_default</span></code></a></li>
-<li><a class="reference internal" href="#clinic.CConverter.c_ignored_default"><code class="docutils literal notranslate"><span class="pre">CConverter.c_ignored_default</span></code></a></li>
-<li><a class="reference internal" href="#clinic.CConverter.converter"><code class="docutils literal notranslate"><span class="pre">CConverter.converter</span></code></a></li>
-<li><a class="reference internal" href="#clinic.CConverter.impl_by_reference"><code class="docutils literal notranslate"><span class="pre">CConverter.impl_by_reference</span></code></a></li>
-<li><a class="reference internal" href="#clinic.CConverter.parse_by_reference"><code class="docutils literal notranslate"><span class="pre">CConverter.parse_by_reference</span></code></a></li>
-</ul>
-</li>
-</ul>
-</li>
+<li><a class="reference internal" href="#how-to-write-a-custom-converter">How to write a custom converter</a></li>
 <li><a class="reference internal" href="#how-to-write-a-custom-return-converter">How to write a custom return converter</a></li>
 <li><a class="reference internal" href="#how-to-convert-meth-o-and-meth-noargs-functions">How to convert <code class="docutils literal notranslate"><span class="pre">METH_O</span></code> and <code class="docutils literal notranslate"><span class="pre">METH_NOARGS</span></code> functions</a></li>
 <li><a class="reference internal" href="#how-to-convert-tp-new-and-tp-init-functions">How to convert <code class="docutils literal notranslate"><span class="pre">tp_new</span></code> and <code class="docutils literal notranslate"><span class="pre">tp_init</span></code> functions</a></li>
@@ -1988,6 +1992,20 @@ blocks embedded in Python files look slightly different.  They look like this:</
 <li><a class="reference internal" href="#reference">Reference</a><ul>
 <li><a class="reference internal" href="#terminology">Terminology</a></li>
 <li><a class="reference internal" href="#command-line-interface">Command-line interface</a></li>
+<li><a class="reference internal" href="#module-clinic">Classes for extending Argument Clinic</a><ul>
+<li><a class="reference internal" href="#clinic.CConverter"><code class="docutils literal notranslate"><span class="pre">CConverter</span></code></a><ul>
+<li><a class="reference internal" href="#clinic.CConverter.type"><code class="docutils literal notranslate"><span class="pre">CConverter.type</span></code></a></li>
+<li><a class="reference internal" href="#clinic.CConverter.default"><code class="docutils literal notranslate"><span class="pre">CConverter.default</span></code></a></li>
+<li><a class="reference internal" href="#clinic.CConverter.py_default"><code class="docutils literal notranslate"><span class="pre">CConverter.py_default</span></code></a></li>
+<li><a class="reference internal" href="#clinic.CConverter.c_default"><code class="docutils literal notranslate"><span class="pre">CConverter.c_default</span></code></a></li>
+<li><a class="reference internal" href="#clinic.CConverter.c_ignored_default"><code class="docutils literal notranslate"><span class="pre">CConverter.c_ignored_default</span></code></a></li>
+<li><a class="reference internal" href="#clinic.CConverter.converter"><code class="docutils literal notranslate"><span class="pre">CConverter.converter</span></code></a></li>
+<li><a class="reference internal" href="#clinic.CConverter.impl_by_reference"><code class="docutils literal notranslate"><span class="pre">CConverter.impl_by_reference</span></code></a></li>
+<li><a class="reference internal" href="#clinic.CConverter.parse_by_reference"><code class="docutils literal notranslate"><span class="pre">CConverter.parse_by_reference</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a class="reference internal" href="#tutorial">Tutorial</a></li>
@@ -2009,20 +2027,7 @@ blocks embedded in Python files look slightly different.  They look like this:</
 <li><a class="reference internal" href="#how-to-call-python-code">How to call Python code</a></li>
 <li><a class="reference internal" href="#how-to-use-the-self-converter">How to use the &quot;self converter&quot;</a></li>
 <li><a class="reference internal" href="#how-to-use-the-defining-class-converter">How to use the &quot;defining class&quot; converter</a></li>
-<li><a class="reference internal" href="#how-to-write-a-custom-converter">How to write a custom converter</a><ul>
-<li><a class="reference internal" href="#clinic.CConverter"><code class="docutils literal notranslate"><span class="pre">CConverter</span></code></a><ul>
-<li><a class="reference internal" href="#clinic.CConverter.type"><code class="docutils literal notranslate"><span class="pre">CConverter.type</span></code></a></li>
-<li><a class="reference internal" href="#clinic.CConverter.default"><code class="docutils literal notranslate"><span class="pre">CConverter.default</span></code></a></li>
-<li><a class="reference internal" href="#clinic.CConverter.py_default"><code class="docutils literal notranslate"><span class="pre">CConverter.py_default</span></code></a></li>
-<li><a class="reference internal" href="#clinic.CConverter.c_default"><code class="docutils literal notranslate"><span class="pre">CConverter.c_default</span></code></a></li>
-<li><a class="reference internal" href="#clinic.CConverter.c_ignored_default"><code class="docutils literal notranslate"><span class="pre">CConverter.c_ignored_default</span></code></a></li>
-<li><a class="reference internal" href="#clinic.CConverter.converter"><code class="docutils literal notranslate"><span class="pre">CConverter.converter</span></code></a></li>
-<li><a class="reference internal" href="#clinic.CConverter.impl_by_reference"><code class="docutils literal notranslate"><span class="pre">CConverter.impl_by_reference</span></code></a></li>
-<li><a class="reference internal" href="#clinic.CConverter.parse_by_reference"><code class="docutils literal notranslate"><span class="pre">CConverter.parse_by_reference</span></code></a></li>
-</ul>
-</li>
-</ul>
-</li>
+<li><a class="reference internal" href="#how-to-write-a-custom-converter">How to write a custom converter</a></li>
 <li><a class="reference internal" href="#how-to-write-a-custom-return-converter">How to write a custom return converter</a></li>
 <li><a class="reference internal" href="#how-to-convert-meth-o-and-meth-noargs-functions">How to convert <code class="docutils literal notranslate"><span class="pre">METH_O</span></code> and <code class="docutils literal notranslate"><span class="pre">METH_NOARGS</span></code> functions</a></li>
 <li><a class="reference internal" href="#how-to-convert-tp-new-and-tp-init-functions">How to convert <code class="docutils literal notranslate"><span class="pre">tp_new</span></code> and <code class="docutils literal notranslate"><span class="pre">tp_init</span></code> functions</a></li>
@@ -2091,7 +2096,7 @@ blocks embedded in Python files look slightly different.  They look like this:</
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.12.0b4 Documentation</a> &#187;
+      <a href="../index.html">3.12.0rc1 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 如何達成任務</a> &#187;</li>
@@ -2134,7 +2139,7 @@ blocks embedded in Python files look slightly different.  They look like this:</
 <br />
     <br />
 
-    最後更新於 8月 05, 2023。
+    最後更新於 8月 10, 2023。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 

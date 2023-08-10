@@ -5,12 +5,12 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>在 heap 上分配物件 &#8212; Python 3.12.0b4 說明文件</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=92fd9be5" />
+    <title>在 heap 上分配物件 &#8212; Python 3.12.0rc1 說明文件</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?v=aa5eeaf2" />
-    <link id="pygments_dark_css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css" href="../_static/pygments_dark.css?v=e15ddae3" />
+    <link id="pygments_dark_css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css" href="../_static/pygments_dark.css?v=b20cc3f5" />
     
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=ee8be3a1"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=f6a7b3df"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
     <script src="../_static/translations.js?v=d9a6981e"></script>
@@ -18,7 +18,7 @@
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.12.0b4 說明文件 中搜尋"
+          title="在 Python 3.12.0rc1 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -76,7 +76,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.12.0b4 Documentation</a> &#187;
+      <a href="../index.html">3.12.0rc1 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python/C API 參考手冊</a> &#187;</li>
@@ -139,7 +139,13 @@
 <dl class="c macro">
 <dt class="sig sig-object c" id="c.PyObject_New">
 <span class="sig-name descname"><span class="n"><span class="pre">PyObject_New</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">TYPE</span></span>, <span class="n"><span class="pre">typeobj</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.PyObject_New" title="本定義的永久連結">¶</a><br /></dt>
-<dd><p>使用 C 結構型別 <em>TYPE</em> 和 Python 型別物件 <em>typeobj</em> (<code class="docutils literal notranslate"><span class="pre">PyTypeObject*</span></code>) 分配一個新的 Python 物件。未在該 Python 物件標頭 (header) 中定義的欄位不會被初始化；物件的參照計數將為一。記憶體分配大小由 type 物件的 <a class="reference internal" href="typeobj.html#c.PyTypeObject.tp_basicsize" title="PyTypeObject.tp_basicsize"><code class="xref c c-member docutils literal notranslate"><span class="pre">tp_basicsize</span></code></a> 欄位來指定。</p>
+<dd><p>Allocate a new Python object using the C structure type <em>TYPE</em>
+and the Python type object <em>typeobj</em> (<code class="docutils literal notranslate"><span class="pre">PyTypeObject*</span></code>).
+Fields not defined by the Python object header are not initialized.
+The caller will own the only reference to the object
+(i.e. its reference count will be one).
+The size of the memory allocation is determined from the
+<a class="reference internal" href="typeobj.html#c.PyTypeObject.tp_basicsize" title="PyTypeObject.tp_basicsize"><code class="xref c c-member docutils literal notranslate"><span class="pre">tp_basicsize</span></code></a> field of the type object.</p>
 </dd></dl>
 
 <dl class="c macro">
@@ -289,7 +295,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.12.0b4 Documentation</a> &#187;
+      <a href="../index.html">3.12.0rc1 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python/C API 參考手冊</a> &#187;</li>
@@ -333,7 +339,7 @@
 <br />
     <br />
 
-    最後更新於 8月 05, 2023。
+    最後更新於 8月 10, 2023。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 
