@@ -5,12 +5,12 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>unittest.mock --- getting started &#8212; Python 3.12.0rc1 說明文件</title>
+    <title>unittest.mock --- getting started &#8212; Python 3.12.0rc2 說明文件</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?v=aa5eeaf2" />
     <link id="pygments_dark_css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css" href="../_static/pygments_dark.css?v=b20cc3f5" />
     
-    <script src="../_static/documentation_options.js?v=fc7de828"></script>
+    <script src="../_static/documentation_options.js?v=cb37ac06"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/translations.js?v=d9a6981e"></script>
@@ -18,7 +18,7 @@
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.12.0rc1 說明文件 中搜尋"
+          title="在 Python 3.12.0rc2 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -73,7 +73,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.12.0rc1 Documentation</a> &#187;
+      <a href="../index.html">3.12.0rc2 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -425,6 +425,30 @@ you can use <a class="reference internal" href="unittest.mock.html#auto-speccing
 <p>If you want a stronger form of specification that prevents the setting
 of arbitrary attributes as well as the getting of them then you can use
 <em>spec_set</em> instead of <em>spec</em>.</p>
+</section>
+<section id="using-side-effect-to-return-per-file-content">
+<h3>Using side_effect to return per file content<a class="headerlink" href="#using-side-effect-to-return-per-file-content" title="Link to this heading">¶</a></h3>
+<p><a class="reference internal" href="unittest.mock.html#unittest.mock.mock_open" title="unittest.mock.mock_open"><code class="xref py py-func docutils literal notranslate"><span class="pre">mock_open()</span></code></a> is used to patch <a class="reference internal" href="functions.html#open" title="open"><code class="xref py py-func docutils literal notranslate"><span class="pre">open()</span></code></a> method. <a class="reference internal" href="unittest.mock.html#unittest.mock.Mock.side_effect" title="unittest.mock.Mock.side_effect"><code class="xref py py-attr docutils literal notranslate"><span class="pre">side_effect</span></code></a>
+can be used to return a new Mock object per call. This can be used to return different
+contents per file stored in a dictionary:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">DEFAULT</span> <span class="o">=</span> <span class="s2">&quot;default&quot;</span>
+<span class="n">data_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;file1&quot;</span><span class="p">:</span> <span class="s2">&quot;data1&quot;</span><span class="p">,</span>
+             <span class="s2">&quot;file2&quot;</span><span class="p">:</span> <span class="s2">&quot;data2&quot;</span><span class="p">}</span>
+
+<span class="k">def</span> <span class="nf">open_side_effect</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">mock_open</span><span class="p">(</span><span class="n">read_data</span><span class="o">=</span><span class="n">data_dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">DEFAULT</span><span class="p">))()</span>
+
+<span class="k">with</span> <span class="n">patch</span><span class="p">(</span><span class="s2">&quot;builtins.open&quot;</span><span class="p">,</span> <span class="n">side_effect</span><span class="o">=</span><span class="n">open_side_effect</span><span class="p">):</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;file1&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file1</span><span class="p">:</span>
+        <span class="k">assert</span> <span class="n">file1</span><span class="o">.</span><span class="n">read</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;data1&quot;</span>
+
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;file2&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file2</span><span class="p">:</span>
+        <span class="k">assert</span> <span class="n">file2</span><span class="o">.</span><span class="n">read</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;data2&quot;</span>
+
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;file3&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file2</span><span class="p">:</span>
+        <span class="k">assert</span> <span class="n">file2</span><span class="o">.</span><span class="n">read</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;default&quot;</span>
+</pre></div>
+</div>
 </section>
 </section>
 <section id="patch-decorators">
@@ -1387,6 +1411,7 @@ that may be useful here, in the form of its equality matcher
 <li><a class="reference internal" href="#mocking-asynchronous-iterators">Mocking asynchronous iterators</a></li>
 <li><a class="reference internal" href="#mocking-asynchronous-context-manager">Mocking asynchronous context manager</a></li>
 <li><a class="reference internal" href="#creating-a-mock-from-an-existing-object">Creating a Mock from an Existing Object</a></li>
+<li><a class="reference internal" href="#using-side-effect-to-return-per-file-content">Using side_effect to return per file content</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#patch-decorators">Patch Decorators</a></li>
@@ -1454,6 +1479,7 @@ that may be useful here, in the form of its equality matcher
 <li><a class="reference internal" href="#mocking-asynchronous-iterators">Mocking asynchronous iterators</a></li>
 <li><a class="reference internal" href="#mocking-asynchronous-context-manager">Mocking asynchronous context manager</a></li>
 <li><a class="reference internal" href="#creating-a-mock-from-an-existing-object">Creating a Mock from an Existing Object</a></li>
+<li><a class="reference internal" href="#using-side-effect-to-return-per-file-content">Using side_effect to return per file content</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#patch-decorators">Patch Decorators</a></li>
@@ -1533,7 +1559,7 @@ that may be useful here, in the form of its equality matcher
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.12.0rc1 Documentation</a> &#187;
+      <a href="../index.html">3.12.0rc2 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -1577,7 +1603,7 @@ that may be useful here, in the form of its equality matcher
 <br />
     <br />
 
-    最後更新於 9月 05, 2023。
+    最後更新於 9月 08, 2023。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 
