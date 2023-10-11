@@ -226,11 +226,7 @@
 <hr class="docutils" />
 <p>這個模組提供了不可變的 <a class="reference internal" href="#uuid.UUID" title="uuid.UUID"><code class="xref py py-class docutils literal notranslate"><span class="pre">UUID</span></code></a> 物件（<a class="reference internal" href="#uuid.UUID" title="uuid.UUID"><code class="xref py py-class docutils literal notranslate"><span class="pre">UUID</span></code></a> 類別）和 <a class="reference internal" href="#uuid.uuid1" title="uuid.uuid1"><code class="xref py py-func docutils literal notranslate"><span class="pre">uuid1()</span></code></a>、<a class="reference internal" href="#uuid.uuid3" title="uuid.uuid3"><code class="xref py py-func docutils literal notranslate"><span class="pre">uuid3()</span></code></a>、<a class="reference internal" href="#uuid.uuid4" title="uuid.uuid4"><code class="xref py py-func docutils literal notranslate"><span class="pre">uuid4()</span></code></a>、<a class="reference internal" href="#uuid.uuid5" title="uuid.uuid5"><code class="xref py py-func docutils literal notranslate"><span class="pre">uuid5()</span></code></a> 等函式，用於生成 <span class="target" id="index-19"></span><a class="rfc reference external" href="https://datatracker.ietf.org/doc/html/rfc4122.html"><strong>RFC 4122</strong></a> 定義的第 1、3、4、5 版本的 UUID。</p>
 <p>如果你只需要一個唯一的 ID，你應該呼叫 <a class="reference internal" href="#uuid.uuid1" title="uuid.uuid1"><code class="xref py py-func docutils literal notranslate"><span class="pre">uuid1()</span></code></a> 或 <a class="reference internal" href="#uuid.uuid4" title="uuid.uuid4"><code class="xref py py-func docutils literal notranslate"><span class="pre">uuid4()</span></code></a>。需要注意的是，<a class="reference internal" href="#uuid.uuid1" title="uuid.uuid1"><code class="xref py py-func docutils literal notranslate"><span class="pre">uuid1()</span></code></a> 可能會危害隱私，因為它會建立一個包含了電腦網路位址的 UUID。而 <a class="reference internal" href="#uuid.uuid4" title="uuid.uuid4"><code class="xref py py-func docutils literal notranslate"><span class="pre">uuid4()</span></code></a> 則會建立一個隨機的 UUID。</p>
-<p>Depending on support from the underlying platform, <a class="reference internal" href="#uuid.uuid1" title="uuid.uuid1"><code class="xref py py-func docutils literal notranslate"><span class="pre">uuid1()</span></code></a> may or may
-not return a &quot;safe&quot; UUID.  A safe UUID is one which is generated using
-synchronization methods that ensure no two processes can obtain the same
-UUID.  All instances of <a class="reference internal" href="#uuid.UUID" title="uuid.UUID"><code class="xref py py-class docutils literal notranslate"><span class="pre">UUID</span></code></a> have an <a class="reference internal" href="#uuid.UUID.is_safe" title="uuid.UUID.is_safe"><code class="xref py py-attr docutils literal notranslate"><span class="pre">is_safe</span></code></a> attribute
-which relays any information about the UUID's safety, using this enumeration:</p>
+<p>根據底層平台的支援情況，<a class="reference internal" href="#uuid.uuid1" title="uuid.uuid1"><code class="xref py py-func docutils literal notranslate"><span class="pre">uuid1()</span></code></a> 可能會也可能不會回傳一個「安全的」UUID。安全的 UUID 是使用同步方法生成的，以確保不會有兩個行程獲取到相同的 UUID。所有 <a class="reference internal" href="#uuid.UUID" title="uuid.UUID"><code class="xref py py-class docutils literal notranslate"><span class="pre">UUID</span></code></a> 的實例都有一個 <a class="reference internal" href="#uuid.UUID.is_safe" title="uuid.UUID.is_safe"><code class="xref py py-attr docutils literal notranslate"><span class="pre">is_safe</span></code></a> 屬性，該屬性使用下面這個列舉來傳遞有關 UUID 安全性的任何資訊：</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="uuid.SafeUUID">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">uuid.</span></span><span class="sig-name descname"><span class="pre">SafeUUID</span></span><a class="headerlink" href="#uuid.SafeUUID" title="Link to this definition">¶</a></dt>
@@ -306,7 +302,7 @@ which relays any information about the UUID's safety, using this enumeration:</p
 <dd></dd></dl>
 
 </td>
-<td><p>The first 32 bits of the UUID.</p></td>
+<td><p>UUID 的前 32 位元。</p></td>
 </tr>
 <tr class="row-odd"><td><dl class="py attribute">
 <dt class="sig sig-object py" id="uuid.UUID.time_mid">
@@ -314,7 +310,7 @@ which relays any information about the UUID's safety, using this enumeration:</p
 <dd></dd></dl>
 
 </td>
-<td><p>The next 16 bits of the UUID.</p></td>
+<td><p>UUID 接下來的 16 位元。</p></td>
 </tr>
 <tr class="row-even"><td><dl class="py attribute">
 <dt class="sig sig-object py" id="uuid.UUID.time_hi_version">
@@ -322,7 +318,7 @@ which relays any information about the UUID's safety, using this enumeration:</p
 <dd></dd></dl>
 
 </td>
-<td><p>The next 16 bits of the UUID.</p></td>
+<td><p>UUID 接下來的 16 位元。</p></td>
 </tr>
 <tr class="row-odd"><td><dl class="py attribute">
 <dt class="sig sig-object py" id="uuid.UUID.clock_seq_hi_variant">
@@ -330,7 +326,7 @@ which relays any information about the UUID's safety, using this enumeration:</p
 <dd></dd></dl>
 
 </td>
-<td><p>The next 8 bits of the UUID.</p></td>
+<td><p>UUID 接下來的 8 位元。</p></td>
 </tr>
 <tr class="row-even"><td><dl class="py attribute">
 <dt class="sig sig-object py" id="uuid.UUID.clock_seq_low">
@@ -338,7 +334,7 @@ which relays any information about the UUID's safety, using this enumeration:</p
 <dd></dd></dl>
 
 </td>
-<td><p>The next 8 bits of the UUID.</p></td>
+<td><p>UUID 接下來的 8 位元。</p></td>
 </tr>
 <tr class="row-odd"><td><dl class="py attribute">
 <dt class="sig sig-object py" id="uuid.UUID.node">
@@ -346,7 +342,7 @@ which relays any information about the UUID's safety, using this enumeration:</p
 <dd></dd></dl>
 
 </td>
-<td><p>The last 48 bits of the UUID.</p></td>
+<td><p>UUID 最後的 48 位元。</p></td>
 </tr>
 <tr class="row-even"><td><dl class="py attribute">
 <dt class="sig sig-object py" id="uuid.UUID.time">
@@ -354,7 +350,7 @@ which relays any information about the UUID's safety, using this enumeration:</p
 <dd></dd></dl>
 
 </td>
-<td><p>The 60-bit timestamp.</p></td>
+<td><p>60 位元的時間戳。</p></td>
 </tr>
 <tr class="row-odd"><td><dl class="py attribute">
 <dt class="sig sig-object py" id="uuid.UUID.clock_seq">
@@ -362,7 +358,7 @@ which relays any information about the UUID's safety, using this enumeration:</p
 <dd></dd></dl>
 
 </td>
-<td><p>The 14-bit sequence number.</p></td>
+<td><p>14 位元的序列號。</p></td>
 </tr>
 </tbody>
 </table>
@@ -464,8 +460,7 @@ which relays any information about the UUID's safety, using this enumeration:</p
 <dd><p>當指定這個命名空間時，<em>name</em> 字串是以 DER 或文字輸出格式表示的 X.500 DN。</p>
 </dd></dl>
 
-<p>The <a class="reference internal" href="#module-uuid" title="uuid: UUID objects (universally unique identifiers) according to RFC 4122"><code class="xref py py-mod docutils literal notranslate"><span class="pre">uuid</span></code></a> module defines the following constants for the possible values
-of the <a class="reference internal" href="#uuid.UUID.variant" title="uuid.UUID.variant"><code class="xref py py-attr docutils literal notranslate"><span class="pre">variant</span></code></a> attribute:</p>
+<p><a class="reference internal" href="#module-uuid" title="uuid: UUID objects (universally unique identifiers) according to RFC 4122"><code class="xref py py-mod docutils literal notranslate"><span class="pre">uuid</span></code></a> 模組為 <a class="reference internal" href="#uuid.UUID.variant" title="uuid.UUID.variant"><code class="xref py py-attr docutils literal notranslate"><span class="pre">variant</span></code></a> 屬性的可能值定義了以下常數：</p>
 <dl class="py data">
 <dt class="sig sig-object py" id="uuid.RESERVED_NCS">
 <span class="sig-prename descclassname"><span class="pre">uuid.</span></span><span class="sig-name descname"><span class="pre">RESERVED_NCS</span></span><a class="headerlink" href="#uuid.RESERVED_NCS" title="Link to this definition">¶</a></dt>
