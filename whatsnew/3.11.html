@@ -5,13 +5,13 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Python 3.11 有什麼新功能 &#8212; Python 3.12.0 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python 3.11 有什麼新功能 &#8212; Python 3.12.1 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?v=aa5eeaf2" />
     <link id="pygments_dark_css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css" href="../_static/pygments_dark.css?v=b20cc3f5" />
     
-    <script src="../_static/documentation_options.js?v=20e7bb27"></script>
+    <script src="../_static/documentation_options.js?v=3221873d"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/translations.js?v=d9a6981e"></script>
@@ -19,7 +19,7 @@
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.12.0 說明文件 中搜尋"
+          title="在 Python 3.12.1 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -248,7 +248,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.12.0 Documentation</a> &#187;
+      <a href="../index.html">3.12.1 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Python 有什麼新功能？</a> &#187;</li>
@@ -1596,16 +1596,8 @@ except empty tuple singleton.
 <li><p><code class="docutils literal notranslate"><span class="pre">f_localsplus</span></code>：無公開 API（重新命名為 <code class="docutils literal notranslate"><span class="pre">f_frame.localsplus</span></code>）。</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">f_valuestack</span></code>：已移除。</p></li>
 </ul>
-<p>The Python frame object is now created lazily. A side effect is that the
-<a class="reference internal" href="../reference/datamodel.html#frame.f_back" title="frame.f_back"><code class="xref py py-attr docutils literal notranslate"><span class="pre">f_back</span></code></a> member must not be accessed directly,
-since its value is now also
-computed lazily. The <a class="reference internal" href="../c-api/frame.html#c.PyFrame_GetBack" title="PyFrame_GetBack"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyFrame_GetBack()</span></code></a> function must be called
-instead.</p>
-<p>Debuggers that accessed the <a class="reference internal" href="../reference/datamodel.html#frame.f_locals" title="frame.f_locals"><code class="xref py py-attr docutils literal notranslate"><span class="pre">f_locals</span></code></a> directly <em>must</em> call
-<a class="reference internal" href="../c-api/frame.html#c.PyFrame_GetLocals" title="PyFrame_GetLocals"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyFrame_GetLocals()</span></code></a> instead. They no longer need to call
-<code class="xref c c-func docutils literal notranslate"><span class="pre">PyFrame_FastToLocalsWithError()</span></code> or <code class="xref c c-func docutils literal notranslate"><span class="pre">PyFrame_LocalsToFast()</span></code>,
-in fact they should not call those functions. The necessary updating of the
-frame is now managed by the virtual machine.</p>
+<p>Python 幀物件的建立現為惰性的 (lazily)，一個副作用是 <a class="reference internal" href="../reference/datamodel.html#frame.f_back" title="frame.f_back"><code class="xref py py-attr docutils literal notranslate"><span class="pre">f_back</span></code></a> 成員不能被直接存取，因為其職的計算也是惰性的，要改呼叫 <a class="reference internal" href="../c-api/frame.html#c.PyFrame_GetBack" title="PyFrame_GetBack"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyFrame_GetBack()</span></code></a>。</p>
+<p>直接存取 <a class="reference internal" href="../reference/datamodel.html#frame.f_locals" title="frame.f_locals"><code class="xref py py-attr docutils literal notranslate"><span class="pre">f_locals</span></code></a> 的除錯器<em>必須</em>改為呼叫 <a class="reference internal" href="../c-api/frame.html#c.PyFrame_GetLocals" title="PyFrame_GetLocals"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyFrame_GetLocals()</span></code></a>。他們不再需要呼叫 <code class="xref c c-func docutils literal notranslate"><span class="pre">PyFrame_FastToLocalsWithError()</span></code> 或 <code class="xref c c-func docutils literal notranslate"><span class="pre">PyFrame_LocalsToFast()</span></code>，事實上他們不應該呼叫這些函式。框架的必要更新現在由虛擬機管理。</p>
 <p><code class="docutils literal notranslate"><span class="pre">PyFrame_GetCode()</span></code> 在 Python 3.8 以前的程式定義：</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#if PY_VERSION_HEX &lt; 0x030900B1</span>
 <span class="n">static</span> <span class="n">inline</span> <span class="n">PyCodeObject</span><span class="o">*</span> <span class="n">PyFrame_GetCode</span><span class="p">(</span><span class="n">PyFrameObject</span> <span class="o">*</span><span class="n">frame</span><span class="p">)</span>
@@ -1957,7 +1949,7 @@ removed.
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.12.0 Documentation</a> &#187;
+      <a href="../index.html">3.12.1 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 有什麼新功能？</a> &#187;</li>
@@ -2000,7 +1992,7 @@ removed.
 <br />
     <br />
 
-    最後更新於 Dec 06, 2023 (03:37 UTC)。
+    最後更新於 Dec 08, 2023 (06:23 UTC)。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 

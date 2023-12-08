@@ -5,13 +5,13 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>pathlib --- Object-oriented filesystem paths &#8212; Python 3.12.0 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pathlib --- Object-oriented filesystem paths &#8212; Python 3.12.1 說明文件</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?v=aa5eeaf2" />
     <link id="pygments_dark_css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css" href="../_static/pygments_dark.css?v=b20cc3f5" />
     
-    <script src="../_static/documentation_options.js?v=20e7bb27"></script>
+    <script src="../_static/documentation_options.js?v=3221873d"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/translations.js?v=d9a6981e"></script>
@@ -19,7 +19,7 @@
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="在 Python 3.12.0 說明文件 中搜尋"
+          title="在 Python 3.12.1 說明文件 中搜尋"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="關於這些文件" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
@@ -97,7 +97,7 @@
 <li><a class="reference internal" href="#pathlib.PurePath.parts"><code class="docutils literal notranslate"><span class="pre">PurePath.parts</span></code></a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#methods-and-properties">Methods and properties</a><ul>
+<li><a class="reference internal" href="#methods-and-properties">方法 (Method) 與特性 (Property)</a><ul>
 <li><a class="reference internal" href="#pathlib.PurePath.drive"><code class="docutils literal notranslate"><span class="pre">PurePath.drive</span></code></a></li>
 <li><a class="reference internal" href="#pathlib.PurePath.root"><code class="docutils literal notranslate"><span class="pre">PurePath.root</span></code></a></li>
 <li><a class="reference internal" href="#pathlib.PurePath.anchor"><code class="docutils literal notranslate"><span class="pre">PurePath.anchor</span></code></a></li>
@@ -230,7 +230,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.12.0 Documentation</a> &#187;
+      <a href="../index.html">3.12.1 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -512,12 +512,12 @@ property:</p>
 
 </section>
 <section id="methods-and-properties">
-<h3>Methods and properties<a class="headerlink" href="#methods-and-properties" title="Link to this heading">¶</a></h3>
-<p>Pure paths provide the following methods and properties:</p>
+<h3>方法 (Method) 與特性 (Property)<a class="headerlink" href="#methods-and-properties" title="Link to this heading">¶</a></h3>
+<p>純路徑提供以下方法與特性：</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="pathlib.PurePath.drive">
 <span class="sig-prename descclassname"><span class="pre">PurePath.</span></span><span class="sig-name descname"><span class="pre">drive</span></span><a class="headerlink" href="#pathlib.PurePath.drive" title="Link to this definition">¶</a></dt>
-<dd><p>A string representing the drive letter or name, if any:</p>
+<dd><p>若存在則為一個表示磁碟機字母 (drive letter) 或磁碟機名稱 (drive name) 的字串：</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">PureWindowsPath</span><span class="p">(</span><span class="s1">&#39;c:/Program Files/&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">drive</span>
 <span class="go">&#39;c:&#39;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">PureWindowsPath</span><span class="p">(</span><span class="s1">&#39;/Program Files/&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">drive</span>
@@ -526,7 +526,7 @@ property:</p>
 <span class="go">&#39;&#39;</span>
 </pre></div>
 </div>
-<p>UNC shares are also considered drives:</p>
+<p>UNC shares 也被視為磁碟機：</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">PureWindowsPath</span><span class="p">(</span><span class="s1">&#39;//host/share/foo.txt&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">drive</span>
 <span class="go">&#39;\\\\host\\share&#39;</span>
 </pre></div>
@@ -536,7 +536,7 @@ property:</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="pathlib.PurePath.root">
 <span class="sig-prename descclassname"><span class="pre">PurePath.</span></span><span class="sig-name descname"><span class="pre">root</span></span><a class="headerlink" href="#pathlib.PurePath.root" title="Link to this definition">¶</a></dt>
-<dd><p>A string representing the (local or global) root, if any:</p>
+<dd><p>若存在則為一個表示（局部或全域）根目錄的字串：</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">PureWindowsPath</span><span class="p">(</span><span class="s1">&#39;c:/Program Files/&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">root</span>
 <span class="go">&#39;\\&#39;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">PureWindowsPath</span><span class="p">(</span><span class="s1">&#39;c:Program Files/&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">root</span>
@@ -545,7 +545,7 @@ property:</p>
 <span class="go">&#39;/&#39;</span>
 </pre></div>
 </div>
-<p>UNC shares always have a root:</p>
+<p>UNC shares 都會有一個根目錄：</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">PureWindowsPath</span><span class="p">(</span><span class="s1">&#39;//host/share&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">root</span>
 <span class="go">&#39;\\&#39;</span>
 </pre></div>
@@ -1866,7 +1866,7 @@ include <a class="reference internal" href="os.path.html#os.path.abspath" title=
 <li><a class="reference internal" href="#pathlib.PurePath.parts"><code class="docutils literal notranslate"><span class="pre">PurePath.parts</span></code></a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#methods-and-properties">Methods and properties</a><ul>
+<li><a class="reference internal" href="#methods-and-properties">方法 (Method) 與特性 (Property)</a><ul>
 <li><a class="reference internal" href="#pathlib.PurePath.drive"><code class="docutils literal notranslate"><span class="pre">PurePath.drive</span></code></a></li>
 <li><a class="reference internal" href="#pathlib.PurePath.root"><code class="docutils literal notranslate"><span class="pre">PurePath.root</span></code></a></li>
 <li><a class="reference internal" href="#pathlib.PurePath.anchor"><code class="docutils literal notranslate"><span class="pre">PurePath.anchor</span></code></a></li>
@@ -2002,7 +2002,7 @@ include <a class="reference internal" href="os.path.html#os.path.abspath" title=
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.12.0 Documentation</a> &#187;
+      <a href="../index.html">3.12.1 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python 標準函式庫 (Standard Library)</a> &#187;</li>
@@ -2046,7 +2046,7 @@ include <a class="reference internal" href="os.path.html#os.path.abspath" title=
 <br />
     <br />
 
-    最後更新於 Dec 06, 2023 (03:37 UTC)。
+    最後更新於 Dec 08, 2023 (06:23 UTC)。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 
