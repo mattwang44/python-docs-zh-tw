@@ -96,7 +96,7 @@
 <li><a class="reference internal" href="#wsgiref.util.FileWrapper"><code class="docutils literal notranslate"><span class="pre">FileWrapper</span></code></a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#module-wsgiref.headers"><code class="xref py py-mod docutils literal notranslate"><span class="pre">wsgiref.headers</span></code> -- WSGI 回應標頭工具。</a><ul>
+<li><a class="reference internal" href="#module-wsgiref.headers"><code class="xref py py-mod docutils literal notranslate"><span class="pre">wsgiref.headers</span></code> -- WSGI 回應標頭工具</a><ul>
 <li><a class="reference internal" href="#wsgiref.headers.Headers"><code class="docutils literal notranslate"><span class="pre">Headers</span></code></a><ul>
 <li><a class="reference internal" href="#wsgiref.headers.Headers.get_all"><code class="docutils literal notranslate"><span class="pre">Headers.get_all()</span></code></a></li>
 <li><a class="reference internal" href="#wsgiref.headers.Headers.add_header"><code class="docutils literal notranslate"><span class="pre">Headers.add_header()</span></code></a></li>
@@ -158,7 +158,7 @@
 <li><a class="reference internal" href="#wsgiref.handlers.read_environ"><code class="docutils literal notranslate"><span class="pre">read_environ()</span></code></a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#module-wsgiref.types"><code class="xref py py-mod docutils literal notranslate"><span class="pre">wsgiref.types</span></code> -- 用於靜態型別檢查的 WSGI 型別。</a><ul>
+<li><a class="reference internal" href="#module-wsgiref.types"><code class="xref py py-mod docutils literal notranslate"><span class="pre">wsgiref.types</span></code> -- 用於靜態型別檢查的 WSGI 型別</a><ul>
 <li><a class="reference internal" href="#wsgiref.types.StartResponse"><code class="docutils literal notranslate"><span class="pre">StartResponse</span></code></a></li>
 <li><a class="reference internal" href="#wsgiref.types.WSGIEnvironment"><code class="docutils literal notranslate"><span class="pre">WSGIEnvironment</span></code></a></li>
 <li><a class="reference internal" href="#wsgiref.types.WSGIApplication"><code class="docutils literal notranslate"><span class="pre">WSGIApplication</span></code></a></li>
@@ -361,7 +361,7 @@
 
 </section>
 <section id="module-wsgiref.headers">
-<span id="wsgiref-headers-wsgi-response-header-tools"></span><h2><a class="reference internal" href="#module-wsgiref.headers" title="wsgiref.headers: WSGI response header tools."><code class="xref py py-mod docutils literal notranslate"><span class="pre">wsgiref.headers</span></code></a> -- WSGI 回應標頭工具。<a class="headerlink" href="#module-wsgiref.headers" title="Link to this heading">¶</a></h2>
+<span id="wsgiref-headers-wsgi-response-header-tools"></span><h2><a class="reference internal" href="#module-wsgiref.headers" title="wsgiref.headers: WSGI response header tools."><code class="xref py py-mod docutils literal notranslate"><span class="pre">wsgiref.headers</span></code></a> -- WSGI 回應標頭工具<a class="headerlink" href="#module-wsgiref.headers" title="Link to this heading">¶</a></h2>
 <p>這個模組提供單一類別 <a class="reference internal" href="#wsgiref.headers.Headers" title="wsgiref.headers.Headers"><code class="xref py py-class docutils literal notranslate"><span class="pre">Headers</span></code></a>，用於使用類似對映的介面方便地操作 WSGI 回應標頭。</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="wsgiref.headers.Headers">
@@ -484,7 +484,7 @@
 <span class="sig-prename descclassname"><span class="pre">wsgiref.validate.</span></span><span class="sig-name descname"><span class="pre">validator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">application</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#wsgiref.validate.validator" title="Link to this definition">¶</a></dt>
 <dd><p>包裝 <em>application</em> 並回傳一個新的 WSGI 應用程式物件。回傳的應用程式將轉發所有請求給原始的 <em>application</em>，並檢查 <em>application</em> 和呼叫它的伺服器是否符合 WSGI 規範和 <span class="target" id="index-48"></span><a class="rfc reference external" href="https://datatracker.ietf.org/doc/html/rfc2616.html"><strong>RFC 2616</strong></a>。</p>
 <p>任何在 <a class="reference internal" href="exceptions.html#AssertionError" title="AssertionError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">AssertionError</span></code></a> 中偵測不符合結果都會發起例外；但請注意，如何處理這些錯誤取決於伺服器。例如，基於 <a class="reference internal" href="#module-wsgiref.handlers" title="wsgiref.handlers: WSGI server/gateway base classes."><code class="xref py py-mod docutils literal notranslate"><span class="pre">wsgiref.handlers</span></code></a> 的 <a class="reference internal" href="#module-wsgiref.simple_server" title="wsgiref.simple_server: A simple WSGI HTTP server."><code class="xref py py-mod docutils literal notranslate"><span class="pre">wsgiref.simple_server</span></code></a> 以及其他伺服器（未覆蓋錯誤處理方法以執行其他操作的伺服器）將僅輸出一條錯誤訊息，指示發生錯誤，並將回溯訊息輸出到 <code class="docutils literal notranslate"><span class="pre">sys.stderr</span></code> 或是其他錯誤串流。</p>
-<p>這個包裝器也可以使用 <a class="reference internal" href="warnings.html#module-warnings" title="warnings: Issue warning messages and control their disposition."><code class="xref py py-mod docutils literal notranslate"><span class="pre">warnings</span></code></a> 模組生成輸出去指示一些可能有疑慮但實際上可能不會被 <span class="target" id="index-49"></span><a class="pep reference external" href="https://peps.python.org/pep-3333/"><strong>PEP 3333</strong></a> 禁止的行為。除非使用 Python 命令列選項或 <a class="reference internal" href="warnings.html#module-warnings" title="warnings: Issue warning messages and control their disposition."><code class="xref py py-mod docutils literal notranslate"><span class="pre">warnings</span></code></a> API，抑制了這些警告，否則這類警告將被寫入到 <code class="docutils literal notranslate"><span class="pre">sys.stderr``（*not*</span> <span class="pre">``wsgi.errors</span></code>，除非它們碰巧是相同的物件）。</p>
+<p>這個包裝器也可以使用 <a class="reference internal" href="warnings.html#module-warnings" title="warnings: Issue warning messages and control their disposition."><code class="xref py py-mod docutils literal notranslate"><span class="pre">warnings</span></code></a> 模組生成輸出去指示一些可能有疑慮但實際上可能不會被 <span class="target" id="index-49"></span><a class="pep reference external" href="https://peps.python.org/pep-3333/"><strong>PEP 3333</strong></a> 禁止的行為。除非使用 Python 命令列選項或 <a class="reference internal" href="warnings.html#module-warnings" title="warnings: Issue warning messages and control their disposition."><code class="xref py py-mod docutils literal notranslate"><span class="pre">warnings</span></code></a> API，抑制了這些警告，否則這類警告將被寫入到 <code class="docutils literal notranslate"><span class="pre">sys.stderr</span></code>（<em>not</em> <code class="docutils literal notranslate"><span class="pre">wsgi.errors</span></code>，除非它們碰巧是相同的物件）。</p>
 <p>用法範例：</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">wsgiref.validate</span> <span class="kn">import</span> <span class="n">validator</span>
 <span class="kn">from</span> <span class="nn">wsgiref.simple_server</span> <span class="kn">import</span> <span class="n">make_server</span>
@@ -518,7 +518,7 @@
 <dt class="sig sig-object py" id="wsgiref.handlers.CGIHandler">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">wsgiref.handlers.</span></span><span class="sig-name descname"><span class="pre">CGIHandler</span></span><a class="headerlink" href="#wsgiref.handlers.CGIHandler" title="Link to this definition">¶</a></dt>
 <dd><p>這是基於 CGI 的呼叫方式並透過 <code class="docutils literal notranslate"><span class="pre">sys.stdin</span></code>、<code class="docutils literal notranslate"><span class="pre">sys.stdout</span></code>、<code class="docutils literal notranslate"><span class="pre">sys.stderr</span></code> 和 <code class="docutils literal notranslate"><span class="pre">os.environ</span></code>。當你擁有一個 WSGI 應用程式並希望將其作為 CGI 腳本運行時是很有用的。只需呼叫 <code class="docutils literal notranslate"><span class="pre">CGIHandler().run(app)</span></code>，其中 <code class="docutils literal notranslate"><span class="pre">app</span></code> 是你希望呼叫的 WSGI 應用程式物件。</p>
-<p>這個類別是 <a class="reference internal" href="#wsgiref.handlers.BaseCGIHandler" title="wsgiref.handlers.BaseCGIHandler"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseCGIHandler</span></code></a> 的子類別將 <code class="docutils literal notranslate"><span class="pre">wsgi.run_once</span></code> 設置為 true，<code class="docutils literal notranslate"><span class="pre">wsgi.multithread``設置為</span> <span class="pre">false，並將</span> <span class="pre">``wsgi.multiprocess</span></code> 設置為 true，並且始終使用 <a class="reference internal" href="sys.html#module-sys" title="sys: Access system-specific parameters and functions."><code class="xref py py-mod docutils literal notranslate"><span class="pre">sys</span></code></a> 和 <a class="reference internal" href="os.html#module-os" title="os: Miscellaneous operating system interfaces."><code class="xref py py-mod docutils literal notranslate"><span class="pre">os</span></code></a> 來獲取所需的 CGI 串流以及環境。</p>
+<p>這個類別是 <a class="reference internal" href="#wsgiref.handlers.BaseCGIHandler" title="wsgiref.handlers.BaseCGIHandler"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseCGIHandler</span></code></a> 的子類別將 <code class="docutils literal notranslate"><span class="pre">wsgi.run_once</span></code> 設置為 true，<code class="docutils literal notranslate"><span class="pre">wsgi.multithread</span></code> 設置為 false，並將 <code class="docutils literal notranslate"><span class="pre">wsgi.multiprocess</span></code> 設置為 true，並且始終使用 <a class="reference internal" href="sys.html#module-sys" title="sys: Access system-specific parameters and functions."><code class="xref py py-mod docutils literal notranslate"><span class="pre">sys</span></code></a> 和 <a class="reference internal" href="os.html#module-os" title="os: Miscellaneous operating system interfaces."><code class="xref py py-mod docutils literal notranslate"><span class="pre">os</span></code></a> 來獲取所需的 CGI 串流以及環境。</p>
 </dd></dl>
 
 <dl class="py class">
@@ -614,7 +614,7 @@
 <dl class="py attribute">
 <dt class="sig sig-object py" id="wsgiref.handlers.BaseHandler.os_environ">
 <span class="sig-name descname"><span class="pre">os_environ</span></span><a class="headerlink" href="#wsgiref.handlers.BaseHandler.os_environ" title="Link to this definition">¶</a></dt>
-<dd><p>預設環境變數包含在每一個請求的 WSGI 環境中。預設情況下，這是在載入 <a class="reference internal" href="#module-wsgiref.handlers" title="wsgiref.handlers: WSGI server/gateway base classes."><code class="xref py py-mod docutils literal notranslate"><span class="pre">wsgiref.handlers</span></code></a> 時的 <cite>os.environ</cite> 副本，但子類別可以在類別或實例層級建立自己的副本。注意字典應該被視為唯讀，因為預設值在多個類別與實例中共享。</p>
+<dd><p>預設環境變數包含在每一個請求的 WSGI 環境中。預設情況下，這是在載入 <a class="reference internal" href="#module-wsgiref.handlers" title="wsgiref.handlers: WSGI server/gateway base classes."><code class="xref py py-mod docutils literal notranslate"><span class="pre">wsgiref.handlers</span></code></a> 時的 <code class="docutils literal notranslate"><span class="pre">os.environ</span></code> 副本，但子類別可以在類別或實例層級建立自己的副本。注意字典應該被視為唯讀，因為預設值在多個類別與實例中共享。</p>
 </dd></dl>
 
 <dl class="py attribute">
@@ -719,7 +719,7 @@
 
 </section>
 <section id="module-wsgiref.types">
-<span id="wsgiref-types-wsgi-types-for-static-type-checking"></span><h2><a class="reference internal" href="#module-wsgiref.types" title="wsgiref.types: WSGI types for static type checking"><code class="xref py py-mod docutils literal notranslate"><span class="pre">wsgiref.types</span></code></a> -- 用於靜態型別檢查的 WSGI 型別。<a class="headerlink" href="#module-wsgiref.types" title="Link to this heading">¶</a></h2>
+<span id="wsgiref-types-wsgi-types-for-static-type-checking"></span><h2><a class="reference internal" href="#module-wsgiref.types" title="wsgiref.types: WSGI types for static type checking"><code class="xref py py-mod docutils literal notranslate"><span class="pre">wsgiref.types</span></code></a> -- 用於靜態型別檢查的 WSGI 型別<a class="headerlink" href="#module-wsgiref.types" title="Link to this heading">¶</a></h2>
 <p>這個模組提供在 <span class="target" id="index-55"></span><a class="pep reference external" href="https://peps.python.org/pep-3333/"><strong>PEP 3333</strong></a> 中所描述的各種用於靜態型別檢查的型別。</p>
 <div class="versionadded">
 <p><span class="versionmodified added">在 3.11 版新加入.</span></p>
@@ -858,7 +858,7 @@
 <li><a class="reference internal" href="#wsgiref.util.FileWrapper"><code class="docutils literal notranslate"><span class="pre">FileWrapper</span></code></a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#module-wsgiref.headers"><code class="xref py py-mod docutils literal notranslate"><span class="pre">wsgiref.headers</span></code> -- WSGI 回應標頭工具。</a><ul>
+<li><a class="reference internal" href="#module-wsgiref.headers"><code class="xref py py-mod docutils literal notranslate"><span class="pre">wsgiref.headers</span></code> -- WSGI 回應標頭工具</a><ul>
 <li><a class="reference internal" href="#wsgiref.headers.Headers"><code class="docutils literal notranslate"><span class="pre">Headers</span></code></a><ul>
 <li><a class="reference internal" href="#wsgiref.headers.Headers.get_all"><code class="docutils literal notranslate"><span class="pre">Headers.get_all()</span></code></a></li>
 <li><a class="reference internal" href="#wsgiref.headers.Headers.add_header"><code class="docutils literal notranslate"><span class="pre">Headers.add_header()</span></code></a></li>
@@ -920,7 +920,7 @@
 <li><a class="reference internal" href="#wsgiref.handlers.read_environ"><code class="docutils literal notranslate"><span class="pre">read_environ()</span></code></a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#module-wsgiref.types"><code class="xref py py-mod docutils literal notranslate"><span class="pre">wsgiref.types</span></code> -- 用於靜態型別檢查的 WSGI 型別。</a><ul>
+<li><a class="reference internal" href="#module-wsgiref.types"><code class="xref py py-mod docutils literal notranslate"><span class="pre">wsgiref.types</span></code> -- 用於靜態型別檢查的 WSGI 型別</a><ul>
 <li><a class="reference internal" href="#wsgiref.types.StartResponse"><code class="docutils literal notranslate"><span class="pre">StartResponse</span></code></a></li>
 <li><a class="reference internal" href="#wsgiref.types.WSGIEnvironment"><code class="docutils literal notranslate"><span class="pre">WSGIEnvironment</span></code></a></li>
 <li><a class="reference internal" href="#wsgiref.types.WSGIApplication"><code class="docutils literal notranslate"><span class="pre">WSGIApplication</span></code></a></li>
@@ -1034,7 +1034,7 @@
 <br />
     <br />
 
-    最後更新於 Dec 08, 2023 (06:23 UTC)。
+    最後更新於 Dec 10, 2023 (19:17 UTC)。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 
