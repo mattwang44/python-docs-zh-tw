@@ -431,7 +431,7 @@
 <p><span class="versionmodified changed">在 3.6 版的變更: </span>OpenSSL 0.9.8, 1.0.0 及 1.0.1 版本已被棄用且不再支援。在未來 ssl 模組將需要至少 OpenSSL 1.0.2 版本或 1.1.0 版本。</p>
 </div>
 <div class="versionchanged">
-<p><span class="versionmodified changed">在 3.10 版的變更: </span><span class="target" id="index-27"></span><a class="pep reference external" href="https://peps.python.org/pep-0644/"><strong>PEP 644</strong></a> 已經被實作。ssl 模組需要 OpenSSL 1.1.1 以上的版本才能使用。</p>
+<p><span class="versionmodified changed">在 3.10 版的變更: </span><span class="target" id="index-28"></span><a class="pep reference external" href="https://peps.python.org/pep-0644/"><strong>PEP 644</strong></a> 已經被實作。ssl 模組需要 OpenSSL 1.1.1 以上的版本才能使用。</p>
 <p>使用已經被棄用的常數或函式將會導致棄用警示。</p>
 </div>
 <section id="functions-constants-and-exceptions">
@@ -484,7 +484,7 @@
 <dd><p>回傳一個新的 <a class="reference internal" href="#ssl.SSLContext" title="ssl.SSLContext"><code class="xref py py-class docutils literal notranslate"><span class="pre">SSLContext</span></code></a> 物件，使用給定 <em>purpose</em> 的預設值。這些設定是由 <a class="reference internal" href="#module-ssl" title="ssl: TLS/SSL wrapper for socket objects"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ssl</span></code></a> 選擇，通常比直接使用 <a class="reference internal" href="#ssl.SSLContext" title="ssl.SSLContext"><code class="xref py py-class docutils literal notranslate"><span class="pre">SSLContext</span></code></a> 有更高的安全性。</p>
 <p><em>cafile</em>, <em>capath</em>, <em>cadata</em> 是用來選擇用於憑證認證的 CA 憑證，就像 <a class="reference internal" href="#ssl.SSLContext.load_verify_locations" title="ssl.SSLContext.load_verify_locations"><code class="xref py py-meth docutils literal notranslate"><span class="pre">SSLContext.load_verify_locations()</span></code></a> 一樣。如果三個值都是 <a class="reference internal" href="constants.html#None" title="None"><code class="xref py py-const docutils literal notranslate"><span class="pre">None</span></code></a>，此函式會自動選擇系統預設的 CA 憑證。</p>
 <p>這些設定包含：<a class="reference internal" href="#ssl.PROTOCOL_TLS_CLIENT" title="ssl.PROTOCOL_TLS_CLIENT"><code class="xref py py-data docutils literal notranslate"><span class="pre">PROTOCOL_TLS_CLIENT</span></code></a> 或 <a class="reference internal" href="#ssl.PROTOCOL_TLS_SERVER" title="ssl.PROTOCOL_TLS_SERVER"><code class="xref py py-data docutils literal notranslate"><span class="pre">PROTOCOL_TLS_SERVER</span></code></a>、<a class="reference internal" href="#ssl.OP_NO_SSLv2" title="ssl.OP_NO_SSLv2"><code class="xref py py-data docutils literal notranslate"><span class="pre">OP_NO_SSLv2</span></code></a>、以及 <a class="reference internal" href="#ssl.OP_NO_SSLv3" title="ssl.OP_NO_SSLv3"><code class="xref py py-data docutils literal notranslate"><span class="pre">OP_NO_SSLv3</span></code></a>，使用高加密密碼套件但不包含 RC4 和未經身份驗證的密碼套件。如果將 <em>purpose</em> 設定為 <a class="reference internal" href="#ssl.Purpose.SERVER_AUTH" title="ssl.Purpose.SERVER_AUTH"><code class="xref py py-const docutils literal notranslate"><span class="pre">SERVER_AUTH</span></code></a>，則會把 <a class="reference internal" href="#ssl.SSLContext.verify_mode" title="ssl.SSLContext.verify_mode"><code class="xref py py-data docutils literal notranslate"><span class="pre">verify_mode</span></code></a> 設為 <a class="reference internal" href="#ssl.CERT_REQUIRED" title="ssl.CERT_REQUIRED"><code class="xref py py-data docutils literal notranslate"><span class="pre">CERT_REQUIRED</span></code></a> 並使用設定的 CA 憑證(當 <em>cafile</em>、<em>capath</em> 或 <em>cadata</em> 其中一個值有被設定時) 或使用預設的 CA 憑證  <a class="reference internal" href="#ssl.SSLContext.load_default_certs" title="ssl.SSLContext.load_default_certs"><code class="xref py py-meth docutils literal notranslate"><span class="pre">SSLContext.load_default_certs()</span></code></a> 。</p>
-<p>當系統有支援 <a class="reference internal" href="#ssl.SSLContext.keylog_filename" title="ssl.SSLContext.keylog_filename"><code class="xref py py-attr docutils literal notranslate"><span class="pre">keylog_filename</span></code></a> 並且有設定環境變數 <span class="target" id="index-28"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">SSLKEYLOGFILE</span></code> 時 <a class="reference internal" href="#ssl.create_default_context" title="ssl.create_default_context"><code class="xref py py-func docutils literal notranslate"><span class="pre">create_default_context()</span></code></a> 會啟用密鑰日誌記錄 (logging)。</p>
+<p>當系統有支援 <a class="reference internal" href="#ssl.SSLContext.keylog_filename" title="ssl.SSLContext.keylog_filename"><code class="xref py py-attr docutils literal notranslate"><span class="pre">keylog_filename</span></code></a> 並且有設定環境變數 <span class="target" id="index-29"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">SSLKEYLOGFILE</span></code> 時 <a class="reference internal" href="#ssl.create_default_context" title="ssl.create_default_context"><code class="xref py py-func docutils literal notranslate"><span class="pre">create_default_context()</span></code></a> 會啟用密鑰日誌記錄 (logging)。</p>
 <div class="admonition note">
 <p class="admonition-title">備註</p>
 <p>協定、選項、密碼和其它設定可以在不捨棄舊值的情況下直接更改成新的值，這些值代表了在相容性和安全性之間取得的合理平衡。</p>
@@ -509,7 +509,7 @@
 <p>把 3DES 從預設密碼中捨棄。</p>
 </div>
 <div class="versionchanged">
-<p><span class="versionmodified changed">在 3.8 版的變更: </span>增加了 <span class="target" id="index-29"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">SSLKEYLOGFILE</span></code> 對密鑰記錄 (logging)的支持。</p>
+<p><span class="versionmodified changed">在 3.8 版的變更: </span>增加了 <span class="target" id="index-30"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">SSLKEYLOGFILE</span></code> 對密鑰日誌記錄 (logging) 的支援。</p>
 </div>
 <div class="versionchanged">
 <p><span class="versionmodified changed">在 3.10 版的變更: </span>當前語境使用 <a class="reference internal" href="#ssl.PROTOCOL_TLS_CLIENT" title="ssl.PROTOCOL_TLS_CLIENT"><code class="xref py py-data docutils literal notranslate"><span class="pre">PROTOCOL_TLS_CLIENT</span></code></a> 協定或 <a class="reference internal" href="#ssl.PROTOCOL_TLS_SERVER" title="ssl.PROTOCOL_TLS_SERVER"><code class="xref py py-data docutils literal notranslate"><span class="pre">PROTOCOL_TLS_SERVER</span></code></a> 協定而非通用的 <a class="reference internal" href="#ssl.PROTOCOL_TLS" title="ssl.PROTOCOL_TLS"><code class="xref py py-data docutils literal notranslate"><span class="pre">PROTOCOL_TLS</span></code></a>。</p>
@@ -522,21 +522,14 @@
 <dl class="py exception">
 <dt class="sig sig-object py" id="ssl.SSLError">
 <em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ssl.</span></span><span class="sig-name descname"><span class="pre">SSLError</span></span><a class="headerlink" href="#ssl.SSLError" title="Link to this definition">¶</a></dt>
-<dd><p>Raised to signal an error from the underlying SSL implementation
-(currently provided by the OpenSSL library).  This signifies some
-problem in the higher-level encryption and authentication layer that's
-superimposed on the underlying network connection.  This error
-is a subtype of <a class="reference internal" href="exceptions.html#OSError" title="OSError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">OSError</span></code></a>.  The error code and message of
-<a class="reference internal" href="#ssl.SSLError" title="ssl.SSLError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">SSLError</span></code></a> instances are provided by the OpenSSL library.</p>
+<dd><p>引發由底層 SSL 實作（目前由 OpenSSL 函式庫提供）所引發的錯誤訊息。這表示在覆蓋底層網路連線的高階加密和身份驗證層中存在一些問題。這項錯誤是 <a class="reference internal" href="exceptions.html#OSError" title="OSError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">OSError</span></code></a> 的一個子型別。<a class="reference internal" href="#ssl.SSLError" title="ssl.SSLError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">SSLError</span></code></a> 實例的錯誤程式代碼和訊息是由 OpenSSL 函式庫提供。</p>
 <div class="versionchanged">
-<p><span class="versionmodified changed">在 3.3 版的變更: </span><a class="reference internal" href="#ssl.SSLError" title="ssl.SSLError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">SSLError</span></code></a> used to be a subtype of <a class="reference internal" href="socket.html#socket.error" title="socket.error"><code class="xref py py-exc docutils literal notranslate"><span class="pre">socket.error</span></code></a>.</p>
+<p><span class="versionmodified changed">在 3.3 版的變更: </span><a class="reference internal" href="#ssl.SSLError" title="ssl.SSLError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">SSLError</span></code></a> 曾經是 <a class="reference internal" href="socket.html#socket.error" title="socket.error"><code class="xref py py-exc docutils literal notranslate"><span class="pre">socket.error</span></code></a> 的一個子型別。</p>
 </div>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="ssl.SSLError.library">
 <span class="sig-name descname"><span class="pre">library</span></span><a class="headerlink" href="#ssl.SSLError.library" title="Link to this definition">¶</a></dt>
-<dd><p>A string mnemonic designating the OpenSSL submodule in which the error
-occurred, such as <code class="docutils literal notranslate"><span class="pre">SSL</span></code>, <code class="docutils literal notranslate"><span class="pre">PEM</span></code> or <code class="docutils literal notranslate"><span class="pre">X509</span></code>.  The range of possible
-values depends on the OpenSSL version.</p>
+<dd><p>一個字串符號 (string mnemonic)，用來指定發生錯誤的 OpenSSL 子模組，如：<code class="docutils literal notranslate"><span class="pre">SSL</span></code>、<code class="docutils literal notranslate"><span class="pre">PEM</span></code> 或 <code class="docutils literal notranslate"><span class="pre">X509</span></code>。可能值的範圍取決於 OpenSSL 的版本。</p>
 <div class="versionadded">
 <p><span class="versionmodified added">在 3.3 版新加入.</span></p>
 </div>
@@ -545,9 +538,7 @@ values depends on the OpenSSL version.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="ssl.SSLError.reason">
 <span class="sig-name descname"><span class="pre">reason</span></span><a class="headerlink" href="#ssl.SSLError.reason" title="Link to this definition">¶</a></dt>
-<dd><p>A string mnemonic designating the reason this error occurred, for
-example <code class="docutils literal notranslate"><span class="pre">CERTIFICATE_VERIFY_FAILED</span></code>.  The range of possible
-values depends on the OpenSSL version.</p>
+<dd><p>一個字串符號，用來指定發生錯誤的原因，如：<code class="docutils literal notranslate"><span class="pre">CERTIFICATE_VERIFY_FAILED</span></code>。可能值的範圍取決於 OpenSSL 的版本。</p>
 <div class="versionadded">
 <p><span class="versionmodified added">在 3.3 版新加入.</span></p>
 </div>
@@ -558,9 +549,7 @@ values depends on the OpenSSL version.</p>
 <dl class="py exception">
 <dt class="sig sig-object py" id="ssl.SSLZeroReturnError">
 <em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ssl.</span></span><span class="sig-name descname"><span class="pre">SSLZeroReturnError</span></span><a class="headerlink" href="#ssl.SSLZeroReturnError" title="Link to this definition">¶</a></dt>
-<dd><p>A subclass of <a class="reference internal" href="#ssl.SSLError" title="ssl.SSLError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">SSLError</span></code></a> raised when trying to read or write and
-the SSL connection has been closed cleanly.  Note that this doesn't
-mean that the underlying transport (read TCP) has been closed.</p>
+<dd><p>一個 <a class="reference internal" href="#ssl.SSLError" title="ssl.SSLError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">SSLError</span></code></a> 的子類別，當嘗試去讀寫已經被完全關閉的 SSL 連線時會被引發。請注意，這並不表示底層傳輸（例如 TCP）已經被關閉。</p>
 <div class="versionadded">
 <p><span class="versionmodified added">在 3.3 版新加入.</span></p>
 </div>
@@ -569,9 +558,7 @@ mean that the underlying transport (read TCP) has been closed.</p>
 <dl class="py exception">
 <dt class="sig sig-object py" id="ssl.SSLWantReadError">
 <em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ssl.</span></span><span class="sig-name descname"><span class="pre">SSLWantReadError</span></span><a class="headerlink" href="#ssl.SSLWantReadError" title="Link to this definition">¶</a></dt>
-<dd><p>A subclass of <a class="reference internal" href="#ssl.SSLError" title="ssl.SSLError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">SSLError</span></code></a> raised by a <a class="reference internal" href="#ssl-nonblocking"><span class="std std-ref">non-blocking SSL socket</span></a> when trying to read or write data, but more data needs
-to be received on the underlying TCP transport before the request can be
-fulfilled.</p>
+<dd><p>一個 <a class="reference internal" href="#ssl.SSLError" title="ssl.SSLError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">SSLError</span></code></a> 的子類別，當嘗試去讀寫資料前，底層 TCP 傳輸需要先接收更多資料時會由<a class="reference internal" href="#ssl-nonblocking"><span class="std std-ref">非阻塞的 SSL socket</span></a> 引發該錯誤。</p>
 <div class="versionadded">
 <p><span class="versionmodified added">在 3.3 版新加入.</span></p>
 </div>
@@ -580,9 +567,7 @@ fulfilled.</p>
 <dl class="py exception">
 <dt class="sig sig-object py" id="ssl.SSLWantWriteError">
 <em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ssl.</span></span><span class="sig-name descname"><span class="pre">SSLWantWriteError</span></span><a class="headerlink" href="#ssl.SSLWantWriteError" title="Link to this definition">¶</a></dt>
-<dd><p>A subclass of <a class="reference internal" href="#ssl.SSLError" title="ssl.SSLError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">SSLError</span></code></a> raised by a <a class="reference internal" href="#ssl-nonblocking"><span class="std std-ref">non-blocking SSL socket</span></a> when trying to read or write data, but more data needs
-to be sent on the underlying TCP transport before the request can be
-fulfilled.</p>
+<dd><p>一個 <a class="reference internal" href="#ssl.SSLError" title="ssl.SSLError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">SSLError</span></code></a> 的子類別，當嘗試去讀寫資料前，底層 TCP 傳輸需要先發送更多資料時會由<a class="reference internal" href="#ssl-nonblocking"><span class="std std-ref">非阻塞的 SSL socket</span></a> 引發該錯誤。</p>
 <div class="versionadded">
 <p><span class="versionmodified added">在 3.3 版新加入.</span></p>
 </div>
@@ -591,9 +576,7 @@ fulfilled.</p>
 <dl class="py exception">
 <dt class="sig sig-object py" id="ssl.SSLSyscallError">
 <em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ssl.</span></span><span class="sig-name descname"><span class="pre">SSLSyscallError</span></span><a class="headerlink" href="#ssl.SSLSyscallError" title="Link to this definition">¶</a></dt>
-<dd><p>A subclass of <a class="reference internal" href="#ssl.SSLError" title="ssl.SSLError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">SSLError</span></code></a> raised when a system error was encountered
-while trying to fulfill an operation on a SSL socket.  Unfortunately,
-there is no easy way to inspect the original errno number.</p>
+<dd><p>一個 <a class="reference internal" href="#ssl.SSLError" title="ssl.SSLError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">SSLError</span></code></a> 的子類別，當嘗試去操作 SSL socket 時有系統錯誤產生會引發此錯誤。不幸的是，目前沒有任何簡單的方法可以去檢查原本的的 errno 編號。</p>
 <div class="versionadded">
 <p><span class="versionmodified added">在 3.3 版新加入.</span></p>
 </div>
@@ -602,9 +585,7 @@ there is no easy way to inspect the original errno number.</p>
 <dl class="py exception">
 <dt class="sig sig-object py" id="ssl.SSLEOFError">
 <em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ssl.</span></span><span class="sig-name descname"><span class="pre">SSLEOFError</span></span><a class="headerlink" href="#ssl.SSLEOFError" title="Link to this definition">¶</a></dt>
-<dd><p>A subclass of <a class="reference internal" href="#ssl.SSLError" title="ssl.SSLError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">SSLError</span></code></a> raised when the SSL connection has been
-terminated abruptly.  Generally, you shouldn't try to reuse the underlying
-transport when this error is encountered.</p>
+<dd><p>一個 <a class="reference internal" href="#ssl.SSLError" title="ssl.SSLError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">SSLError</span></code></a> 的子類別，當 SSL 連線被突然終止時會引發此錯誤。通常，當此錯誤發生時，你不該再去重新使用底層傳輸。</p>
 <div class="versionadded">
 <p><span class="versionmodified added">在 3.3 版新加入.</span></p>
 </div>
@@ -613,21 +594,20 @@ transport when this error is encountered.</p>
 <dl class="py exception">
 <dt class="sig sig-object py" id="ssl.SSLCertVerificationError">
 <em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ssl.</span></span><span class="sig-name descname"><span class="pre">SSLCertVerificationError</span></span><a class="headerlink" href="#ssl.SSLCertVerificationError" title="Link to this definition">¶</a></dt>
-<dd><p>A subclass of <a class="reference internal" href="#ssl.SSLError" title="ssl.SSLError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">SSLError</span></code></a> raised when certificate validation has
-failed.</p>
+<dd><p>當憑證驗證失敗時會引發的一個 <a class="reference internal" href="#ssl.SSLError" title="ssl.SSLError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">SSLError</span></code></a> 子類別。</p>
 <div class="versionadded">
 <p><span class="versionmodified added">在 3.7 版新加入.</span></p>
 </div>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="ssl.SSLCertVerificationError.verify_code">
 <span class="sig-name descname"><span class="pre">verify_code</span></span><a class="headerlink" href="#ssl.SSLCertVerificationError.verify_code" title="Link to this definition">¶</a></dt>
-<dd><p>A numeric error number that denotes the verification error.</p>
+<dd><p>一個表示驗證錯誤的錯誤數值編號。</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="ssl.SSLCertVerificationError.verify_message">
 <span class="sig-name descname"><span class="pre">verify_message</span></span><a class="headerlink" href="#ssl.SSLCertVerificationError.verify_message" title="Link to this definition">¶</a></dt>
-<dd><p>A human readable string of the verification error.</p>
+<dd><p>一個人類可讀的驗證錯誤字串。</p>
 </dd></dl>
 
 </dd></dl>
@@ -647,15 +627,9 @@ failed.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="ssl.RAND_bytes">
 <span class="sig-prename descclassname"><span class="pre">ssl.</span></span><span class="sig-name descname"><span class="pre">RAND_bytes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ssl.RAND_bytes" title="Link to this definition">¶</a></dt>
-<dd><p>Return <em>num</em> cryptographically strong pseudo-random bytes. Raises an
-<a class="reference internal" href="#ssl.SSLError" title="ssl.SSLError"><code class="xref py py-class docutils literal notranslate"><span class="pre">SSLError</span></code></a> if the PRNG has not been seeded with enough data or if the
-operation is not supported by the current RAND method. <a class="reference internal" href="#ssl.RAND_status" title="ssl.RAND_status"><code class="xref py py-func docutils literal notranslate"><span class="pre">RAND_status()</span></code></a>
-can be used to check the status of the PRNG and <a class="reference internal" href="#ssl.RAND_add" title="ssl.RAND_add"><code class="xref py py-func docutils literal notranslate"><span class="pre">RAND_add()</span></code></a> can be used
-to seed the PRNG.</p>
+<dd><p>回傳 <em>num</em> 個加密性強的偽隨機位元組。如果 PRNG 未使用足夠的資料做為隨機種子 (seed) 或是目前的 RAND 方法不支持該操作則會導致 <a class="reference internal" href="#ssl.SSLError" title="ssl.SSLError"><code class="xref py py-class docutils literal notranslate"><span class="pre">SSLError</span></code></a> 錯誤。<a class="reference internal" href="#ssl.RAND_status" title="ssl.RAND_status"><code class="xref py py-func docutils literal notranslate"><span class="pre">RAND_status()</span></code></a> 函式可以用來檢查 PRNG 函式，而 <a class="reference internal" href="#ssl.RAND_add" title="ssl.RAND_add"><code class="xref py py-func docutils literal notranslate"><span class="pre">RAND_add()</span></code></a> 則可以用來為 PRNG 設定隨機種子。</p>
 <p>在幾乎所有的應用程式中，<a class="reference internal" href="os.html#os.urandom" title="os.urandom"><code class="xref py py-func docutils literal notranslate"><span class="pre">os.urandom()</span></code></a> 會是較好的選擇。</p>
-<p>Read the Wikipedia article, <a class="reference external" href="https://en.wikipedia.org/wiki/Cryptographically_secure_pseudorandom_number_generator">Cryptographically secure pseudorandom number
-generator (CSPRNG)</a>,
-to get the requirements of a cryptographically strong generator.</p>
+<p>請閱讀維基百科的<a class="reference external" href="https://en.wikipedia.org/wiki/Cryptographically_secure_pseudorandom_number_generator">密碼學安全偽隨機數產生器 (CSPRNG)</a>文章來了解密碼學安全偽隨機數產生器的需求。</p>
 <div class="versionadded">
 <p><span class="versionmodified added">在 3.3 版新加入.</span></p>
 </div>
@@ -664,19 +638,13 @@ to get the requirements of a cryptographically strong generator.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="ssl.RAND_status">
 <span class="sig-prename descclassname"><span class="pre">ssl.</span></span><span class="sig-name descname"><span class="pre">RAND_status</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ssl.RAND_status" title="Link to this definition">¶</a></dt>
-<dd><p>Return <code class="docutils literal notranslate"><span class="pre">True</span></code> if the SSL pseudo-random number generator has been seeded
-with 'enough' randomness, and <code class="docutils literal notranslate"><span class="pre">False</span></code> otherwise.  You can use
-<code class="xref py py-func docutils literal notranslate"><span class="pre">ssl.RAND_egd()</span></code> and <a class="reference internal" href="#ssl.RAND_add" title="ssl.RAND_add"><code class="xref py py-func docutils literal notranslate"><span class="pre">ssl.RAND_add()</span></code></a> to increase the randomness of
-the pseudo-random number generator.</p>
+<dd><p>如果 SSL 偽隨機數產生器已經使用「足夠的」隨機性進行隨機種子生成，則回傳 <code class="docutils literal notranslate"><span class="pre">True</span></code> ，否則回傳 <code class="docutils literal notranslate"><span class="pre">False</span></code>。你可以使用 <code class="xref py py-func docutils literal notranslate"><span class="pre">ssl.RAND_egd()</span></code> 函式和 <a class="reference internal" href="#ssl.RAND_add" title="ssl.RAND_add"><code class="xref py py-func docutils literal notranslate"><span class="pre">ssl.RAND_add()</span></code></a> 函式來增加偽隨機數產生器的隨機性。</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="ssl.RAND_add">
 <span class="sig-prename descclassname"><span class="pre">ssl.</span></span><span class="sig-name descname"><span class="pre">RAND_add</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bytes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">entropy</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ssl.RAND_add" title="Link to this definition">¶</a></dt>
-<dd><p>Mix the given <em>bytes</em> into the SSL pseudo-random number generator.  The
-parameter <em>entropy</em> (a float) is a lower bound on the entropy contained in
-string (so you can always use <code class="docutils literal notranslate"><span class="pre">0.0</span></code>).  See <span class="target" id="index-5"></span><a class="rfc reference external" href="https://datatracker.ietf.org/doc/html/rfc1750.html"><strong>RFC 1750</strong></a> for more
-information on sources of entropy.</p>
+<dd><p>將給定的 <em>bytes</em> 混進 SSL 隨機偽隨機數產生器中。 <em>entropy</em> 參數（float 值）是指字符串中包含熵值的下限（因此你可以將其設為 <code class="docutils literal notranslate"><span class="pre">0.0</span></code>）。請參閱 <span class="target" id="index-31"></span><a class="rfc reference external" href="https://datatracker.ietf.org/doc/html/rfc1750.html"><strong>RFC 1750</strong></a> 了解有關熵源的更多資訊。</p>
 <div class="versionchanged">
 <p><span class="versionmodified changed">在 3.5 版的變更: </span>可寫入的<a class="reference internal" href="../glossary.html#term-bytes-like-object"><span class="xref std std-term">類位元組物件</span></a>現在可被接受。</p>
 </div>
@@ -688,10 +656,7 @@ information on sources of entropy.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="ssl.cert_time_to_seconds">
 <span class="sig-prename descclassname"><span class="pre">ssl.</span></span><span class="sig-name descname"><span class="pre">cert_time_to_seconds</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cert_time</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ssl.cert_time_to_seconds" title="Link to this definition">¶</a></dt>
-<dd><p>Return the time in seconds since the Epoch, given the <code class="docutils literal notranslate"><span class="pre">cert_time</span></code>
-string representing the &quot;notBefore&quot; or &quot;notAfter&quot; date from a
-certificate in <code class="docutils literal notranslate"><span class="pre">&quot;%b</span> <span class="pre">%d</span> <span class="pre">%H:%M:%S</span> <span class="pre">%Y</span> <span class="pre">%Z&quot;</span></code> strptime format (C
-locale).</p>
+<dd><p>回傳自紀元以來的秒數，給定的 <code class="docutils literal notranslate"><span class="pre">cert_time</span></code> 字串表示證書的 &quot;notBefore&quot; 或 &quot;notAfter&quot; 日期，字串採用 <code class="docutils literal notranslate"><span class="pre">&quot;%b</span> <span class="pre">%d</span> <span class="pre">%H:%M:%S</span> <span class="pre">%Y</span> <span class="pre">%Z&quot;</span></code> 格式（C 語言區域設定）。</p>
 <p>以下是一個範例：</p>
 <div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">ssl</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">timestamp</span> <span class="o">=</span> <span class="n">ssl</span><span class="o">.</span><span class="n">cert_time_to_seconds</span><span class="p">(</span><span class="s2">&quot;Jan  5 09:34:43 2018 GMT&quot;</span><span class="p">)</span>
@@ -702,7 +667,7 @@ locale).</p>
 <span class="go">2018-01-05 09:34:43</span>
 </pre></div>
 </div>
-<p>&quot;notBefore&quot; 或 &quot;notAfter&quot; 日期必須使用 GMT (<span class="target" id="index-30"></span><a class="rfc reference external" href="https://datatracker.ietf.org/doc/html/rfc5280.html"><strong>RFC 5280</strong></a>)。</p>
+<p>&quot;notBefore&quot; 或 &quot;notAfter&quot; 日期必須使用 GMT (<span class="target" id="index-32"></span><a class="rfc reference external" href="https://datatracker.ietf.org/doc/html/rfc5280.html"><strong>RFC 5280</strong></a>)。</p>
 <div class="versionchanged">
 <p><span class="versionmodified changed">在 3.5 版的變更: </span>Interpret the input time as a time in UTC as specified by 'GMT'
 timezone in the input string. Local timezone was used
@@ -3670,7 +3635,7 @@ signature algorithm configuration, and rekeying are not supported yet.</p></li>
       </ul>
     </div>  
     <div class="footer">
-    &copy; <a href="../copyright.html">版權</a> 2001-2023, Python Software Foundation.
+    &copy; <a href="../copyright.html">版權</a> 2001-2024, Python Software Foundation.
     <br />
     This page is licensed under the Python Software Foundation License Version 2.
     <br />
@@ -3684,7 +3649,7 @@ signature algorithm configuration, and rekeying are not supported yet.</p></li>
 <br />
     <br />
 
-    最後更新於 Dec 30, 2023 (06:08 UTC)。
+    最後更新於 Jan 03, 2024 (05:34 UTC)。
     <a href="/bugs.html">Found a bug</a>?
     <br />
 
