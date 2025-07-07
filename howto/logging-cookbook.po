@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.13\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-03 18:39+0000\n"
+"POT-Creation-Date: 2025-07-07 17:47+0000\n"
 "PO-Revision-Date: 2018-05-23 14:36+0000\n"
 "Last-Translator: Adrian Liaw <adrianliaw2000@gmail.com>\n"
 "Language-Team: Chinese - TAIWAN (https://github.com/python/python-docs-zh-"
@@ -5215,11 +5215,86 @@ msgid ""
 "WARNING:demo:ZeroDivisionError: division by zero"
 msgstr ""
 
-#: ../../howto/logging-cookbook.rst:4072
+#: ../../howto/logging-cookbook.rst:4069
+msgid "How to uniformly handle newlines in logging output"
+msgstr ""
+
+#: ../../howto/logging-cookbook.rst:4071
+msgid ""
+"Usually, messages that are logged (say to console or file) consist of a "
+"single line of text. However, sometimes there is a need to handle messages "
+"with multiple lines - whether because a logging format string contains "
+"newlines, or logged data contains newlines. If you want to handle such "
+"messages uniformly, so that each line in the logged message appears "
+"uniformly formatted as if it was logged separately, you can do this using a "
+"handler mixin, as in the following snippet:"
+msgstr ""
+
+#: ../../howto/logging-cookbook.rst:4079
+msgid ""
+"# Assume this is in a module mymixins.py\n"
+"import copy\n"
+"\n"
+"class MultilineMixin:\n"
+"    def emit(self, record):\n"
+"        s = record.getMessage()\n"
+"        if '\\n' not in s:\n"
+"            super().emit(record)\n"
+"        else:\n"
+"            lines = s.splitlines()\n"
+"            rec = copy.copy(record)\n"
+"            rec.args = None\n"
+"            for line in lines:\n"
+"                rec.msg = line\n"
+"                super().emit(rec)"
+msgstr ""
+
+#: ../../howto/logging-cookbook.rst:4097
+msgid "You can use the mixin as in the following script:"
+msgstr ""
+
+#: ../../howto/logging-cookbook.rst:4099
+msgid ""
+"import logging\n"
+"\n"
+"from mymixins import MultilineMixin\n"
+"\n"
+"logger = logging.getLogger(__name__)\n"
+"\n"
+"class StreamHandler(MultilineMixin, logging.StreamHandler):\n"
+"    pass\n"
+"\n"
+"if __name__ == '__main__':\n"
+"    logging.basicConfig(level=logging.DEBUG, format='%(asctime)s "
+"%(levelname)-9s %(message)s',\n"
+"                        handlers = [StreamHandler()])\n"
+"    logger.debug('Single line')\n"
+"    logger.debug('Multiple lines:\\nfool me once ...')\n"
+"    logger.debug('Another single line')\n"
+"    logger.debug('Multiple lines:\\n%s', 'fool me ...\\ncan\\'t get fooled "
+"again')"
+msgstr ""
+
+#: ../../howto/logging-cookbook.rst:4118
+msgid "The script, when run, prints something like:"
+msgstr ""
+
+#: ../../howto/logging-cookbook.rst:4120
+msgid ""
+"2025-07-02 13:54:47,234 DEBUG     Single line\n"
+"2025-07-02 13:54:47,234 DEBUG     Multiple lines:\n"
+"2025-07-02 13:54:47,234 DEBUG     fool me once ...\n"
+"2025-07-02 13:54:47,234 DEBUG     Another single line\n"
+"2025-07-02 13:54:47,234 DEBUG     Multiple lines:\n"
+"2025-07-02 13:54:47,234 DEBUG     fool me ...\n"
+"2025-07-02 13:54:47,234 DEBUG     can't get fooled again"
+msgstr ""
+
+#: ../../howto/logging-cookbook.rst:4134
 msgid "Patterns to avoid"
 msgstr ""
 
-#: ../../howto/logging-cookbook.rst:4074
+#: ../../howto/logging-cookbook.rst:4136
 msgid ""
 "Although the preceding sections have described ways of doing things you "
 "might need to do or deal with, it is worth mentioning some usage patterns "
@@ -5227,11 +5302,11 @@ msgid ""
 "The following sections are in no particular order."
 msgstr ""
 
-#: ../../howto/logging-cookbook.rst:4080
+#: ../../howto/logging-cookbook.rst:4142
 msgid "Opening the same log file multiple times"
 msgstr ""
 
-#: ../../howto/logging-cookbook.rst:4082
+#: ../../howto/logging-cookbook.rst:4144
 msgid ""
 "On Windows, you will generally not be able to open the same file multiple "
 "times as this will lead to a \"file is in use by another process\" error. "
@@ -5239,32 +5314,32 @@ msgid ""
 "file multiple times. This could be done accidentally, for example by:"
 msgstr ""
 
-#: ../../howto/logging-cookbook.rst:4087
+#: ../../howto/logging-cookbook.rst:4149
 msgid ""
 "Adding a file handler more than once which references the same file (e.g. by "
 "a copy/paste/forget-to-change error)."
 msgstr ""
 
-#: ../../howto/logging-cookbook.rst:4090
+#: ../../howto/logging-cookbook.rst:4152
 msgid ""
 "Opening two files that look different, as they have different names, but are "
 "the same because one is a symbolic link to the other."
 msgstr ""
 
-#: ../../howto/logging-cookbook.rst:4093
+#: ../../howto/logging-cookbook.rst:4155
 msgid ""
 "Forking a process, following which both parent and child have a reference to "
 "the same file. This might be through use of the :mod:`multiprocessing` "
 "module, for example."
 msgstr ""
 
-#: ../../howto/logging-cookbook.rst:4097
+#: ../../howto/logging-cookbook.rst:4159
 msgid ""
 "Opening a file multiple times might *appear* to work most of the time, but "
 "can lead to a number of problems in practice:"
 msgstr ""
 
-#: ../../howto/logging-cookbook.rst:4100
+#: ../../howto/logging-cookbook.rst:4162
 msgid ""
 "Logging output can be garbled because multiple threads or processes try to "
 "write to the same file. Although logging guards against concurrent use of "
@@ -5273,7 +5348,7 @@ msgid ""
 "different handler instances which happen to point to the same file."
 msgstr ""
 
-#: ../../howto/logging-cookbook.rst:4106
+#: ../../howto/logging-cookbook.rst:4168
 msgid ""
 "An attempt to delete a file (e.g. during file rotation) silently fails, "
 "because there is another reference pointing to it. This can lead to "
@@ -5283,17 +5358,17 @@ msgid ""
 "being supposedly in place."
 msgstr ""
 
-#: ../../howto/logging-cookbook.rst:4113
+#: ../../howto/logging-cookbook.rst:4175
 msgid ""
 "Use the techniques outlined in :ref:`multiple-processes` to circumvent such "
 "issues."
 msgstr ""
 
-#: ../../howto/logging-cookbook.rst:4117
+#: ../../howto/logging-cookbook.rst:4179
 msgid "Using loggers as attributes in a class or passing them as parameters"
 msgstr ""
 
-#: ../../howto/logging-cookbook.rst:4119
+#: ../../howto/logging-cookbook.rst:4181
 msgid ""
 "While there might be unusual cases where you'll need to do this, in general "
 "there is no point because loggers are singletons. Code can always access a "
@@ -5304,13 +5379,13 @@ msgid ""
 "module (and not the class) is the unit of software decomposition."
 msgstr ""
 
-#: ../../howto/logging-cookbook.rst:4128
+#: ../../howto/logging-cookbook.rst:4190
 msgid ""
 "Adding handlers other than :class:`~logging.NullHandler` to a logger in a "
 "library"
 msgstr ""
 
-#: ../../howto/logging-cookbook.rst:4130
+#: ../../howto/logging-cookbook.rst:4192
 msgid ""
 "Configuring logging by adding handlers, formatters and filters is the "
 "responsibility of the application developer, not the library developer. If "
@@ -5318,11 +5393,11 @@ msgid ""
 "your loggers other than a :class:`~logging.NullHandler` instance."
 msgstr ""
 
-#: ../../howto/logging-cookbook.rst:4136
+#: ../../howto/logging-cookbook.rst:4198
 msgid "Creating a lot of loggers"
 msgstr ""
 
-#: ../../howto/logging-cookbook.rst:4138
+#: ../../howto/logging-cookbook.rst:4200
 msgid ""
 "Loggers are singletons that are never freed during a script execution, and "
 "so creating lots of loggers will use up memory which can't then be freed. "
@@ -5333,38 +5408,38 @@ msgid ""
 "occasionally slightly more fine-grained than that)."
 msgstr ""
 
-#: ../../howto/logging-cookbook.rst:4149
+#: ../../howto/logging-cookbook.rst:4211
 msgid "Other resources"
 msgstr ""
 
-#: ../../howto/logging-cookbook.rst:4153
+#: ../../howto/logging-cookbook.rst:4215
 msgid "Module :mod:`logging`"
 msgstr ":mod:`logging` 模組"
 
-#: ../../howto/logging-cookbook.rst:4154
+#: ../../howto/logging-cookbook.rst:4216
 msgid "API reference for the logging module."
 msgstr ""
 
-#: ../../howto/logging-cookbook.rst:4156
+#: ../../howto/logging-cookbook.rst:4218
 msgid "Module :mod:`logging.config`"
 msgstr ":mod:`logging.config` 模組"
 
-#: ../../howto/logging-cookbook.rst:4157
+#: ../../howto/logging-cookbook.rst:4219
 msgid "Configuration API for the logging module."
 msgstr ""
 
-#: ../../howto/logging-cookbook.rst:4159
+#: ../../howto/logging-cookbook.rst:4221
 msgid "Module :mod:`logging.handlers`"
 msgstr ":mod:`logging.handlers` 模組"
 
-#: ../../howto/logging-cookbook.rst:4160
+#: ../../howto/logging-cookbook.rst:4222
 msgid "Useful handlers included with the logging module."
 msgstr ""
 
-#: ../../howto/logging-cookbook.rst:4162
+#: ../../howto/logging-cookbook.rst:4224
 msgid ":ref:`Basic Tutorial <logging-basic-tutorial>`"
 msgstr ":ref:`基礎教學 <logging-basic-tutorial>`"
 
-#: ../../howto/logging-cookbook.rst:4164
+#: ../../howto/logging-cookbook.rst:4226
 msgid ":ref:`Advanced Tutorial <logging-advanced-tutorial>`"
 msgstr ":ref:`進階教學 <logging-advanced-tutorial>`"
