@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.13\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-21 00:15+0000\n"
+"POT-Creation-Date: 2025-09-08 07:42+0000\n"
 "PO-Revision-Date: 2023-02-11 15:02+0800\n"
 "Last-Translator: \n"
 "Language-Team: Chinese - TAIWAN (https://github.com/python/python-docs-zh-"
@@ -320,10 +320,10 @@ msgid ""
 "id-based hashing)."
 msgstr ""
 "如果 *eq* 和 *frozen* 都為真，預設情況下 ``@dataclass`` 會為你生成一個 :meth:"
-"`!__hash__` 方法。如果 *eq* 為真且 *frozen* 為假，:meth:`!__hash__` 將被"
-"設定為 ``None``，並將其標記為不可雜湊（因為它是可變的）。如果 "
-"*eq* 為假，:meth:`!__hash__` 將保持不變，這意味著將使用超類別的 :meth:`!"
-"__hash__` 方法（如果超類別是 :class:`object`，這意味著它將回退到基於 id 的雜湊）。"
+"`!__hash__` 方法。如果 *eq* 為真且 *frozen* 為假，:meth:`!__hash__` 將被設定"
+"為 ``None``，並將其標記為不可雜湊（因為它是可變的）。如果 *eq* 為假，:meth:`!"
+"__hash__` 將保持不變，這意味著將使用超類別的 :meth:`!__hash__` 方法（如果超類"
+"別是 :class:`object`，這意味著它將回退到基於 id 的雜湊）。"
 
 #: ../../library/dataclasses.rst:163
 #, fuzzy
@@ -392,18 +392,6 @@ msgstr ""
 "則 :exc:`TypeError` 被引發。"
 
 #: ../../library/dataclasses.rst:197
-#, fuzzy
-msgid ""
-"Calling no-arg :func:`super` in dataclasses using ``slots=True`` will result "
-"in the following exception being raised: ``TypeError: super(type, obj): obj "
-"must be an instance or subtype of type``. The two-arg :func:`super` is a "
-"valid workaround. See :gh:`90562` for full details."
-msgstr ""
-"``slots``：如果為 true（預設為 ``False``），將生成 :attr:`~object.__slots__` "
-"屬性並回傳新類別而不是原始類別。如果 :attr:`!__slots__` 已經在類別中定義，"
-"則 :exc:`TypeError` 被引發。"
-
-#: ../../library/dataclasses.rst:204
 msgid ""
 "Passing parameters to a base class :meth:`~object.__init_subclass__` when "
 "using ``slots=True`` will result in a :exc:`TypeError`. Either use "
@@ -411,7 +399,7 @@ msgid ""
 "workaround. See :gh:`91126` for full details."
 msgstr ""
 
-#: ../../library/dataclasses.rst:212
+#: ../../library/dataclasses.rst:205
 #, fuzzy
 msgid ""
 "If a field name is already included in the :attr:`!__slots__` of a base "
@@ -427,7 +415,7 @@ msgstr ""
 "夠確定繼承的插槽，基底類別 :attr:`!__slots__` 可以是任何可疊代的，但*不是*疊"
 "代器。"
 
-#: ../../library/dataclasses.rst:222
+#: ../../library/dataclasses.rst:215
 #, fuzzy
 msgid ""
 "*weakref_slot*: If true (the default is ``False``), add a slot named "
@@ -439,14 +427,14 @@ msgstr ""
 "插槽，這是使實例可弱引用所必需的。在沒有指定 ``slots=True`` 的情況下指定 "
 "``weakref_slot=True`` 是錯誤的。"
 
-#: ../../library/dataclasses.rst:230
+#: ../../library/dataclasses.rst:223
 #, fuzzy
 msgid ""
 "``field``\\s may optionally specify a default value, using normal Python "
 "syntax::"
 msgstr "``field``\\s 可以選擇指定一個預設值，使用普通的 Python 語法： ::"
 
-#: ../../library/dataclasses.rst:233
+#: ../../library/dataclasses.rst:226
 msgid ""
 "@dataclass\n"
 "class C:\n"
@@ -454,7 +442,7 @@ msgid ""
 "    b: int = 0   # assign a default value for 'b'"
 msgstr ""
 
-#: ../../library/dataclasses.rst:238
+#: ../../library/dataclasses.rst:231
 #, fuzzy
 msgid ""
 "In this example, both :attr:`!a` and :attr:`!b` will be included in the "
@@ -463,11 +451,11 @@ msgstr ""
 "在此示例中，:attr:`!a` 和 :attr:`!b` 都將包含在新增的 :meth:`~object."
 "__init__` 方法中，該方法將定義為： ::"
 
-#: ../../library/dataclasses.rst:241
+#: ../../library/dataclasses.rst:234
 msgid "def __init__(self, a: int, b: int = 0):"
 msgstr "def __init__(self, a: int, b: int = 0):"
 
-#: ../../library/dataclasses.rst:243
+#: ../../library/dataclasses.rst:236
 #, fuzzy
 msgid ""
 ":exc:`TypeError` will be raised if a field without a default value follows a "
@@ -477,7 +465,7 @@ msgstr ""
 ":exc:`TypeError` 如果沒有預設值的欄位跟在具有預設值的欄位之後，將引發。無論這"
 "發生在單個類別中還是作為類別繼承的結果，都是如此。"
 
-#: ../../library/dataclasses.rst:249
+#: ../../library/dataclasses.rst:242
 #, fuzzy
 msgid ""
 "For common and simple use cases, no other functionality is required.  There "
@@ -490,7 +478,7 @@ msgstr ""
 "位資訊。為了滿足這種對附加資訊的需求，你可以通過呼叫提供的 :func:`!field` 函"
 "式來替換預設欄位值。例如： ::"
 
-#: ../../library/dataclasses.rst:255
+#: ../../library/dataclasses.rst:248
 msgid ""
 "@dataclass\n"
 "class C:\n"
@@ -506,7 +494,7 @@ msgstr ""
 "c = C()\n"
 "c.mylist += [1, 2, 3]"
 
-#: ../../library/dataclasses.rst:262
+#: ../../library/dataclasses.rst:255
 #, fuzzy
 msgid ""
 "As shown above, the :const:`MISSING` value is a sentinel object used to "
@@ -518,20 +506,20 @@ msgstr ""
 "供。使用此標記是因為 ``None`` 對於某些具有不同含義的參數是有效值。任何程式碼"
 "都不應直接使用 :const:`MISSING` 值。"
 
-#: ../../library/dataclasses.rst:267
+#: ../../library/dataclasses.rst:260
 msgid "The parameters to :func:`!field` are:"
 msgstr ":func:`!field` 的參數是："
 
-#: ../../library/dataclasses.rst:269
+#: ../../library/dataclasses.rst:262
 msgid ""
 "*default*: If provided, this will be the default value for this field.  This "
 "is needed because the :func:`!field` call itself replaces the normal "
 "position of the default value."
 msgstr ""
-"*default*：如果有提供，這將是該欄位的預設值。這是必需的，因為 :meth:`!field` 呼"
-"叫本身會替換預設值的正常位置。"
+"*default*：如果有提供，這將是該欄位的預設值。這是必需的，因為 :meth:`!field` "
+"呼叫本身會替換預設值的正常位置。"
 
-#: ../../library/dataclasses.rst:273
+#: ../../library/dataclasses.rst:266
 #, fuzzy
 msgid ""
 "*default_factory*: If provided, it must be a zero-argument callable that "
@@ -544,7 +532,7 @@ msgstr ""
 "時將被呼叫。除其他用途外，這可用於指定具有可變預設值的欄位，如下所述。同時指"
 "定 *default* 和 *default_factory* 是錯誤的。"
 
-#: ../../library/dataclasses.rst:279
+#: ../../library/dataclasses.rst:272
 #, fuzzy
 msgid ""
 "*init*: If true (the default), this field is included as a parameter to the "
@@ -553,7 +541,7 @@ msgstr ""
 "*init*：如果為 true（預設值），則此欄位將作為生成的 :meth:`~object.__init__` "
 "方法的參數包含在內。"
 
-#: ../../library/dataclasses.rst:282
+#: ../../library/dataclasses.rst:275
 #, fuzzy
 msgid ""
 "*repr*: If true (the default), this field is included in the string returned "
@@ -562,7 +550,7 @@ msgstr ""
 "*repr*：如果為真（預設值），則此欄位包含在生成的 :meth:`~object.__repr__` 方"
 "法回傳的字串中。"
 
-#: ../../library/dataclasses.rst:285
+#: ../../library/dataclasses.rst:278
 #, fuzzy
 msgid ""
 "*hash*: This can be a bool or ``None``.  If true, this field is included in "
@@ -578,7 +566,7 @@ msgstr ""
 "是預期的行為。如果一個欄位用於比較，則應在雜湊中考慮該欄位。不鼓勵將此值設定"
 "為 ``None`` 以外的任何值。"
 
-#: ../../library/dataclasses.rst:293
+#: ../../library/dataclasses.rst:286
 #, fuzzy
 msgid ""
 "One possible reason to set ``hash=False`` but ``compare=True`` would be if a "
@@ -591,7 +579,7 @@ msgstr ""
 "湊值的成本很高，則需要該欄位進行相等性測試，並且還有其他欄位有助於型別的雜湊"
 "值。即使一個欄位被排除在雜湊之外，它仍然會被用於比較。"
 
-#: ../../library/dataclasses.rst:299
+#: ../../library/dataclasses.rst:292
 #, fuzzy
 msgid ""
 "*compare*: If true (the default), this field is included in the generated "
@@ -601,7 +589,7 @@ msgstr ""
 "*compare*：如果為真（預設值），則此欄位包含在生成的相等和比較方法中（:meth:"
 "`~object.__eq__`、:meth:`~object.__gt__` 等）。"
 
-#: ../../library/dataclasses.rst:303
+#: ../../library/dataclasses.rst:296
 #, fuzzy
 msgid ""
 "*metadata*: This can be a mapping or ``None``. ``None`` is treated as an "
@@ -616,7 +604,7 @@ msgstr ""
 "不被資料類別使用，而是作為第三方擴充機制提供的。多個第三方可以各自擁有自己的"
 "密鑰，用作元資料中的命名空間。"
 
-#: ../../library/dataclasses.rst:311
+#: ../../library/dataclasses.rst:304
 #, fuzzy
 msgid ""
 "*kw_only*: If true, this field will be marked as keyword-only. This is used "
@@ -625,11 +613,15 @@ msgstr ""
 "*kw_only*：如果為真，該欄位將被標記為僅限關鍵字。這在計算生成的 :meth:"
 "`~object.__init__` 方法的參數時使用。"
 
-#: ../../library/dataclasses.rst:315
+#: ../../library/dataclasses.rst:308
 msgid "Keyword-only fields are also not included in :attr:`!__match_args__`."
 msgstr ""
 
-#: ../../library/dataclasses.rst:319
+#: ../../library/dataclasses.rst:312
+msgid "*doc*: optional docstring for this field."
+msgstr ""
+
+#: ../../library/dataclasses.rst:316
 #, fuzzy
 msgid ""
 "If the default value of a field is specified by a call to :func:`!field`, "
@@ -645,7 +637,7 @@ msgstr ""
 "在 :func:`@dataclass <dataclass>` 裝飾器運行後，類別屬性將全部包含欄位的預設"
 "值，就像預設值本身已指定一樣。例如，在： ::"
 
-#: ../../library/dataclasses.rst:328
+#: ../../library/dataclasses.rst:325
 msgid ""
 "@dataclass\n"
 "class C:\n"
@@ -661,7 +653,7 @@ msgstr ""
 "    z: int = field(repr=False, default=10)\n"
 "    t: int = 20"
 
-#: ../../library/dataclasses.rst:335
+#: ../../library/dataclasses.rst:332
 #, fuzzy
 msgid ""
 "The class attribute :attr:`!C.z` will be ``10``, the class attribute :attr:`!"
@@ -671,7 +663,7 @@ msgstr ""
 "類別屬性 :attr:`!C.z` 將為 ``10``，類別屬性 :attr:`!C.t` 將為 ``20``，類別屬"
 "性 :attr:`!C.x` 和 :attr:`!C.y` 將不會放。"
 
-#: ../../library/dataclasses.rst:341
+#: ../../library/dataclasses.rst:338
 #, fuzzy
 msgid ""
 ":class:`!Field` objects describe each defined field. These objects are "
@@ -683,15 +675,15 @@ msgstr ""
 "`fields` 模組級方法回傳（見下文）。使用者不應該直接實例化 :class:`!Field` 物"
 "件。它記錄的屬性是："
 
-#: ../../library/dataclasses.rst:346
+#: ../../library/dataclasses.rst:343
 msgid ":attr:`!name`: The name of the field."
 msgstr ":attr:`!name`：欄位的名稱。"
 
-#: ../../library/dataclasses.rst:347
+#: ../../library/dataclasses.rst:344
 msgid ":attr:`!type`: The type of the field."
 msgstr ":attr:`!type`：欄位的型別。"
 
-#: ../../library/dataclasses.rst:348
+#: ../../library/dataclasses.rst:345
 #, fuzzy
 msgid ""
 ":attr:`!default`, :attr:`!default_factory`, :attr:`!init`, :attr:`!repr`, :"
@@ -702,14 +694,14 @@ msgstr ""
 "attr:`!hash`、:attr:`!compare`, :attr:`!metadata` 和 :attr:`!kw_only` 有與它"
 "們在 :func:`field` 函式中的含義和值相同。"
 
-#: ../../library/dataclasses.rst:352
+#: ../../library/dataclasses.rst:349
 #, fuzzy
 msgid ""
 "Other attributes may exist, but they are private and must not be inspected "
 "or relied on."
 msgstr "可能存在其他屬性，但它們是私有的，不得檢查或依賴。"
 
-#: ../../library/dataclasses.rst:357
+#: ../../library/dataclasses.rst:354
 msgid ""
 "``InitVar[T]`` type annotations describe variables that are :ref:`init-only "
 "<dataclasses-init-only-variables>`. Fields annotated with :class:`!InitVar` "
@@ -718,7 +710,7 @@ msgid ""
 "meth:`~object.__init__` and an optional :meth:`__post_init__`."
 msgstr ""
 
-#: ../../library/dataclasses.rst:366
+#: ../../library/dataclasses.rst:363
 #, fuzzy
 msgid ""
 "Returns a tuple of :class:`Field` objects that define the fields for this "
@@ -730,7 +722,7 @@ msgstr ""
 "實例。如果未傳遞資料類別或其中一個實例，則引發 :exc:`TypeError`。不回傳 "
 "``ClassVar`` 或 ``InitVar`` 的偽欄位。"
 
-#: ../../library/dataclasses.rst:373
+#: ../../library/dataclasses.rst:370
 #, fuzzy
 msgid ""
 "Converts the dataclass *obj* to a dict (by using the factory function "
@@ -742,12 +734,12 @@ msgstr ""
 "都被轉換為其欄位的字典，作為 ``name: value`` 對。資料類別、字典、列表和元組被"
 "遞迴到。其他物件使用 :func:`copy.deepcopy` 複製。"
 
-#: ../../library/dataclasses.rst:379
+#: ../../library/dataclasses.rst:376
 #, fuzzy
 msgid "Example of using :func:`!asdict` on nested dataclasses::"
 msgstr "在嵌套資料類別上使用 :func:`!asdict` 的範例： ::"
 
-#: ../../library/dataclasses.rst:381
+#: ../../library/dataclasses.rst:378
 msgid ""
 "@dataclass\n"
 "class Point:\n"
@@ -779,22 +771,22 @@ msgstr ""
 "c = C([Point(0, 0), Point(10, 4)])\n"
 "assert asdict(c) == {'mylist': [{'x': 0, 'y': 0}, {'x': 10, 'y': 4}]}"
 
-#: ../../library/dataclasses.rst:396 ../../library/dataclasses.rst:416
+#: ../../library/dataclasses.rst:393 ../../library/dataclasses.rst:413
 #, fuzzy
 msgid "To create a shallow copy, the following workaround may be used::"
 msgstr "要建立淺複製，可以使用以下解決方法："
 
-#: ../../library/dataclasses.rst:398
+#: ../../library/dataclasses.rst:395
 msgid "{field.name: getattr(obj, field.name) for field in fields(obj)}"
 msgstr ""
 
-#: ../../library/dataclasses.rst:400
+#: ../../library/dataclasses.rst:397
 #, fuzzy
 msgid ""
 ":func:`!asdict` raises :exc:`TypeError` if *obj* is not a dataclass instance."
 msgstr ":func:`!asdict` 如果 *obj* 不是資料類別實例，則引發 :exc:`TypeError`。"
 
-#: ../../library/dataclasses.rst:405
+#: ../../library/dataclasses.rst:402
 #, fuzzy
 msgid ""
 "Converts the dataclass *obj* to a tuple (by using the factory function "
@@ -806,11 +798,11 @@ msgstr ""
 "都被轉換為其欄位值的元組。資料類別、字典、列表和元組被遞迴到。其他物件使用 :"
 "func:`copy.deepcopy` 複製。"
 
-#: ../../library/dataclasses.rst:411
+#: ../../library/dataclasses.rst:408
 msgid "Continuing from the previous example::"
 msgstr "從前面的例子繼續： ::"
 
-#: ../../library/dataclasses.rst:413
+#: ../../library/dataclasses.rst:410
 msgid ""
 "assert astuple(p) == (10, 20)\n"
 "assert astuple(c) == ([(0, 0), (10, 4)],)"
@@ -818,11 +810,11 @@ msgstr ""
 "assert astuple(p) == (10, 20)\n"
 "assert astuple(c) == ([(0, 0), (10, 4)],)"
 
-#: ../../library/dataclasses.rst:418
+#: ../../library/dataclasses.rst:415
 msgid "tuple(getattr(obj, field.name) for field in dataclasses.fields(obj))"
 msgstr "tuple(getattr(obj, field.name) for field in dataclasses.fields(obj))"
 
-#: ../../library/dataclasses.rst:420
+#: ../../library/dataclasses.rst:417
 #, fuzzy
 msgid ""
 ":func:`!astuple` raises :exc:`TypeError` if *obj* is not a dataclass "
@@ -830,7 +822,7 @@ msgid ""
 msgstr ""
 ":func:`!astuple` 如果 *obj* 不是資料類別實例，則引發 :exc:`TypeError`。"
 
-#: ../../library/dataclasses.rst:425
+#: ../../library/dataclasses.rst:422
 #, fuzzy
 msgid ""
 "Creates a new dataclass with name *cls_name*, fields as defined in *fields*, "
@@ -850,13 +842,21 @@ msgstr ""
 "``kw_only`` 的值, ``slots`` 和 ``weakref_slot`` 與它們在 :func:`dataclass` 中"
 "的含義相同。"
 
-#: ../../library/dataclasses.rst:435
+#: ../../library/dataclasses.rst:432
 msgid ""
 "If *module* is defined, the :attr:`!__module__` attribute of the dataclass "
 "is set to that value. By default, it is set to the module name of the caller."
 msgstr ""
 
-#: ../../library/dataclasses.rst:439
+#: ../../library/dataclasses.rst:436
+msgid ""
+"The *decorator* parameter is a callable that will be used to create the "
+"dataclass. It should take the class object as a first argument and the same "
+"keyword arguments as :func:`@dataclass <dataclass>`. By default, the :func:"
+"`@dataclass <dataclass>` function is used."
+msgstr ""
+
+#: ../../library/dataclasses.rst:441
 #, fuzzy
 msgid ""
 "This function is not strictly required, because any Python mechanism for "
@@ -868,7 +868,7 @@ msgstr ""
 "機制都可以應用 :func:`dataclass` 函式將該類別轉換為資料類別。提供此功能是為了"
 "方便。例如： ::"
 
-#: ../../library/dataclasses.rst:445
+#: ../../library/dataclasses.rst:447
 msgid ""
 "C = make_dataclass('C',\n"
 "                   [('x', int),\n"
@@ -882,11 +882,11 @@ msgstr ""
 "                    ('z', int, field(default=5))],\n"
 "                   namespace={'add_one': lambda self: self.x + 1})"
 
-#: ../../library/dataclasses.rst:451
+#: ../../library/dataclasses.rst:453
 msgid "Is equivalent to::"
 msgstr "相當於： ::"
 
-#: ../../library/dataclasses.rst:453
+#: ../../library/dataclasses.rst:455
 msgid ""
 "@dataclass\n"
 "class C:\n"
@@ -899,6 +899,10 @@ msgid ""
 msgstr ""
 
 #: ../../library/dataclasses.rst:464
+msgid "Added the *decorator* parameter."
+msgstr ""
+
+#: ../../library/dataclasses.rst:469
 #, fuzzy
 msgid ""
 "Creates a new object of the same type as *obj*, replacing fields with values "
@@ -910,7 +914,7 @@ msgstr ""
 "``obj`` 不是資料類別，則引發 :exc:`TypeError`。如果 ``changes`` 中的值未指定"
 "欄位，則引發 :exc:`TypeError`。"
 
-#: ../../library/dataclasses.rst:469
+#: ../../library/dataclasses.rst:474
 #, fuzzy
 msgid ""
 "The newly returned object is created by calling the :meth:`~object.__init__` "
@@ -920,7 +924,7 @@ msgstr ""
 "新回傳的對像是通過呼叫資料類別的 :meth:`~object.__init__` 方法建立的。這確"
 "保 :meth:`__post_init__`（如果存在）也被呼叫。"
 
-#: ../../library/dataclasses.rst:473
+#: ../../library/dataclasses.rst:478
 #, fuzzy
 msgid ""
 "Init-only variables without default values, if any exist, must be specified "
@@ -930,7 +934,7 @@ msgstr ""
 "沒有預設值的僅初始化變數（如果存在）必須在呼叫 :func:`replace` 時指定，以便它"
 "們可以傳遞給 :meth:`__init__` 和 :meth:`__post_init__`。"
 
-#: ../../library/dataclasses.rst:477
+#: ../../library/dataclasses.rst:482
 #, fuzzy
 msgid ""
 "It is an error for *changes* to contain any fields that are defined as "
@@ -939,7 +943,7 @@ msgstr ""
 "*changes* 包含任何定義為具有 ``init=False`` 的欄位是錯誤的。在這種情況下將引"
 "發 :exc:`ValueError`。"
 
-#: ../../library/dataclasses.rst:481
+#: ../../library/dataclasses.rst:486
 #, fuzzy
 msgid ""
 "Be forewarned about how ``init=False`` fields work during a call to :func:`!"
@@ -956,13 +960,13 @@ msgstr ""
 "建構函式可能是明智的，或者可能是處理實例複製的自定義:func:`!replace` （或類似"
 "命名的）方法。"
 
-#: ../../library/dataclasses.rst:490
+#: ../../library/dataclasses.rst:495
 msgid ""
 "Dataclass instances are also supported by generic function :func:`copy."
 "replace`."
 msgstr ""
 
-#: ../../library/dataclasses.rst:494
+#: ../../library/dataclasses.rst:499
 #, fuzzy
 msgid ""
 "Return ``True`` if its parameter is a dataclass (including subclasses of a "
@@ -970,7 +974,7 @@ msgid ""
 msgstr ""
 "如果它的參數是一個資料類別或一個實例，則回傳 ``True``，否則回傳 ``False``。"
 
-#: ../../library/dataclasses.rst:497
+#: ../../library/dataclasses.rst:502
 #, fuzzy
 msgid ""
 "If you need to know if a class is an instance of a dataclass (and not a "
@@ -980,18 +984,18 @@ msgstr ""
 "如果你需要知道一個類別是否是資料類別的實例（而不是資料類別本身），那麼新增一"
 "個進一步的檢查 ``not isinstance(obj, type)``： ::"
 
-#: ../../library/dataclasses.rst:501
+#: ../../library/dataclasses.rst:506
 msgid ""
 "def is_dataclass_instance(obj):\n"
 "    return is_dataclass(obj) and not isinstance(obj, type)"
 msgstr ""
 
-#: ../../library/dataclasses.rst:506
+#: ../../library/dataclasses.rst:511
 #, fuzzy
 msgid "A sentinel value signifying a missing default or default_factory."
 msgstr "表示缺少 default 或 default_factory 的標記值。"
 
-#: ../../library/dataclasses.rst:510
+#: ../../library/dataclasses.rst:515
 #, fuzzy
 msgid ""
 "A sentinel value used as a type annotation.  Any fields after a pseudo-field "
@@ -1007,14 +1011,14 @@ msgstr ""
 "類欄位的名稱。按照慣例，名稱 ``_`` 用於 :const:`!KW_ONLY` 欄位。僅關鍵字欄位"
 "表示 :meth:`~object.__init__` 參數，在實例化類別時必須將其指定為關鍵字。"
 
-#: ../../library/dataclasses.rst:519
+#: ../../library/dataclasses.rst:524
 #, fuzzy
 msgid ""
 "In this example, the fields ``y`` and ``z`` will be marked as keyword-only "
 "fields::"
 msgstr "在此示例中，欄位 ``y`` 和 ``z`` 將被標記為僅關鍵字欄位： ::"
 
-#: ../../library/dataclasses.rst:521
+#: ../../library/dataclasses.rst:526
 msgid ""
 "@dataclass\n"
 "class Point:\n"
@@ -1034,14 +1038,14 @@ msgstr ""
 "\n"
 "p = Point(0, y=1.5, z=2.0)"
 
-#: ../../library/dataclasses.rst:530
+#: ../../library/dataclasses.rst:535
 #, fuzzy
 msgid ""
 "In a single dataclass, it is an error to specify more than one field whose "
 "type is :const:`!KW_ONLY`."
 msgstr "在單個資料類別中，指定多個型別為 :const:`!KW_ONLY` 的欄位是錯誤的。"
 
-#: ../../library/dataclasses.rst:537
+#: ../../library/dataclasses.rst:542
 #, fuzzy
 msgid ""
 "Raised when an implicitly defined :meth:`~object.__setattr__` or :meth:"
@@ -1051,12 +1055,12 @@ msgstr ""
 "當在使用 frozen=True 定義的資料類別上呼叫隱式定義的 :meth:`__setattr__` 或 :"
 "meth:`__delattr__` 時引發。它是 :exc:`AttributeError` 的子類別。"
 
-#: ../../library/dataclasses.rst:544
+#: ../../library/dataclasses.rst:549
 #, fuzzy
 msgid "Post-init processing"
 msgstr "初始化後處理"
 
-#: ../../library/dataclasses.rst:548
+#: ../../library/dataclasses.rst:553
 #, fuzzy
 msgid ""
 "When defined on the class, it will be called by the generated :meth:`~object."
@@ -1072,14 +1076,14 @@ msgstr ""
 "將按照它們在類別中定義的順序傳遞給 :meth:`!__post_init__` 。如果沒有生成 :"
 "meth:`!__init__` 方法，那麼 :meth:`!__post_init__` 將不會被自動呼叫。"
 
-#: ../../library/dataclasses.rst:555
+#: ../../library/dataclasses.rst:560
 #, fuzzy
 msgid ""
 "Among other uses, this allows for initializing field values that depend on "
 "one or more other fields.  For example::"
 msgstr "在其他用途中，這允許初始化依賴於一個或多個其他欄位的欄位值。例如： ::"
 
-#: ../../library/dataclasses.rst:558
+#: ../../library/dataclasses.rst:563
 msgid ""
 "@dataclass\n"
 "class C:\n"
@@ -1099,7 +1103,7 @@ msgstr ""
 "    def __post_init__(self):\n"
 "        self.c = self.a + self.b"
 
-#: ../../library/dataclasses.rst:567
+#: ../../library/dataclasses.rst:572
 #, fuzzy
 msgid ""
 "The :meth:`~object.__init__` method generated by :func:`@dataclass "
@@ -1111,7 +1115,7 @@ msgstr ""
 "類別 :meth:`!__init__` 方法。如果基底類別有一個必須呼叫的 :meth:`!__init__` "
 "方法，通常在 :meth:`__post_init__` 方法中呼叫此方法： ::"
 
-#: ../../library/dataclasses.rst:572
+#: ../../library/dataclasses.rst:577
 msgid ""
 "class Rectangle:\n"
 "    def __init__(self, height, width):\n"
@@ -1137,7 +1141,7 @@ msgstr ""
 "    def __post_init__(self):\n"
 "        super().__init__(self.side, self.side)"
 
-#: ../../library/dataclasses.rst:584
+#: ../../library/dataclasses.rst:589
 #, fuzzy
 msgid ""
 "Note, however, that in general the dataclass-generated :meth:`!__init__` "
@@ -1147,7 +1151,7 @@ msgstr ""
 "但是請注意，通常不需要呼叫資料類別生成的 :meth:`!__init__` 方法，因為衍生資料"
 "類別將負責初始化作為資料類別本身的任何基底類別的所有欄位。"
 
-#: ../../library/dataclasses.rst:588
+#: ../../library/dataclasses.rst:593
 #, fuzzy
 msgid ""
 "See the section below on init-only variables for ways to pass parameters to :"
@@ -1157,11 +1161,11 @@ msgstr ""
 "請參閱下面有關僅初始化變數的部分，了解將參數傳遞給 :meth:`!__post_init__` 的"
 "方法。另請參閱有關 :func:`replace` 如何處理 ``init=False`` 欄位的警告。"
 
-#: ../../library/dataclasses.rst:595
+#: ../../library/dataclasses.rst:600
 msgid "Class variables"
 msgstr "類別變數"
 
-#: ../../library/dataclasses.rst:597
+#: ../../library/dataclasses.rst:602
 #, fuzzy
 msgid ""
 "One of the few places where :func:`@dataclass <dataclass>` actually inspects "
@@ -1178,12 +1182,12 @@ msgstr ""
 "外，並被資料類別機制忽略。模組級 :func:`fields` 函式不會回傳此類別 "
 "``ClassVar`` 偽欄位。"
 
-#: ../../library/dataclasses.rst:608
+#: ../../library/dataclasses.rst:613
 #, fuzzy
 msgid "Init-only variables"
 msgstr "僅初始化變數"
 
-#: ../../library/dataclasses.rst:610
+#: ../../library/dataclasses.rst:615
 #, fuzzy
 msgid ""
 "Another place where :func:`@dataclass <dataclass>` inspects a type "
@@ -1203,14 +1207,14 @@ msgstr ""
 "的 :meth:`~object.__init__` 方法，並傳遞給可選的 :meth:`__post_init__` 方法。"
 "它們不被資料類別使用。"
 
-#: ../../library/dataclasses.rst:620
+#: ../../library/dataclasses.rst:625
 #, fuzzy
 msgid ""
 "For example, suppose a field will be initialized from a database, if a value "
 "is not provided when creating the class::"
 msgstr "例如，假設一個欄位將從資料庫中初始化，如果在建立類別時沒有提供值： ::"
 
-#: ../../library/dataclasses.rst:623
+#: ../../library/dataclasses.rst:628
 msgid ""
 "@dataclass\n"
 "class C:\n"
@@ -1236,7 +1240,7 @@ msgstr ""
 "\n"
 "c = C(10, database=my_database)"
 
-#: ../../library/dataclasses.rst:635
+#: ../../library/dataclasses.rst:640
 #, fuzzy
 msgid ""
 "In this case, :func:`fields` will return :class:`Field` objects for :attr:`!"
@@ -1245,11 +1249,11 @@ msgstr ""
 "在這種情況下，:func:`fields` 將為 :attr:`!i` 和 :attr:`!j` 回傳 :class:"
 "`Field` 物件，但不會為 :attr:`!database` 回傳。"
 
-#: ../../library/dataclasses.rst:641
+#: ../../library/dataclasses.rst:646
 msgid "Frozen instances"
 msgstr "凍結實例"
 
-#: ../../library/dataclasses.rst:643
+#: ../../library/dataclasses.rst:648
 #, fuzzy
 msgid ""
 "It is not possible to create truly immutable Python objects.  However, by "
@@ -1263,7 +1267,7 @@ msgstr ""
 "別將向類別新增 :meth:`~object.__setattr__` 和 :meth:`~object.__delattr__` 方"
 "法。這些方法在叫用時會引發 :exc:`FrozenInstanceError`。"
 
-#: ../../library/dataclasses.rst:649
+#: ../../library/dataclasses.rst:654
 #, fuzzy
 msgid ""
 "There is a tiny performance penalty when using ``frozen=True``: :meth:"
@@ -1273,11 +1277,11 @@ msgstr ""
 "使用 ``frozen=True`` 時有一個微小的性能損失：:meth:`~object.__init__` 不能使"
 "用簡單賦值來初始化欄位，必須使用 :meth:`!object.__setattr__`。"
 
-#: ../../library/dataclasses.rst:658
+#: ../../library/dataclasses.rst:663
 msgid "Inheritance"
 msgstr "繼承"
 
-#: ../../library/dataclasses.rst:660
+#: ../../library/dataclasses.rst:665
 #, fuzzy
 msgid ""
 "When the dataclass is being created by the :func:`@dataclass <dataclass>` "
@@ -1295,7 +1299,7 @@ msgstr ""
 "將自己的欄位新增到有序對映中。所有生成的方法都將使用這種組合的、計算的有序欄"
 "位對映。因為欄位是按插入順序排列的，所以衍生類別會覆蓋基底類別。一個例子： ::"
 
-#: ../../library/dataclasses.rst:670
+#: ../../library/dataclasses.rst:675
 msgid ""
 "@dataclass\n"
 "class Base:\n"
@@ -1317,7 +1321,7 @@ msgstr ""
 "    z: int = 10\n"
 "    x: int = 15"
 
-#: ../../library/dataclasses.rst:680
+#: ../../library/dataclasses.rst:685
 #, fuzzy
 msgid ""
 "The final list of fields is, in order, :attr:`!x`, :attr:`!y`, :attr:`!z`.  "
@@ -1327,23 +1331,23 @@ msgstr ""
 "最終的欄位列表按順序為 :attr:`!x`、:attr:`!y`、:attr:`!z`。:attr:`!x` 的最終"
 "型別是 :class:`int`，如類別 :class:`!C` 中指定的那樣。"
 
-#: ../../library/dataclasses.rst:683
+#: ../../library/dataclasses.rst:688
 #, fuzzy
 msgid ""
 "The generated :meth:`~object.__init__` method for :class:`!C` will look "
 "like::"
 msgstr "為 :class:`!C` 生成的 :meth:`~object.__init__` 方法將如下所示： ::"
 
-#: ../../library/dataclasses.rst:685
+#: ../../library/dataclasses.rst:690
 msgid "def __init__(self, x: int = 15, y: int = 0, z: int = 10):"
 msgstr "def __init__(self, x: int = 15, y: int = 0, z: int = 10):"
 
-#: ../../library/dataclasses.rst:688
+#: ../../library/dataclasses.rst:693
 #, fuzzy
 msgid "Re-ordering of keyword-only parameters in :meth:`!__init__`"
 msgstr ":meth:`!__init__` 中僅關鍵字參數的重新排序"
 
-#: ../../library/dataclasses.rst:690
+#: ../../library/dataclasses.rst:695
 #, fuzzy
 msgid ""
 "After the parameters needed for :meth:`~object.__init__` are computed, any "
@@ -1355,7 +1359,7 @@ msgstr ""
 "僅關鍵字）參數之後。這是如何在 Python 中實作僅關鍵字參數的要求：它們必須位於"
 "非僅關鍵字參數之後。"
 
-#: ../../library/dataclasses.rst:696
+#: ../../library/dataclasses.rst:701
 #, fuzzy
 msgid ""
 "In this example, :attr:`!Base.y`, :attr:`!Base.w`, and :attr:`!D.t` are "
@@ -1365,7 +1369,7 @@ msgstr ""
 "在此示例中，:attr:`!Base.y`、:attr:`!Base.w` 和 :attr:`!D.t` 是僅限關鍵字的欄"
 "位，:attr:`!Base.x` 和 :attr:`!D.z` 是常規欄位： ::"
 
-#: ../../library/dataclasses.rst:699
+#: ../../library/dataclasses.rst:704
 msgid ""
 "@dataclass\n"
 "class Base:\n"
@@ -1391,12 +1395,12 @@ msgstr ""
 "    z: int = 10\n"
 "    t: int = field(kw_only=True, default=0)"
 
-#: ../../library/dataclasses.rst:711
+#: ../../library/dataclasses.rst:716
 #, fuzzy
 msgid "The generated :meth:`!__init__` method for :class:`!D` will look like::"
 msgstr "為 :class:`!D` 生成的 :meth:`!__init__` 方法將如下所示： ::"
 
-#: ../../library/dataclasses.rst:713
+#: ../../library/dataclasses.rst:718
 msgid ""
 "def __init__(self, x: Any = 15.0, z: int = 10, *, y: int = 0, w: int = 1, t: "
 "int = 0):"
@@ -1404,7 +1408,7 @@ msgstr ""
 "def __init__(self, x: Any = 15.0, z: int = 10, *, y: int = 0, w: int = 1, t: "
 "int = 0):"
 
-#: ../../library/dataclasses.rst:715
+#: ../../library/dataclasses.rst:720
 #, fuzzy
 msgid ""
 "Note that the parameters have been re-ordered from how they appear in the "
@@ -1414,18 +1418,18 @@ msgstr ""
 "請注意，參數已根據它們在欄位列表中的顯示方式重新排序：從常規欄位衍生的參數後"
 "跟從僅關鍵字欄位衍生的參數。"
 
-#: ../../library/dataclasses.rst:719
+#: ../../library/dataclasses.rst:724
 #, fuzzy
 msgid ""
 "The relative ordering of keyword-only parameters is maintained in the re-"
 "ordered :meth:`!__init__` parameter list."
 msgstr "僅關鍵字參數的相對順序在重新排序的 :meth:`!__init__` 參數列表中維護。"
 
-#: ../../library/dataclasses.rst:724
+#: ../../library/dataclasses.rst:729
 msgid "Default factory functions"
 msgstr "預設工廠函式"
 
-#: ../../library/dataclasses.rst:726
+#: ../../library/dataclasses.rst:731
 #, fuzzy
 msgid ""
 "If a :func:`field` specifies a *default_factory*, it is called with zero "
@@ -1435,11 +1439,11 @@ msgstr ""
 "如果 :func:`field` 指定了 *default_factory*，當需要該欄位的預設值時，它會以零"
 "引數呼叫。例如，要建立列表的新實例，請使用： ::"
 
-#: ../../library/dataclasses.rst:730
+#: ../../library/dataclasses.rst:735
 msgid "mylist: list = field(default_factory=list)"
 msgstr "mylist: list = field(default_factory=list)"
 
-#: ../../library/dataclasses.rst:732
+#: ../../library/dataclasses.rst:737
 #, fuzzy
 msgid ""
 "If a field is excluded from :meth:`~object.__init__` (using ``init=False``) "
@@ -1452,11 +1456,11 @@ msgstr ""
 "位還指定了 ``default_factory``，那麼預設工廠函式將始終從生成的 :meth:"
 "`__init__ 中呼叫`功能。發生這種情況是因為沒有其他方法可以為該欄位賦予初始值。"
 
-#: ../../library/dataclasses.rst:739
+#: ../../library/dataclasses.rst:744
 msgid "Mutable default values"
 msgstr "可變預設值"
 
-#: ../../library/dataclasses.rst:741
+#: ../../library/dataclasses.rst:746
 #, fuzzy
 msgid ""
 "Python stores default member variable values in class attributes. Consider "
@@ -1464,7 +1468,7 @@ msgid ""
 msgstr ""
 "Python 將預設成員變數值儲存在類別屬性中。考慮這個例子，不使用資料類別： ::"
 
-#: ../../library/dataclasses.rst:744
+#: ../../library/dataclasses.rst:749
 msgid ""
 "class C:\n"
 "    x = []\n"
@@ -1490,7 +1494,7 @@ msgstr ""
 "assert o1.x == [1, 2]\n"
 "assert o1.x is o2.x"
 
-#: ../../library/dataclasses.rst:756
+#: ../../library/dataclasses.rst:761
 #, fuzzy
 msgid ""
 "Note that the two instances of class :class:`!C` share the same class "
@@ -1499,12 +1503,12 @@ msgstr ""
 "請注意，類別 :class:`!C` 的兩個實例共享同一個類別變數 :attr:`!x`，正如預期的"
 "那樣。"
 
-#: ../../library/dataclasses.rst:759
+#: ../../library/dataclasses.rst:764
 #, fuzzy
 msgid "Using dataclasses, *if* this code was valid::"
 msgstr "使用資料類別，*如果*此程式碼有效： ::"
 
-#: ../../library/dataclasses.rst:761
+#: ../../library/dataclasses.rst:766
 msgid ""
 "@dataclass\n"
 "class D:\n"
@@ -1518,11 +1522,11 @@ msgstr ""
 "    def add(self, element):\n"
 "        self.x.append(element)"
 
-#: ../../library/dataclasses.rst:767
+#: ../../library/dataclasses.rst:772
 msgid "it would generate code similar to::"
 msgstr "它會生成類似的程式碼： ::"
 
-#: ../../library/dataclasses.rst:769
+#: ../../library/dataclasses.rst:774
 msgid ""
 "class D:\n"
 "    x = []\n"
@@ -1542,7 +1546,7 @@ msgstr ""
 "\n"
 "assert D().x is D().x"
 
-#: ../../library/dataclasses.rst:778
+#: ../../library/dataclasses.rst:783
 #, fuzzy
 msgid ""
 "This has the same issue as the original example using class :class:`!C`. "
@@ -1562,14 +1566,14 @@ msgstr ""
 "檢測到不可散列的預設參數，它將引發 :exc:`TypeError`。假設是如果一個值是不可散"
 "列的，那麼它就是可變的。這是一個部分解決方案，但它確實可以防止許多常見錯誤。"
 
-#: ../../library/dataclasses.rst:789
+#: ../../library/dataclasses.rst:794
 #, fuzzy
 msgid ""
 "Using default factory functions is a way to create new instances of mutable "
 "types as default values for fields::"
 msgstr "使用預設工廠函式是一種建立可變型別的新實例作為欄位預設值的方法： ::"
 
-#: ../../library/dataclasses.rst:792
+#: ../../library/dataclasses.rst:797
 msgid ""
 "@dataclass\n"
 "class D:\n"
@@ -1583,7 +1587,7 @@ msgstr ""
 "\n"
 "assert D().x is not D().x"
 
-#: ../../library/dataclasses.rst:798
+#: ../../library/dataclasses.rst:803
 #, fuzzy
 msgid ""
 "Instead of looking for and disallowing objects of type :class:`list`, :class:"
@@ -1593,12 +1597,12 @@ msgstr ""
 "不再查找和禁止型別為 :class:`list`、:class:`dict` 或 :class:`set` 的物件，現"
 "在不允許使用不可散列的對像作為預設值。不可散列性用於近似可變性。"
 
-#: ../../library/dataclasses.rst:805
+#: ../../library/dataclasses.rst:810
 #, fuzzy
 msgid "Descriptor-typed fields"
 msgstr "描述器型別的欄位"
 
-#: ../../library/dataclasses.rst:807
+#: ../../library/dataclasses.rst:812
 #, fuzzy
 msgid ""
 "Fields that are assigned :ref:`descriptor objects <descriptors>` as their "
@@ -1606,7 +1610,7 @@ msgid ""
 msgstr ""
 "指定為\\ :ref:`描述器物件 <descriptors>`\\ 作為預設值的欄位具有以下特殊行為："
 
-#: ../../library/dataclasses.rst:810
+#: ../../library/dataclasses.rst:815
 #, fuzzy
 msgid ""
 "The value for the field passed to the dataclass's :meth:`~object.__init__` "
@@ -1616,7 +1620,7 @@ msgstr ""
 "傳遞給資料類別的 :meth:`~object.__init__` 方法的欄位值被傳遞給描述器的 :meth:"
 "`~object.__set__` 方法，而不是覆蓋描述器物件。"
 
-#: ../../library/dataclasses.rst:814
+#: ../../library/dataclasses.rst:819
 #, fuzzy
 msgid ""
 "Similarly, when getting or setting the field, the descriptor's :meth:"
@@ -1626,7 +1630,7 @@ msgstr ""
 "同樣，在取得或設定欄位時，將呼叫描述器的 :meth:`~object.__get__` 或 :meth:`!"
 "__set__` 方法，而不是回傳或覆蓋描述器物件。"
 
-#: ../../library/dataclasses.rst:818
+#: ../../library/dataclasses.rst:823
 #, fuzzy
 msgid ""
 "To determine whether a field contains a default value, :func:`@dataclass "
@@ -1642,7 +1646,7 @@ msgstr ""
 "面，如果描述器在這種情況下引發 :exc:`AttributeError`，則不會為該欄位提供預設"
 "值。"
 
-#: ../../library/dataclasses.rst:828
+#: ../../library/dataclasses.rst:833
 msgid ""
 "class IntConversionDescriptor:\n"
 "    def __init__(self, *, default):\n"
@@ -1696,7 +1700,7 @@ msgstr ""
 "i.quantity_on_hand = 2.5    # 以 2.5 呼叫 __set__\n"
 "print(i.quantity_on_hand)   # 2"
 
-#: ../../library/dataclasses.rst:853
+#: ../../library/dataclasses.rst:858
 #, fuzzy
 msgid ""
 "Note that if a field is annotated with a descriptor type, but is not "
@@ -1705,3 +1709,14 @@ msgid ""
 msgstr ""
 "請注意，如果一個欄位用描述器型別註釋，但未分配描述器對像作為其預設值，則該欄"
 "位將像普通欄位一樣工作。"
+
+#, fuzzy
+#~ msgid ""
+#~ "Calling no-arg :func:`super` in dataclasses using ``slots=True`` will "
+#~ "result in the following exception being raised: ``TypeError: super(type, "
+#~ "obj): obj must be an instance or subtype of type``. The two-arg :func:"
+#~ "`super` is a valid workaround. See :gh:`90562` for full details."
+#~ msgstr ""
+#~ "``slots``：如果為 true（預設為 ``False``），將生成 :attr:`~object."
+#~ "__slots__` 屬性並回傳新類別而不是原始類別。如果 :attr:`!__slots__` 已經在"
+#~ "類別中定義，則 :exc:`TypeError` 被引發。"

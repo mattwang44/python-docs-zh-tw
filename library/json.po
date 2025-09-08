@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.13\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-06-27 07:36+0000\n"
+"POT-Creation-Date: 2025-09-08 07:42+0000\n"
 "PO-Revision-Date: 2023-08-05 15:25+0800\n"
 "Last-Translator: Matt Wang <mattwang44@gmail.com>\n"
 "Language-Team: Chinese - TAIWAN (https://github.com/python/python-docs-zh-"
@@ -65,8 +65,8 @@ msgid ""
 "This module exposes an API familiar to users of the standard library :mod:"
 "`marshal` and :mod:`pickle` modules."
 msgstr ""
-"此模組為習慣標準函式庫 :mod:`marshal` 與 :mod:`pickle` 模組的使用者提供"
-"熟悉的 API。"
+"此模組為習慣標準函式庫 :mod:`marshal` 與 :mod:`pickle` 模組的使用者提供熟悉"
+"的 API。"
 
 #: ../../library/json.rst:34
 msgid "Encoding basic Python object hierarchies::"
@@ -246,16 +246,18 @@ msgid ""
 msgstr ""
 
 #: ../../library/json.rst:124
-msgid "Using :mod:`json.tool` from the shell to validate and pretty-print:"
+#, fuzzy
+msgid "Using :mod:`json` from the shell to validate and pretty-print:"
 msgstr "在命令列介面裡使用 :mod:`json.tool` 來驗證 JSON 語法和美化呈現方式："
 
 #: ../../library/json.rst:126
+#, fuzzy
 msgid ""
-"$ echo '{\"json\":\"obj\"}' | python -m json.tool\n"
+"$ echo '{\"json\":\"obj\"}' | python -m json\n"
 "{\n"
 "    \"json\": \"obj\"\n"
 "}\n"
-"$ echo '{1.2:3.4}' | python -m json.tool\n"
+"$ echo '{1.2:3.4}' | python -m json\n"
 "Expecting property name enclosed in double quotes: line 1 column 2 (char 1)"
 msgstr ""
 "$ echo '{\"json\":\"obj\"}' | python -m json.tool\n"
@@ -1249,7 +1251,8 @@ msgstr ""
 "值、或是序列化特殊數字型別的實例時（例如 :class:`decimal.Decimal`）尤其重要。"
 
 #: ../../library/json.rst:737
-msgid "Command Line Interface"
+#, fuzzy
+msgid "Command-line interface"
 msgstr "命令列介面"
 
 #: ../../library/json.rst:742
@@ -1258,12 +1261,12 @@ msgstr "**原始碼：**\\ :source:`Lib/json/tool.py`"
 
 #: ../../library/json.rst:746
 msgid ""
-"The :mod:`json.tool` module provides a simple command line interface to "
-"validate and pretty-print JSON objects."
+"The :mod:`json` module can be invoked as a script via ``python -m json`` to "
+"validate and pretty-print JSON objects. The :mod:`json.tool` submodule "
+"implements this interface."
 msgstr ""
-":mod:`json.tool` 模組提供了一個簡易的命令列介面以供校驗與美化呈現 JSON 物件。"
 
-#: ../../library/json.rst:749
+#: ../../library/json.rst:750
 msgid ""
 "If the optional ``infile`` and ``outfile`` arguments are not specified, :"
 "data:`sys.stdin` and :data:`sys.stdout` will be used respectively:"
@@ -1271,17 +1274,24 @@ msgstr ""
 "如果沒有指定可選引數 ``infile`` 和 ``outfile`` ，則 :data:`sys.stdin` 和 :"
 "data:`sys.stdout` 將各自做為輸入和輸出的預設值。"
 
-#: ../../library/json.rst:752
+#: ../../library/json.rst:753
+#, fuzzy
 msgid ""
-"$ echo '{\"json\": \"obj\"}' | python -m json.tool\n"
+"$ echo '{\"json\": \"obj\"}' | python -m json\n"
+"{\n"
+"    \"json\": \"obj\"\n"
+"}\n"
+"$ echo '{1.2:3.4}' | python -m json\n"
+"Expecting property name enclosed in double quotes: line 1 column 2 (char 1)"
+msgstr ""
+"$ echo '{\"json\":\"obj\"}' | python -m json.tool\n"
 "{\n"
 "    \"json\": \"obj\"\n"
 "}\n"
 "$ echo '{1.2:3.4}' | python -m json.tool\n"
 "Expecting property name enclosed in double quotes: line 1 column 2 (char 1)"
-msgstr ""
 
-#: ../../library/json.rst:761
+#: ../../library/json.rst:762
 msgid ""
 "The output is now in the same order as the input. Use the :option:`--sort-"
 "keys` option to sort the output of dictionaries alphabetically by key."
@@ -1289,17 +1299,26 @@ msgstr ""
 "現在開始輸出和輸入的資料順序會是相同的。傳入 :option:`--sort-keys` 引數以按照"
 "鍵值的字母順序對輸出進行排序。"
 
-#: ../../library/json.rst:768
-msgid "Command line options"
+#: ../../library/json.rst:767
+msgid ""
+"The :mod:`json` module may now be directly executed as ``python -m json``. "
+"For backwards compatibility, invoking the CLI as ``python -m json.tool`` "
+"remains supported."
+msgstr ""
+
+#: ../../library/json.rst:774
+#, fuzzy
+msgid "Command-line options"
 msgstr "命令列選項"
 
-#: ../../library/json.rst:772
+#: ../../library/json.rst:778
 msgid "The JSON file to be validated or pretty-printed:"
 msgstr "將被用於校驗或美化呈現的 JSON 文件："
 
-#: ../../library/json.rst:774
+#: ../../library/json.rst:780
+#, fuzzy
 msgid ""
-"$ python -m json.tool mp_films.json\n"
+"$ python -m json mp_films.json\n"
 "[\n"
 "    {\n"
 "        \"title\": \"And Now for Something Completely Different\",\n"
@@ -1323,11 +1342,11 @@ msgstr ""
 "    }\n"
 "]"
 
-#: ../../library/json.rst:788
+#: ../../library/json.rst:794
 msgid "If *infile* is not specified, read from :data:`sys.stdin`."
 msgstr "如果沒有指定 *infile* 則會從 :data:`sys.stdin` 讀取輸入。"
 
-#: ../../library/json.rst:792
+#: ../../library/json.rst:798
 msgid ""
 "Write the output of the *infile* to the given *outfile*. Otherwise, write it "
 "to :data:`sys.stdout`."
@@ -1335,33 +1354,33 @@ msgstr ""
 "將 *infile* 的結果寫入到給定的 *outfile*。若未提供則寫入到 :data:`sys."
 "stdout`。"
 
-#: ../../library/json.rst:797
+#: ../../library/json.rst:803
 msgid "Sort the output of dictionaries alphabetically by key."
 msgstr "按照鍵值的字母順序對輸出字典進行排序。"
 
-#: ../../library/json.rst:803
+#: ../../library/json.rst:809
 msgid ""
 "Disable escaping of non-ascii characters, see :func:`json.dumps` for more "
 "information."
 msgstr "關閉非 ASCII 字元的自動跳脫功能。詳情請參照 :func:`json.dumps`。"
 
-#: ../../library/json.rst:809
+#: ../../library/json.rst:815
 msgid "Parse every input line as separate JSON object."
 msgstr "將每一行輸入都單獨輸出為一個 JSON 物件。"
 
-#: ../../library/json.rst:815
+#: ../../library/json.rst:821
 msgid "Mutually exclusive options for whitespace control."
 msgstr "互斥的空白字元控制選項。"
 
-#: ../../library/json.rst:821
+#: ../../library/json.rst:827
 msgid "Show the help message."
 msgstr "顯示說明訊息。"
 
-#: ../../library/json.rst:825
+#: ../../library/json.rst:831
 msgid "Footnotes"
 msgstr "註解"
 
-#: ../../library/json.rst:826
+#: ../../library/json.rst:832
 msgid ""
 "As noted in `the errata for RFC 7159 <https://www.rfc-editor.org/"
 "errata_search.php?rfc=7159>`_, JSON permits literal U+2028 (LINE SEPARATOR) "
@@ -1371,3 +1390,10 @@ msgstr ""
 "如 `RFC 7159 更正 <https://www.rfc-editor.org/errata_search.php?rfc=7159>`_ "
 "所述，JSON 允許字串中出現 U+2028（列分隔符）和 U+2029（段落分隔符）字元，而 "
 "JavaScript（截至 ECMAScript 5.1 版）則不允許。"
+
+#~ msgid ""
+#~ "The :mod:`json.tool` module provides a simple command line interface to "
+#~ "validate and pretty-print JSON objects."
+#~ msgstr ""
+#~ ":mod:`json.tool` 模組提供了一個簡易的命令列介面以供校驗與美化呈現 JSON 物"
+#~ "件。"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.13\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-22 14:09+0000\n"
+"POT-Creation-Date: 2025-09-08 07:42+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Chinese - TAIWAN (https://github.com/python/python-docs-zh-"
@@ -491,41 +491,47 @@ msgstr ""
 
 #: ../../using/ios.rst:299
 msgid ""
+"System logging (:c:member:`PyConfig.use_system_logger`) is *enabled* "
+"(optional, but strongly recommended; this is enabled by default);"
+msgstr ""
+
+#: ../../using/ios.rst:301
+msgid ""
 ":envvar:`PYTHONHOME` for the interpreter is configured to point at the "
 "``python`` subfolder of your app's bundle; and"
 msgstr ""
 
-#: ../../using/ios.rst:301
+#: ../../using/ios.rst:303
 msgid "The :envvar:`PYTHONPATH` for the interpreter includes:"
 msgstr ""
 
-#: ../../using/ios.rst:303
+#: ../../using/ios.rst:305
 msgid "the ``python/lib/python3.X`` subfolder of your app's bundle,"
 msgstr ""
 
-#: ../../using/ios.rst:304
+#: ../../using/ios.rst:306
 msgid ""
 "the ``python/lib/python3.X/lib-dynload`` subfolder of your app's bundle, and"
 msgstr ""
 
-#: ../../using/ios.rst:305
+#: ../../using/ios.rst:307
 msgid "the ``app`` subfolder of your app's bundle"
 msgstr ""
 
-#: ../../using/ios.rst:307
+#: ../../using/ios.rst:309
 msgid ""
 "Your app's bundle location can be determined using ``[[NSBundle mainBundle] "
 "resourcePath]``."
 msgstr ""
 
-#: ../../using/ios.rst:310
+#: ../../using/ios.rst:312
 msgid ""
 "Steps 8, 9 and 10 of these instructions assume that you have a single folder "
 "of pure Python application code, named ``app``. If you have third-party "
 "binary modules in your app, some additional steps will be required:"
 msgstr ""
 
-#: ../../using/ios.rst:314
+#: ../../using/ios.rst:316
 msgid ""
 "You need to ensure that any folders containing third-party binaries are "
 "either associated with the app target, or copied in as part of step 8. Step "
@@ -534,21 +540,21 @@ msgid ""
 "building an app targeting the simulator)."
 msgstr ""
 
-#: ../../using/ios.rst:320
+#: ../../using/ios.rst:322
 msgid ""
 "Any folders that contain third-party binaries must be processed into "
 "framework form by step 9. The invocation of ``install_dylib`` that processes "
 "the ``lib-dynload`` folder can be copied and adapted for this purpose."
 msgstr ""
 
-#: ../../using/ios.rst:324
+#: ../../using/ios.rst:326
 msgid ""
 "If you're using a separate folder for third-party packages, ensure that "
 "folder is included as part of the :envvar:`PYTHONPATH` configuration in step "
 "10."
 msgstr ""
 
-#: ../../using/ios.rst:327
+#: ../../using/ios.rst:329
 msgid ""
 "If any of the folders that contain third-party packages will contain ``."
 "pth`` files, you should add that folder as a *site directory* (using :meth:"
@@ -556,11 +562,11 @@ msgid ""
 "path` directly."
 msgstr ""
 
-#: ../../using/ios.rst:333
+#: ../../using/ios.rst:335
 msgid "Testing a Python package"
 msgstr ""
 
-#: ../../using/ios.rst:335
+#: ../../using/ios.rst:337
 msgid ""
 "The CPython source tree contains :source:`a testbed project <iOS/testbed>` "
 "that is used to run the CPython test suite on the iOS simulator. This "
@@ -568,19 +574,19 @@ msgid ""
 "library's test suite on iOS."
 msgstr ""
 
-#: ../../using/ios.rst:339
+#: ../../using/ios.rst:341
 msgid ""
 "After building or obtaining an iOS XCFramework (See :source:`iOS/README.rst` "
 "for details), create a clone of the Python iOS testbed project by running:"
 msgstr ""
 
-#: ../../using/ios.rst:342
+#: ../../using/ios.rst:344
 msgid ""
 "$ python iOS/testbed clone --framework <path/to/Python.xcframework> --app "
 "<path/to/module1> --app <path/to/module2> app-testbed"
 msgstr ""
 
-#: ../../using/ios.rst:346
+#: ../../using/ios.rst:348
 msgid ""
 "You will need to modify the ``iOS/testbed`` reference to point to that "
 "directory in the CPython source tree; any folders specified with the ``--"
@@ -592,37 +598,37 @@ msgid ""
 "testbed/iOSTestbed/app_packages`` or similar)."
 msgstr ""
 
-#: ../../using/ios.rst:355
+#: ../../using/ios.rst:357
 msgid ""
 "You can then use the ``app-testbed`` folder to run the test suite for your "
 "app, For example, if ``module1.tests`` was the entry point to your test "
 "suite, you could run:"
 msgstr ""
 
-#: ../../using/ios.rst:359
+#: ../../using/ios.rst:361
 msgid "$ python app-testbed run -- module1.tests"
 msgstr ""
 
-#: ../../using/ios.rst:363
+#: ../../using/ios.rst:365
 msgid ""
 "This is the equivalent of running ``python -m module1.tests`` on a desktop "
 "Python build. Any arguments after the ``--`` will be passed to the testbed "
 "as if they were arguments to ``python -m`` on a desktop machine."
 msgstr ""
 
-#: ../../using/ios.rst:367
+#: ../../using/ios.rst:369
 msgid "You can also open the testbed project in Xcode by running:"
 msgstr ""
 
-#: ../../using/ios.rst:369
+#: ../../using/ios.rst:371
 msgid "$ open app-testbed/iOSTestbed.xcodeproj"
 msgstr ""
 
-#: ../../using/ios.rst:373
+#: ../../using/ios.rst:375
 msgid "This will allow you to use the full Xcode suite of tools for debugging."
 msgstr ""
 
-#: ../../using/ios.rst:375
+#: ../../using/ios.rst:377
 msgid ""
 "The arguments used to run the test suite are defined as part of the test "
 "plan. To modify the test plan, select the test plan node of the project tree "
@@ -631,7 +637,7 @@ msgid ""
 "change the testing arguments."
 msgstr ""
 
-#: ../../using/ios.rst:381
+#: ../../using/ios.rst:383
 msgid ""
 "The test plan also disables parallel testing, and specifies the use of the "
 "``iOSTestbed.lldbinit`` file for providing configuration of the debugger. "
@@ -639,11 +645,11 @@ msgid ""
 "``SIGINT``, ``SIGUSR1``, ``SIGUSR2``, and ``SIGXFSZ`` signals."
 msgstr ""
 
-#: ../../using/ios.rst:387
+#: ../../using/ios.rst:389
 msgid "App Store Compliance"
 msgstr ""
 
-#: ../../using/ios.rst:389
+#: ../../using/ios.rst:391
 msgid ""
 "The only mechanism for distributing apps to third-party iOS devices is to "
 "submit the app to the iOS App Store; apps submitted for distribution must "
@@ -652,7 +658,7 @@ msgid ""
 "problematic code."
 msgstr ""
 
-#: ../../using/ios.rst:394
+#: ../../using/ios.rst:396
 msgid ""
 "The Python standard library contains some code that is known to violate "
 "these automated rules. While these violations appear to be false positives, "
@@ -660,7 +666,7 @@ msgid ""
 "Python standard library for an app to pass App Store review."
 msgstr ""
 
-#: ../../using/ios.rst:399
+#: ../../using/ios.rst:401
 msgid ""
 "The Python source tree contains :source:`a patch file <Mac/Resources/app-"
 "store-compliance.patch>` that will remove all code that is known to cause "

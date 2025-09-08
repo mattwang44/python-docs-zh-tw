@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.13\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-09-03 11:11+0800\n"
+"POT-Creation-Date: 2025-09-08 07:42+0000\n"
 "PO-Revision-Date: 2023-01-04 16:35+0800\n"
 "Last-Translator: Matt Wang <mattwang44@gmail.com>\n"
 "Language-Team: Chinese - TAIWAN (https://github.com/python/python-docs-zh-"
@@ -197,7 +197,19 @@ msgstr ""
 "的節點，直到循環阻塞了進度。呼叫此函式後就無法修改圖，因此無法使用 :meth:"
 "`~TopologicalSorter.add` 來新增更多節點。"
 
-#: ../../library/graphlib.rst:111
+#: ../../library/graphlib.rst:109
+msgid ""
+"A :exc:`ValueError` will be raised if the sort has been started by :meth:`~."
+"static_order` or :meth:`~.get_ready`."
+msgstr ""
+
+#: ../../library/graphlib.rst:114
+msgid ""
+"``prepare()`` can now be called more than once as long as the sort has not "
+"started. Previously this raised :exc:`ValueError`."
+msgstr ""
+
+#: ../../library/graphlib.rst:119
 msgid ""
 "Returns ``True`` if more progress can be made and ``False`` otherwise. "
 "Progress can be made if cycles do not block the resolution and either there "
@@ -211,13 +223,13 @@ msgstr ""
 "get_ready` 回傳或標記為 :meth:`TopologicalSorter.done` 的節點數量較 :meth:"
 "`TopologicalSorter.get_ready` 所回傳的少，則可以繼續取得進度。"
 
-#: ../../library/graphlib.rst:118
+#: ../../library/graphlib.rst:126
 msgid ""
 "The :meth:`~object.__bool__` method of this class defers to this function, "
 "so instead of::"
 msgstr "此類別的 :meth:`~object.__bool__` 方法遵循此函式，因此以下做法： ::"
 
-#: ../../library/graphlib.rst:121
+#: ../../library/graphlib.rst:129
 msgid ""
 "if ts.is_active():\n"
 "    ..."
@@ -225,11 +237,11 @@ msgstr ""
 "if ts.is_active():\n"
 "    ..."
 
-#: ../../library/graphlib.rst:124
+#: ../../library/graphlib.rst:132
 msgid "it is possible to simply do::"
 msgstr "可以簡單地用以下方式替換： ::"
 
-#: ../../library/graphlib.rst:126
+#: ../../library/graphlib.rst:134
 msgid ""
 "if ts:\n"
 "    ..."
@@ -237,7 +249,7 @@ msgstr ""
 "if ts:\n"
 "    ..."
 
-#: ../../library/graphlib.rst:129 ../../library/graphlib.rst:152
+#: ../../library/graphlib.rst:137 ../../library/graphlib.rst:160
 msgid ""
 "Raises :exc:`ValueError` if called without calling :meth:`~TopologicalSorter."
 "prepare` previously."
@@ -245,7 +257,7 @@ msgstr ""
 "如果呼叫之前沒有先呼叫 :meth:`~TopologicalSorter.prepare` 則引發 :exc:"
 "`ValueError`。"
 
-#: ../../library/graphlib.rst:134
+#: ../../library/graphlib.rst:142
 msgid ""
 "Marks a set of nodes returned by :meth:`TopologicalSorter.get_ready` as "
 "processed, unblocking any successor of each node in *nodes* for being "
@@ -255,7 +267,7 @@ msgstr ""
 "*nodes* 中每個節點的任何後繼節點 (successor)，以便將來通過呼叫 :meth:"
 "`TopologicalSorter.get_ready` 回傳。"
 
-#: ../../library/graphlib.rst:138
+#: ../../library/graphlib.rst:146
 msgid ""
 "Raises :exc:`ValueError` if any node in *nodes* has already been marked as "
 "processed by a previous call to this method or if a node was not added to "
@@ -268,7 +280,7 @@ msgstr ""
 "對此方法的呼叫標記為已處理、或者未使用 :meth:`TopologicalSorter.add` 將節點新"
 "增到圖中，則引發 :exc:`ValueError`。"
 
-#: ../../library/graphlib.rst:146
+#: ../../library/graphlib.rst:154
 msgid ""
 "Returns a ``tuple`` with all the nodes that are ready. Initially it returns "
 "all nodes with no predecessors, and once those are marked as processed by "
@@ -281,7 +293,7 @@ msgstr ""
 "步的呼叫將回傳所有其全部前驅節點都已被處理的新節點。若無法取得更多進度，將回"
 "傳空 tuple。"
 
-#: ../../library/graphlib.rst:157
+#: ../../library/graphlib.rst:165
 msgid ""
 "Returns an iterator object which will iterate over nodes in a topological "
 "order. When using this method, :meth:`~TopologicalSorter.prepare` and :meth:"
@@ -292,7 +304,7 @@ msgstr ""
 "`~TopologicalSorter.prepare` 和 :meth:`~TopologicalSorter.done`。此方法等效"
 "於： ::"
 
-#: ../../library/graphlib.rst:162
+#: ../../library/graphlib.rst:170
 msgid ""
 "def static_order(self):\n"
 "    self.prepare()\n"
@@ -308,13 +320,13 @@ msgstr ""
 "        yield from node_group\n"
 "        self.done(*node_group)"
 
-#: ../../library/graphlib.rst:169
+#: ../../library/graphlib.rst:177
 msgid ""
 "The particular order that is returned may depend on the specific order in "
 "which the items were inserted in the graph. For example:"
 msgstr "回傳的特定順序可能取決於將項目插入圖中的特定順序。例如："
 
-#: ../../library/graphlib.rst:172
+#: ../../library/graphlib.rst:180
 msgid ""
 ">>> ts = TopologicalSorter()\n"
 ">>> ts.add(3, 2, 1)\n"
@@ -340,7 +352,7 @@ msgstr ""
 ">>> print([*ts2.static_order()])\n"
 "[0, 2, 1, 3]"
 
-#: ../../library/graphlib.rst:186
+#: ../../library/graphlib.rst:194
 msgid ""
 "This is due to the fact that \"0\" and \"2\" are in the same level in the "
 "graph (they would have been returned in the same call to :meth:"
@@ -351,19 +363,19 @@ msgstr ""
 "`~TopologicalSorter.get_ready` 的同一呼叫中回傳）並且它們之間的順序取決於插入"
 "順序。"
 
-#: ../../library/graphlib.rst:192
+#: ../../library/graphlib.rst:200
 msgid "If any cycle is detected, :exc:`CycleError` will be raised."
 msgstr "如果檢測到任何循環，則引發 :exc:`CycleError`。"
 
-#: ../../library/graphlib.rst:198
+#: ../../library/graphlib.rst:206
 msgid "Exceptions"
 msgstr "例外"
 
-#: ../../library/graphlib.rst:199
+#: ../../library/graphlib.rst:207
 msgid "The :mod:`graphlib` module defines the following exception classes:"
 msgstr ":mod:`graphlib` 模組定義了以下例外類別："
 
-#: ../../library/graphlib.rst:203
+#: ../../library/graphlib.rst:211
 msgid ""
 "Subclass of :exc:`ValueError` raised by :meth:`TopologicalSorter.prepare` if "
 "cycles exist in the working graph. If multiple cycles exist, only one "
@@ -373,7 +385,7 @@ msgstr ""
 "`TopologicalSorter.prepare` 引發。如果存在多個循環，則只會報告未定義的其中一"
 "個並包含在例外中。"
 
-#: ../../library/graphlib.rst:207
+#: ../../library/graphlib.rst:215
 msgid ""
 "The detected cycle can be accessed via the second element in the :attr:"
 "`~BaseException.args` attribute of the exception instance and consists in a "

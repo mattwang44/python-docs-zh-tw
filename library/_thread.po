@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.13\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-12 00:13+0000\n"
+"POT-Creation-Date: 2025-09-08 07:42+0000\n"
 "PO-Revision-Date: 2015-12-09 17:51+0000\n"
 "Last-Translator: Liang-Bo Wang <me@liang2.tw>\n"
 "Language-Team: Chinese - TAIWAN (https://github.com/python/python-docs-zh-"
@@ -269,26 +269,31 @@ msgstr "新增的 *timeout* 參數。"
 msgid "Lock acquires can now be interrupted by signals on POSIX."
 msgstr "現在取得鎖的操作可以被 POSIX 訊號中斷。"
 
-#: ../../library/_thread.rst:193
+#: ../../library/_thread.rst:190
+#, fuzzy
+msgid "Lock acquires can now be interrupted by signals on Windows."
+msgstr "現在取得鎖的操作可以被 POSIX 訊號中斷。"
+
+#: ../../library/_thread.rst:196
 msgid ""
 "Releases the lock.  The lock must have been acquired earlier, but not "
 "necessarily by the same thread."
 msgstr "釋放鎖。鎖必須先前被取得，但不一定是由同一個執行緒取得的。"
 
-#: ../../library/_thread.rst:199
+#: ../../library/_thread.rst:202
 msgid ""
 "Return the status of the lock: ``True`` if it has been acquired by some "
 "thread, ``False`` if not."
 msgstr ""
 "回傳鎖的狀態：如果鎖已被某個執行緒取得，則回傳 ``True``，否則回傳 ``False``。"
 
-#: ../../library/_thread.rst:202
+#: ../../library/_thread.rst:205
 msgid ""
 "In addition to these methods, lock objects can also be used via the :keyword:"
 "`with` statement, e.g.::"
 msgstr "除了這些方法之外，鎖物件還可以透過 :keyword:`with` 語句來使用，例如："
 
-#: ../../library/_thread.rst:205
+#: ../../library/_thread.rst:208
 msgid ""
 "import _thread\n"
 "\n"
@@ -304,17 +309,17 @@ msgstr ""
 "with a_lock:\n"
 "    print(\"a_lock 在執行這裡時被鎖定\")"
 
-#: ../../library/_thread.rst:212
+#: ../../library/_thread.rst:215
 msgid "**Caveats:**"
 msgstr "**注意事項：**"
 
-#: ../../library/_thread.rst:216
+#: ../../library/_thread.rst:219
 msgid ""
 "Interrupts always go to the main thread (the :exc:`KeyboardInterrupt` "
 "exception will be received by that thread.)"
 msgstr "中斷總會跳到主執行緒（該執行緒將接收 :exc:`KeyboardInterrupt` 例外。）"
 
-#: ../../library/_thread.rst:219
+#: ../../library/_thread.rst:222
 msgid ""
 "Calling :func:`sys.exit` or raising the :exc:`SystemExit` exception is "
 "equivalent to calling :func:`_thread.exit`."
@@ -322,19 +327,7 @@ msgstr ""
 "呼叫 :func:`sys.exit` 函式或引發 :exc:`SystemExit` 例外等同於呼叫 :func:"
 "`_thread.exit` 函式。"
 
-#: ../../library/_thread.rst:222
-msgid ""
-"It is platform-dependent whether the :meth:`~threading.Lock.acquire` method "
-"on a lock can be interrupted (so that the :exc:`KeyboardInterrupt` exception "
-"will happen immediately, rather than only after the lock has been acquired "
-"or the operation has timed out). It can be interrupted on POSIX, but not on "
-"Windows."
-msgstr ""
-"鎖的 :meth:`~threading.Lock.acquire` 方法是否可以中斷（如此一來 :exc:"
-"`KeyboardInterrupt` 例外會立即發生，而不是僅在取得鎖或操作逾時後）是取決於平"
-"台的。在 POSIX 上可以中斷，但在 Windows 上則不行。"
-
-#: ../../library/_thread.rst:228
+#: ../../library/_thread.rst:225
 msgid ""
 "When the main thread exits, it is system defined whether the other threads "
 "survive.  On most systems, they are killed without executing :keyword:"
@@ -372,10 +365,21 @@ msgstr "threads（執行緒）"
 msgid "POSIX"
 msgstr "POSIX"
 
-#: ../../library/_thread.rst:214
+#: ../../library/_thread.rst:217
 msgid "module"
 msgstr "module（模組）"
 
-#: ../../library/_thread.rst:214
+#: ../../library/_thread.rst:217
 msgid "signal"
 msgstr "signal（訊號）"
+
+#~ msgid ""
+#~ "It is platform-dependent whether the :meth:`~threading.Lock.acquire` "
+#~ "method on a lock can be interrupted (so that the :exc:`KeyboardInterrupt` "
+#~ "exception will happen immediately, rather than only after the lock has "
+#~ "been acquired or the operation has timed out). It can be interrupted on "
+#~ "POSIX, but not on Windows."
+#~ msgstr ""
+#~ "鎖的 :meth:`~threading.Lock.acquire` 方法是否可以中斷（如此一來 :exc:"
+#~ "`KeyboardInterrupt` 例外會立即發生，而不是僅在取得鎖或操作逾時後）是取決於"
+#~ "平台的。在 POSIX 上可以中斷，但在 Windows 上則不行。"
