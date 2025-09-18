@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.13\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-09-08 07:42+0000\n"
+"POT-Creation-Date: 2025-09-18 10:09+0000\n"
 "PO-Revision-Date: 2023-11-08 15:06+0800\n"
 "Last-Translator: RockLeon <therockleona@gmail.com>\n"
 "Language-Team: Chinese - TAIWAN (https://github.com/python/python-docs-zh-"
@@ -741,25 +741,27 @@ msgstr ""
 "const:`QUOTE_MINIMAL`。否則預設為 :const:`QUOTE_NONE`。"
 
 #: ../../library/csv.rst:469
+#, fuzzy
 msgid ""
 "When :const:`True`, spaces immediately following the *delimiter* are "
-"ignored. The default is :const:`False`."
+"ignored. The default is :const:`False`.  When combining ``delimiter=' '`` "
+"with ``skipinitialspace=True``, unquoted empty fields are not allowed."
 msgstr ""
 "若為 :const:`True`，在緊接著\\ *delimiter*\\ 後的空格會被忽略。預設為 :const:"
 "`False`。"
 
-#: ../../library/csv.rst:475
+#: ../../library/csv.rst:476
 msgid ""
 "When ``True``, raise exception :exc:`Error` on bad CSV input. The default is "
 "``False``."
 msgstr ""
 "若為 ``True``，若有錯誤的 CSV 輸入則會引發 :exc:`Error`。預設為 ``False``。"
 
-#: ../../library/csv.rst:481
+#: ../../library/csv.rst:482
 msgid "Reader Objects"
 msgstr "讀取器物件"
 
-#: ../../library/csv.rst:483
+#: ../../library/csv.rst:484
 msgid ""
 "Reader objects (:class:`DictReader` instances and objects returned by the :"
 "func:`reader` function) have the following public methods:"
@@ -767,7 +769,7 @@ msgstr ""
 "讀取器物件（:func:`reader` 函式回傳的 :class:`DictReader` 實例與物件）有下列"
 "公開方法 (public method)："
 
-#: ../../library/csv.rst:488
+#: ../../library/csv.rst:489
 msgid ""
 "Return the next row of the reader's iterable object as a list (if the object "
 "was returned from :func:`reader`) or a dict (if it is a :class:`DictReader` "
@@ -778,25 +780,25 @@ msgstr ""
 "傳）或是一個 dict（若為 :class:`DictReader` 實例），會依據目前的 :class:"
 "`Dialect` 進行剖析。通常會用 ``next(reader)`` 來進行呼叫。"
 
-#: ../../library/csv.rst:494
+#: ../../library/csv.rst:495
 msgid "Reader objects have the following public attributes:"
 msgstr "讀取器物件有下列公開屬性 (public attributes)："
 
-#: ../../library/csv.rst:498
+#: ../../library/csv.rst:499
 msgid "A read-only description of the dialect in use by the parser."
 msgstr "dialect 的唯讀敘述，會被剖析器使用。"
 
-#: ../../library/csv.rst:503
+#: ../../library/csv.rst:504
 msgid ""
 "The number of lines read from the source iterator. This is not the same as "
 "the number of records returned, as records can span multiple lines."
 msgstr "來源疊代器所讀取的行數。這與回傳的紀錄數不同，因為可以進行跨行紀錄。"
 
-#: ../../library/csv.rst:507
+#: ../../library/csv.rst:508
 msgid "DictReader objects have the following public attribute:"
 msgstr "DictReader 物件有下列公開屬性："
 
-#: ../../library/csv.rst:511
+#: ../../library/csv.rst:512
 msgid ""
 "If not passed as a parameter when creating the object, this attribute is "
 "initialized upon first access or when the first record is read from the file."
@@ -804,11 +806,11 @@ msgstr ""
 "若在建立物件時沒有作為參數傳遞，這個屬性會在第一次存取之前或是第一筆資料被讀"
 "取之前進行初始化 (initialize)。"
 
-#: ../../library/csv.rst:518
+#: ../../library/csv.rst:519
 msgid "Writer Objects"
 msgstr "寫入器物件"
 
-#: ../../library/csv.rst:520
+#: ../../library/csv.rst:521
 msgid ""
 ":class:`writer` objects (:class:`DictWriter` instances and objects returned "
 "by the :func:`writer` function) have the following public methods.  A *row* "
@@ -826,7 +828,7 @@ msgstr ""
 "遞）。請注意，在寫入複數 (complex number) 時會用小括號 (parens) 包起來。這可"
 "能在其他程式讀取 CSV 檔案時導致某些問題（假設他們完全支援複雜數字）。"
 
-#: ../../library/csv.rst:531
+#: ../../library/csv.rst:532
 msgid ""
 "Write the *row* parameter to the writer's file object, formatted according "
 "to the current :class:`Dialect`. Return the return value of the call to the "
@@ -835,11 +837,11 @@ msgstr ""
 "將參數 *row* 寫入至寫入器的檔案物件中，並依照目前的 :class:`Dialect` 進行格式"
 "化。回傳下層檔案物件 *write* 方法的回傳值。"
 
-#: ../../library/csv.rst:535
+#: ../../library/csv.rst:536
 msgid "Added support of arbitrary iterables."
 msgstr "新增對任意可疊代物件 (arbitrary iterables) 的支援。"
 
-#: ../../library/csv.rst:540
+#: ../../library/csv.rst:541
 msgid ""
 "Write all elements in *rows* (an iterable of *row* objects as described "
 "above) to the writer's file object, formatted according to the current "
@@ -848,19 +850,19 @@ msgstr ""
 "將 *rows* 中所有元素（為上述的一個可疊代的 *row* 物件）寫入至寫入器的檔案物件"
 "中，並依照目前的 dialect 進行格式化。"
 
-#: ../../library/csv.rst:544
+#: ../../library/csv.rst:545
 msgid "Writer objects have the following public attribute:"
 msgstr "寫入器物件有下列公開屬性："
 
-#: ../../library/csv.rst:549
+#: ../../library/csv.rst:550
 msgid "A read-only description of the dialect in use by the writer."
 msgstr "dialect 的唯讀敘述，會被寫入器使用。"
 
-#: ../../library/csv.rst:552
+#: ../../library/csv.rst:553
 msgid "DictWriter objects have the following public method:"
 msgstr "DictWriter 物件有下列公開方法："
 
-#: ../../library/csv.rst:557
+#: ../../library/csv.rst:558
 msgid ""
 "Write a row with the field names (as specified in the constructor) to the "
 "writer's file object, formatted according to the current dialect. Return the "
@@ -870,7 +872,7 @@ msgstr ""
 "中，並依照目前的 dialect 進行格式化。回傳內部呼叫 :meth:`csvwriter.writerow` "
 "的回傳值。"
 
-#: ../../library/csv.rst:562
+#: ../../library/csv.rst:563
 msgid ""
 ":meth:`writeheader` now also returns the value returned by the :meth:"
 "`csvwriter.writerow` method it uses internally."
@@ -878,15 +880,15 @@ msgstr ""
 ":meth:`writeheader` 現在也會回傳內部呼叫 :meth:`csvwriter.writerow` 的回傳"
 "值。"
 
-#: ../../library/csv.rst:570
+#: ../../library/csv.rst:571
 msgid "Examples"
 msgstr "範例"
 
-#: ../../library/csv.rst:572
+#: ../../library/csv.rst:573
 msgid "The simplest example of reading a CSV file::"
 msgstr "最簡單的讀取 CSV 檔案範例： ::"
 
-#: ../../library/csv.rst:574
+#: ../../library/csv.rst:575
 msgid ""
 "import csv\n"
 "with open('some.csv', newline='') as f:\n"
@@ -900,11 +902,11 @@ msgstr ""
 "    for row in reader:\n"
 "        print(row)"
 
-#: ../../library/csv.rst:580
+#: ../../library/csv.rst:581
 msgid "Reading a file with an alternate format::"
 msgstr "讀取一個其他格式的檔案： ::"
 
-#: ../../library/csv.rst:582
+#: ../../library/csv.rst:583
 msgid ""
 "import csv\n"
 "with open('passwd', newline='') as f:\n"
@@ -918,11 +920,11 @@ msgstr ""
 "    for row in reader:\n"
 "        print(row)"
 
-#: ../../library/csv.rst:588
+#: ../../library/csv.rst:589
 msgid "The corresponding simplest possible writing example is::"
 msgstr "相對最簡單、可行的寫入範例為： ::"
 
-#: ../../library/csv.rst:590
+#: ../../library/csv.rst:591
 msgid ""
 "import csv\n"
 "with open('some.csv', 'w', newline='') as f:\n"
@@ -930,7 +932,7 @@ msgid ""
 "    writer.writerows(someiterable)"
 msgstr ""
 
-#: ../../library/csv.rst:595
+#: ../../library/csv.rst:596
 msgid ""
 "Since :func:`open` is used to open a CSV file for reading, the file will by "
 "default be decoded into unicode using the system default encoding (see :func:"
@@ -941,7 +943,7 @@ msgstr ""
 "碼格式（請見 :func:`locale.getencoding`），並解碼為 unicode。若要使用不同編碼"
 "格式進行檔案解碼，請使用 open 函式的 ``encoding`` 引數： ::"
 
-#: ../../library/csv.rst:600
+#: ../../library/csv.rst:601
 msgid ""
 "import csv\n"
 "with open('some.csv', newline='', encoding='utf-8') as f:\n"
@@ -955,7 +957,7 @@ msgstr ""
 "    for row in reader:\n"
 "        print(row)"
 
-#: ../../library/csv.rst:606
+#: ../../library/csv.rst:607
 msgid ""
 "The same applies to writing in something other than the system default "
 "encoding: specify the encoding argument when opening the output file."
@@ -963,11 +965,11 @@ msgstr ""
 "同理可以應用到使用不同編碼格式進行寫入：當開啟輸出檔案時，指定 ``encoding`` "
 "引數。"
 
-#: ../../library/csv.rst:609
+#: ../../library/csv.rst:610
 msgid "Registering a new dialect::"
 msgstr "註冊一個新的 dialect ： ::"
 
-#: ../../library/csv.rst:611
+#: ../../library/csv.rst:612
 msgid ""
 "import csv\n"
 "csv.register_dialect('unixpwd', delimiter=':', quoting=csv.QUOTE_NONE)\n"
@@ -979,13 +981,13 @@ msgstr ""
 "with open('passwd', newline='') as f:\n"
 "    reader = csv.reader(f, 'unixpwd')"
 
-#: ../../library/csv.rst:616
+#: ../../library/csv.rst:617
 msgid ""
 "A slightly more advanced use of the reader --- catching and reporting "
 "errors::"
 msgstr "稍微進階的讀取器用法 -- 擷取及回報錯誤： ::"
 
-#: ../../library/csv.rst:618
+#: ../../library/csv.rst:619
 msgid ""
 "import csv, sys\n"
 "filename = 'some.csv'\n"
@@ -1007,13 +1009,13 @@ msgstr ""
 "    except csv.Error as e:\n"
 "        sys.exit(f'file {filename}, line {reader.line_num}: {e}')"
 
-#: ../../library/csv.rst:628
+#: ../../library/csv.rst:629
 msgid ""
 "And while the module doesn't directly support parsing strings, it can easily "
 "be done::"
 msgstr "而當模組無法直接支援剖析字串時，仍可以輕鬆的解決： ::"
 
-#: ../../library/csv.rst:631
+#: ../../library/csv.rst:632
 msgid ""
 "import csv\n"
 "for row in csv.reader(['one,two,three']):\n"
@@ -1023,16 +1025,17 @@ msgstr ""
 "for row in csv.reader(['one,two,three']):\n"
 "    print(row)"
 
-#: ../../library/csv.rst:637
+#: ../../library/csv.rst:638
 msgid "Footnotes"
 msgstr "註解"
 
-#: ../../library/csv.rst:638
+#: ../../library/csv.rst:639
+#, fuzzy
 msgid ""
 "If ``newline=''`` is not specified, newlines embedded inside quoted fields "
-"will not be interpreted correctly, and on platforms that use ``\\r\\n`` "
-"linendings on write an extra ``\\r`` will be added.  It should always be "
-"safe to specify ``newline=''``, since the csv module does its own (:term:"
+"will not be interpreted correctly, and on platforms that use ``\\r\\n`` line "
+"endings on write an extra ``\\r`` will be added.  It should always be safe "
+"to specify ``newline=''``, since the csv module does its own (:term:"
 "`universal <universal newlines>`) newline handling."
 msgstr ""
 "如果 ``newline=''`` 沒有被指定，則嵌入引號中的換行符號不會被正確直譯，使用 "
