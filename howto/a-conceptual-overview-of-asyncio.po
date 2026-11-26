@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.14\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-16 00:27+0000\n"
+"POT-Creation-Date: 2026-11-27 03:22+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Chinese - TAIWAN (https://github.com/python/python-docs-zh-"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: ../../howto/a-conceptual-overview-of-asyncio.rst:5
-msgid "A Conceptual Overview of :mod:`!asyncio`"
+msgid "A conceptual overview of :mod:`!asyncio`"
 msgstr ":mod:`!asyncio` 的概念性總覽"
 
 #: ../../howto/a-conceptual-overview-of-asyncio.rst:7
@@ -27,16 +27,21 @@ msgid ""
 "model of how :mod:`asyncio` fundamentally works, helping you understand the "
 "how and why behind the recommended patterns."
 msgstr ""
+"這篇 :ref:`HOWTO <how-tos>` 文章旨在幫助你建立穩固的心智模型 (mental model)，"
+"了解 :mod:`asyncio` 根本上是如何運作的，進而理解那些推薦寫法背後的原理與緣"
+"由。"
 
 #: ../../howto/a-conceptual-overview-of-asyncio.rst:11
 msgid ""
 "You might be curious about some key :mod:`!asyncio` concepts. By the end of "
 "this article, you'll be able to comfortably answer these questions:"
 msgstr ""
+"你可能對 :mod:`!asyncio` 的一些關鍵概念感到好奇。讀完這篇文章後，你將能夠輕鬆"
+"地回答這些問題："
 
 #: ../../howto/a-conceptual-overview-of-asyncio.rst:14
 msgid "What's happening behind the scenes when an object is awaited?"
-msgstr ""
+msgstr "當一個物件被等待時，背後發生了什麼事？"
 
 #: ../../howto/a-conceptual-overview-of-asyncio.rst:15
 msgid ""
@@ -44,18 +49,22 @@ msgid ""
 "time (such as a network request or file read) as opposed to a task that does "
 "(such as computing n-factorial)?"
 msgstr ""
+":mod:`!asyncio` 如何區分不需要 CPU 時間的工作（例如網路請求或讀取檔案）與需"
+"要 CPU 時間的工作（例如計算 n 階乘）？"
 
 #: ../../howto/a-conceptual-overview-of-asyncio.rst:18
 msgid ""
 "How to write an asynchronous variant of an operation, such as an async sleep "
 "or database request."
-msgstr ""
+msgstr "如何撰寫某個操作的非同步版本，例如非同步休眠或資料庫請求。"
 
 #: ../../howto/a-conceptual-overview-of-asyncio.rst:23
 msgid ""
 "The `guide <https://github.com/anordin95/a-conceptual-overview-of-asyncio/ "
 "tree/main>`_ that inspired this HOWTO article, by Alexander Nordin."
 msgstr ""
+"啟發這篇 HOWTO 文章的\\ `指南 <https://github.com/anordin95/a-conceptual-"
+"overview-of-asyncio/ tree/main>`_，作者為 Alexander Nordin。"
 
 #: ../../howto/a-conceptual-overview-of-asyncio.rst:25
 msgid ""
@@ -63,6 +72,9 @@ msgid ""
 "v=Xbl7XjFYsN4&list=PLhNSoGM2ik6SIkVGXWBwerucXjgP1rHmB>`_ on ``asyncio`` "
 "created by Python core team member, Łukasz Langa."
 msgstr ""
+"由 Python 核心團隊成員 Łukasz Langa 製作、關於 ``asyncio`` 的深入 `YouTube 教"
+"學系列影片 <https://www.youtube.com/ watch?"
+"v=Xbl7XjFYsN4&list=PLhNSoGM2ik6SIkVGXWBwerucXjgP1rHmB>`_。"
 
 #: ../../howto/a-conceptual-overview-of-asyncio.rst:28
 msgid ""
@@ -70,10 +82,13 @@ msgid ""
 "org/en/500L/a-web-crawler-with-asyncio-coroutines.html>`_ by A. Jesse Jiryu "
 "Davis and Guido van Rossum."
 msgstr ""
+"A. Jesse Jiryu Davis 與 Guido van Rossum 所著的 `500 Lines or Less: A Web "
+"Crawler With asyncio Coroutines <https:// aosabook.org/en/500L/a-web-crawler-"
+"with-asyncio-coroutines.html>`_。"
 
 #: ../../howto/a-conceptual-overview-of-asyncio.rst:34
 msgid "A conceptual overview part 1: the high-level"
-msgstr ""
+msgstr "概念性總覽第一部分：高階概念"
 
 #: ../../howto/a-conceptual-overview-of-asyncio.rst:36
 msgid ""
@@ -81,19 +96,24 @@ msgid ""
 "asyncio`: the event loop, coroutine functions, coroutine objects, tasks, and "
 "``await``."
 msgstr ""
+"在第一部分中，我們將介紹 :mod:`!asyncio` 主要的高階構成元素：事件迴圈、協程函"
+"式、協程物件、任務以及 ``await``。"
 
 #: ../../howto/a-conceptual-overview-of-asyncio.rst:41
-msgid "Event Loop"
+msgid "Event loop"
 msgstr "事件迴圈"
 
 #: ../../howto/a-conceptual-overview-of-asyncio.rst:43
 msgid ""
 "Everything in :mod:`!asyncio` happens relative to the event loop. It's the "
-"star of the show. It's like an orchestra conductor. It's behind the scenes "
-"managing resources. Some power is explicitly granted to it, but a lot of its "
-"ability to get things done comes from the respect and cooperation of its "
-"worker bees."
+"star of the show, but prefers to work behind the scenes, managing and "
+"coordinating resources. It's like an orchestra conductor. Some power is "
+"explicitly granted to it, but a lot of its ability to get things done comes "
+"from the respect and cooperation of its band members."
 msgstr ""
+":mod:`!asyncio` 中的一切都圍繞著事件迴圈發生。它是這場演出的主角，卻偏好在幕"
+"後工作，負責管理並協調各種資源。它就像管弦樂團的指揮：有些權力是明確賦予它"
+"的，但它之所以能把事情做好，很大一部分來自團員們的尊重與合作。"
 
 #: ../../howto/a-conceptual-overview-of-asyncio.rst:50
 msgid ""
@@ -108,8 +128,18 @@ msgid ""
 "process repeats indefinitely, with the event loop cycling endlessly onwards. "
 "If there are no more jobs pending execution, the event loop is smart enough "
 "to rest and avoid needlessly wasting CPU cycles, and will come back when "
-"there's more work to be done."
+"there's more work to be done, such as when I/O operations complete or timers "
+"expire."
 msgstr ""
+"用更技術性的說法來講，事件迴圈包含一組待執行的工作 (job)。有些工作是由你直接"
+"加入的，有些則是由 :mod:`!asyncio` 間接加入的。事件迴圈會從它的待辦工作中取出"
+"一項並叫用它（或說「把控制權交給它」），就像呼叫一個函式一樣，接著該工作便開"
+"始執行。一旦它暫停或完成，就會把控制權交還給事件迴圈。事件迴圈接著會從它的工"
+"作池中挑選另一項工作並叫用它。你可以\\ *粗略地*\\ 把這組工作想成一個佇列：工"
+"作被加入之後會一次處理一項，通常（但不一定）依照順序。這個過程會無限地重複，"
+"事件迴圈就這樣不停地循環下去。如果已經沒有等待執行的工作，事件迴圈夠聰明，會"
+"先休息以免白白浪費 CPU 週期，並在有更多工作要做時再回來，例如當 I/O 操作完成"
+"或計時器到期時。"
 
 #: ../../howto/a-conceptual-overview-of-asyncio.rst:64
 msgid ""
@@ -117,6 +147,8 @@ msgid ""
 "job could hog control and leave the other jobs to starve, rendering the "
 "overall event loop approach rather useless."
 msgstr ""
+"有效率的執行仰賴各項工作懂得分享、彼此合作；一個貪婪的工作可能會霸占控制權，"
+"讓其他工作陷入飢餓 (starve)，使整個事件迴圈的做法變得幾乎毫無用處。"
 
 #: ../../howto/a-conceptual-overview-of-asyncio.rst:70
 msgid ""
@@ -127,6 +159,12 @@ msgid ""
 "event_loop = asyncio.new_event_loop()\n"
 "event_loop.run_forever()"
 msgstr ""
+"import asyncio\n"
+"\n"
+"# 這會建立一個事件迴圈，並無限地循環\n"
+"# 執行它的工作集合。\n"
+"event_loop = asyncio.new_event_loop()\n"
+"event_loop.run_forever()"
 
 #: ../../howto/a-conceptual-overview-of-asyncio.rst:79
 msgid "Asynchronous functions and coroutines"
@@ -134,7 +172,7 @@ msgstr "非同步函式與協程"
 
 #: ../../howto/a-conceptual-overview-of-asyncio.rst:81
 msgid "This is a basic, boring Python function::"
-msgstr "這是一個基本的、無聊的 Python 函式："
+msgstr "這是一個基本的、無聊的 Python 函式： ::"
 
 #: ../../howto/a-conceptual-overview-of-asyncio.rst:83
 msgid ""
@@ -154,7 +192,7 @@ msgstr ""
 
 #: ../../howto/a-conceptual-overview-of-asyncio.rst:90
 msgid "Calling a regular function invokes its logic or body::"
-msgstr ""
+msgstr "呼叫一般函式會叫用它的邏輯或主體： ::"
 
 #: ../../howto/a-conceptual-overview-of-asyncio.rst:92
 msgid ""
@@ -172,6 +210,9 @@ msgid ""
 "this an asynchronous function (or \"coroutine function\"). Calling it "
 "creates and returns a :ref:`coroutine <coroutine>` object."
 msgstr ""
+":ref:`async def <async def>` 與單純的 ``def`` 不同，它讓這個函式成為一個非同"
+"步函式（或稱「協程函式」）。呼叫它會建立並回傳一個\\ :ref:`協程 "
+"<coroutine>`\\ 物件。"
 
 #: ../../howto/a-conceptual-overview-of-asyncio.rst:102
 msgid ""
@@ -194,6 +235,8 @@ msgid ""
 "Calling the async function, ``loudmouth_penguin``, does not execute the "
 "print statement; instead, it creates a coroutine object::"
 msgstr ""
+"呼叫非同步函式 ``loudmouth_penguin`` 並不會執行 print 陳述式，而是會建立一個"
+"協程物件： ::"
 
 #: ../../howto/a-conceptual-overview-of-asyncio.rst:111
 msgid ""
@@ -212,6 +255,10 @@ msgid ""
 "also exist as instances of :class:`collections.abc.Coroutine` -- a "
 "distinction that matters for type checking."
 msgstr ""
+"「協程函式」和「協程物件」這兩個術語常被混為一談，統稱為協程。這可能會讓人困"
+"惑！在本文中，協程特指協程物件，或者更精確地說，是 :class:`types."
+"CoroutineType` 的實例（原生協程）。請注意，協程也可以是 :class:`collections."
+"abc.Coroutine` 的實例，這個區別在型別檢查時很重要。"
 
 #: ../../howto/a-conceptual-overview-of-asyncio.rst:123
 msgid ""
@@ -221,6 +268,9 @@ msgid ""
 "the function's body. That pausing and resuming ability is what allows for "
 "asynchronous behavior!"
 msgstr ""
+"協程代表函式的主體或邏輯。協程必須被明確地啟動；再次強調，單純建立協程並不會"
+"啟動它。值得注意的是，協程可以在函式主體內的各個位置暫停與恢復。正是這種暫停"
+"與恢復的能力，讓非同步行為成為可能！"
 
 #: ../../howto/a-conceptual-overview-of-asyncio.rst:130
 msgid ""
@@ -229,6 +279,9 @@ msgid ""
 "`generator functions <generator>`. Recall, a generator function is a "
 "function that :keyword:`yield`\\s, like this one::"
 msgstr ""
+"協程與協程函式是利用\\ :term:`產生器 <generator iterator>`\\ 和\\ :term:`產生"
+"器函式 <generator>`\\ 的功能打造而成的。回想一下，產生器函式就是會 :keyword:"
+"`yield` 的函式，像這樣： ::"
 
 #: ../../howto/a-conceptual-overview-of-asyncio.rst:136
 msgid ""
@@ -257,6 +310,7 @@ msgid ""
 "Similar to a coroutine function, calling a generator function does not run "
 "it. Instead, it creates a generator object::"
 msgstr ""
+"與協程函式類似，呼叫產生器函式並不會執行它，而是會建立一個產生器物件： ::"
 
 #: ../../howto/a-conceptual-overview-of-asyncio.rst:149
 msgid ""
@@ -272,6 +326,8 @@ msgid ""
 "function :func:`next`. In other words, the generator runs, then pauses. For "
 "example::"
 msgstr ""
+"你可以使用內建函式 :func:`next` 讓產生器前進到下一個 ``yield``。換句話說，產"
+"生器會執行，然後暫停。例如： ::"
 
 #: ../../howto/a-conceptual-overview-of-asyncio.rst:157
 msgid ""
@@ -293,23 +349,28 @@ msgstr ""
 
 #: ../../howto/a-conceptual-overview-of-asyncio.rst:167
 msgid "Tasks"
-msgstr ""
+msgstr "任務"
 
 #: ../../howto/a-conceptual-overview-of-asyncio.rst:169
 msgid ""
 "Roughly speaking, :ref:`tasks <asyncio-task-obj>` are coroutines (not "
 "coroutine functions) tied to an event loop. A task also maintains a list of "
 "callback functions whose importance will become clear in a moment when we "
-"discuss :keyword:`await`. The recommended way to create tasks is via :func:"
-"`asyncio.create_task`."
+"discuss :keyword:`await`."
 msgstr ""
+"粗略地說，:ref:`任務 <asyncio-task-obj>`\\ 就是依附於事件迴圈的協程（而非協程"
+"函式）。任務也維護著一份回呼函式的串列，等稍後討論 :keyword:`await` 時，你就"
+"會明白它為什麼重要。"
 
-#: ../../howto/a-conceptual-overview-of-asyncio.rst:175
+#: ../../howto/a-conceptual-overview-of-asyncio.rst:174
 msgid ""
 "Creating a task automatically schedules it for execution (by adding a "
 "callback to run it in the event loop's to-do list, that is, collection of "
-"jobs)."
+"jobs). The recommended way to create tasks is via :func:`asyncio."
+"create_task`."
 msgstr ""
+"建立任務會自動將它排程執行（方法是在事件迴圈的待辦清單，也就是工作集合中，加"
+"入一個執行它的回呼）。建立任務的建議方式是透過 :func:`asyncio.create_task`。"
 
 #: ../../howto/a-conceptual-overview-of-asyncio.rst:178
 msgid ""
@@ -319,6 +380,9 @@ msgid ""
 "loop object and pass it to any coroutine function that wants to create "
 "tasks, adding redundant clutter to your code."
 msgstr ""
+":mod:`!asyncio` 會自動幫你把任務與事件迴圈關聯起來。這種自動關聯是 :mod:`!"
+"asyncio` 為了簡單起見而刻意設計的。如果沒有它，你就得自行追蹤事件迴圈物件，並"
+"把它傳給每一個想要建立任務的協程函式，讓你的程式碼多出不必要的雜亂。"
 
 #: ../../howto/a-conceptual-overview-of-asyncio.rst:187
 msgid ""
@@ -327,6 +391,9 @@ msgid ""
 "loop.\n"
 "task = asyncio.create_task(coroutine)"
 msgstr ""
+"coroutine = loudmouth_penguin(magic_number=5)\n"
+"# 這會建立一個 Task 物件，並透過事件迴圈將其排程執行。\n"
+"task = asyncio.create_task(coroutine)"
 
 #: ../../howto/a-conceptual-overview-of-asyncio.rst:191
 msgid ""
@@ -336,6 +403,9 @@ msgid ""
 "coroutine finishes before advancing. For example, many async programs follow "
 "this setup::"
 msgstr ""
+"前面我們手動建立了事件迴圈，並讓它永遠執行下去。實務上建議使用 :func:"
+"`asyncio.run`，這也是常見的寫法；它會負責管理事件迴圈，並確保所提供的協程在程"
+"式繼續往下執行之前完成。例如，許多非同步程式都採用這樣的架構： ::"
 
 #: ../../howto/a-conceptual-overview-of-asyncio.rst:197
 msgid ""
@@ -351,6 +421,17 @@ msgid ""
 "    # coroutine main() finishes.\n"
 "    print(\"coroutine main() is done!\")"
 msgstr ""
+"import asyncio\n"
+"\n"
+"async def main():\n"
+"    # 進行各種古怪又狂野的非同步操作……\n"
+"    ...\n"
+"\n"
+"if __name__ == \"__main__\":\n"
+"    asyncio.run(main())\n"
+"    # 在協程 main() 完成之前，程式不會執行到\n"
+"    # 下面這個 print 陳述式。\n"
+"    print(\"coroutine main() is done!\")"
 
 #: ../../howto/a-conceptual-overview-of-asyncio.rst:209
 msgid ""
@@ -359,6 +440,9 @@ msgid ""
 "created is garbage collected before it's called by the event loop. For "
 "example, consider this program:"
 msgstr ""
+"要特別注意的是，被加入事件迴圈的並不是任務本身，而只是該任務的一個回呼。如果"
+"你建立的任務物件在被事件迴圈呼叫之前就被垃圾回收了，這點就很重要。例如，請看"
+"這個程式："
 
 #: ../../howto/a-conceptual-overview-of-asyncio.rst:215
 msgid ""
@@ -373,6 +457,16 @@ msgid ""
 "\n"
 "asyncio.run(main())"
 msgstr ""
+"async def hello():\n"
+"    print(\"hello!\")\n"
+"\n"
+"async def main():\n"
+"    asyncio.create_task(hello())\n"
+"    # 其他會執行一段時間、並將控制權\n"
+"    # 讓給事件迴圈的非同步指令……\n"
+"    ...\n"
+"\n"
+"asyncio.run(main())"
 
 #: ../../howto/a-conceptual-overview-of-asyncio.rst:229
 msgid ""
@@ -387,6 +481,13 @@ msgid ""
 "and Python's garbage collector work pretty hard to ensure this sort of thing "
 "doesn't happen. But that's no reason to be reckless!"
 msgstr ""
+"因為第 5 行所建立的任務物件沒有任何參照，它\\ *可能*\\ 會在事件迴圈叫用它之前"
+"就被垃圾回收。協程 ``main()`` 中後續的指令會把控制權交還給事件迴圈，讓它可以"
+"叫用其他工作。當事件迴圈最終嘗試執行該任務時，可能會失敗，並發現該任務物件已"
+"經不存在了！即使協程保留了對任務的參照，但只要協程在該任務完成之前就結束，同"
+"樣的情況也可能發生。協程結束時，區域變數會離開作用域，並可能被垃圾回收。實務"
+"上，``asyncio`` 和 Python 的垃圾回收器會盡力確保這類事情不會發生，但這並不代"
+"表你可以掉以輕心！"
 
 #: ../../howto/a-conceptual-overview-of-asyncio.rst:245
 msgid "await"
@@ -396,7 +497,7 @@ msgstr "await"
 msgid ""
 ":keyword:`await` is a Python keyword that's commonly used in one of two "
 "different ways::"
-msgstr ""
+msgstr ":keyword:`await` 是一個 Python 關鍵字，常見的用法有以下兩種： ::"
 
 #: ../../howto/a-conceptual-overview-of-asyncio.rst:250
 msgid ""
@@ -410,16 +511,22 @@ msgstr ""
 msgid ""
 "In a crucial way, the behavior of ``await`` depends on the type of object "
 "being awaited."
-msgstr ""
+msgstr "關鍵在於，``await`` 的行為取決於被等待物件的型別。"
 
-#: ../../howto/a-conceptual-overview-of-asyncio.rst:256
+#: ../../howto/a-conceptual-overview-of-asyncio.rst:258
+msgid "Awaiting tasks"
+msgstr "等待任務"
+
+#: ../../howto/a-conceptual-overview-of-asyncio.rst:260
 msgid ""
 "Awaiting a task will cede control from the current task or coroutine to the "
 "event loop. In the process of relinquishing control, a few important things "
 "happen. We'll use the following code example to illustrate::"
 msgstr ""
+"等待一個任務會把控制權從目前的任務或協程讓給事件迴圈。在讓出控制權的過程中，"
+"會發生幾件重要的事。我們會用下面的程式碼範例來說明： ::"
 
-#: ../../howto/a-conceptual-overview-of-asyncio.rst:261
+#: ../../howto/a-conceptual-overview-of-asyncio.rst:265
 msgid ""
 "async def plant_a_tree():\n"
 "    dig_the_hole_task = asyncio.create_task(dig_the_hole())\n"
@@ -428,8 +535,14 @@ msgid ""
 "    # Other instructions associated with planting a tree.\n"
 "    ..."
 msgstr ""
+"async def plant_a_tree():\n"
+"    dig_the_hole_task = asyncio.create_task(dig_the_hole())\n"
+"    await dig_the_hole_task\n"
+"\n"
+"    # 其他與種樹相關的指令。\n"
+"    ..."
 
-#: ../../howto/a-conceptual-overview-of-asyncio.rst:268
+#: ../../howto/a-conceptual-overview-of-asyncio.rst:272
 msgid ""
 "In this example, imagine the event loop has passed control to the start of "
 "the coroutine ``plant_a_tree()``. As seen above, the coroutine creates a "
@@ -441,30 +554,48 @@ msgid ""
 "the task finishes, it will add its various callbacks to the event loop, in "
 "this case, a call to resume ``plant_a_tree()``."
 msgstr ""
+"在這個範例中，想像事件迴圈已經把控制權交給協程 ``plant_a_tree()`` 的開頭。如"
+"上所示，該協程建立了一個任務，然後等待它。``await dig_the_hole_task`` 這個指"
+"令會把一個回呼（它將會恢復 ``plant_a_tree()`` 的執行）加入 "
+"``dig_the_hole_task`` 物件的回呼串列中。接著，該指令會把控制權讓給事件迴圈。"
+"一段時間之後，事件迴圈會把控制權交給 ``dig_the_hole_task``，而該任務會完成它"
+"需要做的事情。一旦該任務完成，它就會把它的各個回呼加入事件迴圈中，在本例中，"
+"也就是一個恢復 ``plant_a_tree()`` 的呼叫。"
 
-#: ../../howto/a-conceptual-overview-of-asyncio.rst:279
+#: ../../howto/a-conceptual-overview-of-asyncio.rst:283
 msgid ""
 "Generally speaking, when the awaited task finishes (``dig_the_hole_task``), "
 "the original task or coroutine (``plant_a_tree()``) is added back to the "
 "event loop's to-do list to be resumed."
 msgstr ""
+"一般來說，當被等待的任務（``dig_the_hole_task``）完成時，原本的任務或協程"
+"（``plant_a_tree()``）會被加回事件迴圈的待辦清單中，以便恢復執行。"
 
-#: ../../howto/a-conceptual-overview-of-asyncio.rst:283
+#: ../../howto/a-conceptual-overview-of-asyncio.rst:287
 msgid ""
 "This is a basic, yet reliable mental model. In practice, the control "
 "handoffs are slightly more complex, but not by much. In part 2, we'll walk "
 "through the details that make this possible."
 msgstr ""
+"這是一個基本但可靠的心智模型。實務上，控制權的交接會稍微複雜一些，但也沒複雜"
+"多少。在第二部分中，我們會逐步說明讓這一切成為可能的細節。"
 
-#: ../../howto/a-conceptual-overview-of-asyncio.rst:287
+#: ../../howto/a-conceptual-overview-of-asyncio.rst:293
+msgid "Awaiting coroutines"
+msgstr "等待協程"
+
+#: ../../howto/a-conceptual-overview-of-asyncio.rst:295
 msgid ""
 "**Unlike tasks, awaiting a coroutine does not hand control back to the event "
 "loop!** Wrapping a coroutine in a task first, then awaiting that would cede "
 "control. The behavior of ``await coroutine`` is effectively the same as "
 "invoking a regular, synchronous Python function. Consider this program::"
 msgstr ""
+"**與任務不同，等待一個協程並不會把控制權交還給事件迴圈！**\\ 先把協程包裝成任"
+"務，再等待該任務，才會讓出控制權。``await coroutine`` 的行為實際上等同於叫用"
+"一個一般的同步 Python 函式。請看這個程式： ::"
 
-#: ../../howto/a-conceptual-overview-of-asyncio.rst:295
+#: ../../howto/a-conceptual-overview-of-asyncio.rst:303
 msgid ""
 "import asyncio\n"
 "\n"
@@ -500,7 +631,7 @@ msgstr ""
 "\n"
 "asyncio.run(main())"
 
-#: ../../howto/a-conceptual-overview-of-asyncio.rst:312
+#: ../../howto/a-conceptual-overview-of-asyncio.rst:320
 msgid ""
 "The first statement in the coroutine ``main()`` creates ``task_b`` and "
 "schedules it for execution via the event loop. Then, ``coro_a()`` is "
@@ -508,8 +639,11 @@ msgid ""
 "see the output of all three ``coro_a()`` invocations before ``coro_b()``'s "
 "output:"
 msgstr ""
+"協程 ``main()`` 中的第一個陳述式建立了 ``task_b``，並透過事件迴圈將它排程執"
+"行。接著，``coro_a()`` 被重複地等待。控制權從未讓給事件迴圈，這就是為什麼我們"
+"會在 ``coro_b()`` 的輸出之前，先看到三次 ``coro_a()`` 叫用的全部輸出："
 
-#: ../../howto/a-conceptual-overview-of-asyncio.rst:318
+#: ../../howto/a-conceptual-overview-of-asyncio.rst:326
 msgid ""
 "I am coro_a(). Hi!\n"
 "I am coro_a(). Hi!\n"
@@ -521,7 +655,7 @@ msgstr ""
 "I am coro_a(). Hi!\n"
 "I am coro_b(). I sure hope no one hogs the event loop..."
 
-#: ../../howto/a-conceptual-overview-of-asyncio.rst:325
+#: ../../howto/a-conceptual-overview-of-asyncio.rst:333
 msgid ""
 "If we change ``await coro_a()`` to ``await asyncio.create_task(coro_a())``, "
 "the behavior changes. The coroutine ``main()`` cedes control to the event "
@@ -529,8 +663,12 @@ msgid ""
 "of work, calling ``task_b`` and then the task which wraps ``coro_a()`` "
 "before resuming the coroutine ``main()``."
 msgstr ""
+"如果我們把 ``await coro_a()`` 改為 ``await asyncio.create_task(coro_a())``，"
+"行為就會改變。協程 ``main()`` 會透過那個陳述式把控制權讓給事件迴圈。接著事件"
+"迴圈會處理它的待辦工作，先呼叫 ``task_b``，再呼叫包裝了 ``coro_a()`` 的任務，"
+"最後才恢復協程 ``main()``。"
 
-#: ../../howto/a-conceptual-overview-of-asyncio.rst:332
+#: ../../howto/a-conceptual-overview-of-asyncio.rst:340
 msgid ""
 "I am coro_b(). I sure hope no one hogs the event loop...\n"
 "I am coro_a(). Hi!\n"
@@ -542,7 +680,7 @@ msgstr ""
 "I am coro_a(). Hi!\n"
 "I am coro_a(). Hi!"
 
-#: ../../howto/a-conceptual-overview-of-asyncio.rst:339
+#: ../../howto/a-conceptual-overview-of-asyncio.rst:347
 msgid ""
 "This behavior of ``await coroutine`` can trip a lot of people up! That "
 "example highlights how using only ``await coroutine`` could unintentionally "
@@ -552,37 +690,53 @@ msgid ""
 "things, it will log any coroutines that monopolize execution for 100ms or "
 "longer."
 msgstr ""
+"``await coroutine`` 的這種行為可能會讓很多人踩到坑！那個範例突顯了只使用 "
+"``await coroutine`` 可能會在無意間從其他任務手中霸占控制權，實際上讓事件迴圈"
+"停滯。:func:`asyncio.run` 可以透過 ``debug=True`` 旗標幫助你偵測這類情況，該"
+"旗標會啟用\\ :ref:`除錯模式 <asyncio-debug-mode>`。除錯模式的功能之一，就是記"
+"錄任何獨占執行達 100ms 以上的協程。"
 
-#: ../../howto/a-conceptual-overview-of-asyncio.rst:349
+#: ../../howto/a-conceptual-overview-of-asyncio.rst:357
 msgid ""
 "The design intentionally trades off some conceptual clarity around usage of "
 "``await`` for improved performance. Each time a task is awaited, control "
-"needs to be passed all the way up the call stack to the event loop. That "
-"might sound minor, but in a large program with many ``await`` statements and "
-"a deep call stack, that overhead can add up to a meaningful performance drag."
+"needs to be passed all the way up the call stack to the event loop. Then, "
+"the event loop needs to manage its internal state and work through its "
+"processing logic to resume the next job. That might sound minor, but in a "
+"large program with many ``await``\\ s, that overhead can add up to a non-"
+"negligible performance drag."
 msgstr ""
+"這個設計刻意犧牲了 ``await`` 用法在概念上的一些清晰度，以換取更好的效能。每次"
+"等待一個任務時，控制權都需要沿著呼叫堆疊一路往上交回事件迴圈。接著，事件迴圈"
+"需要管理它的內部狀態，並執行它的處理邏輯來恢復下一個工作。這聽起來可能微不足"
+"道，但在一個有許多 ``await`` 的大型程式中，這些額外負擔累積起來可能會造成不可"
+"忽視的效能拖累。"
 
-#: ../../howto/a-conceptual-overview-of-asyncio.rst:358
+#: ../../howto/a-conceptual-overview-of-asyncio.rst:368
 msgid "A conceptual overview part 2: the nuts and bolts"
-msgstr ""
+msgstr "概念性總覽第二部分：實際運作細節"
 
-#: ../../howto/a-conceptual-overview-of-asyncio.rst:360
+#: ../../howto/a-conceptual-overview-of-asyncio.rst:370
 msgid ""
 "Part 2 goes into detail on the mechanisms :mod:`!asyncio` uses to manage "
 "control flow. This is where the magic happens. You'll come away from this "
 "section knowing what ``await`` does behind the scenes and how to make your "
 "own asynchronous operators."
 msgstr ""
+"第二部分會詳細說明 :mod:`!asyncio` 用來管理控制流程的機制。這就是魔法發生的地"
+"方。讀完這一節，你會知道 ``await`` 在背後做了什麼，以及如何打造你自己的非同步"
+"操作。"
 
-#: ../../howto/a-conceptual-overview-of-asyncio.rst:368
+#: ../../howto/a-conceptual-overview-of-asyncio.rst:378
 msgid "The inner workings of coroutines"
-msgstr ""
+msgstr "協程的內部運作"
 
-#: ../../howto/a-conceptual-overview-of-asyncio.rst:370
-msgid ":mod:`!asyncio` leverages four components to pass around control."
-msgstr ""
+#: ../../howto/a-conceptual-overview-of-asyncio.rst:380
+msgid ""
+":mod:`!asyncio` leverages four components of Python to pass around control."
+msgstr ":mod:`!asyncio` 利用 Python 的四個元件來傳遞控制權。"
 
-#: ../../howto/a-conceptual-overview-of-asyncio.rst:372
+#: ../../howto/a-conceptual-overview-of-asyncio.rst:383
 msgid ""
 ":meth:`coroutine.send(arg) <generator.send>` is the method used to start or "
 "resume a coroutine. If the coroutine was paused and is now being resumed, "
@@ -590,8 +744,12 @@ msgid ""
 "statement which originally paused it. If the coroutine is being used for the "
 "first time (as opposed to being resumed), ``arg`` must be ``None``."
 msgstr ""
+":meth:`coroutine.send(arg) <generator.send>` 是用來啟動或恢復協程的方法。如果"
+"協程原本被暫停而現在正被恢復，引數 ``arg`` 會被送入，作為原先暫停它的那個 "
+"``yield`` 陳述式的回傳值。如果協程是第一次被使用（而不是被恢復），``arg`` 必"
+"須是 ``None``。"
 
-#: ../../howto/a-conceptual-overview-of-asyncio.rst:380
+#: ../../howto/a-conceptual-overview-of-asyncio.rst:391
 msgid ""
 "class Rock:\n"
 "    def __await__(self):\n"
@@ -645,7 +803,7 @@ msgstr ""
 "    returned_value = e.value\n"
 "print(f\"Coroutine main() finished and provided value: {returned_value}.\")"
 
-#: ../../howto/a-conceptual-overview-of-asyncio.rst:408
+#: ../../howto/a-conceptual-overview-of-asyncio.rst:419
 msgid ""
 ":ref:`yield <yieldexpr>`, as usual, pauses execution and returns control to "
 "the caller. In the example above, the ``yield``, on line 3, is called by "
@@ -655,8 +813,14 @@ msgid ""
 "s it receives up the call chain. In this case, that's back to ``... = "
 "coroutine.send(None)`` on line 16."
 msgstr ""
+":ref:`yield <yieldexpr>` 一如往常地會暫停執行，並把控制權交還給呼叫者。在上面"
+"的範例中，第 3 行的 ``yield`` 是由第 11 行的 ``... = await rock`` 所呼叫的。"
+"更廣泛地說，``await`` 會呼叫給定物件的 :meth:`~object.__await__` 方法。"
+"``await`` 還會做另一件非常特別的事：它會把它收到的任何 ``yield`` 沿著呼叫鏈往"
+"上傳播（或說「轉交」）。在這個例子中，就是一路回到第 16 行的 ``... = "
+"coroutine.send(None)``。"
 
-#: ../../howto/a-conceptual-overview-of-asyncio.rst:418
+#: ../../howto/a-conceptual-overview-of-asyncio.rst:429
 msgid ""
 "The coroutine is resumed via the ``coroutine.send(42)`` call on line 21. The "
 "coroutine picks back up from where it ``yield``\\ ed (or paused) on line 3 "
@@ -664,12 +828,16 @@ msgid ""
 "finishes, it raises a :exc:`StopIteration` exception with the return value "
 "attached in the :attr:`~StopIteration.value` attribute."
 msgstr ""
+"協程透過第 21 行的 ``coroutine.send(42)`` 呼叫而被恢復。協程會從它在第 3 行 "
+"``yield``\\ （或說暫停）的地方接續下去，並執行其主體中剩餘的陳述式。當協程結"
+"束時，它會引發一個 :exc:`StopIteration` 例外，並將回傳值附加在 :attr:"
+"`~StopIteration.value` 屬性中。"
 
-#: ../../howto/a-conceptual-overview-of-asyncio.rst:424
+#: ../../howto/a-conceptual-overview-of-asyncio.rst:435
 msgid "That snippet produces this output:"
-msgstr ""
+msgstr "那段程式碼會產生這樣的輸出："
 
-#: ../../howto/a-conceptual-overview-of-asyncio.rst:426
+#: ../../howto/a-conceptual-overview-of-asyncio.rst:437
 msgid ""
 "Beginning coroutine main().\n"
 "Awaiting rock...\n"
@@ -687,51 +855,66 @@ msgstr ""
 "Coroutine received value: 42 from rock.\n"
 "Coroutine main() finished and provided value: 23."
 
-#: ../../howto/a-conceptual-overview-of-asyncio.rst:436
+#: ../../howto/a-conceptual-overview-of-asyncio.rst:447
 msgid ""
 "It's worth pausing for a moment here and making sure you followed the "
 "various ways that control flow and values were passed. A lot of important "
 "ideas were covered and it's worth ensuring your understanding is firm."
 msgstr ""
+"值得在這裡暫停片刻，確認你有跟上控制流程與值被傳遞的各種方式。這裡涵蓋了許多"
+"重要的觀念，值得確保你的理解夠扎實。"
 
-#: ../../howto/a-conceptual-overview-of-asyncio.rst:440
+#: ../../howto/a-conceptual-overview-of-asyncio.rst:451
 msgid ""
 "The only way to yield (or effectively cede control) from a coroutine is to "
 "``await`` an object that ``yield``\\ s in its ``__await__`` method. That "
 "might sound odd to you. You might be thinking:"
 msgstr ""
+"要從協程中 yield（或者說實際上讓出控制權），唯一的方法就是 ``await`` 一個在"
+"其 ``__await__`` 方法中會 ``yield`` 的物件。這對你來說可能聽起來有點奇怪。你"
+"可能會想："
 
-#: ../../howto/a-conceptual-overview-of-asyncio.rst:444
+#: ../../howto/a-conceptual-overview-of-asyncio.rst:455
 msgid ""
 "1. What about a ``yield`` directly within the coroutine function? The "
 "coroutine function becomes an :ref:`async generator function <asynchronous-"
 "generator-functions>`, a different beast entirely."
 msgstr ""
+"1\\. 那在協程函式中直接使用 ``yield`` 呢？這樣協程函式就會變成一個\\ :ref:`非"
+"同步產生器函式 <asynchronous-generator-functions>`，那完全是另一種東西了。"
 
-#: ../../howto/a-conceptual-overview-of-asyncio.rst:449
+#: ../../howto/a-conceptual-overview-of-asyncio.rst:460
 msgid ""
 "2. What about a :ref:`yield from <yieldexpr>` within the coroutine function "
 "to a (plain) generator? That causes the error: ``SyntaxError: yield from not "
 "allowed in a coroutine.`` This was intentionally designed for the sake of "
-"simplicity -- mandating only one way of using coroutines. Initially "
+"simplicity -- mandating only one way of using coroutines. Despite that, "
+"``yield from`` and ``await`` effectively do the same thing. Initially "
 "``yield`` was barred as well, but was re-accepted to allow for async "
-"generators. Despite that, ``yield from`` and ``await`` effectively do the "
-"same thing."
+"generators."
 msgstr ""
+"2\\. 那在協程函式中對一個（一般的）產生器使用 :ref:`yield from <yieldexpr>` "
+"呢？這會引發 ``SyntaxError: yield from not allowed in a coroutine.`` 錯誤。這"
+"是為了簡單起見而刻意設計的，目的是只規定一種使用協程的方式。儘管如此，"
+"``yield from`` 和 ``await`` 實際上做的是同一件事。起初 ``yield`` 也被禁止，但"
+"後來為了支援非同步產生器又重新被接受。"
 
-#: ../../howto/a-conceptual-overview-of-asyncio.rst:460
+#: ../../howto/a-conceptual-overview-of-asyncio.rst:471
 msgid "Futures"
-msgstr ""
+msgstr "Futures"
 
-#: ../../howto/a-conceptual-overview-of-asyncio.rst:462
+#: ../../howto/a-conceptual-overview-of-asyncio.rst:473
 msgid ""
 "A :ref:`future <asyncio-future-obj>` is an object meant to represent a "
 "computation's status and result. The term is a nod to the idea of something "
 "still to come or not yet happened, and the object is a way to keep an eye on "
 "that something."
 msgstr ""
+":ref:`future <asyncio-future-obj>` 是一種用來表示某項運算之狀態與結果的物件。"
+"這個名稱呼應了「未來」的概念，指仍將到來或尚未發生的事物，而這個物件就是用來"
+"留意那件事物的方式。"
 
-#: ../../howto/a-conceptual-overview-of-asyncio.rst:467
+#: ../../howto/a-conceptual-overview-of-asyncio.rst:478
 msgid ""
 "A future has a few important attributes. One is its state, which can be "
 "either \"pending\", \"cancelled\", or \"done\". Another is its result, which "
@@ -740,43 +923,58 @@ msgid ""
 "status and result of that computation, kind of like a status light (red, "
 "yellow, or green) or indicator."
 msgstr ""
+"future 有幾個重要的屬性。其一是它的狀態，可以是「pending」（等待中）、"
+"「cancelled」（已取消）或「done」（已完成）。另一個是它的結果，會在狀態轉換"
+"為 done 時被設定。與協程不同，future 並不代表實際要進行的運算；它代表的是該運"
+"算的狀態與結果，有點像是狀態燈號（紅、黃、綠燈）或指示器。"
 
-#: ../../howto/a-conceptual-overview-of-asyncio.rst:474
+#: ../../howto/a-conceptual-overview-of-asyncio.rst:485
 msgid ""
 ":class:`asyncio.Task` subclasses :class:`asyncio.Future` in order to gain "
 "these various capabilities. The prior section said tasks store a list of "
 "callbacks, which wasn't entirely accurate. It's actually the ``Future`` "
 "class that implements this logic, which ``Task`` inherits."
 msgstr ""
+":class:`asyncio.Task` 繼承了 :class:`asyncio.Future`，以獲得這些能力。前一節"
+"提到任務會儲存一份回呼串列，這並不完全正確。實際上實作這個邏輯的是 "
+"``Future`` 類別，而 ``Task`` 繼承了它。"
 
-#: ../../howto/a-conceptual-overview-of-asyncio.rst:481
+#: ../../howto/a-conceptual-overview-of-asyncio.rst:492
 msgid ""
 "Futures may also be used directly (not via tasks). Tasks mark themselves as "
 "done when their coroutine is complete. Futures are much more versatile and "
 "will be marked as done when you say so. In this way, they're the flexible "
 "interface for you to make your own conditions for waiting and resuming."
 msgstr ""
+"future 也可以直接使用（不透過任務）。任務會在其協程完成時將自己標記為完成；"
+"future 的用途則廣泛得多，會在你決定的時候才被標記為完成。如此一來，它們就成為"
+"讓你能自訂等待與恢復條件的彈性介面。"
 
-#: ../../howto/a-conceptual-overview-of-asyncio.rst:489
+#: ../../howto/a-conceptual-overview-of-asyncio.rst:500
 msgid "A homemade asyncio.sleep"
-msgstr ""
+msgstr "自製的 asyncio.sleep"
 
-#: ../../howto/a-conceptual-overview-of-asyncio.rst:491
+#: ../../howto/a-conceptual-overview-of-asyncio.rst:502
 msgid ""
 "We'll go through an example of how you could leverage a future to create "
 "your own variant of asynchronous sleep (``async_sleep``) which mimics :func:"
 "`asyncio.sleep`."
 msgstr ""
+"我們將透過一個範例，說明如何利用 future 來建立你自己的非同步休眠版本"
+"（``async_sleep``），模仿 :func:`asyncio.sleep`。"
 
-#: ../../howto/a-conceptual-overview-of-asyncio.rst:495
+#: ../../howto/a-conceptual-overview-of-asyncio.rst:506
 msgid ""
 "This snippet registers a few tasks with the event loop and then awaits the "
 "task created by ``asyncio.create_task``, which wraps the ``async_sleep(3)`` "
 "coroutine. We want that task to finish only after three seconds have "
 "elapsed, but without preventing other tasks from running."
 msgstr ""
+"這段程式碼會向事件迴圈註冊幾個任務，然後等待由 ``asyncio.create_task`` 建立、"
+"包裝了 ``async_sleep(3)`` 協程的那個任務。我們希望該任務在經過三秒之後才完"
+"成，但又不妨礙其他任務執行。"
 
-#: ../../howto/a-conceptual-overview-of-asyncio.rst:502
+#: ../../howto/a-conceptual-overview-of-asyncio.rst:513
 msgid ""
 "async def other_work():\n"
 "    print(\"I like work. Work work.\")\n"
@@ -801,8 +999,30 @@ msgid ""
 "    # asyncio.gather effectively awaits each task in the collection.\n"
 "    await asyncio.gather(*work_tasks)"
 msgstr ""
+"async def other_work():\n"
+"    print(\"I like work. Work work.\")\n"
+"\n"
+"async def main():\n"
+"    # 在事件迴圈中加入其他幾個任務，讓非同步休眠期間\n"
+"    # 有事情可做。\n"
+"    work_tasks = [\n"
+"        asyncio.create_task(other_work()),\n"
+"        asyncio.create_task(other_work()),\n"
+"        asyncio.create_task(other_work())\n"
+"    ]\n"
+"    print(\n"
+"        \"Beginning asynchronous sleep at time: \"\n"
+"        f\"{datetime.datetime.now().strftime(\"%H:%M:%S\")}.\"\n"
+"    )\n"
+"    await asyncio.create_task(async_sleep(3))\n"
+"    print(\n"
+"        \"Done asynchronous sleep at time: \"\n"
+"        f\"{datetime.datetime.now().strftime(\"%H:%M:%S\")}.\"\n"
+"    )\n"
+"    # asyncio.gather 實際上會等待集合中的每個任務。\n"
+"    await asyncio.gather(*work_tasks)"
 
-#: ../../howto/a-conceptual-overview-of-asyncio.rst:526
+#: ../../howto/a-conceptual-overview-of-asyncio.rst:537
 msgid ""
 "Below, we use a future to enable custom control over when that task will be "
 "marked as done. If :meth:`future.set_result() <asyncio.Future.set_result>` "
@@ -811,8 +1031,13 @@ msgid ""
 "task, which we'll see in a moment, that will monitor how much time has "
 "elapsed and, accordingly, call ``future.set_result()``."
 msgstr ""
+"下面我們使用一個 future，以便自訂控制該任務何時被標記為完成。如果 :meth:"
+"`future.set_result() <asyncio.Future.set_result>`\\ （負責將該 future 標記為"
+"完成的方法）從未被呼叫，這個任務就永遠不會完成。我們還請來了另一個任務幫忙"
+"（稍後就會看到），它會監看經過了多少時間，並據此呼叫 ``future."
+"set_result()``。"
 
-#: ../../howto/a-conceptual-overview-of-asyncio.rst:537
+#: ../../howto/a-conceptual-overview-of-asyncio.rst:548
 msgid ""
 "async def async_sleep(seconds: float):\n"
 "    future = asyncio.Future()\n"
@@ -823,8 +1048,16 @@ msgid ""
 "    # Block until the future is marked as done.\n"
 "    await future"
 msgstr ""
+"async def async_sleep(seconds: float):\n"
+"    future = asyncio.Future()\n"
+"    time_to_wake = time.time() + seconds\n"
+"    # 將監看任務加入事件迴圈。\n"
+"    watcher_task = asyncio.create_task(_sleep_watcher(future, "
+"time_to_wake))\n"
+"    # 阻塞直到 future 被標記為完成。\n"
+"    await future"
 
-#: ../../howto/a-conceptual-overview-of-asyncio.rst:545
+#: ../../howto/a-conceptual-overview-of-asyncio.rst:556
 msgid ""
 "Below, we use a rather bare ``YieldToEventLoop()`` object to ``yield`` from "
 "its ``__await__`` method, ceding control to the event loop. This is "
@@ -832,8 +1065,12 @@ msgid ""
 "offers more clarity, not to mention it's somewhat cheating to use ``asyncio."
 "sleep`` when showcasing how to implement it!"
 msgstr ""
+"下面我們使用一個相當陽春的 ``YieldToEventLoop()`` 物件，從它的 ``__await__`` "
+"方法中 ``yield``，藉此把控制權讓給事件迴圈。這實際上等同於呼叫 ``asyncio."
+"sleep(0)``，但這種做法更清楚易懂，更何況在示範如何實作 ``asyncio.sleep`` 時還"
+"拿它來用，多少有點作弊！"
 
-#: ../../howto/a-conceptual-overview-of-asyncio.rst:551
+#: ../../howto/a-conceptual-overview-of-asyncio.rst:562
 msgid ""
 "As usual, the event loop cycles through its tasks, giving them control and "
 "receiving control back when they pause or finish. The ``watcher_task``, "
@@ -847,8 +1084,16 @@ msgid ""
 "least* three seconds, rather than exactly three seconds. Note this is also "
 "true of ``asyncio.sleep``."
 msgstr ""
+"一如往常，事件迴圈會循環處理它的任務，把控制權交給它們，並在它們暫停或完成時"
+"收回控制權。執行協程 ``_sleep_watcher(...)`` 的 ``watcher_task`` 會在事件迴圈"
+"每完整循環一次時被叫用一次。每次恢復時，它會檢查時間，如果經過的時間還不夠，"
+"就會再次暫停並把控制權交還給事件迴圈。一旦經過足夠的時間，"
+"``_sleep_watcher(...)`` 就會將 future 標記為完成，並跳出它的無窮 ``while`` 迴"
+"圈而結束。由於這個輔助任務在事件迴圈每循環一次時只會被叫用一次，所以你說得沒"
+"錯：這個非同步休眠會持續\\ *至少*\\ 三秒，而不是剛好三秒。請注意，``asyncio."
+"sleep`` 也是如此。"
 
-#: ../../howto/a-conceptual-overview-of-asyncio.rst:567
+#: ../../howto/a-conceptual-overview-of-asyncio.rst:578
 msgid ""
 "class YieldToEventLoop:\n"
 "    def __await__(self):\n"
@@ -863,12 +1108,24 @@ msgid ""
 "        else:\n"
 "            await YieldToEventLoop()"
 msgstr ""
+"class YieldToEventLoop:\n"
+"    def __await__(self):\n"
+"        yield\n"
+"\n"
+"async def _sleep_watcher(future, time_to_wake):\n"
+"    while True:\n"
+"        if time.time() >= time_to_wake:\n"
+"            # 這會將 future 標記為完成。\n"
+"            future.set_result(None)\n"
+"            break\n"
+"        else:\n"
+"            await YieldToEventLoop()"
 
-#: ../../howto/a-conceptual-overview-of-asyncio.rst:580
+#: ../../howto/a-conceptual-overview-of-asyncio.rst:591
 msgid "Here is the full program's output:"
-msgstr ""
+msgstr "以下是整個程式的輸出："
 
-#: ../../howto/a-conceptual-overview-of-asyncio.rst:582
+#: ../../howto/a-conceptual-overview-of-asyncio.rst:593
 msgid ""
 "$ python custom-async-sleep.py\n"
 "Beginning asynchronous sleep at time: 14:52:22.\n"
@@ -884,7 +1141,7 @@ msgstr ""
 "I like work. Work work.\n"
 "Done asynchronous sleep at time: 14:52:25."
 
-#: ../../howto/a-conceptual-overview-of-asyncio.rst:591
+#: ../../howto/a-conceptual-overview-of-asyncio.rst:602
 msgid ""
 "You might feel this implementation of asynchronous sleep was unnecessarily "
 "convoluted. And, well, it was. The example was meant to showcase the "
@@ -892,8 +1149,11 @@ msgid ""
 "complex needs. For reference, you could implement it without futures, like "
 "so::"
 msgstr ""
+"你可能會覺得這個非同步休眠的實作複雜得沒有必要。嗯，確實如此。這個範例的目的"
+"是用一個簡單的例子展示 future 的靈活性，讓你能仿照它來處理更複雜的需求。作為"
+"參考，你也可以不使用 future 來實作它，像這樣： ::"
 
-#: ../../howto/a-conceptual-overview-of-asyncio.rst:598
+#: ../../howto/a-conceptual-overview-of-asyncio.rst:609
 msgid ""
 "async def simpler_async_sleep(seconds):\n"
 "    time_to_wake = time.time() + seconds\n"
@@ -911,9 +1171,11 @@ msgstr ""
 "        else:\n"
 "            await YieldToEventLoop()"
 
-#: ../../howto/a-conceptual-overview-of-asyncio.rst:606
+#: ../../howto/a-conceptual-overview-of-asyncio.rst:617
 msgid ""
 "But that's all for now. Hopefully you're ready to more confidently dive into "
 "some async programming or check out advanced topics in the :mod:`rest of the "
 "documentation <asyncio>`."
 msgstr ""
+"不過目前就到此為止。希望你已經準備好更有信心地投入非同步程式設計，或是去看看"
+"\\ :mod:`其餘說明文件 <asyncio>`\\ 中的進階主題。"
