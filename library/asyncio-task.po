@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.14\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-12 00:18+0000\n"
+"POT-Creation-Date: 2026-11-27 03:22+0800\n"
 "PO-Revision-Date: 2018-05-23 14:39+0000\n"
 "Last-Translator: Adrian Liaw <adrianliaw2000@gmail.com>\n"
 "Language-Team: Chinese - TAIWAN (https://github.com/python/python-docs-zh-"
@@ -25,7 +25,7 @@ msgstr "協程與任務"
 msgid ""
 "This section outlines high-level asyncio APIs to work with coroutines and "
 "Tasks."
-msgstr ""
+msgstr "本節概述用於處理協程與任務的高階 asyncio API。"
 
 #: ../../library/asyncio-task.rst:19 ../../library/asyncio-task.rst:148
 msgid "Coroutines"
@@ -41,6 +41,9 @@ msgid ""
 "preferred way of writing asyncio applications.  For example, the following "
 "snippet of code prints \"hello\", waits 1 second, and then prints \"world\"::"
 msgstr ""
+"以 async/await 語法宣告的\\ :term:`協程 (coroutine) <coroutine>`\\ 是撰寫 "
+"asyncio 應用程式的推薦方式。例如，以下程式碼片段會印出 \"hello\"、等待 1 秒，"
+"然後印出 \"world\"： ::"
 
 #: ../../library/asyncio-task.rst:30
 msgid ""
@@ -69,7 +72,7 @@ msgstr ""
 #: ../../library/asyncio-task.rst:41
 msgid ""
 "Note that simply calling a coroutine will not schedule it to be executed::"
-msgstr ""
+msgstr "請注意，單純呼叫一個協程並不會將其排程執行： ::"
 
 #: ../../library/asyncio-task.rst:44
 msgid ""
@@ -81,13 +84,15 @@ msgstr ""
 
 #: ../../library/asyncio-task.rst:47
 msgid "To actually run a coroutine, asyncio provides the following mechanisms:"
-msgstr ""
+msgstr "為了實際執行協程，asyncio 提供了以下機制："
 
 #: ../../library/asyncio-task.rst:49
 msgid ""
 "The :func:`asyncio.run` function to run the top-level entry point \"main()\" "
 "function (see the above example.)"
 msgstr ""
+"使用 :func:`asyncio.run` 函式來執行最上層的進入點函式 \"main()\"（請參閱上面"
+"的範例）。"
 
 #: ../../library/asyncio-task.rst:52
 msgid ""
@@ -95,6 +100,8 @@ msgid ""
 "after waiting for 1 second, and then print \"world\" after waiting for "
 "*another* 2 seconds::"
 msgstr ""
+"等待 (await) 一個協程。以下程式碼片段會在等待 1 秒後印出 \"hello\"，然後\\ *"
+"再*\\ 等待 2 秒後印出 \"world\"： ::"
 
 #: ../../library/asyncio-task.rst:56
 msgid ""
@@ -153,12 +160,14 @@ msgid ""
 "The :func:`asyncio.create_task` function to run coroutines concurrently as "
 "asyncio :class:`Tasks <Task>`."
 msgstr ""
+"使用 :func:`asyncio.create_task` 函式，將協程作為 asyncio :class:`Task` 並行"
+"地執行。"
 
 #: ../../library/asyncio-task.rst:83
 msgid ""
 "Let's modify the above example and run two ``say_after`` coroutines "
 "*concurrently*::"
-msgstr ""
+msgstr "修改上面的範例，*並行地*\\ 執行兩個 ``say_after`` 協程： ::"
 
 #: ../../library/asyncio-task.rst:86
 msgid ""
@@ -178,12 +187,27 @@ msgid ""
 "\n"
 "    print(f\"finished at {time.strftime('%X')}\")"
 msgstr ""
+"async def main():\n"
+"    task1 = asyncio.create_task(\n"
+"        say_after(1, 'hello'))\n"
+"\n"
+"    task2 = asyncio.create_task(\n"
+"        say_after(2, 'world'))\n"
+"\n"
+"    print(f\"started at {time.strftime('%X')}\")\n"
+"\n"
+"    # 等待直到兩個任務都完成（應該需要\n"
+"    # 大約 2 秒。）\n"
+"    await task1\n"
+"    await task2\n"
+"\n"
+"    print(f\"finished at {time.strftime('%X')}\")"
 
 #: ../../library/asyncio-task.rst:102
 msgid ""
 "Note that expected output now shows that the snippet runs 1 second faster "
 "than before::"
-msgstr ""
+msgstr "請注意，預期的輸出現在顯示這段程式碼的執行時間比之前快了 1 秒： ::"
 
 #: ../../library/asyncio-task.rst:105
 msgid ""
@@ -202,6 +226,8 @@ msgid ""
 "The :class:`asyncio.TaskGroup` class provides a more modern alternative to :"
 "func:`create_task`. Using this API, the last example becomes::"
 msgstr ""
+":class:`asyncio.TaskGroup` 類別提供了比 :func:`create_task` 更現代的替代方"
+"案。使用這個 API，上一個範例會變成： ::"
 
 #: ../../library/asyncio-task.rst:114
 msgid ""
@@ -219,10 +245,23 @@ msgid ""
 "\n"
 "    print(f\"finished at {time.strftime('%X')}\")"
 msgstr ""
+"async def main():\n"
+"    async with asyncio.TaskGroup() as tg:\n"
+"        task1 = tg.create_task(\n"
+"            say_after(1, 'hello'))\n"
+"\n"
+"        task2 = tg.create_task(\n"
+"            say_after(2, 'world'))\n"
+"\n"
+"        print(f\"started at {time.strftime('%X')}\")\n"
+"\n"
+"    # 當情境管理器結束時會隱式地進行 await。\n"
+"\n"
+"    print(f\"finished at {time.strftime('%X')}\")"
 
 #: ../../library/asyncio-task.rst:128
 msgid "The timing and output should be the same as for the previous version."
-msgstr ""
+msgstr "執行時間與輸出應該與前一個版本相同。"
 
 #: ../../library/asyncio-task.rst:130
 msgid ":class:`asyncio.TaskGroup`."
@@ -230,7 +269,7 @@ msgstr ":class:`asyncio.TaskGroup`。"
 
 #: ../../library/asyncio-task.rst:137
 msgid "Awaitables"
-msgstr ""
+msgstr "可等待物件"
 
 #: ../../library/asyncio-task.rst:139
 msgid ""
@@ -238,18 +277,20 @@ msgid ""
 "keyword:`await` expression.  Many asyncio APIs are designed to accept "
 "awaitables."
 msgstr ""
+"如果一個物件可以用在 :keyword:`await` 運算式中，就稱它為\\ **可等待** "
+"(awaitable) 物件。許多 asyncio API 都被設計為接受可等待物件。"
 
 #: ../../library/asyncio-task.rst:143
 msgid ""
 "There are three main types of *awaitable* objects: **coroutines**, "
 "**Tasks**, and **Futures**."
-msgstr ""
+msgstr "*可等待*\\ 物件主要有三種：**協程**、**任務**\\ 和 **Future**。"
 
 #: ../../library/asyncio-task.rst:149
 msgid ""
 "Python coroutines are *awaitables* and therefore can be awaited from other "
 "coroutines::"
-msgstr ""
+msgstr "Python 協程是\\ *可等待物件*，因此可以在其他協程中被等待： ::"
 
 #: ../../library/asyncio-task.rst:152
 msgid ""
@@ -269,35 +310,52 @@ msgid ""
 "\n"
 "asyncio.run(main())"
 msgstr ""
+"import asyncio\n"
+"\n"
+"async def nested():\n"
+"    return 42\n"
+"\n"
+"async def main():\n"
+"    # 如果只是呼叫 \"nested()\"，什麼事都不會發生。\n"
+"    # 這會建立一個協程物件，但它沒有被等待，\n"
+"    # 所以它*完全不會執行*。\n"
+"    nested()  # 會引發 \"RuntimeWarning\"。\n"
+"\n"
+"    # 現在換個方式，改為等待它：\n"
+"    print(await nested())  # 會印出 \"42\"。\n"
+"\n"
+"asyncio.run(main())"
 
 #: ../../library/asyncio-task.rst:170
 msgid ""
 "In this documentation the term \"coroutine\" can be used for two closely "
 "related concepts:"
-msgstr ""
+msgstr "在此文件中，「協程」一詞可用來指稱兩個密切相關的概念："
 
 #: ../../library/asyncio-task.rst:173
 msgid "a *coroutine function*: an :keyword:`async def` function;"
-msgstr ""
+msgstr "*協程函式*：一個 :keyword:`async def` 函式；"
 
 #: ../../library/asyncio-task.rst:175
 msgid ""
 "a *coroutine object*: an object returned by calling a *coroutine function*."
-msgstr ""
+msgstr "*協程物件*：呼叫\\ *協程函式*\\ 所回傳的物件。"
 
 #: ../../library/asyncio-task.rst:180
 msgid "Tasks"
-msgstr ""
+msgstr "任務"
 
 #: ../../library/asyncio-task.rst:181
 msgid "*Tasks* are used to schedule coroutines *concurrently*."
-msgstr ""
+msgstr "*Task*\\ 被用來\\ *並行地*\\ 排程協程。"
 
 #: ../../library/asyncio-task.rst:183
 msgid ""
 "When a coroutine is wrapped into a *Task* with functions like :func:`asyncio."
 "create_task` the coroutine is automatically scheduled to run soon::"
 msgstr ""
+"當協程透過 :func:`asyncio.create_task` 等函式被包裝成一個 *Task* 時，該協程會"
+"自動被排程為即將執行： ::"
 
 #: ../../library/asyncio-task.rst:187
 msgid ""
@@ -317,40 +375,61 @@ msgid ""
 "\n"
 "asyncio.run(main())"
 msgstr ""
+"import asyncio\n"
+"\n"
+"async def nested():\n"
+"    return 42\n"
+"\n"
+"async def main():\n"
+"    # 將 nested() 排程為即將與 \"main()\"\n"
+"    # 並行執行。\n"
+"    task = asyncio.create_task(nested())\n"
+"\n"
+"    # 現在 \"task\" 可以用來取消 \"nested()\"，\n"
+"    # 或者直接等待它，直到它完成：\n"
+"    await task\n"
+"\n"
+"asyncio.run(main())"
 
 #: ../../library/asyncio-task.rst:205
 msgid "Futures"
-msgstr ""
+msgstr "Futures"
 
 #: ../../library/asyncio-task.rst:206
 msgid ""
 "A :class:`Future` is a special **low-level** awaitable object that "
 "represents an **eventual result** of an asynchronous operation."
 msgstr ""
+":class:`Future` 是一種特殊的\\ **低階**\\ 可等待物件，代表非同步操作的\\ **最"
+"終結果**。"
 
 #: ../../library/asyncio-task.rst:209
 msgid ""
 "When a Future object is *awaited* it means that the coroutine will wait "
 "until the Future is resolved in some other place."
 msgstr ""
+"當一個 Future 物件被\\ *等待*\\ 時，代表協程會等待，直到該 Future 在其他地方"
+"被完成 (resolved)。"
 
 #: ../../library/asyncio-task.rst:212
 msgid ""
 "Future objects in asyncio are needed to allow callback-based code to be used "
 "with async/await."
 msgstr ""
+"asyncio 中需要 Future 物件，才能讓基於回呼的程式碼與 async/await 搭配使用。"
 
 #: ../../library/asyncio-task.rst:215
 msgid ""
 "Normally **there is no need** to create Future objects at the application "
 "level code."
-msgstr ""
+msgstr "通常在應用程式層級的程式碼中\\ **不需要**\\ 建立 Future 物件。"
 
 #: ../../library/asyncio-task.rst:218
 msgid ""
 "Future objects, sometimes exposed by libraries and some asyncio APIs, can be "
 "awaited::"
 msgstr ""
+"Future 物件有時會由函式庫和某些 asyncio API 公開出來，它們可以被等待： ::"
 
 #: ../../library/asyncio-task.rst:221
 msgid ""
@@ -363,16 +442,25 @@ msgid ""
 "        some_python_coroutine()\n"
 "    )"
 msgstr ""
+"async def main():\n"
+"    await function_that_returns_a_future_object()\n"
+"\n"
+"    # 這樣也是有效的：\n"
+"    await asyncio.gather(\n"
+"        function_that_returns_a_future_object(),\n"
+"        some_python_coroutine()\n"
+"    )"
 
 #: ../../library/asyncio-task.rst:230
 msgid ""
 "A good example of a low-level function that returns a Future object is :meth:"
 "`loop.run_in_executor`."
 msgstr ""
+":meth:`loop.run_in_executor` 就是會回傳 Future 物件之低階函式的好例子。"
 
 #: ../../library/asyncio-task.rst:235
 msgid "Creating tasks"
-msgstr ""
+msgstr "建立任務"
 
 #: ../../library/asyncio-task.rst:237
 msgid "**Source code:** :source:`Lib/asyncio/tasks.py`"
@@ -383,6 +471,8 @@ msgid ""
 "Wrap the *coro* :ref:`coroutine <coroutine>` into a :class:`Task` and "
 "schedule its execution.  Return the Task object."
 msgstr ""
+"將 *coro* :ref:`協程 <coroutine>`\\ 包裝成 :class:`Task` 並為其排程執行。回傳"
+"該 Task 物件。"
 
 #: ../../library/asyncio-task.rst:246
 msgid ""
@@ -390,6 +480,8 @@ msgid ""
 "constructor (or factory) - all of the keyword arguments to this function are "
 "passed through to that interface."
 msgstr ""
+"完整的函式簽名與 :class:`Task` 建構函式（或工廠）的簽名大致相同：此函式的所有"
+"關鍵字引數都會被傳遞給該介面。"
 
 #: ../../library/asyncio-task.rst:250
 msgid ""
@@ -397,6 +489,9 @@ msgid ""
 "class:`contextvars.Context` for the *coro* to run in. The current context "
 "copy is created when no *context* is provided."
 msgstr ""
+"可選的僅限關鍵字引數 *context* 允許指定一個自訂的 :class:`contextvars."
+"Context` 讓 *coro* 在其中執行。如果沒有提供 *context*，則會建立目前情境的副"
+"本。"
 
 #: ../../library/asyncio-task.rst:254
 msgid ""
@@ -405,12 +500,17 @@ msgid ""
 "later. If *eager_start* is not passed the mode set by :meth:`loop."
 "set_task_factory` will be used."
 msgstr ""
+"可選的僅限關鍵字引數 *eager_start* 允許指定任務應在呼叫 create_task 期間急切"
+"地 (eagerly) 執行，還是稍後再被排程。如果沒有傳入 *eager_start*，則會使用由 :"
+"meth:`loop.set_task_factory` 所設定的模式。"
 
 #: ../../library/asyncio-task.rst:259
 msgid ""
 "The task is executed in the loop returned by :func:`get_running_loop`, :exc:"
 "`RuntimeError` is raised if there is no running loop in current thread."
 msgstr ""
+"該任務會在 :func:`get_running_loop` 回傳的迴圈中執行；如果目前執行緒中沒有正"
+"在執行的迴圈，則會引發 :exc:`RuntimeError`。"
 
 #: ../../library/asyncio-task.rst:265
 msgid ""
@@ -418,6 +518,8 @@ msgid ""
 "structural concurrency; it allows for waiting for a group of related tasks "
 "with strong safety guarantees."
 msgstr ""
+":meth:`asyncio.TaskGroup.create_task` 是利用結構化並行 (structured "
+"concurrency) 的新替代方案；它能在強力的安全保證下等待一組相關的任務。"
 
 #: ../../library/asyncio-task.rst:271
 msgid ""
@@ -427,6 +529,9 @@ msgid ""
 "any time, even before it's done. For reliable \"fire-and-forget\" background "
 "tasks, gather them in a collection::"
 msgstr ""
+"請保存此函式結果的參照，以避免任務在執行途中消失。事件迴圈只會保留對任務的弱"
+"參照。沒有在其他地方被參照的任務可能隨時被垃圾回收，甚至在它完成之前。若需要"
+"可靠的「射後不理 (fire-and-forget)」背景任務，請將它們收集在一個容器中： ::"
 
 #: ../../library/asyncio-task.rst:278
 msgid ""
@@ -443,6 +548,18 @@ msgid ""
 "    # completion:\n"
 "    task.add_done_callback(background_tasks.discard)"
 msgstr ""
+"background_tasks = set()\n"
+"\n"
+"for i in range(10):\n"
+"    task = asyncio.create_task(some_coro(param=i))\n"
+"\n"
+"    # 將任務加入集合。這會建立一個強參照。\n"
+"    background_tasks.add(task)\n"
+"\n"
+"    # 為了避免永久保留對已完成任務的參照，\n"
+"    # 讓每個任務在完成後將自己的參照\n"
+"    # 從集合中移除：\n"
+"    task.add_done_callback(background_tasks.discard)"
 
 #: ../../library/asyncio-task.rst:291
 msgid ""
@@ -452,6 +569,10 @@ msgid ""
 "class:`asyncio.TaskGroup` which keeps a strong reference to each task, "
 "awaits them and propagates their exceptions::"
 msgstr ""
+"請注意，這種做法永遠不會等待這些任務，因此如果某個任務失敗，它的例外永遠不會"
+"被取得，而 asyncio 會在該任務被垃圾回收時記錄一則 \"Task exception was never "
+"retrieved\" 訊息。為了避免這種情況，請使用 :class:`asyncio.TaskGroup`，它會保"
+"留對每個任務的強參照、等待它們並傳播它們的例外： ::"
 
 #: ../../library/asyncio-task.rst:298
 msgid ""
@@ -463,27 +584,29 @@ msgstr ""
 "    for i in range(10):\n"
 "        tg.create_task(some_coro(param=i))"
 
-#: ../../library/asyncio-task.rst:304 ../../library/asyncio-task.rst:1275
+#: ../../library/asyncio-task.rst:304 ../../library/asyncio-task.rst:1265
 msgid "Added the *name* parameter."
 msgstr "新增 *name* 參數。"
 
-#: ../../library/asyncio-task.rst:307 ../../library/asyncio-task.rst:1282
+#: ../../library/asyncio-task.rst:307 ../../library/asyncio-task.rst:1272
 msgid "Added the *context* parameter."
 msgstr "新增 *context* 參數。"
 
 #: ../../library/asyncio-task.rst:310
 msgid "Added the *eager_start* parameter by passing on all *kwargs*."
-msgstr ""
+msgstr "藉由傳遞所有 *kwargs* 來新增 *eager_start* 參數。"
 
 #: ../../library/asyncio-task.rst:315
 msgid "Task cancellation"
-msgstr ""
+msgstr "任務取消"
 
 #: ../../library/asyncio-task.rst:317
 msgid ""
 "Tasks can easily and safely be cancelled. When a task is cancelled, :exc:"
 "`asyncio.CancelledError` will be raised in the task at the next opportunity."
 msgstr ""
+"任務可以輕鬆且安全地被取消。當任務被取消時，:exc:`asyncio.CancelledError` 會"
+"在下一個時機點於該任務中被引發。"
 
 #: ../../library/asyncio-task.rst:321
 msgid ""
@@ -493,6 +616,10 @@ msgid ""
 "`asyncio.CancelledError` directly subclasses :exc:`BaseException` so most "
 "code will not need to be aware of it."
 msgstr ""
+"建議協程使用 ``try/finally`` 區塊來穩健地執行清理邏輯。如果明確地捕捉了 :exc:"
+"`asyncio.CancelledError`，通常應在清理完成後將其繼續傳播。:exc:`asyncio."
+"CancelledError` 直接繼承自 :exc:`BaseException`，因此大多數程式碼不需要特別顧"
+"及它。"
 
 #: ../../library/asyncio-task.rst:327
 msgid ""
@@ -504,16 +631,23 @@ msgid ""
 "exc:`asyncio.CancelledError` is truly desired, it is necessary to also call "
 "``uncancel()`` to completely remove the cancellation state."
 msgstr ""
+"構成結構化並行的 asyncio 元件，例如 :class:`asyncio.TaskGroup` 和 :func:"
+"`asyncio.timeout`，在內部是以取消機制實作的，如果協程吞掉了 :exc:`asyncio."
+"CancelledError`，它們可能無法正常運作。同樣地，使用者程式碼通常不應該呼叫 :"
+"meth:`uncancel <asyncio.Task.uncancel>`。然而，在確實需要抑制 :exc:`asyncio."
+"CancelledError` 的情況下，也必須呼叫 ``uncancel()`` 來完全移除取消狀態。"
 
 #: ../../library/asyncio-task.rst:339
 msgid "Task groups"
-msgstr ""
+msgstr "任務群組"
 
 #: ../../library/asyncio-task.rst:341
 msgid ""
 "Task groups combine a task creation API with a convenient and reliable way "
 "to wait for all tasks in the group to finish."
 msgstr ""
+"任務群組結合了建立任務的 API，以及一種方便又可靠的方式來等待群組中的所有任務"
+"完成。"
 
 #: ../../library/asyncio-task.rst:346
 msgid ""
@@ -521,6 +655,9 @@ msgid ""
 "group of tasks. Tasks can be added to the group using :meth:`create_task`. "
 "All tasks are awaited when the context manager exits."
 msgstr ""
+"一個持有一組任務的\\ :ref:`非同步情境管理器 <async-context-managers>`。可以使"
+"用 :meth:`create_task` 將任務加入群組。當情境管理器結束時，所有任務都會被等"
+"待。"
 
 #: ../../library/asyncio-task.rst:355
 msgid ""
@@ -529,22 +666,86 @@ msgid ""
 "already finished, or in the process of shutting down), we will close the "
 "given ``coro`` and raise :exc:`RuntimeError`."
 msgstr ""
+"在此任務群組中建立一個任務。其簽名與 :func:`asyncio.create_task` 的簽名相符。"
+"如果任務群組不在活躍狀態（例如尚未進入、已經完成或正在關閉中），則會關閉給定"
+"的 ``coro`` 並引發 :exc:`RuntimeError`。"
 
 #: ../../library/asyncio-task.rst:363
 msgid "Close the given coroutine if the task group is not active."
-msgstr ""
+msgstr "如果任務群組不在活躍狀態，則關閉給定的協程。"
 
 #: ../../library/asyncio-task.rst:367
 msgid "Passes on all *kwargs* to :meth:`loop.create_task`"
-msgstr ""
+msgstr "將所有 *kwargs* 傳遞給 :meth:`loop.create_task`"
 
-#: ../../library/asyncio-task.rst:369 ../../library/asyncio-task.rst:575
-#: ../../library/asyncio-task.rst:748 ../../library/asyncio-task.rst:809
-#: ../../library/asyncio-task.rst:835 ../../library/asyncio-task.rst:872
+#: ../../library/asyncio-task.rst:371
+msgid ""
+"Cancel the task group.  This is a non-exceptional, early exit of the task "
+"group's lifetime -- useful once the group's goal has been met or its "
+"services no longer needed."
+msgstr ""
+"取消任務群組。這是一種非例外的、提前結束任務群組生命週期的方式，適用於群組的"
+"目標已經達成，或不再需要其服務的時候。"
+
+#: ../../library/asyncio-task.rst:375
+msgid ""
+":meth:`~asyncio.Task.cancel` will be called on any tasks in the group that "
+"aren't yet done, as well as the parent (body) of the group.  The task group "
+"context manager will exit *without* :exc:`asyncio.CancelledError` being "
+"raised."
+msgstr ""
+"群組中所有尚未完成的任務，以及群組的父任務（主體），都會被呼叫 :meth:"
+"`~asyncio.Task.cancel`。任務群組情境管理器結束時\\ *不會*\\ 引發 :exc:"
+"`asyncio.CancelledError`。"
+
+#: ../../library/asyncio-task.rst:379
+msgid ""
+"If :meth:`cancel` is called before entering the task group, the group will "
+"be cancelled upon entry.  This is useful for patterns where one piece of "
+"code passes an unused :class:`asyncio.TaskGroup` instance to another in "
+"order to have the ability to cancel anything run within the group."
+msgstr ""
+"如果在進入任務群組之前就呼叫了 :meth:`cancel`，群組會在進入時被取消。這對以下"
+"模式很有用：一段程式碼將尚未使用的 :class:`asyncio.TaskGroup` 實例傳給另一段"
+"程式碼，以便能夠取消在該群組中執行的任何東西。"
+
+#: ../../library/asyncio-task.rst:384
+msgid ""
+":meth:`cancel` is idempotent and may be called after the task group has "
+"already exited."
+msgstr ":meth:`cancel` 是冪等的，並且可以在任務群組已經結束後呼叫。"
+
+#: ../../library/asyncio-task.rst:387
+msgid "Some ways to use :meth:`cancel`:"
+msgstr ":meth:`cancel` 的幾種使用方式："
+
+#: ../../library/asyncio-task.rst:389
+msgid "call it from the task group body based on some condition or event"
+msgstr "在任務群組主體中根據某些條件或事件呼叫它"
+
+#: ../../library/asyncio-task.rst:390
+msgid ""
+"pass the task group instance to child tasks via :meth:`create_task`, "
+"allowing a child task to conditionally cancel the entire group"
+msgstr ""
+"透過 :meth:`create_task` 將任務群組實例傳給子任務，讓子任務能有條件地取消整個"
+"群組"
+
+#: ../../library/asyncio-task.rst:392
+msgid ""
+"pass the task group instance or bound :meth:`cancel` method to some other "
+"task *before* opening the task group, allowing remote cancellation"
+msgstr ""
+"在開啟任務群組\\ *之前*，將任務群組實例或繫結的 :meth:`cancel` 方法傳給其他任"
+"務，以便從其他地方取消群組"
+
+#: ../../library/asyncio-task.rst:397 ../../library/asyncio-task.rst:565
+#: ../../library/asyncio-task.rst:738 ../../library/asyncio-task.rst:799
+#: ../../library/asyncio-task.rst:825 ../../library/asyncio-task.rst:862
 msgid "Example::"
 msgstr "範例： ::"
 
-#: ../../library/asyncio-task.rst:371
+#: ../../library/asyncio-task.rst:399
 msgid ""
 "async def main():\n"
 "    async with asyncio.TaskGroup() as tg:\n"
@@ -560,16 +761,23 @@ msgstr ""
 "    print(f\"Both tasks have completed now: {task1.result()}, {task2."
 "result()}\")"
 
-#: ../../library/asyncio-task.rst:377
+#: ../../library/asyncio-task.rst:405
 msgid ""
 "The ``async with`` statement will wait for all tasks in the group to finish. "
 "While waiting, new tasks may still be added to the group (for example, by "
 "passing ``tg`` into one of the coroutines and calling ``tg.create_task()`` "
-"in that coroutine). Once the last task has finished and the ``async with`` "
-"block is exited, no new tasks may be added to the group."
+"in that coroutine).  There is also opportunity to request termination of the "
+"entire task group with ``tg.cancel()``, based on some condition. Once the "
+"last task has finished and the ``async with`` block is exited, no new tasks "
+"may be added to the group."
 msgstr ""
+"``async with`` 陳述式會等待群組中的所有任務完成。在等待期間，仍然可以將新任務"
+"加入群組（例如將 ``tg`` 傳入其中一個協程，並在該協程中呼叫 ``tg."
+"create_task()``）。也可以根據某些條件，透過 ``tg.cancel()`` 請求終止整個任務"
+"群組。一旦最後一個任務完成且離開了 ``async with`` 區塊，就不能再將新任務加入"
+"群組。"
 
-#: ../../library/asyncio-task.rst:384
+#: ../../library/asyncio-task.rst:413
 msgid ""
 "The first time any of the tasks belonging to the group fails with an "
 "exception other than :exc:`asyncio.CancelledError`, the remaining tasks in "
@@ -580,16 +788,25 @@ msgid ""
 "exc:`asyncio.CancelledError` will interrupt an ``await``, but it will not "
 "bubble out of the containing ``async with`` statement."
 msgstr ""
+"當群組中的任何一個任務第一次因 :exc:`asyncio.CancelledError` 以外的例外而失敗"
+"時，群組中其餘的任務都會被取消。之後就不能再將任何任務加入群組。此時，如果 "
+"``async with`` 陳述式的主體仍處於活躍狀態（即 :meth:`~object.__aexit__` 尚未"
+"被呼叫），直接包含該 ``async with`` 陳述式的任務也會被取消。由此產生的 :exc:"
+"`asyncio.CancelledError` 會中斷一個 ``await``，但它不會傳播到包含它的 "
+"``async with`` 陳述式之外。"
 
-#: ../../library/asyncio-task.rst:394
+#: ../../library/asyncio-task.rst:423
 msgid ""
 "Once all tasks have finished, if any tasks have failed with an exception "
 "other than :exc:`asyncio.CancelledError`, those exceptions are combined in "
 "an :exc:`ExceptionGroup` or :exc:`BaseExceptionGroup` (as appropriate; see "
 "their documentation) which is then raised."
 msgstr ""
+"一旦所有任務都完成，如果有任何任務因 :exc:`asyncio.CancelledError` 以外的例外"
+"而失敗，這些例外會被組合成一個 :exc:`ExceptionGroup` 或 :exc:"
+"`BaseExceptionGroup`\\ （視情況而定；請參閱它們的文件），然後被引發。"
 
-#: ../../library/asyncio-task.rst:401
+#: ../../library/asyncio-task.rst:430
 msgid ""
 "Two base exceptions are treated specially: If any task fails with :exc:"
 "`KeyboardInterrupt` or :exc:`SystemExit`, the task group still cancels the "
@@ -597,8 +814,12 @@ msgid ""
 "`KeyboardInterrupt` or :exc:`SystemExit` is re-raised instead of :exc:"
 "`ExceptionGroup` or :exc:`BaseExceptionGroup`."
 msgstr ""
+"有兩種基底例外會被特別處理：如果任何任務因 :exc:`KeyboardInterrupt` 或 :exc:"
+"`SystemExit` 而失敗，任務群組仍會取消其餘任務並等待它們，但接著會重新引發最初"
+"的 :exc:`KeyboardInterrupt` 或 :exc:`SystemExit`，而不是 :exc:"
+"`ExceptionGroup` 或 :exc:`BaseExceptionGroup`。"
 
-#: ../../library/asyncio-task.rst:407
+#: ../../library/asyncio-task.rst:436
 msgid ""
 "If the body of the ``async with`` statement exits with an exception (so :"
 "meth:`~object.__aexit__` is called with an exception set), this is treated "
@@ -607,10 +828,21 @@ msgid ""
 "exception group and raised. The exception passed into :meth:`~object."
 "__aexit__`, unless it is :exc:`asyncio.CancelledError`, is also included in "
 "the exception group. The same special case is made for :exc:"
-"`KeyboardInterrupt` and :exc:`SystemExit` as in the previous paragraph."
+"`KeyboardInterrupt` and :exc:`SystemExit` as in the previous paragraph. "
+"There is an additional special case made only for the body of the ``async "
+"with``: if it raises :exc:`GeneratorExit` and none of the other tasks raise "
+"exceptions that would be reported, then the :exc:`GeneratorExit` is reraised."
 msgstr ""
+"如果 ``async with`` 陳述式的主體因例外而結束（因此呼叫 :meth:`~object."
+"__aexit__` 時會帶有一個已設定的例外），這會被視為與其中一個任務失敗相同：其餘"
+"的任務會被取消並等待，而非取消類的例外會被組合成一個例外群組並引發。傳入 :"
+"meth:`~object.__aexit__` 的例外，除非它是 :exc:`asyncio.CancelledError`，否則"
+"也會被包含在該例外群組中。對 :exc:`KeyboardInterrupt` 和 :exc:`SystemExit` 也"
+"會做與前一段相同的特殊處理。另外還有一個只針對 ``async with`` 主體的特殊處"
+"理：如果主體引發 :exc:`GeneratorExit`，且其他任務都沒有引發會被回報的例外，則"
+"會重新引發該 :exc:`GeneratorExit`。"
 
-#: ../../library/asyncio-task.rst:419
+#: ../../library/asyncio-task.rst:452
 msgid ""
 "Task groups are careful not to mix up the internal cancellation used to "
 "\"wake up\" their :meth:`~object.__aexit__` with cancellation requests for "
@@ -620,117 +852,72 @@ msgid ""
 "group will process its exceptions, and then the outer task group will "
 "receive another cancellation and process its own exceptions."
 msgstr ""
+"任務群組會謹慎地區分用來「喚醒」其 :meth:`~object.__aexit__` 的內部取消，以及"
+"其他方對其所在任務發出的取消請求。特別是當一個任務群組在語法上巢狀於另一個任"
+"務群組中，且兩者同時在各自的某個子任務中遇到例外時，內層任務群組會處理它自己"
+"的例外，然後外層任務群組會收到另一個取消並處理它自己的例外。"
 
-#: ../../library/asyncio-task.rst:427
+#: ../../library/asyncio-task.rst:460
 msgid ""
 "In the case where a task group is cancelled externally and also must raise "
 "an :exc:`ExceptionGroup`, it will call the parent task's :meth:`~asyncio."
 "Task.cancel` method. This ensures that a :exc:`asyncio.CancelledError` will "
 "be raised at the next :keyword:`await`, so the cancellation is not lost."
 msgstr ""
+"在任務群組被外部取消且同時必須引發 :exc:`ExceptionGroup` 的情況下，它會呼叫父"
+"任務的 :meth:`~asyncio.Task.cancel` 方法。這能確保在下一個 :keyword:`await` "
+"處引發 :exc:`asyncio.CancelledError`，使取消不會遺失。"
 
-#: ../../library/asyncio-task.rst:433
+#: ../../library/asyncio-task.rst:466
 msgid ""
 "Task groups preserve the cancellation count reported by :meth:`asyncio.Task."
 "cancelling`."
-msgstr ""
+msgstr "任務群組會保留由 :meth:`asyncio.Task.cancelling` 回報的取消計數。"
 
-#: ../../library/asyncio-task.rst:438
+#: ../../library/asyncio-task.rst:471
 msgid ""
 "Improved handling of simultaneous internal and external cancellations and "
 "correct preservation of cancellation counts."
-msgstr ""
+msgstr "改進了對同時發生的內部與外部取消的處理，並能正確保留取消計數。"
 
-#: ../../library/asyncio-task.rst:442
-msgid "Terminating a task group"
-msgstr ""
+#: ../../library/asyncio-task.rst:476
+msgid "Addition of the special case for :exc:`GeneratorExit`."
+msgstr "新增針對 :exc:`GeneratorExit` 的特殊處理。"
 
-#: ../../library/asyncio-task.rst:444
-msgid ""
-"While terminating a task group is not natively supported by the standard "
-"library, termination can be achieved by adding an exception-raising task to "
-"the task group and ignoring the raised exception:"
-msgstr ""
-
-#: ../../library/asyncio-task.rst:448
-msgid ""
-"import asyncio\n"
-"from asyncio import TaskGroup\n"
-"\n"
-"class TerminateTaskGroup(Exception):\n"
-"    \"\"\"Exception raised to terminate a task group.\"\"\"\n"
-"\n"
-"async def force_terminate_task_group():\n"
-"    \"\"\"Used to force termination of a task group.\"\"\"\n"
-"    raise TerminateTaskGroup()\n"
-"\n"
-"async def job(task_id, sleep_time):\n"
-"    print(f'Task {task_id}: start')\n"
-"    await asyncio.sleep(sleep_time)\n"
-"    print(f'Task {task_id}: done')\n"
-"\n"
-"async def main():\n"
-"    try:\n"
-"        async with TaskGroup() as group:\n"
-"            # spawn some tasks\n"
-"            group.create_task(job(1, 0.5))\n"
-"            group.create_task(job(2, 1.5))\n"
-"            # sleep for 1 second\n"
-"            await asyncio.sleep(1)\n"
-"            # add an exception-raising task to force the group to terminate\n"
-"            group.create_task(force_terminate_task_group())\n"
-"    except* TerminateTaskGroup:\n"
-"        pass\n"
-"\n"
-"asyncio.run(main())"
-msgstr ""
-
-#: ../../library/asyncio-task.rst:480
-msgid "Expected output:"
-msgstr "預期的輸出： ::"
-
-#: ../../library/asyncio-task.rst:482
-msgid ""
-"Task 1: start\n"
-"Task 2: start\n"
-"Task 1: done"
-msgstr ""
-"Task 1: start\n"
-"Task 2: start\n"
-"Task 1: done"
-
-#: ../../library/asyncio-task.rst:489
+#: ../../library/asyncio-task.rst:479
 msgid "Sleeping"
-msgstr ""
+msgstr "休眠"
 
-#: ../../library/asyncio-task.rst:494
+#: ../../library/asyncio-task.rst:484
 msgid "Block for *delay* seconds."
-msgstr ""
+msgstr "阻塞 *delay* 秒。"
 
-#: ../../library/asyncio-task.rst:496
+#: ../../library/asyncio-task.rst:486
 msgid ""
 "If *result* is provided, it is returned to the caller when the coroutine "
 "completes."
-msgstr ""
+msgstr "如果有提供 *result*，則會在協程完成時將其回傳給呼叫者。"
 
-#: ../../library/asyncio-task.rst:499
+#: ../../library/asyncio-task.rst:489
 msgid ""
 "``sleep()`` always suspends the current task, allowing other tasks to run."
-msgstr ""
+msgstr "``sleep()`` 總是會暫停目前的任務，讓其他任務得以執行。"
 
-#: ../../library/asyncio-task.rst:502
+#: ../../library/asyncio-task.rst:492
 msgid ""
 "Setting the delay to 0 provides an optimized path to allow other tasks to "
 "run. This can be used by long-running functions to avoid blocking the event "
 "loop for the full duration of the function call."
 msgstr ""
+"將 delay 設為 0 會提供一條最佳化的路徑，讓其他任務得以執行。長時間執行的函式"
+"可以藉此避免在函式呼叫的整段期間阻塞事件迴圈。"
 
-#: ../../library/asyncio-task.rst:508
+#: ../../library/asyncio-task.rst:498
 msgid ""
 "Example of coroutine displaying the current date every second for 5 seconds::"
-msgstr ""
+msgstr "一個每秒顯示目前日期、持續 5 秒的協程範例： ::"
 
-#: ../../library/asyncio-task.rst:511
+#: ../../library/asyncio-task.rst:501
 msgid ""
 "import asyncio\n"
 "import datetime as dt\n"
@@ -760,68 +947,81 @@ msgstr ""
 "\n"
 "asyncio.run(display_date())"
 
-#: ../../library/asyncio-task.rst:526 ../../library/asyncio-task.rst:624
-#: ../../library/asyncio-task.rst:723 ../../library/asyncio-task.rst:897
-#: ../../library/asyncio-task.rst:959 ../../library/asyncio-task.rst:1020
+#: ../../library/asyncio-task.rst:516 ../../library/asyncio-task.rst:614
+#: ../../library/asyncio-task.rst:713 ../../library/asyncio-task.rst:887
+#: ../../library/asyncio-task.rst:949 ../../library/asyncio-task.rst:1010
 msgid "Removed the *loop* parameter."
 msgstr "移除 *loop* 參數。"
 
-#: ../../library/asyncio-task.rst:529
+#: ../../library/asyncio-task.rst:519
 msgid "Raises :exc:`ValueError` if *delay* is :data:`~math.nan`."
 msgstr "如果 *delay* 是 :data:`~math.nan`，則引發 :exc:`ValueError`。"
 
-#: ../../library/asyncio-task.rst:534
+#: ../../library/asyncio-task.rst:524
 msgid "Running tasks concurrently"
-msgstr ""
+msgstr "並行執行任務"
 
-#: ../../library/asyncio-task.rst:538
+#: ../../library/asyncio-task.rst:528
 msgid ""
 "Run :ref:`awaitable objects <asyncio-awaitables>` in the *aws* sequence "
 "*concurrently*."
 msgstr ""
+"*並行地*\\ 執行 *aws* 序列中的\\ :ref:`可等待物件 <asyncio-awaitables>`。"
 
-#: ../../library/asyncio-task.rst:541
+#: ../../library/asyncio-task.rst:531
 msgid ""
 "If any awaitable in *aws* is a coroutine, it is automatically scheduled as a "
 "Task."
-msgstr ""
+msgstr "如果 *aws* 中的任何可等待物件是協程，它會自動被排程為 Task。"
 
-#: ../../library/asyncio-task.rst:544
+#: ../../library/asyncio-task.rst:534
 msgid ""
 "If all awaitables are completed successfully, the result is an aggregate "
 "list of returned values.  The order of result values corresponds to the "
 "order of awaitables in *aws*."
 msgstr ""
+"如果所有可等待物件都成功完成，結果會是由回傳值彙總而成的串列。結果值的順序與 "
+"*aws* 中可等待物件的順序相對應。"
 
-#: ../../library/asyncio-task.rst:548
+#: ../../library/asyncio-task.rst:538
 msgid ""
 "If *return_exceptions* is ``False`` (default), the first raised exception is "
 "immediately propagated to the task that awaits on ``gather()``.  Other "
 "awaitables in the *aws* sequence **won't be cancelled** and will continue to "
 "run."
 msgstr ""
+"如果 *return_exceptions* 為 ``False``\\ （預設值），第一個被引發的例外會立即"
+"傳播到等待 ``gather()`` 的任務。*aws* 序列中的其他可等待物件\\ **不會被取消"
+"**，並會繼續執行。"
 
-#: ../../library/asyncio-task.rst:553
+#: ../../library/asyncio-task.rst:543
 msgid ""
 "If *return_exceptions* is ``True``, exceptions are treated the same as "
 "successful results, and aggregated in the result list."
 msgstr ""
+"如果 *return_exceptions* 為 ``True``，例外會被視為與成功的結果相同，並被彙總"
+"到結果串列中。"
 
-#: ../../library/asyncio-task.rst:556
+#: ../../library/asyncio-task.rst:546
 msgid ""
 "If ``gather()`` is *cancelled*, all submitted awaitables (that have not "
 "completed yet) are also *cancelled*."
 msgstr ""
+"如果 ``gather()`` 被\\ *取消*，所有已提交且尚未完成的可等待物件也都會被\\ *取"
+"消*。"
 
-#: ../../library/asyncio-task.rst:559
+#: ../../library/asyncio-task.rst:549
 msgid ""
 "If any Task or Future from the *aws* sequence is *cancelled*, it is treated "
 "as if it raised :exc:`CancelledError` -- the ``gather()`` call is **not** "
 "cancelled in this case.  This is to prevent the cancellation of one "
 "submitted Task/Future to cause other Tasks/Futures to be cancelled."
 msgstr ""
+"如果 *aws* 序列中的任何 Task 或 Future 被\\ *取消*，它會被視為引發了 :exc:"
+"`CancelledError` -- 在這種情況下 ``gather()`` 呼叫\\ **不會**\\ 被取消。這是"
+"為了防止某個已提交的 Task/Future 被取消時，導致其他 Task/Future 也被取消。"
 
-#: ../../library/asyncio-task.rst:566
+#: ../../library/asyncio-task.rst:556
 msgid ""
 "A new alternative to create and run tasks concurrently and wait for their "
 "completion is :class:`asyncio.TaskGroup`. *TaskGroup* provides stronger "
@@ -830,8 +1030,12 @@ msgid ""
 "*TaskGroup* will, while *gather* will not, cancel the remaining scheduled "
 "tasks."
 msgstr ""
+":class:`asyncio.TaskGroup` 是建立任務、並行執行任務並等待其完成的新替代方案。"
+"在為巢狀的子任務排程時，*TaskGroup* 提供比 *gather* 更強的安全保證：如果某個"
+"任務（或子任務，即由某個任務所排程的任務）引發例外，*TaskGroup* 會取消其餘已"
+"排程的任務，而 *gather* 則不會。"
 
-#: ../../library/asyncio-task.rst:577
+#: ../../library/asyncio-task.rst:567
 msgid ""
 "import asyncio\n"
 "\n"
@@ -869,8 +1073,43 @@ msgid ""
 "#     Task C: factorial(4) = 24\n"
 "#     [2, 6, 24]"
 msgstr ""
+"import asyncio\n"
+"\n"
+"async def factorial(name, number):\n"
+"    f = 1\n"
+"    for i in range(2, number + 1):\n"
+"        print(f\"Task {name}: Compute factorial({number}), currently i={i}..."
+"\")\n"
+"        await asyncio.sleep(1)\n"
+"        f *= i\n"
+"    print(f\"Task {name}: factorial({number}) = {f}\")\n"
+"    return f\n"
+"\n"
+"async def main():\n"
+"    # *並行地*排程三個呼叫：\n"
+"    L = await asyncio.gather(\n"
+"        factorial(\"A\", 2),\n"
+"        factorial(\"B\", 3),\n"
+"        factorial(\"C\", 4),\n"
+"    )\n"
+"    print(L)\n"
+"\n"
+"asyncio.run(main())\n"
+"\n"
+"# 預期的輸出：\n"
+"#\n"
+"#     Task A: Compute factorial(2), currently i=2...\n"
+"#     Task B: Compute factorial(3), currently i=2...\n"
+"#     Task C: Compute factorial(4), currently i=2...\n"
+"#     Task A: factorial(2) = 2\n"
+"#     Task B: Compute factorial(3), currently i=3...\n"
+"#     Task C: Compute factorial(4), currently i=3...\n"
+"#     Task B: factorial(3) = 6\n"
+"#     Task C: Compute factorial(4), currently i=4...\n"
+"#     Task C: factorial(4) = 24\n"
+"#     [2, 6, 24]"
 
-#: ../../library/asyncio-task.rst:613
+#: ../../library/asyncio-task.rst:603
 msgid ""
 "If *return_exceptions* is false, cancelling gather() after it has been "
 "marked done won't cancel any submitted awaitables. For instance, gather can "
@@ -878,29 +1117,36 @@ msgid ""
 "calling ``gather.cancel()`` after catching an exception (raised by one of "
 "the awaitables) from gather won't cancel any other awaitables."
 msgstr ""
+"如果 *return_exceptions* 為 false，在 gather() 被標記為已完成之後取消它，並不"
+"會取消任何已提交的可等待物件。例如，gather 可能在將例外傳播給呼叫者之後就被標"
+"記為已完成，因此，在從 gather 捕捉到（由其中一個可等待物件引發的）例外後呼叫 "
+"``gather.cancel()``，並不會取消任何其他可等待物件。"
 
-#: ../../library/asyncio-task.rst:620
+#: ../../library/asyncio-task.rst:610
 msgid ""
 "If the *gather* itself is cancelled, the cancellation is propagated "
 "regardless of *return_exceptions*."
 msgstr ""
+"如果 *gather* 本身被取消，無論 *return_exceptions* 為何，取消都會被傳播。"
 
-#: ../../library/asyncio-task.rst:627
+#: ../../library/asyncio-task.rst:617
 msgid ""
 "Deprecation warning is emitted if no positional arguments are provided or "
 "not all positional arguments are Future-like objects and there is no running "
 "event loop."
 msgstr ""
+"如果沒有提供位置引數，或並非所有位置引數都是類 Future 物件，且沒有正在執行的"
+"事件迴圈，則會發出棄用警告。"
 
-#: ../../library/asyncio-task.rst:636
+#: ../../library/asyncio-task.rst:626
 msgid "Eager task factory"
-msgstr ""
+msgstr "急切任務工廠"
 
-#: ../../library/asyncio-task.rst:640
+#: ../../library/asyncio-task.rst:630
 msgid "A task factory for eager task execution."
-msgstr ""
+msgstr "用於急切執行任務 (eager task execution) 的任務工廠。"
 
-#: ../../library/asyncio-task.rst:642
+#: ../../library/asyncio-task.rst:632
 msgid ""
 "When using this factory (via :meth:`loop.set_task_factory(asyncio."
 "eager_task_factory) <loop.set_task_factory>`), coroutines begin execution "
@@ -909,14 +1155,20 @@ msgid ""
 "overhead of loop scheduling is avoided for coroutines that complete "
 "synchronously."
 msgstr ""
+"使用此工廠時（透過 :meth:`loop.set_task_factory(asyncio.eager_task_factory) "
+"<loop.set_task_factory>`），協程會在 :class:`Task` 建構期間同步地開始執行。只"
+"有在 Task 阻塞時，才會被排程到事件迴圈上。對於同步完成的協程，這能避免迴圈排"
+"程的開銷，因此可以提升效能。"
 
-#: ../../library/asyncio-task.rst:648
+#: ../../library/asyncio-task.rst:638
 msgid ""
 "A common example where this is beneficial is coroutines which employ caching "
 "or memoization to avoid actual I/O when possible."
 msgstr ""
+"常見的受益例子是那些使用快取或記憶化 (memoization)、盡可能避免實際 I/O 的協"
+"程。"
 
-#: ../../library/asyncio-task.rst:653
+#: ../../library/asyncio-task.rst:643
 msgid ""
 "Immediate execution of the coroutine is a semantic change. If the coroutine "
 "returns or raises, the task is never scheduled to the event loop. If the "
@@ -924,47 +1176,60 @@ msgid ""
 "change may introduce behavior changes to existing applications. For example, "
 "the application's task execution order is likely to change."
 msgstr ""
+"立即執行協程是一項語意上的改變。如果協程回傳或引發例外，該任務永遠不會被排程"
+"到事件迴圈。如果協程的執行發生阻塞，該任務才會被排程到事件迴圈。這項改變可能"
+"會讓現有的應用程式產生行為上的變化。例如，應用程式的任務執行順序很可能會改"
+"變。"
 
-#: ../../library/asyncio-task.rst:664
+#: ../../library/asyncio-task.rst:654
 msgid ""
 "Create an eager task factory, similar to :func:`eager_task_factory`, using "
 "the provided *custom_task_constructor* when creating a new task instead of "
 "the default :class:`Task`."
 msgstr ""
+"建立一個類似於 :func:`eager_task_factory` 的急切任務工廠，在建立新任務時使用"
+"所提供的 *custom_task_constructor*，而不是預設的 :class:`Task`。"
 
-#: ../../library/asyncio-task.rst:668
+#: ../../library/asyncio-task.rst:658
 msgid ""
 "*custom_task_constructor* must be a *callable* with the signature matching "
 "the signature of :class:`Task.__init__ <Task>`. The callable must return a :"
 "class:`asyncio.Task`-compatible object."
 msgstr ""
+"*custom_task_constructor* 必須是一個\\ *可呼叫物件*，其簽名須與 :class:`Task."
+"__init__ <Task>` 的簽名相符。該可呼叫物件必須回傳一個與 :class:`asyncio."
+"Task` 相容的物件。"
 
-#: ../../library/asyncio-task.rst:672
+#: ../../library/asyncio-task.rst:662
 msgid ""
 "This function returns a *callable* intended to be used as a task factory of "
 "an event loop via :meth:`loop.set_task_factory(factory) <loop."
 "set_task_factory>`)."
 msgstr ""
+"此函式會回傳一個\\ *可呼叫物件*，用於透過 :meth:`loop."
+"set_task_factory(factory) <loop.set_task_factory>` 作為事件迴圈的任務工廠。"
 
-#: ../../library/asyncio-task.rst:679
+#: ../../library/asyncio-task.rst:669
 msgid "Shielding from cancellation"
-msgstr ""
+msgstr "防止被取消"
 
-#: ../../library/asyncio-task.rst:683
+#: ../../library/asyncio-task.rst:673
 msgid ""
 "Protect an :ref:`awaitable object <asyncio-awaitables>` from being :meth:"
 "`cancelled <Task.cancel>`."
 msgstr ""
+"保護一個\\ :ref:`可等待物件 <asyncio-awaitables>`\\ 不被\\ :meth:`取消 <Task."
+"cancel>`。"
 
-#: ../../library/asyncio-task.rst:686
+#: ../../library/asyncio-task.rst:676
 msgid "If *aw* is a coroutine it is automatically scheduled as a Task."
-msgstr ""
+msgstr "如果 *aw* 是一個協程，它會自動被排程為 Task。"
 
-#: ../../library/asyncio-task.rst:688
+#: ../../library/asyncio-task.rst:678
 msgid "The statement::"
-msgstr ""
+msgstr "以下陳述式： ::"
 
-#: ../../library/asyncio-task.rst:690
+#: ../../library/asyncio-task.rst:680
 msgid ""
 "task = asyncio.create_task(something())\n"
 "res = await shield(task)"
@@ -972,15 +1237,15 @@ msgstr ""
 "task = asyncio.create_task(something())\n"
 "res = await shield(task)"
 
-#: ../../library/asyncio-task.rst:693
+#: ../../library/asyncio-task.rst:683
 msgid "is equivalent to::"
-msgstr ""
+msgstr "等價於： ::"
 
-#: ../../library/asyncio-task.rst:695
+#: ../../library/asyncio-task.rst:685
 msgid "res = await something()"
 msgstr "res = await something()"
 
-#: ../../library/asyncio-task.rst:697
+#: ../../library/asyncio-task.rst:687
 msgid ""
 "*except* that if the coroutine containing it is cancelled, the Task running "
 "in ``something()`` is not cancelled.  From the point of view of "
@@ -988,21 +1253,28 @@ msgid ""
 "still cancelled, so the \"await\" expression still raises a :exc:"
 "`CancelledError`."
 msgstr ""
+"*不同之處*\\ 在於，如果包含它的協程被取消，在 ``something()`` 中執行的 Task "
+"並不會被取消。從 ``something()`` 的角度來看，取消並沒有發生。但它的呼叫者仍然"
+"會被取消，因此 \"await\" 運算式仍然會引發 :exc:`CancelledError`。"
 
-#: ../../library/asyncio-task.rst:703
+#: ../../library/asyncio-task.rst:693
 msgid ""
 "If ``something()`` is cancelled by other means (i.e. from within itself) "
 "that would also cancel ``shield()``."
 msgstr ""
+"如果 ``something()`` 被其他方式取消（也就是從它自身內部取消），那也會取消 "
+"``shield()``。"
 
-#: ../../library/asyncio-task.rst:706
+#: ../../library/asyncio-task.rst:696
 msgid ""
 "If it is desired to completely ignore cancellation (not recommended) the "
 "``shield()`` function should be combined with a try/except clause, as "
 "follows::"
 msgstr ""
+"如果希望完全忽略取消（不建議），則應將 ``shield()`` 函式與 try/except 子句結"
+"合使用，如下所示： ::"
 
-#: ../../library/asyncio-task.rst:710
+#: ../../library/asyncio-task.rst:700
 msgid ""
 "task = asyncio.create_task(something())\n"
 "try:\n"
@@ -1016,44 +1288,55 @@ msgstr ""
 "except CancelledError:\n"
 "    res = None"
 
-#: ../../library/asyncio-task.rst:718
+#: ../../library/asyncio-task.rst:708
 msgid ""
 "Save a reference to tasks passed to this function, to avoid a task "
 "disappearing mid-execution. The event loop only keeps weak references to "
 "tasks. A task that isn't referenced elsewhere may get garbage collected at "
 "any time, even before it's done."
 msgstr ""
+"請保存傳遞給此函式之任務的參照，以避免任務在執行途中消失。事件迴圈只會保留對"
+"任務的弱參照。沒有在其他地方被參照的任務可能隨時被垃圾回收，甚至在它完成之"
+"前。"
 
-#: ../../library/asyncio-task.rst:726
+#: ../../library/asyncio-task.rst:716
 msgid ""
 "Deprecation warning is emitted if *aw* is not Future-like object and there "
 "is no running event loop."
 msgstr ""
+"如果 *aw* 不是類 Future 物件，且沒有正在執行的事件迴圈，則會發出棄用警告。"
 
-#: ../../library/asyncio-task.rst:732
+#: ../../library/asyncio-task.rst:722
 msgid "Timeouts"
-msgstr ""
+msgstr "超時"
 
-#: ../../library/asyncio-task.rst:736
+#: ../../library/asyncio-task.rst:726
 msgid ""
 "Return an :ref:`asynchronous context manager <async-context-managers>` that "
 "can be used to limit the amount of time spent waiting on something."
 msgstr ""
+"回傳一個\\ :ref:`非同步情境管理器 <async-context-managers>`，可用來限制等待某"
+"件事所花費的時間。"
 
-#: ../../library/asyncio-task.rst:740
+#: ../../library/asyncio-task.rst:730
 msgid ""
 "*delay* can either be ``None``, or a float/int number of seconds to wait. If "
 "*delay* is ``None``, no time limit will be applied; this can be useful if "
 "the delay is unknown when the context manager is created."
 msgstr ""
+"*delay* 可以是 ``None``，或是以 float/int 表示的等待秒數。如果 *delay* 是 "
+"``None``，則不會套用時間限制；當建立情境管理器時還不知道延遲時間，這會很有"
+"用。"
 
-#: ../../library/asyncio-task.rst:745
+#: ../../library/asyncio-task.rst:735
 msgid ""
 "In either case, the context manager can be rescheduled after creation using :"
 "meth:`Timeout.reschedule`."
 msgstr ""
+"無論是哪種情況，情境管理器都可以在建立後使用 :meth:`Timeout.reschedule` 重新"
+"排程。"
 
-#: ../../library/asyncio-task.rst:750
+#: ../../library/asyncio-task.rst:740
 msgid ""
 "async def main():\n"
 "    async with asyncio.timeout(10):\n"
@@ -1063,26 +1346,32 @@ msgstr ""
 "    async with asyncio.timeout(10):\n"
 "        await long_running_task()"
 
-#: ../../library/asyncio-task.rst:754
+#: ../../library/asyncio-task.rst:744
 msgid ""
 "If ``long_running_task`` takes more than 10 seconds to complete, the context "
 "manager will cancel the current task and handle the resulting :exc:`asyncio."
 "CancelledError` internally, transforming it into a :exc:`TimeoutError` which "
 "can be caught and handled."
 msgstr ""
+"如果 ``long_running_task`` 花費超過 10 秒才完成，情境管理器會取消目前的任務，"
+"並在內部處理由此產生的 :exc:`asyncio.CancelledError`，將其轉換為可被捕捉和處"
+"理的 :exc:`TimeoutError`。"
 
-#: ../../library/asyncio-task.rst:761
+#: ../../library/asyncio-task.rst:751
 msgid ""
 "The :func:`asyncio.timeout` context manager is what transforms the :exc:"
 "`asyncio.CancelledError` into a :exc:`TimeoutError`, which means the :exc:"
 "`TimeoutError` can only be caught *outside* of the context manager."
 msgstr ""
+":func:`asyncio.timeout` 情境管理器負責將 :exc:`asyncio.CancelledError` 轉換"
+"為 :exc:`TimeoutError`，這代表 :exc:`TimeoutError` 只能在情境管理器的\\ *外部"
+"*\\ 被捕捉。"
 
-#: ../../library/asyncio-task.rst:766
+#: ../../library/asyncio-task.rst:756
 msgid "Example of catching :exc:`TimeoutError`::"
-msgstr ""
+msgstr "捕捉 :exc:`TimeoutError` 的範例： ::"
 
-#: ../../library/asyncio-task.rst:768
+#: ../../library/asyncio-task.rst:758
 msgid ""
 "async def main():\n"
 "    try:\n"
@@ -1093,55 +1382,68 @@ msgid ""
 "\n"
 "    print(\"This statement will run regardless.\")"
 msgstr ""
+"async def main():\n"
+"    try:\n"
+"        async with asyncio.timeout(10):\n"
+"            await long_running_task()\n"
+"    except TimeoutError:\n"
+"        print(\"The long operation timed out, but we've handled it.\")\n"
+"\n"
+"    print(\"This statement will run regardless.\")"
 
-#: ../../library/asyncio-task.rst:777
+#: ../../library/asyncio-task.rst:767
 msgid ""
 "The context manager produced by :func:`asyncio.timeout` can be rescheduled "
 "to a different deadline and inspected."
 msgstr ""
+"由 :func:`asyncio.timeout` 產生的情境管理器可以被重新排程到不同的截止時間，也"
+"可以被檢查。"
 
-#: ../../library/asyncio-task.rst:782
+#: ../../library/asyncio-task.rst:772
 msgid ""
 "An :ref:`asynchronous context manager <async-context-managers>` for "
 "cancelling overdue coroutines."
 msgstr ""
+"一個用於取消逾期協程的\\ :ref:`非同步情境管理器 <async-context-managers>`。"
 
-#: ../../library/asyncio-task.rst:785
+#: ../../library/asyncio-task.rst:775
 msgid ""
 "Prefer using :func:`asyncio.timeout` or :func:`asyncio.timeout_at` rather "
 "than instantiating :class:`!Timeout` directly."
 msgstr ""
+"建議使用 :func:`asyncio.timeout` 或 :func:`asyncio.timeout_at`，而不是直接實"
+"例化 :class:`!Timeout`。"
 
-#: ../../library/asyncio-task.rst:788
+#: ../../library/asyncio-task.rst:778
 msgid ""
 "``when`` should be an absolute time at which the context should time out, as "
 "measured by the event loop's clock:"
-msgstr ""
+msgstr "``when`` 應為該情境管理器超時的絕對時間，以事件迴圈的時鐘為準："
 
-#: ../../library/asyncio-task.rst:791
+#: ../../library/asyncio-task.rst:781
 msgid "If ``when`` is ``None``, the timeout will never trigger."
-msgstr ""
+msgstr "如果 ``when`` 是 ``None``，超時永遠不會觸發。"
 
-#: ../../library/asyncio-task.rst:792
+#: ../../library/asyncio-task.rst:782
 msgid ""
 "If ``when < loop.time()``, the timeout will trigger on the next iteration of "
 "the event loop."
-msgstr ""
+msgstr "如果 ``when < loop.time()``，超時會在事件迴圈的下一次疊代時觸發。"
 
-#: ../../library/asyncio-task.rst:797
+#: ../../library/asyncio-task.rst:787
 msgid ""
 "Return the current deadline, or ``None`` if the current deadline is not set."
-msgstr ""
+msgstr "回傳目前的截止時間，如果目前未設定截止時間則回傳 ``None``。"
 
-#: ../../library/asyncio-task.rst:802
+#: ../../library/asyncio-task.rst:792
 msgid "Reschedule the timeout."
-msgstr ""
+msgstr "重新排程超時。"
 
-#: ../../library/asyncio-task.rst:806
+#: ../../library/asyncio-task.rst:796
 msgid "Return whether the context manager has exceeded its deadline (expired)."
-msgstr ""
+msgstr "回傳情境管理器是否已超過其截止時間（已過期）。"
 
-#: ../../library/asyncio-task.rst:811
+#: ../../library/asyncio-task.rst:801
 msgid ""
 "async def main():\n"
 "    try:\n"
@@ -1158,18 +1460,34 @@ msgid ""
 "    if cm.expired():\n"
 "        print(\"Looks like we haven't finished on time.\")"
 msgstr ""
+"async def main():\n"
+"    try:\n"
+"        # 開始時還不知道超時時間，所以傳入 ``None``。\n"
+"        async with asyncio.timeout(None) as cm:\n"
+"            # 現在知道超時時間了，所以重新排程。\n"
+"            new_deadline = get_running_loop().time() + 10\n"
+"            cm.reschedule(new_deadline)\n"
+"\n"
+"            await long_running_task()\n"
+"    except TimeoutError:\n"
+"        pass\n"
+"\n"
+"    if cm.expired():\n"
+"        print(\"Looks like we haven't finished on time.\")"
 
-#: ../../library/asyncio-task.rst:826
+#: ../../library/asyncio-task.rst:816
 msgid "Timeout context managers can be safely nested."
-msgstr ""
+msgstr "超時情境管理器可以安全地巢狀使用。"
 
-#: ../../library/asyncio-task.rst:832
+#: ../../library/asyncio-task.rst:822
 msgid ""
 "Similar to :func:`asyncio.timeout`, except *when* is the absolute time to "
 "stop waiting, or ``None``."
 msgstr ""
+"類似於 :func:`asyncio.timeout`，不同之處在於 *when* 是停止等待的絕對時間，或"
+"是 ``None``。"
 
-#: ../../library/asyncio-task.rst:837
+#: ../../library/asyncio-task.rst:827
 msgid ""
 "async def main():\n"
 "    loop = get_running_loop()\n"
@@ -1182,39 +1500,53 @@ msgid ""
 "\n"
 "    print(\"This statement will run regardless.\")"
 msgstr ""
+"async def main():\n"
+"    loop = get_running_loop()\n"
+"    deadline = loop.time() + 20\n"
+"    try:\n"
+"        async with asyncio.timeout_at(deadline):\n"
+"            await long_running_task()\n"
+"    except TimeoutError:\n"
+"        print(\"The long operation timed out, but we've handled it.\")\n"
+"\n"
+"    print(\"This statement will run regardless.\")"
 
-#: ../../library/asyncio-task.rst:853
+#: ../../library/asyncio-task.rst:843
 msgid ""
 "Wait for the *aw* :ref:`awaitable <asyncio-awaitables>` to complete with a "
 "timeout."
-msgstr ""
+msgstr "等待 *aw* :ref:`可等待物件 <asyncio-awaitables>`\\ 完成，並設有超時。"
 
-#: ../../library/asyncio-task.rst:856
+#: ../../library/asyncio-task.rst:846
 msgid ""
 "*timeout* can either be ``None`` or a float or int number of seconds to wait "
 "for.  If *timeout* is ``None``, block until the future completes."
 msgstr ""
+"*timeout* 可以是 ``None``，或是以 float 或 int 表示的等待秒數。如果 "
+"*timeout* 是 ``None``，則會阻塞直到 future 完成。"
 
-#: ../../library/asyncio-task.rst:860
+#: ../../library/asyncio-task.rst:850
 msgid "If a timeout occurs, it cancels *aw* and raises :exc:`TimeoutError`."
-msgstr ""
+msgstr "如果發生超時，它會取消 *aw* 並引發 :exc:`TimeoutError`。"
 
-#: ../../library/asyncio-task.rst:862
+#: ../../library/asyncio-task.rst:852
 msgid "To prevent *aw* from being cancelled, wrap it in :func:`shield`."
-msgstr ""
+msgstr "要防止 *aw* 被取消，請將它包裝在 :func:`shield` 中。"
 
-#: ../../library/asyncio-task.rst:864
+#: ../../library/asyncio-task.rst:854
 msgid ""
 "The function will wait until the future is actually cancelled, so the total "
 "wait time may exceed the *timeout*. If an exception happens during "
 "cancellation, it is propagated."
 msgstr ""
+"此函式會等待直到 future 真正被取消，因此總等待時間可能會超過 *timeout*。如果"
+"在取消期間發生例外，該例外會被傳播。"
 
-#: ../../library/asyncio-task.rst:868
+#: ../../library/asyncio-task.rst:858
 msgid "If the wait is cancelled, the future *aw* is also cancelled."
-msgstr ""
+msgstr "如果等待被取消，future *aw* 也會被取消。"
 
-#: ../../library/asyncio-task.rst:874
+#: ../../library/asyncio-task.rst:864
 msgid ""
 "async def eternity():\n"
 "    # Sleep for one hour\n"
@@ -1234,120 +1566,150 @@ msgid ""
 "#\n"
 "#     timeout!"
 msgstr ""
+"async def eternity():\n"
+"    # 休眠一小時\n"
+"    await asyncio.sleep(3600)\n"
+"    print('yay!')\n"
+"\n"
+"async def main():\n"
+"    # 最多等待 1 秒\n"
+"    try:\n"
+"        await asyncio.wait_for(eternity(), timeout=1.0)\n"
+"    except TimeoutError:\n"
+"        print('timeout!')\n"
+"\n"
+"asyncio.run(main())\n"
+"\n"
+"# 預期的輸出：\n"
+"#\n"
+"#     timeout!"
 
-#: ../../library/asyncio-task.rst:892
+#: ../../library/asyncio-task.rst:882
 msgid ""
 "When *aw* is cancelled due to a timeout, ``wait_for`` waits for *aw* to be "
 "cancelled.  Previously, it raised :exc:`TimeoutError` immediately."
 msgstr ""
+"當 *aw* 因超時而被取消時，``wait_for`` 會等待 *aw* 被取消。先前它會立即引發 :"
+"exc:`TimeoutError`。"
 
-#: ../../library/asyncio-task.rst:900
+#: ../../library/asyncio-task.rst:890
 msgid "Raises :exc:`TimeoutError` instead of :exc:`asyncio.TimeoutError`."
 msgstr "引發 :exc:`TimeoutError` 而不是 :exc:`asyncio.TimeoutError`。"
 
-#: ../../library/asyncio-task.rst:903
+#: ../../library/asyncio-task.rst:893
 msgid ""
 "Implemented using :func:`asyncio.timeout`, a coroutine passed as *aw* is no "
 "longer wrapped in a :class:`Task` when *timeout* is positive."
 msgstr ""
+"改以 :func:`asyncio.timeout` 實作；當 *timeout* 為正數時，作為 *aw* 傳入的協"
+"程不再被包裝在 :class:`Task` 中。"
 
-#: ../../library/asyncio-task.rst:909
+#: ../../library/asyncio-task.rst:899
 msgid "Waiting primitives"
-msgstr ""
+msgstr "等待原語"
 
-#: ../../library/asyncio-task.rst:914
+#: ../../library/asyncio-task.rst:904
 msgid ""
 "Run :class:`~asyncio.Future` and :class:`~asyncio.Task` instances in the "
 "*aws* iterable concurrently and block until the condition specified by "
 "*return_when*."
 msgstr ""
+"並行地執行 *aws* 可疊代物件中的 :class:`~asyncio.Future` 和 :class:`~asyncio."
+"Task` 實例，並阻塞直到滿足 *return_when* 所指定的條件。"
 
-#: ../../library/asyncio-task.rst:918
+#: ../../library/asyncio-task.rst:908
 msgid "The *aws* iterable must not be empty."
-msgstr ""
+msgstr "*aws* 可疊代物件不得為空。"
 
-#: ../../library/asyncio-task.rst:920
+#: ../../library/asyncio-task.rst:910
 msgid "Returns two sets of Tasks/Futures: ``(done, pending)``."
-msgstr ""
+msgstr "回傳兩個 Task/Future 的集合：``(done, pending)``。"
 
-#: ../../library/asyncio-task.rst:922
+#: ../../library/asyncio-task.rst:912
 msgid "Usage::"
 msgstr "用法： ::"
 
-#: ../../library/asyncio-task.rst:924
+#: ../../library/asyncio-task.rst:914
 msgid "done, pending = await asyncio.wait(aws)"
 msgstr "done, pending = await asyncio.wait(aws)"
 
-#: ../../library/asyncio-task.rst:926
+#: ../../library/asyncio-task.rst:916
 msgid ""
 "*timeout* (a float or int), if specified, can be used to control the maximum "
 "number of seconds to wait before returning."
-msgstr ""
+msgstr "*timeout*\\ （float 或 int）若有指定，可用來控制回傳前最多等待的秒數。"
 
-#: ../../library/asyncio-task.rst:929
+#: ../../library/asyncio-task.rst:919
 msgid ""
 "Note that this function does not raise :exc:`TimeoutError`. Futures or Tasks "
 "that aren't done when the timeout occurs are simply returned in the second "
 "set."
 msgstr ""
+"請注意，此函式不會引發 :exc:`TimeoutError`。發生超時時尚未完成的 Future 或 "
+"Task 會直接在第二個集合中回傳。"
 
-#: ../../library/asyncio-task.rst:933
+#: ../../library/asyncio-task.rst:923
 msgid ""
 "*return_when* indicates when this function should return.  It must be one of "
 "the following constants:"
-msgstr ""
+msgstr "*return_when* 指定此函式應在何時回傳。它必須是以下常數之一："
 
-#: ../../library/asyncio-task.rst:939
+#: ../../library/asyncio-task.rst:929
 msgid "Constant"
 msgstr "常數"
 
-#: ../../library/asyncio-task.rst:940
+#: ../../library/asyncio-task.rst:930
 msgid "Description"
 msgstr "描述"
 
-#: ../../library/asyncio-task.rst:943
+#: ../../library/asyncio-task.rst:933
 msgid "The function will return when any future finishes or is cancelled."
-msgstr ""
+msgstr "當任何 future 完成或被取消時，該函式就會回傳。"
 
-#: ../../library/asyncio-task.rst:946
+#: ../../library/asyncio-task.rst:936
 msgid ""
 "The function will return when any future finishes by raising an exception. "
 "If no future raises an exception then it is equivalent to :const:"
 "`ALL_COMPLETED`."
 msgstr ""
+"該函式會在任何 future 因引發例外而結束時回傳。如果沒有任何 future 引發例外，"
+"則等同於 :const:`ALL_COMPLETED`。"
 
-#: ../../library/asyncio-task.rst:951
+#: ../../library/asyncio-task.rst:941
 msgid "The function will return when all futures finish or are cancelled."
-msgstr ""
+msgstr "當所有 future 都完成或被取消時，該函式才會回傳。"
 
-#: ../../library/asyncio-task.rst:953
+#: ../../library/asyncio-task.rst:943
 msgid ""
 "Unlike :func:`~asyncio.wait_for`, ``wait()`` does not cancel the futures "
 "when a timeout occurs."
 msgstr ""
+"與 :func:`~asyncio.wait_for` 不同，``wait()`` 在發生超時時不會取消 future。"
 
-#: ../../library/asyncio-task.rst:956
+#: ../../library/asyncio-task.rst:946
 msgid ""
 "If ``wait()`` is cancelled, the futures in *aws* are not cancelled and "
 "continue to run."
-msgstr ""
+msgstr "如果 ``wait()`` 被取消，*aws* 中的 future 不會被取消，並會繼續執行。"
 
-#: ../../library/asyncio-task.rst:962
+#: ../../library/asyncio-task.rst:952
 msgid "Passing coroutine objects to ``wait()`` directly is forbidden."
-msgstr ""
+msgstr "禁止直接將協程物件傳給 ``wait()``。"
 
-#: ../../library/asyncio-task.rst:965 ../../library/asyncio-task.rst:1027
+#: ../../library/asyncio-task.rst:955 ../../library/asyncio-task.rst:1017
 msgid "Added support for generators yielding tasks."
-msgstr ""
+msgstr "新增對 yield 任務之產生器的支援。"
 
-#: ../../library/asyncio-task.rst:971
+#: ../../library/asyncio-task.rst:961
 msgid ""
 "Run :ref:`awaitable objects <asyncio-awaitables>` in the *aws* iterable "
 "concurrently. The returned object can be iterated to obtain the results of "
 "the awaitables as they finish."
 msgstr ""
+"並行地執行 *aws* 可疊代物件中的\\ :ref:`可等待物件 <asyncio-awaitables>`。可"
+"以疊代回傳的物件，以在可等待物件完成時取得它們的結果。"
 
-#: ../../library/asyncio-task.rst:975
+#: ../../library/asyncio-task.rst:965
 msgid ""
 "The object returned by ``as_completed()`` can be iterated as an :term:"
 "`asynchronous iterator` or a plain :term:`iterator`. When asynchronous "
@@ -1355,8 +1717,12 @@ msgid ""
 "are tasks or futures. This makes it easy to correlate previously-scheduled "
 "tasks with their results. Example::"
 msgstr ""
+"``as_completed()`` 回傳的物件可以作為\\ :term:`非同步疊代器 <asynchronous "
+"iterator>`\\ 或一般的\\ :term:`疊代器 <iterator>`\\ 來疊代。使用非同步疊代"
+"時，如果原先提供的可等待物件是任務或 future，就會直接 yield 它們。這讓先前已"
+"排程的任務能輕鬆地與其結果對應起來。範例： ::"
 
-#: ../../library/asyncio-task.rst:981
+#: ../../library/asyncio-task.rst:971
 msgid ""
 "ipv4_connect = create_task(open_connection(\"127.0.0.1\", 80))\n"
 "ipv6_connect = create_task(open_connection(\"::1\", 80))\n"
@@ -1372,21 +1738,38 @@ msgid ""
 "    else:\n"
 "        print(\"IPv4 connection established.\")"
 msgstr ""
+"ipv4_connect = create_task(open_connection(\"127.0.0.1\", 80))\n"
+"ipv6_connect = create_task(open_connection(\"::1\", 80))\n"
+"tasks = [ipv4_connect, ipv6_connect]\n"
+"\n"
+"async for earliest_connect in as_completed(tasks):\n"
+"    # earliest_connect 已完成。可以透過等待它\n"
+"    # 或呼叫 earliest_connect.result() 來取得結果\n"
+"    reader, writer = await earliest_connect\n"
+"\n"
+"    if earliest_connect is ipv6_connect:\n"
+"        print(\"IPv6 connection established.\")\n"
+"    else:\n"
+"        print(\"IPv4 connection established.\")"
 
-#: ../../library/asyncio-task.rst:995
+#: ../../library/asyncio-task.rst:985
 msgid ""
 "During asynchronous iteration, implicitly-created tasks will be yielded for "
 "supplied awaitables that aren't tasks or futures."
 msgstr ""
+"在非同步疊代期間，若所提供的可等待物件不是任務或 future，則會 yield 為其隱式"
+"建立的任務。"
 
-#: ../../library/asyncio-task.rst:998
+#: ../../library/asyncio-task.rst:988
 msgid ""
 "When used as a plain iterator, each iteration yields a new coroutine that "
 "returns the result or raises the exception of the next completed awaitable. "
 "This pattern is compatible with Python versions older than 3.13::"
 msgstr ""
+"作為一般疊代器使用時，每次疊代都會 yield 一個新的協程，該協程會回傳下一個完成"
+"之可等待物件的結果，或引發其例外。此模式與 3.13 之前的 Python 版本相容： ::"
 
-#: ../../library/asyncio-task.rst:1002
+#: ../../library/asyncio-task.rst:992
 msgid ""
 "ipv4_connect = create_task(open_connection(\"127.0.0.1\", 80))\n"
 "ipv6_connect = create_task(open_connection(\"::1\", 80))\n"
@@ -1398,62 +1781,85 @@ msgid ""
 "    # awaitable that finishes next.\n"
 "    reader, writer = await next_connect"
 msgstr ""
+"ipv4_connect = create_task(open_connection(\"127.0.0.1\", 80))\n"
+"ipv6_connect = create_task(open_connection(\"::1\", 80))\n"
+"tasks = [ipv4_connect, ipv6_connect]\n"
+"\n"
+"for next_connect in as_completed(tasks):\n"
+"    # next_connect 並不是原本的任務物件之一。必須等待它，\n"
+"    # 才能取得下一個完成之可等待物件的結果值，\n"
+"    # 或引發其例外。\n"
+"    reader, writer = await next_connect"
 
-#: ../../library/asyncio-task.rst:1012
+#: ../../library/asyncio-task.rst:1002
 msgid ""
 "A :exc:`TimeoutError` is raised if the timeout occurs before all awaitables "
 "are done. This is raised by the ``async for`` loop during asynchronous "
 "iteration or by the coroutines yielded during plain iteration."
 msgstr ""
+"如果在所有可等待物件完成前發生超時，則會引發 :exc:`TimeoutError`。在非同步疊"
+"代期間，這會由 ``async for`` 迴圈引發；在一般疊代期間，則由所 yield 的協程引"
+"發。"
 
-#: ../../library/asyncio-task.rst:1016
+#: ../../library/asyncio-task.rst:1006
 msgid ""
 "``as_completed()`` does not cancel the tasks running the supplied "
 "awaitables: if a timeout occurs or the iteration is cancelled, the remaining "
 "tasks continue to run."
 msgstr ""
+"``as_completed()`` 不會取消執行所提供之可等待物件的任務：如果發生超時或疊代被"
+"取消，其餘的任務會繼續執行。"
 
-#: ../../library/asyncio-task.rst:1023
+#: ../../library/asyncio-task.rst:1013
 msgid ""
 "Deprecation warning is emitted if not all awaitable objects in the *aws* "
 "iterable are Future-like objects and there is no running event loop."
 msgstr ""
+"如果 *aws* 可疊代物件中並非所有可等待物件都是類 Future 物件，且沒有正在執行的"
+"事件迴圈，則會發出棄用警告。"
 
-#: ../../library/asyncio-task.rst:1030
+#: ../../library/asyncio-task.rst:1020
 msgid ""
 "The result can now be used as either an :term:`asynchronous iterator` or as "
 "a plain :term:`iterator` (previously it was only a plain iterator)."
 msgstr ""
+"現在結果可以作為\\ :term:`非同步疊代器 <asynchronous iterator>`\\ 或一般的"
+"\\ :term:`疊代器 <iterator>`\\ 使用（先前只能作為一般疊代器）。"
 
-#: ../../library/asyncio-task.rst:1036
+#: ../../library/asyncio-task.rst:1026
 msgid "Running in threads"
-msgstr ""
+msgstr "在執行緒中執行"
 
-#: ../../library/asyncio-task.rst:1041
+#: ../../library/asyncio-task.rst:1031
 msgid "Asynchronously run function *func* in a separate thread."
-msgstr ""
+msgstr "在另一個執行緒中非同步地執行函式 *func*。"
 
-#: ../../library/asyncio-task.rst:1043
+#: ../../library/asyncio-task.rst:1033
 msgid ""
 "Any \\*args and \\*\\*kwargs supplied for this function are directly passed "
 "to *func*. Also, the current :class:`contextvars.Context` is propagated, "
 "allowing context variables from the event loop thread to be accessed in the "
 "separate thread."
 msgstr ""
+"提供給此函式的任何 \\*args 和 \\*\\*kwargs 都會直接傳遞給 *func*。此外，目前"
+"的 :class:`contextvars.Context` 也會被傳播，讓事件迴圈執行緒中的情境變數可以"
+"在另一個執行緒中被存取。"
 
-#: ../../library/asyncio-task.rst:1048
+#: ../../library/asyncio-task.rst:1038
 msgid ""
 "Return a coroutine that can be awaited to get the eventual result of *func*."
-msgstr ""
+msgstr "回傳一個協程，可以等待它以取得 *func* 的最終結果。"
 
-#: ../../library/asyncio-task.rst:1050
+#: ../../library/asyncio-task.rst:1040
 msgid ""
 "This coroutine function is primarily intended to be used for executing IO-"
 "bound functions/methods that would otherwise block the event loop if they "
 "were run in the main thread. For example::"
 msgstr ""
+"這個協程函式主要用於執行 IO 密集型 (IO-bound) 的函式/方法，這些函式/方法若在"
+"主執行緒中執行，則會阻塞事件迴圈。例如： ::"
 
-#: ../../library/asyncio-task.rst:1054
+#: ../../library/asyncio-task.rst:1044
 msgid ""
 "def blocking_io():\n"
 "    print(f\"start blocking_io at {time.strftime('%X')}\")\n"
@@ -1481,44 +1887,76 @@ msgid ""
 "# blocking_io complete at 19:50:54\n"
 "# finished main at 19:50:54"
 msgstr ""
+"def blocking_io():\n"
+"    print(f\"start blocking_io at {time.strftime('%X')}\")\n"
+"    # 請注意，time.sleep() 可以替換成任何阻塞的\n"
+"    # IO 密集型操作，例如檔案操作。\n"
+"    time.sleep(1)\n"
+"    print(f\"blocking_io complete at {time.strftime('%X')}\")\n"
+"\n"
+"async def main():\n"
+"    print(f\"started main at {time.strftime('%X')}\")\n"
+"\n"
+"    await asyncio.gather(\n"
+"        asyncio.to_thread(blocking_io),\n"
+"        asyncio.sleep(1))\n"
+"\n"
+"    print(f\"finished main at {time.strftime('%X')}\")\n"
+"\n"
+"\n"
+"asyncio.run(main())\n"
+"\n"
+"# 預期的輸出：\n"
+"#\n"
+"# started main at 19:50:53\n"
+"# start blocking_io at 19:50:53\n"
+"# blocking_io complete at 19:50:54\n"
+"# finished main at 19:50:54"
 
-#: ../../library/asyncio-task.rst:1080
+#: ../../library/asyncio-task.rst:1070
 msgid ""
 "Directly calling ``blocking_io()`` in any coroutine would block the event "
 "loop for its duration, resulting in an additional 1 second of run time. "
 "Instead, by using ``asyncio.to_thread()``, we can run it in a separate "
 "thread without blocking the event loop."
 msgstr ""
+"在任何協程中直接呼叫 ``blocking_io()`` 都會在其執行期間阻塞事件迴圈，導致額"
+"外 1 秒的執行時間。改為使用 ``asyncio.to_thread()``，就可以在另一個執行緒中執"
+"行它，而不會阻塞事件迴圈。"
 
-#: ../../library/asyncio-task.rst:1087
+#: ../../library/asyncio-task.rst:1077
 msgid ""
 "Due to the :term:`GIL`, ``asyncio.to_thread()`` can typically only be used "
 "to make IO-bound functions non-blocking. However, for extension modules that "
 "release the GIL or alternative Python implementations that don't have one, "
 "``asyncio.to_thread()`` can also be used for CPU-bound functions."
 msgstr ""
+"由於 :term:`GIL` 的關係，``asyncio.to_thread()`` 通常只能用來讓 IO 密集型函式"
+"變成非阻塞的。然而，對於會釋放 GIL 的擴充模組或沒有 GIL 的其他 Python 實作，"
+"``asyncio.to_thread()`` 也可以用於 CPU 密集型 (CPU-bound) 函式。"
 
-#: ../../library/asyncio-task.rst:1096
+#: ../../library/asyncio-task.rst:1086
 msgid "Scheduling from other threads"
-msgstr ""
+msgstr "從其他執行緒中排程"
 
-#: ../../library/asyncio-task.rst:1100
+#: ../../library/asyncio-task.rst:1090
 msgid "Submit a coroutine to the given event loop.  Thread-safe."
-msgstr ""
+msgstr "將協程提交到給定的事件迴圈。此函式為執行緒安全。"
 
-#: ../../library/asyncio-task.rst:1102
+#: ../../library/asyncio-task.rst:1092
 msgid ""
 "Return a :class:`concurrent.futures.Future` to wait for the result from "
 "another OS thread."
 msgstr ""
+"回傳一個 :class:`concurrent.futures.Future`，以便從另一個 OS 執行緒等待結果。"
 
-#: ../../library/asyncio-task.rst:1105
+#: ../../library/asyncio-task.rst:1095
 msgid ""
 "This function is meant to be called from a different OS thread than the one "
 "where the event loop is running.  Example::"
-msgstr ""
+msgstr "此函式應從與事件迴圈所在執行緒不同的 OS 執行緒中呼叫。範例： ::"
 
-#: ../../library/asyncio-task.rst:1108
+#: ../../library/asyncio-task.rst:1098
 msgid ""
 "def in_thread(loop: asyncio.AbstractEventLoop) -> None:\n"
 "    # Run some blocking IO\n"
@@ -1541,12 +1979,32 @@ msgid ""
 "    # Run something in a thread\n"
 "    await asyncio.to_thread(in_thread, loop)"
 msgstr ""
+"def in_thread(loop: asyncio.AbstractEventLoop) -> None:\n"
+"    # 執行一些阻塞的 IO\n"
+"    pathlib.Path(\"example.txt\").write_text(\"hello world\", "
+"encoding=\"utf8\")\n"
+"\n"
+"    # 建立一個協程\n"
+"    coro = asyncio.sleep(1, result=3)\n"
+"\n"
+"    # 將協程提交到給定的迴圈\n"
+"    future = asyncio.run_coroutine_threadsafe(coro, loop)\n"
+"\n"
+"    # 等待結果，可選擇性地傳入 timeout 引數\n"
+"    assert future.result(timeout=2) == 3\n"
+"\n"
+"async def amain() -> None:\n"
+"    # 取得正在執行的迴圈\n"
+"    loop = asyncio.get_running_loop()\n"
+"\n"
+"    # 在執行緒中執行某些東西\n"
+"    await asyncio.to_thread(in_thread, loop)"
 
-#: ../../library/asyncio-task.rst:1128
+#: ../../library/asyncio-task.rst:1118
 msgid "It's also possible to run the other way around.  Example::"
-msgstr ""
+msgstr "也可以反過來執行。範例： ::"
 
-#: ../../library/asyncio-task.rst:1130
+#: ../../library/asyncio-task.rst:1120
 msgid ""
 "@contextlib.contextmanager\n"
 "def loop_in_thread() -> Generator[asyncio.AbstractEventLoop]:\n"
@@ -1581,14 +2039,48 @@ msgid ""
 "    # Wait for the result with an optional timeout argument\n"
 "    assert future.result(timeout=2) == 3"
 msgstr ""
+"@contextlib.contextmanager\n"
+"def loop_in_thread() -> Generator[asyncio.AbstractEventLoop]:\n"
+"    loop_fut = concurrent.futures.Future[asyncio.AbstractEventLoop]()\n"
+"    stop_event = asyncio.Event()\n"
+"\n"
+"    async def main() -> None:\n"
+"        loop_fut.set_result(asyncio.get_running_loop())\n"
+"        await stop_event.wait()\n"
+"\n"
+"    with concurrent.futures.ThreadPoolExecutor(1) as tpe:\n"
+"        complete_fut = tpe.submit(asyncio.run, main())\n"
+"        for fut in concurrent.futures.as_completed((loop_fut, "
+"complete_fut)):\n"
+"            if fut is loop_fut:\n"
+"                loop = loop_fut.result()\n"
+"                try:\n"
+"                    yield loop\n"
+"                finally:\n"
+"                    loop.call_soon_threadsafe(stop_event.set)\n"
+"            else:\n"
+"                fut.result()\n"
+"\n"
+"# 在另一個執行緒中建立迴圈\n"
+"with loop_in_thread() as loop:\n"
+"    # 建立一個協程\n"
+"    coro = asyncio.sleep(1, result=3)\n"
+"\n"
+"    # 將協程提交到給定的迴圈\n"
+"    future = asyncio.run_coroutine_threadsafe(coro, loop)\n"
+"\n"
+"    # 等待結果，可選擇性地傳入 timeout 引數\n"
+"    assert future.result(timeout=2) == 3"
 
-#: ../../library/asyncio-task.rst:1162
+#: ../../library/asyncio-task.rst:1152
 msgid ""
 "If an exception is raised in the coroutine, the returned Future will be "
 "notified.  It can also be used to cancel the task in the event loop::"
 msgstr ""
+"如果協程中引發了例外，回傳的 Future 會收到通知。它也可以用來取消事件迴圈中的"
+"任務： ::"
 
-#: ../../library/asyncio-task.rst:1166
+#: ../../library/asyncio-task.rst:1156
 msgid ""
 "try:\n"
 "    result = future.result(timeout)\n"
@@ -1600,111 +2092,144 @@ msgid ""
 "else:\n"
 "    print(f'The coroutine returned: {result!r}')"
 msgstr ""
+"try:\n"
+"    result = future.result(timeout)\n"
+"except TimeoutError:\n"
+"    print('The coroutine took too long, cancelling the task...')\n"
+"    future.cancel()\n"
+"except Exception as exc:\n"
+"    print(f'The coroutine raised an exception: {exc!r}')\n"
+"else:\n"
+"    print(f'The coroutine returned: {result!r}')"
 
-#: ../../library/asyncio-task.rst:1176
+#: ../../library/asyncio-task.rst:1166
 msgid ""
 "See the :ref:`concurrency and multithreading <asyncio-multithreading>` "
 "section of the documentation."
-msgstr ""
+msgstr "請參閱文件的\\ :ref:`並行和多執行緒 <asyncio-multithreading>`\\ 部分。"
 
-#: ../../library/asyncio-task.rst:1179
+#: ../../library/asyncio-task.rst:1169
 msgid ""
 "Unlike other asyncio functions this function requires the *loop* argument to "
 "be passed explicitly."
-msgstr ""
+msgstr "與其他 asyncio 函式不同，此函式需要明確地傳入 *loop* 引數。"
 
-#: ../../library/asyncio-task.rst:1186
+#: ../../library/asyncio-task.rst:1176
 msgid "Introspection"
-msgstr ""
+msgstr "內省"
 
-#: ../../library/asyncio-task.rst:1191
+#: ../../library/asyncio-task.rst:1181
 msgid ""
 "Return the currently running :class:`Task` instance, or ``None`` if no task "
 "is running."
 msgstr ""
+"回傳目前正在執行的 :class:`Task` 實例，如果沒有正在執行的任務則回傳 "
+"``None``。"
 
-#: ../../library/asyncio-task.rst:1194
+#: ../../library/asyncio-task.rst:1184
 msgid ""
 "If *loop* is ``None`` :func:`get_running_loop` is used to get the current "
 "loop."
 msgstr ""
+"如果 *loop* 為 ``None``，則會使用 :func:`get_running_loop` 來取得目前的迴圈。"
 
-#: ../../library/asyncio-task.rst:1202
+#: ../../library/asyncio-task.rst:1192
 msgid "Return a set of not yet finished :class:`Task` objects run by the loop."
-msgstr ""
+msgstr "回傳由該迴圈執行且尚未完成的 :class:`Task` 物件的集合。"
 
-#: ../../library/asyncio-task.rst:1205
+#: ../../library/asyncio-task.rst:1195
 msgid ""
 "If *loop* is ``None``, :func:`get_running_loop` is used for getting current "
 "loop."
 msgstr ""
+"如果 *loop* 為 ``None``，則會使用 :func:`get_running_loop` 來取得目前的迴圈。"
 
-#: ../../library/asyncio-task.rst:1213
+#: ../../library/asyncio-task.rst:1203
 msgid "Return ``True`` if *obj* is a coroutine object."
-msgstr ""
+msgstr "如果 *obj* 是一個協程物件，則回傳 ``True``。"
 
-#: ../../library/asyncio-task.rst:1220
+#: ../../library/asyncio-task.rst:1210
 msgid "Task object"
 msgstr "Task 物件"
 
-#: ../../library/asyncio-task.rst:1224
+#: ../../library/asyncio-task.rst:1214
 msgid ""
 "A :class:`Future-like <Future>` object that runs a Python :ref:`coroutine "
 "<coroutine>`.  Not thread-safe."
 msgstr ""
+"一個執行 Python :ref:`協程 <coroutine>`\\ 的\\ :class:`類 Future 物件 "
+"<Future>`。不支援執行緒安全。"
 
-#: ../../library/asyncio-task.rst:1227
+#: ../../library/asyncio-task.rst:1217
 msgid ""
 "Tasks are used to run coroutines in event loops. If a coroutine awaits on a "
 "Future, the Task suspends the execution of the coroutine and waits for the "
 "completion of the Future.  When the Future is *done*, the execution of the "
 "wrapped coroutine resumes."
 msgstr ""
+"Task 用於在事件迴圈中執行協程。如果一個協程正在等待一個 Future，Task 會暫停該"
+"協程的執行並等待該 Future 完成。當該 Future 為 *done*\\ （完成）時，被包裝的"
+"協程會恢復執行。"
 
-#: ../../library/asyncio-task.rst:1233
+#: ../../library/asyncio-task.rst:1223
 msgid ""
 "Event loops use cooperative scheduling: an event loop runs one Task at a "
 "time.  While a Task awaits for the completion of a Future, the event loop "
 "runs other Tasks, callbacks, or performs IO operations."
 msgstr ""
+"事件迴圈使用協作式排程 (cooperative scheduling)：一個事件迴圈一次只執行一個 "
+"Task。當某個 Task 在等待 Future 完成時，事件迴圈會執行其他 Task、回呼或執行 "
+"IO 操作。"
 
-#: ../../library/asyncio-task.rst:1238
+#: ../../library/asyncio-task.rst:1228
 msgid ""
 "Use the high-level :func:`asyncio.create_task` function to create Tasks, or "
 "the low-level :meth:`loop.create_task` or :func:`ensure_future` functions.  "
 "Manual instantiation of Tasks is discouraged."
 msgstr ""
+"使用高階的 :func:`asyncio.create_task` 函式來建立 Task，或使用低階的 :meth:"
+"`loop.create_task` 或 :func:`ensure_future` 函式。不建議手動實例化 Task。"
 
-#: ../../library/asyncio-task.rst:1243
+#: ../../library/asyncio-task.rst:1233
 msgid ""
 "To cancel a running Task use the :meth:`cancel` method.  Calling it will "
 "cause the Task to throw a :exc:`CancelledError` exception into the wrapped "
-"coroutine.  If a coroutine is awaiting on a Future object during "
-"cancellation, the Future object will be cancelled."
+"coroutine.  If a coroutine is awaiting on a future-like object during "
+"cancellation, the awaited object will be cancelled."
 msgstr ""
+"要取消一個正在執行的 Task，請使用 :meth:`cancel` 方法。呼叫它會使該 Task 將一"
+"個 :exc:`CancelledError` 例外擲入被包裝的協程。如果協程在取消期間正在等待一個"
+"類 Future 物件，該被等待的物件將會被取消。"
 
-#: ../../library/asyncio-task.rst:1248
+#: ../../library/asyncio-task.rst:1238
 msgid ""
 ":meth:`cancelled` can be used to check if the Task was cancelled. The method "
 "returns ``True`` if the wrapped coroutine did not suppress the :exc:"
 "`CancelledError` exception and was actually cancelled."
 msgstr ""
+":meth:`cancelled` 可用來檢查 Task 是否已被取消。如果被包裝的協程沒有抑制 :"
+"exc:`CancelledError` 例外並且確實被取消，該方法會回傳 ``True``。"
 
-#: ../../library/asyncio-task.rst:1253
+#: ../../library/asyncio-task.rst:1243
 msgid ""
 ":class:`asyncio.Task` inherits from :class:`Future` all of its APIs except :"
 "meth:`Future.set_result` and :meth:`Future.set_exception`."
 msgstr ""
+":class:`asyncio.Task` 從 :class:`Future` 繼承了除 :meth:`Future.set_result` "
+"和 :meth:`Future.set_exception` 以外的所有 API。"
 
-#: ../../library/asyncio-task.rst:1257
+#: ../../library/asyncio-task.rst:1247
 msgid ""
 "An optional keyword-only *context* argument allows specifying a custom :"
 "class:`contextvars.Context` for the *coro* to run in. If no *context* is "
 "provided, the Task copies the current context and later runs its coroutine "
 "in the copied context."
 msgstr ""
+"可選的僅限關鍵字引數 *context* 允許指定一個自訂的 :class:`contextvars."
+"Context` 讓 *coro* 在其中執行。如果沒有提供 *context*，Task 會複製目前的情"
+"境，並在之後於複製的情境中執行其協程。"
 
-#: ../../library/asyncio-task.rst:1262
+#: ../../library/asyncio-task.rst:1252
 msgid ""
 "An optional keyword-only *eager_start* argument allows eagerly starting the "
 "execution of the :class:`asyncio.Task` at task creation time. If set to "
@@ -1713,119 +2238,136 @@ msgid ""
 "coroutine returns or raises without blocking, the task will be finished "
 "eagerly and will skip scheduling to the event loop."
 msgstr ""
+"可選的僅限關鍵字引數 *eager_start* 允許在建立任務時急切地開始執行 :class:"
+"`asyncio.Task`。如果設為 ``True`` 且事件迴圈正在執行，該任務會立即開始執行協"
+"程，直到協程第一次阻塞為止。如果協程在沒有阻塞的情況下回傳或引發例外，該任務"
+"會急切地完成，並跳過排程到事件迴圈的步驟。"
 
-#: ../../library/asyncio-task.rst:1269
+#: ../../library/asyncio-task.rst:1259
 msgid ""
 "Tasks are :ref:`generic <generics>` over the return type of their wrapped "
 "coroutines."
-msgstr ""
+msgstr "Task 是以其所包裝之協程的回傳型別為參數的\\ :ref:`泛型 <generics>`。"
 
-#: ../../library/asyncio-task.rst:1272
+#: ../../library/asyncio-task.rst:1262
 msgid "Added support for the :mod:`contextvars` module."
 msgstr "新增對 :mod:`contextvars` 模組的支援。"
 
-#: ../../library/asyncio-task.rst:1278
+#: ../../library/asyncio-task.rst:1268
 msgid ""
 "Deprecation warning is emitted if *loop* is not specified and there is no "
 "running event loop."
-msgstr ""
+msgstr "如果未指定 *loop* 並且沒有正在執行的事件迴圈則會發出棄用警告。"
 
-#: ../../library/asyncio-task.rst:1285
+#: ../../library/asyncio-task.rst:1275
 msgid "Added the *eager_start* parameter."
 msgstr "新增 *eager_start* 參數。"
 
-#: ../../library/asyncio-task.rst:1290
+#: ../../library/asyncio-task.rst:1280
 msgid "Return ``True`` if the Task is *done*."
-msgstr ""
+msgstr "如果 Task 為 *done*，則回傳 ``True``。"
 
-#: ../../library/asyncio-task.rst:1292
+#: ../../library/asyncio-task.rst:1282
 msgid ""
 "A Task is *done* when the wrapped coroutine either returned a value, raised "
 "an exception, or the Task was cancelled."
 msgstr ""
+"當被包裝的協程回傳了一個值、引發了一個例外，或者 Task 被取消時，該 Task 就是 "
+"*done*。"
 
-#: ../../library/asyncio-task.rst:1297
+#: ../../library/asyncio-task.rst:1287
 msgid "Return the result of the Task."
-msgstr ""
+msgstr "回傳 Task 的結果。"
 
-#: ../../library/asyncio-task.rst:1299
+#: ../../library/asyncio-task.rst:1289
 msgid ""
 "If the Task is *done*, the result of the wrapped coroutine is returned (or "
 "if the coroutine raised an exception, that exception is re-raised.)"
 msgstr ""
+"如果 Task 為 *done*，則回傳被包裝之協程的結果（或者如果協程引發了例外，則重新"
+"引發該例外）。"
 
-#: ../../library/asyncio-task.rst:1303 ../../library/asyncio-task.rst:1317
+#: ../../library/asyncio-task.rst:1293 ../../library/asyncio-task.rst:1307
 msgid ""
 "If the Task has been *cancelled*, this method raises a :exc:`CancelledError` "
 "exception."
 msgstr ""
+"如果 Task 已被 *cancelled*\\ （取消），此方法會引發一個 :exc:"
+"`CancelledError` 例外。"
 
-#: ../../library/asyncio-task.rst:1306
+#: ../../library/asyncio-task.rst:1296
 msgid ""
 "If the Task's result isn't yet available, this method raises an :exc:"
 "`InvalidStateError` exception."
 msgstr ""
+"如果 Task 的結果還不可用，此方法會引發一個 :exc:`InvalidStateError` 例外。"
 
-#: ../../library/asyncio-task.rst:1311
+#: ../../library/asyncio-task.rst:1301
 msgid "Return the exception of the Task."
-msgstr ""
+msgstr "回傳 Task 的例外。"
 
-#: ../../library/asyncio-task.rst:1313
+#: ../../library/asyncio-task.rst:1303
 msgid ""
 "If the wrapped coroutine raised an exception that exception is returned.  If "
 "the wrapped coroutine returned normally this method returns ``None``."
 msgstr ""
+"如果被包裝的協程引發了例外，則回傳該例外。如果被包裝的協程正常回傳，此方法會"
+"回傳 ``None``。"
 
-#: ../../library/asyncio-task.rst:1320
+#: ../../library/asyncio-task.rst:1310
 msgid ""
 "If the Task isn't *done* yet, this method raises an :exc:`InvalidStateError` "
 "exception."
 msgstr ""
+"如果 Task 尚未 *done*，此方法會引發一個 :exc:`InvalidStateError` 例外。"
 
-#: ../../library/asyncio-task.rst:1325
+#: ../../library/asyncio-task.rst:1315
 msgid "Add a callback to be run when the Task is *done*."
-msgstr ""
+msgstr "新增一個在 Task 為 *done* 時執行的回呼函式。"
 
-#: ../../library/asyncio-task.rst:1327 ../../library/asyncio-task.rst:1336
+#: ../../library/asyncio-task.rst:1317 ../../library/asyncio-task.rst:1326
 msgid "This method should only be used in low-level callback-based code."
-msgstr ""
+msgstr "此方法只應用於低階、基於回呼的程式碼。"
 
-#: ../../library/asyncio-task.rst:1329
+#: ../../library/asyncio-task.rst:1319
 msgid ""
 "See the documentation of :meth:`Future.add_done_callback` for more details."
-msgstr ""
+msgstr "更多細節請參閱 :meth:`Future.add_done_callback` 的文件。"
 
-#: ../../library/asyncio-task.rst:1334
+#: ../../library/asyncio-task.rst:1324
 msgid "Remove *callback* from the callbacks list."
-msgstr ""
+msgstr "從回呼列表中移除 *callback*。"
 
-#: ../../library/asyncio-task.rst:1338
+#: ../../library/asyncio-task.rst:1328
 msgid ""
 "See the documentation of :meth:`Future.remove_done_callback` for more "
 "details."
-msgstr ""
+msgstr "更多細節請參閱 :meth:`Future.remove_done_callback` 的文件。"
 
-#: ../../library/asyncio-task.rst:1343
+#: ../../library/asyncio-task.rst:1333
 msgid "Return the list of stack frames for this Task."
-msgstr ""
+msgstr "回傳此 Task 的堆疊框 (stack frame) 串列。"
 
-#: ../../library/asyncio-task.rst:1345
+#: ../../library/asyncio-task.rst:1335
 msgid ""
 "If the wrapped coroutine is not done, this returns the stack where it is "
 "suspended.  If the coroutine has completed successfully or was cancelled, "
 "this returns an empty list. If the coroutine was terminated by an exception, "
 "this returns the list of traceback frames."
 msgstr ""
+"如果被包裝的協程尚未完成，則回傳其被暫停處的堆疊。如果協程已成功完成或已被取"
+"消，則回傳一個空串列。如果協程因例外而終止，則回傳由回溯 (traceback) frame 組"
+"成的串列。"
 
-#: ../../library/asyncio-task.rst:1351
+#: ../../library/asyncio-task.rst:1341
 msgid "The frames are always ordered from oldest to newest."
-msgstr ""
+msgstr "frame 一律按照從最舊到最新的順序排列。"
 
-#: ../../library/asyncio-task.rst:1353
+#: ../../library/asyncio-task.rst:1343
 msgid "Only one stack frame is returned for a suspended coroutine."
-msgstr ""
+msgstr "對於被暫停的協程，只會回傳一個堆疊框。"
 
-#: ../../library/asyncio-task.rst:1355
+#: ../../library/asyncio-task.rst:1345
 msgid ""
 "The optional *limit* argument sets the maximum number of frames to return; "
 "by default all available frames are returned. The ordering of the returned "
@@ -1833,88 +2375,101 @@ msgid ""
 "newest frames of a stack are returned, but the oldest frames of a traceback "
 "are returned.  (This matches the behavior of the traceback module.)"
 msgstr ""
+"可選的 *limit* 引數設定要回傳的最大 frame 數；預設會回傳所有可用的 frame。回"
+"傳串列的順序會依據回傳的是堆疊還是回溯而有所不同：堆疊會回傳最新的 frame，而"
+"回溯會回傳最舊的 frame。（這與 traceback 模組的行為一致。）"
 
-#: ../../library/asyncio-task.rst:1364
+#: ../../library/asyncio-task.rst:1354
 msgid "Print the stack or traceback for this Task."
-msgstr ""
+msgstr "印出此 Task 的堆疊或回溯。"
 
-#: ../../library/asyncio-task.rst:1366
+#: ../../library/asyncio-task.rst:1356
 msgid ""
 "This produces output similar to that of the traceback module for the frames "
 "retrieved by :meth:`get_stack`."
 msgstr ""
+"對於由 :meth:`get_stack` 取得的 frame，這會產生類似於 traceback 模組的輸出。"
 
-#: ../../library/asyncio-task.rst:1369
+#: ../../library/asyncio-task.rst:1359
 msgid "The *limit* argument is passed to :meth:`get_stack` directly."
-msgstr ""
+msgstr "*limit* 引數會直接傳遞給 :meth:`get_stack`。"
 
-#: ../../library/asyncio-task.rst:1371
+#: ../../library/asyncio-task.rst:1361
 msgid ""
 "The *file* argument is an I/O stream to which the output is written; by "
 "default output is written to :data:`sys.stdout`."
 msgstr ""
+"*file* 引數是輸出所寫入的 I/O 串流；預設情況下，輸出會寫入 :data:`sys."
+"stdout`。"
 
-#: ../../library/asyncio-task.rst:1376
+#: ../../library/asyncio-task.rst:1366
 msgid "Return the coroutine object wrapped by the :class:`Task`."
-msgstr ""
+msgstr "回傳被 :class:`Task` 包裝的協程物件。"
 
-#: ../../library/asyncio-task.rst:1380
+#: ../../library/asyncio-task.rst:1370
 msgid ""
 "This will return ``None`` for Tasks which have already completed eagerly. "
 "See the :ref:`Eager Task Factory <eager-task-factory>`."
 msgstr ""
+"對於已經急切完成的 Task，這會回傳 ``None``。請參閱\\ :ref:`急切任務工廠 "
+"<eager-task-factory>`。"
 
-#: ../../library/asyncio-task.rst:1387
+#: ../../library/asyncio-task.rst:1377
 msgid "Newly added eager task execution means result may be ``None``."
-msgstr ""
+msgstr "新增的急切任務執行代表結果可能為 ``None``。"
 
-#: ../../library/asyncio-task.rst:1391
+#: ../../library/asyncio-task.rst:1381
 msgid ""
 "Return the :class:`contextvars.Context` object associated with the task."
-msgstr ""
+msgstr "回傳與該任務相關聯的 :class:`contextvars.Context` 物件。"
 
-#: ../../library/asyncio-task.rst:1398
+#: ../../library/asyncio-task.rst:1388
 msgid "Return the name of the Task."
-msgstr ""
+msgstr "回傳 Task 的名稱。"
 
-#: ../../library/asyncio-task.rst:1400
+#: ../../library/asyncio-task.rst:1390
 msgid ""
 "If no name has been explicitly assigned to the Task, the default asyncio "
 "Task implementation generates a default name during instantiation."
 msgstr ""
+"如果沒有明確地為 Task 指定名稱，預設的 asyncio Task 實作會在實例化期間產生一"
+"個預設名稱。"
 
-#: ../../library/asyncio-task.rst:1408
+#: ../../library/asyncio-task.rst:1398
 msgid "Set the name of the Task."
-msgstr ""
+msgstr "設定 Task 的名稱。"
 
-#: ../../library/asyncio-task.rst:1410
+#: ../../library/asyncio-task.rst:1400
 msgid ""
 "The *value* argument can be any object, which is then converted to a string."
-msgstr ""
+msgstr "*value* 引數可以是任何物件，之後會被轉換為字串。"
 
-#: ../../library/asyncio-task.rst:1413
+#: ../../library/asyncio-task.rst:1403
 msgid ""
 "In the default Task implementation, the name will be visible in the :func:"
 "`repr` output of a task object."
-msgstr ""
+msgstr "在預設的 Task 實作中，名稱會顯示在任務物件的 :func:`repr` 輸出中。"
 
-#: ../../library/asyncio-task.rst:1420
+#: ../../library/asyncio-task.rst:1410
 msgid "Request the Task to be cancelled."
-msgstr ""
+msgstr "請求取消 Task。"
 
-#: ../../library/asyncio-task.rst:1422
+#: ../../library/asyncio-task.rst:1412
 msgid ""
 "If the Task is already *done* or *cancelled*, return ``False``, otherwise, "
 "return ``True``."
 msgstr ""
+"如果 Task 已經是 *done* 或 *cancelled*，則回傳 ``False``，否則回傳 ``True``。"
 
-#: ../../library/asyncio-task.rst:1425
+#: ../../library/asyncio-task.rst:1415
 msgid ""
 "The method arranges for a :exc:`CancelledError` exception to be thrown into "
 "the wrapped coroutine on the next cycle of the event loop."
 msgstr ""
+"此方法會安排在事件迴圈的下一個週期將一個 :exc:`CancelledError` 例外擲入被包裝"
+"的協程。"
 
-#: ../../library/asyncio-task.rst:1428
+#: ../../library/asyncio-task.rst:1418
 msgid ""
 "The coroutine then has a chance to clean up or even deny the request by "
 "suppressing the exception with a :keyword:`try` ... ... ``except "
@@ -1925,22 +2480,36 @@ msgid ""
 "suppress the cancellation, it needs to call :meth:`Task.uncancel` in "
 "addition to catching the exception."
 msgstr ""
+"協程接著就有機會進行清理，甚至可以透過 :keyword:`try` ... ... ``except "
+"CancelledError`` ... :keyword:`finally` 區塊抑制該例外來拒絕該請求。因此，"
+"與 :meth:`Future.cancel` 不同，:meth:`Task.cancel` 並不保證 Task 一定會被取"
+"消，儘管完全抑制取消並不常見，而且強烈不建議這麼做。如果協程仍然決定要抑制取"
+"消，除了捕捉例外之外，它還需要呼叫 :meth:`Task.uncancel`。"
 
-#: ../../library/asyncio-task.rst:1438
+#: ../../library/asyncio-task.rst:1428
+msgid ""
+"If the Task being cancelled is currently awaiting on a future-like object, "
+"that awaited object will also be cancelled. This cancellation propagates "
+"down the entire chain of awaited objects."
+msgstr ""
+"如果被取消的 Task 目前正在等待一個類 Future 物件，該被等待的物件也會被取消。"
+"此取消會沿著整條被等待物件的鏈向下傳播。"
+
+#: ../../library/asyncio-task.rst:1432
 msgid "Added the *msg* parameter."
 msgstr "新增 *msg* 參數。"
 
-#: ../../library/asyncio-task.rst:1441
+#: ../../library/asyncio-task.rst:1435
 msgid "The ``msg`` parameter is propagated from cancelled task to its awaiter."
-msgstr ""
+msgstr "``msg`` 參數會從被取消的任務傳播到其等待者。"
 
-#: ../../library/asyncio-task.rst:1446
+#: ../../library/asyncio-task.rst:1440
 msgid ""
 "The following example illustrates how coroutines can intercept the "
 "cancellation request::"
-msgstr ""
+msgstr "以下範例說明協程如何攔截取消請求： ::"
 
-#: ../../library/asyncio-task.rst:1449
+#: ../../library/asyncio-task.rst:1443
 msgid ""
 "async def cancel_me():\n"
 "    print('cancel_me(): before sleep')\n"
@@ -1976,33 +2545,70 @@ msgid ""
 "#     cancel_me(): after sleep\n"
 "#     main(): cancel_me is cancelled now"
 msgstr ""
+"async def cancel_me():\n"
+"    print('cancel_me(): before sleep')\n"
+"\n"
+"    try:\n"
+"        # 等待 1 小時\n"
+"        await asyncio.sleep(3600)\n"
+"    except asyncio.CancelledError:\n"
+"        print('cancel_me(): cancel sleep')\n"
+"        raise\n"
+"    finally:\n"
+"        print('cancel_me(): after sleep')\n"
+"\n"
+"async def main():\n"
+"    # 建立一個 \"cancel_me\" Task\n"
+"    task = asyncio.create_task(cancel_me())\n"
+"\n"
+"    # 等待 1 秒\n"
+"    await asyncio.sleep(1)\n"
+"\n"
+"    task.cancel()\n"
+"    try:\n"
+"        await task\n"
+"    except asyncio.CancelledError:\n"
+"        print(\"main(): cancel_me is cancelled now\")\n"
+"\n"
+"asyncio.run(main())\n"
+"\n"
+"# 預期的輸出：\n"
+"#\n"
+"#     cancel_me(): before sleep\n"
+"#     cancel_me(): cancel sleep\n"
+"#     cancel_me(): after sleep\n"
+"#     main(): cancel_me is cancelled now"
 
-#: ../../library/asyncio-task.rst:1485
+#: ../../library/asyncio-task.rst:1479
 msgid "Return ``True`` if the Task is *cancelled*."
-msgstr ""
+msgstr "如果 Task 已被 *cancelled*，則回傳 ``True``。"
 
-#: ../../library/asyncio-task.rst:1487
+#: ../../library/asyncio-task.rst:1481
 msgid ""
 "The Task is *cancelled* when the cancellation was requested with :meth:"
 "`cancel` and the wrapped coroutine propagated the :exc:`CancelledError` "
 "exception thrown into it."
 msgstr ""
+"當使用 :meth:`cancel` 請求取消，且被包裝的協程將擲入其中的 :exc:"
+"`CancelledError` 例外傳播出去時，該 Task 即為 *cancelled*。"
 
-#: ../../library/asyncio-task.rst:1493
+#: ../../library/asyncio-task.rst:1487
 msgid "Decrement the count of cancellation requests to this Task."
-msgstr ""
+msgstr "將此 Task 的取消請求計數減一。"
 
-#: ../../library/asyncio-task.rst:1495
+#: ../../library/asyncio-task.rst:1489
 msgid "Returns the remaining number of cancellation requests."
-msgstr ""
+msgstr "回傳剩餘的取消請求數量。"
 
-#: ../../library/asyncio-task.rst:1497
+#: ../../library/asyncio-task.rst:1491
 msgid ""
 "Note that once execution of a cancelled task completed, further calls to :"
 "meth:`uncancel` are ineffective."
 msgstr ""
+"請注意，一旦被取消之任務的執行已經完成，再呼叫 :meth:`uncancel` 將不會有任何"
+"效果。"
 
-#: ../../library/asyncio-task.rst:1502
+#: ../../library/asyncio-task.rst:1496
 msgid ""
 "This method is used by asyncio's internals and isn't expected to be used by "
 "end-user code.  In particular, if a Task gets successfully uncancelled, this "
@@ -2010,8 +2616,12 @@ msgid ""
 "func:`asyncio.timeout` to continue running, isolating cancellation to the "
 "respective structured block. For example::"
 msgstr ""
+"此方法供 asyncio 內部使用，終端使用者的程式碼不應會用到它。特別是，如果一個 "
+"Task 成功地被撤銷取消 (uncancelled)，這能讓像是\\ :ref:`任務群組 "
+"<taskgroups>`\\ 和 :func:`asyncio.timeout` 這類結構化並行的元素繼續執行，將取"
+"消隔離在各自的結構化區塊中。例如： ::"
 
-#: ../../library/asyncio-task.rst:1509
+#: ../../library/asyncio-task.rst:1503
 msgid ""
 "async def make_request_with_timeout():\n"
 "    try:\n"
@@ -2024,8 +2634,18 @@ msgid ""
 "    # Outer code not affected by the timeout:\n"
 "    await unrelated_code()"
 msgstr ""
+"async def make_request_with_timeout():\n"
+"    try:\n"
+"        async with asyncio.timeout(1):\n"
+"            # 受超時影響的結構化區塊：\n"
+"            await make_request()\n"
+"            await make_another_request()\n"
+"    except TimeoutError:\n"
+"        log(\"There was a timeout\")\n"
+"    # 不受超時影響的外部程式碼：\n"
+"    await unrelated_code()"
 
-#: ../../library/asyncio-task.rst:1520
+#: ../../library/asyncio-task.rst:1514
 msgid ""
 "While the block with ``make_request()`` and ``make_another_request()`` might "
 "get cancelled due to the timeout, ``unrelated_code()`` should continue "
@@ -2033,15 +2653,21 @@ msgid ""
 "`uncancel`.  :class:`TaskGroup` context managers use :func:`uncancel` in a "
 "similar fashion."
 msgstr ""
+"雖然包含 ``make_request()`` 和 ``make_another_request()`` 的區塊可能會因超時"
+"而被取消，但即使發生超時，``unrelated_code()`` 也應該繼續執行。這是透過 :"
+"meth:`uncancel` 實作的。:class:`TaskGroup` 情境管理器也以類似的方式使用 :"
+"func:`uncancel`。"
 
-#: ../../library/asyncio-task.rst:1526
+#: ../../library/asyncio-task.rst:1520
 msgid ""
 "If end-user code is, for some reason, suppressing cancellation by catching :"
 "exc:`CancelledError`, it needs to call this method to remove the "
 "cancellation state."
 msgstr ""
+"如果終端使用者的程式碼因為某些原因而透過捕捉 :exc:`CancelledError` 來抑制取"
+"消，它就需要呼叫此方法來移除取消狀態。"
 
-#: ../../library/asyncio-task.rst:1530
+#: ../../library/asyncio-task.rst:1524
 msgid ""
 "When this method decrements the cancellation count to zero, the method "
 "checks if a previous :meth:`cancel` call had arranged for :exc:"
@@ -2049,18 +2675,23 @@ msgid ""
 "that arrangement will be rescinded (by resetting the internal "
 "``_must_cancel`` flag)."
 msgstr ""
+"當此方法將取消計數遞減至零時，它會檢查先前的 :meth:`cancel` 呼叫是否已安排"
+"將 :exc:`CancelledError` 擲入該任務。如果該例外尚未被擲入，則會撤銷該安排（透"
+"過重設內部的 ``_must_cancel`` 旗標）。"
 
-#: ../../library/asyncio-task.rst:1536
+#: ../../library/asyncio-task.rst:1530
 msgid "Changed to rescind pending cancellation requests upon reaching zero."
-msgstr ""
+msgstr "改為在計數歸零時撤銷待處理的取消請求。"
 
-#: ../../library/asyncio-task.rst:1541
+#: ../../library/asyncio-task.rst:1535
 msgid ""
 "Return the number of pending cancellation requests to this Task, i.e., the "
 "number of calls to :meth:`cancel` less the number of :meth:`uncancel` calls."
 msgstr ""
+"回傳對此 Task 待處理的取消請求數量，即 :meth:`cancel` 的呼叫次數減去 :meth:"
+"`uncancel` 的呼叫次數。"
 
-#: ../../library/asyncio-task.rst:1545
+#: ../../library/asyncio-task.rst:1539
 msgid ""
 "Note that if this number is greater than zero but the Task is still "
 "executing, :meth:`cancelled` will still return ``False``. This is because "
@@ -2068,12 +2699,102 @@ msgid ""
 "the task not being cancelled after all if the cancellation requests go down "
 "to zero."
 msgstr ""
+"請注意，如果此數字大於零但 Task 仍在執行中，:meth:`cancelled` 仍然會回傳 "
+"``False``。這是因為此數字可以透過呼叫 :meth:`uncancel` 來降低，如果取消請求降"
+"到零，最終可能導致該任務根本不會被取消。"
 
-#: ../../library/asyncio-task.rst:1551
+#: ../../library/asyncio-task.rst:1545
 msgid ""
 "This method is used by asyncio's internals and isn't expected to be used by "
 "end-user code.  See :meth:`uncancel` for more details."
 msgstr ""
+"此方法供 asyncio 內部使用，終端使用者的程式碼不應會用到它。更多細節請參閱 :"
+"meth:`uncancel`。"
+
+#~ msgid "Terminating a task group"
+#~ msgstr "終止任務群組"
+
+#~ msgid ""
+#~ "While terminating a task group is not natively supported by the standard "
+#~ "library, termination can be achieved by adding an exception-raising task "
+#~ "to the task group and ignoring the raised exception:"
+#~ msgstr ""
+#~ "雖然標準函式庫並未原生支援終止任務群組，但可以透過在任務群組中加入一個會引"
+#~ "發例外的任務，並忽略所引發的例外來達成終止："
+
+#~ msgid ""
+#~ "import asyncio\n"
+#~ "from asyncio import TaskGroup\n"
+#~ "\n"
+#~ "class TerminateTaskGroup(Exception):\n"
+#~ "    \"\"\"Exception raised to terminate a task group.\"\"\"\n"
+#~ "\n"
+#~ "async def force_terminate_task_group():\n"
+#~ "    \"\"\"Used to force termination of a task group.\"\"\"\n"
+#~ "    raise TerminateTaskGroup()\n"
+#~ "\n"
+#~ "async def job(task_id, sleep_time):\n"
+#~ "    print(f'Task {task_id}: start')\n"
+#~ "    await asyncio.sleep(sleep_time)\n"
+#~ "    print(f'Task {task_id}: done')\n"
+#~ "\n"
+#~ "async def main():\n"
+#~ "    try:\n"
+#~ "        async with TaskGroup() as group:\n"
+#~ "            # spawn some tasks\n"
+#~ "            group.create_task(job(1, 0.5))\n"
+#~ "            group.create_task(job(2, 1.5))\n"
+#~ "            # sleep for 1 second\n"
+#~ "            await asyncio.sleep(1)\n"
+#~ "            # add an exception-raising task to force the group to "
+#~ "terminate\n"
+#~ "            group.create_task(force_terminate_task_group())\n"
+#~ "    except* TerminateTaskGroup:\n"
+#~ "        pass\n"
+#~ "\n"
+#~ "asyncio.run(main())"
+#~ msgstr ""
+#~ "import asyncio\n"
+#~ "from asyncio import TaskGroup\n"
+#~ "\n"
+#~ "class TerminateTaskGroup(Exception):\n"
+#~ "    \"\"\"Exception raised to terminate a task group.\"\"\"\n"
+#~ "\n"
+#~ "async def force_terminate_task_group():\n"
+#~ "    \"\"\"Used to force termination of a task group.\"\"\"\n"
+#~ "    raise TerminateTaskGroup()\n"
+#~ "\n"
+#~ "async def job(task_id, sleep_time):\n"
+#~ "    print(f'Task {task_id}: start')\n"
+#~ "    await asyncio.sleep(sleep_time)\n"
+#~ "    print(f'Task {task_id}: done')\n"
+#~ "\n"
+#~ "async def main():\n"
+#~ "    try:\n"
+#~ "        async with TaskGroup() as group:\n"
+#~ "            # 產生一些任務\n"
+#~ "            group.create_task(job(1, 0.5))\n"
+#~ "            group.create_task(job(2, 1.5))\n"
+#~ "            # 休眠 1 秒\n"
+#~ "            await asyncio.sleep(1)\n"
+#~ "            # 加入一個會引發例外的任務來強制終止群組\n"
+#~ "            group.create_task(force_terminate_task_group())\n"
+#~ "    except* TerminateTaskGroup:\n"
+#~ "        pass\n"
+#~ "\n"
+#~ "asyncio.run(main())"
+
+#~ msgid "Expected output:"
+#~ msgstr "預期的輸出："
+
+#~ msgid ""
+#~ "Task 1: start\n"
+#~ "Task 2: start\n"
+#~ "Task 1: done"
+#~ msgstr ""
+#~ "Task 1: start\n"
+#~ "Task 2: start\n"
+#~ "Task 1: done"
 
 #~ msgid ""
 #~ "for coro in as_completed(aws):\n"
