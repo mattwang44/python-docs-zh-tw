@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.14\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-02-07 00:19+0000\n"
+"POT-Creation-Date: 2026-11-27 03:22+0800\n"
 "PO-Revision-Date: 2018-05-23 16:08+0000\n"
 "Last-Translator: Adrian Liaw <adrianliaw2000@gmail.com>\n"
 "Language-Team: Chinese - TAIWAN (https://github.com/python/python-docs-zh-"
@@ -21,11 +21,11 @@ msgstr ""
 msgid ":mod:`!pprint` --- Data pretty printer"
 msgstr ":mod:`!pprint` --- 資料美化列印器"
 
-#: ../../library/pprint.rst:10
+#: ../../library/pprint.rst:7
 msgid "**Source code:** :source:`Lib/pprint.py`"
 msgstr "**原始碼：**\\ :source:`Lib/pprint.py`"
 
-#: ../../library/pprint.rst:14
+#: ../../library/pprint.rst:11
 msgid ""
 "The :mod:`!pprint` module provides a capability to \"pretty-print\" "
 "arbitrary Python data structures in a form which can be used as input to the "
@@ -34,117 +34,168 @@ msgid ""
 "be the case if objects such as files, sockets or classes are included, as "
 "well as many other objects which are not representable as Python literals."
 msgstr ""
+":mod:`!pprint` 模組提供了將任意 Python 資料結構「美化列印」的能力，其輸出形式"
+"可以作為直譯器的輸入。如果格式化後的結構包含非 Python 基本型別的物件，其表示"
+"可能無法被載入。若包含檔案、socket 或類別等物件，以及許多其他無法以 Python 字"
+"面值表示的物件，就可能發生這種情況。"
 
-#: ../../library/pprint.rst:21
+#: ../../library/pprint.rst:18
 msgid ""
 "The formatted representation keeps objects on a single line if it can, and "
 "breaks them onto multiple lines if they don't fit within the allowed width, "
 "adjustable by the *width* parameter defaulting to 80 characters."
 msgstr ""
+"格式化表示會盡可能將物件保持在同一行；若超出允許的寬度，則會拆成多行。寬度可"
+"透過 *width* 參數調整，預設為 80 個字元。"
+
+#: ../../library/pprint.rst:22
+msgid "Added support for pretty-printing :class:`types.SimpleNamespace`."
+msgstr "新增對 :class:`types.SimpleNamespace` 的美化列印支援。"
 
 #: ../../library/pprint.rst:25
-msgid "Added support for pretty-printing :class:`types.SimpleNamespace`."
-msgstr ""
-
-#: ../../library/pprint.rst:28
 msgid "Added support for pretty-printing :class:`dataclasses.dataclass`."
-msgstr ""
+msgstr "新增對 :class:`dataclasses.dataclass` 的美化列印支援。"
 
-#: ../../library/pprint.rst:34
+#: ../../library/pprint.rst:31
 msgid "Functions"
 msgstr "函式"
 
-#: ../../library/pprint.rst:39
+#: ../../library/pprint.rst:37
 msgid ""
 "Prints the formatted representation of *object*, followed by a newline. This "
 "function may be used in the interactive interpreter instead of the :func:"
 "`print` function for inspecting values. Tip: you can reassign ``print = "
 "pprint.pp`` for use within a scope."
 msgstr ""
+"印出 *object* 的格式化表示，並在後面加上換行字元。此函式可以在互動式直譯器中"
+"代替 :func:`print` 函式來檢視值。提示：你可以在某個作用域內以 ``print = "
+"pprint.pp`` 重新指定 print。"
 
 #: ../../library/pprint.rst:0
 msgid "Parameters"
 msgstr "參數"
 
-#: ../../library/pprint.rst:44
+#: ../../library/pprint.rst:42
 msgid "The object to be printed."
 msgstr "將被印出的物件。"
 
-#: ../../library/pprint.rst:47
+#: ../../library/pprint.rst:45
 msgid ""
 "A file-like object to which the output will be written by calling its :meth:"
 "`!write` method. If ``None`` (the default), :data:`sys.stdout` is used."
 msgstr ""
+"一個類檔案物件，輸出會透過呼叫其 :meth:`!write` 方法寫入。如果為 ``None``\\ "
+"（預設值），則使用 :data:`sys.stdout`。"
 
-#: ../../library/pprint.rst:53
+#: ../../library/pprint.rst:51
 msgid "The amount of indentation added for each nesting level."
-msgstr ""
+msgstr "每一層巢狀所增加的縮排量。"
 
-#: ../../library/pprint.rst:56
+#: ../../library/pprint.rst:54
 msgid ""
 "The desired maximum number of characters per line in the output. If a "
 "structure cannot be formatted within the width constraint, a best effort "
 "will be made."
 msgstr ""
+"輸出中每行期望的最大字元數。如果某個結構無法在寬度限制內格式化，則會盡可能貼"
+"近該寬度。"
 
-#: ../../library/pprint.rst:61
+#: ../../library/pprint.rst:59
 msgid ""
 "The number of nesting levels which may be printed. If the data structure "
 "being printed is too deep, the next contained level is replaced by ``...``. "
 "If ``None`` (the default), there is no constraint on the depth of the "
 "objects being formatted."
 msgstr ""
+"可以印出的巢狀層數。如果要印出的資料結構太深，下一層所包含的內容會以 ``...`` "
+"取代。如果為 ``None``\\ （預設值），則被格式化物件的深度沒有限制。"
 
-#: ../../library/pprint.rst:69
+#: ../../library/pprint.rst:67
 msgid ""
 "Control the way long :term:`sequences <sequence>` are formatted. If "
 "``False`` (the default), each item of a sequence will be formatted on a "
 "separate line, otherwise as many items as will fit within the *width* will "
-"be formatted on each output line."
+"be formatted on each output line. Incompatible with *expand*."
 msgstr ""
+"控制長\\ :term:`序列 <sequence>`\\ 的格式化方式。如果為 ``False``\\ （預設"
+"值），序列的每個項目都會格式化在獨立的一行；否則每個輸出行會在 *width* 範圍內"
+"盡可能容納多個項目。與 *expand* 不相容。"
 
-#: ../../library/pprint.rst:76
+#: ../../library/pprint.rst:75
+msgid ""
+"If ``True``, opening parentheses and brackets will be followed by a newline "
+"and the following content will be indented by one level, similar to pretty-"
+"printed JSON. Incompatible with *compact*."
+msgstr ""
+"如果為 ``True``，左括號（小括號、方括號與大括號）後面會接著換行，後續內容會再"
+"縮排一層，類似美化列印過的 JSON。與 *compact* 不相容。"
+
+#: ../../library/pprint.rst:81
 msgid ""
 "If ``True``, dictionaries will be formatted with their keys sorted, "
 "otherwise they will be displayed in insertion order (the default)."
 msgstr ""
+"如果為 ``True``，字典會以鍵排序後的順序格式化，否則會以插入順序顯示（預設）。"
 
-#: ../../library/pprint.rst:81
+#: ../../library/pprint.rst:86
 msgid ""
 "If ``True``, integers will be formatted with the ``_`` character for a "
 "thousands separator, otherwise underscores are not displayed (the default)."
 msgstr ""
+"如果為 ``True``，整數會以 ``_`` 字元作為千位分隔符號來格式化，否則不顯示底線"
+"（預設）。"
 
-#: ../../library/pprint.rst:103
+#: ../../library/pprint.rst:104 ../../library/pprint.rst:226
+msgid "Added the *underscore_numbers* parameter."
+msgstr "新增 *underscore_numbers* 參數。"
+
+#: ../../library/pprint.rst:107 ../../library/pprint.rst:229
+msgid "No longer attempts to write to :data:`!sys.stdout` if it is ``None``."
+msgstr "如果 :data:`!sys.stdout` 為 ``None``，則不再嘗試寫入它。"
+
+#: ../../library/pprint.rst:110 ../../library/pprint.rst:232
+msgid "Added the *expand* parameter."
+msgstr "新增 *expand* 參數。"
+
+#: ../../library/pprint.rst:118
 msgid ""
 "Alias for :func:`~pprint.pp` with *sort_dicts* set to ``True`` by default, "
 "which would automatically sort the dictionaries' keys, you might want to "
 "use :func:`~pprint.pp` instead where it is ``False`` by default."
 msgstr ""
+"為 :func:`~pprint.pp` 的別名，但 *sort_dicts* 預設為 ``True``，會自動對字典的"
+"鍵排序；你可能會想改用 :func:`~pprint.pp`，其預設為 ``False``。"
 
-#: ../../library/pprint.rst:111
+#: ../../library/pprint.rst:127
 msgid ""
 "Return the formatted representation of *object* as a string.  *indent*, "
-"*width*, *depth*, *compact*, *sort_dicts* and *underscore_numbers* are "
-"passed to the :class:`PrettyPrinter` constructor as formatting parameters "
-"and their meanings are as described in the documentation above."
+"*width*, *depth*, *compact*, *expand*, *sort_dicts* and *underscore_numbers* "
+"are passed to the :class:`PrettyPrinter` constructor as formatting "
+"parameters and their meanings are as described in the documentation above."
 msgstr ""
+"以字串形式回傳 *object* 的格式化表示。*indent*、*width*、*depth*、*compact*、"
+"*expand*、*sort_dicts* 和 *underscore_numbers* 會作為格式化參數傳給 :class:"
+"`PrettyPrinter` 建構函式，其意義如上方文件所述。"
 
-#: ../../library/pprint.rst:121
+#: ../../library/pprint.rst:137
 msgid ""
 "Determine if the formatted representation of *object* is \"readable\", or "
 "can be used to reconstruct the value using :func:`eval`.  This always "
 "returns ``False`` for recursive objects."
 msgstr ""
+"判斷 *object* 的格式化表示是否為「可讀的」，也就是能否用 :func:`eval` 重建其"
+"值。對於遞迴物件，此函式一律回傳 ``False``。"
 
-#: ../../library/pprint.rst:131
+#: ../../library/pprint.rst:147
 msgid ""
 "Determine if *object* requires a recursive representation.  This function is "
 "subject to the same limitations as noted in :func:`saferepr` below and may "
 "raise an :exc:`RecursionError` if it fails to detect a recursive object."
 msgstr ""
+"判斷 *object* 是否需要遞迴表示。此函式受到與下方 :func:`saferepr` 所述相同的"
+"限制，如果無法偵測到遞迴物件，可能會引發 :exc:`RecursionError`。"
 
-#: ../../library/pprint.rst:138
+#: ../../library/pprint.rst:154
 msgid ""
 "Return a string representation of *object*, protected against recursion in "
 "some common data structures, namely instances of :class:`dict`, :class:"
@@ -153,62 +204,64 @@ msgid ""
 "recursive reference will be represented as ``<Recursion on typename with "
 "id=number>``.  The representation is not otherwise formatted."
 msgstr ""
+"回傳 *object* 的字串表示，並在某些常見資料結構中防範遞迴；這些資料結構為 :"
+"class:`dict`、:class:`list` 和 :class:`tuple` 的實例，或其 ``__repr__`` 未被"
+"覆寫的子類別。如果物件的表示暴露出遞迴項目，該遞迴參照會以 ``<Recursion on "
+"typename with id=number>`` 表示。除此之外，此表示不會經過其他格式化。"
 
-#: ../../library/pprint.rst:151
+#: ../../library/pprint.rst:167
 msgid "PrettyPrinter Objects"
 msgstr "PrettyPrinter 物件"
 
-#: ../../library/pprint.rst:158
+#: ../../library/pprint.rst:175
 msgid "Construct a :class:`PrettyPrinter` instance."
 msgstr "建立一個 :class:`PrettyPrinter` 實例。"
 
-#: ../../library/pprint.rst:160
+#: ../../library/pprint.rst:177
 msgid ""
 "Arguments have the same meaning as for :func:`~pprint.pp`. Note that they "
 "are in a different order, and that *sort_dicts* defaults to ``True``."
 msgstr ""
+"引數的意義與 :func:`~pprint.pp` 相同。請注意它們的順序不同，而且 "
+"*sort_dicts* 預設為 ``True``。"
 
-#: ../../library/pprint.rst:187
+#: ../../library/pprint.rst:220
 msgid "Added the *compact* parameter."
 msgstr "新增 *compact* 參數。"
 
-#: ../../library/pprint.rst:190
+#: ../../library/pprint.rst:223
 msgid "Added the *sort_dicts* parameter."
 msgstr "新增 *sort_dicts* 參數。"
 
-#: ../../library/pprint.rst:193
-msgid "Added the *underscore_numbers* parameter."
-msgstr "新增 *underscore_numbers* 參數。"
-
-#: ../../library/pprint.rst:196
-msgid "No longer attempts to write to :data:`!sys.stdout` if it is ``None``."
-msgstr ""
-
-#: ../../library/pprint.rst:200
+#: ../../library/pprint.rst:236
 msgid ":class:`PrettyPrinter` instances have the following methods:"
 msgstr ":class:`PrettyPrinter` 實例有以下方法："
 
-#: ../../library/pprint.rst:205
+#: ../../library/pprint.rst:241
 msgid ""
 "Return the formatted representation of *object*.  This takes into account "
 "the options passed to the :class:`PrettyPrinter` constructor."
 msgstr ""
+"回傳 *object* 的格式化表示。這會將傳給 :class:`PrettyPrinter` 建構函式的選項"
+"納入考量。"
 
-#: ../../library/pprint.rst:211
+#: ../../library/pprint.rst:247
 msgid ""
 "Print the formatted representation of *object* on the configured stream, "
 "followed by a newline."
-msgstr ""
+msgstr "將 *object* 的格式化表示印出到所設定的串流上，並在後面加上換行字元。"
 
-#: ../../library/pprint.rst:214
+#: ../../library/pprint.rst:250
 msgid ""
 "The following methods provide the implementations for the corresponding "
 "functions of the same names.  Using these methods on an instance is slightly "
 "more efficient since new :class:`PrettyPrinter` objects don't need to be "
 "created."
 msgstr ""
+"以下方法提供了對應同名函式的實作。在實例上使用這些方法會稍微有效率一些，因為"
+"不需要建立新的 :class:`PrettyPrinter` 物件。"
 
-#: ../../library/pprint.rst:224
+#: ../../library/pprint.rst:260
 msgid ""
 "Determine if the formatted representation of the object is \"readable,\" or "
 "can be used to reconstruct the value using :func:`eval`.  Note that this "
@@ -216,19 +269,24 @@ msgid ""
 "class:`PrettyPrinter` is set and the object is deeper than allowed, this "
 "returns ``False``."
 msgstr ""
+"判斷該物件的格式化表示是否為「可讀的」，也就是能否用 :func:`eval` 重建其值。"
+"請注意，對於遞迴物件會回傳 ``False``。如果設定了 :class:`PrettyPrinter` 的 "
+"*depth* 參數，且物件的深度超過允許值，則會回傳 ``False``。"
 
-#: ../../library/pprint.rst:233
+#: ../../library/pprint.rst:269
 msgid "Determine if the object requires a recursive representation."
-msgstr ""
+msgstr "判斷該物件是否需要遞迴表示。"
 
-#: ../../library/pprint.rst:235
+#: ../../library/pprint.rst:271
 msgid ""
 "This method is provided as a hook to allow subclasses to modify the way "
 "objects are converted to strings.  The default implementation uses the "
 "internals of the :func:`saferepr` implementation."
 msgstr ""
+"此方法是作為掛鉤提供的，讓子類別可以修改物件轉換為字串的方式。預設實作使用 :"
+"func:`saferepr` 實作的內部機制。"
 
-#: ../../library/pprint.rst:242
+#: ../../library/pprint.rst:278
 msgid ""
 "Returns three values: the formatted version of *object* as a string, a flag "
 "indicating whether the result is readable, and a flag indicating whether "
@@ -245,19 +303,29 @@ msgid ""
 "the current level; recursive calls should be passed a value less than that "
 "of the current call."
 msgstr ""
+"回傳三個值：以字串表示的 *object* 格式化版本、一個表示結果是否可讀的旗標，以"
+"及一個表示是否偵測到遞迴的旗標。第一個引數是要呈現的物件。第二個引數是一個字"
+"典，其鍵為屬於目前呈現情境之物件的 :func:`id`\\ （即影響呈現方式的 *object* "
+"之直接與間接容器）；如果需要呈現的物件已在 *context* 中表示過，則第三個回傳值"
+"應為 ``True``。對 :meth:`.format` 方法的遞迴呼叫應將容器的額外項目加入此字"
+"典。第三個引數 *maxlevels* 指定所要求的遞迴限制；如果沒有要求限制，則為 "
+"``0``。此引數應原封不動地傳給遞迴呼叫。第四個引數 *level* 指定目前的層級；遞"
+"迴呼叫所傳入的值應小於目前呼叫的值。"
 
-#: ../../library/pprint.rst:260
+#: ../../library/pprint.rst:296
 msgid "Example"
 msgstr "範例"
 
-#: ../../library/pprint.rst:262
+#: ../../library/pprint.rst:298
 msgid ""
 "To demonstrate several uses of the :func:`~pprint.pp` function and its "
 "parameters, let's fetch information about a project from `PyPI <https://pypi."
 "org>`_::"
 msgstr ""
+"為了示範 :func:`~pprint.pp` 函式及其參數的幾種用法，先從 `PyPI <https://pypi."
+"org>`_ 取得某個專案的資訊： ::"
 
-#: ../../library/pprint.rst:265
+#: ../../library/pprint.rst:301
 msgid ""
 ">>> import json\n"
 ">>> import pprint\n"
@@ -271,11 +339,11 @@ msgstr ""
 ">>> with urlopen('https://pypi.org/pypi/sampleproject/1.2.0/json') as resp:\n"
 "...     project_info = json.load(resp)['info']"
 
-#: ../../library/pprint.rst:271
+#: ../../library/pprint.rst:307
 msgid "In its basic form, :func:`~pprint.pp` shows the whole object::"
-msgstr ""
+msgstr "在基本形式下，:func:`~pprint.pp` 會顯示整個物件： ::"
 
-#: ../../library/pprint.rst:273
+#: ../../library/pprint.rst:309
 msgid ""
 ">>> pprint.pp(project_info)\n"
 "{'author': 'The Python Packaging Authority',\n"
@@ -391,13 +459,13 @@ msgstr ""
 " 'summary': 'A sample Python project',\n"
 " 'version': '1.2.0'}"
 
-#: ../../library/pprint.rst:327
+#: ../../library/pprint.rst:363
 msgid ""
 "The result can be limited to a certain *depth* (ellipsis is used for deeper "
 "contents)::"
-msgstr ""
+msgstr "結果可以限制在特定的 *depth*\\ （更深的內容會以刪節號表示）： ::"
 
-#: ../../library/pprint.rst:330
+#: ../../library/pprint.rst:366
 msgid ""
 ">>> pprint.pp(project_info, depth=1)\n"
 "{'author': 'The Python Packaging Authority',\n"
@@ -491,13 +559,15 @@ msgstr ""
 " 'summary': 'A sample Python project',\n"
 " 'version': '1.2.0'}"
 
-#: ../../library/pprint.rst:373
+#: ../../library/pprint.rst:409
 msgid ""
 "Additionally, maximum character *width* can be suggested. If a long object "
 "cannot be split, the specified width will be exceeded::"
 msgstr ""
+"此外，也可以建議最大的字元寬度 *width*。如果長物件無法拆分，則會超過指定的寬"
+"度： ::"
 
-#: ../../library/pprint.rst:376
+#: ../../library/pprint.rst:412
 msgid ""
 ">>> pprint.pp(project_info, depth=1, width=60)\n"
 "{'author': 'The Python Packaging Authority',\n"
@@ -591,18 +661,166 @@ msgstr ""
 " 'summary': 'A sample Python project',\n"
 " 'version': '1.2.0'}"
 
-#: ../../library/pprint.rst:119 ../../library/pprint.rst:222
+#: ../../library/pprint.rst:458
+msgid ""
+"Lastly, we can format like pretty-printed JSON with the *expand* parameter. "
+"Best results are achieved with a higher *indent* value::"
+msgstr ""
+"最後，可以使用 *expand* 參數，將輸出格式化成類似美化列印過的 JSON。搭配較大"
+"的 *indent* 值效果最好： ::"
+
+#: ../../library/pprint.rst:461
+msgid ""
+">>> pprint.pp(project_info, indent=4, expand=True)\n"
+"{\n"
+"   'author': 'The Python Packaging Authority',\n"
+"   'author_email': 'pypa-dev@googlegroups.com',\n"
+"   'bugtrack_url': None,\n"
+"   'classifiers': [\n"
+"      'Development Status :: 3 - Alpha',\n"
+"      'Intended Audience :: Developers',\n"
+"      'License :: OSI Approved :: MIT License',\n"
+"      'Programming Language :: Python :: 2',\n"
+"      'Programming Language :: Python :: 2.6',\n"
+"      'Programming Language :: Python :: 2.7',\n"
+"      'Programming Language :: Python :: 3',\n"
+"      'Programming Language :: Python :: 3.2',\n"
+"      'Programming Language :: Python :: 3.3',\n"
+"      'Programming Language :: Python :: 3.4',\n"
+"      'Topic :: Software Development :: Build Tools',\n"
+"   ],\n"
+"   'description': 'A sample Python project\\n'\n"
+"   '=======================\\n'\n"
+"   '\\n'\n"
+"   'This is the description file for the project.\\n'\n"
+"   '\\n'\n"
+"   'The file should use UTF-8 encoding and be written using ReStructured '\n"
+"   'Text. It\\n'\n"
+"   'will be used to generate the project webpage on PyPI, and should be '\n"
+"   'written for\\n'\n"
+"   'that purpose.\\n'\n"
+"   '\\n'\n"
+"   'Typical contents for this file would include an overview of the project, "
+"'\n"
+"   'basic\\n'\n"
+"   'usage examples, etc. Generally, including the project changelog in here "
+"'\n"
+"   'is not\\n'\n"
+"   'a good idea, although a simple \"What\\'s New\" section for the most "
+"recent '\n"
+"   'version\\n'\n"
+"   'may be appropriate.',\n"
+"   'description_content_type': None,\n"
+"   'docs_url': None,\n"
+"   'download_url': 'UNKNOWN',\n"
+"   'downloads': {'last_day': -1, 'last_month': -1, 'last_week': -1},\n"
+"   'dynamic': None,\n"
+"   'home_page': 'https://github.com/pypa/sampleproject',\n"
+"   'keywords': 'sample setuptools development',\n"
+"   'license': 'MIT',\n"
+"   'license_expression': None,\n"
+"   'license_files': None,\n"
+"   'maintainer': None,\n"
+"   'maintainer_email': None,\n"
+"   'name': 'sampleproject',\n"
+"   'package_url': 'https://pypi.org/project/sampleproject/',\n"
+"   'platform': 'UNKNOWN',\n"
+"   'project_url': 'https://pypi.org/project/sampleproject/',\n"
+"   'project_urls': {\n"
+"      'Download': 'UNKNOWN',\n"
+"      'Homepage': 'https://github.com/pypa/sampleproject',\n"
+"   },\n"
+"   'provides_extra': None,\n"
+"   'release_url': 'https://pypi.org/project/sampleproject/1.2.0/',\n"
+"   'requires_dist': None,\n"
+"   'requires_python': None,\n"
+"   'summary': 'A sample Python project',\n"
+"   'version': '1.2.0',\n"
+"   'yanked': False,\n"
+"   'yanked_reason': None,\n"
+"}"
+msgstr ""
+">>> pprint.pp(project_info, indent=4, expand=True)\n"
+"{\n"
+"   'author': 'The Python Packaging Authority',\n"
+"   'author_email': 'pypa-dev@googlegroups.com',\n"
+"   'bugtrack_url': None,\n"
+"   'classifiers': [\n"
+"      'Development Status :: 3 - Alpha',\n"
+"      'Intended Audience :: Developers',\n"
+"      'License :: OSI Approved :: MIT License',\n"
+"      'Programming Language :: Python :: 2',\n"
+"      'Programming Language :: Python :: 2.6',\n"
+"      'Programming Language :: Python :: 2.7',\n"
+"      'Programming Language :: Python :: 3',\n"
+"      'Programming Language :: Python :: 3.2',\n"
+"      'Programming Language :: Python :: 3.3',\n"
+"      'Programming Language :: Python :: 3.4',\n"
+"      'Topic :: Software Development :: Build Tools',\n"
+"   ],\n"
+"   'description': 'A sample Python project\\n'\n"
+"   '=======================\\n'\n"
+"   '\\n'\n"
+"   'This is the description file for the project.\\n'\n"
+"   '\\n'\n"
+"   'The file should use UTF-8 encoding and be written using ReStructured '\n"
+"   'Text. It\\n'\n"
+"   'will be used to generate the project webpage on PyPI, and should be '\n"
+"   'written for\\n'\n"
+"   'that purpose.\\n'\n"
+"   '\\n'\n"
+"   'Typical contents for this file would include an overview of the project, "
+"'\n"
+"   'basic\\n'\n"
+"   'usage examples, etc. Generally, including the project changelog in here "
+"'\n"
+"   'is not\\n'\n"
+"   'a good idea, although a simple \"What\\'s New\" section for the most "
+"recent '\n"
+"   'version\\n'\n"
+"   'may be appropriate.',\n"
+"   'description_content_type': None,\n"
+"   'docs_url': None,\n"
+"   'download_url': 'UNKNOWN',\n"
+"   'downloads': {'last_day': -1, 'last_month': -1, 'last_week': -1},\n"
+"   'dynamic': None,\n"
+"   'home_page': 'https://github.com/pypa/sampleproject',\n"
+"   'keywords': 'sample setuptools development',\n"
+"   'license': 'MIT',\n"
+"   'license_expression': None,\n"
+"   'license_files': None,\n"
+"   'maintainer': None,\n"
+"   'maintainer_email': None,\n"
+"   'name': 'sampleproject',\n"
+"   'package_url': 'https://pypi.org/project/sampleproject/',\n"
+"   'platform': 'UNKNOWN',\n"
+"   'project_url': 'https://pypi.org/project/sampleproject/',\n"
+"   'project_urls': {\n"
+"      'Download': 'UNKNOWN',\n"
+"      'Homepage': 'https://github.com/pypa/sampleproject',\n"
+"   },\n"
+"   'provides_extra': None,\n"
+"   'release_url': 'https://pypi.org/project/sampleproject/1.2.0/',\n"
+"   'requires_dist': None,\n"
+"   'requires_python': None,\n"
+"   'summary': 'A sample Python project',\n"
+"   'version': '1.2.0',\n"
+"   'yanked': False,\n"
+"   'yanked_reason': None,\n"
+"}"
+
+#: ../../library/pprint.rst:135 ../../library/pprint.rst:258
 msgid "built-in function"
 msgstr "built-in function（內建函式）"
 
-#: ../../library/pprint.rst:119 ../../library/pprint.rst:222
+#: ../../library/pprint.rst:135 ../../library/pprint.rst:258
 msgid "eval"
 msgstr "eval"
 
-#: ../../library/pprint.rst:153
+#: ../../library/pprint.rst:169
 msgid "..."
 msgstr "..."
 
-#: ../../library/pprint.rst:153
+#: ../../library/pprint.rst:169
 msgid "placeholder"
 msgstr "placeholder（佔位符號）"
