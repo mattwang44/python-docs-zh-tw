@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.14\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-02-07 00:19+0000\n"
+"POT-Creation-Date: 2026-11-27 03:22+0800\n"
 "PO-Revision-Date: 2024-03-28 22:40+0800\n"
 "Last-Translator: RockLeon <therockleona@gmail.com>\n"
 "Language-Team: Chinese - TAIWAN (https://github.com/python/python-docs-zh-"
@@ -23,36 +23,36 @@ msgstr ""
 msgid ":mod:`!logging` --- Logging facility for Python"
 msgstr ":mod:`!logging` --- Python 的日誌記錄工具"
 
-#: ../../library/logging.rst:10
+#: ../../library/logging.rst:7
 msgid "**Source code:** :source:`Lib/logging/__init__.py`"
 msgstr "**原始碼：**\\ :source:`Lib/logging/__init__.py`"
 
-#: ../../library/logging.rst:16
+#: ../../library/logging.rst:13
 msgid ""
 "This page contains the API reference information. For tutorial information "
 "and discussion of more advanced topics, see"
-msgstr "此頁面包含 API 參考訊息。有關教學流程和更進階的主題討論，請參閱"
+msgstr "此頁面包含 API 參考資訊。關於教學資訊及更進階主題的討論，請參閱"
 
-#: ../../library/logging.rst:19
+#: ../../library/logging.rst:16
 msgid ":ref:`Basic Tutorial <logging-basic-tutorial>`"
 msgstr ":ref:`基礎教學 <logging-basic-tutorial>`"
 
-#: ../../library/logging.rst:20
+#: ../../library/logging.rst:17
 msgid ":ref:`Advanced Tutorial <logging-advanced-tutorial>`"
 msgstr ":ref:`進階教學 <logging-advanced-tutorial>`"
 
-#: ../../library/logging.rst:21
+#: ../../library/logging.rst:18
 msgid ":ref:`Logging Cookbook <logging-cookbook>`"
 msgstr ":ref:`日誌記錄手冊 <logging-cookbook>`"
 
-#: ../../library/logging.rst:25
+#: ../../library/logging.rst:22
 msgid ""
 "This module defines functions and classes which implement a flexible event "
 "logging system for applications and libraries."
 msgstr ""
 "這個模組定義了函式與類別 (class)，為應用程式和函式庫實作彈性的日誌管理系統。"
 
-#: ../../library/logging.rst:28
+#: ../../library/logging.rst:25
 msgid ""
 "The key benefit of having the logging API provided by a standard library "
 "module is that all Python modules can participate in logging, so your "
@@ -63,11 +63,11 @@ msgstr ""
 "誌記錄，因此你的應用程式日誌可以包含你自己的訊息，並與來自第三方模組的訊息整"
 "合在一起。"
 
-#: ../../library/logging.rst:33
+#: ../../library/logging.rst:30
 msgid "Here's a simple example of idiomatic usage: ::"
-msgstr ""
+msgstr "以下是慣用用法的簡單範例： ::"
 
-#: ../../library/logging.rst:35
+#: ../../library/logging.rst:32
 msgid ""
 "# myapp.py\n"
 "import logging\n"
@@ -97,7 +97,7 @@ msgstr ""
 "if __name__ == '__main__':\n"
 "    main()"
 
-#: ../../library/logging.rst:51
+#: ../../library/logging.rst:48
 msgid ""
 "# mylib.py\n"
 "import logging\n"
@@ -113,11 +113,11 @@ msgstr ""
 "def do_something():\n"
 "    logger.info('Doing something')"
 
-#: ../../library/logging.rst:58
+#: ../../library/logging.rst:55
 msgid "If you run *myapp.py*, you should see this in *myapp.log*:"
-msgstr ""
+msgstr "如果你執行 *myapp.py*，應該會在 *myapp.log* 中看到："
 
-#: ../../library/logging.rst:60
+#: ../../library/logging.rst:57
 msgid ""
 "INFO:__main__:Started\n"
 "INFO:mylib:Doing something\n"
@@ -127,7 +127,7 @@ msgstr ""
 "INFO:mylib:Doing something\n"
 "INFO:__main__:Finished"
 
-#: ../../library/logging.rst:66
+#: ../../library/logging.rst:63
 msgid ""
 "The key feature of this idiomatic usage is that the majority of code is "
 "simply creating a module level logger with ``getLogger(__name__)``, and "
@@ -137,8 +137,14 @@ msgid ""
 "modules, all the way up to the highest-level logger known as the root "
 "logger; this approach is known as hierarchical logging."
 msgstr ""
+"這種慣用用法的關鍵在於，大部分的程式碼只需使用 ``getLogger(__name__)`` 建立一"
+"個模組層級的記錄器 (logger)，並使用該記錄器進行所需的日誌記錄。這種寫法很簡"
+"潔，同時也讓下游程式碼在需要時能進行精細的控制。記錄到模組層級記錄器的訊息，"
+"會被轉發給更高層級模組中記錄器的處理器 (handler)，一路往上直到最高層級、稱為"
+"根記錄器 (root logger) 的記錄器；這種做法稱為階層式日誌記錄 (hierarchical "
+"logging)。"
 
-#: ../../library/logging.rst:74
+#: ../../library/logging.rst:71
 msgid ""
 "For logging to be useful, it needs to be configured: setting the levels and "
 "destinations for each logger, potentially changing how specific modules log, "
@@ -148,8 +154,13 @@ msgid ""
 "messages to its handlers.  :func:`~logging.basicConfig` provides a quick way "
 "to configure the root logger that handles many use cases."
 msgstr ""
+"要讓日誌記錄發揮作用，就必須先設定它：為每個記錄器設定等級與目的地，也可能要"
+"改變特定模組的記錄方式，這些通常會依據命令列引數或應用程式設定而定。在大多數"
+"情況下，就像上面的例子，只有根記錄器需要這樣設定，因為所有位於模組層級、較低"
+"層的記錄器最終都會將訊息轉發給根記錄器的處理器。:func:`~logging.basicConfig` "
+"提供了一個快速設定根記錄器的方法，能應付許多使用情境。"
 
-#: ../../library/logging.rst:82
+#: ../../library/logging.rst:79
 msgid ""
 "The module provides a lot of functionality and flexibility.  If you are "
 "unfamiliar with logging, the best way to get to grips with it is to view the "
@@ -158,45 +169,48 @@ msgstr ""
 "這個模組提供了很多的功能性以及彈性。如果你對於 logging 不熟悉，熟悉它最好的方"
 "法就是去看教學（**請看右上方的連結**）。"
 
-#: ../../library/logging.rst:86
+#: ../../library/logging.rst:83
 msgid ""
 "The basic classes defined by the module, together with their attributes and "
 "methods, are listed in the sections below."
-msgstr ""
+msgstr "此模組所定義的基本類別及其屬性與方法，列於以下各節。"
 
-#: ../../library/logging.rst:89
+#: ../../library/logging.rst:86
 msgid "Loggers expose the interface that application code directly uses."
-msgstr ""
+msgstr "記錄器公開應用程式程式碼直接使用的介面。"
 
-#: ../../library/logging.rst:90
+#: ../../library/logging.rst:87
 msgid ""
 "Handlers send the log records (created by loggers) to the appropriate "
 "destination."
-msgstr ""
+msgstr "處理器將（由記錄器建立的）日誌紀錄 (log record) 傳送到適當的目的地。"
 
-#: ../../library/logging.rst:92
+#: ../../library/logging.rst:89
 msgid ""
 "Filters provide a finer grained facility for determining which log records "
 "to output."
-msgstr ""
+msgstr "過濾器 (filter) 提供更精細的機制來決定要輸出哪些日誌紀錄。"
 
-#: ../../library/logging.rst:94
+#: ../../library/logging.rst:91
 msgid "Formatters specify the layout of log records in the final output."
-msgstr "格式器指定日誌記錄在最終輸出中的佈局。"
+msgstr "格式化器 (formatter) 指定日誌紀錄在最終輸出中的格式。"
 
-#: ../../library/logging.rst:100
+#: ../../library/logging.rst:97
 msgid "Logger Objects"
 msgstr "Logger 物件"
 
-#: ../../library/logging.rst:102
+#: ../../library/logging.rst:99
 msgid ""
 "Loggers have the following attributes and methods.  Note that Loggers should "
 "*NEVER* be instantiated directly, but always through the module-level "
 "function ``logging.getLogger(name)``.  Multiple calls to :func:`getLogger` "
 "with the same name will always return a reference to the same Logger object."
 msgstr ""
+"記錄器具有以下屬性與方法。請注意，記錄器\\ *絕對不應該*\\ 被直接實例化，而應"
+"一律透過模組層級函式 ``logging.getLogger(name)`` 取得。以相同名稱多次呼"
+"叫 :func:`getLogger` 一律會回傳同一個 Logger 物件的參照。"
 
-#: ../../library/logging.rst:107
+#: ../../library/logging.rst:104
 msgid ""
 "The ``name`` is potentially a period-separated hierarchical value, like "
 "``foo.bar.baz`` (though it could also be just plain ``foo``, for example). "
@@ -206,42 +220,52 @@ msgid ""
 "are all descendants of ``foo``.  In addition, all loggers are descendants of "
 "the root logger. The logger name hierarchy is analogous to the Python "
 "package hierarchy, and identical to it if you organise your loggers on a per-"
-"module basis using the recommended construction ``logging."
-"getLogger(__name__)``.  That's because in a module, ``__name__`` is the "
-"module's name in the Python package namespace."
+"module basis using the recommended construction "
+"``logging.getLogger(__name__)``.  That's because in a module, ``__name__`` "
+"is the module's name in the Python package namespace."
 msgstr ""
+"``name`` 可能是以點號分隔的階層式值，例如 ``foo.bar.baz``\\ （不過也可以只是"
+"單純的 ``foo``）。在階層串列中位置較低的記錄器，是位置較高之記錄器的子記錄"
+"器。例如，對於名稱為 ``foo`` 的記錄器，名稱為 ``foo.bar``、``foo.bar.baz`` "
+"和 ``foo.bam`` 的記錄器都是 ``foo`` 的後代。此外，所有記錄器都是根記錄器的後"
+"代。記錄器名稱的階層類似於 Python 套件的階層；如果你使用建議的寫法 "
+"``logging.getLogger(__name__)``，以模組為單位來組織記錄器，兩者就會完全相同。"
+"這是因為在模組中，``__name__`` 就是該模組在 Python 套件命名空間中的名稱。"
 
-#: ../../library/logging.rst:123
+#: ../../library/logging.rst:120
 msgid ""
-"This is the logger's name, and is the value that was passed to :func:"
-"`getLogger` to obtain the logger."
+"This is the logger's name, and is the value that was passed "
+"to :func:`getLogger` to obtain the logger."
 msgstr ""
+"這是記錄器的名稱，也就是為了取得該記錄器而傳給 :func:`getLogger` 的值。"
 
-#: ../../library/logging.rst:126 ../../library/logging.rst:186
+#: ../../library/logging.rst:123 ../../library/logging.rst:183
 msgid "This attribute should be treated as read-only."
 msgstr "此屬性應被視為唯讀。"
 
-#: ../../library/logging.rst:130
+#: ../../library/logging.rst:127
 msgid "The threshold of this logger, as set by the :meth:`setLevel` method."
-msgstr ""
+msgstr "此記錄器的門檻，由 :meth:`setLevel` 方法設定。"
 
-#: ../../library/logging.rst:132
+#: ../../library/logging.rst:129
 msgid ""
 "Do not set this attribute directly - always use :meth:`setLevel`, which has "
 "checks for the level passed to it."
-msgstr ""
+msgstr "請勿直接設定此屬性，請一律使用 :meth:`setLevel`，它會檢查傳入的等級。"
 
-#: ../../library/logging.rst:137
+#: ../../library/logging.rst:134
 msgid ""
 "The parent logger of this logger. It may change based on later instantiation "
 "of loggers which are higher up in the namespace hierarchy."
 msgstr ""
+"此記錄器的父記錄器。它可能會因為之後實例化了在命名空間階層中位置更高的記錄器"
+"而改變。"
 
-#: ../../library/logging.rst:140
+#: ../../library/logging.rst:137
 msgid "This value should be treated as read-only."
-msgstr ""
+msgstr "此值應被視為唯讀。"
 
-#: ../../library/logging.rst:144
+#: ../../library/logging.rst:141
 msgid ""
 "If this attribute evaluates to true, events logged to this logger will be "
 "passed to the handlers of higher level (ancestor) loggers, in addition to "
@@ -249,17 +273,17 @@ msgid ""
 "ancestor loggers' handlers - neither the level nor filters of the ancestor "
 "loggers in question are considered."
 msgstr ""
-"如果此屬性評估為 true，則在此日誌紀錄器被記錄的事件會被傳到更高階（上代）日誌"
-"記錄器 的處理函式和所有附加在此日誌記錄器的任何處理器。訊息會直接傳到上代 "
-"loggers 的處理器 - 在問題中上代日誌記錄器的層級或是篩選器都不會被考慮。"
+"如果此屬性求值為 true，記錄到此記錄器的事件除了會傳遞給附加在此記錄器上的所有"
+"處理器之外，也會傳遞給更高層級（上層）記錄器的處理器。訊息會直接傳遞給上層記"
+"錄器的處理器，而不會考慮這些上層記錄器的等級或過濾器。"
 
-#: ../../library/logging.rst:150
+#: ../../library/logging.rst:147
 msgid ""
 "If this evaluates to false, logging messages are not passed to the handlers "
 "of ancestor loggers."
-msgstr ""
+msgstr "如果此屬性求值為 false，日誌訊息就不會被傳遞給上層記錄器的處理器。"
 
-#: ../../library/logging.rst:153
+#: ../../library/logging.rst:150
 msgid ""
 "Spelling it out with an example: If the propagate attribute of the logger "
 "named ``A.B.C`` evaluates to true, any event logged to ``A.B.C`` via a "
@@ -271,12 +295,19 @@ msgid ""
 "false, then that is the last logger whose handlers are offered the event to "
 "handle, and propagation stops at that point."
 msgstr ""
+"以一個例子具體說明：如果名為 ``A.B.C`` 的記錄器的 propagate 屬性求值為 true，"
+"那麼透過像 ``logging.getLogger('A.B.C').error(...)`` 這樣的方法呼叫記錄到 "
+"``A.B.C`` 的任何事件，會（在通過該記錄器的等級與過濾器設定的前提下）先傳遞給"
+"附加在 ``A.B.C`` 上的所有處理器，接著依序傳遞給附加在名為 ``A.B``、``A`` 的記"
+"錄器以及根記錄器上的所有處理器。如果 ``A.B.C``、``A.B``、``A`` 這條鏈中有任何"
+"記錄器的 ``propagate`` 屬性被設為 false，那麼該記錄器就是最後一個將事件交給其"
+"處理器處理的記錄器，傳播也會在此停止。"
 
-#: ../../library/logging.rst:162
+#: ../../library/logging.rst:159
 msgid "The constructor sets this attribute to ``True``."
 msgstr "此建構函式將該屬性設為 ``True``。"
 
-#: ../../library/logging.rst:164
+#: ../../library/logging.rst:161
 msgid ""
 "If you attach a handler to a logger *and* one or more of its ancestors, it "
 "may emit the same record multiple times. In general, you should not need to "
@@ -287,25 +318,34 @@ msgid ""
 "handlers only to the root logger, and to let propagation take care of the "
 "rest."
 msgstr ""
+"如果你將處理器同時附加到某個記錄器\\ *以及*\\ 它的一個或多個上層記錄器，它可"
+"能會多次發出同一筆紀錄。一般來說，你應該不需要將一個處理器附加到多個記錄器"
+"上：只要將它附加到記錄器階層中位置最高的適當記錄器，它就能看到所有後代記錄器"
+"所記錄的事件，前提是這些記錄器的 propagate 設定保持為 ``True``。常見的做法是"
+"只將處理器附加到根記錄器，其餘的交給傳播機制處理。"
 
-#: ../../library/logging.rst:175
+#: ../../library/logging.rst:172
 msgid "The list of handlers directly attached to this logger instance."
-msgstr ""
+msgstr "直接附加到此記錄器實例的處理器串列。"
 
-#: ../../library/logging.rst:177
+#: ../../library/logging.rst:174
 msgid ""
 "This attribute should be treated as read-only; it is normally changed via "
 "the :meth:`addHandler` and :meth:`removeHandler` methods, which use locks to "
 "ensure thread-safe operation."
 msgstr ""
+"此屬性應被視為唯讀；它通常透過 :meth:`addHandler` 和 :meth:`removeHandler` 方"
+"法來變更，這些方法會使用鎖來確保執行緒安全的操作。"
 
-#: ../../library/logging.rst:183
+#: ../../library/logging.rst:180
 msgid ""
 "This attribute disables handling of any events. It is set to ``False`` in "
 "the initializer, and only changed by logging configuration code."
 msgstr ""
+"此屬性會停用所有事件的處理。它在初始化函式中被設為 ``False``，且只會由日誌設"
+"定程式碼變更。"
 
-#: ../../library/logging.rst:190
+#: ../../library/logging.rst:187
 msgid ""
 "Sets the threshold for this logger to *level*. Logging messages which are "
 "less severe than *level* will be ignored; logging messages which have "
@@ -313,44 +353,53 @@ msgid ""
 "service this logger, unless a handler's level has been set to a higher "
 "severity level than *level*."
 msgstr ""
+"將此記錄器的門檻設為 *level*。嚴重性低於 *level* 的日誌訊息會被忽略；嚴重性"
+"為 *level* 或更高的日誌訊息，會由服務此記錄器的處理器發出，除非某個處理器的等"
+"級已被設為比 *level* 更高的嚴重性等級。"
 
-#: ../../library/logging.rst:195
+#: ../../library/logging.rst:192
 msgid ""
 "When a logger is created, the level is set to :const:`NOTSET` (which causes "
 "all messages to be processed when the logger is the root logger, or "
 "delegation to the parent when the logger is a non-root logger). Note that "
 "the root logger is created with level :const:`WARNING`."
 msgstr ""
-"當一個日誌記錄器被建立時，記錄層級會被設定成 :const:`NOTSET` （當此日誌記錄器"
-"是根日誌記錄器，或是代表父日誌記錄器的非根日誌記錄器時，會使所有訊息被處"
-"理）。請注意根日誌記錄器會以記錄等級 :const:`WARNING` 被建立。"
+"建立記錄器時，等級會被設為 :const:`NOTSET`\\ （當該記錄器是根記錄器時，這會使"
+"所有訊息都被處理；當該記錄器是非根記錄器時，則會委派給父記錄器）。請注意，根"
+"記錄器是以等級 :const:`WARNING` 建立的。"
 
-#: ../../library/logging.rst:200
+#: ../../library/logging.rst:197
 msgid ""
 "The term 'delegation to the parent' means that if a logger has a level of "
 "NOTSET, its chain of ancestor loggers is traversed until either an ancestor "
 "with a level other than NOTSET is found, or the root is reached."
 msgstr ""
+"「委派給父記錄器」一詞的意思是：如果記錄器的等級為 NOTSET，就會沿著其上層記錄"
+"器鏈往上走訪，直到找到等級不是 NOTSET 的上層記錄器，或是抵達根記錄器為止。"
 
-#: ../../library/logging.rst:204
+#: ../../library/logging.rst:201
 msgid ""
 "If an ancestor is found with a level other than NOTSET, then that ancestor's "
 "level is treated as the effective level of the logger where the ancestor "
 "search began, and is used to determine how a logging event is handled."
 msgstr ""
+"如果找到等級不是 NOTSET 的上層記錄器，該上層記錄器的等級就會被視為開始搜尋的"
+"那個記錄器的有效等級 (effective level)，並用來決定如何處理日誌事件。"
 
-#: ../../library/logging.rst:208
+#: ../../library/logging.rst:205
 msgid ""
 "If the root is reached, and it has a level of NOTSET, then all messages will "
 "be processed. Otherwise, the root's level will be used as the effective "
 "level."
 msgstr ""
+"如果抵達根記錄器且其等級為 NOTSET，則所有訊息都會被處理。否則，會使用根記錄器"
+"的等級作為有效等級。"
 
-#: ../../library/logging.rst:211 ../../library/logging.rst:555
+#: ../../library/logging.rst:208 ../../library/logging.rst:552
 msgid "See :ref:`levels` for a list of levels."
-msgstr "層級清單請見 :ref:`levels`。"
+msgstr "等級清單請參閱\\ :ref:`levels`。"
 
-#: ../../library/logging.rst:213
+#: ../../library/logging.rst:210
 msgid ""
 "The *level* parameter now accepts a string representation of the level such "
 "as 'INFO' as an alternative to the integer constants such as :const:`INFO`. "
@@ -358,34 +407,51 @@ msgid ""
 "such as e.g. :meth:`getEffectiveLevel` and :meth:`isEnabledFor` will return/"
 "expect to be passed integers."
 msgstr ""
+"*level* 參數現在除了接受像 :const:`INFO` 這樣的整數常數外，也接受等級的字串表"
+"示，例如 'INFO'。但請注意，等級在內部是以整數儲存，而"
+"像 :meth:`getEffectiveLevel` 和 :meth:`isEnabledFor` 等方法會回傳整數，或預期"
+"傳入的是整數。"
 
-#: ../../library/logging.rst:223
+#: ../../library/logging.rst:220
 msgid ""
 "Indicates if a message of severity *level* would be processed by this "
-"logger. This method checks first the module-level level set by ``logging."
-"disable(level)`` and then the logger's effective level as determined by :"
-"meth:`getEffectiveLevel`."
+"logger. This method checks first the module-level level set by "
+"``logging.disable(level)`` and then the logger's effective level as "
+"determined by :meth:`getEffectiveLevel`."
 msgstr ""
+"指出嚴重性為 *level* 的訊息是否會被此記錄器處理。此方法會先檢查由 "
+"``logging.disable(level)`` 設定的模組層級等級，再檢查"
+"由 :meth:`getEffectiveLevel` 決定的記錄器有效等級。"
 
-#: ../../library/logging.rst:231
+#: ../../library/logging.rst:228
 msgid ""
-"Indicates the effective level for this logger. If a value other than :const:"
-"`NOTSET` has been set using :meth:`setLevel`, it is returned. Otherwise, the "
-"hierarchy is traversed towards the root until a value other than :const:"
-"`NOTSET` is found, and that value is returned. The value returned is an "
-"integer, typically one of :const:`logging.DEBUG`, :const:`logging.INFO` etc."
+"Indicates the effective level for this logger. If a value other "
+"than :const:`NOTSET` has been set using :meth:`setLevel`, it is returned. "
+"Otherwise, the hierarchy is traversed towards the root until a value other "
+"than :const:`NOTSET` is found, and that value is returned. The value "
+"returned is an integer, typically one "
+"of :const:`logging.DEBUG`, :const:`logging.INFO` etc."
 msgstr ""
+"指出此記錄器的有效等級。如果已使用 :meth:`setLevel` 設定了 :const:`NOTSET` 以"
+"外的值，就回傳該值。否則，會沿著階層往根部走訪，直到找到 :const:`NOTSET` 以外"
+"的值，並回傳該值。回傳值是整數，通常"
+"是 :const:`logging.DEBUG`、:const:`logging.INFO` 等其中之一。"
 
-#: ../../library/logging.rst:241
+#: ../../library/logging.rst:238
 msgid ""
 "Returns a logger which is a descendant to this logger, as determined by the "
 "suffix. Thus, ``logging.getLogger('abc').getChild('def.ghi')`` would return "
-"the same logger as would be returned by ``logging.getLogger('abc.def."
-"ghi')``. This is a convenience method, useful when the parent logger is "
-"named using e.g. ``__name__`` rather than a literal string."
+"the same logger as would be returned by "
+"``logging.getLogger('abc.def.ghi')``. This is a convenience method, useful "
+"when the parent logger is named using e.g. ``__name__`` rather than a "
+"literal string."
 msgstr ""
+"回傳此記錄器的一個後代記錄器，由後綴決定。因此，"
+"``logging.getLogger('abc').getChild('def.ghi')`` 回傳的記錄器會與 "
+"``logging.getLogger('abc.def.ghi')`` 回傳的相同。這是個便利方法，在父記錄器是"
+"以例如 ``__name__`` 而非字串字面值命名時很有用。"
 
-#: ../../library/logging.rst:252
+#: ../../library/logging.rst:249
 msgid ""
 "Returns a set of loggers which are immediate children of this logger. So for "
 "example ``logging.getLogger().getChildren()`` might return a set containing "
@@ -394,8 +460,13 @@ msgid ""
 "might return a set including a logger named ``foo.bar``, but it wouldn't "
 "include one named ``foo.bar.baz``."
 msgstr ""
+"回傳由此記錄器的直接子記錄器所組成的集合。舉例來說，"
+"``logging.getLogger().getChildren()`` 可能會回傳一個包含名為 ``foo`` 和 "
+"``bar`` 之記錄器的集合，但名為 ``foo.bar`` 的記錄器不會包含在該集合中。同樣"
+"地，``logging.getLogger('foo').getChildren()`` 可能會回傳一個包含名為 "
+"``foo.bar`` 之記錄器的集合，但不會包含名為 ``foo.bar.baz`` 的記錄器。"
 
-#: ../../library/logging.rst:264
+#: ../../library/logging.rst:261
 msgid ""
 "Logs a message with level :const:`DEBUG` on this logger. The *msg* is the "
 "message format string, and the *args* are the arguments which are merged "
@@ -404,14 +475,20 @@ msgid ""
 "argument.) No % formatting operation is performed on *msg* when no *args* "
 "are supplied."
 msgstr ""
+"在此記錄器上記錄一則等級為 :const:`DEBUG` 的訊息。*msg* 是訊息格式字串，"
+"*args* 則是使用字串格式化運算子合併到 *msg* 中的引數。（請注意，這表示你可以"
+"在格式字串中使用關鍵字，並搭配單一的字典引數。）若未提供 *args*，則不會對 "
+"*msg* 執行 % 格式化操作。"
 
-#: ../../library/logging.rst:270
+#: ../../library/logging.rst:267
 msgid ""
 "There are four keyword arguments in *kwargs* which are inspected: "
 "*exc_info*, *stack_info*, *stacklevel* and *extra*."
 msgstr ""
+"*kwargs* 中有四個會被檢查的關鍵字引數：*exc_info*、*stack_info*、"
+"*stacklevel* 和 *extra*。"
 
-#: ../../library/logging.rst:273
+#: ../../library/logging.rst:270
 msgid ""
 "If *exc_info* does not evaluate as false, it causes exception information to "
 "be added to the logging message. If an exception tuple (in the format "
@@ -419,8 +496,11 @@ msgid ""
 "is used; otherwise, :func:`sys.exc_info` is called to get the exception "
 "information."
 msgstr ""
+"如果 *exc_info* 求值不為 false，就會將例外資訊加入日誌訊息中。如果提供的是例"
+"外元組（格式與 :func:`sys.exc_info` 的回傳值相同）或例外實例，就會使用它；否"
+"則會呼叫 :func:`sys.exc_info` 來取得例外資訊。"
 
-#: ../../library/logging.rst:278
+#: ../../library/logging.rst:275
 msgid ""
 "The second optional keyword argument is *stack_info*, which defaults to "
 "``False``. If true, stack information is added to the logging message, "
@@ -431,46 +511,62 @@ msgid ""
 "have been unwound, following an exception, while searching for exception "
 "handlers."
 msgstr ""
+"第二個可選的關鍵字引數是 *stack_info*，預設為 ``False``。若為 true，就會將堆"
+"疊資訊加入日誌訊息中，其中包含實際的日誌記錄呼叫。請注意，這與指定 "
+"*exc_info* 時所顯示的堆疊資訊不同：前者是目前執行緒中從堆疊底部到日誌記錄呼叫"
+"為止的堆疊框，而後者則是在例外發生後、搜尋例外處理程式的過程中已被展開 "
+"(unwound) 的堆疊框資訊。"
 
-#: ../../library/logging.rst:287
+#: ../../library/logging.rst:284
 msgid ""
 "You can specify *stack_info* independently of *exc_info*, e.g. to just show "
 "how you got to a certain point in your code, even when no exceptions were "
 "raised. The stack frames are printed following a header line which says:"
 msgstr ""
+"你可以獨立於 *exc_info* 指定 *stack_info*，例如只是想顯示程式碼是如何執行到某"
+"個位置的，即使沒有引發任何例外也可以。堆疊框會印在下面這行標頭之後："
 
-#: ../../library/logging.rst:291
+#: ../../library/logging.rst:288
 msgid "Stack (most recent call last):"
 msgstr "Stack (most recent call last):"
 
-#: ../../library/logging.rst:295
+#: ../../library/logging.rst:292
 msgid ""
 "This mimics the ``Traceback (most recent call last):`` which is used when "
 "displaying exception frames."
 msgstr ""
+"這是模仿顯示例外堆疊框時所使用的 ``Traceback (most recent call last):``。"
 
-#: ../../library/logging.rst:298
+#: ../../library/logging.rst:295
 msgid ""
 "The third optional keyword argument is *stacklevel*, which defaults to "
 "``1``. If greater than 1, the corresponding number of stack frames are "
-"skipped when computing the line number and function name set in the :class:"
-"`LogRecord` created for the logging event. This can be used in logging "
-"helpers so that the function name, filename and line number recorded are not "
-"the information for the helper function/method, but rather its caller. The "
-"name of this parameter mirrors the equivalent one in the :mod:`warnings` "
-"module."
+"skipped when computing the line number and function name set in "
+"the :class:`LogRecord` created for the logging event. This can be used in "
+"logging helpers so that the function name, filename and line number recorded "
+"are not the information for the helper function/method, but rather its "
+"caller. The name of this parameter mirrors the equivalent one in "
+"the :mod:`warnings` module."
 msgstr ""
+"第三個可選的關鍵字引數是 *stacklevel*，預設為 ``1``。若大於 1，則在計算為該日"
+"誌事件所建立的 :class:`LogRecord` 中所設定的列號和函式名稱時，會略過相應數量"
+"的堆疊框。這可用於日誌記錄輔助函式中，讓所記錄的函式名稱、檔案名稱和列號不是"
+"輔助函式／方法本身的資訊，而是其呼叫者的資訊。此參數的名稱與 :mod:`warnings` "
+"模組中對應的參數相同。"
 
-#: ../../library/logging.rst:306
+#: ../../library/logging.rst:303
 msgid ""
 "The fourth keyword argument is *extra* which can be used to pass a "
-"dictionary which is used to populate the :attr:`~object.__dict__` of the :"
-"class:`LogRecord` created for the logging event with user-defined "
+"dictionary which is used to populate the :attr:`~object.__dict__` of "
+"the :class:`LogRecord` created for the logging event with user-defined "
 "attributes. These custom attributes can then be used as you like. For "
 "example, they could be incorporated into logged messages. For example::"
 msgstr ""
+"第四個關鍵字引數是 *extra*，可用來傳遞一個字典，以使用者定義的屬性填入為該日"
+"誌事件所建立之 :class:`LogRecord` 的 :attr:`~object.__dict__`。之後你就可以隨"
+"意使用這些自訂屬性，例如將它們併入所記錄的訊息中。例如： ::"
 
-#: ../../library/logging.rst:313
+#: ../../library/logging.rst:310
 msgid ""
 "FORMAT = '%(asctime)s %(clientip)-15s %(user)-8s %(message)s'\n"
 "logging.basicConfig(format=FORMAT)\n"
@@ -484,35 +580,43 @@ msgstr ""
 "logger = logging.getLogger('tcpserver')\n"
 "logger.warning('Protocol problem: %s', 'connection reset', extra=d)"
 
-#: ../../library/logging.rst:319
+#: ../../library/logging.rst:316
 msgid "would print something like"
-msgstr ""
+msgstr "會印出類似以下的內容"
 
-#: ../../library/logging.rst:321
+#: ../../library/logging.rst:318
 msgid ""
 "2006-02-08 22:20:02,165 192.168.0.1 fbloggs  Protocol problem: connection "
 "reset"
 msgstr ""
+"2006-02-08 22:20:02,165 192.168.0.1 fbloggs  Protocol problem: connection "
+"reset"
 
-#: ../../library/logging.rst:325
+#: ../../library/logging.rst:322
 msgid ""
 "The keys in the dictionary passed in *extra* should not clash with the keys "
 "used by the logging system. (See the section on :ref:`logrecord-attributes` "
 "for more information on which keys are used by the logging system.)"
 msgstr ""
+"*extra* 中傳入的字典，其鍵不應與日誌記錄系統所使用的鍵衝突。（關於日誌記錄系"
+"統會使用哪些鍵，詳見 :ref:`logrecord-attributes`。）"
 
-#: ../../library/logging.rst:329
+#: ../../library/logging.rst:326
 msgid ""
 "If you choose to use these attributes in logged messages, you need to "
-"exercise some care. In the above example, for instance, the :class:"
-"`Formatter` has been set up with a format string which expects 'clientip' "
-"and 'user' in the attribute dictionary of the :class:`LogRecord`. If these "
-"are missing, the message will not be logged because a string formatting "
-"exception will occur. So in this case, you always need to pass the *extra* "
-"dictionary with these keys."
+"exercise some care. In the above example, for instance, "
+"the :class:`Formatter` has been set up with a format string which expects "
+"'clientip' and 'user' in the attribute dictionary of the :class:`LogRecord`. "
+"If these are missing, the message will not be logged because a string "
+"formatting exception will occur. So in this case, you always need to pass "
+"the *extra* dictionary with these keys."
 msgstr ""
+"如果你選擇在記錄的訊息中使用這些屬性，就需要多加小心。例如在上面的範例"
+"中，:class:`Formatter` 已設定了一個格式字串，預期 :class:`LogRecord` 的屬性字"
+"典中有 'clientip' 和 'user'。如果缺少這些鍵，訊息就不會被記錄，因為會發生字串"
+"格式化例外。所以在這種情況下，你必須一律傳入帶有這些鍵的 *extra* 字典。"
 
-#: ../../library/logging.rst:336
+#: ../../library/logging.rst:333
 msgid ""
 "While this might be annoying, this feature is intended for use in "
 "specialized circumstances, such as multi-threaded servers where the same "
@@ -522,81 +626,100 @@ msgid ""
 "likely that specialized :class:`Formatter`\\ s would be used with "
 "particular :class:`Handler`\\ s."
 msgstr ""
+"雖然這可能有點麻煩，但此功能是為特殊情況而設計的，例如在多執行緒伺服器中，同"
+"一段程式碼會在許多情境下執行，而值得關注的狀況取決於該情境（例如上面範例中的"
+"遠端用戶端 IP 位址和已驗證的使用者名稱）。在這種情況下，特製"
+"的 :class:`Formatter` 很可能會搭配特定的 :class:`Handler` 使用。"
 
-#: ../../library/logging.rst:343
+#: ../../library/logging.rst:340
 msgid ""
 "If no handler is attached to this logger (or any of its ancestors, taking "
 "into account the relevant :attr:`Logger.propagate` attributes), the message "
 "will be sent to the handler set on :data:`lastResort`."
 msgstr ""
+"如果此記錄器（或考量相關 :attr:`Logger.propagate` 屬性後的任何上層記錄器）沒"
+"有附加任何處理器，訊息將會被傳送到 :data:`lastResort` 上所設定的處理器。"
 
-#: ../../library/logging.rst:347
+#: ../../library/logging.rst:344
 msgid "The *stack_info* parameter was added."
 msgstr "新增 *stack_info* 參數。"
 
-#: ../../library/logging.rst:350
+#: ../../library/logging.rst:347
 msgid "The *exc_info* parameter can now accept exception instances."
-msgstr ""
+msgstr "*exc_info* 參數現在可以接受例外實例。"
 
-#: ../../library/logging.rst:353
+#: ../../library/logging.rst:350
 msgid "The *stacklevel* parameter was added."
 msgstr "新增 *stacklevel* 參數。"
 
-#: ../../library/logging.rst:359
+#: ../../library/logging.rst:356
 msgid ""
 "Logs a message with level :const:`INFO` on this logger. The arguments are "
 "interpreted as for :meth:`debug`."
 msgstr ""
+"在此記錄器上記錄一則等級為 :const:`INFO` 的訊息。引數的解讀方式"
+"與 :meth:`debug` 相同。"
 
-#: ../../library/logging.rst:365
+#: ../../library/logging.rst:362
 msgid ""
 "Logs a message with level :const:`WARNING` on this logger. The arguments are "
 "interpreted as for :meth:`debug`."
 msgstr ""
-"在此記錄器上記錄一條層級為 :const:`WARNING` 的訊息。這些引數被直譯的方式與 :"
-"meth:`debug` 相同。"
+"在此記錄器上記錄一則等級為 :const:`WARNING` 的訊息。引數的解讀方式"
+"與 :meth:`debug` 相同。"
 
-#: ../../library/logging.rst:368
+#: ../../library/logging.rst:365
 msgid ""
 "There is an obsolete method ``warn`` which is functionally identical to "
 "``warning``. As ``warn`` is deprecated, please do not use it - use "
 "``warning`` instead."
 msgstr ""
+"有一個已過時的方法 ``warn``，其功能與 ``warning`` 完全相同。由於 ``warn`` 已"
+"被棄用，請不要使用它，請改用 ``warning``。"
 
-#: ../../library/logging.rst:374
+#: ../../library/logging.rst:371
 msgid ""
 "Logs a message with level :const:`ERROR` on this logger. The arguments are "
 "interpreted as for :meth:`debug`."
 msgstr ""
+"在此記錄器上記錄一則等級為 :const:`ERROR` 的訊息。引數的解讀方式"
+"與 :meth:`debug` 相同。"
 
-#: ../../library/logging.rst:380
+#: ../../library/logging.rst:377
 msgid ""
 "Logs a message with level :const:`CRITICAL` on this logger. The arguments "
 "are interpreted as for :meth:`debug`."
 msgstr ""
+"在此記錄器上記錄一則等級為 :const:`CRITICAL` 的訊息。引數的解讀方式"
+"與 :meth:`debug` 相同。"
 
-#: ../../library/logging.rst:386
+#: ../../library/logging.rst:383
 msgid ""
 "Logs a message with integer level *level* on this logger. The other "
 "arguments are interpreted as for :meth:`debug`."
 msgstr ""
+"在此記錄器上記錄一則整數等級為 *level* 的訊息。其他引數的解讀方式"
+"與 :meth:`debug` 相同。"
 
-#: ../../library/logging.rst:392
+#: ../../library/logging.rst:389
 msgid ""
 "Logs a message with level :const:`ERROR` on this logger. The arguments are "
 "interpreted as for :meth:`debug`. Exception info is added to the logging "
 "message. This method should only be called from an exception handler."
 msgstr ""
+"在此記錄器上記錄一則等級為 :const:`ERROR` 的訊息。引數的解讀方式"
+"與 :meth:`debug` 相同。例外資訊會被加入日誌訊息中。此方法只應從例外處理程式中"
+"呼叫。"
 
-#: ../../library/logging.rst:399
+#: ../../library/logging.rst:396
 msgid "Adds the specified filter *filter* to this logger."
-msgstr "在該 logger 內增加指定的 filter *filter*。"
+msgstr "將指定的過濾器 *filter* 加入此記錄器。"
 
-#: ../../library/logging.rst:404
+#: ../../library/logging.rst:401
 msgid "Removes the specified filter *filter* from this logger."
-msgstr "在該 logger 內移除指定的 filter *filter*。"
+msgstr "從此記錄器移除指定的過濾器 *filter*。"
 
-#: ../../library/logging.rst:409
+#: ../../library/logging.rst:406
 msgid ""
 "Apply this logger's filters to the record and return ``True`` if the record "
 "is to be processed. The filters are consulted in turn, until one of them "
@@ -604,23 +727,28 @@ msgid ""
 "be processed (passed to handlers). If one returns a false value, no further "
 "processing of the record occurs."
 msgstr ""
+"將此記錄器的過濾器套用到紀錄上，若該紀錄要被處理則回傳 ``True``。過濾器會依序"
+"被詢問，直到其中一個回傳假值為止。如果沒有任何過濾器回傳假值，該紀錄就會被處"
+"理（傳遞給處理器）。如果有一個回傳假值，就不會再對該紀錄進行任何處理。"
 
-#: ../../library/logging.rst:418
+#: ../../library/logging.rst:415
 msgid "Adds the specified handler *hdlr* to this logger."
-msgstr ""
+msgstr "將指定的處理器 *hdlr* 加入此記錄器。"
 
-#: ../../library/logging.rst:423
+#: ../../library/logging.rst:420
 msgid "Removes the specified handler *hdlr* from this logger."
-msgstr ""
+msgstr "從此記錄器移除指定的處理器 *hdlr*。"
 
-#: ../../library/logging.rst:428
+#: ../../library/logging.rst:425
 msgid ""
 "Finds the caller's source filename and line number. Returns the filename, "
 "line number, function name and stack information as a 4-element tuple. The "
 "stack information is returned as ``None`` unless *stack_info* is ``True``."
 msgstr ""
+"找出呼叫者的原始檔案名稱和列號。以一個 4 元素的元組回傳檔案名稱、列號、函式名"
+"稱和堆疊資訊。除非 *stack_info* 為 ``True``，否則堆疊資訊會以 ``None`` 回傳。"
 
-#: ../../library/logging.rst:432
+#: ../../library/logging.rst:429
 msgid ""
 "The *stacklevel* parameter is passed from code calling the :meth:`debug` and "
 "other APIs. If greater than 1, the excess is used to skip stack frames "
@@ -629,23 +757,32 @@ msgid ""
 "in the event log refers not to the helper/wrapper code, but to the code that "
 "calls it."
 msgstr ""
+"*stacklevel* 參數是由呼叫 :meth:`debug` 及其他 API 的程式碼傳入的。若大於 1，"
+"超出的部分會用來在決定要回傳的值之前略過堆疊框。從輔助／包裝程式碼呼叫日誌記"
+"錄 API 時，這通常很有用，如此一來，事件日誌中的資訊所指的就不是輔助／包裝程式"
+"碼，而是呼叫它的程式碼。"
 
-#: ../../library/logging.rst:442
+#: ../../library/logging.rst:439
 msgid ""
 "Handles a record by passing it to all handlers associated with this logger "
 "and its ancestors (until a false value of *propagate* is found). This method "
 "is used for unpickled records received from a socket, as well as those "
-"created locally. Logger-level filtering is applied using :meth:`~Logger."
-"filter`."
+"created locally. Logger-level filtering is applied "
+"using :meth:`~Logger.filter`."
 msgstr ""
+"透過將紀錄傳遞給與此記錄器及其上層記錄器關聯的所有處理器（直到遇到 "
+"*propagate* 為假值為止）來處理該紀錄。此方法用於從 socket 接收並經 unpickle "
+"的紀錄，也用於在本地建立的紀錄。記錄器層級的過濾是使"
+"用 :meth:`~Logger.filter` 來套用的。"
 
-#: ../../library/logging.rst:450
+#: ../../library/logging.rst:447
 msgid ""
 "This is a factory method which can be overridden in subclasses to create "
 "specialized :class:`LogRecord` instances."
 msgstr ""
+"這是一個工廠方法，可以在子類別中覆寫，以建立特製的 :class:`LogRecord` 實例。"
 
-#: ../../library/logging.rst:455
+#: ../../library/logging.rst:452
 msgid ""
 "Checks to see if this logger has any handlers configured. This is done by "
 "looking for handlers in this logger and its parents in the logger hierarchy. "
@@ -654,16 +791,20 @@ msgid ""
 "set to false is found - that will be the last logger which is checked for "
 "the existence of handlers."
 msgstr ""
+"檢查此記錄器是否設定了任何處理器。做法是在記錄器階層中尋找此記錄器及其上層記"
+"錄器的處理器。如果找到處理器就回傳 ``True``，否則回傳 ``False``。每當遇到 "
+"'propagate' 屬性被設為 false 的記錄器時，此方法就會停止往上搜尋階層，該記錄器"
+"就是最後一個被檢查是否有處理器的記錄器。"
 
-#: ../../library/logging.rst:464
+#: ../../library/logging.rst:461
 msgid "Loggers can now be pickled and unpickled."
-msgstr ""
+msgstr "記錄器現在可以被 pickle 和 unpickle。"
 
-#: ../../library/logging.rst:470
+#: ../../library/logging.rst:467
 msgid "Logging Levels"
-msgstr ""
+msgstr "日誌等級"
 
-#: ../../library/logging.rst:472
+#: ../../library/logging.rst:469
 msgid ""
 "The numeric values of logging levels are given in the following table. These "
 "are primarily of interest if you want to define your own levels, and need "
@@ -671,140 +812,161 @@ msgid ""
 "define a level with the same numeric value, it overwrites the predefined "
 "value; the predefined name is lost."
 msgstr ""
+"日誌等級的數值如下表所示。這些數值主要在你想定義自己的等級，並需要它們相對於"
+"預定義等級具有特定值時才需要關注。如果你定義的等級與某個預定義等級的數值相"
+"同，它會覆寫該預定義的值；預定義的名稱也會因此消失。"
 
-#: ../../library/logging.rst:479
+#: ../../library/logging.rst:476
 msgid "Level"
-msgstr ""
+msgstr "等級"
 
-#: ../../library/logging.rst:479
+#: ../../library/logging.rst:476
 msgid "Numeric value"
-msgstr ""
+msgstr "數值"
 
-#: ../../library/logging.rst:479
+#: ../../library/logging.rst:476
 msgid "What it means / When to use it"
-msgstr ""
+msgstr "代表意義／使用時機"
 
-#: ../../library/logging.rst:481
+#: ../../library/logging.rst:478
 msgid "0"
 msgstr "0"
 
-#: ../../library/logging.rst:481
+#: ../../library/logging.rst:478
 msgid ""
 "When set on a logger, indicates that ancestor loggers are to be consulted to "
 "determine the effective level. If that still resolves to :const:`!NOTSET`, "
 "then all events are logged. When set on a handler, all events are handled."
 msgstr ""
+"設定在記錄器上時，表示要查詢上層記錄器來決定有效等級。如果結果仍然"
+"是 :const:`!NOTSET`，則所有事件都會被記錄。設定在處理器上時，所有事件都會被處"
+"理。"
 
-#: ../../library/logging.rst:489
+#: ../../library/logging.rst:486
 msgid "10"
 msgstr "10"
 
-#: ../../library/logging.rst:489
+#: ../../library/logging.rst:486
 msgid ""
 "Detailed information, typically only of interest to a developer trying to "
 "diagnose a problem."
-msgstr ""
+msgstr "詳細的資訊，通常只有試圖診斷問題的開發者才會需要。"
 
-#: ../../library/logging.rst:493
+#: ../../library/logging.rst:490
 msgid "20"
 msgstr "20"
 
-#: ../../library/logging.rst:493
+#: ../../library/logging.rst:490
 msgid "Confirmation that things are working as expected."
-msgstr ""
+msgstr "確認一切都按預期運作。"
 
-#: ../../library/logging.rst:496
+#: ../../library/logging.rst:493
 msgid "30"
 msgstr "30"
 
-#: ../../library/logging.rst:496
+#: ../../library/logging.rst:493
 msgid ""
 "An indication that something unexpected happened, or that a problem might "
 "occur in the near future (e.g. 'disk space low'). The software is still "
 "working as expected."
 msgstr ""
+"表示發生了非預期的事情，或近期可能會出現問題（例如「磁碟空間不足」）。軟體仍"
+"按預期運作。"
 
-#: ../../library/logging.rst:503
+#: ../../library/logging.rst:500
 msgid "40"
 msgstr "40"
 
-#: ../../library/logging.rst:503
+#: ../../library/logging.rst:500
 msgid ""
 "Due to a more serious problem, the software has not been able to perform "
 "some function."
-msgstr ""
+msgstr "因為有更嚴重的問題，軟體無法執行某些功能。"
 
-#: ../../library/logging.rst:507
+#: ../../library/logging.rst:504
 msgid "50"
 msgstr "50"
 
-#: ../../library/logging.rst:507
+#: ../../library/logging.rst:504
 msgid ""
 "A serious error, indicating that the program itself may be unable to "
 "continue running."
-msgstr ""
+msgstr "嚴重錯誤，表示此程式本身可能無法繼續執行。"
 
-#: ../../library/logging.rst:516
+#: ../../library/logging.rst:513
 msgid "Handler Objects"
-msgstr ""
+msgstr "Handler 物件"
 
-#: ../../library/logging.rst:518
+#: ../../library/logging.rst:515
 msgid ""
-"Handlers have the following attributes and methods. Note that :class:"
-"`Handler` is never instantiated directly; this class acts as a base for more "
-"useful subclasses. However, the :meth:`!__init__` method in subclasses needs "
-"to call :meth:`Handler.__init__`."
+"Handlers have the following attributes and methods. Note "
+"that :class:`Handler` is never instantiated directly; this class acts as a "
+"base for more useful subclasses. However, the :meth:`!__init__` method in "
+"subclasses needs to call :meth:`Handler.__init__`."
 msgstr ""
+"處理器具有以下屬性與方法。請注意，:class:`Handler` 從不直接實例化；此類別是作"
+"為更實用之子類別的基底。不過，子類別中的 :meth:`!__init__` 方法需要呼"
+"叫 :meth:`Handler.__init__`。"
 
-#: ../../library/logging.rst:527
+#: ../../library/logging.rst:524
 msgid ""
 "Initializes the :class:`Handler` instance by setting its level, setting the "
-"list of filters to the empty list and creating a lock (using :meth:"
-"`createLock`) for serializing access to an I/O mechanism."
+"list of filters to the empty list and creating a lock "
+"(using :meth:`createLock`) for serializing access to an I/O mechanism."
 msgstr ""
+"初始化 :class:`Handler` 實例：設定其等級、將過濾器串列設為空串列，並（使"
+"用 :meth:`createLock`）建立一個鎖，讓對 I/O 機制的存取能依序進行。"
 
-#: ../../library/logging.rst:534
+#: ../../library/logging.rst:531
 msgid ""
 "Initializes a thread lock which can be used to serialize access to "
 "underlying I/O functionality which may not be threadsafe."
 msgstr ""
+"初始化一個執行緒鎖，可用來讓對底層 I/O 功能（可能不是執行緒安全的）的存取依序"
+"進行。"
 
-#: ../../library/logging.rst:540
+#: ../../library/logging.rst:537
 msgid "Acquires the thread lock created with :meth:`createLock`."
-msgstr ""
+msgstr "取得以 :meth:`createLock` 建立的執行緒鎖。"
 
-#: ../../library/logging.rst:545
+#: ../../library/logging.rst:542
 msgid "Releases the thread lock acquired with :meth:`acquire`."
-msgstr ""
+msgstr "釋放以 :meth:`acquire` 取得的執行緒鎖。"
 
-#: ../../library/logging.rst:550
+#: ../../library/logging.rst:547
 msgid ""
 "Sets the threshold for this handler to *level*. Logging messages which are "
 "less severe than *level* will be ignored. When a handler is created, the "
 "level is set to :const:`NOTSET` (which causes all messages to be processed)."
 msgstr ""
+"將此處理器的門檻設為 *level*。嚴重性低於 *level* 的日誌訊息會被忽略。建立處理"
+"器時，等級會被設為 :const:`NOTSET`\\ （這會使所有訊息都被處理）。"
 
-#: ../../library/logging.rst:557
+#: ../../library/logging.rst:554
 msgid ""
 "The *level* parameter now accepts a string representation of the level such "
 "as 'INFO' as an alternative to the integer constants such as :const:`INFO`."
 msgstr ""
+"*level* 參數現在除了接受像 :const:`INFO` 這樣的整數常數外，也接受等級的字串表"
+"示，例如 'INFO'。"
 
-#: ../../library/logging.rst:565
+#: ../../library/logging.rst:562
 msgid ""
-"Sets the formatter for this handler to *fmt*. The *fmt* argument must be a :"
-"class:`Formatter` instance or ``None``."
+"Sets the formatter for this handler to *fmt*. The *fmt* argument must be "
+"a :class:`Formatter` instance or ``None``."
 msgstr ""
+"將此處理器的格式化器設為 *fmt*。*fmt* 引數必須是 :class:`Formatter` 實例或 "
+"``None``。"
 
-#: ../../library/logging.rst:571
+#: ../../library/logging.rst:568
 msgid "Adds the specified filter *filter* to this handler."
-msgstr ""
+msgstr "將指定的過濾器 *filter* 加入此處理器。"
 
-#: ../../library/logging.rst:576
+#: ../../library/logging.rst:573
 msgid "Removes the specified filter *filter* from this handler."
-msgstr ""
+msgstr "從此處理器移除指定的過濾器 *filter*。"
 
-#: ../../library/logging.rst:581
+#: ../../library/logging.rst:578
 msgid ""
 "Apply this handler's filters to the record and return ``True`` if the record "
 "is to be processed. The filters are consulted in turn, until one of them "
@@ -812,60 +974,77 @@ msgid ""
 "be emitted. If one returns a false value, the handler will not emit the "
 "record."
 msgstr ""
+"將此處理器的過濾器套用到紀錄上，若該紀錄要被處理則回傳 ``True``。過濾器會依序"
+"被詢問，直到其中一個回傳假值為止。如果沒有任何過濾器回傳假值，該紀錄就會被發"
+"出。如果有一個回傳假值，處理器就不會發出該紀錄。"
 
-#: ../../library/logging.rst:590
+#: ../../library/logging.rst:587
 msgid ""
 "Ensure all logging output has been flushed. This version does nothing and is "
 "intended to be implemented by subclasses."
-msgstr ""
+msgstr "確保所有日誌輸出都已排清 (flush)。此版本不做任何事，預期由子類別實作。"
 
-#: ../../library/logging.rst:596
+#: ../../library/logging.rst:593
 msgid ""
 "Tidy up any resources used by the handler. This version does no output but "
 "removes the handler from an internal map of handlers, which is used for "
 "handler lookup by name."
 msgstr ""
+"清理處理器所使用的所有資源。此版本不會產生輸出，但會從處理器的內部對映中移除"
+"此處理器，該對映是用來依名稱查找處理器的。"
 
-#: ../../library/logging.rst:600
+#: ../../library/logging.rst:597
 msgid ""
 "Subclasses should ensure that this gets called from overridden :meth:`close` "
 "methods."
-msgstr ""
+msgstr "子類別應確保在覆寫的 :meth:`close` 方法中會呼叫此方法。"
 
-#: ../../library/logging.rst:606
+#: ../../library/logging.rst:603
 msgid ""
 "Conditionally emits the specified logging record, depending on filters which "
 "may have been added to the handler. Wraps the actual emission of the record "
 "with acquisition/release of the I/O thread lock."
 msgstr ""
+"根據可能已加入處理器的過濾器，有條件地發出指定的日誌紀錄。在實際發出紀錄的前"
+"後，會取得／釋放 I/O 執行緒鎖。"
 
-#: ../../library/logging.rst:613
+#: ../../library/logging.rst:610
 msgid ""
 "This method should be called from handlers when an exception is encountered "
-"during an :meth:`emit` call. If the module-level attribute :data:"
-"`raiseExceptions` is ``False``, exceptions get silently ignored. This is "
-"what is mostly wanted for a logging system - most users will not care about "
-"errors in the logging system, they are more interested in application "
-"errors. You could, however, replace this with a custom handler if you wish. "
-"The specified record is the one which was being processed when the exception "
-"occurred. (The default value of :data:`raiseExceptions` is ``True``, as that "
-"is more useful during development)."
+"during an :meth:`emit` call. If the module-level "
+"attribute :data:`raiseExceptions` is ``False``, exceptions get silently "
+"ignored. This is what is mostly wanted for a logging system - most users "
+"will not care about errors in the logging system, they are more interested "
+"in application errors. You could, however, replace this with a custom "
+"handler if you wish. The specified record is the one which was being "
+"processed when the exception occurred. (The default value "
+"of :data:`raiseExceptions` is ``True``, as that is more useful during "
+"development)."
 msgstr ""
+"當處理器在 :meth:`emit` 呼叫期間遇到例外時，應呼叫此方法。如果模組層級屬"
+"性 :data:`raiseExceptions` 為 ``False``，例外會被默默忽略。這通常正是日誌記錄"
+"系統所需要的行為：大多數使用者不會在意日誌記錄系統中的錯誤，他們更關心的是應"
+"用程式的錯誤。不過，如果你願意，也可以用自訂的錯誤處理方法取代此方法。所指定"
+"的紀錄是例外發生時正在處理的那筆紀錄。（:data:`raiseExceptions` 的預設值為 "
+"``True``，因為這在開發期間比較有用。）"
 
-#: ../../library/logging.rst:626
+#: ../../library/logging.rst:623
 msgid ""
 "Do formatting for a record - if a formatter is set, use it. Otherwise, use "
 "the default formatter for the module."
 msgstr ""
+"對紀錄進行格式化：如果有設定格式化器就使用它，否則使用模組的預設格式化器。"
 
-#: ../../library/logging.rst:632
+#: ../../library/logging.rst:629
 msgid ""
 "Do whatever it takes to actually log the specified logging record. This "
-"version is intended to be implemented by subclasses and so raises a :exc:"
-"`NotImplementedError`."
+"version is intended to be implemented by subclasses and so raises "
+"a :exc:`NotImplementedError`."
 msgstr ""
+"執行實際記錄指定日誌紀錄所需的一切工作。此版本預期由子類別實作，因此會引"
+"發 :exc:`NotImplementedError`。"
 
-#: ../../library/logging.rst:636
+#: ../../library/logging.rst:633
 msgid ""
 "This method is called after a handler-level lock is acquired, which is "
 "released after this method returns. When you override this method, note that "
@@ -873,14 +1052,19 @@ msgid ""
 "logging API which might do locking, because that might result in a deadlock. "
 "Specifically:"
 msgstr ""
+"此方法會在取得處理器層級的鎖之後被呼叫，該鎖會在此方法回傳後釋放。覆寫此方法"
+"時請注意，呼叫任何會叫用日誌記錄 API 其他部分（可能會進行鎖定）的東西時都要小"
+"心，因為這可能導致死鎖。具體來說："
 
-#: ../../library/logging.rst:642
+#: ../../library/logging.rst:639
 msgid ""
 "Logging configuration APIs acquire the module-level lock, and then "
 "individual handler-level locks as those handlers are configured."
 msgstr ""
+"日誌設定 API 會先取得模組層級的鎖，接著在設定各個處理器時取得個別處理器層級的"
+"鎖。"
 
-#: ../../library/logging.rst:645
+#: ../../library/logging.rst:642
 msgid ""
 "Many logging APIs lock the module-level lock. If such an API is called from "
 "this method, it could cause a deadlock if a configuration call is made on "
@@ -889,41 +1073,50 @@ msgid ""
 "the module-level lock *after* the handler-level lock (because in this "
 "method, the handler-level lock has already been acquired)."
 msgstr ""
+"許多日誌記錄 API 會鎖定模組層級的鎖。如果從此方法中呼叫這樣的 API，而另一個執"
+"行緒正在進行設定呼叫，就可能造成死鎖，因為那個執行緒會嘗試在處理器層級的鎖\\ "
+"*之前*\\ 取得模組層級的鎖，而此執行緒則是嘗試在處理器層級的鎖\\ *之後*\\ 才取"
+"得模組層級的鎖（因為在此方法中，處理器層級的鎖已經被取得了）。"
 
-#: ../../library/logging.rst:652
+#: ../../library/logging.rst:649
 msgid ""
 "For a list of handlers included as standard, see :mod:`logging.handlers`."
-msgstr ""
+msgstr "標準內建的處理器清單請參閱 :mod:`logging.handlers`。"
 
-#: ../../library/logging.rst:657
+#: ../../library/logging.rst:654
 msgid "Formatter Objects"
-msgstr ""
+msgstr "Formatter 物件"
 
-#: ../../library/logging.rst:663
+#: ../../library/logging.rst:660
 msgid ""
 "Responsible for converting a :class:`LogRecord` to an output string to be "
 "interpreted by a human or external system."
-msgstr ""
+msgstr "負責將 :class:`LogRecord` 轉換為供人類或外部系統解讀的輸出字串。"
 
 #: ../../library/logging.rst:0
 msgid "Parameters"
-msgstr ""
+msgstr "參數"
 
-#: ../../library/logging.rst:666
+#: ../../library/logging.rst:663
 msgid ""
 "A format string in the given *style* for the logged output as a whole. The "
-"possible mapping keys are drawn from the :class:`LogRecord` object's :ref:"
-"`logrecord-attributes`. If not specified, ``'%(message)s'`` is used, which "
-"is just the logged message."
+"possible mapping keys are drawn from the :class:`LogRecord` "
+"object's :ref:`logrecord-attributes`. If not specified, ``'%(message)s'`` is "
+"used, which is just the logged message."
 msgstr ""
+"以指定的 *style* 撰寫、用於整個日誌輸出的格式字串。可用的對映鍵取"
+"自 :class:`LogRecord` 物件的 :ref:`logrecord-attributes`。若未指定，則會使用 "
+"``'%(message)s'``，也就是只有所記錄的訊息。"
 
-#: ../../library/logging.rst:674
+#: ../../library/logging.rst:671
 msgid ""
 "A format string for the date/time portion of the logged output. If not "
 "specified, the default described in :meth:`formatTime` is used."
 msgstr ""
+"用於日誌輸出中日期／時間部分的格式字串。若未指定，則會使"
+"用 :meth:`formatTime` 中所描述的預設值。"
 
-#: ../../library/logging.rst:678
+#: ../../library/logging.rst:675
 msgid ""
 "Can be one of ``'%'``, ``'{'`` or ``'$'`` and determines how the format "
 "string will be merged with its data: using one of :ref:`old-string-"
@@ -933,71 +1126,99 @@ msgid ""
 "methods. However, there are :ref:`other ways <formatting-styles>` to use "
 "``{``- and ``$``-formatting for log messages."
 msgstr ""
+"可以是 ``'%'``、``'{'`` 或 ``'$'`` 其中之一，決定格式字串要如何與其資料合併："
+"分別使用 :ref:`old-string-formatting` (``%``)、:meth:`str.format` (``{``) "
+"或 :class:`string.Template` (``$``)。這只適用於 *fmt*\\ （例如 ``'%"
+"(message)s'`` 與 ``'{message}'``），而不適用於傳給日誌記錄方法的實際日誌訊"
+"息。不過，還是有\\ :ref:`其他方式 <formatting-styles>`\\ 可以對日誌訊息使用 "
+"``{`` 和 ``$`` 格式化。"
 
-#: ../../library/logging.rst:688
+#: ../../library/logging.rst:685
 msgid ""
 "If ``True`` (the default), incorrect or mismatched *fmt* and *style* will "
-"raise a :exc:`ValueError`; for example, ``logging.Formatter('%(asctime)s - "
-"%(message)s', style='{')``."
+"raise a :exc:`ValueError`; for example, ``logging.Formatter('%(asctime)s - %"
+"(message)s', style='{')``."
 msgstr ""
+"若為 ``True``\\ （預設值），不正確或不相符的 *fmt* 與 *style* 會引"
+"發 :exc:`ValueError`；例如 ``logging.Formatter('%(asctime)s - %(message)s', "
+"style='{')``。"
 
-#: ../../library/logging.rst:693
+#: ../../library/logging.rst:690
 msgid ""
 "A dictionary with default values to use in custom fields. For example, "
 "``logging.Formatter('%(ip)s %(message)s', defaults={\"ip\": None})``"
 msgstr ""
+"一個字典，包含要用於自訂欄位的預設值。例如 ``logging.Formatter('%(ip)s %"
+"(message)s', defaults={\"ip\": None})``"
 
-#: ../../library/logging.rst:698
+#: ../../library/logging.rst:695
 msgid "Added the *style* parameter."
 msgstr "新增 *style* 參數。"
 
-#: ../../library/logging.rst:701
+#: ../../library/logging.rst:698
 msgid "Added the *validate* parameter."
 msgstr "新增 *validate* 參數。"
 
-#: ../../library/logging.rst:704
+#: ../../library/logging.rst:701
 msgid "Added the *defaults* parameter."
 msgstr "新增 *defaults* 參數。"
 
-#: ../../library/logging.rst:710
+#: ../../library/logging.rst:707
 msgid ""
 "The record's attribute dictionary is used as the operand to a string "
 "formatting operation. Returns the resulting string. Before formatting the "
 "dictionary, a couple of preparatory steps are carried out. The *message* "
 "attribute of the record is computed using *msg* % *args*. If the formatting "
 "string contains ``'(asctime)'``, :meth:`formatTime` is called to format the "
-"event time. If there is exception information, it is formatted using :meth:"
-"`formatException` and appended to the message. Note that the formatted "
-"exception information is cached in attribute *exc_text*. This is useful "
-"because the exception information can be pickled and sent across the wire, "
-"but you should be careful if you have more than one :class:`Formatter` "
+"event time. If there is exception information, it is formatted "
+"using :meth:`formatException` and appended to the message. Note that the "
+"formatted exception information is cached in attribute *exc_text*. This is "
+"useful because the exception information can be pickled and sent across the "
+"wire, but you should be careful if you have more than one :class:`Formatter` "
 "subclass which customizes the formatting of exception information. In this "
 "case, you will have to clear the cached value (by setting the *exc_text* "
 "attribute to ``None``) after a formatter has done its formatting, so that "
 "the next formatter to handle the event doesn't use the cached value, but "
 "recalculates it afresh."
 msgstr ""
+"紀錄的屬性字典會被用作字串格式化操作的運算元。回傳結果字串。在格式化字典之"
+"前，會先執行幾個準備步驟。紀錄的 *message* 屬性是以 *msg* % *args* 計算而得。"
+"如果格式字串包含 ``'(asctime)'``，就會呼叫 :meth:`formatTime` 來格式化事件時"
+"間。如果有例外資訊，就會使用 :meth:`formatException` 將其格式化並附加到訊息後"
+"面。請注意，格式化後的例外資訊會快取在 *exc_text* 屬性中。這很有用，因為例外"
+"資訊可以被 pickle 並透過網路傳送，但如果你有多個會自訂例外資訊格式"
+"的 :class:`Formatter` 子類別，就要特別小心。在這種情況下，你必須在格式化器完"
+"成格式化後清除快取的值（將 *exc_text* 屬性設為 ``None``），這樣下一個處理該事"
+"件的格式化器才不會使用快取的值，而是重新計算。"
 
-#: ../../library/logging.rst:726
+#: ../../library/logging.rst:723
 msgid ""
 "If stack information is available, it's appended after the exception "
 "information, using :meth:`formatStack` to transform it if necessary."
 msgstr ""
+"如果有堆疊資訊，會將其附加在例外資訊之後，必要時會使用 :meth:`formatStack` 進"
+"行轉換。"
 
-#: ../../library/logging.rst:732
+#: ../../library/logging.rst:729
 msgid ""
 "This method should be called from :meth:`format` by a formatter which wants "
 "to make use of a formatted time. This method can be overridden in formatters "
 "to provide for any specific requirement, but the basic behavior is as "
-"follows: if *datefmt* (a string) is specified, it is used with :func:`time."
-"strftime` to format the creation time of the record. Otherwise, the format "
-"'%Y-%m-%d %H:%M:%S,uuu' is used, where the uuu part is a millisecond value "
-"and the other letters are as per the :func:`time.strftime` documentation.  "
-"An example time in this format is ``2003-01-23 00:29:50,411``.  The "
-"resulting string is returned."
+"follows: if *datefmt* (a string) is specified, it is used "
+"with :func:`time.strftime` to format the creation time of the record. "
+"Otherwise, the format '%Y-%m-%d %H:%M:%S,uuu' is used, where the uuu part is "
+"a millisecond value and the other letters are as per "
+"the :func:`time.strftime` documentation.  An example time in this format is "
+"``2003-01-23 00:29:50,411``.  The resulting string is returned."
 msgstr ""
+"想要使用格式化時間的格式化器，應從 :meth:`format` 中呼叫此方法。可以在格式化"
+"器中覆寫此方法以滿足任何特定需求，但基本行為如下：如果有指定 *datefmt*\\ （一"
+"個字串），就會將它與 :func:`time.strftime` 搭配使用來格式化紀錄的建立時間。否"
+"則會使用格式 '%Y-%m-%d %H:%M:%S,uuu'，其中 uuu 部分是毫秒值，其他字母則依"
+"照 :func:`time.strftime` 文件的定義。此格式的時間範例為 ``2003-01-23 "
+"00:29:50,411``。回傳結果字串。"
 
-#: ../../library/logging.rst:742
+#: ../../library/logging.rst:739
 msgid ""
 "This function uses a user-configurable function to convert the creation time "
 "to a tuple. By default, :func:`time.localtime` is used; to change this for a "
@@ -1006,42 +1227,58 @@ msgid ""
 "change it for all formatters, for example if you want all logging times to "
 "be shown in GMT, set the ``converter`` attribute in the ``Formatter`` class."
 msgstr ""
+"此函式使用一個可由使用者設定的函式，將建立時間轉換為元組。預設使"
+"用 :func:`time.localtime`；如果要針對特定格式化器實例更改此設定，請將 "
+"``converter`` 屬性設為與 :func:`time.localtime` 或 :func:`time.gmtime` 具有相"
+"同簽名的函式。如果要更改所有格式化器的設定，例如想讓所有日誌時間都以 GMT 顯"
+"示，請在 ``Formatter`` 類別中設定 ``converter`` 屬性。"
 
-#: ../../library/logging.rst:750
+#: ../../library/logging.rst:747
 msgid ""
 "Previously, the default format was hard-coded as in this example: "
 "``2010-09-06 22:38:15,292`` where the part before the comma is handled by a "
-"strptime format string (``'%Y-%m-%d %H:%M:%S'``), and the part after the "
-"comma is a millisecond value. Because strptime does not have a format "
+"strftime format string (``'%Y-%m-%d %H:%M:%S'``), and the part after the "
+"comma is a millisecond value. Because strftime does not have a format "
 "placeholder for milliseconds, the millisecond value is appended using "
 "another format string, ``'%s,%03d'`` --- and both of these format strings "
 "have been hardcoded into this method. With the change, these strings are "
 "defined as class-level attributes which can be overridden at the instance "
 "level when desired. The names of the attributes are ``default_time_format`` "
-"(for the strptime format string) and ``default_msec_format`` (for appending "
+"(for the strftime format string) and ``default_msec_format`` (for appending "
 "the millisecond value)."
 msgstr ""
+"先前，預設格式是寫死的，如此範例：``2010-09-06 22:38:15,292``，其中逗號前的部"
+"分由 strftime 格式字串 (``'%Y-%m-%d %H:%M:%S'``) 處理，逗號後的部分則是毫秒"
+"值。由於 strftime 沒有毫秒的格式佔位符號，因此毫秒值是使用另一個格式字串 "
+"``'%s,%03d'`` 附加上去的 --- 而這兩個格式字串都被寫死在此方法中。經過這次變更"
+"後，這些字串被定義為類別層級的屬性，需要時可以在實例層級覆寫。這些屬性的名稱"
+"為 ``default_time_format``\\ （用於 strftime 格式字串）和 "
+"``default_msec_format``\\ （用於附加毫秒值）。"
 
-#: ../../library/logging.rst:763
+#: ../../library/logging.rst:760
 msgid "The ``default_msec_format`` can be ``None``."
-msgstr ""
+msgstr "``default_msec_format`` 可以是 ``None``。"
 
-#: ../../library/logging.rst:768
+#: ../../library/logging.rst:765
 msgid ""
 "Formats the specified exception information (a standard exception tuple as "
 "returned by :func:`sys.exc_info`) as a string. This default implementation "
 "just uses :func:`traceback.print_exception`. The resulting string is "
 "returned."
 msgstr ""
+"將指定的例外資訊（由 :func:`sys.exc_info` 回傳的標準例外元組）格式化為字串。"
+"此預設實作僅使用 :func:`traceback.print_exception`。回傳結果字串。"
 
-#: ../../library/logging.rst:775
+#: ../../library/logging.rst:772
 msgid ""
-"Formats the specified stack information (a string as returned by :func:"
-"`traceback.print_stack`, but with the last newline removed) as a string. "
-"This default implementation just returns the input value."
+"Formats the specified stack information (a string as returned "
+"by :func:`traceback.print_stack`, but with the last newline removed) as a "
+"string. This default implementation just returns the input value."
 msgstr ""
+"將指定的堆疊資訊（由 :func:`traceback.print_stack` 回傳、但移除了最後一個換行"
+"字元的字串）格式化為字串。此預設實作只會回傳輸入值。"
 
-#: ../../library/logging.rst:781
+#: ../../library/logging.rst:778
 msgid ""
 "A base formatter class suitable for subclassing when you want to format a "
 "number of records. You can pass a :class:`Formatter` instance which you want "
@@ -1049,35 +1286,44 @@ msgid ""
 "specified, the default formatter (which just outputs the event message) is "
 "used as the line formatter."
 msgstr ""
+"一個基底格式化器類別，適合在你想要格式化多筆紀錄時作為子類別化的基礎。你可以"
+"傳入一個 :class:`Formatter` 實例，用來格式化每一列（對應單一紀錄）。若未指"
+"定，則會使用預設格式化器（只輸出事件訊息）作為列格式化器。"
 
-#: ../../library/logging.rst:789
+#: ../../library/logging.rst:786
 msgid ""
 "Return a header for a list of *records*. The base implementation just "
 "returns the empty string. You will need to override this method if you want "
 "specific behaviour, e.g. to show the count of records, a title or a "
 "separator line."
 msgstr ""
+"回傳 *records* 串列的標頭。基底實作只會回傳空字串。如果你想要特定的行為，例如"
+"顯示紀錄數量、標題或分隔線，就需要覆寫此方法。"
 
-#: ../../library/logging.rst:796
+#: ../../library/logging.rst:793
 msgid ""
 "Return a footer for a list of *records*. The base implementation just "
 "returns the empty string. You will need to override this method if you want "
 "specific behaviour, e.g. to show the count of records or a separator line."
 msgstr ""
+"回傳 *records* 串列的結尾。基底實作只會回傳空字串。如果你想要特定的行為，例如"
+"顯示紀錄數量或分隔線，就需要覆寫此方法。"
 
-#: ../../library/logging.rst:803
+#: ../../library/logging.rst:800
 msgid ""
 "Return formatted text for a list of *records*. The base implementation just "
 "returns the empty string if there are no records; otherwise, it returns the "
 "concatenation of the header, each record formatted with the line formatter, "
 "and the footer."
 msgstr ""
+"回傳 *records* 串列格式化後的文字。如果沒有任何紀錄，基底實作只會回傳空字串；"
+"否則會回傳由標頭、以列格式化器格式化的每筆紀錄，以及結尾串接而成的結果。"
 
-#: ../../library/logging.rst:811
+#: ../../library/logging.rst:808
 msgid "Filter Objects"
-msgstr ""
+msgstr "Filter 物件"
 
-#: ../../library/logging.rst:813
+#: ../../library/logging.rst:810
 msgid ""
 "``Filters`` can be used by ``Handlers`` and ``Loggers`` for more "
 "sophisticated filtering than is provided by levels. The base filter class "
@@ -1086,24 +1332,34 @@ msgid ""
 "loggers 'A.B', 'A.B.C', 'A.B.C.D', 'A.B.D' etc. but not 'A.BB', 'B.A.B' etc. "
 "If initialized with the empty string, all events are passed."
 msgstr ""
+"``Handlers`` 和 ``Loggers`` 可以使用 ``Filters`` 來進行比等級更精細的過濾。基"
+"底過濾器類別只允許記錄器階層中位於某個點以下的事件通過。例如，以 'A.B' 初始化"
+"的過濾器會允許記錄器 'A.B'、'A.B.C'、'A.B.C.D'、'A.B.D' 等所記錄的事件，但不"
+"允許 'A.BB'、'B.A.B' 等。如果以空字串初始化，則所有事件都會通過。"
 
-#: ../../library/logging.rst:823
+#: ../../library/logging.rst:820
 msgid ""
 "Returns an instance of the :class:`Filter` class. If *name* is specified, it "
 "names a logger which, together with its children, will have its events "
 "allowed through the filter. If *name* is the empty string, allows every "
 "event."
 msgstr ""
+"回傳 :class:`Filter` 類別的實例。如果有指定 *name*，它指的是一個記錄器，該記"
+"錄器及其子記錄器的事件將被允許通過過濾器。如果 *name* 為空字串，則允許所有事"
+"件。"
 
-#: ../../library/logging.rst:830
+#: ../../library/logging.rst:827
 msgid ""
 "Is the specified record to be logged? Returns false for no, true for yes. "
 "Filters can either modify log records in-place or return a completely "
 "different record instance which will replace the original log record in any "
 "future processing of the event."
 msgstr ""
+"指定的紀錄是否要被記錄？回傳 false 表示否，true 表示是。過濾器可以原地修改日"
+"誌紀錄，也可以回傳一個完全不同的紀錄實例，在該事件後續的所有處理中取代原本的"
+"日誌紀錄。"
 
-#: ../../library/logging.rst:835
+#: ../../library/logging.rst:832
 msgid ""
 "Note that filters attached to handlers are consulted before an event is "
 "emitted by the handler, whereas filters attached to loggers are consulted "
@@ -1112,33 +1368,47 @@ msgid ""
 "generated by descendant loggers will not be filtered by a logger's filter "
 "setting, unless the filter has also been applied to those descendant loggers."
 msgstr ""
+"請注意，附加在處理器上的過濾器會在處理器發出事件之前被詢問，而附加在記錄器上"
+"的過濾器則會在每次記錄事件時（使用 :meth:`debug`、:meth:`info` 等）、將事件傳"
+"送給處理器之前被詢問。這表示由後代記錄器產生的事件不會被某個記錄器的過濾器設"
+"定所過濾，除非該過濾器也被套用到那些後代記錄器上。"
 
-#: ../../library/logging.rst:842
+#: ../../library/logging.rst:839
 msgid ""
 "You don't actually need to subclass ``Filter``: you can pass any instance "
 "which has a ``filter`` method with the same semantics."
 msgstr ""
+"你其實不需要建立 ``Filter`` 的子類別：你可以傳入任何具有相同語意之 "
+"``filter`` 方法的實例。"
 
-#: ../../library/logging.rst:845
+#: ../../library/logging.rst:842
 msgid ""
 "You don't need to create specialized ``Filter`` classes, or use other "
 "classes with a ``filter`` method: you can use a function (or other callable) "
 "as a filter. The filtering logic will check to see if the filter object has "
-"a ``filter`` attribute: if it does, it's assumed to be a ``Filter`` and its :"
-"meth:`~Filter.filter` method is called. Otherwise, it's assumed to be a "
+"a ``filter`` attribute: if it does, it's assumed to be a ``Filter`` and "
+"its :meth:`~Filter.filter` method is called. Otherwise, it's assumed to be a "
 "callable and called with the record as the single parameter. The returned "
 "value should conform to that returned by :meth:`~Filter.filter`."
 msgstr ""
+"你不需要建立特製的 ``Filter`` 類別，也不需要使用其他具有 ``filter`` 方法的類"
+"別：你可以使用函式（或其他可呼叫物件）作為過濾器。過濾邏輯會檢查過濾器物件是"
+"否具有 ``filter`` 屬性：如果有，就假定它是 ``Filter`` 並呼叫"
+"其 :meth:`~Filter.filter` 方法；否則就假定它是可呼叫物件，並以該紀錄作為唯一"
+"參數來呼叫它。回傳值應與 :meth:`~Filter.filter` 的回傳值一致。"
 
-#: ../../library/logging.rst:855
+#: ../../library/logging.rst:852
 msgid ""
 "You can now return a :class:`LogRecord` instance from filters to replace the "
 "log record rather than modifying it in place. This allows filters attached "
 "to a :class:`Handler` to modify the log record before it is emitted, without "
 "having side effects on other handlers."
 msgstr ""
+"現在你可以從過濾器回傳一個 :class:`LogRecord` 實例來取代日誌紀錄，而不是原地"
+"修改它。這讓附加在 :class:`Handler` 上的過濾器可以在日誌紀錄被發出之前修改"
+"它，而不會對其他處理器產生副作用。"
 
-#: ../../library/logging.rst:861
+#: ../../library/logging.rst:858
 msgid ""
 "Although filters are used primarily to filter records based on more "
 "sophisticated criteria than levels, they get to see every record which is "
@@ -1149,85 +1419,106 @@ msgid ""
 "needs to be done with some care, but it does allow the injection of "
 "contextual information into logs (see :ref:`filters-contextual`)."
 msgstr ""
+"雖然過濾器主要用來根據比等級更精細的條件來過濾紀錄，但它們能看到所附加的處理"
+"器或記錄器所處理的每一筆紀錄：如果你想做一些事情，例如計算特定記錄器或處理器"
+"處理了多少筆紀錄，或是在正在處理的 :class:`LogRecord` 中新增、變更或移除屬"
+"性，這就很有用。顯然，變更 LogRecord 時需要小心，但這確實能將情境資訊注入日誌"
+"中（請參閱 :ref:`filters-contextual`）。"
 
-#: ../../library/logging.rst:874
+#: ../../library/logging.rst:871
 msgid "LogRecord Objects"
 msgstr "LogRecord 物件"
 
-#: ../../library/logging.rst:876
+#: ../../library/logging.rst:873
 msgid ""
-":class:`LogRecord` instances are created automatically by the :class:"
-"`Logger` every time something is logged, and can be created manually via :"
-"func:`makeLogRecord` (for example, from a pickled event received over the "
-"wire)."
+":class:`LogRecord` instances are created automatically by "
+"the :class:`Logger` every time something is logged, and can be created "
+"manually via :func:`makeLogRecord` (for example, from a pickled event "
+"received over the wire)."
 msgstr ""
+"每次記錄某些內容時，:class:`Logger` 都會自動建立 :class:`LogRecord` 實例，也"
+"可以透過 :func:`makeLogRecord` 手動建立（例如從透過網路接收、經 pickle 的事件"
+"建立）。"
 
-#: ../../library/logging.rst:884
+#: ../../library/logging.rst:881
 msgid "Contains all the information pertinent to the event being logged."
-msgstr ""
+msgstr "包含與正在記錄之事件相關的所有資訊。"
 
-#: ../../library/logging.rst:886
+#: ../../library/logging.rst:883
 msgid ""
 "The primary information is passed in *msg* and *args*, which are combined "
 "using ``msg % args`` to create the :attr:`!message` attribute of the record."
 msgstr ""
+"主要資訊透過 *msg* 和 *args* 傳入，兩者會使用 ``msg % args`` 結合，以建立紀錄"
+"的 :attr:`!message` 屬性。"
 
-#: ../../library/logging.rst:890
+#: ../../library/logging.rst:887
 msgid ""
 "The name of the logger used to log the event represented by this :class:`!"
 "LogRecord`. Note that the logger name in the :class:`!LogRecord` will always "
 "have this value, even though it may be emitted by a handler attached to a "
 "different (ancestor) logger."
 msgstr ""
+"用來記錄此 :class:`!LogRecord` 所代表之事件的記錄器名稱。請注意，:class:`!"
+"LogRecord` 中的記錄器名稱一律會是這個值，即使它可能是由附加在另一個（上層）記"
+"錄器上的處理器所發出的。"
 
-#: ../../library/logging.rst:898
+#: ../../library/logging.rst:895
 msgid ""
 "The :ref:`numeric level <levels>` of the logging event (such as ``10`` for "
 "``DEBUG``, ``20`` for ``INFO``, etc). Note that this is converted to *two* "
-"attributes of the LogRecord: :attr:`!levelno` for the numeric value and :"
-"attr:`!levelname` for the corresponding level name."
+"attributes of the LogRecord: :attr:`!levelno` for the numeric value "
+"and :attr:`!levelname` for the corresponding level name."
 msgstr ""
+"日誌事件的\\ :ref:`數值等級 <levels>`\\ （例如 ``DEBUG`` 為 ``10``、``INFO`` "
+"為 ``20`` 等）。請注意，這會被轉換為 LogRecord 的\\ *兩個*\\ 屬性：數值"
+"的 :attr:`!levelno` 和對應等級名稱的 :attr:`!levelname`。"
 
-#: ../../library/logging.rst:905
+#: ../../library/logging.rst:902
 msgid ""
 "The full string path of the source file where the logging call was made."
-msgstr ""
+msgstr "進行日誌記錄呼叫之原始檔的完整路徑字串。"
 
-#: ../../library/logging.rst:909
+#: ../../library/logging.rst:906
 msgid "The line number in the source file where the logging call was made."
-msgstr ""
+msgstr "原始檔中進行日誌記錄呼叫的列號。"
 
-#: ../../library/logging.rst:913
+#: ../../library/logging.rst:910
 msgid ""
 "The event description message, which can be a %-format string with "
 "placeholders for variable data, or an arbitrary object (see :ref:`arbitrary-"
 "object-messages`)."
 msgstr ""
+"事件描述訊息，可以是帶有變數資料佔位符號的 % 格式字串，或是任意物件（請參"
+"閱 :ref:`arbitrary-object-messages`）。"
 
-#: ../../library/logging.rst:918
+#: ../../library/logging.rst:915
 msgid ""
 "Variable data to merge into the *msg* argument to obtain the event "
 "description."
-msgstr ""
+msgstr "要合併到 *msg* 引數中以取得事件描述的變數資料。"
 
-#: ../../library/logging.rst:922
+#: ../../library/logging.rst:919
 msgid ""
-"An exception tuple with the current exception information, as returned by :"
-"func:`sys.exc_info`, or ``None`` if no exception information is available."
+"An exception tuple with the current exception information, as returned "
+"by :func:`sys.exc_info`, or ``None`` if no exception information is "
+"available."
 msgstr ""
+"一個包含目前例外資訊的例外元組（如 :func:`sys.exc_info` 所回傳），若沒有可用"
+"的例外資訊則為 ``None``。"
 
-#: ../../library/logging.rst:927
+#: ../../library/logging.rst:924
 msgid ""
 "The name of the function or method from which the logging call was invoked."
-msgstr ""
+msgstr "發起日誌記錄呼叫的函式或方法名稱。"
 
-#: ../../library/logging.rst:931
+#: ../../library/logging.rst:928
 msgid ""
 "A text string representing stack information from the base of the stack in "
 "the current thread, up to the logging call."
-msgstr ""
+msgstr "一個文字字串，表示目前執行緒中從堆疊底部到日誌記錄呼叫為止的堆疊資訊。"
 
-#: ../../library/logging.rst:938
+#: ../../library/logging.rst:935
 msgid ""
 "Returns the message for this :class:`LogRecord` instance after merging any "
 "user-supplied arguments with the message. If the user-supplied message "
@@ -1235,23 +1526,32 @@ msgid ""
 "convert it to a string. This allows use of user-defined classes as messages, "
 "whose ``__str__`` method can return the actual format string to be used."
 msgstr ""
+"將使用者提供的引數與訊息合併後，回傳此 :class:`LogRecord` 實例的訊息。如果使"
+"用者傳給日誌記錄呼叫的訊息引數不是字串，就會對它呼叫 :func:`str` 以將其轉換為"
+"字串。這讓使用者定義的類別可以作為訊息使用，其 ``__str__`` 方法可以回傳實際要"
+"使用的格式字串。"
 
-#: ../../library/logging.rst:945
+#: ../../library/logging.rst:942
 msgid ""
 "The creation of a :class:`LogRecord` has been made more configurable by "
 "providing a factory which is used to create the record. The factory can be "
 "set using :func:`getLogRecordFactory` and :func:`setLogRecordFactory` (see "
 "this for the factory's signature)."
 msgstr ""
+"藉由提供一個用來建立紀錄的工廠，:class:`LogRecord` 的建立方式變得更可自訂。可"
+"以使用 :func:`getLogRecordFactory` 和 :func:`setLogRecordFactory` 來設定該工"
+"廠（工廠的簽名請參閱後者）。"
+
+#: ../../library/logging.rst:948
+msgid ""
+"This functionality can be used to inject your own values into "
+"a :class:`LogRecord` at creation time. You can use the following pattern::"
+msgstr ""
+"此功能可用來在建立 :class:`LogRecord` 時注入你自己的值。你可以使用以下模"
+"式： ::"
 
 #: ../../library/logging.rst:951
 msgid ""
-"This functionality can be used to inject your own values into a :class:"
-"`LogRecord` at creation time. You can use the following pattern::"
-msgstr ""
-
-#: ../../library/logging.rst:954
-msgid ""
 "old_factory = logging.getLogRecordFactory()\n"
 "\n"
 "def record_factory(*args, **kwargs):\n"
@@ -1270,18 +1570,20 @@ msgstr ""
 "\n"
 "logging.setLogRecordFactory(record_factory)"
 
-#: ../../library/logging.rst:963
+#: ../../library/logging.rst:960
 msgid ""
 "With this pattern, multiple factories could be chained, and as long as they "
 "don't overwrite each other's attributes or unintentionally overwrite the "
 "standard attributes listed above, there should be no surprises."
 msgstr ""
+"使用這種模式，可以將多個工廠串接起來，只要它們不會覆寫彼此的屬性，或無意間覆"
+"寫上面列出的標準屬性，應該就不會有意外狀況。"
 
-#: ../../library/logging.rst:972
+#: ../../library/logging.rst:969
 msgid "LogRecord attributes"
 msgstr "LogRecord 屬性"
 
-#: ../../library/logging.rst:974
+#: ../../library/logging.rst:971
 msgid ""
 "The LogRecord has a number of attributes, most of which are derived from the "
 "parameters to the constructor. (Note that the names do not always correspond "
@@ -1291,16 +1593,24 @@ msgid ""
 "attribute names, their meanings and the corresponding placeholder in a %-"
 "style format string."
 msgstr ""
+"LogRecord 有許多屬性，其中大部分衍生自建構函式的參數。（請注意，LogRecord 建"
+"構函式參數與 LogRecord 屬性之間的名稱並不總是完全對應。）這些屬性可用來將紀錄"
+"中的資料合併到格式字串中。下表（依字母順序）列出了屬性名稱、其意義，以及在 % "
+"風格格式字串中對應的佔位符號。"
 
-#: ../../library/logging.rst:982
+#: ../../library/logging.rst:979
 msgid ""
 "If you are using {}-formatting (:func:`str.format`), you can use ``{attrname}"
-"`` as the placeholder in the format string. If you are using $-formatting (:"
-"class:`string.Template`), use the form ``${attrname}``. In both cases, of "
+"`` as the placeholder in the format string. If you are using $-formatting "
+"(:class:`string.Template`), use the form ``${attrname}``. In both cases, of "
 "course, replace ``attrname`` with the actual attribute name you want to use."
 msgstr ""
+"如果你使用 {} 格式化 (:func:`str.format`)，可以在格式字串中使用 ``{attrname}"
+"`` 作為佔位符號。如果你使用 $ 格式化 (:class:`string.Template`)，請使用 ``$"
+"{attrname}`` 的形式。當然，在這兩種情況下，都要將 ``attrname`` 替換為你想使用"
+"的實際屬性名稱。"
 
-#: ../../library/logging.rst:988
+#: ../../library/logging.rst:985
 msgid ""
 "In the case of {}-formatting, you can specify formatting flags by placing "
 "them after the attribute name, separated from it with a colon. For example: "
@@ -1308,341 +1618,370 @@ msgid ""
 "as ``004``. Refer to the :meth:`str.format` documentation for full details "
 "on the options available to you."
 msgstr ""
+"在 {} 格式化的情況下，你可以藉由將格式化旗標放在屬性名稱之後（並以冒號與其分"
+"隔）來指定它們。例如：佔位符號 ``{msecs:03.0f}`` 會將毫秒值 ``4`` 格式化為 "
+"``004``。關於可用選項的完整細節，請參閱 :meth:`str.format` 的文件。"
 
-#: ../../library/logging.rst:995
+#: ../../library/logging.rst:992
 msgid "Attribute name"
 msgstr "屬性名稱"
 
-#: ../../library/logging.rst:995 ../../library/logging.rst:1375
+#: ../../library/logging.rst:992 ../../library/logging.rst:1373
 msgid "Format"
 msgstr "格式"
 
-#: ../../library/logging.rst:995 ../../library/logging.rst:1375
+#: ../../library/logging.rst:992 ../../library/logging.rst:1373
 msgid "Description"
 msgstr "描述"
 
-#: ../../library/logging.rst:0 ../../library/logging.rst:997
+#: ../../library/logging.rst:0 ../../library/logging.rst:994
 msgid "args"
 msgstr "args"
 
-#: ../../library/logging.rst:997 ../../library/logging.rst:1011
-#: ../../library/logging.rst:1014 ../../library/logging.rst:1044
-#: ../../library/logging.rst:1062
+#: ../../library/logging.rst:994 ../../library/logging.rst:1008
+#: ../../library/logging.rst:1011 ../../library/logging.rst:1041
+#: ../../library/logging.rst:1059
 msgid "You shouldn't need to format this yourself."
 msgstr "你不應該需要自己格式化它。"
 
-#: ../../library/logging.rst:997
+#: ../../library/logging.rst:994
 msgid ""
 "The tuple of arguments merged into ``msg`` to produce ``message``, or a dict "
 "whose values are used for the merge (when there is only one argument, and it "
 "is a dictionary)."
 msgstr ""
+"合併到 ``msg`` 中以產生 ``message`` 的引數元組，或是一個字典，其值會用於合併"
+"（當只有一個引數且它是字典時）。"
 
-#: ../../library/logging.rst:1002
+#: ../../library/logging.rst:999
 msgid "asctime"
 msgstr "asctime"
 
-#: ../../library/logging.rst:1002
+#: ../../library/logging.rst:999
 msgid "``%(asctime)s``"
 msgstr "``%(asctime)s``"
 
-#: ../../library/logging.rst:1002
+#: ../../library/logging.rst:999
 msgid ""
 "Human-readable time when the :class:`LogRecord` was created.  By default "
 "this is of the form '2003-07-08 16:49:45,896' (the numbers after the comma "
 "are millisecond portion of the time)."
 msgstr ""
+"人類可讀的 :class:`LogRecord` 建立時間。預設格式為 '2003-07-08 "
+"16:49:45,896'（逗號後的數字是時間的毫秒部分）。"
 
-#: ../../library/logging.rst:1008
+#: ../../library/logging.rst:1005
 msgid "created"
 msgstr "created"
 
-#: ../../library/logging.rst:1008
+#: ../../library/logging.rst:1005
 msgid "``%(created)f``"
 msgstr "``%(created)f``"
 
-#: ../../library/logging.rst:1008
+#: ../../library/logging.rst:1005
 msgid ""
-"Time when the :class:`LogRecord` was created (as returned by :func:`time."
-"time_ns` / 1e9)."
+"Time when the :class:`LogRecord` was created (as returned "
+"by :func:`time.time_ns` / 1e9)."
 msgstr ""
+":class:`LogRecord` 的建立時間（如 :func:`time.time_ns` / 1e9 所回傳的值）。"
 
-#: ../../library/logging.rst:0 ../../library/logging.rst:1011
+#: ../../library/logging.rst:0 ../../library/logging.rst:1008
 msgid "exc_info"
 msgstr "exc_info"
 
-#: ../../library/logging.rst:1011
+#: ../../library/logging.rst:1008
 msgid ""
 "Exception tuple (à la ``sys.exc_info``) or, if no exception has occurred, "
 "``None``."
-msgstr ""
+msgstr "例外元組（類似 ``sys.exc_info``），若沒有發生例外則為 ``None``。"
 
-#: ../../library/logging.rst:1014
+#: ../../library/logging.rst:1011
 msgid "exc_text"
-msgstr ""
+msgstr "exc_text"
 
-#: ../../library/logging.rst:1014
+#: ../../library/logging.rst:1011
 msgid ""
-"Exception information formatted as a string. This is set when :meth:"
-"`Formatter.format` is invoked, or ``None`` if no exception has occurred."
+"Exception information formatted as a string. This is set "
+"when :meth:`Formatter.format` is invoked, or ``None`` if no exception has "
+"occurred."
 msgstr ""
+"格式化為字串的例外資訊。會在呼叫 :meth:`Formatter.format` 時設定；若沒有發生"
+"例外則為 ``None``。"
 
-#: ../../library/logging.rst:1019
+#: ../../library/logging.rst:1016
 msgid "filename"
 msgstr "filename"
 
-#: ../../library/logging.rst:1019
+#: ../../library/logging.rst:1016
 msgid "``%(filename)s``"
 msgstr "``%(filename)s``"
 
-#: ../../library/logging.rst:1019
+#: ../../library/logging.rst:1016
 msgid "Filename portion of ``pathname``."
 msgstr "``pathname`` 的檔案名稱部分。"
 
-#: ../../library/logging.rst:1021
+#: ../../library/logging.rst:1018
 msgid "funcName"
 msgstr "funcName"
 
-#: ../../library/logging.rst:1021
+#: ../../library/logging.rst:1018
 msgid "``%(funcName)s``"
 msgstr "``%(funcName)s``"
 
-#: ../../library/logging.rst:1021
+#: ../../library/logging.rst:1018
 msgid "Name of function containing the logging call."
-msgstr ""
+msgstr "包含日誌記錄呼叫的函式名稱。"
 
-#: ../../library/logging.rst:1023
+#: ../../library/logging.rst:1020
 msgid "levelname"
 msgstr "levelname"
 
-#: ../../library/logging.rst:1023
+#: ../../library/logging.rst:1020
 msgid "``%(levelname)s``"
 msgstr "``%(levelname)s``"
 
-#: ../../library/logging.rst:1023
+#: ../../library/logging.rst:1020
 msgid ""
 "Text logging level for the message (``'DEBUG'``, ``'INFO'``, ``'WARNING'``, "
 "``'ERROR'``, ``'CRITICAL'``)."
 msgstr ""
+"訊息的文字日誌等級（``'DEBUG'``、``'INFO'``、``'WARNING'``、``'ERROR'``、"
+"``'CRITICAL'``）。"
 
-#: ../../library/logging.rst:1027
+#: ../../library/logging.rst:1024
 msgid "levelno"
 msgstr "levelno"
 
-#: ../../library/logging.rst:1027
+#: ../../library/logging.rst:1024
 msgid "``%(levelno)s``"
 msgstr "``%(levelno)s``"
 
-#: ../../library/logging.rst:1027
+#: ../../library/logging.rst:1024
 msgid ""
-"Numeric logging level for the message (:const:`DEBUG`, :const:`INFO`, :const:"
-"`WARNING`, :const:`ERROR`, :const:`CRITICAL`)."
+"Numeric logging level for the message "
+"(:const:`DEBUG`, :const:`INFO`, :const:`WARNING`, :const:`ERROR`, :const:`CRITICAL`)."
 msgstr ""
+"訊息的數值日誌等級"
+"（:const:`DEBUG`、:const:`INFO`、:const:`WARNING`、:const:`ERROR`、:const:`CRITICAL`）。"
 
-#: ../../library/logging.rst:1032
+#: ../../library/logging.rst:1029
 msgid "lineno"
 msgstr "lineno"
 
-#: ../../library/logging.rst:1032
+#: ../../library/logging.rst:1029
 msgid "``%(lineno)d``"
 msgstr "``%(lineno)d``"
 
-#: ../../library/logging.rst:1032
+#: ../../library/logging.rst:1029
 msgid "Source line number where the logging call was issued (if available)."
-msgstr ""
+msgstr "進行日誌記錄呼叫的原始碼列號（如果可用）。"
 
-#: ../../library/logging.rst:1035
+#: ../../library/logging.rst:1032
 msgid "message"
 msgstr "message"
 
-#: ../../library/logging.rst:1035
+#: ../../library/logging.rst:1032
 msgid "``%(message)s``"
 msgstr "``%(message)s``"
 
-#: ../../library/logging.rst:1035
+#: ../../library/logging.rst:1032
 msgid ""
-"The logged message, computed as ``msg % args``. This is set when :meth:"
-"`Formatter.format` is invoked."
+"The logged message, computed as ``msg % args``. This is set "
+"when :meth:`Formatter.format` is invoked."
 msgstr ""
+"所記錄的訊息，以 ``msg % args`` 計算而得。會在呼叫 :meth:`Formatter.format` "
+"時設定。"
 
-#: ../../library/logging.rst:1039
+#: ../../library/logging.rst:1036
 msgid "module"
 msgstr "模組"
 
-#: ../../library/logging.rst:1039
+#: ../../library/logging.rst:1036
 msgid "``%(module)s``"
 msgstr "``%(module)s``"
 
-#: ../../library/logging.rst:1039
+#: ../../library/logging.rst:1036
 msgid "Module (name portion of ``filename``)."
 msgstr "模組（``filename`` 的名稱部分）。"
 
-#: ../../library/logging.rst:1041
+#: ../../library/logging.rst:1038
 msgid "msecs"
 msgstr "msecs"
 
-#: ../../library/logging.rst:1041
+#: ../../library/logging.rst:1038
 msgid "``%(msecs)d``"
 msgstr "``%(msecs)d``"
 
-#: ../../library/logging.rst:1041
+#: ../../library/logging.rst:1038
 msgid ""
 "Millisecond portion of the time when the :class:`LogRecord` was created."
-msgstr ""
+msgstr ":class:`LogRecord` 建立時間的毫秒部分。"
 
-#: ../../library/logging.rst:0 ../../library/logging.rst:1044
+#: ../../library/logging.rst:0 ../../library/logging.rst:1041
 msgid "msg"
 msgstr "msg"
 
-#: ../../library/logging.rst:1044
+#: ../../library/logging.rst:1041
 msgid ""
 "The format string passed in the original logging call. Merged with ``args`` "
 "to produce ``message``, or an arbitrary object (see :ref:`arbitrary-object-"
 "messages`)."
 msgstr ""
+"在原始日誌記錄呼叫中傳入的格式字串，會與 ``args`` 合併以產生 ``message``；也"
+"可以是任意物件（請參閱 :ref:`arbitrary-object-messages`）。"
 
-#: ../../library/logging.rst:0 ../../library/logging.rst:1049
+#: ../../library/logging.rst:0 ../../library/logging.rst:1046
 msgid "name"
 msgstr "name"
 
-#: ../../library/logging.rst:1049
+#: ../../library/logging.rst:1046
 msgid "``%(name)s``"
 msgstr "``%(name)s``"
 
-#: ../../library/logging.rst:1049
+#: ../../library/logging.rst:1046
 msgid "Name of the logger used to log the call."
-msgstr ""
+msgstr "用來記錄該呼叫的記錄器名稱。"
 
-#: ../../library/logging.rst:1051
+#: ../../library/logging.rst:1048
 msgid "pathname"
 msgstr "pathname"
 
-#: ../../library/logging.rst:1051
+#: ../../library/logging.rst:1048
 msgid "``%(pathname)s``"
 msgstr "``%(pathname)s``"
 
-#: ../../library/logging.rst:1051
+#: ../../library/logging.rst:1048
 msgid ""
 "Full pathname of the source file where the logging call was issued (if "
 "available)."
-msgstr ""
+msgstr "進行日誌記錄呼叫之原始檔的完整路徑名稱（如果可用）。"
 
-#: ../../library/logging.rst:1054
+#: ../../library/logging.rst:1051
 msgid "process"
 msgstr "process"
 
-#: ../../library/logging.rst:1054
+#: ../../library/logging.rst:1051
 msgid "``%(process)d``"
 msgstr "``%(process)d``"
 
-#: ../../library/logging.rst:1054
+#: ../../library/logging.rst:1051
 msgid "Process ID (if available)."
 msgstr "行程 ID（如果可用）。"
 
-#: ../../library/logging.rst:1056
+#: ../../library/logging.rst:1053
 msgid "processName"
 msgstr "processName"
 
-#: ../../library/logging.rst:1056
+#: ../../library/logging.rst:1053
 msgid "``%(processName)s``"
 msgstr "``%(processName)s``"
 
-#: ../../library/logging.rst:1056
+#: ../../library/logging.rst:1053
 msgid "Process name (if available)."
 msgstr "行程名稱（如果可用）。"
 
-#: ../../library/logging.rst:1058
+#: ../../library/logging.rst:1055
 msgid "relativeCreated"
 msgstr "relativeCreated"
 
-#: ../../library/logging.rst:1058
+#: ../../library/logging.rst:1055
 msgid "``%(relativeCreated)d``"
 msgstr "``%(relativeCreated)d``"
 
-#: ../../library/logging.rst:1058
+#: ../../library/logging.rst:1055
 msgid ""
 "Time in milliseconds when the LogRecord was created, relative to the time "
 "the logging module was loaded."
-msgstr ""
+msgstr "LogRecord 的建立時間，以毫秒為單位，相對於 logging 模組被載入的時間。"
 
-#: ../../library/logging.rst:1062
+#: ../../library/logging.rst:1059
 msgid "stack_info"
 msgstr "stack_info"
 
-#: ../../library/logging.rst:1062
+#: ../../library/logging.rst:1059
 msgid ""
 "Stack frame information (where available) from the bottom of the stack in "
 "the current thread, up to and including the stack frame of the logging call "
 "which resulted in the creation of this record."
 msgstr ""
+"目前執行緒中從堆疊底部開始、直到（並包含）導致建立此紀錄之日誌記錄呼叫的堆疊"
+"框為止的堆疊框資訊（如果可用）。"
 
-#: ../../library/logging.rst:1068
+#: ../../library/logging.rst:1065
 msgid "thread"
 msgstr "thread"
 
-#: ../../library/logging.rst:1068
+#: ../../library/logging.rst:1065
 msgid "``%(thread)d``"
 msgstr "``%(thread)d``"
 
-#: ../../library/logging.rst:1068
+#: ../../library/logging.rst:1065
 msgid "Thread ID (if available)."
 msgstr "執行緒 ID（如果可用）。"
 
-#: ../../library/logging.rst:1070
+#: ../../library/logging.rst:1067
 msgid "threadName"
 msgstr "threadName"
 
-#: ../../library/logging.rst:1070
+#: ../../library/logging.rst:1067
 msgid "``%(threadName)s``"
 msgstr "``%(threadName)s``"
 
-#: ../../library/logging.rst:1070
+#: ../../library/logging.rst:1067
 msgid "Thread name (if available)."
-msgstr ""
+msgstr "執行緒名稱（如果可用）。"
 
-#: ../../library/logging.rst:1072
+#: ../../library/logging.rst:1069
 msgid "taskName"
 msgstr "taskName"
 
-#: ../../library/logging.rst:1072
+#: ../../library/logging.rst:1069
 msgid "``%(taskName)s``"
 msgstr "``%(taskName)s``"
 
-#: ../../library/logging.rst:1072
+#: ../../library/logging.rst:1069
 msgid ":class:`asyncio.Task` name (if available)."
-msgstr ""
+msgstr ":class:`asyncio.Task` 名稱（如果可用）。"
 
-#: ../../library/logging.rst:1075
+#: ../../library/logging.rst:1072
 msgid "*processName* was added."
 msgstr "新增 *processName*。"
 
-#: ../../library/logging.rst:1078
+#: ../../library/logging.rst:1075
 msgid "*taskName* was added."
 msgstr "新增 *taskName*。"
 
-#: ../../library/logging.rst:1084
+#: ../../library/logging.rst:1081
 msgid "LoggerAdapter Objects"
 msgstr "LoggerAdapter 物件"
 
-#: ../../library/logging.rst:1086
+#: ../../library/logging.rst:1083
 msgid ""
 ":class:`LoggerAdapter` instances are used to conveniently pass contextual "
-"information into logging calls. For a usage example, see the section on :ref:"
-"`adding contextual information to your logging output <context-info>`."
+"information into logging calls. For a usage example, see the section "
+"on :ref:`adding contextual information to your logging output <context-"
+"info>`."
 msgstr ""
+":class:`LoggerAdapter` 實例用於方便地將情境資訊傳入日誌記錄呼叫中。使用範例請"
+"參閱\\ :ref:`在日誌輸出中加入情境資訊 <context-info>`\\ 一節。"
 
-#: ../../library/logging.rst:1092
+#: ../../library/logging.rst:1089
 msgid ""
 "Returns an instance of :class:`LoggerAdapter` initialized with an "
 "underlying :class:`Logger` instance, an optional dict-like object (*extra*), "
 "and an optional boolean (*merge_extra*) indicating whether or not the "
-"*extra* argument of individual log calls should be merged with the :class:"
-"`LoggerAdapter` extra. The default behavior is to ignore the *extra* "
-"argument of individual log calls and only use the one of the :class:"
-"`LoggerAdapter` instance"
+"*extra* argument of individual log calls should be merged with "
+"the :class:`LoggerAdapter` extra. The default behavior is to ignore the "
+"*extra* argument of individual log calls and only use the one of "
+"the :class:`LoggerAdapter` instance"
 msgstr ""
+"回傳一個 :class:`LoggerAdapter` 實例，以底層的 :class:`Logger` 實例、一個可選"
+"的類字典物件 (*extra*)，以及一個可選的布林值 (*merge_extra*) 初始化；"
+"*merge_extra* 表示是否要將個別日誌呼叫的 *extra* 引數"
+"與 :class:`LoggerAdapter` 的 extra 合併。預設行為是忽略個別日誌呼叫的 "
+"*extra* 引數，只使用 :class:`LoggerAdapter` 實例的 extra"
 
-#: ../../library/logging.rst:1102
+#: ../../library/logging.rst:1099
 msgid ""
 "Modifies the message and/or keyword arguments passed to a logging call in "
 "order to insert contextual information. This implementation takes the object "
@@ -1650,53 +1989,63 @@ msgid ""
 "'extra'. The return value is a (*msg*, *kwargs*) tuple which has the "
 "(possibly modified) versions of the arguments passed in."
 msgstr ""
+"修改傳給日誌記錄呼叫的訊息和／或關鍵字引數，以插入情境資訊。此實作會取得傳給"
+"建構函式的 *extra* 物件，並以鍵 'extra' 將其加入 *kwargs*。回傳值是一個 "
+"(*msg*, *kwargs*) 元組，包含傳入引數（可能已修改）的版本。"
 
-#: ../../library/logging.rst:1110
+#: ../../library/logging.rst:1107
 msgid "Delegates to the underlying :attr:`!manager` on *logger*."
-msgstr ""
+msgstr "委派給 *logger* 上的底層 :attr:`!manager`。"
 
-#: ../../library/logging.rst:1114
+#: ../../library/logging.rst:1111
 msgid "Delegates to the underlying :meth:`!_log` method on *logger*."
-msgstr ""
+msgstr "委派給 *logger* 上的底層 :meth:`!_log` 方法。"
 
-#: ../../library/logging.rst:1116
+#: ../../library/logging.rst:1113
 msgid ""
 "In addition to the above, :class:`LoggerAdapter` supports the following "
-"methods of :class:`Logger`: :meth:`~Logger.debug`, :meth:`~Logger.info`, :"
-"meth:`~Logger.warning`, :meth:`~Logger.error`, :meth:`~Logger.exception`, :"
-"meth:`~Logger.critical`, :meth:`~Logger.log`, :meth:`~Logger.isEnabledFor`, :"
-"meth:`~Logger.getEffectiveLevel`, :meth:`~Logger.setLevel` and :meth:"
-"`~Logger.hasHandlers`. These methods have the same signatures as their "
-"counterparts in :class:`Logger`, so you can use the two types of instances "
-"interchangeably."
+"methods "
+"of :class:`Logger`: :meth:`~Logger.debug`, :meth:`~Logger.info`, :meth:`~Logger.warning`, :meth:`~Logger.error`, :meth:`~Logger.exception`, :meth:`~Logger.critical`, :meth:`~Logger.log`, :meth:`~Logger.isEnabledFor`, :meth:`~Logger.getEffectiveLevel`, :meth:`~Logger.setLevel` "
+"and :meth:`~Logger.hasHandlers`. These methods have the same signatures as "
+"their counterparts in :class:`Logger`, so you can use the two types of "
+"instances interchangeably."
 msgstr ""
+"除了上述內容之外，:class:`LoggerAdapter` 還支援 :class:`Logger` 的下列方"
+"法：:meth:`~Logger.debug`、:meth:`~Logger.info`、:meth:`~Logger.warning`、:meth:`~Logger.error`、:meth:`~Logger.exception`、:meth:`~Logger.critical`、:meth:`~Logger.log`、:meth:`~Logger.isEnabledFor`、:meth:`~Logger.getEffectiveLevel`、:meth:`~Logger.setLevel` "
+"和 :meth:`~Logger.hasHandlers`。這些方法的簽名與 :class:`Logger` 中對應的方法"
+"相同，因此你可以交替使用這兩種實例。"
 
-#: ../../library/logging.rst:1127
+#: ../../library/logging.rst:1124
 msgid ""
-"The :meth:`~Logger.isEnabledFor`, :meth:`~Logger.getEffectiveLevel`, :meth:"
-"`~Logger.setLevel` and :meth:`~Logger.hasHandlers` methods were added to :"
-"class:`LoggerAdapter`.  These methods delegate to the underlying logger."
+"The :meth:`~Logger.isEnabledFor`, :meth:`~Logger.getEffectiveLevel`, :meth:`~Logger.setLevel` "
+"and :meth:`~Logger.hasHandlers` methods were added "
+"to :class:`LoggerAdapter`.  These methods delegate to the underlying logger."
 msgstr ""
+":meth:`~Logger.isEnabledFor`、:meth:`~Logger.getEffectiveLevel`、:meth:`~Logger.setLevel` "
+"和 :meth:`~Logger.hasHandlers` 方法已新增至 :class:`LoggerAdapter`。這些方法"
+"會委派給底層的記錄器。"
 
-#: ../../library/logging.rst:1133
+#: ../../library/logging.rst:1130
 msgid ""
 "Attribute :attr:`!manager` and method :meth:`!_log` were added, which "
 "delegate to the underlying logger and allow adapters to be nested."
 msgstr ""
+"新增了屬性 :attr:`!manager` 和方法 :meth:`!_log`，它們會委派給底層的記錄器，"
+"並讓 adapter 可以巢狀使用。"
 
-#: ../../library/logging.rst:1138
+#: ../../library/logging.rst:1135
 msgid "The *extra* argument is now optional."
 msgstr "*extra* 引數現在是可選的。"
 
-#: ../../library/logging.rst:1142
+#: ../../library/logging.rst:1139
 msgid "The *merge_extra* parameter was added."
 msgstr "新增 *merge_extra* 參數。"
 
-#: ../../library/logging.rst:1146
+#: ../../library/logging.rst:1143
 msgid "Thread Safety"
 msgstr "執行緒安全"
 
-#: ../../library/logging.rst:1148
+#: ../../library/logging.rst:1145
 msgid ""
 "The logging module is intended to be thread-safe without any special work "
 "needing to be done by its clients. It achieves this through using threading "
@@ -1704,26 +2053,32 @@ msgid ""
 "and each handler also creates a lock to serialize access to its underlying I/"
 "O."
 msgstr ""
+"logging 模組的設計是執行緒安全的，使用它的程式碼不需要做任何特別的處理。它是"
+"透過使用執行緒鎖來達成這點：有一個鎖用來讓對模組共享資料的存取依序進行，而每"
+"個處理器也會建立一個鎖，讓對其底層 I/O 的存取依序進行。"
 
-#: ../../library/logging.rst:1153
+#: ../../library/logging.rst:1150
 msgid ""
 "If you are implementing asynchronous signal handlers using the :mod:`signal` "
 "module, you may not be able to use logging from within such handlers. This "
 "is because lock implementations in the :mod:`threading` module are not "
 "always re-entrant, and so cannot be invoked from such signal handlers."
 msgstr ""
+"如果你正在使用 :mod:`signal` 模組實作非同步訊號處理程式，可能無法在這類處理程"
+"式中使用 logging。這是因為 :mod:`threading` 模組中的鎖實作並不一定是可重入的 "
+"(re-entrant)，因此無法從這類訊號處理程式中叫用。"
 
-#: ../../library/logging.rst:1160
+#: ../../library/logging.rst:1157
 msgid "Module-Level Functions"
 msgstr "模組層級函式"
 
-#: ../../library/logging.rst:1162
+#: ../../library/logging.rst:1159
 msgid ""
 "In addition to the classes described above, there are a number of module-"
 "level functions."
-msgstr ""
+msgstr "除了上述的類別之外，還有一些模組層級的函式。"
 
-#: ../../library/logging.rst:1168
+#: ../../library/logging.rst:1165
 msgid ""
 "Return a logger with the specified name or, if name is ``None``, return the "
 "root logger of the hierarchy. If specified, the name is typically a dot-"
@@ -1732,15 +2087,21 @@ msgid ""
 "is recommended that ``__name__`` be used unless you have a specific reason "
 "for not doing that, as mentioned in :ref:`logger`."
 msgstr ""
+"回傳具有指定名稱的記錄器；若 name 為 ``None``，則回傳階層中的根記錄器。若有指"
+"定，名稱通常是以點分隔的階層式名稱，例如 *'a'*、*'a.b'* 或 *'a.b.c.d'*。這些"
+"名稱完全由使用 logging 的開發者決定，不過除非有特定理由不這樣做，否則建議使"
+"用 ``__name__``\\ （參見 :ref:`logger`）。"
 
-#: ../../library/logging.rst:1175
+#: ../../library/logging.rst:1172
 msgid ""
 "All calls to this function with a given name return the same logger "
 "instance. This means that logger instances never need to be passed between "
 "different parts of an application."
 msgstr ""
+"以相同名稱呼叫此函式，一律會回傳同一個記錄器實例。這表示記錄器實例永遠不需要"
+"在應用程式的不同部分之間傳遞。"
 
-#: ../../library/logging.rst:1182
+#: ../../library/logging.rst:1179
 msgid ""
 "Return either the standard :class:`Logger` class, or the last class passed "
 "to :func:`setLoggerClass`. This function may be called from within a new "
@@ -1748,8 +2109,11 @@ msgid ""
 "class will not undo customizations already applied by other code. For "
 "example::"
 msgstr ""
+"回傳標準的 :class:`Logger` 類別，或是最後一次傳給 :func:`setLoggerClass` 的類"
+"別。可以在新的類別定義中呼叫此函式，以確保安裝自訂的 :class:`Logger` 類別時，"
+"不會抵銷其他程式碼已套用的自訂內容。例如： ::"
 
-#: ../../library/logging.rst:1187
+#: ../../library/logging.rst:1184
 msgid ""
 "class MyLogger(logging.getLoggerClass()):\n"
 "    # ... override behaviour here"
@@ -1757,37 +2121,44 @@ msgstr ""
 "class MyLogger(logging.getLoggerClass()):\n"
 "    # ... 在這裡覆蓋其行為"
 
-#: ../../library/logging.rst:1193
+#: ../../library/logging.rst:1190
 msgid "Return a callable which is used to create a :class:`LogRecord`."
-msgstr ""
+msgstr "回傳一個用來建立 :class:`LogRecord` 的可呼叫物件。"
 
-#: ../../library/logging.rst:1195
+#: ../../library/logging.rst:1192
 msgid ""
 "This function has been provided, along with :func:`setLogRecordFactory`, to "
 "allow developers more control over how the :class:`LogRecord` representing a "
 "logging event is constructed."
 msgstr ""
+"提供此函式（以及 :func:`setLogRecordFactory`）是為了讓開發者能更進一步控制代"
+"表日誌事件的 :class:`LogRecord` 是如何被建構的。"
 
-#: ../../library/logging.rst:1200
+#: ../../library/logging.rst:1197
 msgid ""
 "See :func:`setLogRecordFactory` for more information about the how the "
 "factory is called."
-msgstr ""
+msgstr "關於工廠如何被呼叫的更多資訊，請參閱 :func:`setLogRecordFactory`。"
 
-#: ../../library/logging.rst:1205
+#: ../../library/logging.rst:1202
 msgid ""
 "This is a convenience function that calls :meth:`Logger.debug`, on the root "
 "logger. The handling of the arguments is in every way identical to what is "
 "described in that method."
 msgstr ""
+"這是一個便利函式，會在根記錄器上呼叫 :meth:`Logger.debug`。引數的處理方式與該"
+"方法中所描述的完全相同。"
+
+#: ../../library/logging.rst:1206
+msgid ""
+"The only difference is that if the root logger has no handlers, "
+"then :func:`basicConfig` is called, prior to calling ``debug`` on the root "
+"logger."
+msgstr ""
+"唯一的差別是，如果根記錄器沒有處理器，就會在對根記錄器呼叫 ``debug`` 之前先呼"
+"叫 :func:`basicConfig`。"
 
 #: ../../library/logging.rst:1209
-msgid ""
-"The only difference is that if the root logger has no handlers, then :func:"
-"`basicConfig` is called, prior to calling ``debug`` on the root logger."
-msgstr ""
-
-#: ../../library/logging.rst:1212
 msgid ""
 "For very short scripts or quick demonstrations of ``logging`` facilities, "
 "``debug`` and the other module-level functions may be convenient. However, "
@@ -1796,53 +2167,72 @@ msgid ""
 "and calling :meth:`Logger.debug` (or other level-specific methods) on it, as "
 "described at the beginning of this documentation."
 msgstr ""
+"對於非常短的腳本或 ``logging`` 功能的快速示範，``debug`` 和其他模組層級函式可"
+"能很方便。然而，大多數程式都會想要仔細且明確地控制日誌設定，因此應優先建立模"
+"組層級的記錄器，並在其上呼叫 :meth:`Logger.debug`\\ （或其他特定等級的方"
+"法），如本文件開頭所述。"
 
-#: ../../library/logging.rst:1222
+#: ../../library/logging.rst:1219
 msgid ""
 "Logs a message with level :const:`INFO` on the root logger. The arguments "
 "and behavior are otherwise the same as for :func:`debug`."
 msgstr ""
+"在根記錄器上記錄一則等級為 :const:`INFO` 的訊息。其餘引數與行為皆"
+"與 :func:`debug` 相同。"
 
-#: ../../library/logging.rst:1228
+#: ../../library/logging.rst:1225
 msgid ""
 "Logs a message with level :const:`WARNING` on the root logger. The arguments "
 "and behavior are otherwise the same as for :func:`debug`."
 msgstr ""
+"在根記錄器上記錄一則等級為 :const:`WARNING` 的訊息。其餘引數與行為皆"
+"與 :func:`debug` 相同。"
 
-#: ../../library/logging.rst:1231
+#: ../../library/logging.rst:1228
 msgid ""
 "There is an obsolete function ``warn`` which is functionally identical to "
 "``warning``. As ``warn`` is deprecated, please do not use it - use "
 "``warning`` instead."
 msgstr ""
+"有一個已過時的函式 ``warn``，其功能與 ``warning`` 完全相同。由於 ``warn`` 已"
+"被棄用，請不要使用它，請改用 ``warning``。"
 
-#: ../../library/logging.rst:1238
+#: ../../library/logging.rst:1235
 msgid ""
 "Logs a message with level :const:`ERROR` on the root logger. The arguments "
 "and behavior are otherwise the same as for :func:`debug`."
 msgstr ""
+"在根記錄器上記錄一則等級為 :const:`ERROR` 的訊息。其餘引數與行為皆"
+"與 :func:`debug` 相同。"
 
-#: ../../library/logging.rst:1244
+#: ../../library/logging.rst:1241
 msgid ""
 "Logs a message with level :const:`CRITICAL` on the root logger. The "
 "arguments and behavior are otherwise the same as for :func:`debug`."
 msgstr ""
+"在根記錄器上記錄一則等級為 :const:`CRITICAL` 的訊息。其餘引數與行為皆"
+"與 :func:`debug` 相同。"
 
-#: ../../library/logging.rst:1250
+#: ../../library/logging.rst:1247
 msgid ""
 "Logs a message with level :const:`ERROR` on the root logger. The arguments "
 "and behavior are otherwise the same as for :func:`debug`. Exception info is "
 "added to the logging message. This function should only be called from an "
 "exception handler."
 msgstr ""
+"在根記錄器上記錄一則等級為 :const:`ERROR` 的訊息。其餘引數與行為皆"
+"與 :func:`debug` 相同。例外資訊會被加入日誌訊息中。此函式只應從例外處理程式中"
+"呼叫。"
 
-#: ../../library/logging.rst:1256
+#: ../../library/logging.rst:1253
 msgid ""
 "Logs a message with level *level* on the root logger. The arguments and "
 "behavior are otherwise the same as for :func:`debug`."
 msgstr ""
+"在根記錄器上記錄一則等級為 *level* 的訊息。其餘引數與行為皆與 :func:`debug` "
+"相同。"
 
-#: ../../library/logging.rst:1261
+#: ../../library/logging.rst:1258
 msgid ""
 "Provides an overriding level *level* for all loggers which takes precedence "
 "over the logger's own level. When the need arises to temporarily throttle "
@@ -1850,27 +2240,37 @@ msgid ""
 "useful. Its effect is to disable all logging calls of severity *level* and "
 "below, so that if you call it with a value of INFO, then all INFO and DEBUG "
 "events would be discarded, whereas those of severity WARNING and above would "
-"be processed according to the logger's effective level. If ``logging."
-"disable(logging.NOTSET)`` is called, it effectively removes this overriding "
-"level, so that logging output again depends on the effective levels of "
-"individual loggers."
+"be processed according to the logger's effective level. If "
+"``logging.disable(logging.NOTSET)`` is called, it effectively removes this "
+"overriding level, so that logging output again depends on the effective "
+"levels of individual loggers."
 msgstr ""
+"為所有記錄器提供一個優先於記錄器自身等級的覆蓋等級 *level*。當需要暫時降低整"
+"個應用程式的日誌輸出量時，此函式會很有用。它的效果是停用所有嚴重性為 *level* "
+"及以下的日誌記錄呼叫，因此如果你以 INFO 值呼叫它，則所有 INFO 和 DEBUG 事件都"
+"會被捨棄，而嚴重性為 WARNING 及以上的事件則會依照記錄器的有效等級來處理。如果"
+"呼叫了 ``logging.disable(logging.NOTSET)``，實際上就會移除這個覆蓋等級，讓日"
+"誌輸出再次取決於個別記錄器的有效等級。"
 
-#: ../../library/logging.rst:1272
+#: ../../library/logging.rst:1269
 msgid ""
 "Note that if you have defined any custom logging level higher than "
 "``CRITICAL`` (this is not recommended), you won't be able to rely on the "
 "default value for the *level* parameter, but will have to explicitly supply "
 "a suitable value."
 msgstr ""
+"請注意，如果你定義了任何高於 ``CRITICAL`` 的自訂日誌等級（不建議這麼做），就"
+"無法依賴 *level* 參數的預設值，而必須明確提供適當的值。"
 
-#: ../../library/logging.rst:1277
+#: ../../library/logging.rst:1274
 msgid ""
-"The *level* parameter was defaulted to level ``CRITICAL``. See :issue:"
-"`28524` for more information about this change."
+"The *level* parameter was defaulted to level ``CRITICAL``. "
+"See :issue:`28524` for more information about this change."
 msgstr ""
+"*level* 參數的預設值改為等級 ``CRITICAL``。關於此變更的更多資訊，請參"
+"閱 :issue:`28524`。"
 
-#: ../../library/logging.rst:1283
+#: ../../library/logging.rst:1280
 msgid ""
 "Associates level *level* with text *levelName* in an internal dictionary, "
 "which is used to map numeric levels to a textual representation, for example "
@@ -1879,98 +2279,130 @@ msgid ""
 "must be registered using this function, levels should be positive integers "
 "and they should increase in increasing order of severity."
 msgstr ""
+"在一個內部字典中將等級 *level* 與文字 *levelName* 關聯起來，該字典用於將數值"
+"等級對映到文字表示，例如在 :class:`Formatter` 格式化訊息時。此函式也可以用來"
+"定義你自己的等級。唯一的限制是，所有使用到的等級都必須透過此函式註冊，等級應"
+"為正整數，而且應隨著嚴重性遞增而遞增。"
 
-#: ../../library/logging.rst:1290
+#: ../../library/logging.rst:1287
 msgid ""
-"If you are thinking of defining your own levels, please see the section on :"
-"ref:`custom-levels`."
-msgstr ""
+"If you are thinking of defining your own levels, please see the section "
+"on :ref:`custom-levels`."
+msgstr "如果你打算定義自己的等級，請參閱\\ :ref:`custom-levels`\\ 一節。"
 
-#: ../../library/logging.rst:1295
+#: ../../library/logging.rst:1292
 msgid ""
 "Returns a mapping from level names to their corresponding logging levels. "
 "For example, the string \"CRITICAL\" maps to :const:`CRITICAL`. The returned "
 "mapping is copied from an internal mapping on each call to this function."
 msgstr ""
+"回傳從等級名稱到其對應日誌等級的對映。例如，字串 \"CRITICAL\" 對映"
+"到 :const:`CRITICAL`。每次呼叫此函式時，回傳的對映都是從內部對映複製而來的。"
 
-#: ../../library/logging.rst:1303
+#: ../../library/logging.rst:1300
 msgid "Returns the textual or numeric representation of logging level *level*."
-msgstr ""
+msgstr "回傳日誌等級 *level* 的文字或數值表示。"
 
-#: ../../library/logging.rst:1305
+#: ../../library/logging.rst:1302
 msgid ""
-"If *level* is one of the predefined levels :const:`CRITICAL`, :const:"
-"`ERROR`, :const:`WARNING`, :const:`INFO` or :const:`DEBUG` then you get the "
-"corresponding string. If you have associated levels with names using :func:"
-"`addLevelName` then the name you have associated with *level* is returned. "
-"If a numeric value corresponding to one of the defined levels is passed in, "
-"the corresponding string representation is returned."
+"If *level* is one of the predefined "
+"levels :const:`CRITICAL`, :const:`ERROR`, :const:`WARNING`, :const:`INFO` "
+"or :const:`DEBUG` then you get the corresponding string. If you have "
+"associated levels with names using :func:`addLevelName` then the name you "
+"have associated with *level* is returned. If a numeric value corresponding "
+"to one of the defined levels is passed in, the corresponding string "
+"representation is returned."
 msgstr ""
+"如果 *level* 是預定義等"
+"級 :const:`CRITICAL`、:const:`ERROR`、:const:`WARNING`、:const:`INFO` "
+"或 :const:`DEBUG` 其中之一，你會得到對應的字串。如果你已使"
+"用 :func:`addLevelName` 將等級與名稱關聯，則會回傳你與 *level* 關聯的名稱。如"
+"果傳入的是對應於某個已定義等級的數值，則會回傳對應的字串表示。"
 
-#: ../../library/logging.rst:1312
+#: ../../library/logging.rst:1309
 msgid ""
 "The *level* parameter also accepts a string representation of the level such "
 "as 'INFO'. In such cases, this functions returns the corresponding numeric "
 "value of the level."
 msgstr ""
+"*level* 參數也接受等級的字串表示，例如 'INFO'。在這種情況下，此函式會回傳該等"
+"級對應的數值。"
 
-#: ../../library/logging.rst:1316
+#: ../../library/logging.rst:1313
 msgid ""
 "If no matching numeric or string value is passed in, the string 'Level %s' % "
 "level is returned."
-msgstr ""
+msgstr "如果傳入的數值或字串沒有相符的等級，則會回傳字串 'Level %s' % level。"
 
-#: ../../library/logging.rst:1319
+#: ../../library/logging.rst:1316
 msgid ""
 "Levels are internally integers (as they need to be compared in the logging "
 "logic). This function is used to convert between an integer level and the "
-"level name displayed in the formatted log output by means of the "
-"``%(levelname)s`` format specifier (see :ref:`logrecord-attributes`), and "
-"vice versa."
+"level name displayed in the formatted log output by means of the ``%"
+"(levelname)s`` format specifier (see :ref:`logrecord-attributes`), and vice "
+"versa."
 msgstr ""
+"等級在內部是整數（因為在日誌記錄邏輯中需要比較它們）。此函式用於在整數等級與"
+"格式化日誌輸出中透過 ``%(levelname)s`` 格式說明符（請參閱 :ref:`logrecord-"
+"attributes`）顯示的等級名稱之間互相轉換。"
 
-#: ../../library/logging.rst:1325
+#: ../../library/logging.rst:1322
 msgid ""
 "In Python versions earlier than 3.4, this function could also be passed a "
 "text level, and would return the corresponding numeric value of the level. "
 "This undocumented behaviour was considered a mistake, and was removed in "
-"Python 3.4, but reinstated in 3.4.2 due to retain backward compatibility."
+"Python 3.4, but reinstated in 3.4.2 in order to retain backward "
+"compatibility."
 msgstr ""
+"在 Python 3.4 之前的版本中，也可以傳入文字等級給此函式，它會回傳該等級對應的"
+"數值。這個未記錄於文件中的行為被認為是個錯誤，並在 Python 3.4 中移除，但為了"
+"保持向後相容性，又在 3.4.2 中恢復。"
 
-#: ../../library/logging.rst:1333
+#: ../../library/logging.rst:1330
 msgid ""
 "Returns a handler with the specified *name*, or ``None`` if there is no "
 "handler with that name."
-msgstr ""
+msgstr "回傳具有指定 *name* 的處理器；若沒有該名稱的處理器，則回傳 ``None``。"
 
-#: ../../library/logging.rst:1340
+#: ../../library/logging.rst:1337
 msgid "Returns an immutable set of all known handler names."
-msgstr ""
+msgstr "回傳所有已知處理器名稱的不可變集合。"
 
-#: ../../library/logging.rst:1346
+#: ../../library/logging.rst:1343
 msgid ""
 "Creates and returns a new :class:`LogRecord` instance whose attributes are "
-"defined by *attrdict*. This function is useful for taking a pickled :class:"
-"`LogRecord` attribute dictionary, sent over a socket, and reconstituting it "
-"as a :class:`LogRecord` instance at the receiving end."
+"defined by *attrdict*. This function is useful for taking a "
+"pickled :class:`LogRecord` attribute dictionary, sent over a socket, and "
+"reconstituting it as a :class:`LogRecord` instance at the receiving end."
 msgstr ""
+"建立並回傳一個新的 :class:`LogRecord` 實例，其屬性由 *attrdict* 定義。此函式"
+"可用於將透過 socket 傳送、經 pickle 的 :class:`LogRecord` 屬性字典，在接收端"
+"重建為 :class:`LogRecord` 實例。"
 
-#: ../../library/logging.rst:1354
+#: ../../library/logging.rst:1351
 msgid ""
-"Does basic configuration for the logging system by creating a :class:"
-"`StreamHandler` with a default :class:`Formatter` and adding it to the root "
-"logger. The functions :func:`debug`, :func:`info`, :func:`warning`, :func:"
-"`error` and :func:`critical` will call :func:`basicConfig` automatically if "
-"no handlers are defined for the root logger."
+"Does basic configuration for the logging system by either creating "
+"a :class:`StreamHandler` with a default :class:`Formatter` or using the  "
+"given *formatter* instance, and adding it to the root logger. The "
+"functions :func:`debug`, :func:`info`, :func:`warning`, :func:`error` "
+"and :func:`critical` will call :func:`basicConfig` automatically if no "
+"handlers are defined for the root logger."
 msgstr ""
+"為日誌記錄系統進行基本設定：建立一個使用預設 :class:`Formatter` 或給定 "
+"*formatter* 實例的 :class:`StreamHandler`，並將其加入根記錄器。如果根記錄器沒"
+"有定義任何處理器，函"
+"式 :func:`debug`、:func:`info`、:func:`warning`、:func:`error` "
+"和 :func:`critical` 會自動呼叫 :func:`basicConfig`。"
 
-#: ../../library/logging.rst:1360
+#: ../../library/logging.rst:1358
 msgid ""
 "This function does nothing if the root logger already has handlers "
 "configured, unless the keyword argument *force* is set to ``True``."
 msgstr ""
+"如果根記錄器已經設定了處理器，此函式就不會做任何事，除非關鍵字引數 *force* 被"
+"設為 ``True``。"
 
-#: ../../library/logging.rst:1363
+#: ../../library/logging.rst:1361
 msgid ""
 "This function should be called from the main thread before other threads are "
 "started. In versions of Python prior to 2.7.1 and 3.2, if this function is "
@@ -1978,86 +2410,101 @@ msgid ""
 "handler will be added to the root logger more than once, leading to "
 "unexpected results such as messages being duplicated in the log."
 msgstr ""
+"此函式應在其他執行緒啟動之前，從主執行緒呼叫。在 Python 2.7.1 和 3.2 之前的版"
+"本中，如果從多個執行緒呼叫此函式，可能會（在少數情況下）將處理器多次加入根記"
+"錄器，導致非預期的結果，例如日誌中出現重複的訊息。"
 
-#: ../../library/logging.rst:1370
+#: ../../library/logging.rst:1368
 msgid "The following keyword arguments are supported."
 msgstr "支援以下的關鍵字引數。"
 
-#: ../../library/logging.rst:1377
+#: ../../library/logging.rst:1375
 msgid "*filename*"
 msgstr "*filename*"
 
-#: ../../library/logging.rst:1377
+#: ../../library/logging.rst:1375
 msgid ""
 "Specifies that a :class:`FileHandler` be created, using the specified "
 "filename, rather than a :class:`StreamHandler`."
 msgstr ""
+"指定要以給定的檔案名稱建立 :class:`FileHandler`，而不"
+"是 :class:`StreamHandler`。"
 
-#: ../../library/logging.rst:1381
+#: ../../library/logging.rst:1379
 msgid "*filemode*"
 msgstr "*filemode*"
 
-#: ../../library/logging.rst:1381
+#: ../../library/logging.rst:1379
 msgid ""
 "If *filename* is specified, open the file in this :ref:`mode <filemodes>`. "
 "Defaults to ``'a'``."
 msgstr ""
+"如果有指定 *filename*，就以此\\ :ref:`模式 <filemodes>`\\ 開啟檔案。預設為 "
+"``'a'``。"
 
-#: ../../library/logging.rst:1385
+#: ../../library/logging.rst:1383
 msgid "*format*"
 msgstr "*format*"
 
-#: ../../library/logging.rst:1385
+#: ../../library/logging.rst:1383
 msgid ""
 "Use the specified format string for the handler. Defaults to attributes "
 "``levelname``, ``name`` and ``message`` separated by colons."
 msgstr ""
+"為處理器使用指定的格式字串。預設為以冒號分隔的 ``levelname``、``name`` 和 "
+"``message`` 屬性。"
 
-#: ../../library/logging.rst:1390
+#: ../../library/logging.rst:1388
 msgid "*datefmt*"
 msgstr "*datefmt*"
 
-#: ../../library/logging.rst:1390
+#: ../../library/logging.rst:1388
 msgid ""
 "Use the specified date/time format, as accepted by :func:`time.strftime`."
-msgstr ""
+msgstr "使用指定的日期／時間格式，格式須為 :func:`time.strftime` 所接受。"
 
-#: ../../library/logging.rst:1393
+#: ../../library/logging.rst:1391
 msgid "*style*"
 msgstr "*style*"
 
-#: ../../library/logging.rst:1393
+#: ../../library/logging.rst:1391
 msgid ""
 "If *format* is specified, use this style for the format string. One of "
 "``'%'``, ``'{'`` or ``'$'`` for :ref:`printf-style <old-string-"
 "formatting>`, :meth:`str.format` or :class:`string.Template` respectively. "
 "Defaults to ``'%'``."
 msgstr ""
+"如果有指定 *format*，就對格式字串使用此樣式。值為 ``'%'``、``'{'`` 或 "
+"``'$'`` 其中之一，分別對應 :ref:`printf 風格 <old-string-"
+"formatting>`、:meth:`str.format` 或 :class:`string.Template`。預設為 "
+"``'%'``。"
 
-#: ../../library/logging.rst:1401
+#: ../../library/logging.rst:1399
 msgid "*level*"
 msgstr "*level*"
 
-#: ../../library/logging.rst:1401
+#: ../../library/logging.rst:1399
 msgid "Set the root logger level to the specified :ref:`level <levels>`."
-msgstr ""
+msgstr "將根記錄器的等級設為指定的\\ :ref:`等級 <levels>`。"
 
-#: ../../library/logging.rst:1404
+#: ../../library/logging.rst:1402
 msgid "*stream*"
 msgstr "*stream*"
 
-#: ../../library/logging.rst:1404
+#: ../../library/logging.rst:1402
 msgid ""
 "Use the specified stream to initialize the :class:`StreamHandler`. Note that "
 "this argument is incompatible with *filename* - if both are present, a "
 "``ValueError`` is raised."
 msgstr ""
+"使用指定的串流來初始化 :class:`StreamHandler`。請注意，此引數與 *filename* 不"
+"相容，如果兩者同時存在，就會引發 ``ValueError``。"
 
-#: ../../library/logging.rst:1410
+#: ../../library/logging.rst:1408
 msgid "*handlers*"
 msgstr "*handlers*"
 
-#: ../../library/logging.rst:1410
+#: ../../library/logging.rst:1408
 msgid ""
 "If specified, this should be an iterable of already created handlers to add "
 "to the root logger. Any handlers which don't already have a formatter set "
@@ -2065,284 +2512,354 @@ msgid ""
 "this argument is incompatible with *filename* or *stream* - if both are "
 "present, a ``ValueError`` is raised."
 msgstr ""
+"如果有指定，這應該是一個由已建立的處理器所組成的可疊代物件，這些處理器將被加"
+"入根記錄器。尚未設定格式化器的處理器都會被指派此函式中建立的預設格式化器。請"
+"注意，此引數與 *filename* 或 *stream* 不相容，如果兩者同時存在，就會引發 "
+"``ValueError``。"
 
-#: ../../library/logging.rst:1419
+#: ../../library/logging.rst:1417
 msgid "*force*"
 msgstr "*force*"
 
-#: ../../library/logging.rst:1419
+#: ../../library/logging.rst:1417
 msgid ""
 "If this keyword argument is specified as true, any existing handlers "
 "attached to the root logger are removed and closed, before carrying out the "
 "configuration as specified by the other arguments."
 msgstr ""
+"如果此關鍵字引數被指定為 true，則在依照其他引數進行設定之前，會先移除並關閉所"
+"有附加在根記錄器上的現有處理器。"
 
-#: ../../library/logging.rst:1425
+#: ../../library/logging.rst:1423
 msgid "*encoding*"
 msgstr "*encoding*"
 
-#: ../../library/logging.rst:1425
+#: ../../library/logging.rst:1423
 msgid ""
 "If this keyword argument is specified along with *filename*, its value is "
 "used when the :class:`FileHandler` is created, and thus used when opening "
 "the output file."
 msgstr ""
+"如果此關鍵字引數與 *filename* 一起指定，則會在建立 :class:`FileHandler` 時使"
+"用其值，因此也會在開啟輸出檔案時使用。"
 
-#: ../../library/logging.rst:1430
+#: ../../library/logging.rst:1428
 msgid "*errors*"
 msgstr "*errors*"
 
-#: ../../library/logging.rst:1430
+#: ../../library/logging.rst:1428
 msgid ""
 "If this keyword argument is specified along with *filename*, its value is "
 "used when the :class:`FileHandler` is created, and thus used when opening "
 "the output file. If not specified, the value 'backslashreplace' is used. "
-"Note that if ``None`` is specified, it will be passed as such to :func:"
-"`open`, which means that it will be treated the same as passing 'errors'."
+"Note that if ``None`` is specified, it will be passed as such "
+"to :func:`open`, which means that it will be treated the same as passing "
+"'errors'."
 msgstr ""
+"如果此關鍵字引數與 *filename* 一起指定，則會在建立 :class:`FileHandler` 時使"
+"用其值，因此也會在開啟輸出檔案時使用。若未指定，則會使用值 "
+"'backslashreplace'。請注意，如果指定為 ``None``，它會被原封不動地傳"
+"給 :func:`open`，這表示它會被視為與傳入 'errors' 相同。"
 
-#: ../../library/logging.rst:1441
+#: ../../library/logging.rst:1438
+msgid "*formatter*"
+msgstr "*formatter*"
+
+#: ../../library/logging.rst:1438
+msgid ""
+"If specified, set this formatter instance (see :ref:`formatter-objects`) for "
+"all involved handlers. If not specified, the default is to create and use an "
+"instance of :class:`logging.Formatter` based on arguments *format*, "
+"*datefmt* and *style*. When *formatter* is specified together with any of "
+"the three arguments *format*, *datefmt* and *style*, a ``ValueError`` is "
+"raised to signal that these arguments would lose meaning otherwise."
+msgstr ""
+"如果有指定，就為所有相關的處理器設定此格式化器實例（請參閱 :ref:`formatter-"
+"objects`）。若未指定，預設會根據引數 *format*、*datefmt* 和 *style* 建立並使"
+"用一個 :class:`logging.Formatter` 實例。當 *formatter* 與 *format*、"
+"*datefmt*、*style* 這三個引數中的任何一個一起指定時，會引發 ``ValueError``，"
+"以表明這些引數在此情況下將失去意義。"
+
+#: ../../library/logging.rst:1452
 msgid "The *style* argument was added."
 msgstr "新增 *style* 引數。"
 
-#: ../../library/logging.rst:1444
+#: ../../library/logging.rst:1455
 msgid ""
 "The *handlers* argument was added. Additional checks were added to catch "
 "situations where incompatible arguments are specified (e.g. *handlers* "
 "together with *stream* or *filename*, or *stream* together with *filename*)."
 msgstr ""
+"新增 *handlers* 引數。新增了額外的檢查，以捕捉指定了不相容引數的情況（例如 "
+"*handlers* 與 *stream* 或 *filename* 一起指定，或 *stream* 與 *filename* 一起"
+"指定）。"
 
-#: ../../library/logging.rst:1450
+#: ../../library/logging.rst:1461
 msgid "The *force* argument was added."
 msgstr "新增 *force* 引數。"
 
-#: ../../library/logging.rst:1453
+#: ../../library/logging.rst:1464
 msgid "The *encoding* and *errors* arguments were added."
 msgstr "新增 *encoding* 與 *errors* 引數。"
 
-#: ../../library/logging.rst:1458
+#: ../../library/logging.rst:1467
+msgid "The *formatter* argument was added."
+msgstr "新增 *formatter* 引數。"
+
+#: ../../library/logging.rst:1472
 msgid ""
 "Informs the logging system to perform an orderly shutdown by flushing and "
 "closing all handlers. This should be called at application exit and no "
 "further use of the logging system should be made after this call."
 msgstr ""
+"通知日誌記錄系統排清並關閉所有處理器，以進行有序的關閉。此函式應在應用程式結"
+"束時呼叫，且在此呼叫之後不應再使用日誌記錄系統。"
 
-#: ../../library/logging.rst:1462
+#: ../../library/logging.rst:1476
 msgid ""
 "When the logging module is imported, it registers this function as an exit "
 "handler (see :mod:`atexit`), so normally there's no need to do that manually."
 msgstr ""
+"logging 模組被引入時，會將此函式註冊為結束處理函式（請參閱 :mod:`atexit`），"
+"因此通常不需要手動進行。"
 
-#: ../../library/logging.rst:1469
+#: ../../library/logging.rst:1483
 msgid ""
 "Tells the logging system to use the class *klass* when instantiating a "
 "logger. The class should define :meth:`!__init__` such that only a name "
-"argument is required, and the :meth:`!__init__` should call :meth:`!Logger."
-"__init__`. This function is typically called before any loggers are "
+"argument is required, and the :meth:`!__init__` should call :meth:`!"
+"Logger.__init__`. This function is typically called before any loggers are "
 "instantiated by applications which need to use custom logger behavior. After "
 "this call, as at any other time, do not instantiate loggers directly using "
 "the subclass: continue to use the :func:`logging.getLogger` API to get your "
 "loggers."
 msgstr ""
+"告訴日誌記錄系統在實例化記錄器時使用類別 *klass*。該類別應定義 :meth:`!"
+"__init__`，使其只需要一個名稱引數，而且該 :meth:`!__init__` 應呼叫 :meth:`!"
+"Logger.__init__`。需要使用自訂記錄器行為的應用程式，通常會在實例化任何記錄器"
+"之前呼叫此函式。在此呼叫之後，和其他任何時候一樣，不要直接使用子類別來實例化"
+"記錄器：請繼續使用 :func:`logging.getLogger` API 來取得記錄器。"
 
-#: ../../library/logging.rst:1480
+#: ../../library/logging.rst:1494
 msgid "Set a callable which is used to create a :class:`LogRecord`."
-msgstr ""
+msgstr "設定一個用來建立 :class:`LogRecord` 的可呼叫物件。"
 
-#: ../../library/logging.rst:1482
+#: ../../library/logging.rst:1496
 msgid "The factory callable to be used to instantiate a log record."
-msgstr ""
+msgstr "用來實例化日誌紀錄的工廠可呼叫物件。"
 
-#: ../../library/logging.rst:1484
+#: ../../library/logging.rst:1498
 msgid ""
 "This function has been provided, along with :func:`getLogRecordFactory`, to "
 "allow developers more control over how the :class:`LogRecord` representing a "
 "logging event is constructed."
 msgstr ""
+"提供此函式（以及 :func:`getLogRecordFactory`）是為了讓開發者能更進一步控制代"
+"表日誌事件的 :class:`LogRecord` 是如何被建構的。"
 
-#: ../../library/logging.rst:1489
+#: ../../library/logging.rst:1503
 msgid "The factory has the following signature:"
-msgstr ""
+msgstr "工廠具有以下簽名："
 
-#: ../../library/logging.rst:1491
+#: ../../library/logging.rst:1505
 msgid ""
 "``factory(name, level, fn, lno, msg, args, exc_info, func=None, sinfo=None, "
 "**kwargs)``"
 msgstr ""
+"``factory(name, level, fn, lno, msg, args, exc_info, func=None, sinfo=None, "
+"**kwargs)``"
 
-#: ../../library/logging.rst:1493
+#: ../../library/logging.rst:1507
 msgid "The logger name."
-msgstr ""
+msgstr "記錄器名稱。"
 
 #: ../../library/logging.rst:0
 msgid "level"
-msgstr ""
+msgstr "level"
 
-#: ../../library/logging.rst:1494
+#: ../../library/logging.rst:1508
 msgid "The logging level (numeric)."
-msgstr ""
+msgstr "日誌等級（數值）。"
 
 #: ../../library/logging.rst:0
 msgid "fn"
 msgstr "fn"
 
-#: ../../library/logging.rst:1495
+#: ../../library/logging.rst:1509
 msgid "The full pathname of the file where the logging call was made."
-msgstr ""
+msgstr "進行日誌記錄呼叫之檔案的完整路徑名稱。"
 
 #: ../../library/logging.rst:0
 msgid "lno"
 msgstr "lno"
 
-#: ../../library/logging.rst:1496
+#: ../../library/logging.rst:1510
 msgid "The line number in the file where the logging call was made."
-msgstr ""
+msgstr "檔案中進行日誌記錄呼叫的列號。"
 
-#: ../../library/logging.rst:1497
+#: ../../library/logging.rst:1511
 msgid "The logging message."
-msgstr ""
+msgstr "日誌訊息。"
 
-#: ../../library/logging.rst:1498
+#: ../../library/logging.rst:1512
 msgid "The arguments for the logging message."
-msgstr ""
+msgstr "日誌訊息的引數。"
 
-#: ../../library/logging.rst:1499
+#: ../../library/logging.rst:1513
 msgid "An exception tuple, or ``None``."
-msgstr ""
+msgstr "一個例外元組，或 ``None``。"
 
 #: ../../library/logging.rst:0
 msgid "func"
 msgstr "func"
 
-#: ../../library/logging.rst:1500
+#: ../../library/logging.rst:1514
 msgid "The name of the function or method which invoked the logging call."
-msgstr ""
+msgstr "發起日誌記錄呼叫的函式或方法名稱。"
 
 #: ../../library/logging.rst:0
 msgid "sinfo"
 msgstr "sinfo"
 
-#: ../../library/logging.rst:1502
+#: ../../library/logging.rst:1516
 msgid ""
 "A stack traceback such as is provided by :func:`traceback.print_stack`, "
 "showing the call hierarchy."
-msgstr ""
+msgstr "像 :func:`traceback.print_stack` 所提供的堆疊回溯，顯示呼叫階層。"
 
 #: ../../library/logging.rst:0
 msgid "kwargs"
 msgstr "kwargs"
 
-#: ../../library/logging.rst:1504
+#: ../../library/logging.rst:1518
 msgid "Additional keyword arguments."
 msgstr "額外的關鍵字引數。"
 
-#: ../../library/logging.rst:1508
+#: ../../library/logging.rst:1522
 msgid "Module-Level Attributes"
 msgstr "模組層級屬性"
 
-#: ../../library/logging.rst:1512
-msgid ""
-"A \"handler of last resort\" is available through this attribute. This is a :"
-"class:`StreamHandler` writing to ``sys.stderr`` with a level of ``WARNING``, "
-"and is used to handle logging events in the absence of any logging "
-"configuration. The end result is to just print the message to ``sys."
-"stderr``. This replaces the earlier error message saying that \"no handlers "
-"could be found for logger XYZ\". If you need the earlier behaviour for some "
-"reason, ``lastResort`` can be set to ``None``."
-msgstr ""
-
-#: ../../library/logging.rst:1524
-msgid "Used to see if exceptions during handling should be propagated."
-msgstr ""
-
 #: ../../library/logging.rst:1526
-msgid "Default: ``True``."
+msgid ""
+"A \"handler of last resort\" is available through this attribute. This is "
+"a :class:`StreamHandler` writing to ``sys.stderr`` with a level of "
+"``WARNING``, and is used to handle logging events in the absence of any "
+"logging configuration. The end result is to just print the message to "
+"``sys.stderr``. This replaces the earlier error message saying that \"no "
+"handlers could be found for logger XYZ\". If you need the earlier behaviour "
+"for some reason, ``lastResort`` can be set to ``None``."
 msgstr ""
+"透過此屬性可以取得一個 \"handler of last resort\"（最後手段處理器）。這是一個"
+"寫入 ``sys.stderr``、等級為 ``WARNING`` 的 :class:`StreamHandler`，用於在沒有"
+"任何日誌設定時處理日誌事件。最終結果就是將訊息印到 ``sys.stderr``。這取代了先"
+"前那個表示 \"no handlers could be found for logger XYZ\" 的錯誤訊息。如果你因"
+"為某些原因需要先前的行為，可以將 ``lastResort`` 設為 ``None``。"
 
-#: ../../library/logging.rst:1528
+#: ../../library/logging.rst:1538
+msgid "Used to see if exceptions during handling should be propagated."
+msgstr "用來判斷處理期間發生的例外是否應該被傳播。"
+
+#: ../../library/logging.rst:1540
+msgid "Default: ``True``."
+msgstr "預設值：``True``。"
+
+#: ../../library/logging.rst:1542
 msgid ""
 "If :data:`raiseExceptions` is ``False``, exceptions get silently ignored. "
 "This is what is mostly wanted for a logging system - most users will not "
 "care about errors in the logging system, they are more interested in "
 "application errors."
 msgstr ""
+"如果 :data:`raiseExceptions` 為 ``False``，例外會被默默忽略。這通常正是日誌記"
+"錄系統所需要的行為：大多數使用者不會在意日誌記錄系統中的錯誤，他們更關心的是"
+"應用程式的錯誤。"
 
-#: ../../library/logging.rst:1535
+#: ../../library/logging.rst:1549
 msgid "Integration with the warnings module"
-msgstr ""
+msgstr "與 warnings 模組整合"
 
-#: ../../library/logging.rst:1537
+#: ../../library/logging.rst:1551
 msgid ""
 "The :func:`captureWarnings` function can be used to integrate :mod:`!"
 "logging` with the :mod:`warnings` module."
 msgstr ""
+":func:`captureWarnings` 函式可用來將 :mod:`!logging` 與 :mod:`warnings` 模組"
+"整合。"
 
-#: ../../library/logging.rst:1542
+#: ../../library/logging.rst:1556
 msgid ""
 "This function is used to turn the capture of warnings by logging on and off."
-msgstr ""
+msgstr "此函式用於開啟或關閉由 logging 擷取警告的功能。"
 
-#: ../../library/logging.rst:1545
+#: ../../library/logging.rst:1559
 msgid ""
 "If *capture* is ``True``, warnings issued by the :mod:`warnings` module will "
 "be redirected to the logging system. Specifically, a warning will be "
 "formatted using :func:`warnings.formatwarning` and the resulting string "
-"logged to a logger named ``'py.warnings'`` with a severity of :const:"
-"`WARNING`."
+"logged to a logger named ``'py.warnings'`` with a severity "
+"of :const:`WARNING`."
 msgstr ""
-
-#: ../../library/logging.rst:1550
-msgid ""
-"If *capture* is ``False``, the redirection of warnings to the logging system "
-"will stop, and warnings will be redirected to their original destinations (i."
-"e. those in effect before ``captureWarnings(True)`` was called)."
-msgstr ""
-
-#: ../../library/logging.rst:1557
-msgid "Module :mod:`logging.config`"
-msgstr ":mod:`logging.config` 模組"
-
-#: ../../library/logging.rst:1558
-msgid "Configuration API for the logging module."
-msgstr ""
-
-#: ../../library/logging.rst:1560
-msgid "Module :mod:`logging.handlers`"
-msgstr ":mod:`logging.handlers` 模組"
-
-#: ../../library/logging.rst:1561
-msgid "Useful handlers included with the logging module."
-msgstr ""
-
-#: ../../library/logging.rst:1563
-msgid ":pep:`282` - A Logging System"
-msgstr ""
+"如果 *capture* 為 ``True``，由 :mod:`warnings` 模組發出的警告將被重新導向到日"
+"誌記錄系統。具體來說，警告會使用 :func:`warnings.formatwarning` 格式化，並將"
+"結果字串以 :const:`WARNING` 嚴重性記錄到名為 ``'py.warnings'`` 的記錄器。"
 
 #: ../../library/logging.rst:1564
 msgid ""
+"If *capture* is ``False``, the redirection of warnings to the logging system "
+"will stop, and warnings will be redirected to their original destinations "
+"(i.e. those in effect before ``captureWarnings(True)`` was called)."
+msgstr ""
+"如果 *capture* 為 ``False``，將停止把警告重新導向到日誌記錄系統，警告會被重新"
+"導向到其原本的目的地（即呼叫 ``captureWarnings(True)`` 之前生效的目的地）。"
+
+#: ../../library/logging.rst:1571
+msgid "Module :mod:`logging.config`"
+msgstr ":mod:`logging.config` 模組"
+
+#: ../../library/logging.rst:1572
+msgid "Configuration API for the logging module."
+msgstr "logging 模組的設定 API。"
+
+#: ../../library/logging.rst:1574
+msgid "Module :mod:`logging.handlers`"
+msgstr ":mod:`logging.handlers` 模組"
+
+#: ../../library/logging.rst:1575
+msgid "Useful handlers included with the logging module."
+msgstr "logging 模組內建的實用處理器。"
+
+#: ../../library/logging.rst:1577
+msgid ":pep:`282` - A Logging System"
+msgstr ":pep:`282` - 日誌記錄系統"
+
+#: ../../library/logging.rst:1578
+msgid ""
 "The proposal which described this feature for inclusion in the Python "
 "standard library."
-msgstr ""
+msgstr "描述此功能並提出被包含於 Python 標準函式庫中的提案。"
 
-#: ../../library/logging.rst:1567
+#: ../../library/logging.rst:1581
 msgid ""
-"`Original Python logging package <https://old.red-dove.com/python_logging."
-"html>`_"
+"`Original Python logging package <https://old.red-dove.com/"
+"python_logging.html>`_"
 msgstr ""
+"`原始的 Python logging 套件 <https://old.red-dove.com/python_logging.html>`_"
 
-#: ../../library/logging.rst:1568
+#: ../../library/logging.rst:1582
 msgid ""
 "This is the original source for the :mod:`!logging` package.  The version of "
 "the package available from this site is suitable for use with Python 1.5.2, "
 "2.1.x and 2.2.x, which do not include the :mod:`!logging` package in the "
 "standard library."
 msgstr ""
+"這是 :mod:`!logging` 套件的原始來源。此網站提供的套件版本適用於 Python "
+"1.5.2、2.1.x 和 2.2.x，這些版本的標準函式庫中並未包含 :mod:`!logging` 套件。"
 
-#: ../../library/logging.rst:12
+#: ../../library/logging.rst:9
 msgid "Errors"
 msgstr "Errors（錯誤）"
 
-#: ../../library/logging.rst:12
+#: ../../library/logging.rst:9
 msgid "logging"
 msgstr "logging（日誌）"
 
