@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.14\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-06 00:35+0000\n"
+"POT-Creation-Date: 2026-11-27 03:22+0800\n"
 "PO-Revision-Date: 2018-05-23 16:03+0000\n"
 "Last-Translator: Adrian Liaw <adrianliaw2000@gmail.com>\n"
 "Language-Team: Chinese - TAIWAN (https://github.com/python/python-docs-zh-"
@@ -34,6 +34,8 @@ msgid ""
 ":mod:`!http.server` is not recommended for production. It only implements :"
 "ref:`basic security checks <http.server-security>`."
 msgstr ""
+":mod:`!http.server` 不建議用於正式環境 (production)。它只實作了\\ :ref:`基本"
+"的安全性檢查 <http.server-security>`。"
 
 #: ../../includes/wasm-notavail.rst:3
 msgid "Availability"
@@ -53,6 +55,9 @@ msgid ""
 "subclass. It creates and listens at the HTTP socket, dispatching the "
 "requests to a handler.  Code to create and run the server looks like this::"
 msgstr ""
+"其中一個類別 :class:`HTTPServer` 是 :class:`socketserver.TCPServer` 的子類"
+"別。它會建立並監聽 HTTP socket，將請求分派給處理器 (handler)。建立並執行伺服"
+"器的程式碼如下： ::"
 
 #: ../../library/http.server.rst:31
 msgid ""
@@ -74,14 +79,18 @@ msgid ""
 "the handler's :attr:`~socketserver.BaseRequestHandler.server` instance "
 "variable."
 msgstr ""
+"此類別建構於 :class:`~socketserver.TCPServer` 類別之上，將伺服器位址儲存為名"
+"為 :attr:`server_name` 和 :attr:`server_port` 的實例變數。處理器可以存取伺服"
+"器，通常是透過處理器的 :attr:`~socketserver.BaseRequestHandler.server` 實例變"
+"數。"
 
 #: ../../library/http.server.rst:47
 msgid "The HTTP server's fully qualified domain name."
-msgstr ""
+msgstr "HTTP 伺服器的完整網域名稱 (fully qualified domain name)。"
 
 #: ../../library/http.server.rst:51
 msgid "The HTTP server's port number obtained from *server_address*."
-msgstr ""
+msgstr "從 *server_address* 取得的 HTTP 伺服器埠號。"
 
 #: ../../library/http.server.rst:56
 msgid ""
@@ -90,6 +99,9 @@ msgid ""
 "web browsers pre-opening sockets, on which :class:`HTTPServer` would wait "
 "indefinitely."
 msgstr ""
+"此類別與 HTTPServer 相同，但透過 :class:`~socketserver.ThreadingMixIn` 使用執"
+"行緒來處理請求。這在處理網頁瀏覽器預先開啟 socket 的情況時很有用，因為 :"
+"class:`HTTPServer` 會在這些 socket 上無限期地等待。"
 
 #: ../../library/http.server.rst:68
 msgid ""
@@ -97,24 +109,32 @@ msgid ""
 "module. If the :mod:`ssl` module is not available, instantiating a :class:`!"
 "HTTPSServer` object fails with a :exc:`RuntimeError`."
 msgstr ""
+":class:`HTTPServer` 的子類別，其 socket 以 :mod:`ssl` 模組包裝。如果 :mod:"
+"`ssl` 模組無法使用，實例化 :class:`!HTTPSServer` 物件時會失敗並引發 :exc:"
+"`RuntimeError`。"
 
 #: ../../library/http.server.rst:72
 msgid ""
 "The *certfile* argument is the path to the SSL certificate chain file, and "
 "the *keyfile* is the path to the file containing the private key."
 msgstr ""
+"*certfile* 引數是 SSL 憑證鏈檔案的路徑，*keyfile* 則是包含私鑰之檔案的路徑。"
 
 #: ../../library/http.server.rst:75
 msgid ""
 "A *password* can be specified for files protected and wrapped with PKCS#8, "
 "but beware that this could possibly expose hardcoded passwords in clear."
 msgstr ""
+"對於以 PKCS#8 保護並包裝的檔案，可以指定 *password*，但要小心，這可能會以明文"
+"洩漏寫死在程式碼中的密碼。"
 
 #: ../../library/http.server.rst:80
 msgid ""
 "See :meth:`ssl.SSLContext.load_cert_chain` for additional information on the "
 "accepted values for *certfile*, *keyfile* and *password*."
 msgstr ""
+"關於 *certfile*、*keyfile* 和 *password* 可接受之值的更多資訊，請參閱 :meth:"
+"`ssl.SSLContext.load_cert_chain`。"
 
 #: ../../library/http.server.rst:84
 msgid ""
@@ -123,12 +143,15 @@ msgid ""
 "supported by the server. ALPN allows the server and the client to negotiate "
 "the application protocol during the TLS handshake."
 msgstr ""
+"若有指定，*alpn_protocols* 引數必須是一個字串序列，用來指定伺服器所支援的「應"
+"用層協定協商」(Application-Layer Protocol Negotiation, ALPN) 協定。ALPN 讓伺"
+"服器和用戶端能在 TLS 交握期間協商應用層協定。"
 
 #: ../../library/http.server.rst:89
 msgid ""
 "By default, it is set to ``[\"http/1.1\"]``, meaning the server supports "
 "HTTP/1.1."
-msgstr ""
+msgstr "預設設為 ``[\"http/1.1\"]``，表示伺服器支援 HTTP/1.1。"
 
 #: ../../library/http.server.rst:97
 msgid ""
@@ -136,6 +159,9 @@ msgid ""
 "requests by inheriting from :class:`~socketserver.ThreadingMixIn`. This is "
 "analogous to :class:`ThreadingHTTPServer` only using :class:`HTTPSServer`."
 msgstr ""
+"此類別與 :class:`HTTPSServer` 相同，但透過繼承 :class:`~socketserver."
+"ThreadingMixIn` 來使用執行緒處理請求。這與 :class:`ThreadingHTTPServer` 類"
+"似，只是改用 :class:`HTTPSServer`。"
 
 #: ../../library/http.server.rst:104
 msgid ""
@@ -143,6 +169,9 @@ msgid ""
 "and :class:`ThreadingHTTPSServer` must be given a *RequestHandlerClass* on "
 "instantiation, of which this module provides three different variants:"
 msgstr ""
+":class:`HTTPServer`、:class:`ThreadingHTTPServer`、:class:`HTTPSServer` 和 :"
+"class:`ThreadingHTTPSServer` 在實例化時必須給定一個 *RequestHandlerClass*，此"
+"模組提供了三種不同的變體："
 
 #: ../../library/http.server.rst:110
 msgid ""
@@ -152,6 +181,9 @@ msgid ""
 "``'POST'``). :class:`BaseHTTPRequestHandler` provides a number of class and "
 "instance variables, and methods for use by subclasses."
 msgstr ""
+"此類別用於處理抵達伺服器的 HTTP 請求。它本身無法回應任何實際的 HTTP 請求；必"
+"須將其子類別化以處理各個請求方法（例如 ``'GET'`` 或 ``'POST'``）。:class:"
+"`BaseHTTPRequestHandler` 提供了許多類別變數、實例變數和方法，供子類別使用。"
 
 #: ../../library/http.server.rst:116
 msgid ""
@@ -162,6 +194,10 @@ msgid ""
 "stored in instance variables of the handler.  Subclasses should not need to "
 "override or extend the :meth:`!__init__` method."
 msgstr ""
+"處理器會剖析請求和標頭，然後呼叫該請求類型專屬的方法。方法名稱是根據請求來建"
+"構的。例如，對於請求方法 ``SPAM``，會以無引數的方式呼叫 :meth:`!do_SPAM` 方"
+"法。所有相關資訊都儲存在處理器的實例變數中。子類別應該不需要覆寫或擴充 :meth:"
+"`!__init__` 方法。"
 
 #: ../../library/http.server.rst:123
 msgid ":class:`BaseHTTPRequestHandler` has the following instance variables:"
@@ -171,11 +207,11 @@ msgstr ":class:`BaseHTTPRequestHandler` 有以下實例變數："
 msgid ""
 "Contains a tuple of the form ``(host, port)`` referring to the client's "
 "address."
-msgstr ""
+msgstr "包含一個 ``(host, port)`` 形式的 tuple，代表用戶端的位址。"
 
 #: ../../library/http.server.rst:132
 msgid "Contains the server instance."
-msgstr ""
+msgstr "包含伺服器實例。"
 
 #: ../../library/http.server.rst:136
 msgid ""
@@ -183,6 +219,8 @@ msgid ""
 "indicating if another request may be expected, or if the connection should "
 "be shut down."
 msgstr ""
+"一個布林值，應在 :meth:`handle_one_request` 回傳之前設定，用以表示是否可能還"
+"會有另一個請求，或者是否應關閉連線。"
 
 #: ../../library/http.server.rst:142
 msgid ""
@@ -191,10 +229,12 @@ msgid ""
 "`handle_one_request`. If no valid request line was processed, it should be "
 "set to the empty string."
 msgstr ""
+"包含 HTTP 請求列的字串表示。結尾的 CRLF 會被移除。此屬性應由 :meth:"
+"`handle_one_request` 設定。如果沒有處理到有效的請求列，則應將其設為空字串。"
 
 #: ../../library/http.server.rst:149
 msgid "Contains the command (request type). For example, ``'GET'``."
-msgstr ""
+msgstr "包含命令（請求類型）。例如 ``'GET'``。"
 
 #: ../../library/http.server.rst:153
 msgid ""
@@ -202,11 +242,13 @@ msgid ""
 "then ``path`` includes the query. Using the terminology of :rfc:`3986`, "
 "``path`` here includes ``hier-part`` and the ``query``."
 msgstr ""
+"包含請求路徑。如果 URL 中有查詢 (query) 部分，則 ``path`` 會包含該查詢。以 :"
+"rfc:`3986` 的術語來說，這裡的 ``path`` 包含 ``hier-part`` 和 ``query``。"
 
 #: ../../library/http.server.rst:159
 msgid ""
 "Contains the version string from the request. For example, ``'HTTP/1.0'``."
-msgstr ""
+msgstr "包含請求中的版本字串。例如 ``'HTTP/1.0'``。"
 
 #: ../../library/http.server.rst:163
 msgid ""
@@ -216,12 +258,16 @@ msgid ""
 "used to parse the headers and it requires that the HTTP request provide a "
 "valid :rfc:`5322` style header."
 msgstr ""
+"存放由 :attr:`MessageClass` 類別變數所指定之類別的實例。此實例會剖析並管理 "
+"HTTP 請求中的標頭。剖析標頭時使用的是 :mod:`http.client` 中的 :func:`~http."
+"client.parse_headers` 函式，它要求 HTTP 請求提供有效的 :rfc:`5322` 風格標頭。"
 
 #: ../../library/http.server.rst:171
 msgid ""
 "An :class:`io.BufferedIOBase` input stream, ready to read from the start of "
 "the optional input data."
 msgstr ""
+"一個 :class:`io.BufferedIOBase` 輸入串流，已準備好從可選輸入資料的開頭讀取。"
 
 #: ../../library/http.server.rst:176
 msgid ""
@@ -229,10 +275,12 @@ msgid ""
 "adherence to the HTTP protocol must be used when writing to this stream in "
 "order to achieve successful interoperation with HTTP clients."
 msgstr ""
+"包含用於將回應寫回用戶端的輸出串流。寫入此串流時必須正確遵循 HTTP 協定，才能"
+"成功與 HTTP 用戶端互通。"
 
 #: ../../library/http.server.rst:181
 msgid "This is an :class:`io.BufferedIOBase` stream."
-msgstr ""
+msgstr "這是一個 :class:`io.BufferedIOBase` 串流。"
 
 #: ../../library/http.server.rst:184
 msgid ":class:`BaseHTTPRequestHandler` has the following attributes:"
@@ -244,6 +292,8 @@ msgid ""
 "format is multiple whitespace-separated strings, where each string is of the "
 "form name[/version]. For example, ``'BaseHTTP/0.2'``."
 msgstr ""
+"指定伺服器軟體版本。你可能會想覆寫它。格式為多個以空白分隔的字串，其中每個字"
+"串的形式為 name[/version]。例如 ``'BaseHTTP/0.2'``。"
 
 #: ../../library/http.server.rst:194
 msgid ""
@@ -251,6 +301,8 @@ msgid ""
 "`version_string` method and the :attr:`server_version` class variable. For "
 "example, ``'Python/1.4'``."
 msgstr ""
+"包含 Python 系統版本，其形式可供 :attr:`version_string` 方法和 :attr:"
+"`server_version` 類別變數使用。例如 ``'Python/1.4'``。"
 
 #: ../../library/http.server.rst:200
 msgid ""
@@ -259,12 +311,17 @@ msgid ""
 "default with variables from :attr:`responses` based on the status code "
 "passed to :meth:`send_error`."
 msgstr ""
+"指定一個格式字串，供 :meth:`send_error` 方法用來建構傳給用戶端的錯誤回應。預"
+"設會根據傳給 :meth:`send_error` 的狀態碼，以 :attr:`responses` 中的變數填入此"
+"字串。"
 
 #: ../../library/http.server.rst:207
 msgid ""
 "Specifies the Content-Type HTTP header of error responses sent to the "
 "client.  The default value is ``'text/html'``."
 msgstr ""
+"指定傳送給用戶端之錯誤回應的 Content-Type HTTP 標頭。預設值為 ``'text/"
+"html'``。"
 
 #: ../../library/http.server.rst:212
 msgid ""
@@ -276,6 +333,11 @@ msgid ""
 "responses to clients. For backwards compatibility, the setting defaults to "
 "``'HTTP/1.0'``."
 msgstr ""
+"指定伺服器所遵循的 HTTP 版本。它會在回應中傳送，讓用戶端得知伺服器在後續請求"
+"中的通訊能力。如果設為 ``'HTTP/1.1'``，伺服器將允許 HTTP 持久連線 "
+"(persistent connection)；但此時你的伺服器在所有傳給用戶端的回應中\\ *必須*\\ "
+"包含正確的 ``Content-Length`` 標頭（使用 :meth:`send_header`）。為了向後相"
+"容，此設定預設為 ``'HTTP/1.0'``。"
 
 #: ../../library/http.server.rst:222
 msgid ""
@@ -283,6 +345,8 @@ msgid ""
 "headers.  Typically, this is not overridden, and it defaults to :class:`http."
 "client.HTTPMessage`."
 msgstr ""
+"指定一個類似 :class:`email.message.Message` 的類別來剖析 HTTP 標頭。通常不會"
+"覆寫它，其預設為 :class:`http.client.HTTPMessage`。"
 
 #: ../../library/http.server.rst:228
 msgid ""
@@ -292,6 +356,10 @@ msgid ""
 "*message* key in an error response, and *longmessage* as the *explain* key.  "
 "It is used by :meth:`send_response_only` and :meth:`send_error` methods."
 msgstr ""
+"此屬性包含一個對映，將錯誤碼整數對映到包含短訊息與長訊息的二元素 tuple。例如 "
+"``{code: (shortmessage, longmessage)}``。*shortmessage* 通常用作錯誤回應中的 "
+"*message* 鍵，*longmessage* 則用作 *explain* 鍵。:meth:`send_response_only` "
+"和 :meth:`send_error` 方法會使用此屬性。"
 
 #: ../../library/http.server.rst:234
 msgid "A :class:`BaseHTTPRequestHandler` instance has the following methods:"
@@ -303,12 +371,16 @@ msgid ""
 "enabled, multiple times) to handle incoming HTTP requests. You should never "
 "need to override it; instead, implement appropriate :meth:`!do_\\*` methods."
 msgstr ""
+"呼叫 :meth:`handle_one_request` 一次（或在啟用持久連線時呼叫多次）來處理傳入"
+"的 HTTP 請求。你應該不會需要覆寫它；請改為實作適當的 :meth:`!do_\\*` 方法。"
 
 #: ../../library/http.server.rst:245
 msgid ""
 "This method will parse and dispatch the request to the appropriate :meth:`!"
 "do_\\*` method.  You should never need to override it."
 msgstr ""
+"此方法會剖析請求並將其分派給適當的 :meth:`!do_\\*` 方法。你應該不會需要覆寫"
+"它。"
 
 #: ../../library/http.server.rst:250
 msgid ""
@@ -318,6 +390,10 @@ msgid ""
 "not want the client to continue.  For example, the server can choose to send "
 "``417 Expectation Failed`` as a response header and ``return False``."
 msgstr ""
+"當遵循 HTTP/1.1 的伺服器收到 ``Expect: 100-continue`` 請求標頭時，它會回應 "
+"``100 Continue``，接著是 ``200 OK`` 標頭。如果伺服器不希望用戶端繼續，可以覆"
+"寫此方法來引發錯誤。例如，伺服器可以選擇傳送 ``417 Expectation Failed`` 作為"
+"回應標頭並 ``return False``。"
 
 #: ../../library/http.server.rst:261
 msgid ""
@@ -333,12 +409,19 @@ msgid ""
 "response code is one of the following: :samp:`1{xx}`, ``204 No Content``, "
 "``205 Reset Content``, ``304 Not Modified``."
 msgstr ""
+"傳送完整的錯誤回覆給用戶端並記錄下來。數值 *code* 指定 HTTP 錯誤碼，"
+"*message* 則是可選的、簡短且人類可讀的錯誤描述。*explain* 引數可用來提供關於"
+"錯誤的更詳細資訊；它會使用 :attr:`error_message_format` 屬性來格式化，並在一"
+"組完整的標頭之後作為回應主體送出。:attr:`responses` 屬性存放了 *message* 和 "
+"*explain* 的預設值，會在未提供值時使用；對於未知的狀態碼，兩者的預設值皆為字"
+"串 ``???``。如果方法為 HEAD，或回應碼為下列之一，則主體會是空的：:samp:`1{xx}"
+"`、``204 No Content``、``205 Reset Content``、``304 Not Modified``。"
 
 #: ../../library/http.server.rst:273
 msgid ""
 "The error response includes a Content-Length header. Added the *explain* "
 "argument."
-msgstr ""
+msgstr "錯誤回應包含 Content-Length 標頭。新增 *explain* 引數。"
 
 #: ../../library/http.server.rst:279
 msgid ""
@@ -350,12 +433,17 @@ msgid ""
 "the :meth:`send_header` method, then :meth:`send_response` should be "
 "followed by an :meth:`end_headers` call."
 msgstr ""
+"將回應標頭加入標頭緩衝區，並記錄已接受的請求。HTTP 回應列會被寫入內部緩衝區，"
+"接著是 *Server* 和 *Date* 標頭。這兩個標頭的值分別取自 :meth:"
+"`version_string` 和 :meth:`date_time_string` 方法。如果伺服器不打算使用 :"
+"meth:`send_header` 方法傳送任何其他標頭，則 :meth:`send_response` 之後應接著"
+"呼叫 :meth:`end_headers`。"
 
 #: ../../library/http.server.rst:288
 msgid ""
 "Headers are stored to an internal buffer and :meth:`end_headers` needs to be "
 "called explicitly."
-msgstr ""
+msgstr "標頭會儲存到內部緩衝區，且需要明確呼叫 :meth:`end_headers`。"
 
 #: ../../library/http.server.rst:294
 msgid ""
@@ -365,14 +453,18 @@ msgid ""
 "specifying its value. Note that, after the send_header calls are done, :meth:"
 "`end_headers` MUST BE called in order to complete the operation."
 msgstr ""
+"將 HTTP 標頭加入內部緩衝區，當叫用 :meth:`end_headers` 或 :meth:"
+"`flush_headers` 時，該緩衝區會被寫入輸出串流。*keyword* 應指定標頭關鍵字，"
+"*value* 則指定其值。請注意，在 send_header 呼叫完成後，務必呼叫 :meth:"
+"`end_headers` 才能完成操作。"
 
 #: ../../library/http.server.rst:300
 msgid "This method does not reject input containing CRLF sequences."
-msgstr ""
+msgstr "此方法不會拒絕包含 CRLF 序列的輸入。"
 
 #: ../../library/http.server.rst:302
 msgid "Headers are stored in an internal buffer."
-msgstr ""
+msgstr "標頭會儲存在內部緩衝區中。"
 
 #: ../../library/http.server.rst:307
 msgid ""
@@ -381,26 +473,31 @@ msgid ""
 "and sent directly the output stream. If the *message* is not specified, the "
 "HTTP message corresponding the response *code*  is sent."
 msgstr ""
+"僅傳送回應標頭，用於伺服器向用戶端傳送 ``100 Continue`` 回應的情況。標頭不會"
+"被緩衝，而是直接傳送到輸出串流。如果未指定 *message*，則會傳送與回應 *code* "
+"相對應的 HTTP 訊息。"
 
 #: ../../library/http.server.rst:312
 msgid "This method does not reject *message* containing CRLF sequences."
-msgstr ""
+msgstr "此方法不會拒絕包含 CRLF 序列的 *message*。"
 
 #: ../../library/http.server.rst:318
 msgid ""
 "Adds a blank line (indicating the end of the HTTP headers in the response) "
 "to the headers buffer and calls :meth:`flush_headers`."
 msgstr ""
+"將一個空白列（表示回應中 HTTP 標頭的結尾）加入標頭緩衝區，並呼叫 :meth:"
+"`flush_headers`。"
 
 #: ../../library/http.server.rst:322
 msgid "The buffered headers are written to the output stream."
-msgstr ""
+msgstr "緩衝的標頭會被寫入輸出串流。"
 
 #: ../../library/http.server.rst:327
 msgid ""
 "Finally send the headers to the output stream and flush the internal headers "
 "buffer."
-msgstr ""
+msgstr "最後將標頭傳送到輸出串流，並排清 (flush) 內部標頭緩衝區。"
 
 #: ../../library/http.server.rst:334
 msgid ""
@@ -408,6 +505,8 @@ msgid ""
 "HTTP code associated with the response. If a size of the response is "
 "available, then it should be passed as the *size* parameter."
 msgstr ""
+"記錄一個已接受（成功）的請求。*code* 應指定與該回應相關聯的 HTTP 數值狀態碼。"
+"如果可取得回應的大小，則應將其作為 *size* 參數傳入。"
 
 #: ../../library/http.server.rst:340
 msgid ""
@@ -415,6 +514,8 @@ msgid ""
 "message to :meth:`log_message`, so it takes the same arguments (*format* and "
 "additional values)."
 msgstr ""
+"當請求無法完成時記錄錯誤。預設情況下，它會將訊息傳給 :meth:`log_message`，因"
+"此接受相同的引數（*format* 和額外的值）。"
 
 #: ../../library/http.server.rst:347
 msgid ""
@@ -424,12 +525,18 @@ msgid ""
 "`log_message` are applied as inputs to the formatting. The client IP address "
 "and current date and time are prefixed to every message logged."
 msgstr ""
+"將任意訊息記錄到 ``sys.stderr``。通常會覆寫此方法來建立自訂的錯誤記錄機制。"
+"*format* 引數是一個標準的 printf 風格格式字串，傳給 :meth:`log_message` 的其"
+"他引數會作為格式化的輸入。每則記錄的訊息前面都會加上用戶端 IP 位址以及目前的"
+"日期和時間。"
 
 #: ../../library/http.server.rst:355
 msgid ""
 "Returns the server software's version string. This is a combination of the :"
 "attr:`server_version` and :attr:`sys_version` attributes."
 msgstr ""
+"回傳伺服器軟體的版本字串。這是 :attr:`server_version` 和 :attr:`sys_version` "
+"屬性的組合。"
 
 #: ../../library/http.server.rst:360
 msgid ""
@@ -437,99 +544,143 @@ msgid ""
 "the format returned by :func:`time.time`), formatted for a message header. "
 "If *timestamp* is omitted, it uses the current date and time."
 msgstr ""
+"回傳由 *timestamp*\\ （必須為 ``None`` 或 :func:`time.time` 所回傳的格式）給"
+"定的日期和時間，並格式化為訊息標頭所用的格式。如果省略 *timestamp*，則使用目"
+"前的日期和時間。"
 
 #: ../../library/http.server.rst:364
 msgid "The result looks like ``'Sun, 06 Nov 1994 08:49:37 GMT'``."
-msgstr ""
+msgstr "結果看起來像 ``'Sun, 06 Nov 1994 08:49:37 GMT'``。"
 
 #: ../../library/http.server.rst:368
 msgid "Returns the current date and time, formatted for logging."
-msgstr ""
+msgstr "回傳目前的日期和時間，並格式化為記錄用的格式。"
 
 #: ../../library/http.server.rst:372
 msgid "Returns the client address."
-msgstr ""
+msgstr "回傳用戶端位址。"
 
 #: ../../library/http.server.rst:374
 msgid ""
 "Previously, a name lookup was performed. To avoid name resolution delays, it "
 "now always returns the IP address."
-msgstr ""
+msgstr "先前會執行名稱查詢。為了避免名稱解析造成的延遲，現在一律回傳 IP 位址。"
 
-#: ../../library/http.server.rst:381
+#: ../../library/http.server.rst:382
 msgid ""
 "This class serves files from the directory *directory* and below, or the "
 "current directory if *directory* is not provided, directly mapping the "
 "directory structure to HTTP requests."
 msgstr ""
+"此類別提供 *directory* 目錄及其下層中的檔案；若未提供 *directory* 則提供目前"
+"目錄中的檔案，並將目錄結構直接對映到 HTTP 請求。"
 
-#: ../../library/http.server.rst:385
+#: ../../library/http.server.rst:386
 msgid "Added the *directory* parameter."
 msgstr "新增 *directory* 參數。"
 
-#: ../../library/http.server.rst:388
+#: ../../library/http.server.rst:389
 msgid "The *directory* parameter accepts a :term:`path-like object`."
-msgstr ""
+msgstr "*directory* 參數接受\\ :term:`類路徑物件 <path-like object>`。"
 
-#: ../../library/http.server.rst:391
+#: ../../library/http.server.rst:392
+msgid "Added *extra_response_headers* parameter."
+msgstr "新增 *extra_response_headers* 參數。"
+
+#: ../../library/http.server.rst:395
 msgid ""
 "A lot of the work, such as parsing the request, is done by the base class :"
 "class:`BaseHTTPRequestHandler`.  This class implements the :func:`do_GET` "
 "and :func:`do_HEAD` functions."
 msgstr ""
+"許多工作（例如剖析請求）是由基底類別 :class:`BaseHTTPRequestHandler` 完成的。"
+"此類別實作了 :func:`do_GET` 和 :func:`do_HEAD` 函式。"
 
-#: ../../library/http.server.rst:395
+#: ../../library/http.server.rst:399
 msgid ""
 "The following are defined as class-level attributes of :class:"
 "`SimpleHTTPRequestHandler`:"
-msgstr ""
+msgstr "以下為 :class:`SimpleHTTPRequestHandler` 的類別層級屬性："
 
-#: ../../library/http.server.rst:400
+#: ../../library/http.server.rst:404
 msgid ""
 "This will be ``\"SimpleHTTP/\" + __version__``, where ``__version__`` is "
 "defined at the module level."
 msgstr ""
+"這會是 ``\"SimpleHTTP/\" + __version__``，其中 ``__version__`` 定義在模組層"
+"級。"
 
-#: ../../library/http.server.rst:405
+#: ../../library/http.server.rst:409
+msgid ""
+"Specifies the Content-Type header value sent when the MIME type cannot be "
+"guessed from the file extension of the requested URL. By default, it is set "
+"to ``'application/octet-stream'``."
+msgstr ""
+"指定當無法從所請求 URL 的副檔名猜測出 MIME 類型時，所傳送的 Content-Type 標頭"
+"值。預設設為 ``'application/octet-stream'``。"
+
+#: ../../library/http.server.rst:417
 msgid "Specifies the filenames that are treated as directory index pages."
-msgstr ""
+msgstr "指定被視為目錄索引頁面的檔案名稱。"
 
-#: ../../library/http.server.rst:407
+#: ../../library/http.server.rst:419
 msgid "Defaults to ``(\"index.html\", \"index.htm\")``."
-msgstr ""
+msgstr "預設為 ``(\"index.html\", \"index.htm\")``。"
 
-#: ../../library/http.server.rst:413
+#: ../../library/http.server.rst:425
 msgid ""
 "A dictionary mapping suffixes into MIME types, contains custom overrides for "
 "the default system mappings. The mapping is used case-insensitively, and so "
 "should contain only lower-cased keys."
 msgstr ""
+"一個將副檔名對映到 MIME 類型的字典，包含對系統預設對映的自訂覆寫。此對映在使"
+"用時不區分大小寫，因此應只包含小寫的鍵。"
 
-#: ../../library/http.server.rst:417
+#: ../../library/http.server.rst:429
 msgid ""
 "This dictionary is no longer filled with the default system mappings, but "
 "only contains overrides."
-msgstr ""
+msgstr "此字典不再填入系統預設的對映，而只包含覆寫的部分。"
 
-#: ../../library/http.server.rst:421
+#: ../../library/http.server.rst:435
+msgid ""
+"A sequence of ``(name, value)`` pairs containing user-defined extra HTTP "
+"response headers to add to each successful HTTP status 200 response. These "
+"headers are not included in other status code responses."
+msgstr ""
+"一個由 ``(name, value)`` 對組成的序列，包含使用者定義的額外 HTTP 回應標頭，這"
+"些標頭會加到每個成功的 HTTP 狀態 200 回應中。其他狀態碼的回應不會包含這些標"
+"頭。"
+
+#: ../../library/http.server.rst:439
+msgid ""
+"Headers that the server sends automatically such as ``Content-Type`` will "
+"not be overwritten by :attr:`!extra_response_headers`."
+msgstr ""
+"伺服器自動傳送的標頭（例如 ``Content-Type``）不會被 :attr:`!"
+"extra_response_headers` 覆寫。"
+
+#: ../../library/http.server.rst:442
 msgid ""
 "The :class:`SimpleHTTPRequestHandler` class defines the following methods:"
 msgstr ":class:`SimpleHTTPRequestHandler` 類別定義了以下方法："
 
-#: ../../library/http.server.rst:425
+#: ../../library/http.server.rst:446
 msgid ""
 "This method serves the ``'HEAD'`` request type: it sends the headers it "
 "would send for the equivalent ``GET`` request. See the :meth:`do_GET` method "
 "for a more complete explanation of the possible headers."
 msgstr ""
+"此方法處理 ``'HEAD'`` 請求類型：它會傳送與對應的 ``GET`` 請求相同的標頭。關於"
+"可能送出之標頭的更完整說明，請參閱 :meth:`do_GET` 方法。"
 
-#: ../../library/http.server.rst:431
+#: ../../library/http.server.rst:452
 msgid ""
 "The request is mapped to a local file by interpreting the request as a path "
 "relative to the current working directory."
-msgstr ""
+msgstr "透過將請求解讀為相對於目前工作目錄的路徑，把請求對映到本地檔案。"
 
-#: ../../library/http.server.rst:434
+#: ../../library/http.server.rst:455
 msgid ""
 "If the request was mapped to a directory, the directory is checked for an "
 "index page as specified by :attr:`index_pages`. If found, the file's "
@@ -538,8 +689,12 @@ msgid ""
 "scan the directory, and returns a ``404`` error response if the :func:`~os."
 "listdir` fails."
 msgstr ""
+"如果請求被對映到一個目錄，會檢查該目錄中是否有 :attr:`index_pages` 所指定的索"
+"引頁面。若找到，則回傳該檔案的內容；否則會呼叫 :meth:`list_directory` 方法來"
+"產生目錄列表。此方法使用 :func:`os.listdir` 來掃描目錄，若 :func:`~os."
+"listdir` 失敗則回傳 ``404`` 錯誤回應。"
 
-#: ../../library/http.server.rst:441
+#: ../../library/http.server.rst:462
 msgid ""
 "If the request was mapped to a file, it is opened. Any :exc:`OSError` "
 "exception in opening the requested file is mapped to a ``404``, ``'File not "
@@ -549,69 +704,93 @@ msgid ""
 "calling the :meth:`guess_type` method, which in turn uses the "
 "*extensions_map* variable, and the file contents are returned."
 msgstr ""
+"如果請求被對映到一個檔案，則會開啟該檔案。開啟所請求的檔案時發生的任何 :exc:"
+"`OSError` 例外都會對映為 ``404``、``'File not found'`` 錯誤。如果請求中有 "
+"``'If-Modified-Since'`` 標頭，且檔案在該時間之後未被修改，則會傳送 ``304``、"
+"``'Not Modified'`` 回應。否則，會呼叫 :meth:`guess_type` 方法來猜測內容類型"
+"（該方法會再使用 *extensions_map* 變數），並回傳檔案內容。"
 
-#: ../../library/http.server.rst:449
+#: ../../library/http.server.rst:470
 msgid ""
 "A ``'Content-type:'`` header with the guessed content type is output, "
 "followed by a ``'Content-Length:'`` header with the file's size and a "
 "``'Last-Modified:'`` header with the file's modification time."
 msgstr ""
+"會輸出帶有猜測出之內容類型的 ``'Content-type:'`` 標頭，接著是帶有檔案大小的 "
+"``'Content-Length:'`` 標頭，以及帶有檔案修改時間的 ``'Last-Modified:'`` 標"
+"頭。"
 
-#: ../../library/http.server.rst:453
+#: ../../library/http.server.rst:474
+msgid ""
+"The instance attribute :attr:`extra_response_headers` is a sequence of "
+"``(name, value)`` pairs containing user-defined extra response headers."
+msgstr ""
+"實例屬性 :attr:`extra_response_headers` 是一個由 ``(name, value)`` 對組成的序"
+"列，包含使用者定義的額外回應標頭。"
+
+#: ../../library/http.server.rst:477
 msgid ""
 "Then follows a blank line signifying the end of the headers, and then the "
 "contents of the file are output."
-msgstr ""
+msgstr "接著是一個表示標頭結尾的空白列，然後輸出檔案內容。"
 
-#: ../../library/http.server.rst:456
+#: ../../library/http.server.rst:480
 msgid ""
 "For example usage, see the implementation of the ``test`` function in :"
 "source:`Lib/http/server.py`."
-msgstr ""
+msgstr "使用範例請參閱 :source:`Lib/http/server.py` 中 ``test`` 函式的實作。"
 
-#: ../../library/http.server.rst:459
+#: ../../library/http.server.rst:483
 msgid "Support of the ``'If-Modified-Since'`` header."
-msgstr ""
+msgstr "支援 ``'If-Modified-Since'`` 標頭。"
 
-#: ../../library/http.server.rst:464
+#: ../../library/http.server.rst:488
 msgid "Helper to list the contents of *path* when no index page is present."
-msgstr ""
+msgstr "在沒有索引頁面時，用來列出 *path* 內容的輔助方法。"
 
-#: ../../library/http.server.rst:466
+#: ../../library/http.server.rst:490
 msgid ""
 "This returns either a :term:`file-like object` (which must be closed by the "
 "caller) or ``None`` to indicate an error, in which case the caller has "
 "nothing further to do. In either case, the headers are sent."
 msgstr ""
+"此方法會回傳一個\\ :term:`類檔案物件 <file-like object>`\\ （必須由呼叫者關"
+"閉），或回傳 ``None`` 表示發生錯誤，此時呼叫者無須再做任何事。無論哪種情況，"
+"標頭都會被送出。"
 
-#: ../../library/http.server.rst:472
+#: ../../library/http.server.rst:496
 msgid "Guess the type of the file at the given *path*."
-msgstr ""
+msgstr "猜測位於給定 *path* 之檔案的類型。"
 
-#: ../../library/http.server.rst:474
+#: ../../library/http.server.rst:498
 msgid ""
 "This returns a string of the form ``type/subtype``, usable for a MIME "
 "Content-type header."
 msgstr ""
+"此方法會回傳 ``type/subtype`` 形式的字串，可用於 MIME Content-type 標頭。"
 
-#: ../../library/http.server.rst:477
+#: ../../library/http.server.rst:501
 msgid ""
 "The default implementation looks the file's extension up in :attr:"
 "`extensions_map`, falling back to :func:`mimetypes.guess_file_type` and then "
-"to ``'application/octet-stream'``."
+"to :attr:`default_content_type`."
 msgstr ""
+"預設實作會在 :attr:`extensions_map` 中查詢檔案的副檔名，找不到時會退而使用 :"
+"func:`mimetypes.guess_file_type`，再退而使用 :attr:`default_content_type`。"
 
-#: ../../library/http.server.rst:482
+#: ../../library/http.server.rst:506
 msgid "Add :func:`mimetypes.guess_file_type` as a fallback."
-msgstr ""
+msgstr "新增 :func:`mimetypes.guess_file_type` 作為後備方案。"
 
-#: ../../library/http.server.rst:486
+#: ../../library/http.server.rst:510
 msgid ""
 "The :class:`SimpleHTTPRequestHandler` class can be used to create a very "
 "basic webserver serving files relative to the current directory as follows::"
 msgstr ""
+":class:`SimpleHTTPRequestHandler` 類別可以用來建立一個非常基本的網頁伺服器，"
+"提供相對於目前目錄的檔案，如下所示： ::"
 
-#: ../../library/http.server.rst:489
+#: ../../library/http.server.rst:513
 msgid ""
 "import http.server\n"
 "import socketserver\n"
@@ -635,190 +814,125 @@ msgstr ""
 "    print(\"serving at port\", PORT)\n"
 "    httpd.serve_forever()"
 
-#: ../../library/http.server.rst:501
+#: ../../library/http.server.rst:525
 msgid ""
 ":class:`SimpleHTTPRequestHandler` can also be subclassed to enhance "
 "behavior, such as using different index file names by overriding the class "
 "attribute :attr:`~SimpleHTTPRequestHandler.index_pages`."
 msgstr ""
+":class:`SimpleHTTPRequestHandler` 也可以被子類別化以增強其行為，例如透過覆寫"
+"類別屬性 :attr:`~SimpleHTTPRequestHandler.index_pages` 來使用不同的索引檔案名"
+"稱。"
 
-#: ../../library/http.server.rst:508
-msgid ""
-"This class is used to serve either files or output of CGI scripts from the "
-"current directory and below. Note that mapping HTTP hierarchic structure to "
-"local directory structure is exactly as in :class:`SimpleHTTPRequestHandler`."
-msgstr ""
-
-#: ../../library/http.server.rst:514
-msgid ""
-"CGI scripts run by the :class:`CGIHTTPRequestHandler` class cannot execute "
-"redirects (HTTP code 302), because code 200 (script output follows) is sent "
-"prior to execution of the CGI script.  This pre-empts the status code."
-msgstr ""
-
-#: ../../library/http.server.rst:519
-msgid ""
-"The class will however, run the CGI script, instead of serving it as a file, "
-"if it guesses it to be a CGI script.  Only directory-based CGI are used --- "
-"the other common server configuration is to treat special extensions as "
-"denoting CGI scripts."
-msgstr ""
-
-#: ../../library/http.server.rst:524
-msgid ""
-"The :func:`~SimpleHTTPRequestHandler.do_GET` and :func:"
-"`~SimpleHTTPRequestHandler.do_HEAD` functions are modified to run CGI "
-"scripts and serve the output, instead of serving files, if the request leads "
-"to somewhere below the ``cgi_directories`` path."
-msgstr ""
-
-#: ../../library/http.server.rst:530
-msgid "The :class:`CGIHTTPRequestHandler` defines the following data member:"
-msgstr ":class:`CGIHTTPRequestHandler` 類別定義了以下資料成員："
-
-#: ../../library/http.server.rst:534
-msgid ""
-"This defaults to ``['/cgi-bin', '/htbin']`` and describes directories to "
-"treat as containing CGI scripts."
-msgstr ""
-
-#: ../../library/http.server.rst:537
-msgid "The :class:`CGIHTTPRequestHandler` defines the following method:"
-msgstr ":class:`CGIHTTPRequestHandler` 類別定義了以下方法："
-
-#: ../../library/http.server.rst:541
-msgid ""
-"This method serves the ``'POST'`` request type, only allowed for CGI "
-"scripts.  Error 501, \"Can only POST to CGI scripts\", is output when trying "
-"to POST to a non-CGI url."
-msgstr ""
-
-#: ../../library/http.server.rst:545
-msgid ""
-"Note that CGI scripts will be run with UID of user nobody, for security "
-"reasons.  Problems with the CGI script will be translated to error 403."
-msgstr ""
-
-#: ../../library/http.server.rst:550
-msgid ""
-":class:`CGIHTTPRequestHandler` is being removed in 3.15.  CGI has not been "
-"considered a good way to do things for well over a decade. This code has "
-"been unmaintained for a while now and sees very little practical use. "
-"Retaining it could lead to further :ref:`security considerations <http."
-"server-security>`."
-msgstr ""
-
-#: ../../library/http.server.rst:560
+#: ../../library/http.server.rst:533
 msgid "Command-line interface"
 msgstr "命令列介面"
 
-#: ../../library/http.server.rst:562
+#: ../../library/http.server.rst:535
 msgid ""
 ":mod:`!http.server` can also be invoked directly using the :option:`-m` "
 "switch of the interpreter.  The following example illustrates how to serve "
 "files relative to the current directory:"
 msgstr ""
+":mod:`!http.server` 也可以使用直譯器的 :option:`-m` 選項直接叫用。以下範例說"
+"明如何提供相對於目前目錄的檔案："
 
-#: ../../library/http.server.rst:566
+#: ../../library/http.server.rst:539
 msgid "python -m http.server [OPTIONS] [port]"
 msgstr "python -m http.server [OPTIONS] [port]"
 
-#: ../../library/http.server.rst:570
+#: ../../library/http.server.rst:543
 msgid "The following options are accepted:"
 msgstr "可接受以下選項："
 
-#: ../../library/http.server.rst:576
+#: ../../library/http.server.rst:549
 msgid ""
 "The server listens to port 8000 by default. The default can be overridden by "
 "passing the desired port number as an argument:"
-msgstr ""
+msgstr "伺服器預設監聽 8000 埠。可以透過傳入想要的埠號作為引數來覆寫此預設值："
 
-#: ../../library/http.server.rst:579
+#: ../../library/http.server.rst:552
 msgid "python -m http.server 9000"
 msgstr "python -m http.server 9000"
 
-#: ../../library/http.server.rst:585
+#: ../../library/http.server.rst:558
 msgid ""
 "Specifies a specific address to which it should bind. Both IPv4 and IPv6 "
 "addresses are supported. By default, the server binds itself to all "
 "interfaces. For example, the following command causes the server to bind to "
 "localhost only:"
 msgstr ""
+"指定伺服器應繫結的特定位址。IPv4 和 IPv6 位址皆有支援。預設情況下，伺服器會繫"
+"結到所有介面。例如，以下命令會讓伺服器只繫結到 localhost："
 
-#: ../../library/http.server.rst:590
+#: ../../library/http.server.rst:563
 msgid "python -m http.server --bind 127.0.0.1"
 msgstr "python -m http.server --bind 127.0.0.1"
 
-#: ../../library/http.server.rst:596
+#: ../../library/http.server.rst:569
 msgid "Support IPv6 in the ``--bind`` option."
 msgstr "於 ``--bind`` 選項中支援 IPv6。"
 
-#: ../../library/http.server.rst:601
+#: ../../library/http.server.rst:574
 msgid ""
 "Specifies a directory to which it should serve the files. By default, the "
 "server uses the current directory. For example, the following command uses a "
 "specific directory:"
 msgstr ""
+"指定伺服器提供檔案所用的目錄。預設情況下，伺服器使用目前目錄。例如，以下命令"
+"會使用特定的目錄："
 
-#: ../../library/http.server.rst:605
+#: ../../library/http.server.rst:578
 msgid "python -m http.server --directory /tmp/"
 msgstr "python -m http.server --directory /tmp/"
 
-#: ../../library/http.server.rst:613
+#: ../../library/http.server.rst:586
 msgid ""
 "Specifies the HTTP version to which the server is conformant. By default, "
 "the server is conformant to HTTP/1.0. For example, the following command "
 "runs an HTTP/1.1 conformant server:"
 msgstr ""
+"指定伺服器所遵循的 HTTP 版本。預設情況下，伺服器遵循 HTTP/1.0。例如，以下命令"
+"會執行一個遵循 HTTP/1.1 的伺服器："
 
-#: ../../library/http.server.rst:617
+#: ../../library/http.server.rst:590
 msgid "python -m http.server --protocol HTTP/1.1"
 msgstr "python -m http.server --protocol HTTP/1.1"
 
-#: ../../library/http.server.rst:625
+#: ../../library/http.server.rst:598
 msgid ""
-":class:`CGIHTTPRequestHandler` can be enabled in the command line by passing "
-"the ``--cgi`` option::"
+"Specifies the default Content-Type HTTP header used when the MIME type "
+"cannot be guessed from the URL's file extension. By default, the server uses "
+"``'application/octet-stream'``:"
 msgstr ""
+"指定當無法從 URL 的副檔名猜測出 MIME 類型時，所使用的預設 Content-Type HTTP "
+"標頭。預設情況下，伺服器使用 ``'application/octet-stream'``："
 
-#: ../../library/http.server.rst:628
-msgid "python -m http.server --cgi"
-msgstr "python -m http.server --cgi"
+#: ../../library/http.server.rst:602
+msgid "python -m http.server --content-type text/html"
+msgstr "python -m http.server --content-type text/html"
 
-#: ../../library/http.server.rst:632
-msgid ""
-":mod:`!http.server` command line ``--cgi`` support is being removed because :"
-"class:`CGIHTTPRequestHandler` is being removed."
-msgstr ""
-
-#: ../../library/http.server.rst:637
-msgid ""
-":class:`CGIHTTPRequestHandler` and the ``--cgi`` command-line option are not "
-"intended for use by untrusted clients and may be vulnerable to exploitation. "
-"Always use within a secure environment."
-msgstr ""
-
-#: ../../library/http.server.rst:643
+#: ../../library/http.server.rst:610
 msgid "Specifies a TLS certificate chain for HTTPS connections:"
-msgstr ""
+msgstr "指定 HTTPS 連線所用的 TLS 憑證鏈："
 
-#: ../../library/http.server.rst:645
+#: ../../library/http.server.rst:612
 msgid "python -m http.server --tls-cert fullchain.pem"
 msgstr "python -m http.server --tls-cert fullchain.pem"
 
-#: ../../library/http.server.rst:653
+#: ../../library/http.server.rst:620
 msgid "Specifies a private key file for HTTPS connections."
-msgstr ""
+msgstr "指定 HTTPS 連線所用的私鑰檔案。"
 
-#: ../../library/http.server.rst:655 ../../library/http.server.rst:670
+#: ../../library/http.server.rst:622 ../../library/http.server.rst:637
 msgid "This option requires ``--tls-cert`` to be specified."
-msgstr ""
+msgstr "此選項需要同時指定 ``--tls-cert``。"
 
-#: ../../library/http.server.rst:661
+#: ../../library/http.server.rst:628
 msgid "Specifies the password file for password-protected private keys:"
-msgstr ""
+msgstr "指定受密碼保護之私鑰所用的密碼檔案："
 
-#: ../../library/http.server.rst:663
+#: ../../library/http.server.rst:630
 msgid ""
 "python -m http.server \\\n"
 "       --tls-cert cert.pem \\\n"
@@ -830,26 +944,43 @@ msgstr ""
 "       --tls-key key.pem \\\n"
 "       --tls-password-file password.txt"
 
-#: ../../library/http.server.rst:678
+#: ../../library/http.server.rst:643
+msgid ""
+"Specify an additional HTTP Response Header to send on successful HTTP 200 "
+"responses. Can be used multiple times to send additional custom response "
+"headers. Headers that are sent automatically by the server (for instance "
+"Content-Type) will not be overwritten by the server."
+msgstr ""
+"指定要在成功的 HTTP 200 回應中傳送的額外 HTTP 回應標頭。可以多次使用以傳送多"
+"個額外的自訂回應標頭。由伺服器自動傳送的標頭（例如 Content-Type）不會被伺服器"
+"覆寫。"
+
+#: ../../library/http.server.rst:654
 msgid "Security considerations"
 msgstr "安全性注意事項"
 
-#: ../../library/http.server.rst:682
+#: ../../library/http.server.rst:658
 msgid ""
 ":class:`SimpleHTTPRequestHandler` will follow symbolic links when handling "
 "requests which makes it possible for files outside of the specified "
 "directory to be served."
 msgstr ""
+":class:`SimpleHTTPRequestHandler` 在處理請求時會跟隨符號連結，這使得指定目錄"
+"之外的檔案有可能被提供出去。"
 
-#: ../../library/http.server.rst:686
+#: ../../library/http.server.rst:662
 msgid ""
 "Methods :meth:`BaseHTTPRequestHandler.send_header` and :meth:"
 "`BaseHTTPRequestHandler.send_response_only` assume sanitized input and do "
 "not perform input validation such as checking for the presence of CRLF "
 "sequences. Untrusted input may result in HTTP header injection attacks."
 msgstr ""
+":meth:`BaseHTTPRequestHandler.send_header` 和 :meth:`BaseHTTPRequestHandler."
+"send_response_only` 方法假設輸入已經過清理 (sanitized)，不會執行輸入驗證，例"
+"如檢查是否存在 CRLF 序列。不受信任的輸入可能導致 HTTP 標頭注入 (header "
+"injection) 攻擊。"
 
-#: ../../library/http.server.rst:691
+#: ../../library/http.server.rst:667
 msgid ""
 "Earlier versions of Python did not scrub control characters from the log "
 "messages emitted to stderr from ``python -m http.server`` or the default :"
@@ -857,10 +988,14 @@ msgid ""
 "allow remote clients connecting to your server to send nefarious control "
 "codes to your terminal."
 msgstr ""
+"在舊版 Python 中，``python -m http.server`` 或預設的 :class:"
+"`BaseHTTPRequestHandler` ``.log_message`` 實作在將日誌訊息輸出到 stderr 時，"
+"不會清除其中的控制字元。這可能讓連線到你伺服器的遠端用戶端，將惡意的控制碼傳"
+"送到你的終端機。"
 
-#: ../../library/http.server.rst:697
+#: ../../library/http.server.rst:673
 msgid "Control characters are scrubbed in stderr logs."
-msgstr ""
+msgstr "stderr 日誌中的控制字元會被清除。"
 
 #: ../../library/http.server.rst:9
 msgid "WWW"
@@ -886,10 +1021,20 @@ msgstr "URL（統一資源定位器）"
 msgid "httpd"
 msgstr "httpd"
 
-#: ../../library/http.server.rst:680
+#: ../../library/http.server.rst:656
 msgid "http.server"
 msgstr "http.server"
 
-#: ../../library/http.server.rst:680
+#: ../../library/http.server.rst:656
 msgid "security"
 msgstr "security（安全）"
+
+#~ msgid ""
+#~ "The :class:`CGIHTTPRequestHandler` defines the following data member:"
+#~ msgstr ":class:`CGIHTTPRequestHandler` 類別定義了以下資料成員："
+
+#~ msgid "The :class:`CGIHTTPRequestHandler` defines the following method:"
+#~ msgstr ":class:`CGIHTTPRequestHandler` 類別定義了以下方法："
+
+#~ msgid "python -m http.server --cgi"
+#~ msgstr "python -m http.server --cgi"
