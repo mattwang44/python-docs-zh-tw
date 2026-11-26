@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.14\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-10 00:43+0000\n"
+"POT-Creation-Date: 2026-11-27 03:22+0800\n"
 "PO-Revision-Date: 2018-05-23 16:10+0000\n"
 "Last-Translator: Adrian Liaw <adrianliaw2000@gmail.com>\n"
 "Language-Team: Chinese - TAIWAN (https://github.com/python/python-docs-zh-"
@@ -21,25 +21,29 @@ msgstr ""
 msgid ":mod:`!shutil` --- High-level file operations"
 msgstr ":mod:`!shutil` — 高階檔案操作"
 
-#: ../../library/shutil.rst:10
+#: ../../library/shutil.rst:7
 msgid "**Source code:** :source:`Lib/shutil.py`"
 msgstr "**原始碼：**\\ :source:`Lib/shutil.py`"
 
-#: ../../library/shutil.rst:18
+#: ../../library/shutil.rst:15
 msgid ""
 "The :mod:`!shutil` module offers a number of high-level operations on files "
 "and collections of files.  In particular, functions are provided  which "
 "support file copying and removal. For operations on individual files, see "
 "also the :mod:`os` module."
 msgstr ""
+":mod:`!shutil` 模組提供了一些針對檔案與檔案集合的高階操作，特別是提供了支援檔"
+"案複製與刪除的函式。關於個別檔案的操作，另請參閱 :mod:`os` 模組。"
 
-#: ../../library/shutil.rst:25
+#: ../../library/shutil.rst:22
 msgid ""
 "Even the higher-level file copying functions (:func:`shutil.copy`, :func:"
 "`shutil.copy2`) cannot copy all file metadata."
 msgstr ""
+"即使是較高階的檔案複製函式（:func:`shutil.copy`、:func:`shutil.copy2`）也無法"
+"複製所有的檔案詮釋資料。"
 
-#: ../../library/shutil.rst:28
+#: ../../library/shutil.rst:25
 msgid ""
 "On POSIX platforms, this means that file owner and group are lost as well as "
 "ACLs.  On Mac OS, the resource fork and other metadata are not used. This "
@@ -47,12 +51,16 @@ msgid ""
 "be correct. On Windows, file owners, ACLs and alternate data streams are not "
 "copied."
 msgstr ""
+"在 POSIX 平台上，這代表檔案擁有者與群組以及 ACL 都會遺失。在 Mac OS 上，資源"
+"分支 (resource fork) 與其他詮釋資料不會被使用，這代表資源會遺失，且檔案類型與"
+"建立者碼 (creator code) 將不正確。在 Windows 上，檔案擁有者、ACL 與替代資料"
+"流 (alternate data stream) 都不會被複製。"
 
-#: ../../library/shutil.rst:38
+#: ../../library/shutil.rst:35
 msgid "Directory and files operations"
 msgstr "目錄和檔案操作"
 
-#: ../../library/shutil.rst:42
+#: ../../library/shutil.rst:39
 msgid ""
 "Copy the contents of the :term:`file-like object <file object>` *fsrc* to "
 "the file-like object *fdst*. The integer *length*, if given, is the buffer "
@@ -62,8 +70,13 @@ msgid ""
 "file position of the *fsrc* object is not 0, only the contents from the "
 "current file position to the end of the file will be copied."
 msgstr ""
+"將\\ :term:`類檔案物件 <file object>` *fsrc* 的內容複製到類檔案物件 *fdst*。"
+"整數 *length* 若有給定則為緩衝區大小。特別是，負的 *length* 值代表直接複製資"
+"料，而不以區塊 (chunk) 為單位迴圈讀取來源資料；預設情況下會以區塊讀取資料，以"
+"避免無法控制的記憶體消耗。請注意，如果 *fsrc* 物件目前的檔案位置不是 0，則只"
+"會複製從目前檔案位置到檔案結尾的內容。"
 
-#: ../../library/shutil.rst:50
+#: ../../library/shutil.rst:47
 msgid ""
 ":func:`copyfileobj` will *not* guarantee that the destination stream has "
 "been flushed on completion of the copy. If you want to read from the "
@@ -73,38 +86,52 @@ msgid ""
 "IOBase.close` on the file-like object before attempting to read the "
 "destination file."
 msgstr ""
+":func:`copyfileobj` *不會*\\ 保證目的串流在複製完成時已被排清 (flush)。如果你"
+"想在複製操作完成時從目的地讀取（例如讀取從 HTTP 串流複製而來的暫存檔內容），"
+"你必須確保在嘗試讀取目的檔案之前，已經對該類檔案物件呼叫了 :func:`~io.IOBase."
+"flush` 或 :func:`~io.IOBase.close`。"
 
-#: ../../library/shutil.rst:60
+#: ../../library/shutil.rst:57
 msgid ""
 "Copy the contents (no metadata) of the file named *src* to a file named "
 "*dst* and return *dst* in the most efficient way possible. *src* and *dst* "
 "are :term:`path-like objects <path-like object>` or path names given as "
 "strings."
 msgstr ""
+"以最有效率的方式，將名為 *src* 的檔案內容（不含詮釋資料）複製到名為 *dst* 的"
+"檔案並回傳 *dst*。*src* 與 *dst* 為\\ :term:`類路徑物件 <path-like "
+"object>`\\ 或以字串給定的路徑名稱。"
 
-#: ../../library/shutil.rst:64
+#: ../../library/shutil.rst:61
 msgid ""
 "*dst* must be the complete target file name; look at :func:`~shutil.copy` "
 "for a copy that accepts a target directory path.  If *src* and *dst* specify "
 "the same file, :exc:`SameFileError` is raised."
 msgstr ""
+"*dst* 必須是完整的目標檔案名稱；如需接受目標目錄路徑的複製方式，請參考 :func:"
+"`~shutil.copy`。如果 *src* 與 *dst* 指定的是同一個檔案，則會引發 :exc:"
+"`SameFileError`。"
 
-#: ../../library/shutil.rst:68
+#: ../../library/shutil.rst:65
 msgid ""
 "The destination location must be writable; otherwise, an :exc:`OSError` "
 "exception will be raised. If *dst* already exists, it will be replaced. "
 "Special files such as character or block devices and pipes cannot be copied "
 "with this function."
 msgstr ""
+"目的位置必須是可寫入的，否則會引發 :exc:`OSError` 例外。如果 *dst* 已經存在，"
+"它將被取代。字元裝置、區塊裝置與管道等特殊檔案無法使用此函式複製。"
 
-#: ../../library/shutil.rst:73
+#: ../../library/shutil.rst:70
 msgid ""
 "If *follow_symlinks* is false and *src* is a symbolic link, a new symbolic "
 "link will be created instead of copying the file *src* points to."
 msgstr ""
+"如果 *follow_symlinks* 為 false 且 *src* 是符號連結，則會建立一個新的符號連"
+"結，而不是複製 *src* 所指向的檔案。"
 
-#: ../../library/shutil.rst:77 ../../library/shutil.rst:191
-#: ../../library/shutil.rst:222
+#: ../../library/shutil.rst:74 ../../library/shutil.rst:188
+#: ../../library/shutil.rst:219
 msgid ""
 "Raises an :ref:`auditing event <auditing>` ``shutil.copyfile`` with "
 "arguments ``src``, ``dst``."
@@ -112,40 +139,47 @@ msgstr ""
 "引發一個附帶引數 ``src``、``dst`` 的\\ :ref:`稽核事件 <auditing>` ``shutil."
 "copyfile``。"
 
-#: ../../library/shutil.rst:79
+#: ../../library/shutil.rst:76
 msgid ""
 ":exc:`IOError` used to be raised instead of :exc:`OSError`. Added "
 "*follow_symlinks* argument. Now returns *dst*."
 msgstr ""
+"以前會引發 :exc:`IOError` 而不是 :exc:`OSError`。新增 *follow_symlinks* 引"
+"數。現在會回傳 *dst*。"
 
-#: ../../library/shutil.rst:84
+#: ../../library/shutil.rst:81
 msgid ""
 "Raise :exc:`SameFileError` instead of :exc:`Error`.  Since the former is a "
 "subclass of the latter, this change is backward compatible."
 msgstr ""
+"改為引發 :exc:`SameFileError` 而非 :exc:`Error`。由於前者是後者的子類別，此變"
+"更是向後相容的。"
 
-#: ../../library/shutil.rst:88 ../../library/shutil.rst:199
-#: ../../library/shutil.rst:231 ../../library/shutil.rst:301
-#: ../../library/shutil.rst:418
+#: ../../library/shutil.rst:85 ../../library/shutil.rst:196
+#: ../../library/shutil.rst:228 ../../library/shutil.rst:298
+#: ../../library/shutil.rst:421
 msgid ""
 "Platform-specific fast-copy syscalls may be used internally in order to copy "
 "the file more efficiently. See :ref:`shutil-platform-dependent-efficient-"
 "copy-operations` section."
 msgstr ""
+"內部可能會使用平台特定的快速複製 (fast-copy) 系統呼叫，以更有效率地複製檔案。"
+"請參閱\\ :ref:`shutil-platform-dependent-efficient-copy-operations`\\ 一節。"
 
-#: ../../library/shutil.rst:95
+#: ../../library/shutil.rst:92
 msgid ""
 "This exception is raised when :func:`copyfile` or :func:`copytree` attempt "
 "to copy a named pipe."
 msgstr ""
+"當 :func:`copyfile` 或 :func:`copytree` 嘗試複製具名管道時會引發此例外。"
 
-#: ../../library/shutil.rst:102
+#: ../../library/shutil.rst:99
 msgid ""
 "This exception is raised if source and destination in :func:`copyfile` are "
 "the same file."
-msgstr ""
+msgstr "如果 :func:`copyfile` 中的來源與目的地是同一個檔案，則會引發此例外。"
 
-#: ../../library/shutil.rst:110
+#: ../../library/shutil.rst:107
 msgid ""
 "Copy the permission bits from *src* to *dst*.  The file contents, owner, and "
 "group are unaffected.  *src* and *dst* are :term:`path-like objects <path-"
@@ -157,8 +191,14 @@ msgid ""
 "links on the local platform, and it is asked to do so, it will do nothing "
 "and return."
 msgstr ""
+"將權限位元從 *src* 複製到 *dst*。檔案內容、擁有者與群組不受影響。*src* 與 "
+"*dst* 為\\ :term:`類路徑物件 <path-like object>`\\ 或以字串給定的路徑名稱。如"
+"果 *follow_symlinks* 為 false，且 *src* 與 *dst* 都是符號連結，:func:"
+"`copymode` 會嘗試修改 *dst* 本身的模式（而不是它所指向的檔案）。此功能並非在"
+"每個平台上都可用；更多資訊請參閱 :func:`copystat`。如果 :func:`copymode` 無法"
+"在本機平台上修改符號連結，而又被要求這麼做，它將不做任何事並直接回傳。"
 
-#: ../../library/shutil.rst:120 ../../library/shutil.rst:193
+#: ../../library/shutil.rst:117 ../../library/shutil.rst:190
 msgid ""
 "Raises an :ref:`auditing event <auditing>` ``shutil.copymode`` with "
 "arguments ``src``, ``dst``."
@@ -166,11 +206,11 @@ msgstr ""
 "引發一個附帶引數 ``src``、``dst`` 的\\ :ref:`稽核事件 <auditing>` ``shutil."
 "copymode``。"
 
-#: ../../library/shutil.rst:122
+#: ../../library/shutil.rst:119
 msgid "Added *follow_symlinks* argument."
 msgstr "新增 *follow_symlinks* 引數。"
 
-#: ../../library/shutil.rst:127
+#: ../../library/shutil.rst:124
 msgid ""
 "Copy the permission bits, last access time, last modification time, and "
 "flags from *src* to *dst*.  On Linux, :func:`copystat` also copies the "
@@ -178,52 +218,70 @@ msgid ""
 "are unaffected.  *src* and *dst* are :term:`path-like objects <path-like "
 "object>` or path names given as strings."
 msgstr ""
+"將權限位元、最後存取時間、最後修改時間與旗標從 *src* 複製到 *dst*。在 Linux "
+"上，:func:`copystat` 也會在可能的情況下複製「延伸屬性」。檔案內容、擁有者與群"
+"組不受影響。*src* 與 *dst* 為\\ :term:`類路徑物件 <path-like object>`\\ 或以"
+"字串給定的路徑名稱。"
 
-#: ../../library/shutil.rst:133
+#: ../../library/shutil.rst:130
 msgid ""
 "If *follow_symlinks* is false, and *src* and *dst* both refer to symbolic "
 "links, :func:`copystat` will operate on the symbolic links themselves rather "
 "than the files the symbolic links refer to—reading the information from the "
 "*src* symbolic link, and writing the information to the *dst* symbolic link."
 msgstr ""
+"如果 *follow_symlinks* 為 false，且 *src* 與 *dst* 都是符號連結，:func:"
+"`copystat` 將對符號連結本身進行操作，而不是對符號連結所指向的檔案：從 *src* "
+"符號連結讀取資訊，並將資訊寫入 *dst* 符號連結。"
 
-#: ../../library/shutil.rst:142
+#: ../../library/shutil.rst:139
 msgid ""
 "Not all platforms provide the ability to examine and modify symbolic links.  "
 "Python itself can tell you what functionality is locally available."
 msgstr ""
+"並非所有平台都提供檢查與修改符號連結的能力。Python 本身可以告訴你本機有哪些功"
+"能可用。"
 
-#: ../../library/shutil.rst:146
+#: ../../library/shutil.rst:143
 msgid ""
 "If ``os.chmod in os.supports_follow_symlinks`` is ``True``, :func:`copystat` "
 "can modify the permission bits of a symbolic link."
 msgstr ""
+"如果 ``os.chmod in os.supports_follow_symlinks`` 為 ``True``，:func:"
+"`copystat` 可以修改符號連結的權限位元。"
 
-#: ../../library/shutil.rst:150
+#: ../../library/shutil.rst:147
 msgid ""
 "If ``os.utime in os.supports_follow_symlinks`` is ``True``, :func:`copystat` "
 "can modify the last access and modification times of a symbolic link."
 msgstr ""
+"如果 ``os.utime in os.supports_follow_symlinks`` 為 ``True``，:func:"
+"`copystat` 可以修改符號連結的最後存取時間與修改時間。"
 
-#: ../../library/shutil.rst:154
+#: ../../library/shutil.rst:151
 msgid ""
 "If ``os.chflags in os.supports_follow_symlinks`` is ``True``, :func:"
 "`copystat` can modify the flags of a symbolic link.  (``os.chflags`` is not "
 "available on all platforms.)"
 msgstr ""
+"如果 ``os.chflags in os.supports_follow_symlinks`` 為 ``True``，:func:"
+"`copystat` 可以修改符號連結的旗標。（``os.chflags`` 並非在所有平台上都可"
+"用。）"
 
-#: ../../library/shutil.rst:159
+#: ../../library/shutil.rst:156
 msgid ""
 "On platforms where some or all of this functionality is unavailable, when "
 "asked to modify a symbolic link, :func:`copystat` will copy everything it "
 "can. :func:`copystat` never returns failure."
 msgstr ""
+"在部分或全部這些功能無法使用的平台上，當被要求修改符號連結時，:func:"
+"`copystat` 會複製所有它能複製的內容。:func:`copystat` 永遠不會回傳失敗。"
 
-#: ../../library/shutil.rst:164
+#: ../../library/shutil.rst:161
 msgid "Please see :data:`os.supports_follow_symlinks` for more information."
 msgstr "更多資訊請見 :data:`os.supports_follow_symlinks`。"
 
-#: ../../library/shutil.rst:167 ../../library/shutil.rst:224
+#: ../../library/shutil.rst:164 ../../library/shutil.rst:221
 msgid ""
 "Raises an :ref:`auditing event <auditing>` ``shutil.copystat`` with "
 "arguments ``src``, ``dst``."
@@ -231,12 +289,12 @@ msgstr ""
 "引發一個附帶引數 ``src``、``dst`` 的\\ :ref:`稽核事件 <auditing>` ``shutil."
 "copystat``。"
 
-#: ../../library/shutil.rst:169
+#: ../../library/shutil.rst:166
 msgid ""
 "Added *follow_symlinks* argument and support for Linux extended attributes."
-msgstr ""
+msgstr "新增 *follow_symlinks* 引數以及對 Linux 延伸屬性的支援。"
 
-#: ../../library/shutil.rst:174
+#: ../../library/shutil.rst:171
 msgid ""
 "Copies the file *src* to the file or directory *dst*.  *src* and *dst* "
 "should be :term:`path-like objects <path-like object>` or strings.  If *dst* "
@@ -244,34 +302,46 @@ msgid ""
 "filename from *src*. If *dst* specifies a file that already exists, it will "
 "be replaced. Returns the path to the newly created file."
 msgstr ""
+"將檔案 *src* 複製到檔案或目錄 *dst*。*src* 與 *dst* 應為\\ :term:`類路徑物件 "
+"<path-like object>`\\ 或字串。如果 *dst* 指定的是目錄，檔案將使用 *src* 的基"
+"本檔案名稱複製到 *dst* 中。如果 *dst* 指定的是已存在的檔案，它將被取代。回傳"
+"新建立檔案的路徑。"
 
-#: ../../library/shutil.rst:180
+#: ../../library/shutil.rst:177
 msgid ""
 "If *follow_symlinks* is false, and *src* is a symbolic link, *dst* will be "
 "created as a symbolic link.  If *follow_symlinks* is true and *src* is a "
 "symbolic link, *dst* will be a copy of the file *src* refers to."
 msgstr ""
+"如果 *follow_symlinks* 為 false 且 *src* 是符號連結，*dst* 將被建立為符號連"
+"結。如果 *follow_symlinks* 為 true 且 *src* 是符號連結，*dst* 將會是 *src* 所"
+"指向檔案的副本。"
 
-#: ../../library/shutil.rst:185
+#: ../../library/shutil.rst:182
 msgid ""
 ":func:`~shutil.copy` copies the file data and the file's permission mode "
 "(see :func:`os.chmod`).  Other metadata, like the file's creation and "
 "modification times, is not preserved. To preserve all file metadata from the "
 "original, use :func:`~shutil.copy2` instead."
 msgstr ""
+":func:`~shutil.copy` 會複製檔案資料與檔案的權限模式（請參閱 :func:`os."
+"chmod`）。其他詮釋資料，例如檔案的建立與修改時間，則不會保留。若要保留原始檔"
+"案的所有詮釋資料，請改用 :func:`~shutil.copy2`。"
 
-#: ../../library/shutil.rst:195
+#: ../../library/shutil.rst:192
 msgid ""
 "Added *follow_symlinks* argument. Now returns path to the newly created file."
-msgstr ""
+msgstr "新增 *follow_symlinks* 引數。現在會回傳新建立檔案的路徑。"
 
-#: ../../library/shutil.rst:206
+#: ../../library/shutil.rst:203
 msgid ""
 "Identical to :func:`~shutil.copy` except that :func:`copy2` also attempts to "
 "preserve file metadata."
 msgstr ""
+"與 :func:`~shutil.copy` 相同，差別在於 :func:`copy2` 還會嘗試保留檔案詮釋資"
+"料。"
 
-#: ../../library/shutil.rst:209
+#: ../../library/shutil.rst:206
 msgid ""
 "When *follow_symlinks* is false, and *src* is a symbolic link, :func:`copy2` "
 "attempts to copy all metadata from the *src* symbolic link to the newly "
@@ -280,50 +350,68 @@ msgid ""
 "unavailable, :func:`copy2` will preserve all the metadata it can; :func:"
 "`copy2` never raises an exception because it cannot preserve file metadata."
 msgstr ""
+"當 *follow_symlinks* 為 false 且 *src* 是符號連結時，:func:`copy2` 會嘗試將 "
+"*src* 符號連結的所有詮釋資料複製到新建立的 *dst* 符號連結。然而，此功能並非在"
+"所有平台上都可用。在部分或全部此功能無法使用的平台上，:func:`copy2` 會盡可能"
+"保留所有詮釋資料；:func:`copy2` 永遠不會因為無法保留檔案詮釋資料而引發例外。"
 
-#: ../../library/shutil.rst:218
+#: ../../library/shutil.rst:215
 msgid ""
 ":func:`copy2` uses :func:`copystat` to copy the file metadata. Please see :"
 "func:`copystat` for more information about platform support for modifying "
 "symbolic link metadata."
 msgstr ""
+":func:`copy2` 使用 :func:`copystat` 來複製檔案詮釋資料。關於修改符號連結詮釋"
+"資料的平台支援，更多資訊請參閱 :func:`copystat`。"
 
-#: ../../library/shutil.rst:226
+#: ../../library/shutil.rst:223
 msgid ""
 "Added *follow_symlinks* argument, try to copy extended file system "
 "attributes too (currently Linux only). Now returns path to the newly created "
 "file."
 msgstr ""
+"新增 *follow_symlinks* 引數，並嘗試一併複製延伸檔案系統屬性（目前僅限 "
+"Linux）。現在會回傳新建立檔案的路徑。"
 
-#: ../../library/shutil.rst:238
+#: ../../library/shutil.rst:235
 msgid ""
 "This factory function creates a function that can be used as a callable for :"
 "func:`copytree`\\'s *ignore* argument, ignoring files and directories that "
 "match one of the glob-style *patterns* provided.  See the example below."
 msgstr ""
+"這個工廠函式會建立一個函式，可作為 :func:`copytree` 的 *ignore* 引數所用的可"
+"呼叫物件，忽略符合所提供之任一 glob 風格 *patterns* 的檔案與目錄。請參閱下方"
+"範例。"
 
-#: ../../library/shutil.rst:247
+#: ../../library/shutil.rst:244
 msgid ""
 "Recursively copy an entire directory tree rooted at *src* to a directory "
 "named *dst* and return the destination directory.  All intermediate "
 "directories needed to contain *dst* will also be created by default."
 msgstr ""
+"遞迴地將以 *src* 為根的整個目錄樹複製到名為 *dst* 的目錄，並回傳目的目錄。預"
+"設情況下，也會建立容納 *dst* 所需的所有中間目錄。"
 
-#: ../../library/shutil.rst:251
+#: ../../library/shutil.rst:248
 msgid ""
 "Permissions and times of directories are copied with :func:`copystat`, "
 "individual files are copied using :func:`~shutil.copy2`."
 msgstr ""
+"目錄的權限與時間會以 :func:`copystat` 複製，個別檔案則使用 :func:`~shutil."
+"copy2` 複製。"
 
-#: ../../library/shutil.rst:254
+#: ../../library/shutil.rst:251
 msgid ""
 "If *symlinks* is true, symbolic links in the source tree are represented as "
 "symbolic links in the new tree and the metadata of the original links will "
 "be copied as far as the platform allows; if false or omitted, the contents "
 "and metadata of the linked files are copied to the new tree."
 msgstr ""
+"如果 *symlinks* 為 true，來源樹中的符號連結在新樹中會以符號連結表示，且會在平"
+"台允許的範圍內複製原始連結的詮釋資料；如果為 false 或省略，則會將被連結檔案的"
+"內容與詮釋資料複製到新樹中。"
 
-#: ../../library/shutil.rst:259
+#: ../../library/shutil.rst:256
 msgid ""
 "When *symlinks* is false, if the file pointed to by the symlink doesn't "
 "exist, an exception will be added in the list of errors raised in an :exc:"
@@ -332,8 +420,12 @@ msgid ""
 "exception. Notice that this option has no effect on platforms that don't "
 "support :func:`os.symlink`."
 msgstr ""
+"當 *symlinks* 為 false 時，如果符號連結所指向的檔案不存在，會將一個例外加入錯"
+"誤串列，並在複製過程結束時隨 :exc:`Error` 例外一併引發。如果你想抑制此例外，"
+"可以將可選的 *ignore_dangling_symlinks* 旗標設為 true。請注意，此選項在不支"
+"援 :func:`os.symlink` 的平台上沒有作用。"
 
-#: ../../library/shutil.rst:266
+#: ../../library/shutil.rst:263
 msgid ""
 "If *ignore* is given, it must be a callable that will receive as its "
 "arguments the directory being visited by :func:`copytree`, and a list of its "
@@ -345,21 +437,30 @@ msgid ""
 "process.  :func:`ignore_patterns` can be used to create such a callable that "
 "ignores names based on glob-style patterns."
 msgstr ""
+"如果有給定 *ignore*，它必須是一個可呼叫物件，會接收 :func:`copytree` 正在走訪"
+"的目錄，以及該目錄內容的串列（即 :func:`os.listdir` 的回傳值）作為引數。由"
+"於 :func:`copytree` 會被遞迴呼叫，因此每個被複製的目錄都會呼叫一次 *ignore* "
+"可呼叫物件。該可呼叫物件必須回傳相對於目前目錄的目錄與檔案名稱序列（即其第二"
+"個引數中項目的子集）；這些名稱將在複製過程中被忽略。可以使用 :func:"
+"`ignore_patterns` 來建立這樣一個根據 glob 風格模式忽略名稱的可呼叫物件。"
 
-#: ../../library/shutil.rst:276
+#: ../../library/shutil.rst:273
 msgid ""
 "If exception(s) occur, an :exc:`Error` is raised with a list of reasons."
-msgstr ""
+msgstr "如果發生例外，會引發附帶原因串列的 :exc:`Error`。"
 
-#: ../../library/shutil.rst:278
+#: ../../library/shutil.rst:275
 msgid ""
 "If *copy_function* is given, it must be a callable that will be used to copy "
 "each file. It will be called with the source path and the destination path "
 "as arguments. By default, :func:`~shutil.copy2` is used, but any function "
 "that supports the same signature (like :func:`~shutil.copy`) can be used."
 msgstr ""
+"如果有給定 *copy_function*，它必須是用來複製每個檔案的可呼叫物件。它會以來源"
+"路徑與目的路徑作為引數被呼叫。預設使用 :func:`~shutil.copy2`，但任何支援相同"
+"簽名的函式（例如 :func:`~shutil.copy`）都可以使用。"
 
-#: ../../library/shutil.rst:283
+#: ../../library/shutil.rst:280
 msgid ""
 "If *dirs_exist_ok* is false (the default) and *dst* already exists, a :exc:"
 "`FileExistsError` is raised. If *dirs_exist_ok* is true, the copying "
@@ -367,8 +468,11 @@ msgid ""
 "within the *dst* tree will be overwritten by corresponding files from the "
 "*src* tree."
 msgstr ""
+"如果 *dirs_exist_ok* 為 false（預設值）且 *dst* 已經存在，則會引發 :exc:"
+"`FileExistsError`。如果 *dirs_exist_ok* 為 true，複製操作遇到已存在的目錄時會"
+"繼續進行，且 *dst* 樹中的檔案會被 *src* 樹中對應的檔案覆寫。"
 
-#: ../../library/shutil.rst:289
+#: ../../library/shutil.rst:286
 msgid ""
 "Raises an :ref:`auditing event <auditing>` ``shutil.copytree`` with "
 "arguments ``src``, ``dst``."
@@ -376,22 +480,25 @@ msgstr ""
 "引發一個附帶引數 ``src``、``dst`` 的\\ :ref:`稽核事件 <auditing>` ``shutil."
 "copytree``。"
 
-#: ../../library/shutil.rst:291
+#: ../../library/shutil.rst:288
 msgid ""
 "Added the *copy_function* argument to be able to provide a custom copy "
 "function. Added the *ignore_dangling_symlinks* argument to silence dangling "
 "symlinks errors when *symlinks* is false."
 msgstr ""
+"新增 *copy_function* 引數，以便能提供自訂的複製函式。新增 "
+"*ignore_dangling_symlinks* 引數，以在 *symlinks* 為 false 時抑制迷途符號連結 "
+"(dangling symlink) 錯誤。"
 
-#: ../../library/shutil.rst:297
+#: ../../library/shutil.rst:294
 msgid "Copy metadata when *symlinks* is false. Now returns *dst*."
-msgstr ""
+msgstr "當 *symlinks* 為 false 時複製詮釋資料。現在會回傳 *dst*。"
 
-#: ../../library/shutil.rst:306
+#: ../../library/shutil.rst:303
 msgid "Added the *dirs_exist_ok* parameter."
 msgstr "新增 *dirs_exist_ok* 參數。"
 
-#: ../../library/shutil.rst:313
+#: ../../library/shutil.rst:310
 msgid ""
 "Delete an entire directory tree; *path* must point to a directory (but not a "
 "symbolic link to a directory).  If *ignore_errors* is true, errors resulting "
@@ -399,14 +506,31 @@ msgid ""
 "handled by calling a handler specified by *onexc* or *onerror* or, if both "
 "are omitted, exceptions are propagated to the caller."
 msgstr ""
+"刪除整個目錄樹；*path* 必須指向一個目錄（但不能是指向目錄的符號連結）。如果 "
+"*ignore_errors* 為 true，因刪除失敗而產生的錯誤將被忽略；如果為 false 或省"
+"略，則會呼叫 *onexc* 或 *onerror* 所指定的處理函式來處理這類錯誤，若兩者皆省"
+"略，則例外會被傳播給呼叫者。"
 
-#: ../../library/shutil.rst:319
+#: ../../library/shutil.rst:316
+msgid ""
+"If *path* is a symbolic link to a directory followed by a trailing path "
+"separator, such as ``'link/'``, the operating system resolves the link, so :"
+"func:`!rmtree` deletes the contents of the directory it points to and then "
+"fails to remove *path* itself.  :class:`pathlib.Path` strips trailing "
+"separators, so ``rmtree(Path('link/'))`` refuses the link as usual."
+msgstr ""
+"如果 *path* 是指向目錄的符號連結，且後面接著尾隨的路徑分隔符號，例如 "
+"``'link/'``，作業系統會解析該連結，因此 :func:`!rmtree` 會刪除它所指向之目錄"
+"的內容，接著無法移除 *path* 本身。:class:`pathlib.Path` 會去除尾隨的分隔符"
+"號，因此 ``rmtree(Path('link/'))`` 會照常拒絕該連結。"
+
+#: ../../library/shutil.rst:322
 msgid ""
 "This function can support :ref:`paths relative to directory descriptors "
 "<dir_fd>`."
-msgstr ""
+msgstr "此函式可以支援\\ :ref:`相對於目錄描述器的路徑 <dir_fd>`。"
 
-#: ../../library/shutil.rst:324
+#: ../../library/shutil.rst:327
 msgid ""
 "On platforms that support the necessary fd-based functions a symlink attack "
 "resistant version of :func:`rmtree` is used by default.  On other platforms, "
@@ -416,14 +540,21 @@ msgid ""
 "Applications can use the :data:`rmtree.avoids_symlink_attacks` function "
 "attribute to determine which case applies."
 msgstr ""
+"在支援必要的、以檔案描述器為基礎 (fd-based) 之函式的平台上，預設會使用能抵禦"
+"符號連結攻擊 (symlink attack) 的 :func:`rmtree` 版本。在其他平台上，:func:"
+"`rmtree` 的實作容易受到符號連結攻擊：在適當的時機與情況下，攻擊者可以操縱檔案"
+"系統上的符號連結，刪除他們原本無權存取的檔案。應用程式可以使用 :data:`rmtree."
+"avoids_symlink_attacks` 函式屬性來判斷適用哪種情況。"
 
-#: ../../library/shutil.rst:332
+#: ../../library/shutil.rst:335
 msgid ""
 "If *onexc* is provided, it must be a callable that accepts three parameters: "
 "*function*, *path*, and *excinfo*."
 msgstr ""
+"如果有提供 *onexc*，它必須是一個接受三個參數的可呼叫物件：*function*、*path* "
+"與 *excinfo*。"
 
-#: ../../library/shutil.rst:335
+#: ../../library/shutil.rst:338
 msgid ""
 "The first parameter, *function*, is the function which raised the exception; "
 "it depends on the platform and implementation.  The second parameter, "
@@ -431,20 +562,26 @@ msgid ""
 "*excinfo*, is the exception that was raised. Exceptions raised by *onexc* "
 "will not be caught."
 msgstr ""
+"第一個參數 *function* 是引發例外的函式；它取決於平台與實作。第二個參數 "
+"*path* 是傳給 *function* 的路徑名稱。第三個參數 *excinfo* 是被引發的例外。由 "
+"*onexc* 引發的例外不會被捕捉。"
 
-#: ../../library/shutil.rst:341
+#: ../../library/shutil.rst:344
 msgid ""
 "The deprecated *onerror* is similar to *onexc*, except that the third "
 "parameter it receives is the tuple returned from :func:`sys.exc_info`."
 msgstr ""
+"已棄用的 *onerror* 與 *onexc* 類似，差別在於它接收的第三個參數是 :func:`sys."
+"exc_info` 回傳的 tuple。"
 
-#: ../../library/shutil.rst:345
+#: ../../library/shutil.rst:348
 msgid ""
 ":ref:`shutil-rmtree-example` for an example of handling the removal of a "
 "directory tree that contains read-only files."
 msgstr ""
+"關於如何刪除包含唯讀檔案的目錄樹，請參閱 :ref:`shutil-rmtree-example`。"
 
-#: ../../library/shutil.rst:348
+#: ../../library/shutil.rst:351
 msgid ""
 "Raises an :ref:`auditing event <auditing>` ``shutil.rmtree`` with arguments "
 "``path``, ``dir_fd``."
@@ -452,60 +589,70 @@ msgstr ""
 "引發一個附帶引數 ``path``、``dir_fd`` 的\\ :ref:`稽核事件 <auditing>` "
 "``shutil.rmtree``。"
 
-#: ../../library/shutil.rst:350
+#: ../../library/shutil.rst:353
 msgid ""
 "Added a symlink attack resistant version that is used automatically if "
 "platform supports fd-based functions."
 msgstr ""
+"新增能抵禦符號連結攻擊的版本，若平台支援以檔案描述器為基礎的函式，就會自動使"
+"用該版本。"
 
-#: ../../library/shutil.rst:354
+#: ../../library/shutil.rst:357
 msgid ""
 "On Windows, will no longer delete the contents of a directory junction "
 "before removing the junction."
-msgstr ""
+msgstr "在 Windows 上，移除目錄聯接點 (junction) 之前不會再刪除其內容。"
 
-#: ../../library/shutil.rst:358
+#: ../../library/shutil.rst:361
 msgid "Added the *dir_fd* parameter."
 msgstr "新增 *dir_fd* 參數。"
 
-#: ../../library/shutil.rst:361
+#: ../../library/shutil.rst:364
 msgid "Added the *onexc* parameter, deprecated *onerror*."
 msgstr "新增 *onexc* 參數並棄用 *onerror*。"
 
-#: ../../library/shutil.rst:364
+#: ../../library/shutil.rst:367
 msgid ""
 ":func:`!rmtree` now ignores :exc:`FileNotFoundError` exceptions for all but "
 "the top-level path. Exceptions other than :exc:`OSError` and subclasses of :"
 "exc:`!OSError` are now always propagated to the caller."
 msgstr ""
+":func:`!rmtree` 現在除了頂層路徑之外，會忽略所有 :exc:`FileNotFoundError` 例"
+"外。:exc:`OSError` 及 :exc:`!OSError` 子類別以外的例外，現在一律會傳播給呼叫"
+"者。"
 
-#: ../../library/shutil.rst:372
+#: ../../library/shutil.rst:375
 msgid ""
 "Indicates whether the current platform and implementation provides a symlink "
 "attack resistant version of :func:`rmtree`.  Currently this is only true for "
 "platforms supporting fd-based directory access functions."
 msgstr ""
+"表示目前的平台與實作是否提供能抵禦符號連結攻擊的 :func:`rmtree` 版本。目前只"
+"有在支援以檔案描述器為基礎之目錄存取函式的平台上才為 true。"
 
-#: ../../library/shutil.rst:381
+#: ../../library/shutil.rst:384
 msgid ""
 "Recursively move a file or directory (*src*) to another location and return "
 "the destination."
-msgstr ""
+msgstr "遞迴地將檔案或目錄 (*src*) 移動到另一個位置並回傳目的地。"
 
-#: ../../library/shutil.rst:384
+#: ../../library/shutil.rst:387
 msgid ""
 "If *dst* is an existing directory or a symlink to a directory, then *src* is "
 "moved inside that directory. The destination path in that directory must not "
 "already exist."
 msgstr ""
+"如果 *dst* 是已存在的目錄或指向目錄的符號連結，則 *src* 會被移到該目錄中。該"
+"目錄中的目的路徑必須尚未存在。"
 
-#: ../../library/shutil.rst:388
+#: ../../library/shutil.rst:391
 msgid ""
 "If *dst* already exists but is not a directory, it may be overwritten "
 "depending on :func:`os.rename` semantics."
 msgstr ""
+"如果 *dst* 已經存在但不是目錄，它可能會依 :func:`os.rename` 的語意被覆寫。"
 
-#: ../../library/shutil.rst:391
+#: ../../library/shutil.rst:394
 msgid ""
 ":func:`os.rename` is preferably used internally when *src* and the "
 "destination are on the same filesystem. In case :func:`os.rename` fails due "
@@ -514,14 +661,20 @@ msgid ""
 "*copy_function*, in which case *src* is copied to the destination using "
 "*copy_function* and then removed."
 msgstr ""
+"當 *src* 與目的地位於同一個檔案系統上時，內部會優先使用 :func:`os.rename`。如"
+"果 :func:`os.rename` 因 :exc:`OSError` 而失敗（例如使用者對目的檔案有寫入權"
+"限，但對其父目錄沒有），此方法會改用 *copy_function*，在這種情況下，*src* 會"
+"使用 *copy_function* 複製到目的地，然後被移除。"
 
-#: ../../library/shutil.rst:397
+#: ../../library/shutil.rst:400
 msgid ""
 "In case of symlinks, a new symlink pointing to the target of *src* will be "
 "created in or as the destination, and *src* will be removed."
 msgstr ""
+"對於符號連結，會在目的地中（或作為目的地）建立一個指向 *src* 目標的新符號連"
+"結，並移除 *src*。"
 
-#: ../../library/shutil.rst:400
+#: ../../library/shutil.rst:403
 msgid ""
 "If *copy_function* is given, it must be a callable that takes two arguments, "
 "*src* and the destination, and will be used to copy *src* to the destination "
@@ -531,8 +684,14 @@ msgid ""
 "*copy_function* allows the move to succeed when it is not possible to also "
 "copy the metadata, at the expense of not copying any of the metadata."
 msgstr ""
+"如果有給定 *copy_function*，它必須是一個接受兩個引數（*src* 與目的地）的可呼"
+"叫物件，並會在無法使用 :func:`os.rename` 時用來將 *src* 複製到目的地。如果來"
+"源是目錄，則會呼叫 :func:`copytree` 並將 *copy_function* 傳給它。預設的 "
+"*copy_function* 是 :func:`copy2`。使用 :func:`~shutil.copy` 作為 "
+"*copy_function*，可以在無法一併複製詮釋資料時讓移動成功，代價是不會複製任何詮"
+"釋資料。"
 
-#: ../../library/shutil.rst:408
+#: ../../library/shutil.rst:411
 msgid ""
 "Raises an :ref:`auditing event <auditing>` ``shutil.move`` with arguments "
 "``src``, ``dst``."
@@ -540,57 +699,65 @@ msgstr ""
 "引發一個附帶引數 ``src``、``dst`` 的\\ :ref:`稽核事件 <auditing>` ``shutil."
 "move``。"
 
-#: ../../library/shutil.rst:410
+#: ../../library/shutil.rst:413
 msgid ""
 "Added explicit symlink handling for foreign filesystems, thus adapting it to "
 "the behavior of GNU's :program:`mv`. Now returns *dst*."
 msgstr ""
+"新增跨檔案系統移動時對符號連結的明確處理，使其行為與 GNU 的 :program:`mv` 一"
+"致。現在會回傳 *dst*。"
 
-#: ../../library/shutil.rst:415
+#: ../../library/shutil.rst:418
 msgid "Added the *copy_function* keyword argument."
 msgstr "新增 *copy_function* 關鍵字引數。"
 
-#: ../../library/shutil.rst:423
+#: ../../library/shutil.rst:426
 msgid "Accepts a :term:`path-like object` for both *src* and *dst*."
-msgstr ""
+msgstr "*src* 與 *dst* 皆接受\\ :term:`類路徑物件 <path-like object>`。"
 
-#: ../../library/shutil.rst:428
+#: ../../library/shutil.rst:431
 msgid ""
 "Return disk usage statistics about the given path as a :term:`named tuple` "
 "with the attributes *total*, *used* and *free*, which are the amount of "
 "total, used and free space, in bytes. *path* may be a file or a directory."
 msgstr ""
+"以\\ :term:`附名元組 <named tuple>`\\ 回傳給定路徑的磁碟使用量統計資料，其屬"
+"性有 *total*、*used* 與 *free*，分別為總空間、已使用空間與可用空間的量，以位"
+"元組為單位。*path* 可以是檔案或目錄。"
 
-#: ../../library/shutil.rst:435
+#: ../../library/shutil.rst:438
 msgid ""
 "On Unix filesystems, *path* must point to a path within a **mounted** "
 "filesystem partition. On those platforms, CPython doesn't attempt to "
 "retrieve disk usage information from non-mounted filesystems."
 msgstr ""
+"在 Unix 檔案系統上，*path* 必須指向一個位於\\ **已掛載**\\ 檔案系統分割區內的"
+"路徑。在這些平台上，CPython 不會嘗試從未掛載的檔案系統取得磁碟使用量資訊。"
 
-#: ../../library/shutil.rst:441
+#: ../../library/shutil.rst:444
 msgid "On Windows, *path* can now be a file or directory."
-msgstr ""
+msgstr "在 Windows 上，*path* 現在可以是檔案或目錄。"
 
-#: ../../library/shutil.rst:444 ../../library/shutil.rst:458
+#: ../../library/shutil.rst:447 ../../library/shutil.rst:461
 msgid "Availability"
 msgstr "可用性"
 
-#: ../../library/shutil.rst:449
+#: ../../library/shutil.rst:452
 msgid "Change owner *user* and/or *group* of the given *path*."
-msgstr ""
+msgstr "變更給定 *path* 的擁有者 *user* 和/或群組 *group*。"
 
-#: ../../library/shutil.rst:451
+#: ../../library/shutil.rst:454
 msgid ""
 "*user* can be a system user name or a uid; the same applies to *group*. At "
 "least one argument is required."
 msgstr ""
+"*user* 可以是系統使用者名稱或 uid；*group* 也是如此。至少需要一個引數。"
 
-#: ../../library/shutil.rst:454
+#: ../../library/shutil.rst:457
 msgid "See also :func:`os.chown`, the underlying function."
 msgstr "另請參閱 :func:`os.chown`，它是底層函式。"
 
-#: ../../library/shutil.rst:456
+#: ../../library/shutil.rst:459
 msgid ""
 "Raises an :ref:`auditing event <auditing>` ``shutil.chown`` with arguments "
 "``path``, ``user``, ``group``."
@@ -598,38 +765,46 @@ msgstr ""
 "引發一個附帶引數 ``path``、``user``、``group`` 的\\ :ref:`稽核事件 "
 "<auditing>` ``shutil.chown``。"
 
-#: ../../library/shutil.rst:462
+#: ../../library/shutil.rst:465
 msgid "Added *dir_fd* and *follow_symlinks* parameters."
 msgstr "新增 *dir_fd* 和 *follow_symlinks* 參數。"
 
-#: ../../library/shutil.rst:468
+#: ../../library/shutil.rst:471
 msgid ""
 "Return the path to an executable which would be run if the given *cmd* was "
 "called.  If no *cmd* would be called, return ``None``."
 msgstr ""
+"回傳在呼叫給定的 *cmd* 時會被執行的可執行檔路徑。如果沒有任何 *cmd* 會被呼"
+"叫，則回傳 ``None``。"
 
-#: ../../library/shutil.rst:471
+#: ../../library/shutil.rst:474
 msgid ""
 "*mode* is a permission mask passed to :func:`os.access`, by default "
 "determining if the file exists and is executable."
 msgstr ""
+"*mode* 是傳給 :func:`os.access` 的權限遮罩，預設會判斷檔案是否存在且可執行。"
 
-#: ../../library/shutil.rst:474
+#: ../../library/shutil.rst:477
 msgid ""
 "*path* is a \"``PATH`` string\" specifying the directories to look in, "
 "delimited by :data:`os.pathsep`. When no *path* is specified, the :envvar:"
 "`PATH` environment variable is read from :data:`os.environ`, falling back "
 "to :data:`os.defpath` if it is not set."
 msgstr ""
+"*path* 是一個「``PATH`` 字串」，指定要搜尋的目錄，以 :data:`os.pathsep` 分"
+"隔。未指定 *path* 時，會從 :data:`os.environ` 讀取 :envvar:`PATH` 環境變數，"
+"若該變數未設定則改用 :data:`os.defpath`。"
 
-#: ../../library/shutil.rst:479
+#: ../../library/shutil.rst:482
 msgid ""
 "If *cmd* contains a directory component, :func:`!which` only checks the "
 "specified path directly and does not search the directories listed in *path* "
 "or in the system's :envvar:`PATH` environment variable."
 msgstr ""
+"如果 *cmd* 包含目錄部分，:func:`!which` 只會直接檢查指定的路徑，而不會搜尋 "
+"*path* 或系統 :envvar:`PATH` 環境變數中所列出的目錄。"
 
-#: ../../library/shutil.rst:483
+#: ../../library/shutil.rst:486
 msgid ""
 "On Windows, the current directory is prepended to the *path* if *mode* does "
 "not include ``os.X_OK``. When the *mode* does include ``os.X_OK``, the "
@@ -638,8 +813,13 @@ msgid ""
 "consulting the current working directory for executables: set the "
 "environment variable ``NoDefaultCurrentDirectoryInExePath``."
 msgstr ""
+"在 Windows 上，如果 *mode* 不包含 ``os.X_OK``，目前目錄會被加到 *path* 的前"
+"面。當 *mode* 包含 ``os.X_OK`` 時，會查詢 Windows API "
+"``NeedCurrentDirectoryForExePathW`` 來判斷是否應將目前目錄加到 *path* 前面。"
+"若要避免在目前工作目錄中尋找可執行檔，請設定環境變數 "
+"``NoDefaultCurrentDirectoryInExePath``。"
 
-#: ../../library/shutil.rst:490
+#: ../../library/shutil.rst:493
 msgid ""
 "Also on Windows, the :envvar:`PATHEXT` environment variable is used to "
 "resolve commands that may not already include an extension. For example, if "
@@ -647,22 +827,26 @@ msgid ""
 "to know that it should look for ``python.exe`` within the *path* "
 "directories. For example, on Windows::"
 msgstr ""
-
-#: ../../library/shutil.rst:496
-msgid ""
-">>> shutil.which(\"python\")\n"
-"'C:\\\\Python33\\\\python.EXE'"
-msgstr ""
-">>> shutil.which(\"python\")\n"
-"'C:\\\\Python33\\\\python.EXE'"
+"同樣在 Windows 上，會使用 :envvar:`PATHEXT` 環境變數來解析可能尚未包含副檔名"
+"的命令。例如，如果你呼叫 ``shutil.which(\"python\")``，:func:`which` 會搜尋 "
+"``PATHEXT``，得知它應該在 *path* 目錄中尋找 ``python.exe``。例如在 Windows "
+"上： ::"
 
 #: ../../library/shutil.rst:499
 msgid ""
-"This is also applied when *cmd* is a path that contains a directory "
-"component::"
+">>> shutil.which(\"python\")\n"
+"'C:\\\\Python33\\\\python.EXE'"
 msgstr ""
+">>> shutil.which(\"python\")\n"
+"'C:\\\\Python33\\\\python.EXE'"
 
 #: ../../library/shutil.rst:502
+msgid ""
+"This is also applied when *cmd* is a path that contains a directory "
+"component::"
+msgstr "當 *cmd* 是包含目錄部分的路徑時，這也同樣適用： ::"
+
+#: ../../library/shutil.rst:505
 msgid ""
 ">>> shutil.which(\"C:\\\\Python33\\\\python\")\n"
 "'C:\\\\Python33\\\\python.EXE'"
@@ -670,13 +854,15 @@ msgstr ""
 ">>> shutil.which(\"C:\\\\Python33\\\\python\")\n"
 "'C:\\\\Python33\\\\python.EXE'"
 
-#: ../../library/shutil.rst:507
+#: ../../library/shutil.rst:510
 msgid ""
 "The :class:`bytes` type is now accepted.  If *cmd* type is :class:`bytes`, "
 "the result type is also :class:`bytes`."
 msgstr ""
+"現在接受 :class:`bytes` 型別。如果 *cmd* 的型別是 :class:`bytes`，結果的型別"
+"也會是 :class:`bytes`。"
 
-#: ../../library/shutil.rst:511
+#: ../../library/shutil.rst:514
 msgid ""
 "On Windows, the current directory is no longer prepended to the search path "
 "if *mode* includes ``os.X_OK`` and WinAPI "
@@ -686,19 +872,27 @@ msgid ""
 "extension that is in ``PATHEXT``; and filenames that have no extension can "
 "now be found."
 msgstr ""
+"在 Windows 上，如果 *mode* 包含 ``os.X_OK`` 且 WinAPI "
+"``NeedCurrentDirectoryForExePathW(cmd)`` 為 false，目前目錄就不再被加到搜尋路"
+"徑的前面，否則即使目前目錄已在搜尋路徑中，仍會將其加到前面；現在即使 *cmd* 包"
+"含目錄部分或以 ``PATHEXT`` 中的副檔名結尾，也會使用 ``PATHEXT``；並且現在可以"
+"找到沒有副檔名的檔案名稱。"
 
-#: ../../library/shutil.rst:522
+#: ../../library/shutil.rst:525
 msgid ""
-"This exception collects exceptions that are raised during a multi-file "
+"Subclass of :exc:`OSError` collecting exceptions raised during a multi-file "
 "operation. For :func:`copytree`, the exception argument is a list of 3-"
 "tuples (*srcname*, *dstname*, *exception*)."
 msgstr ""
+":exc:`OSError` 的子類別，收集在多檔案操作期間引發的例外。對於 :func:"
+"`copytree`，例外引數是一個由 3-tuple (*srcname*, *dstname*, *exception*) 組成"
+"的串列。"
 
-#: ../../library/shutil.rst:529
+#: ../../library/shutil.rst:532
 msgid "Platform-dependent efficient copy operations"
-msgstr ""
+msgstr "平台相依的高效率複製操作"
 
-#: ../../library/shutil.rst:531
+#: ../../library/shutil.rst:534
 msgid ""
 "Starting from Python 3.8, all functions involving a file copy (:func:"
 "`copyfile`, :func:`~shutil.copy`, :func:`copy2`, :func:`copytree`, and :func:"
@@ -707,52 +901,68 @@ msgid ""
 "copying operation occurs within the kernel, avoiding the use of userspace "
 "buffers in Python as in \"``outfd.write(infd.read())``\"."
 msgstr ""
+"從 Python 3.8 開始，所有涉及檔案複製的函式（:func:`copyfile`、:func:`~shutil."
+"copy`、:func:`copy2`、:func:`copytree` 與 :func:`move`）都可能使用平台特定的"
+"「快速複製」系統呼叫，以更有效率地複製檔案（請參閱 :issue:`33671`）。「快速複"
+"製」代表複製操作會在核心內進行，避免像「``outfd.write(infd.read())``」那樣在 "
+"Python 中使用使用者空間的緩衝區。"
 
-#: ../../library/shutil.rst:539
+#: ../../library/shutil.rst:542
 msgid "On macOS `fcopyfile`_ is used to copy the file content (not metadata)."
-msgstr ""
+msgstr "macOS 上會使用 `fcopyfile`_ 來複製檔案內容（不含詮釋資料）。"
 
-#: ../../library/shutil.rst:541
+#: ../../library/shutil.rst:544
 msgid "On Linux :func:`os.copy_file_range` or :func:`os.sendfile` is used."
 msgstr "Linux 上會使用 :func:`os.copy_file_range` 或 :func:`os.sendfile`。"
 
-#: ../../library/shutil.rst:543
+#: ../../library/shutil.rst:546
 msgid "On Solaris :func:`os.sendfile` is used."
 msgstr "Solaris 上會使用 :func:`os.sendfile`。"
 
-#: ../../library/shutil.rst:545
+#: ../../library/shutil.rst:548
 msgid ""
 "On Windows :func:`shutil.copyfile` uses a bigger default buffer size (1 MiB "
 "instead of 64 KiB) and a :func:`memoryview`-based variant of :func:`shutil."
-"copyfileobj` is used."
+"copyfileobj` is used, which still reads and writes in a loop. :func:`shutil."
+"copy2` uses the native ``CopyFile2`` call on Windows, which is the most "
+"efficient method, supports copy-on-write, and preserves metadata."
 msgstr ""
+"Windows 上的 :func:`shutil.copyfile` 會使用較大的預設緩衝區大小（1 MiB 而非 "
+"64 KiB），並使用以 :func:`memoryview` 為基礎的 :func:`shutil.copyfileobj` 變"
+"體，它仍是以迴圈方式讀取與寫入。:func:`shutil.copy2` 在 Windows 上使用原生的 "
+"``CopyFile2`` 呼叫，這是最有效率的方法，支援寫入時複製 (copy-on-write)，並會"
+"保留詮釋資料。"
 
-#: ../../library/shutil.rst:549
+#: ../../library/shutil.rst:554
 msgid ""
 "If the fast-copy operation fails and no data was written in the destination "
 "file then shutil will silently fall back to less efficient :func:"
 "`copyfileobj` function internally."
 msgstr ""
+"如果快速複製操作失敗且沒有任何資料寫入目的檔案，shutil 會在內部靜默地改用效率"
+"較低的 :func:`copyfileobj` 函式。"
 
-#: ../../library/shutil.rst:555
+#: ../../library/shutil.rst:560
 msgid "Solaris now uses :func:`os.sendfile`."
-msgstr ""
+msgstr "Solaris 現在會使用 :func:`os.sendfile`。"
 
-#: ../../library/shutil.rst:558
+#: ../../library/shutil.rst:563
 msgid ""
 "Copy-on-write or server-side copy may be used internally via :func:`os."
 "copy_file_range` on supported Linux filesystems."
 msgstr ""
+"在支援的 Linux 檔案系統上，內部可能會透過 :func:`os.copy_file_range` 使用寫入"
+"時複製或伺服器端複製。"
 
-#: ../../library/shutil.rst:565
+#: ../../library/shutil.rst:570
 msgid "copytree example"
 msgstr "copytree 範例"
 
-#: ../../library/shutil.rst:567
+#: ../../library/shutil.rst:572
 msgid "An example that uses the :func:`ignore_patterns` helper::"
-msgstr ""
+msgstr "一個使用 :func:`ignore_patterns` 輔助函式的範例： ::"
 
-#: ../../library/shutil.rst:569
+#: ../../library/shutil.rst:574
 msgid ""
 "from shutil import copytree, ignore_patterns\n"
 "\n"
@@ -762,17 +972,18 @@ msgstr ""
 "\n"
 "copytree(source, destination, ignore=ignore_patterns('*.pyc', 'tmp*'))"
 
-#: ../../library/shutil.rst:573
+#: ../../library/shutil.rst:578
 msgid ""
 "This will copy everything except ``.pyc`` files and files or directories "
 "whose name starts with ``tmp``."
 msgstr ""
+"這會複製所有內容，除了 ``.pyc`` 檔案以及名稱以 ``tmp`` 開頭的檔案或目錄。"
 
-#: ../../library/shutil.rst:576
+#: ../../library/shutil.rst:581
 msgid "Another example that uses the *ignore* argument to add a logging call::"
-msgstr ""
+msgstr "另一個使用 *ignore* 引數來加入日誌記錄呼叫的範例： ::"
 
-#: ../../library/shutil.rst:578
+#: ../../library/shutil.rst:583
 msgid ""
 "from shutil import copytree\n"
 "import logging\n"
@@ -792,19 +1003,21 @@ msgstr ""
 "\n"
 "copytree(source, destination, ignore=_logpath)"
 
-#: ../../library/shutil.rst:591
+#: ../../library/shutil.rst:596
 msgid "rmtree example"
 msgstr "rmtree 範例"
 
-#: ../../library/shutil.rst:593
+#: ../../library/shutil.rst:598
 msgid ""
 "This example shows how to remove a directory tree on Windows where some of "
 "the files have their read-only bit set. It uses the onexc callback to clear "
 "the readonly bit and reattempt the remove. Any subsequent failure will "
 "propagate. ::"
 msgstr ""
+"此範例展示如何在 Windows 上刪除目錄樹，其中部分檔案設定了唯讀位元。它使用 "
+"onexc 回呼來清除唯讀位元並重新嘗試刪除。任何後續的失敗都會被傳播。 ::"
 
-#: ../../library/shutil.rst:598
+#: ../../library/shutil.rst:603
 msgid ""
 "import os, stat\n"
 "import shutil\n"
@@ -816,32 +1029,45 @@ msgid ""
 "\n"
 "shutil.rmtree(directory, onexc=remove_readonly)"
 msgstr ""
+"import os, stat\n"
+"import shutil\n"
+"\n"
+"def remove_readonly(func, path, _):\n"
+"    \"Clear the readonly bit and reattempt the removal\"\n"
+"    os.chmod(path, stat.S_IWRITE)\n"
+"    func(path)\n"
+"\n"
+"shutil.rmtree(directory, onexc=remove_readonly)"
 
-#: ../../library/shutil.rst:611
+#: ../../library/shutil.rst:616
 msgid "Archiving operations"
-msgstr ""
+msgstr "封存操作"
 
-#: ../../library/shutil.rst:615
+#: ../../library/shutil.rst:620
 msgid "Added support for the *xztar* format."
 msgstr "新增 *xztar* 格式的支援。"
 
-#: ../../library/shutil.rst:619
+#: ../../library/shutil.rst:624
 msgid ""
 "High-level utilities to create and read compressed and archived files are "
 "also provided.  They rely on the :mod:`zipfile` and :mod:`tarfile` modules."
 msgstr ""
-
-#: ../../library/shutil.rst:624
-msgid "Create an archive file (such as zip or tar) and return its name."
-msgstr ""
-
-#: ../../library/shutil.rst:626
-msgid ""
-"*base_name* is the name of the file to create, including the path, minus any "
-"format-specific extension."
-msgstr ""
+"也提供了建立與讀取壓縮檔及封存檔的高階工具。它們依賴 :mod:`zipfile` 與 :mod:"
+"`tarfile` 模組。"
 
 #: ../../library/shutil.rst:629
+msgid "Create an archive file (such as zip or tar) and return its name."
+msgstr "建立一個封存檔（例如 zip 或 tar）並回傳其名稱。"
+
+#: ../../library/shutil.rst:631
+msgid ""
+"*base_name* is a string or :term:`path-like object` specifying the name of "
+"the file to create, including the path, minus any format-specific extension."
+msgstr ""
+"*base_name* 是一個字串或\\ :term:`類路徑物件 <path-like object>`，指定要建立"
+"的檔案名稱，包括路徑，但不含任何格式特定的副檔名。"
+
+#: ../../library/shutil.rst:634
 msgid ""
 "*format* is the archive format: one of \"zip\" (if the :mod:`zlib` module is "
 "available), \"tar\", \"gztar\" (if the :mod:`zlib` module is available), "
@@ -849,39 +1075,55 @@ msgid ""
 "`lzma` module is available), or \"zstdtar\" (if the :mod:`compression.zstd` "
 "module is available)."
 msgstr ""
+"*format* 是封存格式：\"zip\"（如果 :mod:`zlib` 模組可"
+"用）、\"tar\"、\"gztar\"（如果 :mod:`zlib` 模組可用）、\"bztar\"（如果 :mod:"
+"`bz2` 模組可用）、\"xztar\"（如果 :mod:`lzma` 模組可用）或 \"zstdtar\"（如"
+"果 :mod:`compression.zstd` 模組可用）其中之一。"
 
-#: ../../library/shutil.rst:635
+#: ../../library/shutil.rst:640
 msgid ""
-"*root_dir* is a directory that will be the root directory of the archive, "
-"all paths in the archive will be relative to it; for example, we typically "
-"chdir into *root_dir* before creating the archive."
+"*root_dir* is a string or :term:`path-like object` specifying a directory "
+"that will be the root directory of the archive, all paths in the archive "
+"will be relative to it; for example, we typically chdir into *root_dir* "
+"before creating the archive."
 msgstr ""
-
-#: ../../library/shutil.rst:639
-msgid ""
-"*base_dir* is the directory where we start archiving from; i.e. *base_dir* "
-"will be the common prefix of all files and directories in the archive.  "
-"*base_dir* must be given relative to *root_dir*.  See :ref:`shutil-archiving-"
-"example-with-basedir` for how to use *base_dir* and *root_dir* together."
-msgstr ""
+"*root_dir* 是一個字串或\\ :term:`類路徑物件 <path-like object>`，指定將作為封"
+"存檔根目錄的目錄，封存檔中的所有路徑都將相對於它；例如，通常會先 chdir 進入 "
+"*root_dir* 再建立封存檔。"
 
 #: ../../library/shutil.rst:645
-msgid "*root_dir* and *base_dir* both default to the current directory."
+msgid ""
+"*base_dir* is a string or :term:`path-like object` specifying a directory "
+"where we start archiving from; i.e. *base_dir* will be the common prefix of "
+"all files and directories in the archive.  *base_dir* must be given relative "
+"to *root_dir*.  See :ref:`shutil-archiving-example-with-basedir` for how to "
+"use *base_dir* and *root_dir* together."
 msgstr ""
+"*base_dir* 是一個字串或\\ :term:`類路徑物件 <path-like object>`，指定開始封存"
+"的目錄；也就是說，*base_dir* 將是封存檔中所有檔案與目錄的共同前綴。"
+"*base_dir* 必須以相對於 *root_dir* 的方式給定。關於如何同時使用 *base_dir* "
+"與 *root_dir*，請參閱\\ :ref:`shutil-archiving-example-with-basedir`。"
 
-#: ../../library/shutil.rst:647
+#: ../../library/shutil.rst:651
+msgid "*root_dir* and *base_dir* both default to the current directory."
+msgstr "*root_dir* 與 *base_dir* 的預設值皆為目前目錄。"
+
+#: ../../library/shutil.rst:653
 msgid ""
 "If *dry_run* is true, no archive is created, but the operations that would "
 "be executed are logged to *logger*."
 msgstr ""
+"如果 *dry_run* 為 true，則不會建立封存檔，但會將原本會執行的操作記錄到 "
+"*logger*。"
 
-#: ../../library/shutil.rst:650
+#: ../../library/shutil.rst:656
 msgid ""
 "*owner* and *group* are used when creating a tar archive. By default, uses "
 "the current owner and group."
 msgstr ""
+"*owner* 與 *group* 會在建立 tar 封存檔時使用。預設會使用目前的擁有者與群組。"
 
-#: ../../library/shutil.rst:653
+#: ../../library/shutil.rst:659
 msgid ""
 "*logger* must be an object compatible with :pep:`282`, usually an instance "
 "of :class:`logging.Logger`."
@@ -889,11 +1131,11 @@ msgstr ""
 "*logger* 必須是與 :pep:`282` 相容的物件，通常是 :class:`logging.Logger` 的實"
 "例。"
 
-#: ../../library/shutil.rst:656
+#: ../../library/shutil.rst:662
 msgid "The *verbose* argument is unused and deprecated."
 msgstr "*verbose* 引數未被使用且已棄用。"
 
-#: ../../library/shutil.rst:658
+#: ../../library/shutil.rst:664
 msgid ""
 "Raises an :ref:`auditing event <auditing>` ``shutil.make_archive`` with "
 "arguments ``base_name``, ``format``, ``root_dir``, ``base_dir``."
@@ -901,74 +1143,93 @@ msgstr ""
 "引發一個附帶引數 ``base_name``、``format``、``root_dir``、``base_dir`` 的\\ :"
 "ref:`稽核事件 <auditing>` ``shutil.make_archive``。"
 
-#: ../../library/shutil.rst:662
+#: ../../library/shutil.rst:668
 msgid ""
 "This function is not thread-safe when custom archivers registered with :func:"
 "`register_archive_format` do not support the *root_dir* argument.  In this "
 "case it temporarily changes the current working directory of the process to "
 "*root_dir* to perform archiving."
 msgstr ""
+"當透過 :func:`register_archive_format` 註冊的自訂封存器不支援 *root_dir* 引數"
+"時，此函式不是執行緒安全的。在這種情況下，它會暫時將行程的目前工作目錄變更為 "
+"*root_dir* 以執行封存。"
 
-#: ../../library/shutil.rst:668
+#: ../../library/shutil.rst:674
 msgid ""
 "The modern pax (POSIX.1-2001) format is now used instead of the legacy GNU "
 "format for archives created with ``format=\"tar\"``."
 msgstr ""
+"以 ``format=\"tar\"`` 建立的封存檔，現在會使用現代的 pax (POSIX.1-2001) 格"
+"式，而不是舊有的 GNU 格式。"
 
-#: ../../library/shutil.rst:672
+#: ../../library/shutil.rst:678
 msgid ""
 "This function is now made thread-safe during creation of standard ``.zip`` "
 "and tar archives."
-msgstr ""
+msgstr "此函式現在在建立標準 ``.zip`` 與 tar 封存檔時是執行緒安全的。"
 
-#: ../../library/shutil.rst:678
+#: ../../library/shutil.rst:682
+msgid ""
+"Accepts a :term:`path-like object` for *base_name*, *root_dir* and "
+"*base_dir*."
+msgstr ""
+"*base_name*、*root_dir* 與 *base_dir* 接受\\ :term:`類路徑物件 <path-like "
+"object>`。"
+
+#: ../../library/shutil.rst:688
 msgid ""
 "Return a list of supported formats for archiving. Each element of the "
 "returned sequence is a tuple ``(name, description)``."
 msgstr ""
+"回傳支援封存的格式串列。回傳序列中的每個元素都是一個 tuple ``(name, "
+"description)``。"
 
-#: ../../library/shutil.rst:681 ../../library/shutil.rst:798
+#: ../../library/shutil.rst:691 ../../library/shutil.rst:808
 msgid "By default :mod:`!shutil` provides these formats:"
 msgstr "預設情況下 :mod:`!shutil` 提供這些格式："
 
-#: ../../library/shutil.rst:683
+#: ../../library/shutil.rst:693
 msgid "*zip*: ZIP file (if the :mod:`zlib` module is available)."
-msgstr ""
+msgstr "*zip*：ZIP 檔案（如果 :mod:`zlib` 模組可用）。"
 
-#: ../../library/shutil.rst:684
+#: ../../library/shutil.rst:694
 msgid ""
 "*tar*: Uncompressed tar file. Uses POSIX.1-2001 pax format for new archives."
-msgstr ""
+msgstr "*tar*：未壓縮的 tar 檔案。新的封存檔會使用 POSIX.1-2001 pax 格式。"
 
-#: ../../library/shutil.rst:685 ../../library/shutil.rst:803
+#: ../../library/shutil.rst:695 ../../library/shutil.rst:813
 msgid "*gztar*: gzip'ed tar-file (if the :mod:`zlib` module is available)."
-msgstr ""
+msgstr "*gztar*：以 gzip 壓縮的 tar 檔案（如果 :mod:`zlib` 模組可用）。"
 
-#: ../../library/shutil.rst:686 ../../library/shutil.rst:804
+#: ../../library/shutil.rst:696 ../../library/shutil.rst:814
 msgid "*bztar*: bzip2'ed tar-file (if the :mod:`bz2` module is available)."
-msgstr ""
+msgstr "*bztar*：以 bzip2 壓縮的 tar 檔案（如果 :mod:`bz2` 模組可用）。"
 
-#: ../../library/shutil.rst:687 ../../library/shutil.rst:805
+#: ../../library/shutil.rst:697 ../../library/shutil.rst:815
 msgid "*xztar*: xz'ed tar-file (if the :mod:`lzma` module is available)."
-msgstr ""
+msgstr "*xztar*：以 xz 壓縮的 tar 檔案（如果 :mod:`lzma` 模組可用）。"
 
-#: ../../library/shutil.rst:688 ../../library/shutil.rst:806
+#: ../../library/shutil.rst:698 ../../library/shutil.rst:816
 msgid ""
 "*zstdtar*: Zstandard compressed tar-file (if the :mod:`compression.zstd` "
 "module is available)."
 msgstr ""
+"*zstdtar*：以 Zstandard 壓縮的 tar 檔案（如果 :mod:`compression.zstd` 模組可"
+"用）。"
 
-#: ../../library/shutil.rst:691
+#: ../../library/shutil.rst:701
 msgid ""
 "You can register new formats or provide your own archiver for any existing "
 "formats, by using :func:`register_archive_format`."
 msgstr ""
+"你可以使用 :func:`register_archive_format` 來註冊新的格式，或為任何既有格式提"
+"供你自己的封存器。"
 
-#: ../../library/shutil.rst:697
+#: ../../library/shutil.rst:707
 msgid "Register an archiver for the format *name*."
-msgstr ""
+msgstr "為格式 *name* 註冊一個封存器。"
 
-#: ../../library/shutil.rst:699
+#: ../../library/shutil.rst:709
 msgid ""
 "*function* is the callable that will be used to create archives. The "
 "callable will receive the *base_name* of the file to create, followed by the "
@@ -976,8 +1237,12 @@ msgid ""
 "Further arguments are passed as keyword arguments: *owner*, *group*, "
 "*dry_run* and *logger* (as passed in :func:`make_archive`)."
 msgstr ""
+"*function* 是用來建立封存檔的可呼叫物件。該可呼叫物件會接收要建立之檔案的 "
+"*base_name*，接著是開始封存的 *base_dir*\\ （預設為 :data:`os.curdir`）。其他"
+"引數會以關鍵字引數傳入：*owner*、*group*、*dry_run* 與 *logger*\\ （如同傳"
+"給 :func:`make_archive` 的值）。"
 
-#: ../../library/shutil.rst:705
+#: ../../library/shutil.rst:715
 msgid ""
 "If *function* has the custom attribute ``function.supports_root_dir`` set to "
 "``True``, the *root_dir* argument is passed as a keyword argument. Otherwise "
@@ -985,38 +1250,48 @@ msgid ""
 "*root_dir* before calling *function*. In this case :func:`make_archive` is "
 "not thread-safe."
 msgstr ""
+"如果 *function* 設有自訂屬性 ``function.supports_root_dir`` 且其值為 "
+"``True``，*root_dir* 引數會以關鍵字引數傳入。否則，在呼叫 *function* 之前，行"
+"程的目前工作目錄會暫時變更為 *root_dir*。在這種情況下，:func:`make_archive` "
+"不是執行緒安全的。"
 
-#: ../../library/shutil.rst:711
+#: ../../library/shutil.rst:721
 msgid ""
 "If given, *extra_args* is a sequence of ``(name, value)`` pairs that will be "
 "used as extra keywords arguments when the archiver callable is used."
 msgstr ""
+"*extra_args* 若有給定，則是一個由 ``(name, value)`` 對組成的序列，在使用封存"
+"器可呼叫物件時會作為額外的關鍵字引數。"
 
-#: ../../library/shutil.rst:714
+#: ../../library/shutil.rst:724
 msgid ""
 "*description* is used by :func:`get_archive_formats` which returns the list "
 "of archivers.  Defaults to an empty string."
 msgstr ""
+"*description* 會被 :func:`get_archive_formats` 使用，該函式會回傳封存器的串"
+"列。預設為空字串。"
 
-#: ../../library/shutil.rst:717
+#: ../../library/shutil.rst:727
 msgid "Added support for functions supporting the *root_dir* argument."
-msgstr ""
+msgstr "新增對支援 *root_dir* 引數之函式的支援。"
 
-#: ../../library/shutil.rst:723
+#: ../../library/shutil.rst:733
 msgid "Remove the archive format *name* from the list of supported formats."
-msgstr ""
+msgstr "從支援的格式串列中移除封存格式 *name*。"
 
-#: ../../library/shutil.rst:728
+#: ../../library/shutil.rst:738
 msgid "Unpack an archive. *filename* is the full path of the archive."
-msgstr ""
+msgstr "解壓縮封存檔。*filename* 是封存檔的完整路徑。"
 
-#: ../../library/shutil.rst:730
+#: ../../library/shutil.rst:740
 msgid ""
 "*extract_dir* is the name of the target directory where the archive is "
 "unpacked. If not provided, the current working directory is used."
 msgstr ""
+"*extract_dir* 是封存檔要解壓縮到的目標目錄名稱。若未提供，則使用目前工作目"
+"錄。"
 
-#: ../../library/shutil.rst:733
+#: ../../library/shutil.rst:743
 msgid ""
 "*format* is the archive format: one of \"zip\", \"tar\", \"gztar\", "
 "\"bztar\", \"xztar\", or \"zstdtar\".  Or any other format registered with :"
@@ -1024,8 +1299,12 @@ msgid ""
 "use the archive file name extension and see if an unpacker was registered "
 "for that extension.  In case none is found, a :exc:`ValueError` is raised."
 msgstr ""
+"*format* 是封存格式：\"zip\"、\"tar\"、\"gztar\"、\"bztar\"、\"xztar\" 或 "
+"\"zstdtar\" 其中之一，或是任何以 :func:`register_unpack_format` 註冊的其他格"
+"式。若未提供，:func:`unpack_archive` 會使用封存檔的副檔名，並查看是否有為該副"
+"檔名註冊解壓縮器。若找不到任何解壓縮器，則會引發 :exc:`ValueError`。"
 
-#: ../../library/shutil.rst:740
+#: ../../library/shutil.rst:750
 msgid ""
 "The keyword-only *filter* argument is passed to the underlying unpacking "
 "function. For zip files, *filter* is not accepted. For tar files, it is "
@@ -1033,8 +1312,12 @@ msgid ""
 "features specific to tar and UNIX-like filesystems. (See :ref:`tarfile-"
 "extraction-filter` for details.)"
 msgstr ""
+"僅限關鍵字的 *filter* 引數會被傳給底層的解壓縮函式。對於 zip 檔案，不接受 "
+"*filter*。對於 tar 檔案，建議使用 ``'data'``\\ （自 Python 3.14 起為預設"
+"值），除非有使用 tar 與類 UNIX 檔案系統特有的功能。（詳情請參閱\\ :ref:"
+"`tarfile-extraction-filter`。）"
 
-#: ../../library/shutil.rst:746
+#: ../../library/shutil.rst:756
 msgid ""
 "Raises an :ref:`auditing event <auditing>` ``shutil.unpack_archive`` with "
 "arguments ``filename``, ``extract_dir``, ``format``."
@@ -1042,107 +1325,127 @@ msgstr ""
 "引發一個附帶引數 ``filename``、``extract_dir``、``format`` 的\\ :ref:`稽核事"
 "件 <auditing>` ``shutil.unpack_archive``。"
 
-#: ../../library/shutil.rst:750
+#: ../../library/shutil.rst:760
 msgid ""
 "Never extract archives from untrusted sources without prior inspection. It "
 "is possible that files are created outside of the path specified in the "
 "*extract_dir* argument, for example, members that have absolute filenames or "
 "filenames with \"..\" components."
 msgstr ""
+"在未事先檢查的情況下，絕對不要解壓縮來自不受信任來源的封存檔。檔案有可能會被"
+"建立在 *extract_dir* 引數所指定的路徑之外，例如具有絕對檔案名稱，或檔案名稱含"
+"有 \"..\" 組成部分的成員。"
 
-#: ../../library/shutil.rst:755
+#: ../../library/shutil.rst:765
 msgid ""
 "Since Python 3.14, the defaults for both built-in formats (zip and tar "
 "files) will prevent the most dangerous of such security issues, but will not "
 "prevent *all* unintended behavior. Read the :ref:`tarfile-further-"
 "verification` section for tar-specific details."
 msgstr ""
+"自 Python 3.14 起，兩種內建格式（zip 與 tar 檔案）的預設值會防止這類安全問題"
+"中最危險的情況，但無法防止\\ *所有*\\ 非預期的行為。tar 特有的詳細資訊請閱讀"
+"\\ :ref:`tarfile-further-verification`\\ 一節。"
 
-#: ../../library/shutil.rst:761
+#: ../../library/shutil.rst:771
 msgid "Accepts a :term:`path-like object` for *filename* and *extract_dir*."
 msgstr ""
+"*filename* 與 *extract_dir* 接受\\ :term:`類路徑物件 <path-like object>`。"
 
-#: ../../library/shutil.rst:764
+#: ../../library/shutil.rst:774
 msgid "Added the *filter* argument."
 msgstr "新增 *filter* 引數。"
 
-#: ../../library/shutil.rst:769
+#: ../../library/shutil.rst:779
 msgid ""
 "Registers an unpack format. *name* is the name of the format and "
 "*extensions* is a list of extensions corresponding to the format, like ``."
 "zip`` for Zip files."
 msgstr ""
+"註冊一個解壓縮格式。*name* 是格式的名稱，*extensions* 是對應該格式的副檔名串"
+"列，例如 Zip 檔案的 ``.zip``。"
 
-#: ../../library/shutil.rst:773
+#: ../../library/shutil.rst:783
 msgid ""
 "*function* is the callable that will be used to unpack archives. The "
 "callable will receive:"
-msgstr ""
+msgstr "*function* 是用來解壓縮封存檔的可呼叫物件。該可呼叫物件會接收："
 
-#: ../../library/shutil.rst:776
+#: ../../library/shutil.rst:786
 msgid "the path of the archive, as a positional argument;"
-msgstr ""
+msgstr "封存檔的路徑，作為位置引數；"
 
-#: ../../library/shutil.rst:777
+#: ../../library/shutil.rst:787
 msgid ""
 "the directory the archive must be extracted to, as a positional argument;"
-msgstr ""
+msgstr "封存檔必須解壓縮到的目錄，作為位置引數；"
 
-#: ../../library/shutil.rst:778
+#: ../../library/shutil.rst:788
 msgid ""
 "possibly a *filter* keyword argument, if it was given to :func:"
 "`unpack_archive`;"
 msgstr ""
+"可能還有一個 *filter* 關鍵字引數，如果有將它傳給 :func:`unpack_archive` 的"
+"話；"
 
-#: ../../library/shutil.rst:780
+#: ../../library/shutil.rst:790
 msgid ""
 "additional keyword arguments, specified by *extra_args* as a sequence of "
 "``(name, value)`` tuples."
 msgstr ""
+"額外的關鍵字引數，由 *extra_args* 以 ``(name, value)`` tuple 的序列指定。"
 
-#: ../../library/shutil.rst:783
+#: ../../library/shutil.rst:793
 msgid ""
 "*description* can be provided to describe the format, and will be returned "
 "by the :func:`get_unpack_formats` function."
 msgstr ""
+"可以提供 *description* 來描述該格式，它將由 :func:`get_unpack_formats` 函式回"
+"傳。"
 
-#: ../../library/shutil.rst:789
+#: ../../library/shutil.rst:799
 msgid "Unregister an unpack format. *name* is the name of the format."
-msgstr ""
+msgstr "取消註冊一個解壓縮格式。*name* 是格式的名稱。"
 
-#: ../../library/shutil.rst:794
+#: ../../library/shutil.rst:804
 msgid ""
 "Return a list of all registered formats for unpacking. Each element of the "
 "returned sequence is a tuple ``(name, extensions, description)``."
 msgstr ""
+"回傳所有已註冊之解壓縮格式的串列。回傳序列中的每個元素都是一個 tuple "
+"``(name, extensions, description)``。"
 
-#: ../../library/shutil.rst:800
+#: ../../library/shutil.rst:810
 msgid ""
 "*zip*: ZIP file (unpacking compressed files works only if the corresponding "
 "module is available)."
-msgstr ""
+msgstr "*zip*：ZIP 檔案（只有在對應模組可用時，才能解壓縮經過壓縮的檔案）。"
 
-#: ../../library/shutil.rst:802
+#: ../../library/shutil.rst:812
 msgid "*tar*: uncompressed tar file."
-msgstr ""
+msgstr "*tar*：未壓縮的 tar 檔案。"
 
-#: ../../library/shutil.rst:809
+#: ../../library/shutil.rst:819
 msgid ""
 "You can register new formats or provide your own unpacker for any existing "
 "formats, by using :func:`register_unpack_format`."
 msgstr ""
+"你可以使用 :func:`register_unpack_format` 來註冊新的格式，或為任何既有格式提"
+"供你自己的解壓縮器。"
 
-#: ../../library/shutil.rst:816
+#: ../../library/shutil.rst:826
 msgid "Archiving example"
-msgstr ""
+msgstr "封存範例"
 
-#: ../../library/shutil.rst:818
+#: ../../library/shutil.rst:828
 msgid ""
 "In this example, we create a gzip'ed tar-file archive containing all files "
 "found in the :file:`.ssh` directory of the user::"
 msgstr ""
+"在此範例中，我們建立一個以 gzip 壓縮的 tar 封存檔，其中包含使用者 :file:`."
+"ssh` 目錄中的所有檔案： ::"
 
-#: ../../library/shutil.rst:821
+#: ../../library/shutil.rst:831
 msgid ""
 ">>> from shutil import make_archive\n"
 ">>> import os\n"
@@ -1158,11 +1461,11 @@ msgstr ""
 ">>> make_archive(archive_name, 'gztar', root_dir)\n"
 "'/Users/tarek/myarchive.tar.gz'"
 
-#: ../../library/shutil.rst:828
+#: ../../library/shutil.rst:838
 msgid "The resulting archive contains:"
-msgstr ""
+msgstr "產生的封存檔包含："
 
-#: ../../library/shutil.rst:830
+#: ../../library/shutil.rst:840
 msgid ""
 "$ tar -tzvf /Users/tarek/myarchive.tar.gz\n"
 "drwx------ tarek/staff       0 2010-02-01 16:23:40 ./\n"
@@ -1184,18 +1487,20 @@ msgstr ""
 "-rw-r--r-- tarek/staff     397 2008-06-09 13:26:54 ./id_rsa.pub\n"
 "-rw-r--r-- tarek/staff   37192 2010-02-06 18:23:10 ./known_hosts"
 
-#: ../../library/shutil.rst:846
+#: ../../library/shutil.rst:856
 msgid "Archiving example with *base_dir*"
-msgstr ""
+msgstr "使用 *base_dir* 的封存範例"
 
-#: ../../library/shutil.rst:848
+#: ../../library/shutil.rst:858
 msgid ""
 "In this example, similar to the `one above <shutil-archiving-example_>`_, we "
 "show how to use :func:`make_archive`, but this time with the usage of "
 "*base_dir*.  We now have the following directory structure:"
 msgstr ""
+"此範例與\\ `上面的範例 <shutil-archiving-example_>`_\\ 類似，示範如何使用 :"
+"func:`make_archive`，但這次會使用 *base_dir*。現在有以下的目錄結構："
 
-#: ../../library/shutil.rst:852
+#: ../../library/shutil.rst:862
 msgid ""
 "$ tree tmp\n"
 "tmp\n"
@@ -1213,13 +1518,15 @@ msgstr ""
 "            └── please_add.txt\n"
 "        └── do_not_add.txt"
 
-#: ../../library/shutil.rst:862
+#: ../../library/shutil.rst:872
 msgid ""
 "In the final archive, :file:`please_add.txt` should be included, but :file:"
 "`do_not_add.txt` should not.  Therefore we use the following::"
 msgstr ""
+"最終的封存檔中應該包含 :file:`please_add.txt`，但不應包含 :file:`do_not_add."
+"txt`。因此我們使用以下程式碼： ::"
 
-#: ../../library/shutil.rst:865
+#: ../../library/shutil.rst:875
 msgid ""
 ">>> from shutil import make_archive\n"
 ">>> import os\n"
@@ -1242,44 +1549,48 @@ msgstr ""
 "...     base_dir='structure/content',\n"
 "... )\n"
 "'/Users/tarek/myarchive.tar'"
-
-#: ../../library/shutil.rst:876
-msgid "Listing the files in the resulting archive gives us:"
-msgstr ""
-
-#: ../../library/shutil.rst:878
-msgid ""
-"$ python -m tarfile -l /Users/tarek/myarchive.tar\n"
-"structure/content/\n"
-"structure/content/please_add.txt"
-msgstr ""
-"$ python -m tarfile -l /Users/tarek/myarchive.tar\n"
-"structure/content/\n"
-"structure/content/please_add.txt"
 
 #: ../../library/shutil.rst:886
+msgid "Listing the files in the resulting archive gives us:"
+msgstr "列出產生之封存檔中的檔案會得到："
+
+#: ../../library/shutil.rst:888
+msgid ""
+"$ python -m tarfile -l /Users/tarek/myarchive.tar\n"
+"structure/content/\n"
+"structure/content/please_add.txt"
+msgstr ""
+"$ python -m tarfile -l /Users/tarek/myarchive.tar\n"
+"structure/content/\n"
+"structure/content/please_add.txt"
+
+#: ../../library/shutil.rst:896
 msgid "Querying the size of the output terminal"
-msgstr ""
+msgstr "查詢輸出終端機的大小"
 
-#: ../../library/shutil.rst:890
+#: ../../library/shutil.rst:900
 msgid "Get the size of the terminal window."
-msgstr ""
+msgstr "取得終端機視窗的大小。"
 
-#: ../../library/shutil.rst:892
+#: ../../library/shutil.rst:902
 msgid ""
 "For each of the two dimensions, the environment variable, ``COLUMNS`` and "
 "``LINES`` respectively, is checked. If the variable is defined and the value "
 "is a positive integer, it is used."
 msgstr ""
+"對於這兩個維度，會分別檢查環境變數 ``COLUMNS`` 與 ``LINES``。如果變數有定義且"
+"其值為正整數，就會使用該值。"
 
-#: ../../library/shutil.rst:896
+#: ../../library/shutil.rst:906
 msgid ""
 "When ``COLUMNS`` or ``LINES`` is not defined, which is the common case, the "
 "terminal connected to :data:`sys.__stdout__` is queried by invoking :func:"
 "`os.get_terminal_size`."
 msgstr ""
+"當 ``COLUMNS`` 或 ``LINES`` 未定義時（這是常見的情況），會透過呼叫 :func:`os."
+"get_terminal_size` 來查詢連接到 :data:`sys.__stdout__` 的終端機。"
 
-#: ../../library/shutil.rst:900
+#: ../../library/shutil.rst:910
 msgid ""
 "If the terminal size cannot be successfully queried, either because the "
 "system doesn't support querying, or because we are not connected to a "
@@ -1287,39 +1598,44 @@ msgid ""
 "defaults to ``(80, 24)`` which is the default size used by many terminal "
 "emulators."
 msgstr ""
+"如果無法成功查詢終端機大小，無論是因為系統不支援查詢，或是因為未連接到終端"
+"機，都會使用 ``fallback`` 參數中給定的值。``fallback`` 預設為 ``(80, 24)``，"
+"這是許多終端機模擬器使用的預設大小。"
 
-#: ../../library/shutil.rst:906
+#: ../../library/shutil.rst:916
 msgid "The value returned is a named tuple of type :class:`os.terminal_size`."
-msgstr ""
+msgstr "回傳值是型別為 :class:`os.terminal_size` 的附名元組。"
 
-#: ../../library/shutil.rst:908
+#: ../../library/shutil.rst:918
 msgid ""
 "See also: The Single UNIX Specification, Version 2, `Other Environment "
 "Variables`_."
 msgstr ""
+"另請參閱：The Single UNIX Specification 第 2 版中的\\ `其他環境變數 (Other "
+"Environment Variables) <Other Environment Variables_>`_。"
 
-#: ../../library/shutil.rst:913
+#: ../../library/shutil.rst:923
 msgid ""
 "The ``fallback`` values are also used if :func:`os.get_terminal_size` "
 "returns zeroes."
-msgstr ""
+msgstr "如果 :func:`os.get_terminal_size` 回傳零，也會使用 ``fallback`` 值。"
 
-#: ../../library/shutil.rst:12
+#: ../../library/shutil.rst:9
 msgid "file"
 msgstr "file（檔案）"
 
-#: ../../library/shutil.rst:12
+#: ../../library/shutil.rst:9
 msgid "copying"
 msgstr "copying（複製）"
 
-#: ../../library/shutil.rst:12
+#: ../../library/shutil.rst:9
 msgid "copying files"
 msgstr "copying files（複製檔案）"
 
-#: ../../library/shutil.rst:311
+#: ../../library/shutil.rst:308
 msgid "directory"
 msgstr "directory（目錄）"
 
-#: ../../library/shutil.rst:311
+#: ../../library/shutil.rst:308
 msgid "deleting"
 msgstr "deleting（刪除）"
