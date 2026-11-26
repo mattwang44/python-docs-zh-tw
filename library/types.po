@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.14\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-03 00:49+0000\n"
+"POT-Creation-Date: 2026-11-27 03:22+0800\n"
 "PO-Revision-Date: 2018-05-23 16:14+0000\n"
 "Last-Translator: Adrian Liaw <adrianliaw2000@gmail.com>\n"
 "Language-Team: Chinese - TAIWAN (https://github.com/python/python-docs-zh-"
@@ -29,28 +29,32 @@ msgstr "**原始碼：**\\ :source:`Lib/types.py`"
 msgid ""
 "This module defines utility functions to assist in dynamic creation of new "
 "types."
-msgstr ""
+msgstr "此模組定義了一些工具函式，用來協助動態建立新的型別。"
 
 #: ../../library/types.rst:14
 msgid ""
 "It also defines names for some object types that are used by the standard "
-"Python interpreter, but not exposed as builtins like :class:`int` or :class:"
-"`str` are."
+"Python interpreter, but not exposed as builtins like :class:`int` "
+"or :class:`str` are."
 msgstr ""
+"它也為一些物件型別定義了名稱，這些型別會被標準 Python 直譯器使用，但不"
+"像 :class:`int` 或 :class:`str` 那樣作為內建名稱公開。"
 
 #: ../../library/types.rst:18
 msgid ""
 "Finally, it provides some additional type-related utility classes and "
 "functions that are not fundamental enough to be builtins."
 msgstr ""
+"最後，它還提供了一些額外的型別相關工具類別與函式，這些類別與函式並沒有基本到"
+"足以成為內建名稱。"
 
 #: ../../library/types.rst:23
 msgid "Dynamic Type Creation"
-msgstr ""
+msgstr "動態型別建立"
 
 #: ../../library/types.rst:27
 msgid "Creates a class object dynamically using the appropriate metaclass."
-msgstr ""
+msgstr "使用適當的元類別動態建立一個類別物件。"
 
 #: ../../library/types.rst:29
 msgid ""
@@ -58,6 +62,8 @@ msgid ""
 "header: the class name, the base classes (in order), the keyword arguments "
 "(such as ``metaclass``)."
 msgstr ""
+"前三個引數是構成類別定義標頭的元件：類別名稱、基底類別（依序）、關鍵字引數"
+"（例如 ``metaclass``）。"
 
 #: ../../library/types.rst:33
 msgid ""
@@ -67,10 +73,13 @@ msgid ""
 "callback is provided, it has the same effect as passing in ``lambda ns: "
 "None``."
 msgstr ""
+"*exec_body* 引數是一個回呼，用來填入新建立的類別命名空間。它應該接受類別命名"
+"空間作為唯一的引數，並直接以類別的內容更新該命名空間。如果沒有提供回呼，其效"
+"果等同於傳入 ``lambda ns: None``。"
 
 #: ../../library/types.rst:43
 msgid "Calculates the appropriate metaclass and creates the class namespace."
-msgstr ""
+msgstr "計算適當的元類別並建立類別命名空間。"
 
 #: ../../library/types.rst:45
 msgid ""
@@ -78,10 +87,12 @@ msgid ""
 "class name, the base classes (in order) and the keyword arguments (such as "
 "``metaclass``)."
 msgstr ""
+"這些引數是構成類別定義標頭的元件：類別名稱、基底類別（依序）和關鍵字引數（例"
+"如 ``metaclass``）。"
 
 #: ../../library/types.rst:49
 msgid "The return value is a 3-tuple: ``metaclass, namespace, kwds``"
-msgstr ""
+msgstr "回傳值是一個包含三個元素的 tuple：``metaclass, namespace, kwds``"
 
 #: ../../library/types.rst:51
 msgid ""
@@ -90,6 +101,9 @@ msgid ""
 "with any ``'metaclass'`` entry removed. If no *kwds* argument is passed in, "
 "this will be an empty dict."
 msgstr ""
+"*metaclass* 是適當的元類別，*namespace* 是已準備好的類別命名空間，而 *kwds* "
+"是傳入的 *kwds* 引數的更新副本，其中已移除任何 ``'metaclass'`` 項目。如果沒有"
+"傳入 *kwds* 引數，它會是一個空的 dict。"
 
 #: ../../library/types.rst:60
 msgid ""
@@ -97,6 +111,8 @@ msgid ""
 "changed.  Now an insertion-order-preserving mapping is used when the "
 "metaclass does not have a ``__prepare__`` method."
 msgstr ""
+"回傳的 tuple 中 ``namespace`` 元素的預設值已變更。現在當元類別沒有 "
+"``__prepare__`` 方法時，會使用一個保留插入順序的對映。"
 
 #: ../../library/types.rst:66
 msgid ":ref:`metaclasses`"
@@ -104,29 +120,34 @@ msgstr ":ref:`metaclasses`"
 
 #: ../../library/types.rst:67
 msgid "Full details of the class creation process supported by these functions"
-msgstr ""
+msgstr "這些函式所支援的類別建立過程之完整細節"
 
 #: ../../library/types.rst:69
 msgid ":pep:`3115` - Metaclasses in Python 3000"
-msgstr ""
+msgstr ":pep:`3115` - Python 3000 中的元類別"
 
 #: ../../library/types.rst:70
 msgid "Introduced the ``__prepare__`` namespace hook"
-msgstr ""
+msgstr "引入了 ``__prepare__`` 命名空間掛鉤 (hook)"
 
 #: ../../library/types.rst:74
 msgid "Resolve MRO entries dynamically as specified by :pep:`560`."
-msgstr ""
+msgstr "依照 :pep:`560` 的規定動態解析 MRO 項目。"
 
 #: ../../library/types.rst:76
 msgid ""
-"This function looks for items in *bases* that are not instances of :class:"
-"`type`, and returns a tuple where each such object that has an :meth:"
-"`~object.__mro_entries__` method is replaced with an unpacked result of "
-"calling this method.  If a *bases* item is an instance of :class:`type`, or "
-"it doesn't have an :meth:`!__mro_entries__` method, then it is included in "
-"the return tuple unchanged."
+"This function looks for items in *bases* that are not instances "
+"of :class:`type`, and returns a tuple where each such object that has "
+"an :meth:`~object.__mro_entries__` method is replaced with an unpacked "
+"result of calling this method.  If a *bases* item is an instance "
+"of :class:`type`, or it doesn't have an :meth:`!__mro_entries__` method, "
+"then it is included in the return tuple unchanged."
 msgstr ""
+"此函式會在 *bases* 中尋找不是 :class:`type` 實例的項目，並回傳一個 tuple，其"
+"中每個具有 :meth:`~object.__mro_entries__` 方法的此類物件，都會被替換為呼叫該"
+"方法所得結果解包 (unpack) 後的內容。如果 *bases* 中的某個項目"
+"是 :class:`type` 的實例，或者它沒有 :meth:`!__mro_entries__` 方法，則它會原封"
+"不動地被包含在回傳的 tuple 中。"
 
 #: ../../library/types.rst:87
 msgid ""
@@ -135,6 +156,9 @@ msgid ""
 "(following the mechanisms laid out in :pep:`560`). This is useful for "
 "introspecting :ref:`Generics <user-defined-generics>`."
 msgstr ""
+"回傳在對任何基底呼叫 :meth:`~object.__mro_entries__` 方法之前（依"
+"照 :pep:`560` 所制定的機制），原本作為 *cls* 之基底的物件所組成的 tuple。這對"
+"於\\ :ref:`泛型 <user-defined-generics>`\\ 的內省 (introspection) 很有用。"
 
 #: ../../library/types.rst:92
 msgid ""
@@ -143,6 +167,9 @@ msgid ""
 "``__orig_bases__`` attribute, :attr:`cls.__bases__ <type.__bases__>` is "
 "returned."
 msgstr ""
+"對於具有 ``__orig_bases__`` 屬性的類別，此函式會回傳 ``cls.__orig_bases__`` "
+"的值。對於沒有 ``__orig_bases__`` 屬性的類別，則會回傳 :attr:`cls.__bases__ "
+"<type.__bases__>`。"
 
 #: ../../library/types.rst:97
 msgid "Examples::"
@@ -200,11 +227,11 @@ msgstr ""
 
 #: ../../library/types.rst:127
 msgid ":pep:`560` - Core support for typing module and generic types"
-msgstr ""
+msgstr ":pep:`560` - 對 typing 模組與泛型型別的核心支援"
 
 #: ../../library/types.rst:131
 msgid "Standard Interpreter Types"
-msgstr ""
+msgstr "標準直譯器型別"
 
 #: ../../library/types.rst:133
 msgid ""
@@ -213,70 +240,79 @@ msgid ""
 "types that arise only incidentally during processing such as the "
 "``listiterator`` type."
 msgstr ""
+"此模組為許多實作 Python 直譯器所需的型別提供了名稱。它刻意避免包含一些只在處"
+"理過程中附帶產生的型別，例如 ``listiterator`` 型別。"
 
 #: ../../library/types.rst:138
 msgid ""
 "Typical use of these names is for :func:`isinstance` or :func:`issubclass` "
 "checks."
 msgstr ""
+"這些名稱的典型用途是進行 :func:`isinstance` 或 :func:`issubclass` 檢查。"
 
 #: ../../library/types.rst:142
 msgid ""
 "If you instantiate any of these types, note that signatures may vary between "
 "Python versions."
 msgstr ""
+"如果你要實例化這些型別中的任何一個，請注意其簽名可能會因 Python 版本而異。"
 
 #: ../../library/types.rst:144
 msgid "Standard names are defined for the following types:"
-msgstr ""
+msgstr "已為下列型別定義標準名稱："
 
 #: ../../library/types.rst:148
 msgid "The type of :data:`None`."
-msgstr ""
+msgstr ":data:`None` 的型別。"
 
 #: ../../library/types.rst:156
 msgid ""
-"The type of user-defined functions and functions created by :keyword:"
-"`lambda`  expressions."
-msgstr ""
+"The type of user-defined functions and functions created "
+"by :keyword:`lambda`  expressions."
+msgstr "使用者定義函式以及由 :keyword:`lambda` 運算式所建立之函式的型別。"
 
 #: ../../library/types.rst:159
 msgid ""
 "Raises an :ref:`auditing event <auditing>` ``function.__new__`` with "
 "argument ``code``."
 msgstr ""
-"引發一個附帶引數 ``code`` 的\\ :ref:`稽核事件 <auditing>` ``function."
-"__new__``。"
+"引發一個附帶引數 ``code`` 的\\ :ref:`稽核事件 <auditing>` "
+"``function.__new__``。"
 
 #: ../../library/types.rst:161
 msgid ""
 "The audit event only occurs for direct instantiation of function objects, "
 "and is not raised for normal compilation."
-msgstr ""
+msgstr "此稽核事件只會在直接實例化函式物件時發生，一般的編譯不會引發此事件。"
 
 #: ../../library/types.rst:167
 msgid ""
 "The type of :term:`generator`-iterator objects, created by generator "
 "functions."
-msgstr ""
+msgstr ":term:`產生器 <generator>`\\ 疊代器物件的型別，由產生器函式建立。"
 
 #: ../../library/types.rst:173
 msgid ""
 "The type of :term:`coroutine` objects, created by :keyword:`async def` "
 "functions."
 msgstr ""
+":term:`協程 <coroutine>`\\ 物件的型別，由 :keyword:`async def` 函式建立。"
 
 #: ../../library/types.rst:181
 msgid ""
 "The type of :term:`asynchronous generator`-iterator objects, created by "
 "asynchronous generator functions."
 msgstr ""
+":term:`非同步產生器 <asynchronous generator>`\\ 疊代器物件的型別，由非同步產"
+"生器函式建立。"
 
 #: ../../library/types.rst:191
 msgid ""
-"The type of :ref:`code objects <code-objects>` such as returned by :func:"
-"`compile`."
+"The type of :ref:`code objects <code-objects>` such as returned "
+"by :func:`compile`."
 msgstr ""
+":ref:`程式碼物件 <code-objects>`\\ 的型別，例如由 :func:`compile` 所回傳的物"
+"件。"
 
 #: ../../library/types.rst:193
 msgid ""
@@ -294,16 +330,20 @@ msgid ""
 "required by the initializer.  The audit event only occurs for direct "
 "instantiation of code objects, and is not raised for normal compilation."
 msgstr ""
+"請注意，被稽核的引數可能與初始化函式所要求的名稱或位置不相符。此稽核事件只會"
+"在直接實例化程式碼物件時發生，一般的編譯不會引發此事件。"
 
 #: ../../library/types.rst:201
 msgid ""
 "The type for cell objects: such objects are used as containers for a "
 "function's :term:`closure variables <closure variable>`."
 msgstr ""
+"cell 物件的型別：這類物件被用作函式之\\ :term:`閉包變數 <closure "
+"variable>`\\ 的容器。"
 
 #: ../../library/types.rst:209
 msgid "The type of methods of user-defined class instances."
-msgstr ""
+msgstr "使用者定義類別實例之方法的型別。"
 
 #: ../../library/types.rst:215
 msgid ""
@@ -311,39 +351,49 @@ msgid ""
 "methods of built-in classes.  (Here, the term \"built-in\" means \"written "
 "in C\".)"
 msgstr ""
+"內建函式（例如 :func:`len` 或 :func:`sys.exit`）以及內建類別之方法的型別。"
+"（這裡的「內建」一詞指的是「以 C 撰寫」。）"
 
 #: ../../library/types.rst:222
 msgid ""
-"The type of methods of some built-in data types and base classes such as :"
-"meth:`object.__init__` or :meth:`object.__lt__`."
+"The type of methods of some built-in data types and base classes such "
+"as :meth:`object.__init__` or :meth:`object.__lt__`."
 msgstr ""
+"某些內建資料型別與基底類別之方法的型別，例如 :meth:`object.__init__` "
+"或 :meth:`object.__lt__`。"
 
 #: ../../library/types.rst:230
 msgid ""
 "The type of *bound* methods of some built-in data types and base classes. "
 "For example it is the type of :code:`object().__str__`."
 msgstr ""
+"某些內建資料型別與基底類別之\\ *已繫結*\\ 方法的型別。舉例來說，它"
+"是 :code:`object().__str__` 的型別。"
 
 #: ../../library/types.rst:238
 msgid "The type of :data:`NotImplemented`."
-msgstr ""
+msgstr ":data:`NotImplemented` 的型別。"
 
 #: ../../library/types.rst:245
 msgid ""
 "The type of methods of some built-in data types such as :meth:`str.join`."
-msgstr ""
+msgstr "某些內建資料型別之方法的型別，例如 :meth:`str.join`。"
 
 #: ../../library/types.rst:252
 msgid ""
 "The type of *unbound* class methods of some built-in data types such as "
 "``dict.__dict__['fromkeys']``."
 msgstr ""
+"某些內建資料型別之\\ *未繫結*\\ 類別方法的型別，例如 "
+"``dict.__dict__['fromkeys']``。"
 
 #: ../../library/types.rst:260
 msgid ""
 "The type of :term:`modules <module>`. The constructor takes the name of the "
 "module to be created and optionally its :term:`docstring`."
 msgstr ""
+":term:`模組 <module>`\\ 的型別。建構函式接受要建立之模組的名稱，以及可選的"
+"\\ :term:`說明字串 <docstring>`。"
 
 #: ../../library/types.rst:265
 msgid ":ref:`Documentation on module objects <module-objects>`"
@@ -353,7 +403,7 @@ msgstr ":ref:`模組物件的文件 <module-objects>`"
 msgid ""
 "Provides details on the special attributes that can be found on instances "
 "of :class:`!ModuleType`."
-msgstr ""
+msgstr "提供在 :class:`!ModuleType` 實例上可以找到的特殊屬性之詳細資訊。"
 
 #: ../../library/types.rst:269
 msgid ":func:`importlib.util.module_from_spec`"
@@ -367,16 +417,19 @@ msgid ""
 "ModuleType` instances which ensures the various attributes are set "
 "appropriately."
 msgstr ""
+"使用 :class:`!ModuleType` 建構函式建立的模組，其許多特殊屬性會是未設定或被設"
+"為預設值。:func:`!module_from_spec` 提供了一種更穩健的方式來建立 :class:`!"
+"ModuleType` 實例，能確保各個屬性都被適當地設定。"
 
 #: ../../library/types.rst:278
 msgid "The type of :data:`Ellipsis`."
-msgstr ""
+msgstr ":data:`Ellipsis` 的型別。"
 
 #: ../../library/types.rst:284
 msgid ""
 "The type of :ref:`parameterized generics <types-genericalias>` such as "
 "``list[int]``."
-msgstr ""
+msgstr ":ref:`參數化泛型 <types-genericalias>`\\ 的型別，例如 ``list[int]``。"
 
 #: ../../library/types.rst:287
 msgid ""
@@ -384,6 +437,9 @@ msgid ""
 "``tuple`` or ``dict``.  ``t_args`` should be a :class:`tuple` (possibly of "
 "length 1) of types which parameterize ``t_origin``::"
 msgstr ""
+"``t_origin`` 應該是一個非參數化的泛型類別，例如 ``list``、``tuple`` 或 "
+"``dict``。``t_args`` 應該是一個由參數化 ``t_origin`` 的型別所組成"
+"的 :class:`tuple`\\ （長度可能為 1）： ::"
 
 #: ../../library/types.rst:291
 msgid ""
@@ -403,37 +459,38 @@ msgstr ""
 
 #: ../../library/types.rst:300
 msgid "This type can now be subclassed."
-msgstr ""
+msgstr "此型別現在可以被子類別化。"
 
 #: ../../library/types.rst:305
 msgid ":ref:`Generic Alias Types<types-genericalias>`"
-msgstr ""
+msgstr ":ref:`泛型別名型別 <types-genericalias>`"
 
 #: ../../library/types.rst:306
 msgid "In-depth documentation on instances of :class:`!types.GenericAlias`"
-msgstr ""
+msgstr "關於 :class:`!types.GenericAlias` 實例的深入說明文件"
 
 #: ../../library/types.rst:308
 msgid ":pep:`585` - Type Hinting Generics In Standard Collections"
-msgstr ""
+msgstr ":pep:`585` - 標準集合 (Standard Collections) 中的型別提示泛型"
 
 #: ../../library/types.rst:309
 msgid "Introducing the :class:`!types.GenericAlias` class"
-msgstr ""
+msgstr "引入 :class:`!types.GenericAlias` 類別"
 
 #: ../../library/types.rst:313
 msgid "The type of :ref:`union type expressions<types-union>`."
-msgstr ""
+msgstr ":ref:`聯集型別運算式 <types-union>`\\ 的型別。"
 
 #: ../../library/types.rst:319
 msgid "This is now an alias for :class:`typing.Union`."
-msgstr ""
+msgstr "現在這是 :class:`typing.Union` 的別名。"
 
 #: ../../library/types.rst:323
 msgid ""
-"The type of traceback objects such as found in ``sys.exception()."
-"__traceback__``."
+"The type of traceback objects such as found in "
+"``sys.exception().__traceback__``."
 msgstr ""
+"traceback 物件的型別，例如在 ``sys.exception().__traceback__`` 中找到的物件。"
 
 #: ../../library/types.rst:325
 msgid ""
@@ -441,14 +498,46 @@ msgid ""
 "available attributes and operations, and guidance on creating tracebacks "
 "dynamically."
 msgstr ""
+"關於可用屬性與操作的詳細資訊，以及動態建立 traceback 的指引，請參閱\\ :ref:`"
+"語言參考手冊 <traceback-objects>`。"
 
 #: ../../library/types.rst:332
 msgid ""
-"The type of :ref:`frame objects <frame-objects>` such as found in :attr:`tb."
-"tb_frame <traceback.tb_frame>` if ``tb`` is a traceback object."
+"The type of :ref:`frame objects <frame-objects>` such as found "
+"in :attr:`tb.tb_frame <traceback.tb_frame>` if ``tb`` is a traceback object."
 msgstr ""
+":ref:`frame 物件 <frame-objects>`\\ 的型別，例如當 ``tb`` 是一個 traceback 物"
+"件時，在 :attr:`tb.tb_frame <traceback.tb_frame>` 中找到的物件。"
 
 #: ../../library/types.rst:338
+msgid ""
+"The type of frame locals proxy objects, as found on "
+"the :attr:`frame.f_locals` attribute."
+msgstr "frame 區域變數代理物件的型別，可在 :attr:`frame.f_locals` 屬性中找到。"
+
+#: ../../library/types.rst:343
+msgid ":pep:`667`"
+msgstr ":pep:`667`"
+
+#: ../../library/types.rst:348
+msgid ""
+"The type of lazy import proxy objects. These objects are created when a "
+"module is lazily imported and serve as placeholders until the module is "
+"actually accessed. This type can be used to detect lazy imports "
+"programmatically."
+msgstr ""
+"惰性引入 (lazy import) 代理物件的型別。這些物件會在模組被惰性引入時建立，並在"
+"模組實際被存取之前作為佔位符號。此型別可用來在程式中偵測惰性引入。"
+
+#: ../../library/types.rst:355
+msgid ":pep:`810`"
+msgstr ":pep:`810`"
+
+#: ../../library/types.rst:359
+msgid "Reify the lazy import and return the \"real\" object being imported."
+msgstr "將此惰性引入具體化 (reify)，並回傳被引入的「真正」物件。"
+
+#: ../../library/types.rst:364
 msgid ""
 "The type of objects defined in extension modules with ``PyGetSetDef``, such "
 "as :attr:`FrameType.f_locals <frame.f_locals>` or ``array.array.typecode``. "
@@ -456,8 +545,12 @@ msgid ""
 "purpose as the :class:`property` type, but for classes defined in extension "
 "modules."
 msgstr ""
+"在擴充模組中以 ``PyGetSetDef`` 定義之物件的型別，例"
+"如 :attr:`FrameType.f_locals <frame.f_locals>` 或 ``array.array.typecode``。"
+"此型別被用作物件屬性的描述器；它的用途與 :class:`property` 型別相同，但適用於"
+"在擴充模組中定義的類別。"
 
-#: ../../library/types.rst:347
+#: ../../library/types.rst:373
 msgid ""
 "The type of objects defined in extension modules with ``PyMemberDef``, such "
 "as ``datetime.timedelta.days``.  This type is used as descriptor for simple "
@@ -465,130 +558,157 @@ msgid ""
 "purpose as the :class:`property` type, but for classes defined in extension "
 "modules."
 msgstr ""
+"在擴充模組中以 ``PyMemberDef`` 定義之物件的型別，例如 "
+"``datetime.timedelta.days``。此型別被用作使用標準轉換函式之簡單 C 資料成員的"
+"描述器；它的用途與 :class:`property` 型別相同，但適用於在擴充模組中定義的類"
+"別。"
 
-#: ../../library/types.rst:352
+#: ../../library/types.rst:378
 msgid ""
 "In addition, when a class is defined with a :attr:`~object.__slots__` "
 "attribute, then for each slot, an instance of :class:`!MemberDescriptorType` "
 "will be added as an attribute on the class. This allows the slot to appear "
 "in the class's :attr:`~type.__dict__`."
 msgstr ""
+"此外，當類別以 :attr:`~object.__slots__` 屬性定義時，對於每個 slot，都會有一"
+"個 :class:`!MemberDescriptorType` 實例被新增為該類別上的屬性。這使得該 slot "
+"能出現在類別的 :attr:`~type.__dict__` 中。"
 
-#: ../../library/types.rst:358
+#: ../../library/types.rst:384
 msgid ""
 "In other implementations of Python, this type may be identical to "
 "``GetSetDescriptorType``."
-msgstr ""
+msgstr "在 Python 的其他實作中，此型別可能與 ``GetSetDescriptorType`` 相同。"
 
-#: ../../library/types.rst:363
+#: ../../library/types.rst:389
 msgid ""
 "Read-only proxy of a mapping. It provides a dynamic view on the mapping's "
 "entries, which means that when the mapping changes, the view reflects these "
 "changes."
 msgstr ""
+"對映的唯讀代理。它提供對映項目的動態檢視，這意味著當對映改變時，該檢視會反映"
+"這些變化。"
 
-#: ../../library/types.rst:367
+#: ../../library/types.rst:393
 msgid ""
 ":class:`!MappingProxyType`\\s are :ref:`generic <generics>` over two types, "
 "signifying (respectively) the types of the underlying mapping's keys and "
 "values."
 msgstr ""
+":class:`!MappingProxyType` 是以兩個型別為參數的\\ :ref:`泛型 <generics>`，分"
+"別表示底層對映之鍵與值的型別。"
 
-#: ../../library/types.rst:375
+#: ../../library/types.rst:401
 msgid ""
 "Updated to support the new union (``|``) operator from :pep:`584`, which "
 "simply delegates to the underlying mapping."
 msgstr ""
+"已更新以支援 :pep:`584` 中新的聯集 (``|``) 運算子，此運算子只是單純地委派給底"
+"層對映。"
 
-#: ../../library/types.rst:380
+#: ../../library/types.rst:406
 msgid ""
 "Return ``True`` if the underlying mapping has a key *key*, else ``False``."
-msgstr ""
+msgstr "如果底層對映有鍵 *key* 則回傳 ``True``，否則回傳 ``False``。"
 
-#: ../../library/types.rst:385
+#: ../../library/types.rst:411
 msgid ""
-"Return the item of the underlying mapping with key *key*.  Raises a :exc:"
-"`KeyError` if *key* is not in the underlying mapping."
+"Return the item of the underlying mapping with key *key*.  Raises "
+"a :exc:`KeyError` if *key* is not in the underlying mapping."
 msgstr ""
+"回傳底層對映中鍵為 *key* 的項目。如果 *key* 不在底層對映中，則引"
+"發 :exc:`KeyError`。"
 
-#: ../../library/types.rst:390
+#: ../../library/types.rst:416
 msgid ""
 "Return an iterator over the keys of the underlying mapping.  This is a "
 "shortcut for ``iter(proxy.keys())``."
-msgstr ""
+msgstr "回傳底層對映之鍵的疊代器。這是 ``iter(proxy.keys())`` 的簡寫。"
 
-#: ../../library/types.rst:395
+#: ../../library/types.rst:421
 msgid "Return the number of items in the underlying mapping."
-msgstr ""
+msgstr "回傳底層對映中的項目數量。"
 
-#: ../../library/types.rst:399
+#: ../../library/types.rst:425
 msgid "Return a shallow copy of the underlying mapping."
-msgstr ""
+msgstr "回傳底層對映的淺層複製。"
 
-#: ../../library/types.rst:403
+#: ../../library/types.rst:429
 msgid ""
 "Return the value for *key* if *key* is in the underlying mapping, else "
 "*default*.  If *default* is not given, it defaults to ``None``, so that this "
 "method never raises a :exc:`KeyError`."
 msgstr ""
+"如果 *key* 在底層對映中則回傳 *key* 的值，否則回傳 *default*。如果未提供 "
+"*default*，則預設為 ``None``，因此此方法永遠不會引發 :exc:`KeyError`。"
 
-#: ../../library/types.rst:409
+#: ../../library/types.rst:435
 msgid ""
 "Return a new view of the underlying mapping's items (``(key, value)`` pairs)."
-msgstr ""
-
-#: ../../library/types.rst:414
-msgid "Return a new view of the underlying mapping's keys."
-msgstr ""
-
-#: ../../library/types.rst:418
-msgid "Return a new view of the underlying mapping's values."
-msgstr ""
-
-#: ../../library/types.rst:422
-msgid "Return a reverse iterator over the keys of the underlying mapping."
-msgstr ""
-
-#: ../../library/types.rst:428
-msgid "Return a hash of the underlying mapping."
-msgstr ""
-
-#: ../../library/types.rst:434
-msgid "The type of :ref:`capsule objects <capsules>`."
-msgstr ""
+msgstr "回傳底層對映之項目（``(key, value)`` 對）的新檢視。"
 
 #: ../../library/types.rst:440
-msgid "Additional Utility Classes and Functions"
-msgstr ""
+msgid "Return a new view of the underlying mapping's keys."
+msgstr "回傳底層對映之鍵的新檢視。"
 
 #: ../../library/types.rst:444
+msgid "Return a new view of the underlying mapping's values."
+msgstr "回傳底層對映之值的新檢視。"
+
+#: ../../library/types.rst:448
+msgid "Return a reverse iterator over the keys of the underlying mapping."
+msgstr "回傳底層對映之鍵的反向疊代器。"
+
+#: ../../library/types.rst:454
+msgid "Return a hash of the underlying mapping."
+msgstr "回傳底層對映的雜湊值。"
+
+#: ../../library/types.rst:460
+msgid "The type of :ref:`capsule objects <capsules>`."
+msgstr ":ref:`capsule 物件 <capsules>`\\ 的型別。"
+
+#: ../../library/types.rst:466
+msgid "Additional Utility Classes and Functions"
+msgstr "額外的工具類別與函式"
+
+#: ../../library/types.rst:470
 msgid ""
 "A simple :class:`object` subclass that provides attribute access to its "
 "namespace, as well as a meaningful repr."
 msgstr ""
+"一個簡單的 :class:`object` 子類別，提供對其命名空間的屬性存取，以及有意義的 "
+"repr。"
 
-#: ../../library/types.rst:447
+#: ../../library/types.rst:473
 msgid ""
 "Unlike :class:`object`, with :class:`!SimpleNamespace` you can add and "
 "remove attributes."
 msgstr ""
+"與 :class:`object` 不同，你可以在 :class:`!SimpleNamespace` 中新增和移除屬"
+"性。"
 
-#: ../../library/types.rst:450
+#: ../../library/types.rst:476
 msgid ""
-":py:class:`SimpleNamespace` objects may be initialized in the same way as :"
-"class:`dict`: either with keyword arguments, with a single positional "
+":py:class:`SimpleNamespace` objects may be initialized in the same way "
+"as :class:`dict`: either with keyword arguments, with a single positional "
 "argument, or with both. When initialized with keyword arguments, those are "
 "directly added to the underlying namespace. Alternatively, when initialized "
 "with a positional argument, the underlying namespace will be updated with "
-"key-value pairs from that argument (either a mapping object or an :term:"
-"`iterable` object producing key-value pairs). All such keys must be strings."
+"key-value pairs from that argument (either a mapping object or "
+"an :term:`iterable` object producing key-value pairs). All such keys must be "
+"strings."
 msgstr ""
+":py:class:`SimpleNamespace` 物件可以用與 :class:`dict` 相同的方式初始化：使用"
+"關鍵字引數、使用單一位置引數，或兩者並用。以關鍵字引數初始化時，這些引數會直"
+"接被加入底層的命名空間。或者，以位置引數初始化時，底層的命名空間會以該引數"
+"（一個對映物件，或是會產生鍵值對的\\ :term:`可疊代物件 <iterable>`）中的鍵值"
+"對來更新。所有這些鍵都必須是字串。"
 
-#: ../../library/types.rst:461
+#: ../../library/types.rst:487
 msgid "The type is roughly equivalent to the following code::"
-msgstr ""
+msgstr "此型別大致等同於以下程式碼： ::"
 
-#: ../../library/types.rst:463
+#: ../../library/types.rst:489
 msgid ""
 "class SimpleNamespace:\n"
 "    def __init__(self, mapping_or_iterable=(), /, **kwargs):\n"
@@ -620,72 +740,88 @@ msgstr ""
 "           return self.__dict__ == other.__dict__\n"
 "        return NotImplemented"
 
-#: ../../library/types.rst:477
+#: ../../library/types.rst:503
 msgid ""
 "``SimpleNamespace`` may be useful as a replacement for ``class NS: pass``. "
 "However, for a structured record type use :func:`~collections.namedtuple` "
 "instead."
 msgstr ""
+"``SimpleNamespace`` 可以用來替代 ``class NS: pass``。然而，若需要結構化的紀錄"
+"型別，請改用 :func:`~collections.namedtuple`。"
 
-#: ../../library/types.rst:481
+#: ../../library/types.rst:507
 msgid ""
 ":class:`!SimpleNamespace` objects are supported by :func:`copy.replace`."
-msgstr ""
+msgstr ":func:`copy.replace` 支援 :class:`!SimpleNamespace` 物件。"
 
-#: ../../library/types.rst:485
+#: ../../library/types.rst:511
 msgid ""
 "Attribute order in the repr changed from alphabetical to insertion (like "
 "``dict``)."
-msgstr ""
+msgstr "repr 中的屬性順序從字母順序改為插入順序（如同 ``dict``）。"
 
-#: ../../library/types.rst:489
+#: ../../library/types.rst:515
 msgid "Added support for an optional positional argument."
-msgstr ""
+msgstr "新增對可選位置引數的支援。"
 
-#: ../../library/types.rst:494
-msgid "Route attribute access on a class to __getattr__."
-msgstr ""
+#: ../../library/types.rst:520
+msgid "Route attribute access on a class to :meth:`~object.__getattr__`."
+msgstr "將類別上的屬性存取導向 :meth:`~object.__getattr__`。"
 
-#: ../../library/types.rst:496
+#: ../../library/types.rst:522
 msgid ""
 "This is a descriptor, used to define attributes that act differently when "
 "accessed through an instance and through a class.  Instance access remains "
 "normal, but access to an attribute through a class will be routed to the "
-"class's __getattr__ method; this is done by raising AttributeError."
+"class's ``__getattr__`` method; this is done by "
+"raising :exc:`AttributeError`."
 msgstr ""
+"這是一個描述器，用來定義透過實例存取與透過類別存取時行為不同的屬性。透過實例"
+"存取時維持正常，但透過類別存取屬性時，會被導向該類別的 ``__getattr__`` 方法；"
+"這是透過引發 :exc:`AttributeError` 來達成的。"
 
-#: ../../library/types.rst:501
+#: ../../library/types.rst:527
 msgid ""
 "This allows one to have properties active on an instance, and have virtual "
 "attributes on the class with the same name (see :class:`enum.Enum` for an "
 "example)."
 msgstr ""
+"這讓你能讓 property 在實例上生效，同時在類別上擁有同名的虛擬屬性（範例請參"
+"閱 :class:`enum.Enum`）。"
 
-#: ../../library/types.rst:508
+#: ../../library/types.rst:534
 msgid "Coroutine Utility Functions"
-msgstr ""
+msgstr "協程工具函式"
 
-#: ../../library/types.rst:512
+#: ../../library/types.rst:538
 msgid ""
-"This function transforms a :term:`generator` function into a :term:"
-"`coroutine function` which returns a generator-based coroutine. The "
+"This function transforms a :term:`generator` function into "
+"a :term:`coroutine function` which returns a generator-based coroutine. The "
 "generator-based coroutine is still a :term:`generator iterator`, but is also "
 "considered to be a :term:`coroutine` object and is :term:`awaitable`.  "
 "However, it may not necessarily implement the :meth:`~object.__await__` "
 "method."
 msgstr ""
+"此函式將\\ :term:`產生器 <generator>`\\ 函式轉換為一個會回傳基於產生器的協程"
+"的\\ :term:`協程函式 <coroutine function>`。基於產生器的協程仍然是一個"
+"\\ :term:`產生器疊代器 <generator iterator>`，但也被視為\\ :term:`協程 "
+"<coroutine>`\\ 物件，並且是\\ :term:`可等待的 <awaitable>`。然而，它不一定會"
+"實作 :meth:`~object.__await__` 方法。"
 
-#: ../../library/types.rst:519
+#: ../../library/types.rst:545
 msgid "If *gen_func* is a generator function, it will be modified in-place."
-msgstr ""
+msgstr "如果 *gen_func* 是一個產生器函式，它將被原地 (in-place) 修改。"
 
-#: ../../library/types.rst:521
+#: ../../library/types.rst:547
 msgid ""
 "If *gen_func* is not a generator function, it will be wrapped. If it returns "
 "an instance of :class:`collections.abc.Generator`, the instance will be "
 "wrapped in an *awaitable* proxy object.  All other types of objects will be "
 "returned as is."
 msgstr ""
+"如果 *gen_func* 不是產生器函式，它將被包裝起來。如果它回"
+"傳 :class:`collections.abc.Generator` 的實例，該實例將被包裝在一個\\ *可等待"
+"*\\ 代理物件中。所有其他型別的物件將按原樣回傳。"
 
 #: ../../library/types.rst:189
 msgid "built-in function"
