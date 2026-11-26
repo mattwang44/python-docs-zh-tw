@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.14\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-18 00:10+0000\n"
+"POT-Creation-Date: 2026-11-27 03:22+0800\n"
 "PO-Revision-Date: 2018-05-23 16:11+0000\n"
 "Last-Translator: Adrian Liaw <adrianliaw2000@gmail.com>\n"
 "Language-Team: Chinese - TAIWAN (https://github.com/python/python-docs-zh-"
@@ -21,18 +21,21 @@ msgstr ""
 msgid ":mod:`!subprocess` --- Subprocess management"
 msgstr ":mod:`!subprocess` --- 子行程管理"
 
-#: ../../library/subprocess.rst:10
+#: ../../library/subprocess.rst:7
 msgid "**Source code:** :source:`Lib/subprocess.py`"
 msgstr "**原始碼：**:source:`Lib/subprocess.py`"
 
-#: ../../library/subprocess.rst:14
+#: ../../library/subprocess.rst:11
 msgid ""
 "The :mod:`!subprocess` module allows you to spawn new processes, connect to "
 "their input/output/error pipes, and obtain their return codes.  This module "
 "intends to replace several older modules and functions::"
 msgstr ""
+":mod:`!subprocess` 模組可以讓你衍生 (spawn) 新的行程、連接到它們的輸入／輸出"
+"／錯誤管道 (pipe)，並取得它們的回傳碼。此模組旨在取代幾個較舊的模組和函"
+"式： ::"
 
-#: ../../library/subprocess.rst:18
+#: ../../library/subprocess.rst:15
 msgid ""
 "os.system\n"
 "os.spawn*"
@@ -40,20 +43,22 @@ msgstr ""
 "os.system\n"
 "os.spawn*"
 
-#: ../../library/subprocess.rst:21
+#: ../../library/subprocess.rst:18
 msgid ""
 "Information about how the :mod:`!subprocess` module can be used to replace "
 "these modules and functions can be found in the following sections."
 msgstr ""
+"關於如何使用 :mod:`!subprocess` 模組來取代這些模組和函式的資訊，可以在接下來"
+"的幾節中找到。"
 
-#: ../../library/subprocess.rst:26
+#: ../../library/subprocess.rst:23
 msgid ":pep:`324` -- PEP proposing the subprocess module"
 msgstr ":pep:`324` -- 提議 subprocess 模組的 PEP"
 
-#: ../../library/subprocess.rst:598 ../../library/subprocess.rst:605
-#: ../../library/subprocess.rst:615 ../../library/subprocess.rst:624
-#: ../../library/subprocess.rst:639 ../../library/subprocess.rst:645
-#: ../../library/subprocess.rst:1512 ../../library/subprocess.rst:1534
+#: ../../library/subprocess.rst:595 ../../library/subprocess.rst:602
+#: ../../library/subprocess.rst:612 ../../library/subprocess.rst:621
+#: ../../library/subprocess.rst:636 ../../library/subprocess.rst:642
+#: ../../library/subprocess.rst:1524 ../../library/subprocess.rst:1546
 #: ../../includes/wasm-mobile-notavail.rst:3
 msgid "Availability"
 msgstr "可用性"
@@ -66,24 +71,28 @@ msgstr ""
 "此模組在\\ :ref:`行動平台 <mobile-availability>`\\ 或 :ref:`WebAssembly 平台 "
 "<wasm-availability>`\\ 上不支援。"
 
-#: ../../library/subprocess.rst:31
+#: ../../library/subprocess.rst:28
 msgid "Using the :mod:`!subprocess` Module"
 msgstr "使用 :mod:`!subprocess` 模組"
 
-#: ../../library/subprocess.rst:33
+#: ../../library/subprocess.rst:30
 msgid ""
 "The recommended approach to invoking subprocesses is to use the :func:`run` "
 "function for all use cases it can handle. For more advanced use cases, the "
 "underlying :class:`Popen` interface can be used directly."
 msgstr ""
+"叫用子行程的建議方式是：凡是 :func:`run` 函式能處理的使用情境，都使用它。對於"
+"更進階的使用情境，可以直接使用底層的 :class:`Popen` 介面。"
 
-#: ../../library/subprocess.rst:43
+#: ../../library/subprocess.rst:40
 msgid ""
 "Run the command described by *args*.  Wait for command to complete, then "
 "return a :class:`CompletedProcess` instance."
 msgstr ""
+"執行 *args* 所描述的命令。等待命令完成後，回傳一個 :class:`CompletedProcess` "
+"實例。"
 
-#: ../../library/subprocess.rst:46
+#: ../../library/subprocess.rst:43
 msgid ""
 "The arguments shown above are merely the most common ones, described below "
 "in :ref:`frequently-used-arguments` (hence the use of keyword-only notation "
@@ -92,8 +101,12 @@ msgid ""
 "this function are passed through to that interface. (*timeout*,  *input*, "
 "*check*, and *capture_output* are not.)"
 msgstr ""
+"上面列出的引數只是最常用的幾個，會在下方\\ :ref:`frequently-used-"
+"arguments`\\ 中說明（因此在縮寫的簽名中使用了僅限關鍵字的表示法）。完整的函式"
+"簽名大致與 :class:`Popen` 建構函式相同，此函式的大部分引數都會直接傳遞給該介"
+"面。（*timeout*、*input*、*check* 和 *capture_output* 則不會。）"
 
-#: ../../library/subprocess.rst:53
+#: ../../library/subprocess.rst:50
 msgid ""
 "If *capture_output* is true, stdout and stderr will be captured. When used, "
 "the internal :class:`Popen` object is automatically created with *stdout* "
@@ -103,8 +116,14 @@ msgid ""
 "`~subprocess.PIPE` and *stderr* to :data:`~subprocess.STDOUT`, instead of "
 "using *capture_output*."
 msgstr ""
+"如果 *capture_output* 為真，stdout 和 stderr 將會被捕捉。使用時，內部的 :"
+"class:`Popen` 物件會自動以 *stdout* 和 *stderr* 都設為 :data:`~subprocess."
+"PIPE` 的方式建立。*stdout* 和 *stderr* 引數不能與 *capture_output* 同時提供。"
+"如果你希望捕捉兩個串流並將它們合併為一個，請將 *stdout* 設為 :data:"
+"`~subprocess.PIPE`、*stderr* 設為 :data:`~subprocess.STDOUT`，而不是使用 "
+"*capture_output*。"
 
-#: ../../library/subprocess.rst:62
+#: ../../library/subprocess.rst:59
 msgid ""
 "A *timeout* may be specified in seconds, it is internally passed on to :meth:"
 "`Popen.communicate`. If the timeout expires, the child process will be "
@@ -113,8 +132,12 @@ msgid ""
 "cannot be interrupted on many platform APIs so you are not guaranteed to see "
 "a timeout exception until at least after however long process creation takes."
 msgstr ""
+"可以用秒為單位指定 *timeout*，它會在內部傳給 :meth:`Popen.communicate`。如果"
+"超時，子行程將被強制終止 (kill) 並等待其結束。:exc:`TimeoutExpired` 例外會在"
+"子行程終止後被重新引發。在許多平台 API 上，初始的行程建立本身無法被中斷，因此"
+"至少要等到行程建立完成之後，才可能看到超時例外。"
 
-#: ../../library/subprocess.rst:70
+#: ../../library/subprocess.rst:67
 msgid ""
 "The *input* argument is passed to :meth:`Popen.communicate` and thus to the "
 "subprocess's stdin.  If used it must be a byte sequence, or a string if "
@@ -122,16 +145,24 @@ msgid ""
 "internal :class:`Popen` object is automatically created with *stdin* set to :"
 "data:`~subprocess.PIPE`, and the *stdin* argument may not be used as well."
 msgstr ""
+"*input* 引數會被傳遞給 :meth:`Popen.communicate`，進而傳給子行程的 stdin。若"
+"有使用，它必須是一個位元組序列；如果有指定 *encoding* 或 *errors*，或者 "
+"*text* 為真，則必須是字串。使用時，內部的 :class:`Popen` 物件會自動以 "
+"*stdin* 設為 :data:`~subprocess.PIPE` 的方式建立，且不能同時使用 *stdin* 引"
+"數。"
 
-#: ../../library/subprocess.rst:77
+#: ../../library/subprocess.rst:74
 msgid ""
 "If *check* is true, and the process exits with a non-zero exit code, a :exc:"
 "`CalledProcessError` exception will be raised. Attributes of that exception "
 "hold the arguments, the exit code, and stdout and stderr if they were "
 "captured."
 msgstr ""
+"如果 *check* 為真，且行程以非零的結束代碼結束，將會引發 :exc:"
+"`CalledProcessError` 例外。該例外的屬性會保存引數、結束代碼，以及 stdout 和 "
+"stderr（如果有捕捉的話）。"
 
-#: ../../library/subprocess.rst:82
+#: ../../library/subprocess.rst:79
 msgid ""
 "If *encoding* or *errors* are specified, or *text* is true, file objects for "
 "stdin, stdout and stderr are opened in text mode using the specified "
@@ -139,8 +170,12 @@ msgid ""
 "*universal_newlines* argument is equivalent  to *text* and is provided for "
 "backwards compatibility. By default, file objects are opened in binary mode."
 msgstr ""
+"如果有指定 *encoding* 或 *errors*，或者 *text* 為真，stdin、stdout 和 stderr "
+"的檔案物件會使用指定的 *encoding* 和 *errors* 或 :class:`io.TextIOWrapper` 的"
+"預設值，以文字模式開啟。*universal_newlines* 引數等同於 *text*，是為了向後相"
+"容而提供的。檔案物件預設以二進位模式開啟。"
 
-#: ../../library/subprocess.rst:88
+#: ../../library/subprocess.rst:85
 msgid ""
 "If *env* is not ``None``, it must be a mapping that defines the environment "
 "variables for the new process; these are used instead of the default "
@@ -149,12 +184,16 @@ msgid ""
 "or bytes to bytes on POSIX platforms much like :data:`os.environ` or :data:"
 "`os.environb`."
 msgstr ""
+"如果 *env* 不是 ``None``，它必須是一個為新行程定義環境變數的對映；這些環境變"
+"數會取代繼承目前行程環境的預設行為。它會直接傳給 :class:`Popen`。這個對映在任"
+"何平台上都可以是 str 對 str，在 POSIX 平台上也可以是 bytes 對 bytes，就像 :"
+"data:`os.environ` 或 :data:`os.environb` 一樣。"
 
-#: ../../library/subprocess.rst:95
+#: ../../library/subprocess.rst:92
 msgid "Examples::"
 msgstr "範例： ::"
 
-#: ../../library/subprocess.rst:97
+#: ../../library/subprocess.rst:94
 msgid ""
 ">>> subprocess.run([\"ls\", \"-l\"])  # doesn't capture output\n"
 "CompletedProcess(args=['ls', '-l'], returncode=0)\n"
@@ -182,173 +221,209 @@ msgstr ""
 "CompletedProcess(args=['ls', '-l', '/dev/null'], returncode=0,\n"
 "stdout=b'crw-rw-rw- 1 root root 1, 3 Jan 23 16:23 /dev/null\\n', stderr=b'')"
 
-#: ../../library/subprocess.rst:113
+#: ../../library/subprocess.rst:110
 msgid "Added *encoding* and *errors* parameters"
 msgstr "新增 *encoding* 與 *errors* 參數。"
 
-#: ../../library/subprocess.rst:117
+#: ../../library/subprocess.rst:114
 msgid ""
 "Added the *text* parameter, as a more understandable alias of "
 "*universal_newlines*. Added the *capture_output* parameter."
 msgstr ""
+"新增 *text* 參數，作為 *universal_newlines* 更容易理解的別名。新增 "
+"*capture_output* 參數。"
 
-#: ../../library/subprocess.rst:122 ../../library/subprocess.rst:506
-#: ../../library/subprocess.rst:1232 ../../library/subprocess.rst:1272
-#: ../../library/subprocess.rst:1335
+#: ../../library/subprocess.rst:119 ../../library/subprocess.rst:503
+#: ../../library/subprocess.rst:1244 ../../library/subprocess.rst:1284
+#: ../../library/subprocess.rst:1347
 msgid ""
 "Changed Windows shell search order for ``shell=True``. The current directory "
 "and ``%PATH%`` are replaced with ``%COMSPEC%`` and ``%SystemRoot%"
 "\\System32\\cmd.exe``. As a result, dropping a malicious program named ``cmd."
 "exe`` into a current directory no longer works."
 msgstr ""
+"變更 ``shell=True`` 時 Windows 的 shell 搜尋順序。目前目錄和 ``%PATH%`` 被替"
+"換為 ``%COMSPEC%`` 和 ``%SystemRoot%\\System32\\cmd.exe``。因此，把名為 "
+"``cmd.exe`` 的惡意程式放進目前目錄的手法不再有效。"
 
-#: ../../library/subprocess.rst:130
+#: ../../library/subprocess.rst:127
 msgid ""
 "The return value from :func:`run`, representing a process that has finished."
-msgstr ""
+msgstr ":func:`run` 的回傳值，代表一個已經結束的行程。"
 
-#: ../../library/subprocess.rst:134
+#: ../../library/subprocess.rst:131
 msgid ""
 "The arguments used to launch the process. This may be a list or a string."
-msgstr ""
+msgstr "用來啟動行程的引數。可能是一個串列或一個字串。"
 
-#: ../../library/subprocess.rst:138
+#: ../../library/subprocess.rst:135
 msgid ""
 "Exit status of the child process. Typically, an exit status of 0 indicates "
 "that it ran successfully."
-msgstr ""
+msgstr "子行程的結束狀態。通常結束狀態為 0 表示它已成功執行。"
 
-#: ../../library/subprocess.rst:141 ../../library/subprocess.rst:958
+#: ../../library/subprocess.rst:138 ../../library/subprocess.rst:970
 msgid ""
 "A negative value ``-N`` indicates that the child was terminated by signal "
 "``N`` (POSIX only)."
-msgstr ""
+msgstr "負值 ``-N`` 表示子行程被訊號 ``N`` 終止（僅限 POSIX）。"
 
-#: ../../library/subprocess.rst:146
+#: ../../library/subprocess.rst:143
 msgid ""
 "Captured stdout from the child process. A bytes sequence, or a string if :"
 "func:`run` was called with an encoding, errors, or text=True. ``None`` if "
 "stdout was not captured."
 msgstr ""
+"從子行程捕捉到的 stdout。為位元組序列；如果呼叫 :func:`run` 時有指定 "
+"encoding、errors 或 text=True，則為字串。如果沒有捕捉 stdout，則為 ``None``。"
 
-#: ../../library/subprocess.rst:150
+#: ../../library/subprocess.rst:147
 msgid ""
 "If you ran the process with ``stderr=subprocess.STDOUT``, stdout and stderr "
 "will be combined in this attribute, and :attr:`stderr` will be ``None``."
 msgstr ""
+"如果你以 ``stderr=subprocess.STDOUT`` 執行行程，stdout 和 stderr 會合併在這個"
+"屬性中，而 :attr:`stderr` 會是 ``None``。"
 
-#: ../../library/subprocess.rst:156
+#: ../../library/subprocess.rst:153
 msgid ""
 "Captured stderr from the child process. A bytes sequence, or a string if :"
 "func:`run` was called with an encoding, errors, or text=True. ``None`` if "
 "stderr was not captured."
 msgstr ""
+"從子行程捕捉到的 stderr。為位元組序列；如果呼叫 :func:`run` 時有指定 "
+"encoding、errors 或 text=True，則為字串。如果沒有捕捉 stderr，則為 ``None``。"
 
-#: ../../library/subprocess.rst:162
+#: ../../library/subprocess.rst:159
 msgid "If :attr:`returncode` is non-zero, raise a :exc:`CalledProcessError`."
-msgstr ""
+msgstr "如果 :attr:`returncode` 不為零，則引發 :exc:`CalledProcessError`。"
 
-#: ../../library/subprocess.rst:168
+#: ../../library/subprocess.rst:165
 msgid ""
 "Special value that can be used as the *stdin*, *stdout* or *stderr* argument "
 "to :class:`Popen` and indicates that the special file :data:`os.devnull` "
 "will be used."
 msgstr ""
+"可以用作 :class:`Popen` 的 *stdin*、*stdout* 或 *stderr* 引數的特殊值，表示將"
+"使用特殊檔案 :data:`os.devnull`。"
 
-#: ../../library/subprocess.rst:177
+#: ../../library/subprocess.rst:174
 msgid ""
 "Special value that can be used as the *stdin*, *stdout* or *stderr* argument "
 "to :class:`Popen` and indicates that a pipe to the standard stream should be "
 "opened.  Most useful with :meth:`Popen.communicate`."
 msgstr ""
+"可以用作 :class:`Popen` 的 *stdin*、*stdout* 或 *stderr* 引數的特殊值，表示應"
+"開啟一個連接到標準串流的管道。與 :meth:`Popen.communicate` 搭配使用時最有用。"
 
-#: ../../library/subprocess.rst:184
+#: ../../library/subprocess.rst:181
 msgid ""
 "Special value that can be used as the *stderr* argument to :class:`Popen` "
 "and indicates that standard error should go into the same handle as standard "
 "output."
 msgstr ""
+"可以用作 :class:`Popen` 的 *stderr* 引數的特殊值，表示標準錯誤應導向與標準輸"
+"出相同的控制代碼 (handle)。"
 
-#: ../../library/subprocess.rst:191
+#: ../../library/subprocess.rst:188
 msgid "Base class for all other exceptions from this module."
-msgstr ""
+msgstr "此模組中所有其他例外的基底類別。"
 
-#: ../../library/subprocess.rst:198
+#: ../../library/subprocess.rst:195
 msgid ""
 "Subclass of :exc:`SubprocessError`, raised when a timeout expires while "
 "waiting for a child process."
-msgstr ""
+msgstr ":exc:`SubprocessError` 的子類別，在等待子行程時發生超時的情況下引發。"
 
-#: ../../library/subprocess.rst:203 ../../library/subprocess.rst:247
+#: ../../library/subprocess.rst:200 ../../library/subprocess.rst:244
 msgid "Command that was used to spawn the child process."
-msgstr ""
+msgstr "用來衍生子行程的命令。"
 
-#: ../../library/subprocess.rst:207
+#: ../../library/subprocess.rst:204
 msgid "Timeout in seconds."
-msgstr ""
+msgstr "超時時間，以秒為單位。"
 
-#: ../../library/subprocess.rst:211
+#: ../../library/subprocess.rst:208
 msgid ""
 "Output of the child process if it was captured by :func:`run` or :func:"
 "`check_output`.  Otherwise, ``None``.  This is always :class:`bytes` when "
 "any output was captured regardless of the ``text=True`` setting.  It may "
 "remain ``None`` instead of ``b''`` when no output was observed."
 msgstr ""
+"如果子行程的輸出是由 :func:`run` 或 :func:`check_output` 所捕捉，則為該輸出，"
+"否則為 ``None``。只要有捕捉到任何輸出，無論 ``text=True`` 的設定為何，這個值"
+"一律是 :class:`bytes`。當沒有觀察到任何輸出時，它可能會維持 ``None`` 而不是 "
+"``b''``。"
 
-#: ../../library/subprocess.rst:219 ../../library/subprocess.rst:256
+#: ../../library/subprocess.rst:216 ../../library/subprocess.rst:253
 msgid "Alias for output, for symmetry with :attr:`stderr`."
-msgstr ""
+msgstr "output 的別名，用以和 :attr:`stderr` 對稱。"
 
-#: ../../library/subprocess.rst:223
+#: ../../library/subprocess.rst:220
 msgid ""
 "Stderr output of the child process if it was captured by :func:`run`. "
 "Otherwise, ``None``.  This is always :class:`bytes` when stderr output was "
 "captured regardless of the ``text=True`` setting.  It may remain ``None`` "
 "instead of ``b''`` when no stderr output was observed."
 msgstr ""
+"如果子行程的 stderr 輸出是由 :func:`run` 所捕捉，則為該輸出，否則為 "
+"``None``。只要有捕捉到 stderr 輸出，無論 ``text=True`` 的設定為何，這個值一律"
+"是 :class:`bytes`。當沒有觀察到任何 stderr 輸出時，它可能會維持 ``None`` 而不"
+"是 ``b''``。"
 
-#: ../../library/subprocess.rst:230 ../../library/subprocess.rst:263
+#: ../../library/subprocess.rst:227 ../../library/subprocess.rst:260
 msgid "*stdout* and *stderr* attributes added"
-msgstr ""
+msgstr "新增 *stdout* 與 *stderr* 屬性"
 
-#: ../../library/subprocess.rst:235
+#: ../../library/subprocess.rst:232
 msgid ""
 "Subclass of :exc:`SubprocessError`, raised when a process run by :func:"
 "`check_call`, :func:`check_output`, or :func:`run` (with ``check=True``) "
 "returns a non-zero exit status."
 msgstr ""
+":exc:`SubprocessError` 的子類別，當由 :func:`check_call`、:func:"
+"`check_output` 或 :func:`run`\\ （搭配 ``check=True``）執行的行程回傳非零的結"
+"束狀態時引發。"
 
-#: ../../library/subprocess.rst:242
+#: ../../library/subprocess.rst:239
 msgid ""
 "Exit status of the child process, an integer.  If the process exited due to "
 "a signal, this will be the negative signal number."
 msgstr ""
+"子行程的結束狀態，為一個整數。如果行程是因為訊號而結束，這會是負的訊號編號。"
 
-#: ../../library/subprocess.rst:251
+#: ../../library/subprocess.rst:248
 msgid ""
 "Output of the child process if it was captured by :func:`run` or :func:"
 "`check_output`.  Otherwise, ``None``."
 msgstr ""
+"如果子行程的輸出是由 :func:`run` 或 :func:`check_output` 所捕捉，則為該輸出，"
+"否則為 ``None``。"
 
-#: ../../library/subprocess.rst:260
+#: ../../library/subprocess.rst:257
 msgid ""
 "Stderr output of the child process if it was captured by :func:`run`. "
 "Otherwise, ``None``."
 msgstr ""
+"如果子行程的 stderr 輸出是由 :func:`run` 所捕捉，則為該輸出，否則為 "
+"``None``。"
 
-#: ../../library/subprocess.rst:270
+#: ../../library/subprocess.rst:267
 msgid "Frequently Used Arguments"
-msgstr ""
+msgstr "常用引數"
 
-#: ../../library/subprocess.rst:272
+#: ../../library/subprocess.rst:269
 msgid ""
 "To support a wide variety of use cases, the :class:`Popen` constructor (and "
 "the convenience functions) accept a large number of optional arguments. For "
 "most typical use cases, many of these arguments can be safely left at their "
 "default values. The arguments that are most commonly needed are:"
 msgstr ""
+"為了支援各式各樣的使用情境，:class:`Popen` 建構函式（以及各個便利函式）接受大"
+"量的可選引數。對於大多數典型的使用情境，這些引數中有許多都可以安全地保留預設"
+"值。最常需要用到的引數有："
 
-#: ../../library/subprocess.rst:277
+#: ../../library/subprocess.rst:274
 msgid ""
 "*args* is required for all calls and should be a string, or a sequence of "
 "program arguments. Providing a sequence of arguments is generally preferred, "
@@ -357,8 +432,12 @@ msgid ""
 "either *shell* must be :const:`True` (see below) or else the string must "
 "simply name the program to be executed without specifying any arguments."
 msgstr ""
+"*args* 在所有呼叫中都是必要的，它應該是一個字串或一個程式引數的序列。通常建議"
+"提供引數序列，因為這能讓模組處理任何必要的引數跳脫和加引號（例如允許檔案名稱"
+"中有空格）。如果傳遞單一字串，則 *shell* 必須為 :const:`True`\\ （見下文），"
+"否則該字串必須只是要執行的程式名稱，不能指定任何引數。"
 
-#: ../../library/subprocess.rst:285
+#: ../../library/subprocess.rst:282
 msgid ""
 "*stdin*, *stdout* and *stderr* specify the executed program's standard "
 "input, standard output and standard error file handles, respectively.  Valid "
@@ -371,16 +450,27 @@ msgid ""
 "which indicates that the stderr data from the child process should be "
 "captured into the same file handle as for *stdout*."
 msgstr ""
+"*stdin*、*stdout* 和 *stderr* 分別指定所執行程式的標準輸入、標準輸出和標準錯"
+"誤的檔案控制代碼。有效值為 ``None``、:data:`PIPE`、:data:`DEVNULL`、一個既有"
+"的檔案描述器（正整數），以及一個具有有效檔案描述器的既有\\ :term:`檔案物件 "
+"<file object>`。在預設設定 ``None`` 下，不會進行任何重新導向。:data:`PIPE` 表"
+"示應建立一個通往子行程的新管道。:data:`DEVNULL` 表示將使用特殊檔案 :data:`os."
+"devnull`。此外，*stderr* 可以是 :data:`STDOUT`，表示來自子行程的 stderr 資料"
+"應被捕捉到與 *stdout* 相同的檔案控制代碼中。"
 
-#: ../../library/subprocess.rst:299
+#: ../../library/subprocess.rst:296
 msgid ""
 "If *encoding* or *errors* are specified, or *text* (also known as "
 "*universal_newlines*) is true, the file objects *stdin*, *stdout* and "
 "*stderr* will be opened in text mode using the *encoding* and *errors* "
 "specified in the call or the defaults for :class:`io.TextIOWrapper`."
 msgstr ""
+"如果有指定 *encoding* 或 *errors*，或者 *text*\\ （也稱為 "
+"*universal_newlines*）為真，檔案物件 *stdin*、*stdout* 和 *stderr* 將使用呼叫"
+"中指定的 *encoding* 和 *errors* 或 :class:`io.TextIOWrapper` 的預設值，以文字"
+"模式開啟。"
 
-#: ../../library/subprocess.rst:305
+#: ../../library/subprocess.rst:302
 msgid ""
 "For *stdin*, line ending characters ``'\\n'`` in the input will be converted "
 "to the default line separator :data:`os.linesep`. For *stdout* and *stderr*, "
@@ -388,30 +478,38 @@ msgid ""
 "information see the documentation of the :class:`io.TextIOWrapper` class "
 "when the *newline* argument to its constructor is ``None``."
 msgstr ""
+"對於 *stdin*，輸入中的行尾字元 ``'\\n'`` 會被轉換為預設的行分隔符號 :data:"
+"`os.linesep`。對於 *stdout* 和 *stderr*，輸出中所有的行尾都會被轉換為 "
+"``'\\n'``。更多資訊請參閱 :class:`io.TextIOWrapper` 類別的文件，了解其建構函"
+"式的 *newline* 引數為 ``None`` 時的行為。"
 
-#: ../../library/subprocess.rst:311
+#: ../../library/subprocess.rst:308
 msgid ""
 "If text mode is not used, *stdin*, *stdout* and *stderr* will be opened as "
 "binary streams. No encoding or line ending conversion is performed."
 msgstr ""
+"如果不使用文字模式，*stdin*、*stdout* 和 *stderr* 將以二進位串流開啟。不會執"
+"行任何編碼或行尾轉換。"
 
-#: ../../library/subprocess.rst:314 ../../library/subprocess.rst:1521
-#: ../../library/subprocess.rst:1539
+#: ../../library/subprocess.rst:311 ../../library/subprocess.rst:1533
+#: ../../library/subprocess.rst:1551
 msgid "Added the *encoding* and *errors* parameters."
 msgstr "新增 *encoding* 與 *errors* 參數。"
 
-#: ../../library/subprocess.rst:317
+#: ../../library/subprocess.rst:314
 msgid "Added the *text* parameter as an alias for *universal_newlines*."
 msgstr "新增 *text* 參數作為 *universal_newlines* 的別名。"
 
-#: ../../library/subprocess.rst:322
+#: ../../library/subprocess.rst:319
 msgid ""
 "The newlines attribute of the file objects :attr:`Popen.stdin`, :attr:`Popen."
 "stdout` and :attr:`Popen.stderr` are not updated by the :meth:`Popen."
 "communicate` method."
 msgstr ""
+"檔案物件 :attr:`Popen.stdin`、:attr:`Popen.stdout` 和 :attr:`Popen.stderr` "
+"的 newlines 屬性不會被 :meth:`Popen.communicate` 方法更新。"
 
-#: ../../library/subprocess.rst:326
+#: ../../library/subprocess.rst:323
 msgid ""
 "If *shell* is ``True``, the specified command will be executed through the "
 "shell.  This can be useful if you are using Python primarily for the "
@@ -423,47 +521,65 @@ msgid ""
 "mod:`fnmatch`, :func:`os.walk`, :func:`os.path.expandvars`, :func:`os.path."
 "expanduser`, and :mod:`shutil`)."
 msgstr ""
+"如果 *shell* 為 ``True``，指定的命令將透過 shell 執行。如果你使用 Python 主要"
+"是為了它所提供、比大多數系統 shell 更強的控制流程，同時又想方便地使用其他 "
+"shell 功能，例如 shell 管道、檔案名稱萬用字元、環境變數展開，以及將 ``~`` 展"
+"開為使用者的家目錄，這會很有用。不過請注意，Python 本身就提供了許多類 shell "
+"功能的實作（特別是 :mod:`glob`、:mod:`fnmatch`、:func:`os.walk`、:func:`os."
+"path.expandvars`、:func:`os.path.expanduser` 和 :mod:`shutil`）。"
 
-#: ../../library/subprocess.rst:336
+#: ../../library/subprocess.rst:333
 msgid ""
 "When *universal_newlines* is ``True``, the class uses the encoding :func:"
 "`locale.getpreferredencoding(False) <locale.getpreferredencoding>` instead "
 "of ``locale.getpreferredencoding()``.  See the :class:`io.TextIOWrapper` "
 "class for more information on this change."
 msgstr ""
+"當 *universal_newlines* 為 ``True`` 時，此類別會使用 :func:`locale."
+"getpreferredencoding(False) <locale.getpreferredencoding>` 編碼，而不是 "
+"``locale.getpreferredencoding()``。關於此變更的更多資訊，請參閱 :class:`io."
+"TextIOWrapper` 類別。"
 
-#: ../../library/subprocess.rst:344 ../../library/subprocess.rst:465
+#: ../../library/subprocess.rst:341 ../../library/subprocess.rst:462
 msgid ""
 "Read the `Security Considerations`_ section before using ``shell=True``."
 msgstr ""
+"使用 ``shell=True`` 之前，請先閱讀\\ `安全性注意事項 <Security "
+"Considerations_>`_\\ 一節。"
 
-#: ../../library/subprocess.rst:346
+#: ../../library/subprocess.rst:343
 msgid ""
 "These options, along with all of the other options, are described in more "
 "detail in the :class:`Popen` constructor documentation."
 msgstr ""
+"這些選項以及其他所有選項，在 :class:`Popen` 建構函式的文件中有更詳細的說明。"
 
-#: ../../library/subprocess.rst:351
+#: ../../library/subprocess.rst:348
 msgid "Popen Constructor"
-msgstr ""
+msgstr "Popen 建構函式"
 
-#: ../../library/subprocess.rst:353
+#: ../../library/subprocess.rst:350
 msgid ""
 "The underlying process creation and management in this module is handled by "
 "the :class:`Popen` class. It offers a lot of flexibility so that developers "
 "are able to handle the less common cases not covered by the convenience "
 "functions."
 msgstr ""
+"此模組中底層的行程建立與管理是由 :class:`Popen` 類別處理。它提供了很大的彈"
+"性，讓開發者能夠處理便利函式未涵蓋的較少見情況。"
 
-#: ../../library/subprocess.rst:368
+#: ../../library/subprocess.rst:365
 msgid ""
 "Execute a child program in a new process.  On POSIX, the class uses :meth:"
 "`os.execvpe`-like behavior to execute the child program.  On Windows, the "
 "class uses the Windows ``CreateProcess()`` function.  The arguments to :"
 "class:`Popen` are as follows."
 msgstr ""
+"在新的行程中執行子程式。在 POSIX 上，此類別使用類似 :meth:`os.execvpe` 的行為"
+"來執行子程式。在 Windows 上，此類別使用 Windows 的 ``CreateProcess()`` 函"
+"式。:class:`Popen` 的引數如下。"
 
-#: ../../library/subprocess.rst:373
+#: ../../library/subprocess.rst:370
 msgid ""
 "*args* should be a sequence of program arguments or else a single string or :"
 "term:`path-like object`. By default, the program to execute is the first "
@@ -473,8 +589,13 @@ msgid ""
 "behavior.  Unless otherwise stated, it is recommended to pass *args* as a "
 "sequence."
 msgstr ""
+"*args* 應該是一個程式引數的序列，或者是單一字串或\\ :term:`類路徑物件 <path-"
+"like object>`。預設情況下，如果 *args* 是序列，要執行的程式是 *args* 中的第一"
+"個項目。如果 *args* 是字串，其解讀方式取決於平台，並在下文說明。關於與預設行"
+"為的其他差異，請參閱 *shell* 和 *executable* 引數。除非另有說明，建議以序列傳"
+"遞 *args*。"
 
-#: ../../library/subprocess.rst:383
+#: ../../library/subprocess.rst:380
 msgid ""
 "For maximum reliability, use a fully qualified path for the executable. To "
 "search for an unqualified name on :envvar:`PATH`, use :meth:`shutil.which`. "
@@ -482,8 +603,12 @@ msgid ""
 "launch the current Python interpreter again, and use the ``-m`` command-line "
 "format to launch an installed module."
 msgstr ""
+"為了達到最高的可靠性，請為可執行檔使用完整路徑。要在 :envvar:`PATH` 中搜尋不"
+"含路徑的名稱，請使用 :meth:`shutil.which`。在所有平台上，建議透過傳遞 :data:"
+"`sys.executable` 來再次啟動目前的 Python 直譯器，並使用 ``-m`` 命令列格式來啟"
+"動已安裝的模組。"
 
-#: ../../library/subprocess.rst:389
+#: ../../library/subprocess.rst:386
 msgid ""
 "Resolving the path of *executable* (or the first item of *args*) is platform "
 "dependent. For POSIX, see :meth:`os.execvpe`, and note that when resolving "
@@ -496,32 +621,42 @@ msgid ""
 "the ``PATH`` environment variable. Using a full path avoids all of these "
 "variations."
 msgstr ""
+"解析 *executable*\\ （或 *args* 的第一個項目）的路徑取決於平台。對於 POSIX，"
+"請參閱 :meth:`os.execvpe`，並注意在解析或搜尋可執行檔路徑時，*cwd* 會覆寫目前"
+"工作目錄，而 *env* 可以覆寫 ``PATH`` 環境變數。對於 Windows，請參閱 WinAPI "
+"``CreateProcess`` 的 ``lpApplicationName`` 和 ``lpCommandLine`` 參數的文件，"
+"並注意以 ``shell=False`` 解析或搜尋可執行檔路徑時，*cwd* 不會覆寫目前工作目"
+"錄，*env* 也無法覆寫 ``PATH`` 環境變數。使用完整路徑可以避免所有這些差異。"
 
-#: ../../library/subprocess.rst:400
+#: ../../library/subprocess.rst:397
 msgid ""
 "An example of passing some arguments to an external program as a sequence "
 "is::"
-msgstr ""
+msgstr "以序列形式將一些引數傳遞給外部程式的範例如下： ::"
 
-#: ../../library/subprocess.rst:403
+#: ../../library/subprocess.rst:400
 msgid "Popen([\"/usr/bin/git\", \"commit\", \"-m\", \"Fixes a bug.\"])"
 msgstr "Popen([\"/usr/bin/git\", \"commit\", \"-m\", \"Fixes a bug.\"])"
 
-#: ../../library/subprocess.rst:405
+#: ../../library/subprocess.rst:402
 msgid ""
 "On POSIX, if *args* is a string, the string is interpreted as the name or "
 "path of the program to execute.  However, this can only be done if not "
 "passing arguments to the program."
 msgstr ""
+"在 POSIX 上，如果 *args* 是字串，該字串會被解讀為要執行之程式的名稱或路徑。不"
+"過，只有在不傳遞引數給該程式時才能這樣做。"
 
-#: ../../library/subprocess.rst:411
+#: ../../library/subprocess.rst:408
 msgid ""
 "It may not be obvious how to break a shell command into a sequence of "
 "arguments, especially in complex cases. :meth:`shlex.split` can illustrate "
 "how to determine the correct tokenization for *args*::"
 msgstr ""
+"如何將 shell 命令拆解成引數序列可能並不明顯，尤其是在複雜的情況下。:meth:"
+"`shlex.split` 可以示範如何為 *args* 決定正確的 token 切分方式： ::"
 
-#: ../../library/subprocess.rst:415
+#: ../../library/subprocess.rst:412
 msgid ""
 ">>> import shlex, subprocess\n"
 ">>> command_line = input()\n"
@@ -543,7 +678,7 @@ msgstr ""
 "\"echo '$MONEY'\"]\n"
 ">>> p = subprocess.Popen(args) # 成功！"
 
-#: ../../library/subprocess.rst:423
+#: ../../library/subprocess.rst:420
 msgid ""
 "Note in particular that options (such as *-input*) and arguments (such as "
 "*eggs.txt*) that are separated by whitespace in the shell go in separate "
@@ -551,34 +686,46 @@ msgid ""
 "used in the shell (such as filenames containing spaces or the *echo* command "
 "shown above) are single list elements."
 msgstr ""
+"請特別注意，在 shell 中以空白分隔的選項（例如 *-input*）和引數（例如 *eggs."
+"txt*）會放在不同的串列元素中，而在 shell 中使用時需要加引號或以反斜線跳脫的引"
+"數（例如包含空格的檔案名稱，或上面所示的 *echo* 命令）則是單一的串列元素。"
 
-#: ../../library/subprocess.rst:429
+#: ../../library/subprocess.rst:426
 msgid ""
 "On Windows, if *args* is a sequence, it will be converted to a string in a "
 "manner described in :ref:`converting-argument-sequence`.  This is because "
 "the underlying ``CreateProcess()`` operates on strings."
 msgstr ""
+"在 Windows 上，如果 *args* 是序列，它會以\\ :ref:`converting-argument-"
+"sequence`\\ 中描述的方式轉換為字串。這是因為底層的 ``CreateProcess()`` 是對字"
+"串進行操作。"
 
-#: ../../library/subprocess.rst:433
+#: ../../library/subprocess.rst:430
 msgid ""
 "*args* parameter accepts a :term:`path-like object` if *shell* is ``False`` "
 "and a sequence containing path-like objects on POSIX."
 msgstr ""
+"在 POSIX 上，如果 *shell* 為 ``False``，*args* 參數可接受\\ :term:`類路徑物"
+"件 <path-like object>`，也可接受包含類路徑物件的序列。"
 
-#: ../../library/subprocess.rst:437
+#: ../../library/subprocess.rst:434
 msgid ""
 "*args* parameter accepts a :term:`path-like object` if *shell* is ``False`` "
 "and a sequence containing bytes and path-like objects on Windows."
 msgstr ""
+"在 Windows 上，如果 *shell* 為 ``False``，*args* 參數可接受\\ :term:`類路徑物"
+"件 <path-like object>`，也可接受包含 bytes 和類路徑物件的序列。"
 
-#: ../../library/subprocess.rst:442
+#: ../../library/subprocess.rst:439
 msgid ""
 "The *shell* argument (which defaults to ``False``) specifies whether to use "
 "the shell as the program to execute.  If *shell* is ``True``, it is "
 "recommended to pass *args* as a string rather than as a sequence."
 msgstr ""
+"*shell* 引數（預設為 ``False``）指定是否使用 shell 作為要執行的程式。如果 "
+"*shell* 為 ``True``，建議以字串而非序列傳遞 *args*。"
 
-#: ../../library/subprocess.rst:446
+#: ../../library/subprocess.rst:443
 msgid ""
 "On POSIX with ``shell=True``, the shell defaults to :file:`/bin/sh`.  If "
 "*args* is a string, the string specifies the command to execute through the "
@@ -589,12 +736,17 @@ msgid ""
 "be treated as additional arguments to the shell itself.  That is to say, :"
 "class:`Popen` does the equivalent of::"
 msgstr ""
+"在 POSIX 上使用 ``shell=True`` 時，shell 預設為 :file:`/bin/sh`。如果 *args* "
+"是字串，該字串指定要透過 shell 執行的命令。這表示字串的格式必須與在 shell 提"
+"示字元下輸入時完全相同。舉例來說，這包括為含有空格的檔案名稱加上引號或以反斜"
+"線跳脫。如果 *args* 是序列，第一個項目指定命令字串，其餘的項目都會被視為傳給 "
+"shell 本身的額外引數。也就是說，:class:`Popen` 所做的事等同於： ::"
 
-#: ../../library/subprocess.rst:455
+#: ../../library/subprocess.rst:452
 msgid "Popen(['/bin/sh', '-c', args[0], args[1], ...])"
 msgstr "Popen(['/bin/sh', '-c', args[0], args[1], ...])"
 
-#: ../../library/subprocess.rst:457
+#: ../../library/subprocess.rst:454
 msgid ""
 "On Windows with ``shell=True``, the :envvar:`COMSPEC` environment variable "
 "specifies the default shell.  The only time you need to specify "
@@ -602,36 +754,44 @@ msgid ""
 "into the shell (e.g. :command:`dir` or :command:`copy`).  You do not need "
 "``shell=True`` to run a batch file or console-based executable."
 msgstr ""
+"在 Windows 上使用 ``shell=True`` 時，:envvar:`COMSPEC` 環境變數指定預設的 "
+"shell。在 Windows 上唯一需要指定 ``shell=True`` 的時機，是你想執行的命令內建"
+"於 shell 中（例如 :command:`dir` 或 :command:`copy`）。執行批次檔或主控台型的"
+"可執行檔並不需要 ``shell=True``。"
 
-#: ../../library/subprocess.rst:467
+#: ../../library/subprocess.rst:464
 msgid ""
 "*bufsize* will be supplied as the corresponding argument to the :func:`open` "
 "function when creating the stdin/stdout/stderr pipe file objects:"
 msgstr ""
+"建立 stdin/stdout/stderr 管道檔案物件時，*bufsize* 會作為對應的引數提供給 :"
+"func:`open` 函式："
 
-#: ../../library/subprocess.rst:471
+#: ../../library/subprocess.rst:468
 msgid ""
 "``0`` means unbuffered (read and write are one system call and can return "
 "short)"
 msgstr ""
+"``0`` 表示不緩衝（讀取和寫入都是一次系統呼叫，且可能只處理比要求更少的資料）"
 
-#: ../../library/subprocess.rst:473
+#: ../../library/subprocess.rst:470
 msgid ""
 "``1`` means line buffered (only usable if ``text=True`` or "
 "``universal_newlines=True``)"
 msgstr ""
+"``1`` 表示行緩衝（僅在 ``text=True`` 或 ``universal_newlines=True`` 時可用）"
 
-#: ../../library/subprocess.rst:475
+#: ../../library/subprocess.rst:472
 msgid "any other positive value means use a buffer of approximately that size"
-msgstr ""
+msgstr "任何其他正值表示使用大約該大小的緩衝區"
 
-#: ../../library/subprocess.rst:477
+#: ../../library/subprocess.rst:474
 msgid ""
 "negative bufsize (the default) means the system default of io."
 "DEFAULT_BUFFER_SIZE will be used."
-msgstr ""
+msgstr "負的 bufsize（預設值）表示將使用系統預設值 io.DEFAULT_BUFFER_SIZE。"
 
-#: ../../library/subprocess.rst:480
+#: ../../library/subprocess.rst:477
 msgid ""
 "*bufsize* now defaults to -1 to enable buffering by default to match the "
 "behavior that most code expects.  In versions prior to Python 3.2.4 and "
@@ -639,8 +799,12 @@ msgid ""
 "short reads.  This was unintentional and did not match the behavior of "
 "Python 2 as most code expected."
 msgstr ""
+"*bufsize* 現在預設為 -1，以預設啟用緩衝，符合大多數程式碼所預期的行為。在 "
+"Python 3.2.4 和 3.3.1 之前的版本中，它被錯誤地預設為 ``0``，也就是不緩衝且允"
+"許短讀取 (short read)。這並非刻意為之，也與大多數程式碼所預期的 Python 2 行為"
+"不符。"
 
-#: ../../library/subprocess.rst:487
+#: ../../library/subprocess.rst:484
 msgid ""
 "The *executable* argument specifies a replacement program to execute.   It "
 "is very seldom needed.  When ``shell=False``, *executable* replaces the "
@@ -652,18 +816,27 @@ msgid ""
 "POSIX the *executable* argument specifies a replacement shell for the "
 "default :file:`/bin/sh`."
 msgstr ""
+"*executable* 引數指定一個要執行的替代程式。這很少需要用到。當 "
+"``shell=False`` 時，*executable* 會取代 *args* 所指定、要執行的程式。不過，原"
+"本的 *args* 仍會被傳遞給該程式。大多數程式會將 *args* 所指定的程式視為命令名"
+"稱，因此它可能與實際執行的程式不同。在 POSIX 上，*args* 的名稱會成為可執行檔"
+"在 :program:`ps` 等工具程式中顯示的名稱。如果 ``shell=True``，在 POSIX 上 "
+"*executable* 引數會指定一個 shell 來取代預設的 :file:`/bin/sh`。"
 
-#: ../../library/subprocess.rst:497
+#: ../../library/subprocess.rst:494
 msgid "*executable* parameter accepts a :term:`path-like object` on POSIX."
 msgstr ""
+"*executable* 參數在 POSIX 上接受\\ :term:`類路徑物件 <path-like object>`。"
 
-#: ../../library/subprocess.rst:500
+#: ../../library/subprocess.rst:497
 msgid ""
 "*executable* parameter accepts a bytes and :term:`path-like object` on "
 "Windows."
 msgstr ""
+"*executable* 參數在 Windows 上接受 bytes 和\\ :term:`類路徑物件 <path-like "
+"object>`。"
 
-#: ../../library/subprocess.rst:512
+#: ../../library/subprocess.rst:509
 msgid ""
 "*stdin*, *stdout* and *stderr* specify the executed program's standard "
 "input, standard output and standard error file handles, respectively.  Valid "
@@ -676,75 +849,103 @@ msgid ""
 "which indicates that the stderr data from the applications should be "
 "captured into the same file handle as for *stdout*."
 msgstr ""
+"*stdin*、*stdout* 和 *stderr* 分別指定所執行程式的標準輸入、標準輸出和標準錯"
+"誤的檔案控制代碼。有效值為 ``None``、:data:`PIPE`、:data:`DEVNULL`、一個既有"
+"的檔案描述器（正整數），以及一個具有有效檔案描述器的既有\\ :term:`檔案物件 "
+"<file object>`。在預設設定 ``None`` 下，不會進行任何重新導向。:data:`PIPE` 表"
+"示應建立一個通往子行程的新管道。:data:`DEVNULL` 表示將使用特殊檔案 :data:`os."
+"devnull`。此外，*stderr* 可以是 :data:`STDOUT`，表示來自應用程式的 stderr 資"
+"料應被捕捉到與 *stdout* 相同的檔案控制代碼中。"
 
-#: ../../library/subprocess.rst:523
+#: ../../library/subprocess.rst:520
 msgid ""
 "If *preexec_fn* is set to a callable object, this object will be called in "
 "the child process just before the child is executed. (POSIX only)"
 msgstr ""
+"如果 *preexec_fn* 被設為一個可呼叫物件，這個物件會在子行程中、子程式即將執行"
+"之前被呼叫。（僅限 POSIX）"
 
-#: ../../library/subprocess.rst:529
+#: ../../library/subprocess.rst:526
 msgid ""
 "The *preexec_fn* parameter is NOT SAFE to use in the presence of threads in "
 "your application.  The child process could deadlock before exec is called."
 msgstr ""
+"在應用程式中有執行緒存在時，使用 *preexec_fn* 參數並「不安全」。子行程可能會"
+"在呼叫 exec 之前發生死鎖。"
 
-#: ../../library/subprocess.rst:535
+#: ../../library/subprocess.rst:532
 msgid ""
 "If you need to modify the environment for the child use the *env* parameter "
 "rather than doing it in a *preexec_fn*. The *start_new_session* and "
 "*process_group* parameters should take the place of code using *preexec_fn* "
 "to call :func:`os.setsid` or :func:`os.setpgid` in the child."
 msgstr ""
+"如果你需要為子行程修改環境，請使用 *env* 參數，而不是在 *preexec_fn* 中修改。"
+"*start_new_session* 和 *process_group* 參數應取代那些使用 *preexec_fn* 在子行"
+"程中呼叫 :func:`os.setsid` 或 :func:`os.setpgid` 的程式碼。"
 
-#: ../../library/subprocess.rst:542
+#: ../../library/subprocess.rst:539
 msgid ""
 "The *preexec_fn* parameter is no longer supported in subinterpreters. The "
 "use of the parameter in a subinterpreter raises :exc:`RuntimeError`. The new "
 "restriction may affect applications that are deployed in mod_wsgi, uWSGI, "
 "and other embedded environments."
 msgstr ""
+"子直譯器中已不再支援 *preexec_fn* 參數。在子直譯器中使用此參數會引發 :exc:"
+"`RuntimeError`。這項新限制可能會影響部署在 mod_wsgi、uWSGI 和其他嵌入式環境中"
+"的應用程式。"
 
-#: ../../library/subprocess.rst:547
+#: ../../library/subprocess.rst:544
 msgid ""
 "If *close_fds* is true, all file descriptors except ``0``, ``1`` and ``2`` "
 "will be closed before the child process is executed.  Otherwise when "
 "*close_fds* is false, file descriptors obey their inheritable flag as "
 "described in :ref:`fd_inheritance`."
 msgstr ""
+"如果 *close_fds* 為真，在執行子行程之前，除了 ``0``、``1`` 和 ``2`` 以外的所"
+"有檔案描述器都會被關閉。否則當 *close_fds* 為假時，檔案描述器會遵循其「可繼"
+"承」旗標，如\\ :ref:`fd_inheritance`\\ 所述。"
 
-#: ../../library/subprocess.rst:552
+#: ../../library/subprocess.rst:549
 msgid ""
 "On Windows, if *close_fds* is true then no handles will be inherited by the "
 "child process unless explicitly passed in the ``handle_list`` element of :"
 "attr:`STARTUPINFO.lpAttributeList`, or by standard handle redirection."
 msgstr ""
+"在 Windows 上，如果 *close_fds* 為真，則除非明確傳入 :attr:`STARTUPINFO."
+"lpAttributeList` 的 ``handle_list`` 元素中，或是透過標準控制代碼重新導向，否"
+"則子行程不會繼承任何控制代碼。"
 
-#: ../../library/subprocess.rst:556
+#: ../../library/subprocess.rst:553
 msgid ""
 "The default for *close_fds* was changed from :const:`False` to what is "
 "described above."
-msgstr ""
+msgstr "*close_fds* 的預設值從 :const:`False` 變更為上述內容。"
 
-#: ../../library/subprocess.rst:560
+#: ../../library/subprocess.rst:557
 msgid ""
 "On Windows the default for *close_fds* was changed from :const:`False` to :"
 "const:`True` when redirecting the standard handles. It's now possible to set "
 "*close_fds* to :const:`True` when redirecting the standard handles."
 msgstr ""
+"在 Windows 上，重新導向標準控制代碼時，*close_fds* 的預設值從 :const:`False` "
+"變更為 :const:`True`。現在可以在重新導向標準控制代碼時將 *close_fds* 設為 :"
+"const:`True`。"
 
-#: ../../library/subprocess.rst:565
+#: ../../library/subprocess.rst:562
 msgid ""
 "*pass_fds* is an optional sequence of file descriptors to keep open between "
 "the parent and child.  Providing any *pass_fds* forces *close_fds* to be :"
 "const:`True`.  (POSIX only)"
 msgstr ""
+"*pass_fds* 是一個可選的檔案描述器序列，用來在父行程和子行程之間保持開啟。提供"
+"任何 *pass_fds* 都會強制 *close_fds* 為 :const:`True`。（僅限 POSIX）"
 
-#: ../../library/subprocess.rst:569
+#: ../../library/subprocess.rst:566
 msgid "The *pass_fds* parameter was added."
 msgstr "新增 *pass_fds* 參數。"
 
-#: ../../library/subprocess.rst:572
+#: ../../library/subprocess.rst:569
 msgid ""
 "If *cwd* is not ``None``, the function changes the working directory to "
 "*cwd* before executing the child.  *cwd* can be a string, bytes or :term:"
@@ -752,52 +953,63 @@ msgid ""
 "*executable* (or for the first item in *args*) relative to *cwd* if the "
 "executable path is a relative path."
 msgstr ""
+"如果 *cwd* 不是 ``None``，函式會在執行子程式之前將工作目錄變更為 *cwd*。"
+"*cwd* 可以是字串、bytes 或\\ :term:`類路徑物件 <path-like object>`。在 POSIX "
+"上，如果可執行檔路徑是相對路徑，函式會相對於 *cwd* 尋找 *executable*\\ （或 "
+"*args* 中的第一個項目）。"
+
+#: ../../library/subprocess.rst:575
+msgid "*cwd* parameter accepts a :term:`path-like object` on POSIX."
+msgstr "*cwd* 參數在 POSIX 上接受\\ :term:`類路徑物件 <path-like object>`。"
 
 #: ../../library/subprocess.rst:578
-msgid "*cwd* parameter accepts a :term:`path-like object` on POSIX."
-msgstr "*cwd* 參數在 POSIX 上接受 :term:`path-like object`。"
+msgid "*cwd* parameter accepts a :term:`path-like object` on Windows."
+msgstr "*cwd* 參數在 Windows 上接受\\ :term:`類路徑物件 <path-like object>`。"
 
 #: ../../library/subprocess.rst:581
-msgid "*cwd* parameter accepts a :term:`path-like object` on Windows."
-msgstr "*cwd* 參數在 Windows 上接受 :term:`path-like object`。"
-
-#: ../../library/subprocess.rst:584
 msgid "*cwd* parameter accepts a bytes object on Windows."
 msgstr "*cwd* 參數在 Windows 上接受 bytes 物件。"
 
-#: ../../library/subprocess.rst:587
+#: ../../library/subprocess.rst:584
 msgid ""
 "If *restore_signals* is true (the default) all signals that Python has set "
 "to SIG_IGN are restored to SIG_DFL in the child process before the exec. "
 "Currently this includes the SIGPIPE, SIGXFZ and SIGXFSZ signals. (POSIX only)"
 msgstr ""
+"如果 *restore_signals* 為真（預設值），在 exec 之前，所有被 Python 設為 "
+"SIG_IGN 的訊號都會在子行程中被還原為 SIG_DFL。目前這包括 SIGPIPE、SIGXFZ 和 "
+"SIGXFSZ 訊號。（僅限 POSIX）"
 
-#: ../../library/subprocess.rst:592
+#: ../../library/subprocess.rst:589
 msgid "*restore_signals* was added."
 msgstr "新增 *restore_signals*。"
 
-#: ../../library/subprocess.rst:595
+#: ../../library/subprocess.rst:592
 msgid ""
 "If *start_new_session* is true the ``setsid()`` system call will be made in "
 "the child process prior to the execution of the subprocess."
 msgstr ""
+"如果 *start_new_session* 為真，則會在子行程執行之前，於子行程中進行 "
+"``setsid()`` 系統呼叫。"
 
-#: ../../library/subprocess.rst:599
+#: ../../library/subprocess.rst:596
 msgid "*start_new_session* was added."
 msgstr "新增 *start_new_session*。"
 
-#: ../../library/subprocess.rst:602
+#: ../../library/subprocess.rst:599
 msgid ""
 "If *process_group* is a non-negative integer, the ``setpgid(0, value)`` "
 "system call will be made in the child process prior to the execution of the "
 "subprocess."
 msgstr ""
+"如果 *process_group* 是非負整數，則會在子行程執行之前，於子行程中進行 "
+"``setpgid(0, value)`` 系統呼叫。"
 
-#: ../../library/subprocess.rst:606
+#: ../../library/subprocess.rst:603
 msgid "*process_group* was added."
 msgstr "新增 *process_group*。"
 
-#: ../../library/subprocess.rst:609
+#: ../../library/subprocess.rst:606
 msgid ""
 "If *group* is not ``None``, the setregid() system call will be made in the "
 "child process prior to the execution of the subprocess. If the provided "
@@ -805,8 +1017,11 @@ msgid ""
 "value in ``gr_gid`` will be used. If the value is an integer, it will be "
 "passed verbatim. (POSIX only)"
 msgstr ""
+"如果 *group* 不是 ``None``，則會在子行程執行之前，於子行程中進行 setregid() "
+"系統呼叫。如果提供的值是字串，會透過 :func:`grp.getgrnam` 查詢，並使用 "
+"``gr_gid`` 中的值。如果值是整數，會原封不動地傳遞。（僅限 POSIX）"
 
-#: ../../library/subprocess.rst:618
+#: ../../library/subprocess.rst:615
 msgid ""
 "If *extra_groups* is not ``None``, the setgroups() system call will be made "
 "in the child process prior to the execution of the subprocess. Strings "
@@ -814,8 +1029,11 @@ msgid ""
 "the values in ``gr_gid`` will be used. Integer values will be passed "
 "verbatim. (POSIX only)"
 msgstr ""
+"如果 *extra_groups* 不是 ``None``，則會在子行程執行之前，於子行程中進行 "
+"setgroups() 系統呼叫。*extra_groups* 中提供的字串會透過 :func:`grp.getgrnam` "
+"查詢，並使用 ``gr_gid`` 中的值。整數值會原封不動地傳遞。（僅限 POSIX）"
 
-#: ../../library/subprocess.rst:627
+#: ../../library/subprocess.rst:624
 msgid ""
 "If *user* is not ``None``, the setreuid() system call will be made in the "
 "child process prior to the execution of the subprocess. If the provided "
@@ -823,21 +1041,28 @@ msgid ""
 "value in ``pw_uid`` will be used. If the value is an integer, it will be "
 "passed verbatim. (POSIX only)"
 msgstr ""
+"如果 *user* 不是 ``None``，則會在子行程執行之前，於子行程中進行 setreuid() 系"
+"統呼叫。如果提供的值是字串，會透過 :func:`pwd.getpwnam` 查詢，並使用 "
+"``pw_uid`` 中的值。如果值是整數，會原封不動地傳遞。（僅限 POSIX）"
 
-#: ../../library/subprocess.rst:635
+#: ../../library/subprocess.rst:632
 msgid ""
 "Specifying *user* will not drop existing supplementary group memberships! "
 "The caller must also pass ``extra_groups=()`` to reduce the group membership "
 "of the child process for security purposes."
 msgstr ""
+"指定 *user* 並不會捨棄既有的補充群組成員資格！基於安全考量，呼叫者也必須傳遞 "
+"``extra_groups=()`` 來縮減子行程的群組成員資格。"
 
-#: ../../library/subprocess.rst:642
+#: ../../library/subprocess.rst:639
 msgid ""
 "If *umask* is not negative, the umask() system call will be made in the "
 "child process prior to the execution of the subprocess."
 msgstr ""
+"如果 *umask* 不是負數，則會在子行程執行之前，於子行程中進行 umask() 系統呼"
+"叫。"
 
-#: ../../library/subprocess.rst:648
+#: ../../library/subprocess.rst:645
 msgid ""
 "If *env* is not ``None``, it must be a mapping that defines the environment "
 "variables for the new process; these are used instead of the default "
@@ -845,15 +1070,22 @@ msgid ""
 "str to str on any platform or bytes to bytes on POSIX platforms much like :"
 "data:`os.environ` or :data:`os.environb`."
 msgstr ""
+"如果 *env* 不是 ``None``，它必須是一個為新行程定義環境變數的對映；這些環境變"
+"數會取代繼承目前行程環境的預設行為。這個對映在任何平台上都可以是 str 對 str，"
+"在 POSIX 平台上也可以是 bytes 對 bytes，就像 :data:`os.environ` 或 :data:`os."
+"environb` 一樣。"
 
-#: ../../library/subprocess.rst:656
+#: ../../library/subprocess.rst:653
 msgid ""
 "If specified, *env* must provide any variables required for the program to "
 "execute.  On Windows, in order to run a `side-by-side assembly`_ the "
 "specified *env* **must** include a valid ``%SystemRoot%``."
 msgstr ""
+"如果有指定，*env* 必須提供程式執行所需的任何變數。在 Windows 上，為了執行\\ `"
+"並存組件 (side-by-side assembly) <side-by-side assembly_>`_，指定的 *env* **"
+"必須**\\ 包含有效的 ``%SystemRoot%``。"
 
-#: ../../library/subprocess.rst:662
+#: ../../library/subprocess.rst:659
 msgid ""
 "If *encoding* or *errors* are specified, or *text* is true, the file objects "
 "*stdin*, *stdout* and *stderr* are opened in text mode with the specified "
@@ -862,93 +1094,104 @@ msgid ""
 "is provided for backwards compatibility. By default, file objects are opened "
 "in binary mode."
 msgstr ""
+"如果有指定 *encoding* 或 *errors*，或者 *text* 為真，檔案物件 *stdin*、"
+"*stdout* 和 *stderr* 會使用指定的 *encoding* 和 *errors* 以文字模式開啟，如上"
+"方\\ :ref:`frequently-used-arguments`\\ 所述。*universal_newlines* 引數等同"
+"於 *text*，是為了向後相容而提供的。檔案物件預設以二進位模式開啟。"
 
-#: ../../library/subprocess.rst:668
+#: ../../library/subprocess.rst:665
 msgid "*encoding* and *errors* were added."
 msgstr "新增 *encoding* 與 *errors*。"
 
-#: ../../library/subprocess.rst:671 ../../library/subprocess.rst:1330
+#: ../../library/subprocess.rst:668 ../../library/subprocess.rst:1342
 msgid "*text* was added as a more readable alias for *universal_newlines*."
-msgstr ""
+msgstr "新增 *text* 作為 *universal_newlines* 更易讀的別名。"
 
-#: ../../library/subprocess.rst:674
+#: ../../library/subprocess.rst:671
 msgid ""
 "If given, *startupinfo* will be a :class:`STARTUPINFO` object, which is "
 "passed to the underlying ``CreateProcess`` function."
 msgstr ""
+"如果有給定，*startupinfo* 會是一個 :class:`STARTUPINFO` 物件，它會被傳遞給底"
+"層的 ``CreateProcess`` 函式。"
 
-#: ../../library/subprocess.rst:677
+#: ../../library/subprocess.rst:674
 msgid "If given, *creationflags*, can be one or more of the following flags:"
-msgstr ""
+msgstr "如果有給定，*creationflags* 可以是下列一個或多個旗標："
 
-#: ../../library/subprocess.rst:679
+#: ../../library/subprocess.rst:676
 msgid ":data:`CREATE_NEW_CONSOLE`"
 msgstr ":data:`CREATE_NEW_CONSOLE`"
 
-#: ../../library/subprocess.rst:680
+#: ../../library/subprocess.rst:677
 msgid ":data:`CREATE_NEW_PROCESS_GROUP`"
 msgstr ":data:`CREATE_NEW_PROCESS_GROUP`"
 
-#: ../../library/subprocess.rst:681
+#: ../../library/subprocess.rst:678
 msgid ":data:`ABOVE_NORMAL_PRIORITY_CLASS`"
 msgstr ":data:`ABOVE_NORMAL_PRIORITY_CLASS`"
 
-#: ../../library/subprocess.rst:682
+#: ../../library/subprocess.rst:679
 msgid ":data:`BELOW_NORMAL_PRIORITY_CLASS`"
 msgstr ":data:`BELOW_NORMAL_PRIORITY_CLASS`"
 
-#: ../../library/subprocess.rst:683
+#: ../../library/subprocess.rst:680
 msgid ":data:`HIGH_PRIORITY_CLASS`"
 msgstr ":data:`HIGH_PRIORITY_CLASS`"
 
-#: ../../library/subprocess.rst:684
+#: ../../library/subprocess.rst:681
 msgid ":data:`IDLE_PRIORITY_CLASS`"
 msgstr ":data:`IDLE_PRIORITY_CLASS`"
 
-#: ../../library/subprocess.rst:685
+#: ../../library/subprocess.rst:682
 msgid ":data:`NORMAL_PRIORITY_CLASS`"
 msgstr ":data:`NORMAL_PRIORITY_CLASS`"
 
-#: ../../library/subprocess.rst:686
+#: ../../library/subprocess.rst:683
 msgid ":data:`REALTIME_PRIORITY_CLASS`"
 msgstr ":data:`REALTIME_PRIORITY_CLASS`"
 
-#: ../../library/subprocess.rst:687
+#: ../../library/subprocess.rst:684
 msgid ":data:`CREATE_NO_WINDOW`"
 msgstr ":data:`CREATE_NO_WINDOW`"
 
-#: ../../library/subprocess.rst:688
+#: ../../library/subprocess.rst:685
 msgid ":data:`DETACHED_PROCESS`"
 msgstr ":data:`DETACHED_PROCESS`"
 
-#: ../../library/subprocess.rst:689
+#: ../../library/subprocess.rst:686
 msgid ":data:`CREATE_DEFAULT_ERROR_MODE`"
 msgstr ":data:`CREATE_DEFAULT_ERROR_MODE`"
 
-#: ../../library/subprocess.rst:690
+#: ../../library/subprocess.rst:687
 msgid ":data:`CREATE_BREAKAWAY_FROM_JOB`"
 msgstr ":data:`CREATE_BREAKAWAY_FROM_JOB`"
 
-#: ../../library/subprocess.rst:692
+#: ../../library/subprocess.rst:689
 msgid ""
 "*pipesize* can be used to change the size of the pipe when :data:`PIPE` is "
 "used for *stdin*, *stdout* or *stderr*. The size of the pipe is only changed "
 "on platforms that support this (only Linux at this time of writing). Other "
 "platforms will ignore this parameter."
 msgstr ""
+"當 *stdin*、*stdout* 或 *stderr* 使用 :data:`PIPE` 時，可以用 *pipesize* 來變"
+"更管道的大小。管道的大小只會在支援此功能的平台上變更（在撰寫本文時僅有 "
+"Linux）。其他平台會忽略此參數。"
+
+#: ../../library/subprocess.rst:694
+msgid "Added the *pipesize* parameter."
+msgstr "新增 *pipesize* 參數。"
 
 #: ../../library/subprocess.rst:697
-msgid "Added the *pipesize* parameter."
-msgstr "新增 ``pipesize`` 參數。"
-
-#: ../../library/subprocess.rst:700
 msgid ""
 "Popen objects are supported as context managers via the :keyword:`with` "
 "statement: on exit, standard file descriptors are closed, and the process is "
 "waited for. ::"
 msgstr ""
+"Popen 物件可以透過 :keyword:`with` 陳述式作為情境管理器使用：結束時，標準檔案"
+"描述器會被關閉，並等待行程結束。 ::"
 
-#: ../../library/subprocess.rst:704
+#: ../../library/subprocess.rst:701
 msgid ""
 "with Popen([\"ifconfig\"], stdout=PIPE) as proc:\n"
 "    log.write(proc.stdout.read())"
@@ -956,25 +1199,29 @@ msgstr ""
 "with Popen([\"ifconfig\"], stdout=PIPE) as proc:\n"
 "    log.write(proc.stdout.read())"
 
-#: ../../library/subprocess.rst:707 ../../library/subprocess.rst:709
+#: ../../library/subprocess.rst:704 ../../library/subprocess.rst:706
 msgid ""
 "Popen and the other functions in this module that use it raise an :ref:"
 "`auditing event <auditing>` ``subprocess.Popen`` with arguments "
 "``executable``, ``args``, ``cwd``, and ``env``. The value for ``args`` may "
 "be a single string or a list of strings, depending on platform."
 msgstr ""
+"Popen 以及此模組中其他使用它的函式會引發一個附帶引數 ``executable``、"
+"``args``、``cwd`` 和 ``env`` 的\\ :ref:`稽核事件 <auditing>` ``subprocess."
+"Popen``。``args`` 的值可能是單一字串或字串串列，取決於平台。"
 
-#: ../../library/subprocess.rst:714
+#: ../../library/subprocess.rst:711
 msgid "Added context manager support."
 msgstr "新增情境管理器的支援。"
 
-#: ../../library/subprocess.rst:717
+#: ../../library/subprocess.rst:714
 msgid ""
 "Popen destructor now emits a :exc:`ResourceWarning` warning if the child "
 "process is still running."
 msgstr ""
+"如果子行程仍在執行，Popen 解構函式現在會發出 :exc:`ResourceWarning` 警告。"
 
-#: ../../library/subprocess.rst:721
+#: ../../library/subprocess.rst:718
 msgid ""
 "Popen can use :func:`os.posix_spawn` in some cases for better performance. "
 "On Windows Subsystem for Linux and QEMU User Emulation, Popen constructor "
@@ -982,18 +1229,22 @@ msgid ""
 "missing program, but the child process fails with a non-zero :attr:`~Popen."
 "returncode`."
 msgstr ""
+"在某些情況下，Popen 可以使用 :func:`os.posix_spawn` 以獲得更好的效能。在 "
+"Windows Subsystem for Linux 和 QEMU User Emulation 上，使用 :func:`os."
+"posix_spawn` 的 Popen 建構函式不再因為缺少程式等錯誤而引發例外，而是子行程會"
+"以非零的 :attr:`~Popen.returncode` 失敗。"
 
-#: ../../library/subprocess.rst:730
+#: ../../library/subprocess.rst:727
 msgid "Exceptions"
 msgstr "例外"
 
-#: ../../library/subprocess.rst:732
+#: ../../library/subprocess.rst:729
 msgid ""
 "Exceptions raised in the child process, before the new program has started "
 "to execute, will be re-raised in the parent."
-msgstr ""
+msgstr "在新程式開始執行之前於子行程中引發的例外，會在父行程中被重新引發。"
 
-#: ../../library/subprocess.rst:735
+#: ../../library/subprocess.rst:732
 msgid ""
 "The most common exception raised is :exc:`OSError`.  This occurs, for "
 "example, when trying to execute a non-existent file.  Applications should "
@@ -1003,40 +1254,48 @@ msgid ""
 "application, it is necessary to check the return code or output from the "
 "subprocess."
 msgstr ""
+"最常引發的例外是 :exc:`OSError`。舉例來說，這會發生在嘗試執行不存在的檔案時。"
+"應用程式應該為 :exc:`OSError` 例外做好準備。請注意，當 ``shell=True`` 時，只"
+"有在找不到所選的 shell 本身時，子行程才會引發 :exc:`OSError`。要判斷 shell 是"
+"否找不到所要求的應用程式，必須檢查子行程的回傳碼或輸出。"
 
-#: ../../library/subprocess.rst:742
+#: ../../library/subprocess.rst:739
 msgid ""
 "A :exc:`ValueError` will be raised if :class:`Popen` is called with invalid "
 "arguments."
-msgstr ""
+msgstr "如果以無效的引數呼叫 :class:`Popen`，將會引發 :exc:`ValueError`。"
 
-#: ../../library/subprocess.rst:745
+#: ../../library/subprocess.rst:742
 msgid ""
 ":func:`check_call` and :func:`check_output` will raise :exc:"
 "`CalledProcessError` if the called process returns a non-zero return code."
 msgstr ""
+"如果被呼叫的行程回傳非零的回傳碼，:func:`check_call` 和 :func:`check_output` "
+"將會引發 :exc:`CalledProcessError`。"
 
-#: ../../library/subprocess.rst:749
+#: ../../library/subprocess.rst:746
 msgid ""
 "All of the functions and methods that accept a *timeout* parameter, such as :"
 "func:`run` and :meth:`Popen.communicate` will raise :exc:`TimeoutExpired` if "
 "the timeout expires before the process exits."
 msgstr ""
+"所有接受 *timeout* 參數的函式和方法，例如 :func:`run` 和 :meth:`Popen."
+"communicate`，如果在行程結束之前就已超時，都會引發 :exc:`TimeoutExpired`。"
 
-#: ../../library/subprocess.rst:753
+#: ../../library/subprocess.rst:750
 msgid ""
 "Exceptions defined in this module all inherit from :exc:`SubprocessError`."
-msgstr ""
+msgstr "此模組中定義的例外都繼承自 :exc:`SubprocessError`。"
 
-#: ../../library/subprocess.rst:755
+#: ../../library/subprocess.rst:752
 msgid "The :exc:`SubprocessError` base class was added."
 msgstr "新增 :exc:`SubprocessError` 基底類別。"
 
-#: ../../library/subprocess.rst:761
+#: ../../library/subprocess.rst:758
 msgid "Security Considerations"
 msgstr "安全性注意事項"
 
-#: ../../library/subprocess.rst:763
+#: ../../library/subprocess.rst:760
 msgid ""
 "Unlike some other popen functions, this library will not implicitly choose "
 "to call a system shell.  This means that all characters, including shell "
@@ -1048,8 +1307,14 @@ msgid ""
 "<shlex-quote-warning>`, it is possible to use :func:`shlex.quote` for this "
 "escaping."
 msgstr ""
+"與其他一些 popen 函式不同，這個函式庫不會隱式地選擇呼叫系統 shell。這表示所有"
+"字元，包括 shell 元字元 (metacharacter)，都可以安全地傳遞給子行程。如果透過 "
+"``shell=True`` 明確地叫用 shell，應用程式就有責任確保所有空白和元字元都被適當"
+"地加上引號，以避免 `shell 注入 <https://en.wikipedia.org/wiki/"
+"Shell_injection#Shell_injection>`_\\ 漏洞。在\\ :ref:`某些平台 <shlex-quote-"
+"warning>`\\ 上，可以使用 :func:`shlex.quote` 來進行這種跳脫。"
 
-#: ../../library/subprocess.rst:773
+#: ../../library/subprocess.rst:770
 msgid ""
 "On Windows, batch files (:file:`*.bat` or :file:`*.cmd`) may be launched by "
 "the operating system in a system shell regardless of the arguments passed to "
@@ -1059,57 +1324,109 @@ msgid ""
 "passing ``shell=True`` to allow Python to escape special characters. See :gh:"
 "`114539` for additional discussion."
 msgstr ""
+"在 Windows 上，無論傳遞給這個函式庫的引數為何，批次檔（:file:`*.bat` 或 :"
+"file:`*.cmd`）都可能會被作業系統在系統 shell 中啟動。這可能導致引數依照 "
+"shell 規則被剖析，但沒有任何由 Python 加入的跳脫處理。如果你是刻意以來自不受"
+"信任來源的引數啟動批次檔，請考慮傳遞 ``shell=True`` 以讓 Python 跳脫特殊字"
+"元。更多討論請參閱 :gh:`114539`。"
 
-#: ../../library/subprocess.rst:783
+#: ../../library/subprocess.rst:780
 msgid "Popen Objects"
-msgstr ""
+msgstr "Popen 物件"
 
-#: ../../library/subprocess.rst:785
+#: ../../library/subprocess.rst:782
 msgid "Instances of the :class:`Popen` class have the following methods:"
-msgstr ""
+msgstr ":class:`Popen` 類別的實例具有下列方法："
 
-#: ../../library/subprocess.rst:790
+#: ../../library/subprocess.rst:787
 msgid ""
 "Check if child process has terminated.  Set and return :attr:`~Popen."
 "returncode` attribute. Otherwise, returns ``None``."
 msgstr ""
+"檢查子行程是否已終止。設定並回傳 :attr:`~Popen.returncode` 屬性。否則回傳 "
+"``None``。"
 
-#: ../../library/subprocess.rst:796
+#: ../../library/subprocess.rst:793
 msgid ""
 "Wait for child process to terminate.  Set and return :attr:`~Popen."
 "returncode` attribute."
-msgstr ""
+msgstr "等待子行程終止。設定並回傳 :attr:`~Popen.returncode` 屬性。"
 
-#: ../../library/subprocess.rst:799
+#: ../../library/subprocess.rst:796
 msgid ""
 "If the process does not terminate after *timeout* seconds, raise a :exc:"
 "`TimeoutExpired` exception.  It is safe to catch this exception and retry "
 "the wait."
 msgstr ""
+"如果行程在 *timeout* 秒後仍未終止，則引發 :exc:`TimeoutExpired` 例外。捕捉此"
+"例外並重試等待是安全的。"
 
-#: ../../library/subprocess.rst:805
+#: ../../library/subprocess.rst:802
 msgid ""
 "This will deadlock when using ``stdout=PIPE`` or ``stderr=PIPE`` and the "
 "child process generates enough output to a pipe such that it blocks waiting "
 "for the OS pipe buffer to accept more data. Use :meth:`Popen.communicate` "
 "when using pipes to avoid that."
 msgstr ""
+"當使用 ``stdout=PIPE`` 或 ``stderr=PIPE``，且子行程對管道產生的輸出多到使其阻"
+"塞、等待作業系統的管道緩衝區接受更多資料時，這會造成死鎖。使用管道時請改用 :"
+"meth:`Popen.communicate` 來避免這種情況。"
+
+#: ../../library/subprocess.rst:809
+msgid ""
+"When ``timeout`` is not ``None`` and the platform supports it, an efficient "
+"event-driven mechanism is used to wait for process termination:"
+msgstr ""
+"當 ``timeout`` 不是 ``None`` 且平台支援時，會使用高效率的事件驅動機制來等待行"
+"程終止："
 
 #: ../../library/subprocess.rst:812
+msgid "Linux >= 5.3 uses :func:`os.pidfd_open` + :func:`select.poll`"
+msgstr "Linux >= 5.3 使用 :func:`os.pidfd_open` + :func:`select.poll`"
+
+#: ../../library/subprocess.rst:813
 msgid ""
-"When the ``timeout`` parameter is not ``None``, then (on POSIX) the function "
-"is implemented using a busy loop (non-blocking call and short sleeps). Use "
-"the :mod:`asyncio` module for an asynchronous wait: see :class:`asyncio."
+"macOS and other BSD variants use :func:`select.kqueue` + ``KQ_FILTER_PROC`` "
+"+ ``KQ_NOTE_EXIT``"
+msgstr ""
+"macOS 和其他 BSD 變體使用 :func:`select.kqueue` + ``KQ_FILTER_PROC`` + "
+"``KQ_NOTE_EXIT``"
+
+#: ../../library/subprocess.rst:815
+msgid "Windows uses ``WaitForSingleObject``"
+msgstr "Windows 使用 ``WaitForSingleObject``"
+
+#: ../../library/subprocess.rst:817
+msgid ""
+"If none of these mechanisms are available, the function falls back to a busy "
+"loop (non-blocking call and short sleeps)."
+msgstr ""
+"如果這些機制都無法使用，此函式會退而使用忙碌迴圈 (busy loop)，也就是非阻塞呼"
+"叫加上短暫的休眠。"
+
+#: ../../library/subprocess.rst:822
+msgid ""
+"Use the :mod:`asyncio` module for an asynchronous wait: see :class:`asyncio."
 "create_subprocess_exec`."
 msgstr ""
+"若要進行非同步的等待，請使用 :mod:`asyncio` 模組：請參閱 :class:`asyncio."
+"create_subprocess_exec`。"
 
-#: ../../library/subprocess.rst:817 ../../library/subprocess.rst:865
-#: ../../library/subprocess.rst:1227 ../../library/subprocess.rst:1267
-#: ../../library/subprocess.rst:1321
+#: ../../library/subprocess.rst:825 ../../library/subprocess.rst:877
+#: ../../library/subprocess.rst:1239 ../../library/subprocess.rst:1279
+#: ../../library/subprocess.rst:1333
 msgid "*timeout* was added."
 msgstr "新增 *timeout*。"
 
-#: ../../library/subprocess.rst:822
+#: ../../library/subprocess.rst:828
+msgid ""
+"if *timeout* is not ``None``, use efficient event-driven implementation on "
+"Linux >= 5.3 and macOS / BSD."
+msgstr ""
+"如果 *timeout* 不是 ``None``，在 Linux >= 5.3 和 macOS / BSD 上會使用高效率的"
+"事件驅動實作。"
+
+#: ../../library/subprocess.rst:834
 msgid ""
 "Interact with process: Send data to stdin.  Read data from stdout and "
 "stderr, until end-of-file is reached.  Wait for process to terminate and set "
@@ -1118,22 +1435,31 @@ msgid ""
 "should be sent to the child.  If streams were opened in text mode, *input* "
 "must be a string. Otherwise, it must be bytes."
 msgstr ""
+"與行程互動：將資料傳送到 stdin。從 stdout 和 stderr 讀取資料，直到到達檔案結"
+"尾 (end-of-file)。等待行程終止並設定 :attr:`~Popen.returncode` 屬性。可選的 "
+"*input* 引數應該是要傳送給子行程的資料；如果沒有資料要傳送給子行程，則為 "
+"``None``。如果串流是以文字模式開啟，*input* 必須是字串，否則必須是 bytes。"
 
-#: ../../library/subprocess.rst:829
+#: ../../library/subprocess.rst:841
 msgid ""
 ":meth:`communicate` returns a tuple ``(stdout_data, stderr_data)``. The data "
 "will be strings if streams were opened in text mode; otherwise, bytes."
 msgstr ""
+":meth:`communicate` 回傳一個元組 ``(stdout_data, stderr_data)``。如果串流是以"
+"文字模式開啟，資料會是字串，否則為 bytes。"
 
-#: ../../library/subprocess.rst:833
+#: ../../library/subprocess.rst:845
 msgid ""
 "Note that if you want to send data to the process's stdin, you need to "
 "create the Popen object with ``stdin=PIPE``.  Similarly, to get anything "
 "other than ``None`` in the result tuple, you need to give ``stdout=PIPE`` "
 "and/or ``stderr=PIPE`` too."
 msgstr ""
+"請注意，如果你想將資料傳送到行程的 stdin，你需要以 ``stdin=PIPE`` 建立 Popen "
+"物件。同樣地，要在結果元組中取得 ``None`` 以外的任何東西，你也需要提供 "
+"``stdout=PIPE`` 和／或 ``stderr=PIPE``。"
 
-#: ../../library/subprocess.rst:838
+#: ../../library/subprocess.rst:850
 msgid ""
 "If the process does not terminate after *timeout* seconds, a :exc:"
 "`TimeoutExpired` exception will be raised.  Catching this exception and "
@@ -1141,15 +1467,20 @@ msgid ""
 "subsequent post-timeout :meth:`communicate` call is in undefined behavior "
 "and may become an error in the future."
 msgstr ""
+"如果行程在 *timeout* 秒後仍未終止，將會引發 :exc:`TimeoutExpired` 例外。捕捉"
+"此例外並重試通訊不會遺失任何輸出。在超時後的 :meth:`communicate` 呼叫中提供 "
+"*input* 屬於未定義行為，未來可能會變成錯誤。"
 
-#: ../../library/subprocess.rst:844
+#: ../../library/subprocess.rst:856
 msgid ""
 "The child process is not killed if the timeout expires, so in order to "
 "cleanup properly a well-behaved application should kill the child process "
 "and finish communication::"
 msgstr ""
+"超時時子行程不會被強制終止，因此為了正確地清理，行為良好的應用程式應該強制終"
+"止子行程並完成通訊： ::"
 
-#: ../../library/subprocess.rst:848
+#: ../../library/subprocess.rst:860
 msgid ""
 "proc = subprocess.Popen(...)\n"
 "try:\n"
@@ -1165,61 +1496,74 @@ msgstr ""
 "    proc.kill()\n"
 "    outs, errs = proc.communicate()"
 
-#: ../../library/subprocess.rst:855
+#: ../../library/subprocess.rst:867
 msgid ""
 "After a call to :meth:`~Popen.communicate` raises :exc:`TimeoutExpired`, do "
 "not call :meth:`~Popen.wait`. Use an additional :meth:`~Popen.communicate` "
 "call to finish handling pipes and populate the :attr:`~Popen.returncode` "
 "attribute."
 msgstr ""
+"在 :meth:`~Popen.communicate` 的呼叫引發 :exc:`TimeoutExpired` 之後，請不要呼"
+"叫 :meth:`~Popen.wait`。請再呼叫一次 :meth:`~Popen.communicate` 來完成管道的"
+"處理，並填入 :attr:`~Popen.returncode` 屬性。"
 
-#: ../../library/subprocess.rst:862
+#: ../../library/subprocess.rst:874
 msgid ""
 "The data read is buffered in memory, so do not use this method if the data "
 "size is large or unlimited."
 msgstr ""
+"讀取的資料會緩衝在記憶體中，因此如果資料量很大或沒有上限，請不要使用此方法。"
 
-#: ../../library/subprocess.rst:871
+#: ../../library/subprocess.rst:883
 msgid "Sends the signal *signal* to the child."
-msgstr ""
+msgstr "傳送訊號 *signal* 給子行程。"
 
-#: ../../library/subprocess.rst:873
+#: ../../library/subprocess.rst:885
 msgid "Do nothing if the process completed."
-msgstr ""
+msgstr "如果行程已經完成則不做任何事。"
 
-#: ../../library/subprocess.rst:877
+#: ../../library/subprocess.rst:889
 msgid ""
 "On Windows, SIGTERM is an alias for :meth:`terminate`. CTRL_C_EVENT and "
 "CTRL_BREAK_EVENT can be sent to processes started with a *creationflags* "
 "parameter which includes ``CREATE_NEW_PROCESS_GROUP``."
 msgstr ""
+"在 Windows 上，SIGTERM 是 :meth:`terminate` 的別名。CTRL_C_EVENT 和 "
+"CTRL_BREAK_EVENT 可以傳送給以包含 ``CREATE_NEW_PROCESS_GROUP`` 的 "
+"*creationflags* 參數所啟動的行程。"
 
-#: ../../library/subprocess.rst:884
+#: ../../library/subprocess.rst:896
 msgid ""
 "Stop the child. On POSIX OSs the method sends :py:const:`~signal.SIGTERM` to "
 "the child. On Windows the Win32 API function :c:func:`!TerminateProcess` is "
 "called to stop the child."
 msgstr ""
+"停止子行程。在 POSIX 作業系統上，此方法會傳送 :py:const:`~signal.SIGTERM` 給"
+"子行程。在 Windows 上，會呼叫 Win32 API 函式 :c:func:`!TerminateProcess` 來停"
+"止子行程。"
 
-#: ../../library/subprocess.rst:891
+#: ../../library/subprocess.rst:903
 msgid ""
 "Kills the child. On POSIX OSs the function sends SIGKILL to the child. On "
 "Windows :meth:`kill` is an alias for :meth:`terminate`."
 msgstr ""
+"強制終止子行程。在 POSIX 作業系統上，此函式會傳送 SIGKILL 給子行程。在 "
+"Windows 上，:meth:`kill` 是 :meth:`terminate` 的別名。"
 
-#: ../../library/subprocess.rst:895
+#: ../../library/subprocess.rst:907
 msgid ""
 "The following attributes are also set by the class for you to access. "
 "Reassigning them to new values is unsupported:"
-msgstr ""
+msgstr "下列屬性也會由該類別設定，供你存取。不支援將它們重新指派為新的值："
 
-#: ../../library/subprocess.rst:900
+#: ../../library/subprocess.rst:912
 msgid ""
 "The *args* argument as it was passed to :class:`Popen` -- a sequence of "
 "program arguments or else a single string."
 msgstr ""
+"傳遞給 :class:`Popen` 的 *args* 引數 -- 一個程式引數的序列，或單一字串。"
 
-#: ../../library/subprocess.rst:907
+#: ../../library/subprocess.rst:919
 msgid ""
 "If the *stdin* argument was :data:`PIPE`, this attribute is a writeable "
 "stream object as returned by :func:`open`. If the *encoding* or *errors* "
@@ -1227,8 +1571,12 @@ msgid ""
 "``True``, the stream is a text stream, otherwise it is a byte stream. If the "
 "*stdin* argument was not :data:`PIPE`, this attribute is ``None``."
 msgstr ""
+"如果 *stdin* 引數為 :data:`PIPE`，此屬性是一個由 :func:`open` 回傳的可寫入串"
+"流物件。如果有指定 *encoding* 或 *errors* 引數，或者 *text* 或 "
+"*universal_newlines* 引數為 ``True``，該串流為文字串流，否則為位元組串流。如"
+"果 *stdin* 引數不是 :data:`PIPE`，此屬性為 ``None``。"
 
-#: ../../library/subprocess.rst:916
+#: ../../library/subprocess.rst:928
 msgid ""
 "If the *stdout* argument was :data:`PIPE`, this attribute is a readable "
 "stream object as returned by :func:`open`. Reading from the stream provides "
@@ -1237,8 +1585,12 @@ msgid ""
 "stream is a text stream, otherwise it is a byte stream. If the *stdout* "
 "argument was not :data:`PIPE`, this attribute is ``None``."
 msgstr ""
+"如果 *stdout* 引數為 :data:`PIPE`，此屬性是一個由 :func:`open` 回傳的可讀取串"
+"流物件。從此串流讀取可取得子行程的輸出。如果有指定 *encoding* 或 *errors* 引"
+"數，或者 *text* 或 *universal_newlines* 引數為 ``True``，該串流為文字串流，否"
+"則為位元組串流。如果 *stdout* 引數不是 :data:`PIPE`，此屬性為 ``None``。"
 
-#: ../../library/subprocess.rst:926
+#: ../../library/subprocess.rst:938
 msgid ""
 "If the *stderr* argument was :data:`PIPE`, this attribute is a readable "
 "stream object as returned by :func:`open`. Reading from the stream provides "
@@ -1247,75 +1599,95 @@ msgid ""
 "the stream is a text stream, otherwise it is a byte stream. If the *stderr* "
 "argument was not :data:`PIPE`, this attribute is ``None``."
 msgstr ""
+"如果 *stderr* 引數為 :data:`PIPE`，此屬性是一個由 :func:`open` 回傳的可讀取串"
+"流物件。從此串流讀取可取得子行程的錯誤輸出。如果有指定 *encoding* 或 "
+"*errors* 引數，或者 *text* 或 *universal_newlines* 引數為 ``True``，該串流為"
+"文字串流，否則為位元組串流。如果 *stderr* 引數不是 :data:`PIPE`，此屬性為 "
+"``None``。"
 
-#: ../../library/subprocess.rst:935
+#: ../../library/subprocess.rst:947
 msgid ""
 "Use :meth:`~Popen.communicate` rather than :attr:`.stdin.write <Popen."
 "stdin>`, :attr:`.stdout.read <Popen.stdout>` or :attr:`.stderr.read <Popen."
 "stderr>` to avoid deadlocks due to any of the other OS pipe buffers filling "
 "up and blocking the child process."
 msgstr ""
+"請使用 :meth:`~Popen.communicate`，而不是 :attr:`.stdin.write <Popen."
+"stdin>`、:attr:`.stdout.read <Popen.stdout>` 或 :attr:`.stderr.read <Popen."
+"stderr>`，以避免因任何其他作業系統管道緩衝區填滿並阻塞子行程而造成死鎖。"
 
-#: ../../library/subprocess.rst:943
+#: ../../library/subprocess.rst:955
 msgid "The process ID of the child process."
-msgstr ""
+msgstr "子行程的行程 ID。"
 
-#: ../../library/subprocess.rst:945
+#: ../../library/subprocess.rst:957
 msgid ""
 "Note that if you set the *shell* argument to ``True``, this is the process "
 "ID of the spawned shell."
 msgstr ""
+"請注意，如果你將 *shell* 引數設為 ``True``，這會是所衍生的 shell 的行程 ID。"
 
-#: ../../library/subprocess.rst:951
+#: ../../library/subprocess.rst:963
 msgid ""
 "The child return code. Initially ``None``, :attr:`returncode` is set by a "
 "call to the :meth:`poll`, :meth:`wait`, or :meth:`communicate` methods if "
 "they detect that the process has terminated."
 msgstr ""
+"子行程的回傳碼。初始為 ``None``；如果 :meth:`poll`、:meth:`wait` 或 :meth:"
+"`communicate` 方法偵測到行程已終止，呼叫這些方法時就會設定 :attr:"
+"`returncode`。"
 
-#: ../../library/subprocess.rst:955
+#: ../../library/subprocess.rst:967
 msgid ""
 "A ``None`` value indicates that the process hadn't yet terminated at the "
 "time of the last method call."
-msgstr ""
+msgstr "``None`` 值表示在最後一次方法呼叫時，行程尚未終止。"
 
-#: ../../library/subprocess.rst:961
+#: ../../library/subprocess.rst:973
 msgid ""
 "When ``shell=True``, the return code reflects the exit status of the shell "
 "itself (e.g. ``/bin/sh``), which may map signals to codes such as ``128+N``. "
 "See the documentation of the shell (for example, the Bash manual's Exit "
 "Status) for details."
 msgstr ""
+"當 ``shell=True`` 時，回傳碼反映的是 shell 本身（例如 ``/bin/sh``）的結束狀"
+"態，shell 可能會將訊號對映為 ``128+N`` 之類的結束代碼。詳情請參閱 shell 的文"
+"件（例如 Bash 手冊中的 Exit Status 一節）。"
 
-#: ../../library/subprocess.rst:968
+#: ../../library/subprocess.rst:980
 msgid "Windows Popen Helpers"
-msgstr ""
+msgstr "Windows Popen 輔助工具"
 
-#: ../../library/subprocess.rst:970
+#: ../../library/subprocess.rst:982
 msgid ""
 "The :class:`STARTUPINFO` class and following constants are only available on "
 "Windows."
-msgstr ""
+msgstr ":class:`STARTUPINFO` 類別和下列常數僅在 Windows 上可用。"
 
-#: ../../library/subprocess.rst:976
+#: ../../library/subprocess.rst:988
 msgid ""
 "Partial support of the Windows `STARTUPINFO <https://msdn.microsoft.com/en-"
 "us/library/ms686331(v=vs.85).aspx>`__ structure is used for :class:`Popen` "
 "creation.  The following attributes can be set by passing them as keyword-"
 "only arguments."
 msgstr ""
+"建立 :class:`Popen` 時會使用 Windows `STARTUPINFO <https://msdn.microsoft."
+"com/en-us/library/ms686331(v=vs.85).aspx>`__ 結構（僅部分支援）。下列屬性可以"
+"用僅限關鍵字引數傳入來設定。"
 
-#: ../../library/subprocess.rst:981
+#: ../../library/subprocess.rst:993
 msgid "Keyword-only argument support was added."
-msgstr ""
+msgstr "新增僅限關鍵字引數的支援。"
 
-#: ../../library/subprocess.rst:986
+#: ../../library/subprocess.rst:998
 msgid ""
 "A bit field that determines whether certain :class:`STARTUPINFO` attributes "
 "are used when the process creates a window. ::"
 msgstr ""
+"一個位元欄位，用來決定行程建立視窗時是否使用某些 :class:`STARTUPINFO` 屬"
+"性。 ::"
 
-#: ../../library/subprocess.rst:989
+#: ../../library/subprocess.rst:1001
 msgid ""
 "si = subprocess.STARTUPINFO()\n"
 "si.dwFlags = subprocess.STARTF_USESTDHANDLES | subprocess."
@@ -1325,28 +1697,35 @@ msgstr ""
 "si.dwFlags = subprocess.STARTF_USESTDHANDLES | subprocess."
 "STARTF_USESHOWWINDOW"
 
-#: ../../library/subprocess.rst:994
+#: ../../library/subprocess.rst:1006
 msgid ""
 "If :attr:`dwFlags` specifies :data:`STARTF_USESTDHANDLES`, this attribute is "
 "the standard input handle for the process. If :data:`STARTF_USESTDHANDLES` "
 "is not specified, the default for standard input is the keyboard buffer."
 msgstr ""
+"如果 :attr:`dwFlags` 指定了 :data:`STARTF_USESTDHANDLES`，此屬性是該行程的標"
+"準輸入控制代碼。如果未指定 :data:`STARTF_USESTDHANDLES`，標準輸入的預設值是鍵"
+"盤緩衝區。"
 
-#: ../../library/subprocess.rst:1001
+#: ../../library/subprocess.rst:1013
 msgid ""
 "If :attr:`dwFlags` specifies :data:`STARTF_USESTDHANDLES`, this attribute is "
 "the standard output handle for the process. Otherwise, this attribute is "
 "ignored and the default for standard output is the console window's buffer."
 msgstr ""
+"如果 :attr:`dwFlags` 指定了 :data:`STARTF_USESTDHANDLES`，此屬性是該行程的標"
+"準輸出控制代碼。否則會忽略此屬性，標準輸出的預設值是主控台視窗的緩衝區。"
 
-#: ../../library/subprocess.rst:1008
+#: ../../library/subprocess.rst:1020
 msgid ""
 "If :attr:`dwFlags` specifies :data:`STARTF_USESTDHANDLES`, this attribute is "
 "the standard error handle for the process. Otherwise, this attribute is "
 "ignored and the default for standard error is the console window's buffer."
 msgstr ""
+"如果 :attr:`dwFlags` 指定了 :data:`STARTF_USESTDHANDLES`，此屬性是該行程的標"
+"準錯誤控制代碼。否則會忽略此屬性，標準錯誤的預設值是主控台視窗的緩衝區。"
 
-#: ../../library/subprocess.rst:1014
+#: ../../library/subprocess.rst:1026
 msgid ""
 "If :attr:`dwFlags` specifies :data:`STARTF_USESHOWWINDOW`, this attribute "
 "can be any of the values that can be specified in the ``nCmdShow`` parameter "
@@ -1354,43 +1733,55 @@ msgid ""
 "ms633548(v=vs.85).aspx>`__ function, except for ``SW_SHOWDEFAULT``. "
 "Otherwise, this attribute is ignored."
 msgstr ""
+"如果 :attr:`dwFlags` 指定了 :data:`STARTF_USESHOWWINDOW`，此屬性可以是 "
+"`ShowWindow <https://msdn.microsoft.com/en-us/library/ms633548(v=vs.85)."
+"aspx>`__ 函式的 ``nCmdShow`` 參數中可指定的任何值，但 ``SW_SHOWDEFAULT`` 除"
+"外。否則會忽略此屬性。"
 
-#: ../../library/subprocess.rst:1021
+#: ../../library/subprocess.rst:1033
 msgid ""
 ":data:`SW_HIDE` is provided for this attribute. It is used when :class:"
 "`Popen` is called with ``shell=True``."
 msgstr ""
+"有提供 :data:`SW_HIDE` 供此屬性使用。當以 ``shell=True`` 呼叫 :class:`Popen` "
+"時會使用它。"
 
-#: ../../library/subprocess.rst:1026
+#: ../../library/subprocess.rst:1038
 msgid ""
 "A dictionary of additional attributes for process creation as given in "
 "``STARTUPINFOEX``, see `UpdateProcThreadAttribute <https://msdn.microsoft."
 "com/en-us/library/windows/desktop/ms686880(v=vs.85).aspx>`__."
 msgstr ""
+"一個用於行程建立的額外屬性字典，如 ``STARTUPINFOEX`` 中所給定，請參閱 "
+"`UpdateProcThreadAttribute <https://msdn.microsoft.com/en-us/library/windows/"
+"desktop/ms686880(v=vs.85).aspx>`__。"
 
-#: ../../library/subprocess.rst:1030
+#: ../../library/subprocess.rst:1042
 msgid "Supported attributes:"
-msgstr ""
+msgstr "支援的屬性："
 
-#: ../../library/subprocess.rst:1032
+#: ../../library/subprocess.rst:1044
 msgid "**handle_list**"
 msgstr "**handle_list**"
 
-#: ../../library/subprocess.rst:1033
+#: ../../library/subprocess.rst:1045
 msgid ""
 "Sequence of handles that will be inherited. *close_fds* must be true if non-"
 "empty."
-msgstr ""
+msgstr "將被繼承的控制代碼序列。若非空，則 *close_fds* 必須為真。"
 
-#: ../../library/subprocess.rst:1036
+#: ../../library/subprocess.rst:1048
 msgid ""
 "The handles must be temporarily made inheritable by :func:`os."
 "set_handle_inheritable` when passed to the :class:`Popen` constructor, else :"
 "class:`OSError` will be raised with Windows error "
 "``ERROR_INVALID_PARAMETER`` (87)."
 msgstr ""
+"傳遞給 :class:`Popen` 建構函式時，這些控制代碼必須先透過 :func:`os."
+"set_handle_inheritable` 暫時設為可繼承，否則將引發 :class:`OSError`，並附帶 "
+"Windows 錯誤 ``ERROR_INVALID_PARAMETER`` (87)。"
 
-#: ../../library/subprocess.rst:1043
+#: ../../library/subprocess.rst:1055
 msgid ""
 "In a multithreaded process, use caution to avoid leaking handles that are "
 "marked inheritable when combining this feature with concurrent calls to "
@@ -1398,111 +1789,130 @@ msgid ""
 "system`.  This also applies to standard handle redirection, which "
 "temporarily creates inheritable handles."
 msgstr ""
+"在多執行緒行程中，將此功能與其他會繼承所有控制代碼的行程建立函式（例如 :func:"
+"`os.system`）的並行呼叫一起使用時，請小心避免洩漏被標記為可繼承的控制代碼。這"
+"也適用於標準控制代碼重新導向，因為它會暫時建立可繼承的控制代碼。"
 
-#: ../../library/subprocess.rst:1053
+#: ../../library/subprocess.rst:1065
 msgid "Windows Constants"
-msgstr ""
+msgstr "Windows 常數"
 
-#: ../../library/subprocess.rst:1055
+#: ../../library/subprocess.rst:1067
 msgid "The :mod:`!subprocess` module exposes the following constants."
-msgstr ""
+msgstr ":mod:`!subprocess` 模組公開了下列常數。"
 
-#: ../../library/subprocess.rst:1059
+#: ../../library/subprocess.rst:1071
 msgid ""
 "The standard input device. Initially, this is the console input buffer, "
 "``CONIN$``."
-msgstr ""
+msgstr "標準輸入裝置。最初，這是主控台輸入緩衝區 ``CONIN$``。"
 
-#: ../../library/subprocess.rst:1064
+#: ../../library/subprocess.rst:1076
 msgid ""
 "The standard output device. Initially, this is the active console screen "
 "buffer, ``CONOUT$``."
-msgstr ""
+msgstr "標準輸出裝置。最初，這是作用中的主控台螢幕緩衝區 ``CONOUT$``。"
 
-#: ../../library/subprocess.rst:1069
+#: ../../library/subprocess.rst:1081
 msgid ""
 "The standard error device. Initially, this is the active console screen "
 "buffer, ``CONOUT$``."
-msgstr ""
+msgstr "標準錯誤裝置。最初，這是作用中的主控台螢幕緩衝區 ``CONOUT$``。"
 
-#: ../../library/subprocess.rst:1074
+#: ../../library/subprocess.rst:1086
 msgid "Hides the window. Another window will be activated."
-msgstr ""
+msgstr "隱藏視窗。另一個視窗會成為作用中視窗。"
 
-#: ../../library/subprocess.rst:1078
+#: ../../library/subprocess.rst:1090
 msgid ""
 "Specifies that the :attr:`STARTUPINFO.hStdInput`, :attr:`STARTUPINFO."
 "hStdOutput`, and :attr:`STARTUPINFO.hStdError` attributes contain additional "
 "information."
 msgstr ""
+"指定 :attr:`STARTUPINFO.hStdInput`、:attr:`STARTUPINFO.hStdOutput` 和 :attr:"
+"`STARTUPINFO.hStdError` 屬性包含額外資訊。"
 
-#: ../../library/subprocess.rst:1084
+#: ../../library/subprocess.rst:1096
 msgid ""
 "Specifies that the :attr:`STARTUPINFO.wShowWindow` attribute contains "
 "additional information."
-msgstr ""
+msgstr "指定 :attr:`STARTUPINFO.wShowWindow` 屬性包含額外資訊。"
 
-#: ../../library/subprocess.rst:1089
+#: ../../library/subprocess.rst:1101
 msgid ""
 "A :attr:`STARTUPINFO.dwFlags` parameter to specify that the *Working in "
 "Background* mouse cursor will be displayed while a process is launching. "
 "This is the default behavior for GUI processes."
 msgstr ""
+"一個 :attr:`STARTUPINFO.dwFlags` 參數，用來指定在行程啟動期間顯示「在背景工"
+"作」(*Working in Background*) 滑鼠游標。這是 GUI 行程的預設行為。"
 
-#: ../../library/subprocess.rst:1098
+#: ../../library/subprocess.rst:1110
 msgid ""
 "A :attr:`STARTUPINFO.dwFlags` parameter to specify that the mouse cursor "
 "will not be changed when launching a process."
 msgstr ""
+"一個 :attr:`STARTUPINFO.dwFlags` 參數，用來指定在啟動行程時不變更滑鼠游標。"
 
-#: ../../library/subprocess.rst:1105
+#: ../../library/subprocess.rst:1117
 msgid ""
 "The new process has a new console, instead of inheriting its parent's "
 "console (the default)."
-msgstr ""
+msgstr "新行程會有一個新的主控台，而不是繼承其父行程的主控台（預設行為）。"
 
-#: ../../library/subprocess.rst:1110
+#: ../../library/subprocess.rst:1122
 msgid ""
 "A :class:`Popen` ``creationflags`` parameter to specify that a new process "
 "group will be created. This flag is necessary for using :func:`os.kill` on "
 "the subprocess."
 msgstr ""
+"一個 :class:`Popen` ``creationflags`` 參數，用來指定將建立新的行程群組。要對"
+"子行程使用 :func:`os.kill`，此旗標是必要的。"
 
-#: ../../library/subprocess.rst:1114
+#: ../../library/subprocess.rst:1126
 msgid "This flag is ignored if :data:`CREATE_NEW_CONSOLE` is specified."
-msgstr ""
+msgstr "如果指定了 :data:`CREATE_NEW_CONSOLE`，則會忽略此旗標。"
 
-#: ../../library/subprocess.rst:1118
+#: ../../library/subprocess.rst:1130
 msgid ""
 "A :class:`Popen` ``creationflags`` parameter to specify that a new process "
 "will have an above average priority."
 msgstr ""
+"一個 :class:`Popen` ``creationflags`` 參數，用來指定新行程將具有高於平均的優"
+"先權。"
 
-#: ../../library/subprocess.rst:1125
+#: ../../library/subprocess.rst:1137
 msgid ""
 "A :class:`Popen` ``creationflags`` parameter to specify that a new process "
 "will have a below average priority."
 msgstr ""
+"一個 :class:`Popen` ``creationflags`` 參數，用來指定新行程將具有低於平均的優"
+"先權。"
 
-#: ../../library/subprocess.rst:1132
+#: ../../library/subprocess.rst:1144
 msgid ""
 "A :class:`Popen` ``creationflags`` parameter to specify that a new process "
 "will have a high priority."
 msgstr ""
+"一個 :class:`Popen` ``creationflags`` 參數，用來指定新行程將具有高優先權。"
 
-#: ../../library/subprocess.rst:1139
+#: ../../library/subprocess.rst:1151
 msgid ""
 "A :class:`Popen` ``creationflags`` parameter to specify that a new process "
 "will have an idle (lowest) priority."
 msgstr ""
+"一個 :class:`Popen` ``creationflags`` 參數，用來指定新行程將具有閒置（最低）"
+"優先權。"
 
-#: ../../library/subprocess.rst:1146
+#: ../../library/subprocess.rst:1158
 msgid ""
 "A :class:`Popen` ``creationflags`` parameter to specify that a new process "
 "will have a normal priority. (default)"
 msgstr ""
+"一個 :class:`Popen` ``creationflags`` 參數，用來指定新行程將具有一般優先權。"
+"（預設值）"
 
-#: ../../library/subprocess.rst:1153
+#: ../../library/subprocess.rst:1165
 msgid ""
 "A :class:`Popen` ``creationflags`` parameter to specify that a new process "
 "will have realtime priority. You should almost never use "
@@ -1511,80 +1921,100 @@ msgid ""
 "appropriate for applications that \"talk\" directly to hardware or that "
 "perform brief tasks that should have limited interruptions."
 msgstr ""
+"一個 :class:`Popen` ``creationflags`` 參數，用來指定新行程將具有即時優先權。"
+"你幾乎不應該使用 REALTIME_PRIORITY_CLASS，因為它會中斷負責管理滑鼠輸入、鍵盤"
+"輸入和背景磁碟排清的系統執行緒。此優先權類別可能適用於直接與硬體「溝通」的應"
+"用程式，或是執行應盡量減少中斷的簡短任務的應用程式。"
 
-#: ../../library/subprocess.rst:1164
+#: ../../library/subprocess.rst:1176
 msgid ""
 "A :class:`Popen` ``creationflags`` parameter to specify that a new process "
 "will not create a window."
 msgstr ""
+"一個 :class:`Popen` ``creationflags`` 參數，用來指定新行程將不會建立視窗。"
 
-#: ../../library/subprocess.rst:1171
+#: ../../library/subprocess.rst:1183
 msgid ""
 "A :class:`Popen` ``creationflags`` parameter to specify that a new process "
 "will not inherit its parent's console. This value cannot be used with "
 "CREATE_NEW_CONSOLE."
 msgstr ""
+"一個 :class:`Popen` ``creationflags`` 參數，用來指定新行程將不會繼承其父行程"
+"的主控台。此值不能與 CREATE_NEW_CONSOLE 一起使用。"
 
-#: ../../library/subprocess.rst:1179
+#: ../../library/subprocess.rst:1191
 msgid ""
 "A :class:`Popen` ``creationflags`` parameter to specify that a new process "
 "does not inherit the error mode of the calling process. Instead, the new "
 "process gets the default error mode. This feature is particularly useful for "
 "multithreaded shell applications that run with hard errors disabled."
 msgstr ""
+"一個 :class:`Popen` ``creationflags`` 參數，用來指定新行程不繼承呼叫端行程的"
+"錯誤模式，而是取得預設的錯誤模式。此功能對於在停用嚴重錯誤 (hard error) 的情"
+"況下執行的多執行緒 shell 應用程式特別有用。"
 
-#: ../../library/subprocess.rst:1189
+#: ../../library/subprocess.rst:1201
 msgid ""
 "A :class:`Popen` ``creationflags`` parameter to specify that a new process "
 "is not associated with the job."
 msgstr ""
+"一個 :class:`Popen` ``creationflags`` 參數，用來指定新行程不與該工作 (job) 相"
+"關聯。"
 
-#: ../../library/subprocess.rst:1197
+#: ../../library/subprocess.rst:1209
 msgid "Older high-level API"
-msgstr ""
+msgstr "舊版高階 API"
 
-#: ../../library/subprocess.rst:1199
+#: ../../library/subprocess.rst:1211
 msgid ""
 "Prior to Python 3.5, these three functions comprised the high level API to "
 "subprocess. You can now use :func:`run` in many cases, but lots of existing "
 "code calls these functions."
 msgstr ""
+"在 Python 3.5 之前，這三個函式構成了 subprocess 的高階 API。現在在許多情況下"
+"你可以使用 :func:`run`，但仍有許多既有的程式碼會呼叫這些函式。"
 
-#: ../../library/subprocess.rst:1206
+#: ../../library/subprocess.rst:1218
 msgid ""
 "Run the command described by *args*.  Wait for command to complete, then "
 "return the :attr:`~Popen.returncode` attribute."
 msgstr ""
+"執行 *args* 所描述的命令。等待命令完成後，回傳 :attr:`~Popen.returncode` 屬"
+"性。"
 
-#: ../../library/subprocess.rst:1209 ../../library/subprocess.rst:1249
+#: ../../library/subprocess.rst:1221 ../../library/subprocess.rst:1261
 msgid ""
 "Code needing to capture stdout or stderr should use :func:`run` instead::"
-msgstr ""
+msgstr "需要捕捉 stdout 或 stderr 的程式碼應改用 :func:`run`： ::"
 
-#: ../../library/subprocess.rst:1211
+#: ../../library/subprocess.rst:1223
 msgid "run(...).returncode"
 msgstr "run(...).returncode"
 
-#: ../../library/subprocess.rst:1213 ../../library/subprocess.rst:1253
+#: ../../library/subprocess.rst:1225 ../../library/subprocess.rst:1265
 msgid "To suppress stdout or stderr, supply a value of :data:`DEVNULL`."
-msgstr ""
+msgstr "要抑制 stdout 或 stderr，請提供 :data:`DEVNULL` 值。"
 
-#: ../../library/subprocess.rst:1215 ../../library/subprocess.rst:1255
+#: ../../library/subprocess.rst:1227 ../../library/subprocess.rst:1267
 msgid ""
 "The arguments shown above are merely some common ones. The full function "
 "signature is the same as that of the :class:`Popen` constructor - this "
 "function passes all supplied arguments other than *timeout* directly through "
 "to that interface."
 msgstr ""
+"上面列出的引數只是一些常用的引數。完整的函式簽名與 :class:`Popen` 建構函式相"
+"同，此函式會將 *timeout* 以外所有提供的引數直接傳遞給該介面。"
 
-#: ../../library/subprocess.rst:1222 ../../library/subprocess.rst:1262
+#: ../../library/subprocess.rst:1234 ../../library/subprocess.rst:1274
 msgid ""
 "Do not use ``stdout=PIPE`` or ``stderr=PIPE`` with this function.  The child "
 "process will block if it generates enough output to a pipe to fill up the OS "
 "pipe buffer as the pipes are not being read from."
 msgstr ""
+"請勿在此函式中使用 ``stdout=PIPE`` 或 ``stderr=PIPE``。由於沒有讀取管道，如果"
+"子行程產生的輸出多到填滿作業系統的管道緩衝區，子行程就會阻塞。"
 
-#: ../../library/subprocess.rst:1242
+#: ../../library/subprocess.rst:1254
 msgid ""
 "Run command with arguments.  Wait for command to complete. If the return "
 "code was zero then return, otherwise raise :exc:`CalledProcessError`. The :"
@@ -1592,32 +2022,39 @@ msgid ""
 "`~CalledProcessError.returncode` attribute. If :func:`check_call` was unable "
 "to start the process it will propagate the exception that was raised."
 msgstr ""
+"以引數執行命令。等待命令完成。如果回傳碼為零則回傳，否則引發 :exc:"
+"`CalledProcessError`。:exc:`CalledProcessError` 物件的 :attr:"
+"`~CalledProcessError.returncode` 屬性中會包含回傳碼。如果 :func:`check_call` "
+"無法啟動行程，它會傳播所引發的例外。"
 
-#: ../../library/subprocess.rst:1251
+#: ../../library/subprocess.rst:1263
 msgid "run(..., check=True)"
 msgstr "run(..., check=True)"
 
-#: ../../library/subprocess.rst:1284
+#: ../../library/subprocess.rst:1296
 msgid "Run command with arguments and return its output."
-msgstr ""
+msgstr "以引數執行命令並回傳其輸出。"
 
-#: ../../library/subprocess.rst:1286
+#: ../../library/subprocess.rst:1298
 msgid ""
 "If the return code was non-zero it raises a :exc:`CalledProcessError`. The :"
 "exc:`CalledProcessError` object will have the return code in the :attr:"
 "`~CalledProcessError.returncode` attribute and any output in the :attr:"
 "`~CalledProcessError.output` attribute."
 msgstr ""
+"如果回傳碼不為零，它會引發 :exc:`CalledProcessError`。:exc:"
+"`CalledProcessError` 物件的 :attr:`~CalledProcessError.returncode` 屬性中會包"
+"含回傳碼，而 :attr:`~CalledProcessError.output` 屬性中會包含任何輸出。"
 
-#: ../../library/subprocess.rst:1291
+#: ../../library/subprocess.rst:1303
 msgid "This is equivalent to::"
 msgstr "這等同於： ::"
 
-#: ../../library/subprocess.rst:1293
+#: ../../library/subprocess.rst:1305
 msgid "run(..., check=True, stdout=PIPE).stdout"
 msgstr "run(..., check=True, stdout=PIPE).stdout"
 
-#: ../../library/subprocess.rst:1295
+#: ../../library/subprocess.rst:1307
 msgid ""
 "The arguments shown above are merely some common ones. The full function "
 "signature is largely the same as that of :func:`run` - most arguments are "
@@ -1626,134 +2063,154 @@ msgid ""
 "``input=b''`` (or ``input=''``, depending on other arguments) rather than "
 "using the parent's standard input file handle."
 msgstr ""
+"上面列出的引數只是一些常用的引數。完整的函式簽名大致與 :func:`run` 相同，大部"
+"分引數都會直接傳遞給該介面。與 :func:`run` 的行為相比存在一項 API 差異：傳遞 "
+"``input=None`` 的行為會與 ``input=b''``\\ （或 ``input=''``，取決於其他引數）"
+"相同，而不是使用父行程的標準輸入檔案控制代碼。"
 
-#: ../../library/subprocess.rst:1302
+#: ../../library/subprocess.rst:1314
 msgid ""
 "By default, this function will return the data as encoded bytes. The actual "
 "encoding of the output data may depend on the command being invoked, so the "
 "decoding to text will often need to be handled at the application level."
 msgstr ""
+"預設情況下，此函式會以編碼後的位元組回傳資料。輸出資料的實際編碼可能取決於所"
+"叫用的命令，因此解碼為文字的工作通常需要在應用程式層級處理。"
 
-#: ../../library/subprocess.rst:1306
+#: ../../library/subprocess.rst:1318
 msgid ""
 "This behaviour may be overridden by setting *text*, *encoding*, *errors*, or "
 "*universal_newlines* to ``True`` as described in :ref:`frequently-used-"
 "arguments` and :func:`run`."
 msgstr ""
+"如\\ :ref:`frequently-used-arguments`\\ 和 :func:`run` 中所述，可以透過將 "
+"*text*、*encoding*、*errors* 或 *universal_newlines* 設為 ``True`` 來覆寫此行"
+"為。"
 
-#: ../../library/subprocess.rst:1310
+#: ../../library/subprocess.rst:1322
 msgid ""
 "To also capture standard error in the result, use ``stderr=subprocess."
 "STDOUT``::"
-msgstr ""
+msgstr "若也要在結果中捕捉標準錯誤，請使用 ``stderr=subprocess.STDOUT``： ::"
 
-#: ../../library/subprocess.rst:1313
+#: ../../library/subprocess.rst:1325
 msgid ""
 ">>> subprocess.check_output(\n"
 "...     \"ls non_existent_file; exit 0\",\n"
 "...     stderr=subprocess.STDOUT,\n"
 "...     shell=True)\n"
-"'ls: non_existent_file: No such file or directory\\n'"
+"b'ls: non_existent_file: No such file or directory\\n'"
 msgstr ""
 ">>> subprocess.check_output(\n"
 "...     \"ls non_existent_file; exit 0\",\n"
 "...     stderr=subprocess.STDOUT,\n"
 "...     shell=True)\n"
-"'ls: non_existent_file: No such file or directory\\n'"
+"b'ls: non_existent_file: No such file or directory\\n'"
 
-#: ../../library/subprocess.rst:1324
+#: ../../library/subprocess.rst:1336
 msgid "Support for the *input* keyword argument was added."
 msgstr "新增 *input* 關鍵字引數的支援。"
 
-#: ../../library/subprocess.rst:1327
+#: ../../library/subprocess.rst:1339
 msgid "*encoding* and *errors* were added.  See :func:`run` for details."
 msgstr "新增 *encoding* 與 *errors*。細節請見 :func:`run`。"
 
-#: ../../library/subprocess.rst:1345
+#: ../../library/subprocess.rst:1357
 msgid "Replacing Older Functions with the :mod:`!subprocess` Module"
-msgstr ""
+msgstr "以 :mod:`!subprocess` 模組取代舊的函式"
 
-#: ../../library/subprocess.rst:1347
+#: ../../library/subprocess.rst:1359
 msgid ""
 "In this section, \"a becomes b\" means that b can be used as a replacement "
 "for a."
-msgstr ""
+msgstr "在本節中，「a 變成 b」表示 b 可以用來取代 a。"
 
-#: ../../library/subprocess.rst:1351
+#: ../../library/subprocess.rst:1363
 msgid ""
 "All \"a\" functions in this section fail (more or less) silently if the "
 "executed program cannot be found; the \"b\" replacements raise :exc:"
 "`OSError` instead."
 msgstr ""
+"如果找不到要執行的程式，本節中所有的「a」函式都會（或多或少）靜默地失敗；而"
+"「b」替代方案則會改為引發 :exc:`OSError`。"
 
-#: ../../library/subprocess.rst:1355
+#: ../../library/subprocess.rst:1367
 msgid ""
 "In addition, the replacements using :func:`check_output` will fail with a :"
 "exc:`CalledProcessError` if the requested operation produces a non-zero "
 "return code. The output is still available as the :attr:`~CalledProcessError."
 "output` attribute of the raised exception."
 msgstr ""
+"此外，如果所要求的操作產生非零的回傳碼，使用 :func:`check_output` 的替代方案"
+"將會以 :exc:`CalledProcessError` 失敗。輸出仍可透過所引發例外的 :attr:"
+"`~CalledProcessError.output` 屬性取得。"
 
-#: ../../library/subprocess.rst:1360
+#: ../../library/subprocess.rst:1372
 msgid ""
 "In the following examples, we assume that the relevant functions have "
 "already been imported from the :mod:`!subprocess` module."
-msgstr ""
+msgstr "在下列範例中，我們假設相關的函式都已經從 :mod:`!subprocess` 模組引入。"
 
-#: ../../library/subprocess.rst:1365
+#: ../../library/subprocess.rst:1377
 msgid "Replacing :program:`/bin/sh` shell command substitution"
-msgstr ""
+msgstr "取代 :program:`/bin/sh` shell 命令替換"
 
-#: ../../library/subprocess.rst:1367
+#: ../../library/subprocess.rst:1379
 msgid "output=$(mycmd myarg)"
 msgstr "output=$(mycmd myarg)"
 
-#: ../../library/subprocess.rst:1371 ../../library/subprocess.rst:1382
-#: ../../library/subprocess.rst:1399
+#: ../../library/subprocess.rst:1383 ../../library/subprocess.rst:1394
+#: ../../library/subprocess.rst:1411
 msgid "becomes::"
 msgstr "變成： ::"
 
-#: ../../library/subprocess.rst:1373
+#: ../../library/subprocess.rst:1385
 msgid "output = check_output([\"mycmd\", \"myarg\"])"
 msgstr "output = check_output([\"mycmd\", \"myarg\"])"
 
-#: ../../library/subprocess.rst:1376
+#: ../../library/subprocess.rst:1388
 msgid "Replacing shell pipeline"
-msgstr ""
+msgstr "取代 shell 管線 (pipeline)"
 
-#: ../../library/subprocess.rst:1378 ../../library/subprocess.rst:1395
+#: ../../library/subprocess.rst:1390 ../../library/subprocess.rst:1407
 msgid "output=$(dmesg | grep hda)"
 msgstr "output=$(dmesg | grep hda)"
 
-#: ../../library/subprocess.rst:1384
+#: ../../library/subprocess.rst:1396
 msgid ""
 "p1 = Popen([\"dmesg\"], stdout=PIPE)\n"
 "p2 = Popen([\"grep\", \"hda\"], stdin=p1.stdout, stdout=PIPE)\n"
 "p1.stdout.close()  # Allow p1 to receive a SIGPIPE if p2 exits.\n"
 "output = p2.communicate()[0]"
 msgstr ""
+"p1 = Popen([\"dmesg\"], stdout=PIPE)\n"
+"p2 = Popen([\"grep\", \"hda\"], stdin=p1.stdout, stdout=PIPE)\n"
+"p1.stdout.close()  # 讓 p1 在 p2 結束時能收到 SIGPIPE。\n"
+"output = p2.communicate()[0]"
 
-#: ../../library/subprocess.rst:1389
+#: ../../library/subprocess.rst:1401
 msgid ""
 "The ``p1.stdout.close()`` call after starting the p2 is important in order "
 "for p1 to receive a SIGPIPE if p2 exits before p1."
 msgstr ""
+"啟動 p2 之後呼叫 ``p1.stdout.close()`` 很重要，這樣如果 p2 在 p1 之前結束，"
+"p1 才能收到 SIGPIPE。"
 
-#: ../../library/subprocess.rst:1392
+#: ../../library/subprocess.rst:1404
 msgid ""
 "Alternatively, for trusted input, the shell's own pipeline support may still "
 "be used directly:"
-msgstr ""
+msgstr "或者，對於受信任的輸入，仍然可以直接使用 shell 本身對管線的支援："
 
-#: ../../library/subprocess.rst:1401
+#: ../../library/subprocess.rst:1413
 msgid "output = check_output(\"dmesg | grep hda\", shell=True)"
 msgstr "output = check_output(\"dmesg | grep hda\", shell=True)"
 
-#: ../../library/subprocess.rst:1405
+#: ../../library/subprocess.rst:1417
 msgid "Replacing :func:`os.system`"
 msgstr "取代 :func:`os.system`"
 
-#: ../../library/subprocess.rst:1409
+#: ../../library/subprocess.rst:1421
 msgid ""
 "sts = os.system(\"mycmd\" + \" myarg\")\n"
 "# becomes\n"
@@ -1763,32 +2220,34 @@ msgstr ""
 "# 變成\n"
 "retcode = call(\"mycmd\" + \" myarg\", shell=True)"
 
-#: ../../library/subprocess.rst:1413
+#: ../../library/subprocess.rst:1425
 msgid "Notes:"
 msgstr "註解："
 
-#: ../../library/subprocess.rst:1415
+#: ../../library/subprocess.rst:1427
 msgid "Calling the program through the shell is usually not required."
-msgstr ""
+msgstr "通常不需要透過 shell 來呼叫程式。"
 
-#: ../../library/subprocess.rst:1416
+#: ../../library/subprocess.rst:1428
 msgid ""
 "The :func:`call` return value is encoded differently to that of :func:`os."
 "system`."
-msgstr ""
+msgstr ":func:`call` 回傳值的編碼方式與 :func:`os.system` 不同。"
 
-#: ../../library/subprocess.rst:1419
+#: ../../library/subprocess.rst:1431
 msgid ""
 "The :func:`os.system` function ignores SIGINT and SIGQUIT signals while the "
 "command is running, but the caller must do this separately when using the :"
 "mod:`!subprocess` module."
 msgstr ""
+":func:`os.system` 函式在命令執行期間會忽略 SIGINT 和 SIGQUIT 訊號，但使用 :"
+"mod:`!subprocess` 模組時，呼叫者必須另外自行處理。"
 
-#: ../../library/subprocess.rst:1423
+#: ../../library/subprocess.rst:1435
 msgid "A more realistic example would look like this::"
-msgstr ""
+msgstr "更貼近實際的範例如下： ::"
 
-#: ../../library/subprocess.rst:1425
+#: ../../library/subprocess.rst:1437
 msgid ""
 "try:\n"
 "    retcode = call(\"mycmd\" + \" myarg\", shell=True)\n"
@@ -1810,15 +2269,15 @@ msgstr ""
 "except OSError as e:\n"
 "    print(\"Execution failed:\", e, file=sys.stderr)"
 
-#: ../../library/subprocess.rst:1436
+#: ../../library/subprocess.rst:1448
 msgid "Replacing the :func:`os.spawn <os.spawnl>` family"
-msgstr ""
+msgstr "取代 :func:`os.spawn <os.spawnl>` 系列函式"
 
-#: ../../library/subprocess.rst:1438
+#: ../../library/subprocess.rst:1450
 msgid "P_NOWAIT example::"
 msgstr "P_NOWAIT 範例： ::"
 
-#: ../../library/subprocess.rst:1440
+#: ../../library/subprocess.rst:1452
 msgid ""
 "pid = os.spawnlp(os.P_NOWAIT, \"/bin/mycmd\", \"mycmd\", \"myarg\")\n"
 "==>\n"
@@ -1828,11 +2287,11 @@ msgstr ""
 "==>\n"
 "pid = Popen([\"/bin/mycmd\", \"myarg\"]).pid"
 
-#: ../../library/subprocess.rst:1444
+#: ../../library/subprocess.rst:1456
 msgid "P_WAIT example::"
 msgstr "P_WAIT 範例： ::"
 
-#: ../../library/subprocess.rst:1446
+#: ../../library/subprocess.rst:1458
 msgid ""
 "retcode = os.spawnlp(os.P_WAIT, \"/bin/mycmd\", \"mycmd\", \"myarg\")\n"
 "==>\n"
@@ -1842,11 +2301,11 @@ msgstr ""
 "==>\n"
 "retcode = call([\"/bin/mycmd\", \"myarg\"])"
 
-#: ../../library/subprocess.rst:1450
+#: ../../library/subprocess.rst:1462
 msgid "Vector example::"
 msgstr "向量範例： ::"
 
-#: ../../library/subprocess.rst:1452
+#: ../../library/subprocess.rst:1464
 msgid ""
 "os.spawnvp(os.P_NOWAIT, path, args)\n"
 "==>\n"
@@ -1856,11 +2315,11 @@ msgstr ""
 "==>\n"
 "Popen([path] + args[1:])"
 
-#: ../../library/subprocess.rst:1456
+#: ../../library/subprocess.rst:1468
 msgid "Environment example::"
 msgstr "環境範例： ::"
 
-#: ../../library/subprocess.rst:1458
+#: ../../library/subprocess.rst:1470
 msgid ""
 "os.spawnlpe(os.P_NOWAIT, \"/bin/mycmd\", \"mycmd\", \"myarg\", env)\n"
 "==>\n"
@@ -1870,15 +2329,15 @@ msgstr ""
 "==>\n"
 "Popen([\"/bin/mycmd\", \"myarg\"], env={\"PATH\": \"/usr/bin\"})"
 
-#: ../../library/subprocess.rst:1465
+#: ../../library/subprocess.rst:1477
 msgid "Replacing :func:`os.popen`"
 msgstr "取代 :func:`os.popen`"
 
-#: ../../library/subprocess.rst:1467
+#: ../../library/subprocess.rst:1479
 msgid "Return code handling translates as follows::"
-msgstr ""
+msgstr "回傳碼的處理方式對應如下： ::"
 
-#: ../../library/subprocess.rst:1469
+#: ../../library/subprocess.rst:1481
 msgid ""
 "pipe = os.popen(cmd, 'w')\n"
 "...\n"
@@ -1904,36 +2363,43 @@ msgstr ""
 "if process.wait() != 0:\n"
 "    print(\"There were some errors\")"
 
-#: ../../library/subprocess.rst:1483
+#: ../../library/subprocess.rst:1495
 msgid "Legacy Shell Invocation Functions"
-msgstr ""
+msgstr "舊版 shell 叫用函式"
 
-#: ../../library/subprocess.rst:1485
+#: ../../library/subprocess.rst:1497
 msgid ""
 "This module also provides the following legacy functions from the 2.x "
 "``commands`` module. These operations implicitly invoke the system shell and "
 "none of the guarantees described above regarding security and exception "
 "handling consistency are valid for these functions."
 msgstr ""
+"此模組也提供下列來自 2.x ``commands`` 模組的舊版函式。這些操作會隱式地叫用系"
+"統 shell，而上述關於安全性和例外處理一致性的保證，對這些函式都不成立。"
 
-#: ../../library/subprocess.rst:1492
+#: ../../library/subprocess.rst:1504
 msgid "Return ``(exitcode, output)`` of executing *cmd* in a shell."
-msgstr ""
+msgstr "回傳在 shell 中執行 *cmd* 的 ``(exitcode, output)``。"
 
-#: ../../library/subprocess.rst:1494
+#: ../../library/subprocess.rst:1506
 msgid ""
 "Execute the string *cmd* in a shell with :func:`check_output` and return a 2-"
 "tuple ``(exitcode, output)``. *encoding* and *errors* are used to decode "
 "output; see the notes on :ref:`frequently-used-arguments` for more details."
 msgstr ""
+"以 :func:`check_output` 在 shell 中執行字串 *cmd*，並回傳一個 2 元組 "
+"``(exitcode, output)``。*encoding* 和 *errors* 用於解碼輸出；詳情請參閱\\ :"
+"ref:`frequently-used-arguments`\\ 中的說明。"
 
-#: ../../library/subprocess.rst:1499
+#: ../../library/subprocess.rst:1511
 msgid ""
 "A trailing newline is stripped from the output. The exit code for the "
 "command can be interpreted as the return code of subprocess.  Example::"
 msgstr ""
+"輸出結尾的一個換行字元會被移除。命令的結束代碼可以被解讀為子行程的回傳碼。範"
+"例： ::"
 
-#: ../../library/subprocess.rst:1503
+#: ../../library/subprocess.rst:1515
 msgid ""
 ">>> subprocess.getstatusoutput('ls /bin/ls')\n"
 "(0, '/bin/ls')\n"
@@ -1953,28 +2419,32 @@ msgstr ""
 ">>> subprocess.getstatusoutput('/bin/kill $$')\n"
 "(-15, '')"
 
-#: ../../library/subprocess.rst:1514
+#: ../../library/subprocess.rst:1526
 msgid "Windows support was added."
 msgstr "新增對 Windows 的支援。"
 
-#: ../../library/subprocess.rst:1517
+#: ../../library/subprocess.rst:1529
 msgid ""
 "The function now returns (exitcode, output) instead of (status, output) as "
 "it did in Python 3.3.3 and earlier.  exitcode has the same value as :attr:"
 "`~Popen.returncode`."
 msgstr ""
+"此函式現在回傳 (exitcode, output)，而不是像 Python 3.3.3 及更早版本那樣回傳 "
+"(status, output)。exitcode 的值與 :attr:`~Popen.returncode` 相同。"
 
-#: ../../library/subprocess.rst:1526
+#: ../../library/subprocess.rst:1538
 msgid "Return output (stdout and stderr) of executing *cmd* in a shell."
-msgstr ""
+msgstr "回傳在 shell 中執行 *cmd* 的輸出（stdout 和 stderr）。"
 
-#: ../../library/subprocess.rst:1528
+#: ../../library/subprocess.rst:1540
 msgid ""
 "Like :func:`getstatusoutput`, except the exit code is ignored and the return "
 "value is a string containing the command's output.  Example::"
 msgstr ""
+"類似 :func:`getstatusoutput`，但會忽略結束代碼，且回傳值是一個包含命令輸出的"
+"字串。範例： ::"
 
-#: ../../library/subprocess.rst:1531
+#: ../../library/subprocess.rst:1543
 msgid ""
 ">>> subprocess.getoutput('ls /bin/ls')\n"
 "'/bin/ls'"
@@ -1982,137 +2452,159 @@ msgstr ""
 ">>> subprocess.getoutput('ls /bin/ls')\n"
 "'/bin/ls'"
 
-#: ../../library/subprocess.rst:1536
+#: ../../library/subprocess.rst:1548
 msgid "Windows support added"
 msgstr "新增對 Windows 的支援"
 
-#: ../../library/subprocess.rst:1544
+#: ../../library/subprocess.rst:1556
 msgid "Notes"
 msgstr "註解"
 
-#: ../../library/subprocess.rst:1549
+#: ../../library/subprocess.rst:1561
 msgid "Timeout Behavior"
-msgstr ""
+msgstr "超時行為"
 
-#: ../../library/subprocess.rst:1551
+#: ../../library/subprocess.rst:1563
 msgid ""
 "When using the ``timeout`` parameter in functions like :func:`run`, :meth:"
 "`Popen.wait`, or :meth:`Popen.communicate`, users should be aware of the "
 "following behaviors:"
 msgstr ""
+"在 :func:`run`、:meth:`Popen.wait` 或 :meth:`Popen.communicate` 等函式中使用 "
+"``timeout`` 參數時，使用者應注意下列行為："
 
-#: ../../library/subprocess.rst:1555
+#: ../../library/subprocess.rst:1567
 msgid ""
 "**Process Creation Delay**: The initial process creation itself cannot be "
 "interrupted on many platform APIs. This means that even when specifying a "
 "timeout, you are not guaranteed to see a timeout exception until at least "
 "after however long process creation takes."
 msgstr ""
+"**行程建立延遲**：在許多平台 API 上，初始的行程建立本身無法被中斷。這表示即使"
+"指定了超時，也至少要等到行程建立完成之後，才可能看到超時例外。"
 
-#: ../../library/subprocess.rst:1560
+#: ../../library/subprocess.rst:1572
 msgid ""
 "**Extremely Small Timeout Values**: Setting very small timeout values (such "
 "as a few milliseconds) may result in almost immediate :exc:`TimeoutExpired` "
 "exceptions because process creation and system scheduling inherently require "
 "time."
 msgstr ""
+"**極小的超時值**：設定非常小的超時值（例如幾毫秒）可能會導致幾乎立即引發 :"
+"exc:`TimeoutExpired` 例外，因為行程建立和系統排程本身就需要時間。"
 
-#: ../../library/subprocess.rst:1567
+#: ../../library/subprocess.rst:1579
 msgid "Converting an argument sequence to a string on Windows"
-msgstr ""
+msgstr "在 Windows 上將引數序列轉換為字串"
 
-#: ../../library/subprocess.rst:1569
+#: ../../library/subprocess.rst:1581
 msgid ""
 "On Windows, an *args* sequence is converted to a string that can be parsed "
 "using the following rules (which correspond to the rules used by the MS C "
 "runtime):"
 msgstr ""
+"在 Windows 上，*args* 序列會被轉換為一個可以使用下列規則剖析的字串（這些規則"
+"對應於 MS C runtime 所使用的規則）："
 
-#: ../../library/subprocess.rst:1573
+#: ../../library/subprocess.rst:1585
 msgid ""
 "Arguments are delimited by white space, which is either a space or a tab."
-msgstr ""
+msgstr "引數以空白分隔，空白可以是空格或定位字元 (tab)。"
 
-#: ../../library/subprocess.rst:1576
+#: ../../library/subprocess.rst:1588
 msgid ""
 "A string surrounded by double quotation marks is interpreted as a single "
 "argument, regardless of white space contained within.  A quoted string can "
 "be embedded in an argument."
 msgstr ""
+"以雙引號包圍的字串會被解讀為單一引數，無論其中包含何種空白。帶引號的字串可以"
+"嵌入在引數中。"
 
-#: ../../library/subprocess.rst:1581
+#: ../../library/subprocess.rst:1593
 msgid ""
 "A double quotation mark preceded by a backslash is interpreted as a literal "
 "double quotation mark."
-msgstr ""
+msgstr "前面有反斜線的雙引號會被解讀為字面值的雙引號。"
 
-#: ../../library/subprocess.rst:1584
+#: ../../library/subprocess.rst:1596
 msgid ""
 "Backslashes are interpreted literally, unless they immediately precede a "
 "double quotation mark."
-msgstr ""
+msgstr "反斜線會按字面解讀，除非它們緊接在雙引號之前。"
 
-#: ../../library/subprocess.rst:1587
+#: ../../library/subprocess.rst:1599
 msgid ""
 "If backslashes immediately precede a double quotation mark, every pair of "
 "backslashes is interpreted as a literal backslash.  If the number of "
 "backslashes is odd, the last backslash escapes the next double quotation "
 "mark as described in rule 3."
 msgstr ""
+"如果反斜線緊接在雙引號之前，每一對反斜線會被解讀為一個字面值的反斜線。如果反"
+"斜線的數量是奇數，最後一個反斜線會如規則 3 所述，跳脫下一個雙引號。"
 
-#: ../../library/subprocess.rst:1596
+#: ../../library/subprocess.rst:1608
 msgid ":mod:`shlex`"
 msgstr ":mod:`shlex`"
 
-#: ../../library/subprocess.rst:1597
+#: ../../library/subprocess.rst:1609
 msgid "Module which provides function to parse and escape command lines."
-msgstr ""
+msgstr "提供剖析和跳脫命令列之函式的模組。"
 
-#: ../../library/subprocess.rst:1603
+#: ../../library/subprocess.rst:1615
 msgid "Disable use of ``posix_spawn()``"
 msgstr "停用 ``posix_spawn()``"
 
-#: ../../library/subprocess.rst:1605
+#: ../../library/subprocess.rst:1617
 msgid ""
 "On Linux, :mod:`!subprocess` defaults to using the ``vfork()`` system call "
 "internally when it is safe to do so rather than ``fork()``. This greatly "
 "improves performance."
 msgstr ""
 "在 Linux 上，:mod:`!subprocess` 在安全的情況下預設會在內部使用 ``vfork()`` 系"
-"統呼叫，而不是 ``fork()``，這顯著地提高了性能。"
+"統呼叫，而不是 ``fork()``，這能大幅提升效能。"
 
-#: ../../library/subprocess.rst:1611
+#: ../../library/subprocess.rst:1623
 msgid "subprocess._USE_POSIX_SPAWN = False  # See CPython issue gh-NNNNNN."
 msgstr "subprocess._USE_POSIX_SPAWN = False  # 見 CPython 問題 gh-NNNNNN。"
 
-#: ../../library/subprocess.rst:1613
+#: ../../library/subprocess.rst:1625
 msgid ""
 "It is safe to set this to false on any Python version. It will have no "
 "effect on older or newer versions where unsupported. Do not assume the "
 "attribute is available to read. Despite the name, a true value does not "
 "indicate the corresponding function will be used, only that it may be."
 msgstr ""
-"在任何 Python 版本上將這個設定為 false 都是安全的。當不受支援時，它對舊版本或"
-"沒有支援的新版本沒有影響。不要假設屬性可供讀取。儘管它的名稱是這樣，真實值並"
-"不表示將使用相應的函式，而只是表示可能會使用。"
+"在任何 Python 版本上將此設為 false 都是安全的。在不支援此設定的舊版或新版上，"
+"它不會有任何作用。不要假設此屬性可供讀取。儘管名稱如此，真值並不表示一定會使"
+"用對應的函式，只表示可能會使用。"
 
-#: ../../library/subprocess.rst:1618
+#: ../../library/subprocess.rst:1630
 msgid ""
 "Please file issues any time you have to use these private knobs with a way "
 "to reproduce the issue you were seeing. Link to that issue from a comment in "
 "your code."
 msgstr ""
-"每當你需要使用這些私有開關以重現你所看到的問題時，請隨時提出問題 (file "
-"issues)。從程式碼中的註解連結到該問題。"
+"每當你不得不使用這些私有開關時，請回報問題 (issue)，並附上重現你所遇到問題的"
+"方法。在程式碼的註解中附上該問題的連結。"
 
-#: ../../library/subprocess.rst:1622
+#: ../../library/subprocess.rst:1634
 msgid "``_USE_POSIX_SPAWN``"
 msgstr "``_USE_POSIX_SPAWN``"
 
-#: ../../library/subprocess.rst:296
+#: ../../library/subprocess.rst:293
 msgid "universal newlines"
 msgstr "universal newlines"
 
-#: ../../library/subprocess.rst:296
+#: ../../library/subprocess.rst:293
 msgid "subprocess module"
 msgstr "subprocess 模組"
+
+#~ msgid ""
+#~ "When the ``timeout`` parameter is not ``None``, then (on POSIX) the "
+#~ "function is implemented using a busy loop (non-blocking call and short "
+#~ "sleeps). Use the :mod:`asyncio` module for an asynchronous wait: see :"
+#~ "class:`asyncio.create_subprocess_exec`."
+#~ msgstr ""
+#~ "當 ``timeout`` 參數不是 ``None`` 時，此函式在 POSIX 上會以忙碌迴圈 (busy "
+#~ "loop) 來實作（非阻塞呼叫加上短暫的休眠）。若要進行非同步的等待，請使用 :"
+#~ "mod:`asyncio` 模組：請參閱 :class:`asyncio.create_subprocess_exec`。"
