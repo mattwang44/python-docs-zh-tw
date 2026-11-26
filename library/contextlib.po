@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.14\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-01 00:29+0000\n"
+"POT-Creation-Date: 2026-11-27 03:22+0800\n"
 "PO-Revision-Date: 2018-05-23 14:41+0000\n"
 "Last-Translator: Adrian Liaw <adrianliaw2000@gmail.com>\n"
 "Language-Team: Chinese - TAIWAN (https://github.com/python/python-docs-zh-"
@@ -32,14 +32,16 @@ msgid ""
 "`with` statement. For more information see also :ref:`typecontextmanager` "
 "and :ref:`context-managers`."
 msgstr ""
+"此模組為涉及 :keyword:`with` 陳述式的常見任務提供工具程式。更多資訊另請參閱"
+"\\ :ref:`typecontextmanager`\\ 和 :ref:`context-managers`。"
 
 #: ../../library/contextlib.rst:17
 msgid "Utilities"
-msgstr ""
+msgstr "工具程式"
 
 #: ../../library/contextlib.rst:19
 msgid "Functions and classes provided:"
-msgstr ""
+msgstr "提供的函式與類別："
 
 #: ../../library/contextlib.rst:23
 msgid ""
@@ -49,6 +51,10 @@ msgid ""
 "__exit__` is an abstract method which by default returns ``None``. See also "
 "the definition of :ref:`typecontextmanager`."
 msgstr ""
+"一個\\ :term:`抽象基底類別 <abstract base class>`，用於實作了 :meth:`~object."
+"__enter__` 和 :meth:`~object.__exit__` 的類別。它提供了 :meth:`~object."
+"__enter__` 的預設實作，會回傳 ``self``；而 :meth:`~object.__exit__` 則是一個"
+"抽象方法，預設回傳 ``None``。另請參閱\\ :ref:`typecontextmanager`\\ 的定義。"
 
 #: ../../library/contextlib.rst:34
 msgid ""
@@ -58,6 +64,11 @@ msgid ""
 "`~object.__aexit__` is an abstract method which by default returns ``None``. "
 "See also the definition of :ref:`async-context-managers`."
 msgstr ""
+"一個\\ :term:`抽象基底類別 <abstract base class>`，用於實作了 :meth:`~object."
+"__aenter__` 和 :meth:`~object.__aexit__` 的類別。它提供了 :meth:`~object."
+"__aenter__` 的預設實作，會回傳 ``self``；而 :meth:`~object.__aexit__` 則是一"
+"個抽象方法，預設回傳 ``None``。另請參閱\\ :ref:`async-context-managers`\\ 的"
+"定義。"
 
 #: ../../library/contextlib.rst:46
 msgid ""
@@ -66,6 +77,9 @@ msgid ""
 "create a class or separate :meth:`~object.__enter__` and :meth:`~object."
 "__exit__` methods."
 msgstr ""
+"此函式是一個\\ :term:`裝飾器 <decorator>`，可用來為 :keyword:`with` 陳述式的"
+"情境管理器定義工廠函式，而不需要建立類別或分別撰寫 :meth:`~object.__enter__` "
+"與 :meth:`~object.__exit__` 方法。"
 
 #: ../../library/contextlib.rst:50
 msgid ""
@@ -74,12 +88,14 @@ msgid ""
 "and doesn't implement a ``close()`` method for use with ``contextlib."
 "closing``."
 msgstr ""
+"雖然許多物件原生就支援在 with 陳述式中使用，但有時需要管理的資源本身並不是情"
+"境管理器，也沒有實作可搭配 ``contextlib.closing`` 使用的 ``close()`` 方法。"
 
 #: ../../library/contextlib.rst:54
 msgid ""
 "An abstract example would be the following to ensure correct resource "
 "management::"
-msgstr ""
+msgstr "以下是一個確保資源被正確管理的抽象範例： ::"
 
 #: ../../library/contextlib.rst:57
 msgid ""
@@ -95,10 +111,21 @@ msgid ""
 "        # Code to release resource, e.g.:\n"
 "        release_resource(resource)"
 msgstr ""
+"from contextlib import contextmanager\n"
+"\n"
+"@contextmanager\n"
+"def managed_resource(*args, **kwds):\n"
+"    # 取得資源的程式碼，例如：\n"
+"    resource = acquire_resource(*args, **kwds)\n"
+"    try:\n"
+"        yield resource\n"
+"    finally:\n"
+"        # 釋放資源的程式碼，例如：\n"
+"        release_resource(resource)"
 
 #: ../../library/contextlib.rst:69
 msgid "The function can then be used like this::"
-msgstr ""
+msgstr "這個函式可以這樣使用： ::"
 
 #: ../../library/contextlib.rst:71
 msgid ""
@@ -106,6 +133,9 @@ msgid ""
 "...     # Resource is released at the end of this block,\n"
 "...     # even if code in the block raises an exception"
 msgstr ""
+">>> with managed_resource(timeout=3600) as resource:\n"
+"...     # 資源會在此區塊結束時被釋放，\n"
+"...     # 即使區塊中的程式碼引發了例外也一樣"
 
 #: ../../library/contextlib.rst:75
 msgid ""
@@ -113,6 +143,9 @@ msgid ""
 "called. This iterator must yield exactly one value, which will be bound to "
 "the targets in the :keyword:`with` statement's :keyword:`!as` clause, if any."
 msgstr ""
+"被裝飾的函式在被呼叫時必須回傳一個\\ :term:`產生器 <generator>`\\ 疊代器。這"
+"個疊代器必須恰好 yield 一個值，如果 :keyword:`with` 陳述式有 :keyword:`!as` "
+"子句，該值會被繫結到該子句的目標上。"
 
 #: ../../library/contextlib.rst:79
 msgid ""
@@ -129,6 +162,14 @@ msgid ""
 "handled, and execution will resume with the statement immediately following "
 "the :keyword:`!with` statement."
 msgstr ""
+"在產生器 yield 的那一刻，會執行巢狀於 :keyword:`with` 陳述式中的區塊。區塊結"
+"束後，產生器會接著恢復執行。如果區塊中發生了未處理的例外，該例外會在產生器內"
+"部 yield 發生之處被重新引發。因此，你可以使用 :keyword:`try`...\\ :keyword:"
+"`except`...\\ :keyword:`finally` 陳述式來捕捉錯誤（如果有的話），或確保會執行"
+"某些清理工作。如果捕捉例外只是為了記錄它或執行某些動作（而不是要完全抑制"
+"它），產生器就必須重新引發該例外。否則產生器情境管理器會向 :keyword:`!with` "
+"陳述式表示該例外已被處理，程式會從緊接在 :keyword:`!with` 陳述式之後的陳述式"
+"繼續執行。"
 
 #: ../../library/contextlib.rst:91
 msgid ""
@@ -140,16 +181,23 @@ msgid ""
 "that context managers support multiple invocations in order to be used as "
 "decorators)."
 msgstr ""
+":deco:`contextmanager` 使用了 :class:`ContextDecorator`，因此它所建立的情境管"
+"理器既可以用在 :keyword:`with` 陳述式中，也可以當作裝飾器使用。當作裝飾器使用"
+"時，每次函式呼叫都會隱式地建立一個新的產生器實例（這使得由 :deco:"
+"`contextmanager` 建立、原本是「一次性」的情境管理器，能夠滿足「情境管理器必須"
+"支援多次呼叫才能當作裝飾器使用」的要求）。"
 
 #: ../../library/contextlib.rst:98
 msgid "Use of :class:`ContextDecorator`."
-msgstr ""
+msgstr "使用了 :class:`ContextDecorator`。"
 
 #: ../../library/contextlib.rst:104
 msgid ""
 "Similar to :deco:`~contextlib.contextmanager`, but creates an :ref:"
 "`asynchronous context manager <async-context-managers>`."
 msgstr ""
+"和 :deco:`~contextlib.contextmanager` 類似，但建立的是\\ :ref:`非同步情境管理"
+"器 <async-context-managers>`。"
 
 #: ../../library/contextlib.rst:107
 msgid ""
@@ -159,6 +207,10 @@ msgid ""
 "and :meth:`~object.__aexit__` methods. It must be applied to an :term:"
 "`asynchronous generator` function."
 msgstr ""
+"此函式是一個\\ :term:`裝飾器 <decorator>`，可用來為 :keyword:`async with` 陳"
+"述式的非同步情境管理器定義工廠函式，而不需要建立類別或分別撰寫 :meth:"
+"`~object.__aenter__` 與 :meth:`~object.__aexit__` 方法。它必須套用在\\ :term:"
+"`非同步產生器 <asynchronous generator>`\\ 函式上。"
 
 #: ../../library/contextlib.rst:113
 msgid "A simple example::"
@@ -199,6 +251,8 @@ msgid ""
 "Context managers defined with :deco:`asynccontextmanager` can be used either "
 "as decorators or with :keyword:`async with` statements::"
 msgstr ""
+"以 :deco:`asynccontextmanager` 定義的情境管理器既可以當作裝飾器使用，也可以搭"
+"配 :keyword:`async with` 陳述式使用： ::"
 
 #: ../../library/contextlib.rst:134
 msgid ""
@@ -217,6 +271,20 @@ msgid ""
 "async def main():\n"
 "    # ... async code ..."
 msgstr ""
+"import time\n"
+"from contextlib import asynccontextmanager\n"
+"\n"
+"@asynccontextmanager\n"
+"async def timeit():\n"
+"    now = time.monotonic()\n"
+"    try:\n"
+"        yield\n"
+"    finally:\n"
+"        print(f'it took {time.monotonic() - now}s to run')\n"
+"\n"
+"@timeit()\n"
+"async def main():\n"
+"    # ... 非同步程式碼 ..."
 
 #: ../../library/contextlib.rst:149
 msgid ""
@@ -225,18 +293,22 @@ msgid ""
 "created by :deco:`asynccontextmanager` to meet the requirement that context "
 "managers support multiple invocations in order to be used as decorators."
 msgstr ""
+"當作裝飾器使用時，每次函式呼叫都會隱式地建立一個新的產生器實例。這使得由 :"
+"deco:`asynccontextmanager` 建立、原本是「一次性」的情境管理器，能夠滿足「情境"
+"管理器必須支援多次呼叫才能當作裝飾器使用」的要求。"
 
 #: ../../library/contextlib.rst:154
 msgid ""
 "Async context managers created with :deco:`asynccontextmanager` can be used "
 "as decorators."
 msgstr ""
+"以 :deco:`asynccontextmanager` 建立的非同步情境管理器可以當作裝飾器使用。"
 
 #: ../../library/contextlib.rst:161
 msgid ""
 "Return a context manager that closes *thing* upon completion of the block.  "
 "This is basically equivalent to::"
-msgstr ""
+msgstr "回傳一個情境管理器，在區塊執行完畢時關閉 *thing*。這基本上等價於： ::"
 
 #: ../../library/contextlib.rst:164
 msgid ""
@@ -260,7 +332,7 @@ msgstr ""
 
 #: ../../library/contextlib.rst:173
 msgid "And lets you write code like this::"
-msgstr ""
+msgstr "並讓你可以寫出這樣的程式碼： ::"
 
 #: ../../library/contextlib.rst:175
 msgid ""
@@ -283,6 +355,8 @@ msgid ""
 "without needing to explicitly close ``page``.  Even if an error occurs, "
 "``page.close()`` will be called when the :keyword:`with` block is exited."
 msgstr ""
+"而不需要明確地關閉 ``page``。即使發生錯誤，``page.close()`` 也會在 :keyword:"
+"`with` 區塊結束時被呼叫。"
 
 #: ../../library/contextlib.rst:187
 msgid ""
@@ -292,12 +366,18 @@ msgid ""
 "context managers. This example is purely for illustration purposes, as :func:"
 "`~urllib.request.urlopen` would normally be used in a context manager."
 msgstr ""
+"大多數管理資源的型別都支援\\ :term:`情境管理器 <context manager>`\\ 協定，會"
+"在離開 :keyword:`with` 陳述式時關閉 *thing*。因此，:func:`!closing` 最適合用"
+"於不支援情境管理器的第三方型別。此範例純粹用於說明，因為 :func:`~urllib."
+"request.urlopen` 通常會在情境管理器中使用。"
 
 #: ../../library/contextlib.rst:196
 msgid ""
 "Return an async context manager that calls the ``aclose()`` method of "
 "*thing* upon completion of the block.  This is basically equivalent to::"
 msgstr ""
+"回傳一個非同步情境管理器，在區塊執行完畢時呼叫 *thing* 的 ``aclose()`` 方法。"
+"這基本上等價於： ::"
 
 #: ../../library/contextlib.rst:199
 msgid ""
@@ -325,6 +405,8 @@ msgid ""
 "generators when they happen to exit early by :keyword:`break` or an "
 "exception.  For example::"
 msgstr ""
+"值得注意的是，當非同步產生器因為 :keyword:`break` 或例外而提早結束時，"
+"``aclosing()`` 支援對其進行確定性的清理。舉例來說： ::"
 
 #: ../../library/contextlib.rst:212
 msgid ""
@@ -349,6 +431,9 @@ msgid ""
 "work as expected, and the exit code isn't run after the lifetime of some "
 "task it depends on)."
 msgstr ""
+"這個模式確保了產生器結束時的非同步程式碼，會在與其疊代相同的情境中執行（如此"
+"例外和情境變數才能如預期運作，且結束時的程式碼不會在它所相依的某個任務的生命"
+"週期結束後才執行）。"
 
 #: ../../library/contextlib.rst:231
 msgid ""
@@ -356,6 +441,8 @@ msgid ""
 "__enter__`, but otherwise does nothing. It is intended to be used as a stand-"
 "in for an optional context manager, for example::"
 msgstr ""
+"回傳一個從 :meth:`~object.__enter__` 回傳 *enter_result* 的情境管理器，除此之"
+"外不做任何事。它的用途是作為可選情境管理器的替代品，例如： ::"
 
 #: ../../library/contextlib.rst:235
 msgid ""
@@ -369,6 +456,15 @@ msgid ""
 "    with cm:\n"
 "        # Do something"
 msgstr ""
+"def myfunction(arg, ignore_exceptions=False):\n"
+"    if ignore_exceptions:\n"
+"        # 使用 suppress 來忽略所有例外。\n"
+"        cm = contextlib.suppress(Exception)\n"
+"    else:\n"
+"        # 不忽略任何例外，cm 沒有任何作用。\n"
+"        cm = contextlib.nullcontext()\n"
+"    with cm:\n"
+"        # 做一些事情"
 
 #: ../../library/contextlib.rst:245
 msgid "An example using *enter_result*::"
@@ -387,12 +483,24 @@ msgid ""
 "    with cm as file:\n"
 "        # Perform processing on the file"
 msgstr ""
+"def process_file(file_or_path):\n"
+"    if isinstance(file_or_path, str):\n"
+"        # 如果是字串就開啟檔案\n"
+"        cm = open(file_or_path)\n"
+"    else:\n"
+"        # 由呼叫者負責關閉檔案\n"
+"        cm = nullcontext(file_or_path)\n"
+"\n"
+"    with cm as file:\n"
+"        # 對檔案進行處理"
 
 #: ../../library/contextlib.rst:258
 msgid ""
 "It can also be used as a stand-in for :ref:`asynchronous context managers "
 "<async-context-managers>`::"
 msgstr ""
+"它也可以用來作為\\ :ref:`非同步情境管理器 <async-context-managers>`\\ 的替代"
+"品： ::"
 
 #: ../../library/contextlib.rst:261
 msgid ""
@@ -407,10 +515,21 @@ msgid ""
 "    async with cm as session:\n"
 "        # Send http requests with session"
 msgstr ""
+"async def send_http(session=None):\n"
+"    if not session:\n"
+"        # 如果沒有 http 工作階段，就用 aiohttp 建立一個\n"
+"        cm = aiohttp.ClientSession()\n"
+"    else:\n"
+"        # 由呼叫者負責關閉工作階段\n"
+"        cm = nullcontext(session)\n"
+"\n"
+"    async with cm as session:\n"
+"        # 使用該工作階段發送 http 請求"
 
 #: ../../library/contextlib.rst:274
 msgid ":term:`asynchronous context manager` support was added."
 msgstr ""
+"新增了對\\ :term:`非同步情境管理器 <asynchronous context manager>`\\ 的支援。"
 
 #: ../../library/contextlib.rst:281
 msgid ""
@@ -419,6 +538,8 @@ msgid ""
 "execution with the first statement following the end of the :keyword:`!with` "
 "statement."
 msgstr ""
+"回傳一個情境管理器，若 :keyword:`!with` 陳述式的主體中發生任何指定的例外，便"
+"會抑制該例外，並從 :keyword:`!with` 陳述式結束後的第一個陳述式繼續執行。"
 
 #: ../../library/contextlib.rst:286
 msgid ""
@@ -427,6 +548,8 @@ msgid ""
 "silently continuing with program execution is known to be the right thing to "
 "do."
 msgstr ""
+"如同其他任何會完全抑制例外的機制，此情境管理器只應該用來處理非常特定的錯誤，"
+"而且必須確定在這些錯誤發生時默默地繼續執行程式是正確的做法。"
 
 #: ../../library/contextlib.rst:291
 msgid "For example::"
@@ -452,7 +575,7 @@ msgstr ""
 
 #: ../../library/contextlib.rst:301
 msgid "This code is equivalent to::"
-msgstr ""
+msgstr "這段程式碼等價於： ::"
 
 #: ../../library/contextlib.rst:303
 msgid ""
@@ -479,7 +602,7 @@ msgstr ""
 #: ../../library/contextlib.rst:313 ../../library/contextlib.rst:362
 #: ../../library/contextlib.rst:372 ../../library/contextlib.rst:389
 msgid "This context manager is :ref:`reentrant <reentrant-cms>`."
-msgstr ""
+msgstr "此情境管理器是\\ :ref:`可重入的 <reentrant-cms>`。"
 
 #: ../../library/contextlib.rst:315
 msgid ""
@@ -489,24 +612,32 @@ msgid ""
 "group which is created using the original group's :meth:`~BaseExceptionGroup."
 "derive` method."
 msgstr ""
+"如果 :keyword:`!with` 區塊中的程式碼引發了 :exc:`BaseExceptionGroup`，被抑制"
+"的例外會從該群組中移除。群組中任何未被抑制的例外，會在一個以原群組的 :meth:"
+"`~BaseExceptionGroup.derive` 方法建立的新群組中被重新引發。"
 
 #: ../../library/contextlib.rst:323
 msgid ""
 "``suppress`` now supports suppressing exceptions raised as part of a :exc:"
 "`BaseExceptionGroup`."
 msgstr ""
+"``suppress`` 現在支援抑制作為 :exc:`BaseExceptionGroup` 的一部分而被引發的例"
+"外。"
 
 #: ../../library/contextlib.rst:329
 msgid ""
-"Context manager for temporarily redirecting :data:`sys.stdout` to another "
-"file or file-like object."
+"Context manager for temporarily redirecting :data:`sys.stdout` to another :"
+"term:`file object`."
 msgstr ""
+"用於將 :data:`sys.stdout` 暫時重新導向到另一個\\ :term:`檔案物件 <file "
+"object>`\\ 的情境管理器。"
 
 #: ../../library/contextlib.rst:332
 msgid ""
 "This tool adds flexibility to existing functions or classes whose output is "
-"hardwired to stdout."
+"hardwired to :data:`sys.stdout`."
 msgstr ""
+"對於輸出被寫死為 :data:`sys.stdout` 的現有函式或類別，此工具增加了彈性。"
 
 #: ../../library/contextlib.rst:335
 msgid ""
@@ -516,6 +647,9 @@ msgid ""
 "meth:`~object.__enter__` method and so is available as the target of the :"
 "keyword:`with` statement::"
 msgstr ""
+"舉例來說，:func:`help` 的輸出通常會送到 *sys.stdout*。你可以將輸出重新導向到"
+"一個 :class:`io.StringIO` 物件，藉此把輸出擷取成字串。替代用的串流會由 :meth:"
+"`~object.__enter__` 方法回傳，因此可以作為 :keyword:`with` 陳述式的目標： ::"
 
 #: ../../library/contextlib.rst:341
 msgid ""
@@ -532,6 +666,7 @@ msgid ""
 "To send the output of :func:`help` to a file on disk, redirect the output to "
 "a regular file::"
 msgstr ""
+"若要將 :func:`help` 的輸出送到磁碟上的檔案，請將輸出重新導向到一般檔案： ::"
 
 #: ../../library/contextlib.rst:348
 msgid ""
@@ -545,7 +680,7 @@ msgstr ""
 
 #: ../../library/contextlib.rst:352
 msgid "To send the output of :func:`help` to *sys.stderr*::"
-msgstr ""
+msgstr "若要將 :func:`help` 的輸出送到 *sys.stderr*： ::"
 
 #: ../../library/contextlib.rst:354
 msgid ""
@@ -562,12 +697,17 @@ msgid ""
 "applications. It also has no effect on the output of subprocesses. However, "
 "it is still a useful approach for many utility scripts."
 msgstr ""
+"請注意，由於對 :data:`sys.stdout` 有全域的副作用，此情境管理器不適合在函式庫"
+"程式碼與大多數多執行緒應用程式中使用。它對子行程的輸出也沒有作用。不過對許多"
+"工具腳本來說，它仍然是個有用的做法。"
 
 #: ../../library/contextlib.rst:369
 msgid ""
-"Similar to :func:`~contextlib.redirect_stdout` but redirecting :data:`sys."
-"stderr` to another file or file-like object."
+"Similar to :func:`~contextlib.redirect_stdout` but redirecting the global :"
+"data:`sys.stderr` to another :term:`file object`."
 msgstr ""
+"和 :func:`~contextlib.redirect_stdout` 類似，但是將全域的 :data:`sys.stderr` "
+"重新導向到另一個\\ :term:`檔案物件 <file object>`。"
 
 #: ../../library/contextlib.rst:379
 msgid ""
@@ -578,17 +718,23 @@ msgid ""
 "temporarily relinquished -- unless explicitly desired, you should not yield "
 "when this context manager is active."
 msgstr ""
+"用於變更目前工作目錄的非平行安全 (non parallel-safe) 情境管理器。由於它會變更"
+"全域狀態（即工作目錄），因此不適合在大多數多執行緒或非同步的情境中使用。它也"
+"不適合用於大多數非線性的程式碼執行，例如產生器，因為程式的執行權會暫時被讓出 "
+"-- 除非明確想要這麼做，否則在此情境管理器作用中時不應該 yield。"
 
 #: ../../library/contextlib.rst:386
 msgid ""
 "This is a simple wrapper around :func:`~os.chdir`, it changes the current "
 "working directory upon entering and restores the old one on exit."
 msgstr ""
+"這是 :func:`~os.chdir` 的一個簡單包裝器，它會在進入時變更目前工作目錄，並在結"
+"束時恢復為原本的目錄。"
 
 #: ../../library/contextlib.rst:396
 msgid ""
 "A base class that enables a context manager to also be used as a decorator."
-msgstr ""
+msgstr "一個讓情境管理器也能夠當作裝飾器使用的基底類別。"
 
 #: ../../library/contextlib.rst:398
 msgid ""
@@ -597,12 +743,16 @@ msgid ""
 "``__exit__`` retains its optional exception handling even when used as a "
 "decorator."
 msgstr ""
+"繼承自 ``ContextDecorator`` 的情境管理器必須照常實作 :meth:`~object."
+"__enter__` 和 :meth:`~object.__exit__`。即使當作裝飾器使用，``__exit__`` 仍保"
+"有其可選的例外處理功能。"
 
 #: ../../library/contextlib.rst:403
 msgid ""
 "``ContextDecorator`` is used by :deco:`contextmanager`, so you get this "
 "functionality automatically."
 msgstr ""
+":deco:`contextmanager` 使用了 ``ContextDecorator``，因此你會自動獲得此功能。"
 
 #: ../../library/contextlib.rst:406
 msgid "Example of ``ContextDecorator``::"
@@ -632,7 +782,7 @@ msgstr ""
 "        print('Finishing')\n"
 "        return False"
 
-#: ../../library/contextlib.rst:419 ../../library/contextlib.rst:491
+#: ../../library/contextlib.rst:419 ../../library/contextlib.rst:519
 msgid "The class can then be used like this::"
 msgstr "這個類別可以這樣使用： ::"
 
@@ -683,7 +833,7 @@ msgid ""
 msgstr ""
 "def f():\n"
 "    with cm():\n"
-"        # Do stuff"
+"        # 做一些事情"
 
 #: ../../library/contextlib.rst:443
 msgid "``ContextDecorator`` lets you instead write::"
@@ -697,19 +847,23 @@ msgid ""
 msgstr ""
 "@cm()\n"
 "def f():\n"
-"    # Do stuff"
+"    # 做一些事情"
 
 #: ../../library/contextlib.rst:449
 msgid ""
 "It makes it clear that the ``cm`` applies to the whole function, rather than "
 "just a piece of it (and saving an indentation level is nice, too)."
 msgstr ""
+"這清楚表明了 ``cm`` 作用於整個函式，而不只是其中一部分（而且能省下一層縮排也"
+"很不錯）。"
 
 #: ../../library/contextlib.rst:452
 msgid ""
 "Existing context managers that already have a base class can be extended by "
 "using ``ContextDecorator`` as a mixin class::"
 msgstr ""
+"已有基底類別的現有情境管理器，可以透過將 ``ContextDecorator`` 作為 mixin 類別"
+"來擴充： ::"
 
 #: ../../library/contextlib.rst:455
 msgid ""
@@ -738,17 +892,72 @@ msgid ""
 "statements. If this is not the case, then the original construct with the "
 "explicit :keyword:`!with` statement inside the function should be used."
 msgstr ""
+"由於被裝飾的函式必須能夠被多次呼叫，底層的情境管理器必須支援在多個 :keyword:"
+"`with` 陳述式中使用。如果不是這樣，就應該使用原本在函式內部明確撰寫 :keyword:"
+"`!with` 陳述式的結構。"
 
-#: ../../library/contextlib.rst:475
+#: ../../library/contextlib.rst:470
 msgid ""
-"Similar to :class:`ContextDecorator` but only for asynchronous functions."
-msgstr "和 :class:`ContextDecorator` 類似，但僅用於非同步函式。"
+"When the decorated callable is a generator function, coroutine function, or "
+"asynchronous generator function, the returned wrapper is of the same kind "
+"and keeps the context manager open for the lifetime of the iteration or "
+"await rather than only for the call that creates the generator or coroutine "
+"object.  Wrapped generators and asynchronous generators are explicitly "
+"closed when iteration ends, as if by :func:`closing` or :func:`aclosing`."
+msgstr ""
+"當被裝飾的可呼叫物件是產生器函式、協程函式或非同步產生器函式時，回傳的包裝器"
+"也會是同一種類，並且會在整個疊代或 await 的生命週期中讓情境管理器保持開啟，而"
+"不僅限於建立產生器或協程物件的那次呼叫。被包裝的產生器與非同步產生器會在疊代"
+"結束時被明確關閉，如同透過 :func:`closing` 或 :func:`aclosing` 一般。"
 
-#: ../../library/contextlib.rst:477
+#: ../../library/contextlib.rst:478
+msgid ""
+"For asynchronous generators the wrapper re-yields each value with ``async "
+"for``; values sent with :meth:`~agen.asend` and exceptions thrown with :meth:"
+"`~agen.athrow` are not forwarded to the wrapped generator."
+msgstr ""
+"對於非同步產生器，包裝器會以 ``async for`` 重新 yield 每個值；以 :meth:"
+"`~agen.asend` 送入的值和透過 :meth:`~agen.athrow` 引發的例外都不會轉發給被包"
+"裝的產生器。"
+
+#: ../../library/contextlib.rst:485
+msgid ""
+"Decorating a generator function, coroutine function, or asynchronous "
+"generator function now keeps the context manager open across iteration or "
+"await.  Previously the context manager exited as soon as the generator or "
+"coroutine object was created."
+msgstr ""
+"裝飾產生器函式、協程函式或非同步產生器函式時，現在會在整個疊代或 await 過程中"
+"讓情境管理器保持開啟。先前一旦產生器或協程物件被建立，情境管理器就會立即結"
+"束。"
+
+#: ../../library/contextlib.rst:494
+msgid ""
+"Similar to :class:`ContextDecorator`, but the context manager is entered and "
+"exited with :keyword:`async with`.  Decorate coroutine functions and "
+"asynchronous generator functions with this class; the returned wrapper is of "
+"the same kind."
+msgstr ""
+"和 :class:`ContextDecorator` 類似，但情境管理器是以 :keyword:`async with` 進"
+"入與結束。請用此類別來裝飾協程函式與非同步產生器函式；回傳的包裝器也會是同一"
+"種類。"
+
+#: ../../library/contextlib.rst:500
+msgid ""
+"Synchronous functions and generators are accepted, but the wrapper is always "
+"asynchronous, so the decorated callable must then be awaited or iterated "
+"with ``async for``.  If that change of calling convention is not intended, "
+"use :class:`ContextDecorator` instead."
+msgstr ""
+"它也接受同步函式和產生器，但包裝器一律是非同步的，因此被裝飾的可呼叫物件必須"
+"以 await 等待，或以 ``async for`` 進行疊代。如果你並不打算改變呼叫慣例，請改"
+"用 :class:`ContextDecorator`。"
+
+#: ../../library/contextlib.rst:505
 msgid "Example of ``AsyncContextDecorator``::"
 msgstr "``AsyncContextDecorator`` 範例： ::"
 
-#: ../../library/contextlib.rst:479
+#: ../../library/contextlib.rst:507
 msgid ""
 "from asyncio import run\n"
 "from contextlib import AsyncContextDecorator\n"
@@ -774,7 +983,7 @@ msgstr ""
 "        print('Finishing')\n"
 "        return False"
 
-#: ../../library/contextlib.rst:493
+#: ../../library/contextlib.rst:521
 msgid ""
 ">>> @mycontext()\n"
 "... async def function():\n"
@@ -812,20 +1021,34 @@ msgstr ""
 "The bit in the middle\n"
 "Finishing"
 
-#: ../../library/contextlib.rst:516
+#: ../../library/contextlib.rst:541
+msgid ""
+"Decorating an asynchronous generator function now keeps the context manager "
+"open across iteration.  Previously the context manager exited as soon as the "
+"generator object was created.  Synchronous functions and synchronous "
+"generator functions are also now accepted, with an asynchronous wrapper "
+"returned."
+msgstr ""
+"裝飾非同步產生器函式時，現在會在整個疊代過程中讓情境管理器保持開啟。先前一旦"
+"產生器物件被建立，情境管理器就會立即結束。現在也接受同步函式和同步產生器函"
+"式，並會回傳非同步的包裝器。"
+
+#: ../../library/contextlib.rst:551
 msgid ""
 "A context manager that is designed to make it easy to programmatically "
 "combine other context managers and cleanup functions, especially those that "
 "are optional or otherwise driven by input data."
 msgstr ""
+"一個情境管理器，其設計目的是讓你能輕鬆地以程式化的方式組合其他情境管理器與清"
+"理函式，特別是那些可選的、或是由輸入資料所決定的情境管理器與清理函式。"
 
-#: ../../library/contextlib.rst:520
+#: ../../library/contextlib.rst:555
 msgid ""
 "For example, a set of files may easily be handled in a single with statement "
 "as follows::"
-msgstr ""
+msgstr "舉例來說，一組檔案可以像下面這樣，輕鬆地在單一 with 陳述式中處理： ::"
 
-#: ../../library/contextlib.rst:523
+#: ../../library/contextlib.rst:558
 msgid ""
 "with ExitStack() as stack:\n"
 "    files = [stack.enter_context(open(fname)) for fname in filenames]\n"
@@ -833,29 +1056,41 @@ msgid ""
 "    # the with statement, even if attempts to open files later\n"
 "    # in the list raise an exception"
 msgstr ""
+"with ExitStack() as stack:\n"
+"    files = [stack.enter_context(open(fname)) for fname in filenames]\n"
+"    # 所有開啟的檔案都會在 with 陳述式結束時自動關閉，\n"
+"    # 即使嘗試開啟串列中後面的檔案時\n"
+"    # 引發了例外也一樣"
 
-#: ../../library/contextlib.rst:529
+#: ../../library/contextlib.rst:564
 msgid ""
 "The :meth:`~object.__enter__` method returns the :class:`ExitStack` "
 "instance, and performs no additional operations."
 msgstr ""
+":meth:`~object.__enter__` 方法會回傳 :class:`ExitStack` 實例，且不會執行任何"
+"額外操作。"
 
-#: ../../library/contextlib.rst:532
+#: ../../library/contextlib.rst:567
 msgid ""
 "Each instance maintains a stack of registered callbacks that are called in "
 "reverse order when the instance is closed (either explicitly or implicitly "
 "at the end of a :keyword:`with` statement). Note that callbacks are *not* "
 "invoked implicitly when the context stack instance is garbage collected."
 msgstr ""
+"每個實例都會維護一個已註冊回呼的堆疊，當實例被關閉時（無論是明確關閉，或是"
+"在 :keyword:`with` 陳述式結束時隱式關閉），會以相反的順序呼叫這些回呼。請注"
+"意，情境堆疊實例被垃圾回收時\\ *不會*\\ 隱式呼叫回呼。"
 
-#: ../../library/contextlib.rst:537
+#: ../../library/contextlib.rst:572
 msgid ""
 "This stack model is used so that context managers that acquire their "
 "resources in their ``__init__`` method (such as file objects) can be handled "
 "correctly."
 msgstr ""
+"之所以使用這種堆疊模型，是為了能正確處理那些在 ``__init__`` 方法中取得資源的"
+"情境管理器（例如檔案物件）。"
 
-#: ../../library/contextlib.rst:541
+#: ../../library/contextlib.rst:576
 msgid ""
 "Since registered callbacks are invoked in the reverse order of registration, "
 "this ends up behaving as if multiple nested :keyword:`with` statements had "
@@ -864,99 +1099,131 @@ msgid ""
 "exception, then outer callbacks will be passed arguments based on that "
 "updated state."
 msgstr ""
+"由於已註冊的回呼會以註冊的相反順序被呼叫，最終的行為就如同對這組已註冊的回呼"
+"使用了多個巢狀的 :keyword:`with` 陳述式。這甚至延伸到例外處理 - 如果內層的回"
+"呼抑制或取代了某個例外，那麼傳給外層回呼的引數會基於更新後的狀態。"
 
-#: ../../library/contextlib.rst:548
+#: ../../library/contextlib.rst:583
 msgid ""
 "This is a relatively low level API that takes care of the details of "
 "correctly unwinding the stack of exit callbacks. It provides a suitable "
 "foundation for higher level context managers that manipulate the exit stack "
 "in application specific ways."
 msgstr ""
+"這是一個相對低階的 API，負責處理正確展開結束回呼堆疊的細節。它為以應用程式特"
+"定方式操作結束堆疊的高階情境管理器，提供了合適的基礎。"
 
-#: ../../library/contextlib.rst:557
+#: ../../library/contextlib.rst:592
 msgid ""
 "Enters a new context manager and adds its :meth:`~object.__exit__` method to "
 "the callback stack. The return value is the result of the context manager's "
 "own :meth:`~object.__enter__` method."
 msgstr ""
+"進入一個新的情境管理器，並將其 :meth:`~object.__exit__` 方法加入回呼堆疊。回"
+"傳值為該情境管理器自身 :meth:`~object.__enter__` 方法的結果。"
 
-#: ../../library/contextlib.rst:561
+#: ../../library/contextlib.rst:596
 msgid ""
 "These context managers may suppress exceptions just as they normally would "
 "if used directly as part of a :keyword:`with` statement."
 msgstr ""
+"這些情境管理器可以抑制例外，就如同它們直接作為 :keyword:`with` 陳述式的一部分"
+"使用時一樣。"
 
-#: ../../library/contextlib.rst:564
+#: ../../library/contextlib.rst:599
 msgid ""
 "Raises :exc:`TypeError` instead of :exc:`AttributeError` if *cm* is not a "
 "context manager."
 msgstr ""
+"如果 *cm* 不是情境管理器，會引發 :exc:`TypeError` 而不是 :exc:"
+"`AttributeError`。"
 
-#: ../../library/contextlib.rst:570
+#: ../../library/contextlib.rst:603
+msgid ""
+"Added support for arbitrary descriptors :meth:`!__enter__` and :meth:`!"
+"__exit__`."
+msgstr "新增支援以任意描述器作為 :meth:`!__enter__` 和 :meth:`!__exit__`。"
+
+#: ../../library/contextlib.rst:609
 msgid ""
 "Adds a context manager's :meth:`~object.__exit__` method to the callback "
 "stack."
-msgstr ""
+msgstr "將情境管理器的 :meth:`~object.__exit__` 方法加入回呼堆疊。"
 
-#: ../../library/contextlib.rst:572
+#: ../../library/contextlib.rst:611
 msgid ""
 "As ``__enter__`` is *not* invoked, this method can be used to cover part of "
 "an :meth:`~object.__enter__` implementation with a context manager's own :"
 "meth:`~object.__exit__` method."
 msgstr ""
+"由於\\ *不會*\\ 呼叫 ``__enter__``，此方法可用來以情境管理器自身的 :meth:"
+"`~object.__exit__` 方法涵蓋 :meth:`~object.__enter__` 實作的一部分。"
 
-#: ../../library/contextlib.rst:576
+#: ../../library/contextlib.rst:615
 msgid ""
 "If passed an object that is not a context manager, this method assumes it is "
 "a callback with the same signature as a context manager's :meth:`~object."
 "__exit__` method and adds it directly to the callback stack."
 msgstr ""
+"如果傳入的物件不是情境管理器，此方法會假設它是一個與情境管理器的 :meth:"
+"`~object.__exit__` 方法具有相同簽名的回呼，並直接將其加入回呼堆疊。"
 
-#: ../../library/contextlib.rst:580
+#: ../../library/contextlib.rst:619
 msgid ""
 "By returning true values, these callbacks can suppress exceptions the same "
 "way context manager :meth:`~object.__exit__` methods can."
 msgstr ""
+"透過回傳真值，這些回呼可以像情境管理器的 :meth:`~object.__exit__` 方法一樣抑"
+"制例外。"
 
-#: ../../library/contextlib.rst:583
+#: ../../library/contextlib.rst:622
 msgid ""
 "The passed in object is returned from the function, allowing this method to "
 "be used as a function decorator."
-msgstr ""
+msgstr "傳入的物件會從函式回傳，因此此方法可以當作函式裝飾器使用。"
 
-#: ../../library/contextlib.rst:588
+#: ../../library/contextlib.rst:625
+msgid "Added support for arbitrary descriptors :meth:`!__exit__`."
+msgstr "新增支援以任意描述器作為 :meth:`!__exit__`。"
+
+#: ../../library/contextlib.rst:630
 msgid ""
 "Accepts an arbitrary callback function and arguments and adds it to the "
 "callback stack."
-msgstr ""
+msgstr "接受任意的回呼函式與引數，並將其加入回呼堆疊。"
 
-#: ../../library/contextlib.rst:591
+#: ../../library/contextlib.rst:633
 msgid ""
 "Unlike the other methods, callbacks added this way cannot suppress "
 "exceptions (as they are never passed the exception details)."
 msgstr ""
+"與其他方法不同，以這種方式加入的回呼無法抑制例外（因為它們永遠不會收到例外的"
+"詳細資訊）。"
 
-#: ../../library/contextlib.rst:594
+#: ../../library/contextlib.rst:636
 msgid ""
 "The passed in callback is returned from the function, allowing this method "
 "to be used as a function decorator."
-msgstr ""
+msgstr "傳入的回呼會從函式回傳，因此此方法可以當作函式裝飾器使用。"
 
-#: ../../library/contextlib.rst:599
+#: ../../library/contextlib.rst:641
 msgid ""
 "Transfers the callback stack to a fresh :class:`ExitStack` instance and "
 "returns it. No callbacks are invoked by this operation - instead, they will "
 "now be invoked when the new stack is closed (either explicitly or implicitly "
 "at the end of a :keyword:`with` statement)."
 msgstr ""
+"將回呼堆疊轉移到一個新的 :class:`ExitStack` 實例並回傳該實例。此操作不會呼叫"
+"任何回呼 - 取而代之的是，這些回呼現在會在新的堆疊被關閉時（無論是明確關閉，或"
+"是在 :keyword:`with` 陳述式結束時隱式關閉）才被呼叫。"
 
-#: ../../library/contextlib.rst:604
+#: ../../library/contextlib.rst:646
 msgid ""
 "For example, a group of files can be opened as an \"all or nothing\" "
 "operation as follows::"
-msgstr ""
+msgstr "舉例來說，一組檔案可以像下面這樣以「全有或全無」的操作開啟： ::"
 
-#: ../../library/contextlib.rst:607
+#: ../../library/contextlib.rst:649
 msgid ""
 "with ExitStack() as stack:\n"
 "    files = [stack.enter_context(open(fname)) for fname in filenames]\n"
@@ -967,58 +1234,84 @@ msgid ""
 "    # they will remain open even after the with statement ends.\n"
 "    # close_files() can then be invoked explicitly to close them all."
 msgstr ""
+"with ExitStack() as stack:\n"
+"    files = [stack.enter_context(open(fname)) for fname in filenames]\n"
+"    # 保留 close 方法，但先不要呼叫它。\n"
+"    close_files = stack.pop_all().close\n"
+"    # 如果開啟任何檔案失敗，所有先前已開啟的檔案都會\n"
+"    # 自動關閉。如果所有檔案都成功開啟，\n"
+"    # 即使在 with 陳述式結束後，它們仍會保持開啟。\n"
+"    # 之後可以明確呼叫 close_files() 來關閉所有檔案。"
 
-#: ../../library/contextlib.rst:618
+#: ../../library/contextlib.rst:660
 msgid ""
 "Immediately unwinds the callback stack, invoking callbacks in the reverse "
 "order of registration. For any context managers and exit callbacks "
 "registered, the arguments passed in will indicate that no exception occurred."
 msgstr ""
+"立即展開回呼堆疊，以註冊的相反順序呼叫回呼。對於任何已註冊的情境管理器與結束"
+"回呼，傳入的引數會表示沒有發生例外。"
 
-#: ../../library/contextlib.rst:625
+#: ../../library/contextlib.rst:667
 msgid ""
 "An :ref:`asynchronous context manager <async-context-managers>`, similar to :"
 "class:`ExitStack`, that supports combining both synchronous and asynchronous "
 "context managers, as well as having coroutines for cleanup logic."
 msgstr ""
+"一個與 :class:`ExitStack` 類似的\\ :ref:`非同步情境管理器 <async-context-"
+"managers>`，支援組合同步與非同步的情境管理器，也支援以協程作為清理邏輯。"
 
-#: ../../library/contextlib.rst:630
+#: ../../library/contextlib.rst:672
 msgid ""
 "The :meth:`~ExitStack.close` method is not implemented; :meth:`aclose` must "
 "be used instead."
-msgstr ""
+msgstr "未實作 :meth:`~ExitStack.close` 方法；必須改用 :meth:`aclose`。"
 
-#: ../../library/contextlib.rst:636
+#: ../../library/contextlib.rst:678
 msgid ""
 "Similar to :meth:`ExitStack.enter_context` but expects an asynchronous "
 "context manager."
 msgstr ""
+"和 :meth:`ExitStack.enter_context` 類似，但預期接受一個非同步情境管理器。"
 
-#: ../../library/contextlib.rst:639
+#: ../../library/contextlib.rst:681
 msgid ""
 "Raises :exc:`TypeError` instead of :exc:`AttributeError` if *cm* is not an "
 "asynchronous context manager."
 msgstr ""
+"如果 *cm* 不是非同步情境管理器，會引發 :exc:`TypeError` 而不是 :exc:"
+"`AttributeError`。"
 
-#: ../../library/contextlib.rst:645
+#: ../../library/contextlib.rst:685
+msgid ""
+"Added support for arbitrary descriptors :meth:`!__aenter__` and :meth:`!"
+"__aexit__`."
+msgstr "新增支援以任意描述器作為 :meth:`!__aenter__` 和 :meth:`!__aexit__`。"
+
+#: ../../library/contextlib.rst:690
 msgid ""
 "Similar to :meth:`ExitStack.push` but expects either an asynchronous context "
 "manager or a coroutine function."
 msgstr ""
+"和 :meth:`ExitStack.push` 類似，但預期接受一個非同步情境管理器或協程函式。"
 
-#: ../../library/contextlib.rst:650
+#: ../../library/contextlib.rst:693
+msgid "Added support for arbitrary descriptors :meth:`!__aexit__`."
+msgstr "新增支援以任意描述器作為 :meth:`!__aexit__`。"
+
+#: ../../library/contextlib.rst:698
 msgid "Similar to :meth:`ExitStack.callback` but expects a coroutine function."
 msgstr "和 :meth:`ExitStack.callback` 類似，但預期接受一個協程函式。"
 
-#: ../../library/contextlib.rst:655
+#: ../../library/contextlib.rst:703
 msgid "Similar to :meth:`ExitStack.close` but properly handles awaitables."
 msgstr "和 :meth:`ExitStack.close` 類似，但能夠正確處理可等待物件。"
 
-#: ../../library/contextlib.rst:657
+#: ../../library/contextlib.rst:705
 msgid "Continuing the example for :deco:`asynccontextmanager`::"
 msgstr "延續 :deco:`asynccontextmanager` 的範例： ::"
 
-#: ../../library/contextlib.rst:659
+#: ../../library/contextlib.rst:707
 msgid ""
 "async with AsyncExitStack() as stack:\n"
 "    connections = [await stack.enter_async_context(get_connection())\n"
@@ -1027,22 +1320,29 @@ msgid ""
 "    # the async with statement, even if attempts to open a connection\n"
 "    # later in the list raise an exception."
 msgstr ""
+"async with AsyncExitStack() as stack:\n"
+"    connections = [await stack.enter_async_context(get_connection())\n"
+"        for i in range(5)]\n"
+"    # 所有開啟的連線都會在 async with 陳述式結束時自動釋放，\n"
+"    # 即使嘗試開啟串列中後面的連線時\n"
+"    # 引發了例外也一樣。"
 
-#: ../../library/contextlib.rst:669
+#: ../../library/contextlib.rst:717
 msgid "Examples and Recipes"
-msgstr ""
+msgstr "範例與用法"
 
-#: ../../library/contextlib.rst:671
+#: ../../library/contextlib.rst:719
 msgid ""
 "This section describes some examples and recipes for making effective use of "
 "the tools provided by :mod:`!contextlib`."
 msgstr ""
+"本節描述了一些範例與用法，說明如何有效運用 :mod:`!contextlib` 所提供的工具。"
 
-#: ../../library/contextlib.rst:676
+#: ../../library/contextlib.rst:724
 msgid "Supporting a variable number of context managers"
-msgstr ""
+msgstr "支援數量不定的情境管理器"
 
-#: ../../library/contextlib.rst:678
+#: ../../library/contextlib.rst:726
 msgid ""
 "The primary use case for :class:`ExitStack` is the one given in the class "
 "documentation: supporting a variable number of context managers and other "
@@ -1051,8 +1351,12 @@ msgid ""
 "input (such as opening a user specified collection of files), or from some "
 "of the context managers being optional::"
 msgstr ""
+":class:`ExitStack` 的主要使用案例就是類別文件中所提到的：在單一 :keyword:"
+"`with` 陳述式中支援數量不定的情境管理器與其他清理操作。這種數量上的不確定性，"
+"可能來自所需的情境管理器數量是由使用者輸入決定的（例如開啟使用者指定的一組檔"
+"案），也可能來自部分情境管理器是可選的： ::"
 
-#: ../../library/contextlib.rst:685
+#: ../../library/contextlib.rst:733
 msgid ""
 "with ExitStack() as stack:\n"
 "    for resource in resources:\n"
@@ -1062,19 +1366,28 @@ msgid ""
 "        stack.callback(release_special_resource, special)\n"
 "    # Perform operations that use the acquired resources"
 msgstr ""
+"with ExitStack() as stack:\n"
+"    for resource in resources:\n"
+"        stack.enter_context(resource)\n"
+"    if need_special_resource():\n"
+"        special = acquire_special_resource()\n"
+"        stack.callback(release_special_resource, special)\n"
+"    # 執行使用已取得資源的操作"
 
-#: ../../library/contextlib.rst:693
+#: ../../library/contextlib.rst:741
 msgid ""
 "As shown, :class:`ExitStack` also makes it quite easy to use :keyword:`with` "
 "statements to manage arbitrary resources that don't natively support the "
 "context management protocol."
 msgstr ""
+"如上所示，:class:`ExitStack` 也讓你能相當容易地使用 :keyword:`with` 陳述式，"
+"來管理原生不支援情境管理協定的任意資源。"
 
-#: ../../library/contextlib.rst:699
+#: ../../library/contextlib.rst:747
 msgid "Catching exceptions from ``__enter__`` methods"
-msgstr ""
+msgstr "捕捉來自 ``__enter__`` 方法的例外"
 
-#: ../../library/contextlib.rst:701
+#: ../../library/contextlib.rst:749
 msgid ""
 "It is occasionally desirable to catch exceptions from an :meth:`~object."
 "__enter__` method implementation, *without* inadvertently catching "
@@ -1083,8 +1396,12 @@ msgid ""
 "context management protocol can be separated slightly in order to allow "
 "this::"
 msgstr ""
+"有時會希望捕捉來自 :meth:`~object.__enter__` 方法實作的例外，但\\ *不要*\\ 不"
+"小心捕捉到來自 :keyword:`with` 陳述式主體或情境管理器的 :meth:`~object."
+"__exit__` 方法的例外。透過使用 :class:`ExitStack`，可以將情境管理協定中的步驟"
+"稍微拆開，以做到這一點： ::"
 
-#: ../../library/contextlib.rst:707
+#: ../../library/contextlib.rst:755
 msgid ""
 "stack = ExitStack()\n"
 "try:\n"
@@ -1095,8 +1412,16 @@ msgid ""
 "    with stack:\n"
 "        # Handle normal case"
 msgstr ""
+"stack = ExitStack()\n"
+"try:\n"
+"    x = stack.enter_context(cm)\n"
+"except Exception:\n"
+"    # 處理 __enter__ 的例外\n"
+"else:\n"
+"    with stack:\n"
+"        # 處理正常情況"
 
-#: ../../library/contextlib.rst:716
+#: ../../library/contextlib.rst:764
 msgid ""
 "Actually needing to do this is likely to indicate that the underlying API "
 "should be providing a direct resource management interface for use with :"
@@ -1106,26 +1431,35 @@ msgid ""
 "to handle various situations that can't be handled directly in a :keyword:"
 "`with` statement."
 msgstr ""
+"實際上需要這麼做，很可能表示底層的 API 應該要提供一個可搭配 :keyword:`try`/:"
+"keyword:`except`/:keyword:`finally` 陳述式使用的直接資源管理介面，但並非所有 "
+"API 在這方面都設計得很好。當情境管理器是唯一提供的資源管理 API 時，:class:"
+"`ExitStack` 可以讓你更容易處理各種無法直接在 :keyword:`with` 陳述式中處理的情"
+"況。"
 
-#: ../../library/contextlib.rst:726
+#: ../../library/contextlib.rst:774
 msgid "Cleaning up in an ``__enter__`` implementation"
-msgstr ""
+msgstr "在 ``__enter__`` 實作中進行清理"
 
-#: ../../library/contextlib.rst:728
+#: ../../library/contextlib.rst:776
 msgid ""
 "As noted in the documentation of :meth:`ExitStack.push`, this method can be "
 "useful in cleaning up an already allocated resource if later steps in the :"
 "meth:`~object.__enter__` implementation fail."
 msgstr ""
+"如 :meth:`ExitStack.push` 的文件中所述，如果 :meth:`~object.__enter__` 實作中"
+"後續的步驟失敗，此方法可用來清理已經配置的資源。"
 
-#: ../../library/contextlib.rst:732
+#: ../../library/contextlib.rst:780
 msgid ""
 "Here's an example of doing this for a context manager that accepts resource "
 "acquisition and release functions, along with an optional validation "
 "function, and maps them to the context management protocol::"
 msgstr ""
+"以下範例針對一個情境管理器來這麼做，該情境管理器接受取得與釋放資源的函式以及"
+"一個可選的驗證函式，並將它們對映到情境管理協定： ::"
 
-#: ../../library/contextlib.rst:736
+#: ../../library/contextlib.rst:784
 msgid ""
 "from contextlib import contextmanager, AbstractContextManager, ExitStack\n"
 "\n"
@@ -1162,20 +1496,57 @@ msgid ""
 "        # We don't need to duplicate any of our resource release logic\n"
 "        self.release_resource()"
 msgstr ""
+"from contextlib import contextmanager, AbstractContextManager, ExitStack\n"
+"\n"
+"class ResourceManager(AbstractContextManager):\n"
+"\n"
+"    def __init__(self, acquire_resource, release_resource, "
+"check_resource_ok=None):\n"
+"        self.acquire_resource = acquire_resource\n"
+"        self.release_resource = release_resource\n"
+"        if check_resource_ok is None:\n"
+"            def check_resource_ok(resource):\n"
+"                return True\n"
+"        self.check_resource_ok = check_resource_ok\n"
+"\n"
+"    @contextmanager\n"
+"    def _cleanup_on_error(self):\n"
+"        with ExitStack() as stack:\n"
+"            stack.push(self)\n"
+"            yield\n"
+"            # 驗證檢查通過且沒有引發例外\n"
+"            # 因此我們想要保留該資源，並將它\n"
+"            # 交還給呼叫者\n"
+"            stack.pop_all()\n"
+"\n"
+"    def __enter__(self):\n"
+"        resource = self.acquire_resource()\n"
+"        with self._cleanup_on_error():\n"
+"            if not self.check_resource_ok(resource):\n"
+"                msg = \"Failed validation for {!r}\"\n"
+"                raise RuntimeError(msg.format(resource))\n"
+"        return resource\n"
+"\n"
+"    def __exit__(self, *exc_details):\n"
+"        # 我們不需要重複任何資源釋放的邏輯\n"
+"        self.release_resource()"
 
-#: ../../library/contextlib.rst:772
+#: ../../library/contextlib.rst:820
 msgid "Replacing any use of ``try-finally`` and flag variables"
-msgstr ""
+msgstr "取代所有 ``try-finally`` 搭配旗標變數的用法"
 
-#: ../../library/contextlib.rst:774
+#: ../../library/contextlib.rst:822
 msgid ""
 "A pattern you will sometimes see is a ``try-finally`` statement with a flag "
 "variable to indicate whether or not the body of the ``finally`` clause "
 "should be executed. In its simplest form (that can't already be handled just "
 "by using an ``except`` clause instead), it looks something like this::"
 msgstr ""
+"你有時會看到一種模式：在 ``try-finally`` 陳述式中搭配一個旗標變數，用來表示 "
+"``finally`` 子句的主體是否應該執行。其最簡單的形式（無法單純改用 ``except`` "
+"子句來處理的那種）看起來大概像這樣： ::"
 
-#: ../../library/contextlib.rst:779
+#: ../../library/contextlib.rst:827
 msgid ""
 "cleanup_needed = True\n"
 "try:\n"
@@ -1195,21 +1566,25 @@ msgstr ""
 "    if cleanup_needed:\n"
 "        cleanup_resources()"
 
-#: ../../library/contextlib.rst:788
+#: ../../library/contextlib.rst:836
 msgid ""
 "As with any ``try`` statement based code, this can cause problems for "
 "development and review, because the setup code and the cleanup code can end "
 "up being separated by arbitrarily long sections of code."
 msgstr ""
+"如同任何基於 ``try`` 陳述式的程式碼，這可能會對開發與審查造成問題，因為設定程"
+"式碼與清理程式碼最後可能會被任意長度的程式碼段落隔開。"
 
-#: ../../library/contextlib.rst:792
+#: ../../library/contextlib.rst:840
 msgid ""
 ":class:`ExitStack` makes it possible to instead register a callback for "
 "execution at the end of a ``with`` statement, and then later decide to skip "
 "executing that callback::"
 msgstr ""
+":class:`ExitStack` 讓你可以改為註冊一個在 ``with`` 陳述式結束時執行的回呼，之"
+"後再決定要跳過執行該回呼： ::"
 
-#: ../../library/contextlib.rst:796
+#: ../../library/contextlib.rst:844
 msgid ""
 "from contextlib import ExitStack\n"
 "\n"
@@ -1227,19 +1602,20 @@ msgstr ""
 "    if result:\n"
 "        stack.pop_all()"
 
-#: ../../library/contextlib.rst:804
+#: ../../library/contextlib.rst:852
 msgid ""
 "This allows the intended cleanup behaviour to be made explicit up front, "
 "rather than requiring a separate flag variable."
-msgstr ""
+msgstr "這讓預期的清理行為能夠事先明確表達出來，而不需要另外的旗標變數。"
 
-#: ../../library/contextlib.rst:807
+#: ../../library/contextlib.rst:855
 msgid ""
 "If a particular application uses this pattern a lot, it can be simplified "
 "even further by means of a small helper class::"
 msgstr ""
+"如果某個應用程式大量使用這種模式，還可以藉由一個小型輔助類別來進一步簡化： ::"
 
-#: ../../library/contextlib.rst:810
+#: ../../library/contextlib.rst:858
 msgid ""
 "from contextlib import ExitStack\n"
 "\n"
@@ -1271,14 +1647,16 @@ msgstr ""
 "    if result:\n"
 "        cb.cancel()"
 
-#: ../../library/contextlib.rst:825
+#: ../../library/contextlib.rst:873
 msgid ""
 "If the resource cleanup isn't already neatly bundled into a standalone "
 "function, then it is still possible to use the decorator form of :meth:"
 "`ExitStack.callback` to declare the resource cleanup in advance::"
 msgstr ""
+"如果資源的清理還沒有整齊地包裝成一個獨立的函式，仍然可以使用 :meth:"
+"`ExitStack.callback` 的裝飾器形式來事先宣告資源清理： ::"
 
-#: ../../library/contextlib.rst:830
+#: ../../library/contextlib.rst:878
 msgid ""
 "from contextlib import ExitStack\n"
 "\n"
@@ -1300,24 +1678,28 @@ msgstr ""
 "    if result:\n"
 "        stack.pop_all()"
 
-#: ../../library/contextlib.rst:840
+#: ../../library/contextlib.rst:888
 msgid ""
 "Due to the way the decorator protocol works, a callback function declared "
 "this way cannot take any parameters. Instead, any resources to be released "
 "must be accessed as closure variables."
 msgstr ""
+"由於裝飾器協定的運作方式，以這種方式宣告的回呼函式無法接受任何參數。取而代之"
+"的是，任何要釋放的資源都必須以閉包變數的形式存取。"
 
-#: ../../library/contextlib.rst:846
+#: ../../library/contextlib.rst:894
 msgid "Using a context manager as a function decorator"
-msgstr ""
+msgstr "將情境管理器當作函式裝飾器使用"
 
-#: ../../library/contextlib.rst:848
+#: ../../library/contextlib.rst:896
 msgid ""
 ":class:`ContextDecorator` makes it possible to use a context manager in both "
 "an ordinary ``with`` statement and also as a function decorator."
 msgstr ""
+":class:`ContextDecorator` 讓情境管理器既可以用在一般的 ``with`` 陳述式中，也"
+"可以當作函式裝飾器使用。"
 
-#: ../../library/contextlib.rst:851
+#: ../../library/contextlib.rst:899
 msgid ""
 "For example, it is sometimes useful to wrap functions or groups of "
 "statements with a logger that can track the time of entry and time of exit.  "
@@ -1325,8 +1707,11 @@ msgid ""
 "task, inheriting from :class:`ContextDecorator` provides both capabilities "
 "in a single definition::"
 msgstr ""
+"舉例來說，有時用一個能追蹤進入時間與結束時間的記錄器 (logger) 來包裝函式或一"
+"組陳述式會很有用。與其為此分別撰寫函式裝飾器和情境管理器，不如繼承 :class:"
+"`ContextDecorator`，就能在單一定義中同時提供這兩種功能： ::"
 
-#: ../../library/contextlib.rst:857
+#: ../../library/contextlib.rst:905
 msgid ""
 "from contextlib import ContextDecorator\n"
 "import logging\n"
@@ -1358,11 +1743,11 @@ msgstr ""
 "    def __exit__(self, exc_type, exc, exc_tb):\n"
 "        logging.info('Exiting: %s', self.name)"
 
-#: ../../library/contextlib.rst:872
+#: ../../library/contextlib.rst:920
 msgid "Instances of this class can be used as both a context manager::"
-msgstr ""
+msgstr "此類別的實例既可以當作情境管理器使用： ::"
 
-#: ../../library/contextlib.rst:874
+#: ../../library/contextlib.rst:922
 msgid ""
 "with track_entry_and_exit('widget loader'):\n"
 "    print('Some time consuming activity goes here')\n"
@@ -1372,11 +1757,11 @@ msgstr ""
 "    print('Some time consuming activity goes here')\n"
 "    load_widget()"
 
-#: ../../library/contextlib.rst:878
+#: ../../library/contextlib.rst:926
 msgid "And also as a function decorator::"
-msgstr ""
+msgstr "也可以當作函式裝飾器使用： ::"
 
-#: ../../library/contextlib.rst:880
+#: ../../library/contextlib.rst:928
 msgid ""
 "@track_entry_and_exit('widget loader')\n"
 "def activity():\n"
@@ -1388,58 +1773,70 @@ msgstr ""
 "    print('Some time consuming activity goes here')\n"
 "    load_widget()"
 
-#: ../../library/contextlib.rst:885
+#: ../../library/contextlib.rst:933
 msgid ""
 "Note that there is one additional limitation when using context managers as "
 "function decorators: there's no way to access the return value of :meth:"
 "`~object.__enter__`. If that value is needed, then it is still necessary to "
 "use an explicit ``with`` statement."
 msgstr ""
+"請注意，將情境管理器當作函式裝飾器使用時還有一個額外的限制：無法存取 :meth:"
+"`~object.__enter__` 的回傳值。如果需要該值，仍然必須使用明確的 ``with`` 陳述"
+"式。"
 
-#: ../../library/contextlib.rst:892
+#: ../../library/contextlib.rst:940
 msgid ":pep:`343` - The \"with\" statement"
 msgstr ":pep:`343` - \"with\" 陳述式"
 
-#: ../../library/contextlib.rst:893
+#: ../../library/contextlib.rst:941
 msgid ""
 "The specification, background, and examples for the Python :keyword:`with` "
 "statement."
-msgstr ""
+msgstr "Python :keyword:`with` 陳述式的規格、背景與範例。"
 
-#: ../../library/contextlib.rst:899
+#: ../../library/contextlib.rst:947
 msgid "Single use, reusable and reentrant context managers"
-msgstr ""
+msgstr "單次使用、可重複使用與可重入的情境管理器"
 
-#: ../../library/contextlib.rst:901
+#: ../../library/contextlib.rst:949
 msgid ""
 "Most context managers are written in a way that means they can only be used "
 "effectively in a :keyword:`with` statement once. These single use context "
 "managers must be created afresh each time they're used - attempting to use "
 "them a second time will trigger an exception or otherwise not work correctly."
 msgstr ""
+"大多數情境管理器的寫法，都意味著它們只能在 :keyword:`with` 陳述式中有效地使用"
+"一次。這些單次使用的情境管理器每次使用時都必須重新建立 - 試圖第二次使用它們會"
+"觸發例外，或者無法正確運作。"
 
-#: ../../library/contextlib.rst:907
+#: ../../library/contextlib.rst:955
 msgid ""
 "This common limitation means that it is generally advisable to create "
 "context managers directly in the header of the :keyword:`with` statement "
 "where they are used (as shown in all of the usage examples above)."
 msgstr ""
+"這種常見的限制意味著，通常建議直接在使用情境管理器的 :keyword:`with` 陳述式標"
+"頭中建立它們（如上述所有使用範例所示）。"
 
-#: ../../library/contextlib.rst:911
+#: ../../library/contextlib.rst:959
 msgid ""
 "Files are an example of effectively single use context managers, since the "
 "first :keyword:`with` statement will close the file, preventing any further "
 "IO operations using that file object."
 msgstr ""
+"檔案就是一種實質上只能使用一次的情境管理器，因為第一個 :keyword:`with` 陳述式"
+"就會關閉該檔案，使得之後無法再使用該檔案物件進行任何 IO 操作。"
 
-#: ../../library/contextlib.rst:915
+#: ../../library/contextlib.rst:963
 msgid ""
 "Context managers created using :deco:`contextmanager` are also single use "
 "context managers, and will complain about the underlying generator failing "
 "to yield if an attempt is made to use them a second time::"
 msgstr ""
+"使用 :deco:`contextmanager` 建立的情境管理器也是單次使用的情境管理器，如果試"
+"圖第二次使用它們，它們會抱怨底層的產生器沒有 yield： ::"
 
-#: ../../library/contextlib.rst:919
+#: ../../library/contextlib.rst:967
 msgid ""
 ">>> from contextlib import contextmanager\n"
 ">>> @contextmanager\n"
@@ -1481,26 +1878,32 @@ msgstr ""
 "    ...\n"
 "RuntimeError: generator didn't yield"
 
-#: ../../library/contextlib.rst:943
+#: ../../library/contextlib.rst:991
 msgid "Reentrant context managers"
-msgstr ""
+msgstr "可重入的情境管理器"
 
-#: ../../library/contextlib.rst:945
+#: ../../library/contextlib.rst:993
 msgid ""
 "More sophisticated context managers may be \"reentrant\". These context "
 "managers can not only be used in multiple :keyword:`with` statements, but "
 "may also be used *inside* a :keyword:`!with` statement that is already using "
 "the same context manager."
 msgstr ""
+"更複雜的情境管理器可能是「可重入的 (reentrant)」。這些情境管理器不僅可以用在"
+"多個 :keyword:`with` 陳述式中，還可以在已經使用同一個情境管理器的 :keyword:`!"
+"with` 陳述式\\ *內部*\\ 使用。"
 
-#: ../../library/contextlib.rst:950
+#: ../../library/contextlib.rst:998
 msgid ""
 ":class:`threading.RLock` is an example of a reentrant context manager, as "
 "are :func:`suppress`, :func:`redirect_stdout`, and :func:`chdir`. Here's a "
 "very simple example of reentrant use::"
 msgstr ""
+":class:`threading.RLock` 是可重入情境管理器的一個例子，:func:`suppress`、:"
+"func:`redirect_stdout` 和 :func:`chdir` 也是。以下是一個非常簡單的可重入使用"
+"範例： ::"
 
-#: ../../library/contextlib.rst:954
+#: ../../library/contextlib.rst:1002
 msgid ""
 ">>> from contextlib import redirect_stdout\n"
 ">>> from io import StringIO\n"
@@ -1532,26 +1935,30 @@ msgstr ""
 "This is written to the stream rather than stdout\n"
 "This is also written to the stream"
 
-#: ../../library/contextlib.rst:969
+#: ../../library/contextlib.rst:1017
 msgid ""
 "Real world examples of reentrancy are more likely to involve multiple "
 "functions calling each other and hence be far more complicated than this "
 "example."
 msgstr ""
+"現實中可重入的例子，更可能涉及多個互相呼叫的函式，因此會比這個範例複雜得多。"
 
-#: ../../library/contextlib.rst:973
+#: ../../library/contextlib.rst:1021
 msgid ""
 "Note also that being reentrant is *not* the same thing as being thread "
 "safe. :func:`redirect_stdout`, for example, is definitely not thread safe, "
 "as it makes a global modification to the system state by binding :data:`sys."
 "stdout` to a different stream."
 msgstr ""
+"另請注意，可重入\\ *並不*\\ 等同於執行緒安全。舉例來說，:func:"
+"`redirect_stdout` 絕對不是執行緒安全的，因為它會將 :data:`sys.stdout` 繫結到"
+"不同的串流，從而對系統狀態做出全域性的修改。"
 
-#: ../../library/contextlib.rst:982
+#: ../../library/contextlib.rst:1030
 msgid "Reusable context managers"
-msgstr ""
+msgstr "可重複使用的情境管理器"
 
-#: ../../library/contextlib.rst:984
+#: ../../library/contextlib.rst:1032
 msgid ""
 "Distinct from both single use and reentrant context managers are "
 "\"reusable\" context managers (or, to be completely explicit, \"reusable, "
@@ -1560,22 +1967,31 @@ msgid ""
 "but will fail (or otherwise not work correctly) if the specific context "
 "manager instance has already been used in a containing with statement."
 msgstr ""
+"與單次使用及可重入的情境管理器都不同的是「可重複使用 (reusable)」的情境管理器"
+"（或者完全明確地說，是「可重複使用但不可重入」的情境管理器，因為可重入的情境"
+"管理器也是可重複使用的）。這些情境管理器支援多次使用，但如果該情境管理器實例"
+"已經在外層的 with 陳述式中使用過，它們就會失敗（或者無法正確運作）。"
 
-#: ../../library/contextlib.rst:991
+#: ../../library/contextlib.rst:1039
 msgid ""
 ":class:`threading.Lock` is an example of a reusable, but not reentrant, "
 "context manager (for a reentrant lock, it is necessary to use :class:"
 "`threading.RLock` instead)."
 msgstr ""
+":class:`threading.Lock` 是可重複使用但不可重入的情境管理器的一個例子（若需要"
+"可重入鎖，則必須改用 :class:`threading.RLock`）。"
 
-#: ../../library/contextlib.rst:995
+#: ../../library/contextlib.rst:1043
 msgid ""
 "Another example of a reusable, but not reentrant, context manager is :class:"
 "`ExitStack`, as it invokes *all* currently registered callbacks when leaving "
 "any with statement, regardless of where those callbacks were added::"
 msgstr ""
+"另一個可重複使用但不可重入的情境管理器例子是 :class:`ExitStack`，因為它在離開"
+"任何 with 陳述式時都會呼叫目前已註冊的\\ *所有*\\ 回呼，無論這些回呼是在哪裡"
+"加入的： ::"
 
-#: ../../library/contextlib.rst:1000
+#: ../../library/contextlib.rst:1048
 msgid ""
 ">>> from contextlib import ExitStack\n"
 ">>> stack = ExitStack()\n"
@@ -1629,21 +2045,26 @@ msgstr ""
 "Callback: from outer context\n"
 "Leaving outer context"
 
-#: ../../library/contextlib.rst:1026
+#: ../../library/contextlib.rst:1074
 msgid ""
 "As the output from the example shows, reusing a single stack object across "
 "multiple with statements works correctly, but attempting to nest them will "
 "cause the stack to be cleared at the end of the innermost with statement, "
 "which is unlikely to be desirable behaviour."
 msgstr ""
+"如範例的輸出所示，在多個 with 陳述式之間重複使用同一個堆疊物件可以正確運作，"
+"但試圖將它們巢狀使用，會導致堆疊在最內層的 with 陳述式結束時被清空，而這不太"
+"可能是想要的行為。"
 
-#: ../../library/contextlib.rst:1031
+#: ../../library/contextlib.rst:1079
 msgid ""
 "Using separate :class:`ExitStack` instances instead of reusing a single "
 "instance avoids that problem::"
 msgstr ""
+"使用各自獨立的 :class:`ExitStack` 實例，而不是重複使用同一個實例，就可以避免"
+"這個問題： ::"
 
-#: ../../library/contextlib.rst:1034
+#: ../../library/contextlib.rst:1082
 msgid ""
 ">>> from contextlib import ExitStack\n"
 ">>> with ExitStack() as outer_stack:\n"
@@ -1670,3 +2091,7 @@ msgstr ""
 "Callback: from inner context\n"
 "Leaving outer context\n"
 "Callback: from outer context"
+
+#~ msgid ""
+#~ "Similar to :class:`ContextDecorator` but only for asynchronous functions."
+#~ msgstr "和 :class:`ContextDecorator` 類似，但僅用於非同步函式。"
