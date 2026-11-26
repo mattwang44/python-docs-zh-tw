@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.14\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-22 16:08+0000\n"
+"POT-Creation-Date: 2026-11-26 15:26+0000\n"
 "PO-Revision-Date: 2023-12-11 18:26+0000\n"
 "Last-Translator: Matt Wang <mattwang44@gmail.com>\n"
 "Language-Team: Chinese - TAIWAN (https://github.com/python/python-docs-zh-"
@@ -31,8 +31,8 @@ msgstr "用於數字轉換和格式化字串輸出的函式。"
 #: ../../c-api/conversion.rst:13
 msgid ""
 "Output not more than *size* bytes to *str* according to the format string "
-"*format* and the extra arguments. See the Unix man page :manpage:"
-"`snprintf(3)`."
+"*format* and the extra arguments. See the Unix man "
+"page :manpage:`snprintf(3)`."
 msgstr ""
 "根據格式字串 *format* 和額外引數，輸出不超過 *size* 位元組給 *str*。請參閱 "
 "Unix 使用手冊 :manpage:`snprintf(3)`。"
@@ -40,8 +40,8 @@ msgstr ""
 #: ../../c-api/conversion.rst:19
 msgid ""
 "Output not more than *size* bytes to *str* according to the format string "
-"*format* and the variable argument list *va*. Unix man page :manpage:"
-"`vsnprintf(3)`."
+"*format* and the variable argument list *va*. Unix man "
+"page :manpage:`vsnprintf(3)`."
 msgstr ""
 "根據格式字串 *format* 和變數引數串列 *va*，輸出不超過 *size* 位元組給 *str*。"
 "Unix 使用手冊 :manpage:`vsnprintf(3)`。"
@@ -53,9 +53,9 @@ msgid ""
 "is to guarantee consistent behavior in corner cases, which the Standard C "
 "functions do not."
 msgstr ""
-":c:func:`PyOS_snprintf` 和 :c:func:`PyOS_vsnprintf` 包裝標準 C 函式庫函式 :c:"
-"func:`snprintf` 和 :c:func:`vsnprintf`。它們的目的是確保邊角案例 (corner "
-"case) 下的行為一致，而標準 C 函式則不然。"
+":c:func:`PyOS_snprintf` 和 :c:func:`PyOS_vsnprintf` 包裝標準 C 函式庫函"
+"式 :c:func:`snprintf` 和 :c:func:`vsnprintf`。它們的目的是確保邊角案例 "
+"(corner case) 下的行為一致，而標準 C 函式則不然。"
 
 #: ../../c-api/conversion.rst:28
 msgid ""
@@ -135,9 +135,9 @@ msgstr ""
 #: ../../c-api/conversion.rst:63
 msgid ""
 "If the converted value falls out of range of corresponding return type, "
-"range error occurs (:c:data:`errno` is set to :c:macro:`!ERANGE`) and :c:"
-"macro:`!ULONG_MAX` is returned.  If no conversion can be performed, ``0`` is "
-"returned."
+"range error occurs (:c:data:`errno` is set to :c:macro:`!ERANGE`) "
+"and :c:macro:`!ULONG_MAX` is returned.  If no conversion can be performed, "
+"``0`` is returned."
 msgstr ""
 "如果轉換後的值超出對應回傳型別的範圍，則會發生範圍錯誤（:c:data:`errno` 會被"
 "設定為 :c:macro:`!ERANGE`）並回傳 :c:macro:`!ULONG_MAX`。如果無法執行任何轉"
@@ -161,8 +161,8 @@ msgid ""
 "Same as :c:func:`PyOS_strtoul`, but return a :c:expr:`long` value instead "
 "and :c:macro:`LONG_MAX` on overflows."
 msgstr ""
-"與 :c:func:`PyOS_strtoul` 相同，但回傳 :c:expr:`long` 值，並在溢位時回傳 :c:"
-"macro:`LONG_MAX`。"
+"與 :c:func:`PyOS_strtoul` 相同，但回傳 :c:expr:`long` 值，並在溢位時回"
+"傳 :c:macro:`LONG_MAX`。"
 
 #: ../../c-api/conversion.rst:82
 msgid "See also the Unix man page :manpage:`strtol(3)`."
@@ -182,9 +182,9 @@ msgstr ""
 
 #: ../../c-api/conversion.rst:95
 msgid ""
-"If ``endptr`` is ``NULL``, convert the whole string.  Raise :exc:"
-"`ValueError` and return ``-1.0`` if the string is not a valid representation "
-"of a floating-point number."
+"If ``endptr`` is ``NULL``, convert the whole string.  "
+"Raise :exc:`ValueError` and return ``-1.0`` if the string is not a valid "
+"representation of a floating-point number."
 msgstr ""
 "如果 ``endptr`` 為 ``NULL``，則轉換整個字串。如果字串不是浮點數的有效表示，則"
 "引發 :exc:`ValueError` 並回傳 ``-1.0``。"
@@ -202,10 +202,11 @@ msgstr ""
 "指向字串的開頭，引發 ValueError 並回傳 ``-1.0``。"
 
 #: ../../c-api/conversion.rst:106
+#, fuzzy
 msgid ""
 "If ``s`` represents a value that is too large to store in a float (for "
 "example, ``\"1e500\"`` is such a string on many platforms) then if "
-"``overflow_exception`` is ``NULL`` return ``Py_INFINITY`` (with an "
+"``overflow_exception`` is ``NULL`` return :c:macro:`!INFINITY` (with an "
 "appropriate sign) and don't set any exception.  Otherwise, "
 "``overflow_exception`` must point to a Python exception object; raise that "
 "exception and return ``-1.0``.  In both cases, set ``*endptr`` to point to "
@@ -261,11 +262,11 @@ msgstr "確保回傳的字串看起來不會像整數。"
 
 #: ../../c-api/conversion.rst:146
 msgid ""
-"Apply \"alternate\" formatting rules. See the documentation for the :c:func:"
-"`PyOS_snprintf` ``'#'`` specifier for details."
+"Apply \"alternate\" formatting rules. See the documentation for "
+"the :c:func:`PyOS_snprintf` ``'#'`` specifier for details."
 msgstr ""
-"套用「備用的 (alternate)」格式化規則。有關詳細資訊，請參閱 :c:func:"
-"`PyOS_snprintf` ``'#'`` 的文件。"
+"套用「備用的 (alternate)」格式化規則。有關詳細資訊，請參"
+"閱 :c:func:`PyOS_snprintf` ``'#'`` 的文件。"
 
 #: ../../c-api/conversion.rst:152
 msgid "Negative zero is converted to positive zero."
@@ -276,7 +277,8 @@ msgid ""
 "If *ptype* is non-``NULL``, then the value it points to will be set to one "
 "of the following constants depending on the type of *val*:"
 msgstr ""
-"如果 *ptype* 是非 ``NULL``，那麼它指向的值將根據 *val* 的類型被設定為以下常數之一。"
+"如果 *ptype* 是非 ``NULL``，那麼它指向的值將根據 *val* 的類型被設定為以下常數"
+"之一。"
 
 #: ../../c-api/conversion.rst:163
 msgid "*\\*ptype*"
@@ -345,8 +347,8 @@ msgstr ""
 
 #: ../../c-api/conversion.rst:204
 msgid ""
-"On other platforms, they are aliases of :c:func:`PyOS_mystricmp` and :c:func:"
-"`PyOS_mystrnicmp`, respectively."
+"On other platforms, they are aliases of :c:func:`PyOS_mystricmp` "
+"and :c:func:`PyOS_mystrnicmp`, respectively."
 msgstr ""
 
 #: ../../c-api/conversion.rst:209
@@ -401,6 +403,22 @@ msgstr ""
 
 #: ../../c-api/conversion.rst:260
 msgid "Return the uppercase equivalent of the character *c*."
+msgstr ""
+
+#: ../../c-api/conversion.rst:264
+msgid "Bit masks"
+msgstr ""
+
+#: ../../c-api/conversion.rst:266
+msgid ""
+"The following constants are bit masks used by the character classification "
+"macros above:"
+msgstr ""
+
+#: ../../c-api/conversion.rst:277
+msgid ""
+"Values used internally by the ``Py_IS*`` classification macros above. "
+"Exposed for backwards compatibility only."
 msgstr ""
 
 #~ msgid ""
