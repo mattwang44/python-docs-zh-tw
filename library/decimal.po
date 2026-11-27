@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.14\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-26 15:26+0000\n"
+"POT-Creation-Date: 2026-11-27 05:33+0000\n"
 "PO-Revision-Date: 2018-05-23 14:43+0000\n"
 "Last-Translator: Adrian Liaw <adrianliaw2000@gmail.com>\n"
 "Language-Team: Chinese - TAIWAN (https://github.com/python/python-docs-zh-"
@@ -2580,6 +2580,7 @@ msgstr ""
 "指示請求了不合理的運算。如果未被捕捉，回傳 ``NaN``。可能的原因包括： ::"
 
 #: ../../library/decimal.rst:1723
+#, fuzzy
 msgid ""
 "Infinity - Infinity\n"
 "0 * Infinity\n"
@@ -2589,7 +2590,9 @@ msgid ""
 "sqrt(-x) and x > 0\n"
 "0 ** 0\n"
 "x ** (non-integer)\n"
-"x ** Infinity"
+"x ** Infinity\n"
+"NaN >= 0\n"
+"NaN < 0"
 msgstr ""
 "Infinity - Infinity\n"
 "0 * Infinity\n"
@@ -2601,11 +2604,11 @@ msgstr ""
 "x ** (non-integer)\n"
 "x ** Infinity"
 
-#: ../../library/decimal.rst:1736
+#: ../../library/decimal.rst:1738
 msgid "Numerical overflow."
 msgstr "數值溢位。"
 
-#: ../../library/decimal.rst:1738
+#: ../../library/decimal.rst:1740
 msgid ""
 "Indicates the exponent is larger than :attr:`Context.Emax` after rounding "
 "has occurred.  If not trapped, the result depends on the rounding mode, "
@@ -2617,11 +2620,11 @@ msgstr ""
 "式，要麼向內拉到最大可表示的有限數，要麼向外捨入到 ``Infinity``。在任何情況"
 "下，:class:`Inexact` 和 :class:`Rounded` 也會發出訊號。"
 
-#: ../../library/decimal.rst:1747
+#: ../../library/decimal.rst:1749
 msgid "Rounding occurred though possibly no information was lost."
 msgstr "發生了捨入，但可能沒有遺失資訊。"
 
-#: ../../library/decimal.rst:1749
+#: ../../library/decimal.rst:1751
 msgid ""
 "Signaled whenever rounding discards digits; even if those digits are zero "
 "(such as rounding ``5.00`` to ``5.0``).  If not trapped, returns the result "
@@ -2630,22 +2633,22 @@ msgstr ""
 "當捨入丟棄數字時發出訊號；即使這些數字是零（例如將 ``5.00`` 捨入為 "
 "``5.0``）。如果沒有被捕捉，則回傳不變的結果。此訊號用於檢測有效數字的遺失。"
 
-#: ../../library/decimal.rst:1757
+#: ../../library/decimal.rst:1759
 msgid "Exponent was lower than :attr:`~Context.Emin` prior to rounding."
 msgstr "在捨入之前指數低於 :attr:`~Context.Emin`。"
 
-#: ../../library/decimal.rst:1759
+#: ../../library/decimal.rst:1761
 msgid ""
 "Occurs when an operation result is subnormal (the exponent is too small). If "
 "not trapped, returns the result unchanged."
 msgstr ""
 "當運算結果是次正規（指數太小）時發生。如果沒有被捕捉，則回傳不變的結果。"
 
-#: ../../library/decimal.rst:1765
+#: ../../library/decimal.rst:1767
 msgid "Numerical underflow with result rounded to zero."
 msgstr "數值下溢，結果捨入為零。"
 
-#: ../../library/decimal.rst:1767
+#: ../../library/decimal.rst:1769
 msgid ""
 "Occurs when a subnormal result is pushed to zero by "
 "rounding. :class:`Inexact` and :class:`Subnormal` are also signaled."
@@ -2653,11 +2656,11 @@ msgstr ""
 "當次正規結果被捨入推向零時發生。:class:`Inexact` 和 :class:`Subnormal` 也會發"
 "出訊號。"
 
-#: ../../library/decimal.rst:1773
+#: ../../library/decimal.rst:1775
 msgid "Enable stricter semantics for mixing floats and Decimals."
 msgstr "啟用混合 float 和 Decimal 的更嚴格語意。"
 
-#: ../../library/decimal.rst:1775
+#: ../../library/decimal.rst:1777
 msgid ""
 "If the signal is not trapped (default), mixing floats and Decimals is "
 "permitted in the :class:`~decimal.Decimal` "
@@ -2675,7 +2678,7 @@ msgstr ""
 "或 :meth:`~decimal.Context.create_decimal_from_float` 的明確轉換不會設定標"
 "誌。"
 
-#: ../../library/decimal.rst:1783
+#: ../../library/decimal.rst:1785
 msgid ""
 "Otherwise (the signal is trapped), only equality comparisons and explicit "
 "conversions are silent. All other mixed operations "
@@ -2684,11 +2687,11 @@ msgstr ""
 "否則（訊號被捕捉），只有相等比較和明確轉換是安靜的。所有其他混合運算都會引"
 "發 :exc:`FloatOperation`。"
 
-#: ../../library/decimal.rst:1787
+#: ../../library/decimal.rst:1789
 msgid "The following table summarizes the hierarchy of signals::"
 msgstr "以下表格總結了訊號的階層結構： ::"
 
-#: ../../library/decimal.rst:1789
+#: ../../library/decimal.rst:1791
 msgid ""
 "exceptions.ArithmeticError(exceptions.Exception)\n"
 "    DecimalException\n"
@@ -2714,15 +2717,15 @@ msgstr ""
 "        Subnormal\n"
 "        FloatOperation(DecimalException, exceptions.TypeError)"
 
-#: ../../library/decimal.rst:1808
+#: ../../library/decimal.rst:1810
 msgid "Floating-point notes"
 msgstr "浮點數注意事項"
 
-#: ../../library/decimal.rst:1812
+#: ../../library/decimal.rst:1814
 msgid "Mitigating round-off error with increased precision"
 msgstr "透過增加精度來減輕捨入誤差"
 
-#: ../../library/decimal.rst:1814
+#: ../../library/decimal.rst:1816
 msgid ""
 "The use of decimal floating point eliminates decimal representation error "
 "(making it possible to represent ``0.1`` exactly); however, some operations "
@@ -2732,7 +2735,7 @@ msgstr ""
 "使用十進位浮點數消除了十進位表示誤差（使得可以精確表示 ``0.1``）；然而，當非"
 "零數字超過固定精度時，某些運算仍然可能產生捨入誤差。"
 
-#: ../../library/decimal.rst:1818
+#: ../../library/decimal.rst:1820
 msgid ""
 "The effects of round-off error can be amplified by the addition or "
 "subtraction of nearly offsetting quantities resulting in loss of "
@@ -2744,7 +2747,7 @@ msgstr ""
 "失。Knuth 提供了兩個教學範例，其中精度不足的捨入浮點運算導致加法的結合律和分"
 "配律失效："
 
-#: ../../library/decimal.rst:1824
+#: ../../library/decimal.rst:1826
 msgid ""
 "# Examples from Seminumerical Algorithms, Section 4.2.2.\n"
 ">>> from decimal import Decimal, getcontext\n"
@@ -2778,7 +2781,7 @@ msgstr ""
 ">>> u * (v+w)\n"
 "Decimal('0.0060000')"
 
-#: ../../library/decimal.rst:1842
+#: ../../library/decimal.rst:1844
 msgid ""
 "The :mod:`!decimal` module makes it possible to restore the identities by "
 "expanding the precision sufficiently to avoid loss of significance:"
@@ -2786,7 +2789,7 @@ msgstr ""
 ":mod:`!decimal` 模組使得透過充分擴展精度來避免有效位數損失，從而恢復恆等式成"
 "為可能："
 
-#: ../../library/decimal.rst:1845
+#: ../../library/decimal.rst:1847
 msgid ""
 ">>> getcontext().prec = 20\n"
 ">>> u, v, w = Decimal(11111113), Decimal(-11111111), Decimal('7.51111111')\n"
@@ -2814,11 +2817,11 @@ msgstr ""
 ">>> u * (v+w)\n"
 "Decimal('0.0060000')"
 
-#: ../../library/decimal.rst:1862
+#: ../../library/decimal.rst:1866
 msgid "Special values"
 msgstr "特殊值"
 
-#: ../../library/decimal.rst:1864
+#: ../../library/decimal.rst:1868
 msgid ""
 "The number system for the :mod:`!decimal` module provides special values "
 "including ``NaN``, ``sNaN``, ``-Infinity``, ``Infinity``, and two zeros, "
@@ -2827,7 +2830,7 @@ msgstr ""
 ":mod:`!decimal` 模組的數字系統提供特殊值，包括 ``NaN``、``sNaN``、``-"
 "Infinity``、``Infinity`` 以及兩個零 ``+0`` 和 ``-0``。"
 
-#: ../../library/decimal.rst:1868
+#: ../../library/decimal.rst:1872
 msgid ""
 "Infinities can be constructed directly with:  ``Decimal('Infinity')``. Also, "
 "they can arise from dividing by zero when the :exc:`DivisionByZero` signal "
@@ -2840,7 +2843,7 @@ msgstr ""
 "當 :exc:`Overflow` 訊號未被捕捉時，無窮大可能來自超出最大可表示數字限制的捨"
 "入。"
 
-#: ../../library/decimal.rst:1873
+#: ../../library/decimal.rst:1877
 msgid ""
 "The infinities are signed (affine) and can be used in arithmetic operations "
 "where they get treated as very large, indeterminate numbers.  For instance, "
@@ -2849,7 +2852,7 @@ msgstr ""
 "無窮大是有符號的（仿射）並且可以用於算術運算，在那裡它們被視為非常大的不確定"
 "數字。例如，將常數加到無窮大會得到另一個無限結果。"
 
-#: ../../library/decimal.rst:1877
+#: ../../library/decimal.rst:1881
 msgid ""
 "Some operations are indeterminate and return ``NaN``, or if "
 "the :exc:`InvalidOperation` signal is trapped, raise an exception.  For "
@@ -2865,7 +2868,7 @@ msgstr ""
 "對於偶爾有缺失輸入的一系列計算很有用——它允許計算繼續進行，同時將特定結果標記"
 "為無效。"
 
-#: ../../library/decimal.rst:1885
+#: ../../library/decimal.rst:1889
 msgid ""
 "A variant is ``sNaN`` which signals rather than remaining quiet after every "
 "operation.  This is a useful return value when an invalid result needs to "
@@ -2874,7 +2877,7 @@ msgstr ""
 "一個變體是 ``sNaN``，它在每次運算後發出訊號而不是保持安靜。當無效結果需要中斷"
 "計算進行特殊處理時，這是一個有用的回傳值。"
 
-#: ../../library/decimal.rst:1889
+#: ../../library/decimal.rst:1893
 msgid ""
 "The behavior of Python's comparison operators can be a little surprising "
 "where a ``NaN`` is involved.  A test for equality where one of the operands "
@@ -2900,7 +2903,7 @@ msgstr ""
 "表 3）。為確保嚴格符合標準，請改用 :meth:`~Decimal.compare` "
 "和 :meth:`~Decimal.compare_signal` 方法。"
 
-#: ../../library/decimal.rst:1902
+#: ../../library/decimal.rst:1906
 msgid ""
 "The signed zeros can result from calculations that underflow. They keep the "
 "sign that would have resulted if the calculation had been carried out to "
@@ -2910,7 +2913,7 @@ msgstr ""
 "帶符號的零可能來自下溢計算。它們保持如果計算以更高精度執行所會產生的符號。由"
 "於它們的大小是零，正零和負零都被視為相等，它們的符號是資訊性的。"
 
-#: ../../library/decimal.rst:1907
+#: ../../library/decimal.rst:1911
 msgid ""
 "In addition to the two signed zeros which are distinct yet equal, there are "
 "various representations of zero with differing precisions yet equivalent in "
@@ -2922,11 +2925,11 @@ msgstr ""
 "相等。這需要一點時間來適應。對於習慣於標準化浮點表示的眼睛來說，以下計算回傳"
 "等於零的值並不立即明顯："
 
-#: ../../library/decimal.rst:1922
+#: ../../library/decimal.rst:1926
 msgid "Working with threads"
 msgstr "與執行緒協作"
 
-#: ../../library/decimal.rst:1924
+#: ../../library/decimal.rst:1928
 msgid ""
 "The :func:`getcontext` function accesses a different :class:`Context` object "
 "for each thread.  Having separate thread contexts means that threads may "
@@ -2937,13 +2940,13 @@ msgstr ""
 "的執行緒情境意味著執行緒可以進行變更（如 ``getcontext().prec=10``）而不會干擾"
 "其他執行緒。"
 
-#: ../../library/decimal.rst:1928
+#: ../../library/decimal.rst:1932
 msgid ""
 "Likewise, the :func:`setcontext` function automatically assigns its target "
 "to the current thread."
 msgstr "同樣地，:func:`setcontext` 函式會自動將其目標指派給目前執行緒。"
 
-#: ../../library/decimal.rst:1931
+#: ../../library/decimal.rst:1935
 msgid ""
 "If :func:`setcontext` has not been called before :func:`getcontext`, "
 "then :func:`getcontext` will automatically create a new context for use in "
@@ -2954,7 +2957,7 @@ msgstr ""
 "則 :func:`getcontext` 會自動建立新的 context 供目前執行緒使用。新的 context "
 "物件的預設值取自 :data:`decimal.DefaultContext` 物件。"
 
-#: ../../library/decimal.rst:1936
+#: ../../library/decimal.rst:1940
 msgid ""
 "The :data:`sys.flags.thread_inherit_context` flag affects the context for "
 "new threads.  If the flag is false, new threads will start with an empty "
@@ -2969,7 +2972,7 @@ msgstr ""
 "*DefaultContext* 的預設值。如果該旗標為 true，新執行緒會以呼"
 "叫 :meth:`threading.Thread.start` 的執行緒的 context 副本啟動。"
 
-#: ../../library/decimal.rst:1943
+#: ../../library/decimal.rst:1947
 msgid ""
 "To control the defaults so that each thread will use the same values "
 "throughout the application, directly modify the *DefaultContext* object. "
@@ -2980,7 +2983,7 @@ msgstr ""
 "*DefaultContext* 物件。這應該在任何執行緒啟動\\ *之前*\\ 完成，這樣執行緒呼"
 "叫 :func:`getcontext` 時就不會有競爭條件。例如： ::"
 
-#: ../../library/decimal.rst:1948
+#: ../../library/decimal.rst:1952
 msgid ""
 "# Set applicationwide defaults for all threads about to be launched\n"
 "DefaultContext.prec = 12\n"
@@ -3008,18 +3011,18 @@ msgstr ""
 "t3.start()\n"
 " . . ."
 
-#: ../../library/decimal.rst:1967
+#: ../../library/decimal.rst:1971
 msgid "Recipes"
 msgstr "實用範例"
 
-#: ../../library/decimal.rst:1969
+#: ../../library/decimal.rst:1973
 msgid ""
 "Here are a few recipes that serve as utility functions and that demonstrate "
 "ways to work with the :class:`Decimal` class::"
 msgstr ""
 "以下是一些實用範例，作為工具函式並展示與 :class:`Decimal` 類別協作的方法： ::"
 
-#: ../../library/decimal.rst:1972
+#: ../../library/decimal.rst:1976
 msgid ""
 "def moneyfmt(value, places=2, curr='', sep=',', dp='.',\n"
 "             pos='', neg='-', trailneg=''):\n"
@@ -3312,11 +3315,11 @@ msgstr ""
 "    getcontext().prec -= 2\n"
 "    return +s"
 
-#: ../../library/decimal.rst:2124
+#: ../../library/decimal.rst:2128
 msgid "Decimal FAQ"
 msgstr "Decimal 常見問題"
 
-#: ../../library/decimal.rst:2126
+#: ../../library/decimal.rst:2130
 msgid ""
 "Q: It is cumbersome to type ``decimal.Decimal('1234.5')``.  Is there a way "
 "to minimize typing when using the interactive interpreter?"
@@ -3324,11 +3327,11 @@ msgstr ""
 "問：輸入 ``decimal.Decimal('1234.5')`` 很麻煩。在使用互動式直譯器時，有沒有辦"
 "法減少輸入？"
 
-#: ../../library/decimal.rst:2129
+#: ../../library/decimal.rst:2133
 msgid "A: Some users abbreviate the constructor to just a single letter:"
 msgstr "答：有些使用者會將建構式縮寫為單一字母："
 
-#: ../../library/decimal.rst:2135
+#: ../../library/decimal.rst:2139
 msgid ""
 "Q: In a fixed-point application with two decimal places, some inputs have "
 "many places and need to be rounded.  Others are not supposed to have excess "
@@ -3337,7 +3340,7 @@ msgstr ""
 "問：在一個有兩位小數的定點應用程式中，有些輸入有很多位數需要被捨入。其他輸入"
 "不應該有多餘的位數，需要被驗證。應該使用什麼方法？"
 
-#: ../../library/decimal.rst:2139
+#: ../../library/decimal.rst:2143
 msgid ""
 "A: The :meth:`~Decimal.quantize` method rounds to a fixed number of decimal "
 "places. If the :const:`Inexact` trap is set, it is also useful for "
@@ -3346,13 +3349,13 @@ msgstr ""
 "答：:meth:`~Decimal.quantize` 方法會捨入到固定的小數位數。如果設定"
 "了 :const:`Inexact` 陷阱，它也可用於驗證："
 
-#: ../../library/decimal.rst:2157
+#: ../../library/decimal.rst:2161
 msgid ""
 "Q: Once I have valid two place inputs, how do I maintain that invariant "
 "throughout an application?"
 msgstr "問：一旦我有了有效的兩位小數輸入，如何在整個應用程式中維持這個不變式？"
 
-#: ../../library/decimal.rst:2160
+#: ../../library/decimal.rst:2164
 msgid ""
 "A: Some operations like addition, subtraction, and multiplication by an "
 "integer will automatically preserve fixed point.  Others operations, like "
@@ -3362,14 +3365,14 @@ msgstr ""
 "答：某些運算如加法、減法和整數乘法會自動保留定點。其他運算，例如除法和非整數"
 "乘法，會改變小數位數，需要接著執行 :meth:`~Decimal.quantize` 步驟："
 
-#: ../../library/decimal.rst:2178
+#: ../../library/decimal.rst:2182
 msgid ""
 "In developing fixed-point applications, it is convenient to define functions "
 "to handle the :meth:`~Decimal.quantize` step:"
 msgstr ""
 "在開發定點應用程式時，定義函式來處理 :meth:`~Decimal.quantize` 步驟很方便："
 
-#: ../../library/decimal.rst:2192
+#: ../../library/decimal.rst:2196
 msgid ""
 "Q: There are many ways to express the same value.  The numbers ``200``, "
 "``200.000``, ``2E2``, and ``.02E+4`` all have the same value at various "
@@ -3380,17 +3383,17 @@ msgstr ""
 "``.02E+4`` 在不同精度下都有相同的值。有沒有辦法將它們轉換為單一可識別的標準"
 "值？"
 
-#: ../../library/decimal.rst:2197
+#: ../../library/decimal.rst:2201
 msgid ""
 "A: The :meth:`~Decimal.normalize` method maps all equivalent values to a "
 "single representative:"
 msgstr "答：:meth:`~Decimal.normalize` 方法會將所有等價的值對映到單一代表值："
 
-#: ../../library/decimal.rst:2204
+#: ../../library/decimal.rst:2208
 msgid "Q: When does rounding occur in a computation?"
 msgstr "問：在計算中何時會發生捨入？"
 
-#: ../../library/decimal.rst:2206
+#: ../../library/decimal.rst:2210
 msgid ""
 "A: It occurs *after* the computation.  The philosophy of the decimal "
 "specification is that numbers are considered exact and are created "
@@ -3404,7 +3407,7 @@ msgstr ""
 "確的輸入進行處理，然後捨入（或其他 context 運算）被套用到計算的\\ *結果*\\ "
 "上： ::"
 
-#: ../../library/decimal.rst:2213
+#: ../../library/decimal.rst:2217
 #, fuzzy
 msgid ""
 ">>> getcontext().prec = 5\n"
@@ -3429,13 +3432,13 @@ msgstr ""
 ">>> pi + 0 - Decimal('0.00005').   # 中間值被捨入\n"
 "Decimal('3.1416')"
 
-#: ../../library/decimal.rst:2224
+#: ../../library/decimal.rst:2228
 msgid ""
 "Q: Some decimal values always print with exponential notation.  Is there a "
 "way to get a non-exponential representation?"
 msgstr "問：有些 decimal 值總是以指數表示法印出。有沒有辦法得到非指數表示法？"
 
-#: ../../library/decimal.rst:2227
+#: ../../library/decimal.rst:2231
 msgid ""
 "A: For some values, exponential notation is the only way to express the "
 "number of significant places in the coefficient.  For example, expressing "
@@ -3445,7 +3448,7 @@ msgstr ""
 "答：對於某些值，指數表示法是表達係數中有效位數的唯一方式。例如，將 "
 "``5.0E+3`` 表示為 ``5000`` 保持了值不變，但無法顯示原始值的兩位有效性。"
 
-#: ../../library/decimal.rst:2232
+#: ../../library/decimal.rst:2236
 msgid ""
 "If an application does not care about tracking significance, it is easy to "
 "remove the exponent and trailing zeroes, losing significance, but keeping "
@@ -3454,11 +3457,11 @@ msgstr ""
 "如果應用程式不關心追蹤有效性，很容易移除指數和尾隨零，遺失有效性，但保持值不"
 "變："
 
-#: ../../library/decimal.rst:2242
+#: ../../library/decimal.rst:2246
 msgid "Q: Is there a way to convert a regular float to a :class:`Decimal`?"
 msgstr "問：有沒有辦法將一般的 float 轉換為 :class:`Decimal`？"
 
-#: ../../library/decimal.rst:2244
+#: ../../library/decimal.rst:2248
 msgid ""
 "A: Yes, any binary floating-point number can be exactly expressed as a "
 "Decimal though an exact conversion may take more precision than intuition "
@@ -3467,7 +3470,7 @@ msgstr ""
 "答：是的，任何二進位浮點數都可以精確地表示為 Decimal，儘管精確轉換可能需要比"
 "直覺所預期的更高精度："
 
-#: ../../library/decimal.rst:2248
+#: ../../library/decimal.rst:2252
 msgid ""
 ">>> Decimal(math.pi)\n"
 "Decimal('3.141592653589793115997963468544185161590576171875')"
@@ -3475,14 +3478,14 @@ msgstr ""
 ">>> Decimal(math.pi)\n"
 "Decimal('3.141592653589793115997963468544185161590576171875')"
 
-#: ../../library/decimal.rst:2253
+#: ../../library/decimal.rst:2257
 msgid ""
 "Q: Within a complex calculation, how can I make sure that I haven't gotten a "
 "spurious result because of insufficient precision or rounding anomalies."
 msgstr ""
 "問：在複雜計算中，如何確保我沒有因為精度不足或捨入異常而得到虛假的結果？"
 
-#: ../../library/decimal.rst:2256
+#: ../../library/decimal.rst:2260
 msgid ""
 "A: The decimal module makes it easy to test results.  A best practice is to "
 "re-run calculations using greater precision and with various rounding modes. "
@@ -3493,7 +3496,7 @@ msgstr ""
 "新執行計算。結果差異很大表示精度不足、捨入模式問題、病態輸入或數值不穩定的演"
 "算法。"
 
-#: ../../library/decimal.rst:2261
+#: ../../library/decimal.rst:2265
 msgid ""
 "Q: I noticed that context precision is applied to the results of operations "
 "but not to the inputs.  Is there anything to watch out for when mixing "
@@ -3502,7 +3505,7 @@ msgstr ""
 "問：我注意到 context 精度被套用到運算的結果上，但不套用到輸入上。在混合不同精"
 "度的值時，有什麼需要注意的嗎？"
 
-#: ../../library/decimal.rst:2265
+#: ../../library/decimal.rst:2269
 msgid ""
 "A: Yes.  The principle is that all values are considered to be exact and so "
 "is the arithmetic on those values.  Only the results are rounded.  The "
@@ -3514,7 +3517,7 @@ msgstr ""
 "入。對於輸入的好處是「你輸入什麼就得到什麼」。缺點是如果你忘記輸入沒有被捨"
 "入，結果可能看起來很奇怪："
 
-#: ../../library/decimal.rst:2270
+#: ../../library/decimal.rst:2274
 msgid ""
 ">>> getcontext().prec = 3\n"
 ">>> Decimal('3.104') + Decimal('2.104')\n"
@@ -3528,13 +3531,13 @@ msgstr ""
 ">>> Decimal('3.104') + Decimal('0.000') + Decimal('2.104')\n"
 "Decimal('5.20')"
 
-#: ../../library/decimal.rst:2278
+#: ../../library/decimal.rst:2282
 msgid ""
 "The solution is either to increase precision or to force rounding of inputs "
 "using the unary plus operation:"
 msgstr "解決方案是增加精度或使用一元加號運算強制輸入捨入："
 
-#: ../../library/decimal.rst:2281
+#: ../../library/decimal.rst:2285
 msgid ""
 ">>> getcontext().prec = 3\n"
 ">>> +Decimal('1.23456789')      # unary plus triggers rounding\n"
@@ -3544,17 +3547,17 @@ msgstr ""
 ">>> +Decimal('1.23456789')      # 一元正號觸發捨入\n"
 "Decimal('1.23')"
 
-#: ../../library/decimal.rst:2287
+#: ../../library/decimal.rst:2291
 msgid ""
 "Alternatively, inputs can be rounded upon creation using "
 "the :meth:`Context.create_decimal` method:"
 msgstr "或者，可以使用 :meth:`Context.create_decimal` 方法在建立時將輸入捨入："
 
-#: ../../library/decimal.rst:2293
+#: ../../library/decimal.rst:2297
 msgid "Q: Is the CPython implementation fast for large numbers?"
 msgstr "問：CPython 實作對大數運算快嗎？"
 
-#: ../../library/decimal.rst:2295
+#: ../../library/decimal.rst:2299
 msgid ""
 "A: Yes.  In the CPython and PyPy3 implementations, the C/CFFI versions of "
 "the decimal module integrate the high speed `libmpdec <https://"
@@ -3574,7 +3577,7 @@ msgstr ""
 "en.wikipedia.org/wiki/Discrete_Fourier_transform_(general)#Number-"
 "theoretic_transform>`_\\ 。"
 
-#: ../../library/decimal.rst:2305
+#: ../../library/decimal.rst:2309
 msgid ""
 "The context must be adapted for exact arbitrary precision "
 "arithmetic. :attr:`~Context.Emin` and :attr:`~Context.Emax` should always be "
@@ -3585,14 +3588,14 @@ msgstr ""
 "和 :attr:`~Context.Emax` 應該始終設定為最大值，:attr:`~Context.clamp` 應該始"
 "終為 0（預設）。設定 :attr:`~Context.prec` 需要一些小心。"
 
-#: ../../library/decimal.rst:2309
+#: ../../library/decimal.rst:2313
 msgid ""
 "The easiest approach for trying out bignum arithmetic is to use the maximum "
 "value for :attr:`~Context.prec` as well [#]_::"
 msgstr ""
 "嘗試大數運算的最簡單方法是同時使用 :attr:`~Context.prec` 的最大值 [#]_： ::"
 
-#: ../../library/decimal.rst:2312
+#: ../../library/decimal.rst:2316
 msgid ""
 ">>> setcontext(Context(prec=MAX_PREC, Emax=MAX_EMAX, Emin=MIN_EMIN))\n"
 ">>> x = Decimal(2) ** 256\n"
@@ -3604,7 +3607,7 @@ msgstr ""
 ">>> x / 128\n"
 "Decimal('904625697166532776746648320380374280103671755200316906558262375061821325312')"
 
-#: ../../library/decimal.rst:2318
+#: ../../library/decimal.rst:2322
 msgid ""
 "For inexact results, :const:`MAX_PREC` is far too large on 64-bit platforms "
 "and the available memory will be insufficient::"
@@ -3612,7 +3615,7 @@ msgstr ""
 "對於不精確的結果，:const:`MAX_PREC` 在 64 位元平台上太大了，可用記憶體將不"
 "足： ::"
 
-#: ../../library/decimal.rst:2321
+#: ../../library/decimal.rst:2325
 msgid ""
 ">>> Decimal(1) / 3\n"
 "Traceback (most recent call last):\n"
@@ -3624,7 +3627,7 @@ msgstr ""
 "  File \"<stdin>\", line 1, in <module>\n"
 "MemoryError"
 
-#: ../../library/decimal.rst:2326
+#: ../../library/decimal.rst:2330
 msgid ""
 "On systems with overallocation (e.g. Linux), a more sophisticated approach "
 "is to adjust :attr:`~Context.prec` to the amount of available RAM.  Suppose "
@@ -3635,7 +3638,7 @@ msgstr ""
 "調整為可用 RAM 的數量。假設你有 8GB 的 RAM，並且預期 10 個同時操作數，每個最"
 "多使用 500MB： ::"
 
-#: ../../library/decimal.rst:2330
+#: ../../library/decimal.rst:2334
 msgid ""
 ">>> import sys\n"
 ">>>\n"
@@ -3678,7 +3681,7 @@ msgstr ""
 "  File \"<stdin>\", line 1, in <module>\n"
 "  decimal.Inexact: [<class 'decimal.Inexact'>]"
 
-#: ../../library/decimal.rst:2350
+#: ../../library/decimal.rst:2354
 msgid ""
 "In general (and especially on systems without overallocation), it is "
 "recommended to estimate even tighter bounds and set the :attr:`Inexact` trap "
@@ -3687,7 +3690,7 @@ msgstr ""
 "一般來說（特別是在沒有過度分配的系統上），建議估算更緊密的界限並設"
 "定 :attr:`Inexact` trap，如果所有計算都預期是精確的。"
 
-#: ../../library/decimal.rst:2359
+#: ../../library/decimal.rst:2363
 msgid ""
 "This approach now works for all exact results except for non-integer powers."
 msgstr "這個方法現在對所有精確結果都有效，除了非整數冪次。"
