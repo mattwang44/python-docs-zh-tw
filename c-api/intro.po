@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.14\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-31 00:31+0000\n"
+"POT-Creation-Date: 2026-11-26 15:26+0000\n"
 "PO-Revision-Date: 2023-04-25 18:01+0800\n"
 "Last-Translator: Matt Wang <mattwang44@gmail.com>\n"
 "Language-Team: Chinese - TAIWAN (https://github.com/python/python-docs-zh-"
@@ -32,8 +32,8 @@ msgid ""
 "API. The first reason is to write *extension modules* for specific purposes; "
 "these are C modules that extend the Python interpreter.  This is probably "
 "the most common use.  The second reason is to use Python as a component in a "
-"larger application; this technique is generally referred to as :dfn:"
-"`embedding` Python in an application."
+"larger application; this technique is generally referred to "
+"as :dfn:`embedding` Python in an application."
 msgstr ""
 "對於 Python 的應用程式開發介面使得 C 和 C++ 開發者能夠在各種層級存取 Python "
 "直譯器。該 API 同樣可用於 C++，但為簡潔起見，通常將其稱為 Python/C API。使用 "
@@ -119,13 +119,13 @@ msgstr ""
 #: ../../c-api/intro.rst:64
 msgid ""
 "This implies inclusion of the following standard headers: ``<stdio.h>``, "
-"``<string.h>``, ``<errno.h>``, ``<limits.h>``, ``<assert.h>`` and ``<stdlib."
-"h>`` (if available)."
+"``<string.h>``, ``<errno.h>``, ``<limits.h>``, ``<assert.h>`` and "
+"``<stdlib.h>`` (if available)."
 msgstr ""
 "這意味著會引入以下標準標頭：``<stdio.h>``、``<string.h>``、``<errno.h>``、"
 "``<limits.h>``、``<assert.h>`` 和 ``<stdlib.h>``\\ （如果可用）。"
 
-#: ../../c-api/intro.rst:70
+#: ../../c-api/intro.rst:70 ../../c-api/intro.rst:145
 msgid ""
 "Since Python may define some pre-processor definitions which affect the "
 "standard headers on some systems, you *must* include :file:`Python.h` before "
@@ -168,17 +168,17 @@ msgstr ""
 #: ../../c-api/intro.rst:89
 msgid ""
 "The header files are typically installed with Python.  On Unix, these  are "
-"located in the directories :file:`{prefix}/include/pythonversion/` and :file:"
-"`{exec_prefix}/include/pythonversion/`, where :option:`prefix <--prefix>` "
-"and :option:`exec_prefix <--exec-prefix>` are defined by the corresponding "
-"parameters to Python's :program:`configure` script and *version* is ``'%d."
-"%d' % sys.version_info[:2]``.  On Windows, the headers are installed in :"
-"file:`{prefix}/include`, where ``prefix`` is the installation directory "
-"specified to the installer."
+"located in the directories :file:`{prefix}/include/pythonversion/` "
+"and :file:`{exec_prefix}/include/pythonversion/`, where :option:`prefix <--"
+"prefix>` and :option:`exec_prefix <--exec-prefix>` are defined by the "
+"corresponding parameters to Python's :program:`configure` script and "
+"*version* is ``'%d.%d' % sys.version_info[:2]``.  On Windows, the headers "
+"are installed in :file:`{prefix}/include`, where ``prefix`` is the "
+"installation directory specified to the installer."
 msgstr ""
 "標頭檔通常隨 Python 一起安裝。在 Unix 上它們位於目錄 :file:`{prefix}/include/"
-"pythonversion/` 和 :file:`{exec_prefix}/include/pythonversion/`，其中 :"
-"option:`prefix <--prefix>` 和 :option:`exec_prefix <--exec-prefix>` 由 "
+"pythonversion/` 和 :file:`{exec_prefix}/include/pythonversion/`，其"
+"中 :option:`prefix <--prefix>` 和 :option:`exec_prefix <--exec-prefix>` 由 "
 "Python 的 :program:`configure` 腳本的相應參數定義，*version* 是 ``'%d.%d' % "
 "sys.version_info[:2]``。在 Windows 上，標頭安裝在 :file:`{prefix}/include` "
 "中，其中 ``prefix`` 是指定給安裝程式 (installer) 用的安裝目錄。"
@@ -188,14 +188,14 @@ msgid ""
 "To include the headers, place both directories (if different) on your "
 "compiler's search path for includes.  Do *not* place the parent directories "
 "on the search path and then use ``#include <pythonX.Y/Python.h>``; this will "
-"break on multi-platform builds since the platform independent headers under :"
-"option:`prefix <--prefix>` include the platform specific headers from :"
-"option:`exec_prefix <--exec-prefix>`."
+"break on multi-platform builds since the platform independent headers "
+"under :option:`prefix <--prefix>` include the platform specific headers "
+"from :option:`exec_prefix <--exec-prefix>`."
 msgstr ""
 "要引入標頭，請將兩個（如果不同）目錄放在編譯器的引入搜尋路徑 (search path) "
-"中。*不要*\\ 將父目錄放在搜尋路徑上，然後使用 ``#include <pythonX.Y/Python."
-"h>``；這會在多平台建置上壞掉，因為 :option:`prefix <--prefix>` 下獨立於平台的"
-"標頭包括來自 :option:`exec_prefix <--exec-prefix>` 的平台特定標頭。"
+"中。*不要*\\ 將父目錄放在搜尋路徑上，然後使用 ``#include <pythonX.Y/"
+"Python.h>``；這會在多平台建置上壞掉，因為 :option:`prefix <--prefix>` 下獨立"
+"於平台的標頭包括來自 :option:`exec_prefix <--exec-prefix>` 的平台特定標頭。"
 
 #: ../../c-api/intro.rst:105
 msgid ""
@@ -206,33 +206,113 @@ msgstr ""
 "C++ 使用者應注意，儘管 API 完全使用 C 來定義，但標頭檔適當地將入口點聲明為 "
 "``extern \"C\"``。因此，無需執行任何特殊操作即可使用 C++ 中的 API。"
 
-#: ../../c-api/intro.rst:111
+#: ../../c-api/intro.rst:113
+msgid "System includes"
+msgstr ""
+
+#: ../../c-api/intro.rst:115
+msgid ""
+":file:`Python.h` includes several standard header files. C extensions should "
+"include the standard headers that they use, and should not rely on these "
+"implicit includes. The implicit includes are:"
+msgstr ""
+
+#: ../../c-api/intro.rst:120
+msgid "``<assert.h>``"
+msgstr ""
+
+#: ../../c-api/intro.rst:121
+msgid "``<intrin.h>`` (on Windows)"
+msgstr ""
+
+#: ../../c-api/intro.rst:122
+msgid "``<inttypes.h>``"
+msgstr ""
+
+#: ../../c-api/intro.rst:123
+msgid "``<limits.h>``"
+msgstr ""
+
+#: ../../c-api/intro.rst:124
+msgid "``<math.h>``"
+msgstr ""
+
+#: ../../c-api/intro.rst:125
+msgid "``<stdarg.h>``"
+msgstr ""
+
+#: ../../c-api/intro.rst:126
+msgid "``<string.h>``"
+msgstr ""
+
+#: ../../c-api/intro.rst:127
+msgid "``<wchar.h>``"
+msgstr ""
+
+#: ../../c-api/intro.rst:128
+msgid "``<sys/types.h>`` (if present)"
+msgstr ""
+
+#: ../../c-api/intro.rst:130
+msgid ""
+"The following are included for backwards compatibility, unless "
+"using :ref:`Limited API <limited-c-api>` 3.13 or newer:"
+msgstr ""
+
+#: ../../c-api/intro.rst:133
+msgid "``<ctype.h>``"
+msgstr ""
+
+#: ../../c-api/intro.rst:134
+msgid "``<unistd.h>`` (on POSIX)"
+msgstr ""
+
+#: ../../c-api/intro.rst:136
+msgid ""
+"The following are included for backwards compatibility, unless "
+"using :ref:`Limited API <limited-c-api>` 3.11 or newer:"
+msgstr ""
+
+#: ../../c-api/intro.rst:139
+msgid "``<errno.h>``"
+msgstr ""
+
+#: ../../c-api/intro.rst:140
+msgid "``<stdio.h>``"
+msgstr ""
+
+#: ../../c-api/intro.rst:141
+msgid "``<stdlib.h>``"
+msgstr ""
+
+#: ../../c-api/intro.rst:151
 msgid "Useful macros"
 msgstr "有用的巨集"
 
-#: ../../c-api/intro.rst:113
+#: ../../c-api/intro.rst:153
 msgid ""
 "Several useful macros are defined in the Python header files.  Many are "
-"defined closer to where they are useful (for example, :c:macro:"
-"`Py_RETURN_NONE`, :c:macro:`PyMODINIT_FUNC`). Others of a more general "
-"utility are defined here.  This is not necessarily a complete listing."
+"defined closer to where they are useful (for "
+"example, :c:macro:`Py_RETURN_NONE`, :c:macro:`PyMODINIT_FUNC`). Others of a "
+"more general utility are defined here.  This is not necessarily a complete "
+"listing."
 msgstr ""
-"Python 標頭檔中定義了幾個有用的巨集，大多被定義在它們有用的地方附近（例如 :c:"
-"macro:`Py_RETURN_NONE`、:c:macro:`PyMODINIT_FUNC`），其他是更通用的工具程式。"
-"以下並不一定是完整的列表。"
+"Python 標頭檔中定義了幾個有用的巨集，大多被定義在它們有用的地方附近（例"
+"如 :c:macro:`Py_RETURN_NONE`、:c:macro:`PyMODINIT_FUNC`），其他是更通用的工具"
+"程式。以下並不一定是完整的列表。"
 
-#: ../../c-api/intro.rst:121
+#: ../../c-api/intro.rst:161
 msgid ""
 "If this macro is defined, then the current system is able to start threads."
 msgstr "如果有定義此巨集，則目前系統就能夠啟動執行緒。"
 
-#: ../../c-api/intro.rst:123
+#: ../../c-api/intro.rst:163
 msgid ""
 "Currently, all systems supported by CPython (per :pep:`11`), with the "
 "exception of some WebAssembly platforms, support starting threads."
 msgstr ""
 
-#: ../../c-api/intro.rst:130
+#: ../../c-api/intro.rst:170
 msgid ""
 "Like :samp:`getenv({s})`, but returns ``NULL`` if :option:`-E` was passed on "
 "the command line (see :c:member:`PyConfig.use_environment`)."
@@ -240,11 +320,11 @@ msgstr ""
 "類似於 :samp:`getenv({s})`，但如果在命令列上傳遞了 :option:`-E` 則回傳 "
 "``NULL`` （請見 :c:member:`PyConfig.use_environment`）。"
 
-#: ../../c-api/intro.rst:135
+#: ../../c-api/intro.rst:175
 msgid "Docstring macros"
 msgstr "文件字串巨集"
 
-#: ../../c-api/intro.rst:139
+#: ../../c-api/intro.rst:179
 msgid ""
 "Creates a variable with name *name* that can be used in docstrings. If "
 "Python is built without docstrings (:option:`--without-doc-strings`), the "
@@ -253,12 +333,12 @@ msgstr ""
 "建立一個名為 *name* 的變數，可以在文件字串中使用。如果 Python 是在沒有文件字"
 "串的情況下建置 (:option:`--without-doc-strings`)，則該值將為空字串。"
 
-#: ../../c-api/intro.rst:143 ../../c-api/intro.rst:160
-#: ../../c-api/intro.rst:428
+#: ../../c-api/intro.rst:183 ../../c-api/intro.rst:200
+#: ../../c-api/intro.rst:474
 msgid "Example::"
 msgstr "範例： ::"
 
-#: ../../c-api/intro.rst:145
+#: ../../c-api/intro.rst:185
 msgid ""
 "PyDoc_STRVAR(pop_doc, \"Remove and return the rightmost element.\");\n"
 "\n"
@@ -276,11 +356,11 @@ msgstr ""
 "    // ...\n"
 "}"
 
-#: ../../c-api/intro.rst:153
+#: ../../c-api/intro.rst:193
 msgid "Expands to :samp:`PyDoc_VAR({name}) = PyDoc_STR({str})`."
 msgstr ""
 
-#: ../../c-api/intro.rst:157
+#: ../../c-api/intro.rst:197
 msgid ""
 "Expands to the given input string, or an empty string if docstrings are "
 "disabled (:option:`--without-doc-strings`)."
@@ -288,7 +368,7 @@ msgstr ""
 "擴展至給定的輸入字串，或如果文件字串被禁用 (:option:`--without-doc-strings`) "
 "則建立空字串。"
 
-#: ../../c-api/intro.rst:162
+#: ../../c-api/intro.rst:202
 msgid ""
 "static PyMethodDef pysqlite_row_methods[] = {\n"
 "    {\"keys\", (PyCFunction)pysqlite_row_keys, METH_NOARGS,\n"
@@ -302,33 +382,33 @@ msgstr ""
 "    {NULL, NULL}\n"
 "};"
 
-#: ../../c-api/intro.rst:170
+#: ../../c-api/intro.rst:210
 msgid ""
 "Declares a static character array variable with the given *name*. Expands "
 "to :samp:`static const char {name}[]`"
 msgstr ""
 
-#: ../../c-api/intro.rst:173 ../../c-api/intro.rst:314
-#: ../../c-api/intro.rst:325
+#: ../../c-api/intro.rst:213 ../../c-api/intro.rst:360
+#: ../../c-api/intro.rst:371
 msgid "For example::"
 msgstr "範例： ::"
 
-#: ../../c-api/intro.rst:175
+#: ../../c-api/intro.rst:215
 msgid ""
 "PyDoc_VAR(python_doc) = PyDoc_STR(\n"
 "   \"A genus of constricting snakes in the Pythonidae family native \"\n"
 "   \"to the tropics and subtropics of the Eastern Hemisphere.\");"
 msgstr ""
 
-#: ../../c-api/intro.rst:181
+#: ../../c-api/intro.rst:221
 msgid "General utility macros"
 msgstr ""
 
-#: ../../c-api/intro.rst:183
+#: ../../c-api/intro.rst:223
 msgid "The following macros are for common tasks not specific to Python."
 msgstr ""
 
-#: ../../c-api/intro.rst:187
+#: ../../c-api/intro.rst:227
 msgid ""
 "Use this for unused arguments in a function definition to silence compiler "
 "warnings. Example: ``int func(int a, int Py_UNUSED(b)) { return a; }``."
@@ -336,72 +416,72 @@ msgstr ""
 "將此用於函式定義中未使用的參數以消除編譯器警告。例如：``int func(int a, int "
 "Py_UNUSED(b)) { return a; }``。"
 
-#: ../../c-api/intro.rst:194
+#: ../../c-api/intro.rst:234
 msgid ""
 "Use a GCC attribute *name*, hiding it from compilers that don't support GCC "
 "attributes (such as MSVC)."
 msgstr ""
 
-#: ../../c-api/intro.rst:197
+#: ../../c-api/intro.rst:237
 msgid ""
 "This expands to :samp:`__attribute__(({name)})` on a GCC compiler, and "
 "expands to nothing on compilers that don't support GCC attributes."
 msgstr ""
 
-#: ../../c-api/intro.rst:202
+#: ../../c-api/intro.rst:242
 msgid "Numeric utilities"
 msgstr ""
 
-#: ../../c-api/intro.rst:206
+#: ../../c-api/intro.rst:246
 msgid "Return the absolute value of ``x``."
 msgstr "回傳 ``x`` 的絕對值。"
 
-#: ../../c-api/intro.rst:208
+#: ../../c-api/intro.rst:248
 msgid ""
 "The argument may be evaluated more than once. Consequently, do not pass an "
 "expression with side-effects directly to this macro."
 msgstr ""
 
-#: ../../c-api/intro.rst:212
+#: ../../c-api/intro.rst:252
 msgid ""
 "If the result cannot be represented (for example, if ``x`` has :c:macro:`!"
 "INT_MIN` value for :c:expr:`int` type), the behavior is undefined."
 msgstr ""
 
-#: ../../c-api/intro.rst:216
+#: ../../c-api/intro.rst:256
 msgid "Corresponds roughly to :samp:`(({x}) < 0 ? -({x}) : ({x}))`"
 msgstr ""
 
-#: ../../c-api/intro.rst:223
+#: ../../c-api/intro.rst:263
 msgid "Return the larger or smaller of the arguments, respectively."
 msgstr ""
 
-#: ../../c-api/intro.rst:225
+#: ../../c-api/intro.rst:265
 msgid ""
 "Any arguments may be evaluated more than once. Consequently, do not pass an "
 "expression with side-effects directly to this macro."
 msgstr ""
 
-#: ../../c-api/intro.rst:229
+#: ../../c-api/intro.rst:269
 msgid ""
 ":c:macro:`!Py_MAX` corresponds roughly to :samp:`((({x}) > ({y})) ? ({x}) : "
 "({y}))`."
 msgstr ""
 
-#: ../../c-api/intro.rst:236
+#: ../../c-api/intro.rst:276
 msgid ""
 "Similar to :samp:`{integer} >> {positions}`, but forces sign extension, as "
 "the C standard does not define whether a right-shift of a signed integer "
 "will perform sign extension or a zero-fill."
 msgstr ""
 
-#: ../../c-api/intro.rst:240
+#: ../../c-api/intro.rst:280
 msgid ""
 "*integer* should be any signed integer type. *positions* is the number of "
 "positions to shift to the right."
 msgstr ""
 
-#: ../../c-api/intro.rst:243
+#: ../../c-api/intro.rst:283
 msgid ""
 "Both *integer* and *positions* can be evaluated more than once; "
 "consequently, avoid directly passing a function call or some other operation "
@@ -409,19 +489,19 @@ msgid ""
 "then pass it."
 msgstr ""
 
-#: ../../c-api/intro.rst:248
+#: ../../c-api/intro.rst:288
 msgid ""
 "*type* is unused and only kept for backwards compatibility. Historically, "
 "*type* was used to cast *integer*."
 msgstr ""
 
-#: ../../c-api/intro.rst:253
+#: ../../c-api/intro.rst:293
 msgid ""
 "This macro is now valid for all signed integer types, not just those for "
 "which ``unsigned type`` is legal. As a result, *type* is no longer used."
 msgstr ""
 
-#: ../../c-api/intro.rst:259
+#: ../../c-api/intro.rst:299
 msgid ""
 "Argument must be a character or an integer in the range [-128, 127] or [0, "
 "255].  This macro returns ``c`` cast to an ``unsigned char``."
@@ -429,11 +509,17 @@ msgstr ""
 "引數必須是 [-128, 127] 或 [0, 255] 範圍內的字元或整數。這個巨集會將 ``c`` 轉"
 "換為 ``unsigned char`` 並回傳。"
 
-#: ../../c-api/intro.rst:264
+#: ../../c-api/intro.rst:305
+msgid ""
+"Constants describing the byte order of the platform that Python was built "
+"for. Exactly one of them is ``1`` and the other is ``0``."
+msgstr ""
+
+#: ../../c-api/intro.rst:310
 msgid "Assertion utilities"
 msgstr ""
 
-#: ../../c-api/intro.rst:268
+#: ../../c-api/intro.rst:314
 msgid ""
 "Use this when you have a code path that cannot be reached by design. For "
 "example, in the ``default:`` clause in a ``switch`` statement for which all "
@@ -444,7 +530,7 @@ msgstr ""
 "蓋了所有可能值的 ``switch`` 陳述式中的 ``default:`` 子句。在你可能想要呼叫 "
 "``assert(0)`` 或 ``abort()`` 的地方使用它。"
 
-#: ../../c-api/intro.rst:273
+#: ../../c-api/intro.rst:319
 msgid ""
 "In release mode, the macro helps the compiler to optimize the code, and "
 "avoids a warning about unreachable code.  For example, the macro is "
@@ -454,13 +540,13 @@ msgstr ""
 "程式碼的警告。例如該巨集是在發布模式下於 GCC 使用 "
 "``__builtin_unreachable()`` 來實作。"
 
-#: ../../c-api/intro.rst:277
+#: ../../c-api/intro.rst:323
 msgid ""
-"In debug mode, and on unsupported compilers, the macro expands to a call to :"
-"c:func:`Py_FatalError`."
+"In debug mode, and on unsupported compilers, the macro expands to a call "
+"to :c:func:`Py_FatalError`."
 msgstr ""
 
-#: ../../c-api/intro.rst:280
+#: ../../c-api/intro.rst:326
 msgid ""
 "A use for ``Py_UNREACHABLE()`` is following a call to a function that never "
 "returns but that is not declared ``_Noreturn``."
@@ -468,7 +554,7 @@ msgstr ""
 "``Py_UNREACHABLE()`` 的一個用途是，在對一個永不回傳但並未聲明為 "
 "``_Noreturn`` 的函式之呼叫後使用。"
 
-#: ../../c-api/intro.rst:283
+#: ../../c-api/intro.rst:329
 msgid ""
 "If a code path is very unlikely code but can be reached under exceptional "
 "case, this macro must not be used.  For example, under low memory condition "
@@ -480,54 +566,54 @@ msgstr ""
 "憶體條件下或系統呼叫回傳了超出預期範圍的值。在這種情況下，最好將錯誤回報給呼"
 "叫者。如果無法回報錯誤則可以使用 :c:func:`Py_FatalError`。"
 
-#: ../../c-api/intro.rst:293
+#: ../../c-api/intro.rst:339
 msgid ""
 "Cast *value* to type *smaller* from type *larger*, validating that no "
 "information was lost."
 msgstr ""
 
-#: ../../c-api/intro.rst:296
+#: ../../c-api/intro.rst:342
 msgid ""
-"On release builds of Python, this is roughly equivalent to :samp:"
-"`(({smaller}) {value})` (in C++, :samp:`static_cast<{smaller}>({value})` "
-"will be used instead)."
+"On release builds of Python, this is roughly equivalent "
+"to :samp:`(({smaller}) {value})` (in C++, :samp:`static_cast<{smaller}"
+">({value})` will be used instead)."
 msgstr ""
 
-#: ../../c-api/intro.rst:300
+#: ../../c-api/intro.rst:346
 msgid ""
 "On debug builds (implying that :c:macro:`Py_DEBUG` is defined), this asserts "
 "that no information was lost with the cast from *larger* to *smaller*."
 msgstr ""
 
-#: ../../c-api/intro.rst:303
+#: ../../c-api/intro.rst:349
 msgid ""
 "*value*, *larger*, and *smaller* may all be evaluated more than once in the "
 "expression; consequently, do not pass an expression with side-effects "
 "directly to this macro."
 msgstr ""
 
-#: ../../c-api/intro.rst:309
+#: ../../c-api/intro.rst:355
 msgid ""
 "Asserts a compile-time condition *cond*, as a statement. The build will fail "
 "if the condition is false or cannot be evaluated at compile time."
 msgstr ""
 
-#: ../../c-api/intro.rst:312
+#: ../../c-api/intro.rst:358
 msgid "Corresponds roughly to :samp:`static_assert({cond})` on C23 and above."
 msgstr ""
 
-#: ../../c-api/intro.rst:316
+#: ../../c-api/intro.rst:362
 msgid "Py_BUILD_ASSERT(sizeof(PyTime_t) == sizeof(int64_t));"
 msgstr "Py_BUILD_ASSERT(sizeof(PyTime_t) == sizeof(int64_t));"
 
-#: ../../c-api/intro.rst:322
+#: ../../c-api/intro.rst:368
 msgid ""
 "Asserts a compile-time condition *cond*, as an expression that evaluates to "
 "``0``. The build will fail if the condition is false or cannot be evaluated "
 "at compile time."
 msgstr ""
 
-#: ../../c-api/intro.rst:327
+#: ../../c-api/intro.rst:373
 msgid ""
 "#define foo_to_char(foo) \\\n"
 "    ((char *)(foo) + Py_BUILD_ASSERT_EXPR(offsetof(struct foo, string) == 0))"
@@ -535,15 +621,15 @@ msgstr ""
 "#define foo_to_char(foo) \\\n"
 "    ((char *)(foo) + Py_BUILD_ASSERT_EXPR(offsetof(struct foo, string) == 0))"
 
-#: ../../c-api/intro.rst:334
+#: ../../c-api/intro.rst:380
 msgid "Type size utilities"
 msgstr ""
 
-#: ../../c-api/intro.rst:338
+#: ../../c-api/intro.rst:384
 msgid "Compute the length of a statically allocated C array at compile time."
 msgstr ""
 
-#: ../../c-api/intro.rst:340
+#: ../../c-api/intro.rst:386
 msgid ""
 "The *array* argument must be a C array with a size known at compile time. "
 "Passing an array with an unknown size, such as a heap-allocated array, will "
@@ -551,45 +637,45 @@ msgid ""
 "incorrect results."
 msgstr ""
 
-#: ../../c-api/intro.rst:345
+#: ../../c-api/intro.rst:391
 msgid "This is roughly equivalent to::"
 msgstr "這大致上相當於： ::"
 
-#: ../../c-api/intro.rst:347
+#: ../../c-api/intro.rst:393
 msgid "sizeof(array) / sizeof((array)[0])"
 msgstr "sizeof(array) / sizeof((array)[0])"
 
-#: ../../c-api/intro.rst:351
+#: ../../c-api/intro.rst:397
 msgid "Return the size of a structure (*type*) *member* in bytes."
 msgstr "以位元組為單位回傳結構 (*type*) *member* 的大小。"
 
-#: ../../c-api/intro.rst:353
+#: ../../c-api/intro.rst:399
 msgid "Corresponds roughly to :samp:`sizeof((({type} *)NULL)->{member})`."
 msgstr ""
 
-#: ../../c-api/intro.rst:359
+#: ../../c-api/intro.rst:405
 msgid "Macro definition utilities"
 msgstr ""
 
-#: ../../c-api/intro.rst:363
+#: ../../c-api/intro.rst:409
 msgid ""
 "This is equivalent to :samp:`{X}`, which is useful for token-pasting in "
 "macros, as macro expansions in *X* are forcefully evaluated by the "
 "preprocessor."
 msgstr ""
 
-#: ../../c-api/intro.rst:369
+#: ../../c-api/intro.rst:415
 msgid ""
 "Convert ``x`` to a C string.  For example, ``Py_STRINGIFY(123)`` returns "
 "``\"123\"``."
 msgstr ""
 "將 ``x`` 轉換為 C 字串。例如 ``Py_STRINGIFY(123)`` 會回傳 ``\"123\"``。"
 
-#: ../../c-api/intro.rst:376
+#: ../../c-api/intro.rst:422
 msgid "Declaration utilities"
 msgstr ""
 
-#: ../../c-api/intro.rst:378
+#: ../../c-api/intro.rst:424
 msgid ""
 "The following macros can be used in declarations. They are most useful for "
 "defining the C API itself, and have limited use for extension authors. Most "
@@ -597,7 +683,7 @@ msgid ""
 "language."
 msgstr ""
 
-#: ../../c-api/intro.rst:386
+#: ../../c-api/intro.rst:432
 msgid ""
 "Ask the compiler to always inline a static inline function. The compiler can "
 "ignore it and decide to not inline the function."
@@ -605,13 +691,13 @@ msgstr ""
 "要求編譯器總是嵌入靜態行內函式 (static inline function)，編譯器可以忽略它並決"
 "定不嵌入該函式。"
 
-#: ../../c-api/intro.rst:389
+#: ../../c-api/intro.rst:435
 msgid ""
 "Corresponds to ``always_inline`` attribute in GCC and ``__forceinline`` in "
 "MSVC."
 msgstr ""
 
-#: ../../c-api/intro.rst:392
+#: ../../c-api/intro.rst:438
 msgid ""
 "It can be used to inline performance critical static inline functions when "
 "building Python in debug mode with function inlining disabled. For example, "
@@ -620,7 +706,7 @@ msgstr ""
 "在禁用函式嵌入的除錯模式下建置 Python 時，它可用於嵌入有性能要求的靜態行內函"
 "式。例如，MSC 在除錯模式下建置時禁用函式嵌入。"
 
-#: ../../c-api/intro.rst:396
+#: ../../c-api/intro.rst:442
 msgid ""
 "Marking blindly a static inline function with Py_ALWAYS_INLINE can result in "
 "worse performances (due to increased code size for example). The compiler is "
@@ -629,85 +715,86 @@ msgstr ""
 "盲目地使用 Py_ALWAYS_INLINE 標記靜態行內函式可能會導致更差的性能（例如程式碼"
 "大小增加）。在成本/收益分析方面，編譯器通常比開發人員更聰明。"
 
-#: ../../c-api/intro.rst:400
+#: ../../c-api/intro.rst:446
 msgid ""
-"If Python is :ref:`built in debug mode <debug-build>` (if the :c:macro:"
-"`Py_DEBUG` macro is defined), the :c:macro:`Py_ALWAYS_INLINE` macro does "
-"nothing."
+"If Python is :ref:`built in debug mode <debug-build>` (if "
+"the :c:macro:`Py_DEBUG` macro is defined), the :c:macro:`Py_ALWAYS_INLINE` "
+"macro does nothing."
 msgstr ""
-"如果 Python 是\\ :ref:`在除錯模式下建置 <debug-build>`\\ （如果 :c:macro:"
-"`Py_DEBUG` 巨集有被定義），:c:macro:`Py_ALWAYS_INLINE` 巨集就什麼都不會做。"
+"如果 Python 是\\ :ref:`在除錯模式下建置 <debug-build>`\\ （如"
+"果 :c:macro:`Py_DEBUG` 巨集有被定義），:c:macro:`Py_ALWAYS_INLINE` 巨集就什麼"
+"都不會做。"
 
-#: ../../c-api/intro.rst:403
+#: ../../c-api/intro.rst:449
 msgid "It must be specified before the function return type. Usage::"
 msgstr "它必須在函式回傳型別之前被指定。用法： ::"
 
-#: ../../c-api/intro.rst:405
+#: ../../c-api/intro.rst:451
 msgid "static inline Py_ALWAYS_INLINE int random(void) { return 4; }"
 msgstr "static inline Py_ALWAYS_INLINE int random(void) { return 4; }"
 
-#: ../../c-api/intro.rst:411
+#: ../../c-api/intro.rst:457
 msgid ""
 "Disable inlining on a function. For example, it reduces the C stack "
-"consumption: useful on LTO+PGO builds which heavily inline code (see :issue:"
-"`33720`)."
+"consumption: useful on LTO+PGO builds which heavily inline code "
+"(see :issue:`33720`)."
 msgstr ""
 "禁用函式的嵌入。例如，它減少了 C 堆疊的消耗：對大量嵌入程式碼的 LTO+PGO 建置"
 "很有用（請參閱 :issue:`33720`）。"
 
-#: ../../c-api/intro.rst:415
+#: ../../c-api/intro.rst:461
 msgid ""
 "Corresponds to the ``noinline`` attribute/specification on GCC and MSVC."
 msgstr ""
 
-#: ../../c-api/intro.rst:417
+#: ../../c-api/intro.rst:463
 msgid "Usage::"
 msgstr "用法： ::"
 
-#: ../../c-api/intro.rst:419
+#: ../../c-api/intro.rst:465
 msgid "Py_NO_INLINE static int random(void) { return 4; }"
 msgstr "Py_NO_INLINE static int random(void) { return 4; }"
 
-#: ../../c-api/intro.rst:425
+#: ../../c-api/intro.rst:471
 msgid ""
 "Use this to declare APIs that were deprecated in a specific CPython version. "
 "The macro must be placed before the symbol name."
 msgstr ""
 
-#: ../../c-api/intro.rst:430
+#: ../../c-api/intro.rst:476
 msgid "Py_DEPRECATED(3.8) PyAPI_FUNC(int) Py_OldFunction(void);"
 msgstr "Py_DEPRECATED(3.8) PyAPI_FUNC(int) Py_OldFunction(void);"
 
-#: ../../c-api/intro.rst:432
+#: ../../c-api/intro.rst:478
 msgid "MSVC support was added."
 msgstr "新增了 MSVC 支援。"
 
-#: ../../c-api/intro.rst:437
+#: ../../c-api/intro.rst:483
 msgid ""
 "Declare a function returning the specified *type* using a fast-calling "
 "qualifier for functions that are local to the current file. Semantically, "
 "this is equivalent to :samp:`static {type}`."
 msgstr ""
 
-#: ../../c-api/intro.rst:443
+#: ../../c-api/intro.rst:489
 msgid ""
 "Equivalent to :c:macro:`Py_LOCAL` but additionally requests the function be "
 "inlined."
 msgstr ""
 
-#: ../../c-api/intro.rst:448
+#: ../../c-api/intro.rst:494
 msgid ""
 "Macro used to declare a symbol as local to the shared library (hidden). On "
 "supported platforms, it ensures the symbol is not exported."
 msgstr ""
 
-#: ../../c-api/intro.rst:451
+#: ../../c-api/intro.rst:497
 msgid ""
 "On compatible versions of GCC/Clang, it expands to "
 "``__attribute__((visibility(\"hidden\")))``."
 msgstr ""
 
-#: ../../c-api/intro.rst:456
+#: ../../c-api/intro.rst:502
 msgid ""
 "Macro used to declare a symbol (function or data) as exported. On Windows, "
 "this expands to ``__declspec(dllexport)``. On compatible versions of GCC/"
@@ -715,14 +802,14 @@ msgid ""
 "macro is for defining the C API itself; extension modules should not use it."
 msgstr ""
 
-#: ../../c-api/intro.rst:465
+#: ../../c-api/intro.rst:511
 msgid ""
 "Macro used to declare a symbol as imported. On Windows, this expands to "
 "``__declspec(dllimport)``. This macro is for defining the C API itself; "
 "extension modules should not use it."
 msgstr ""
 
-#: ../../c-api/intro.rst:472
+#: ../../c-api/intro.rst:518
 msgid ""
 "Macro used by CPython to declare a function as part of the C API. Its "
 "expansion depends on the platform and build configuration. This macro is "
@@ -730,7 +817,7 @@ msgid ""
 "use it for their own symbols."
 msgstr ""
 
-#: ../../c-api/intro.rst:480
+#: ../../c-api/intro.rst:526
 msgid ""
 "Macro used by CPython to declare a public global variable as part of the C "
 "API. Its expansion depends on the platform and build configuration. This "
@@ -738,67 +825,113 @@ msgid ""
 "should not use it for their own symbols."
 msgstr ""
 
-#: ../../c-api/intro.rst:487
+#: ../../c-api/intro.rst:533
 msgid "Outdated macros"
 msgstr ""
 
-#: ../../c-api/intro.rst:489
+#: ../../c-api/intro.rst:535
 msgid ""
-"The following macros have been used to features that have been standardized "
-"in C11."
+"The following :term:`soft deprecated` macros have been used to features that "
+"have been standardized in C11 (or previous standards)."
 msgstr ""
 
-#: ../../c-api/intro.rst:494
-msgid "Specify alignment to *num* bytes on compilers that support it."
+#: ../../c-api/intro.rst:540
+msgid ""
+"On some GCC-like compilers, specify alignment to *num* bytes. This does "
+"nothing on other compilers."
 msgstr ""
 
-#: ../../c-api/intro.rst:496
-msgid "Consider using the C11 standard ``_Alignas`` specifier over this macro."
+#: ../../c-api/intro.rst:543
+msgid "Use the standard ``alignas`` specifier rather than this macro."
 msgstr ""
 
-#: ../../c-api/intro.rst:501
+#: ../../c-api/intro.rst:549
+msgid ""
+"The :c:func:`printf` formatting modifier for :c:type:`size_t`. Use ``\"z\"`` "
+"directly instead."
+msgstr ""
+
+#: ../../c-api/intro.rst:557
 msgid ""
 "Use *number* as a ``long long`` or ``unsigned long long`` integer literal, "
 "respectively."
 msgstr ""
 
-#: ../../c-api/intro.rst:504
+#: ../../c-api/intro.rst:560
 msgid ""
 "Expands to *number* followed by ``LL`` or ``LLU``, respectively, but will "
 "expand to some compiler-specific suffixes on some older compilers."
 msgstr ""
 
-#: ../../c-api/intro.rst:507
+#: ../../c-api/intro.rst:563
 msgid "Consider using the C99 standard suffixes ``LL`` and ``LLU`` directly."
 msgstr ""
 
-#: ../../c-api/intro.rst:511
+#: ../../c-api/intro.rst:573
+msgid ""
+"Aliases for the types :c:type:`!long long`, :c:type:`!int32_t`, :c:type:`!"
+"uint32_t`. :c:type:`!int64_t` and :c:type:`!uint64_t`, respectively. "
+"Historically, these types needed compiler-specific extensions."
+msgstr ""
+
+#: ../../c-api/intro.rst:585
+msgid ""
+"Aliases for the values :c:macro:`!LLONG_MIN`, :c:macro:`!"
+"LLONG_MAX`, :c:macro:`!ULLONG_MAX`, and :c:macro:`!SIZE_MAX`, respectively. "
+"Use these standard names instead."
+msgstr ""
+
+#: ../../c-api/intro.rst:589
+msgid ""
+"The required header, ``<limits.h>``, :ref:`is included <capi-system-"
+"includes>` in ``Python.h``."
+msgstr ""
+
+#: ../../c-api/intro.rst:596
 msgid "This is an alias to :c:func:`!memcpy`."
 msgstr "這是 :c:func:`!memcpy` 的別名。"
 
-#: ../../c-api/intro.rst:513
+#: ../../c-api/intro.rst:598
 msgid "Use :c:func:`!memcpy` directly instead."
 msgstr ""
 
-#: ../../c-api/intro.rst:518
+#: ../../c-api/intro.rst:603
+msgid ""
+"Size of the :c:type:`!wchar_t` type. Use ``sizeof(wchar_t)`` or "
+"``WCHAR_WIDTH/8`` instead."
+msgstr ""
+
+#: ../../c-api/intro.rst:606
+msgid ""
+"The required header for the latter, ``<limits.h>``, :ref:`is included <capi-"
+"system-includes>` in ``Python.h``."
+msgstr ""
+
+#: ../../c-api/intro.rst:613
+msgid ""
+"Defined if ``wchar_t`` can hold a Unicode character (UCS-4). Use "
+"``sizeof(wchar_t) >= 4`` instead"
+msgstr ""
+
+#: ../../c-api/intro.rst:620
 msgid "This is an alias to the C99-standard ``va_copy`` function."
 msgstr "這是 C99 標準 ``va_copy`` 函式的別名。"
 
-#: ../../c-api/intro.rst:520
+#: ../../c-api/intro.rst:622
 msgid ""
 "Historically, this would use a compiler-specific method to copy a "
 "``va_list``."
 msgstr ""
 
-#: ../../c-api/intro.rst:522
+#: ../../c-api/intro.rst:624
 msgid "This is now an alias to ``va_copy``."
 msgstr "這現在是 ``va_copy`` 的別名。"
 
-#: ../../c-api/intro.rst:531
+#: ../../c-api/intro.rst:633
 msgid "Objects, Types and Reference Counts"
 msgstr "物件、型別和參照計數"
 
-#: ../../c-api/intro.rst:535
+#: ../../c-api/intro.rst:637
 msgid ""
 "Most Python/C API functions have one or more arguments as well as a return "
 "value of type :c:expr:`PyObject*`.  This type is a pointer to an opaque data "
@@ -806,9 +939,9 @@ msgid ""
 "are treated the same way by the Python language in most situations (e.g., "
 "assignments, scope rules, and argument passing), it is only fitting that "
 "they should be represented by a single C type.  Almost all Python objects "
-"live on the heap: you never declare an automatic or static variable of type :"
-"c:type:`PyObject`, only pointer variables of type :c:expr:`PyObject*` can  "
-"be declared.  The sole exception are the type objects; since these must "
+"live on the heap: you never declare an automatic or static variable of "
+"type :c:type:`PyObject`, only pointer variables of type :c:expr:`PyObject*` "
+"can  be declared.  The sole exception are the type objects; since these must "
 "never be deallocated, they are typically static :c:type:`PyTypeObject` "
 "objects."
 msgstr ""
@@ -821,27 +954,28 @@ msgstr ""
 "別物件；由於它們絕不能被釋放，因此它們通常是靜態 :c:type:`PyTypeObject` 物"
 "件。"
 
-#: ../../c-api/intro.rst:546
+#: ../../c-api/intro.rst:648
 msgid ""
-"All Python objects (even Python integers) have a :dfn:`type` and a :dfn:"
-"`reference count`.  An object's type determines what kind of object it is (e."
-"g., an integer, a list, or a user-defined function; there are many more as "
-"explained in :ref:`types`).  For each of the well-known types there is a "
-"macro to check whether an object is of that type; for instance, "
+"All Python objects (even Python integers) have a :dfn:`type` and "
+"a :dfn:`reference count`.  An object's type determines what kind of object "
+"it is (e.g., an integer, a list, or a user-defined function; there are many "
+"more as explained in :ref:`types`).  For each of the well-known types there "
+"is a macro to check whether an object is of that type; for instance, "
 "``PyList_Check(a)`` is true if (and only if) the object pointed to by *a* is "
 "a Python list."
 msgstr ""
 "所有 Python 物件（甚至是 Python 整數）都有一個型別 (:dfn:`type`) 和一個參照計"
 "數 (:dfn:`reference count`)。一個物件的型別決定了它是什麼種類的物件（例如一個"
-"整數、一個 list 或一個使用者定義的函式；還有更多型別，請見\\ :ref:"
-"`types`\\ ）。對於每個眾所周知的型別，都有一個巨集來檢查物件是否屬於該型別；"
-"例如，若（且唯若）*a* 指向的物件是 Python list 時，``PyList_Check(a)`` 為真。"
+"整數、一個 list 或一個使用者定義的函式；還有更多型別，請見"
+"\\ :ref:`types`\\ ）。對於每個眾所周知的型別，都有一個巨集來檢查物件是否屬於"
+"該型別；例如，若（且唯若）*a* 指向的物件是 Python list 時，"
+"``PyList_Check(a)`` 為真。"
 
-#: ../../c-api/intro.rst:557
+#: ../../c-api/intro.rst:659
 msgid "Reference Counts"
 msgstr "參照計數"
 
-#: ../../c-api/intro.rst:559
+#: ../../c-api/intro.rst:661
 msgid ""
 "The reference count is important because today's computers have a  finite "
 "(and often severely limited) memory size; it counts how many different "
@@ -864,23 +998,23 @@ msgstr ""
 "則可以依次為那些其他物件解除配置，依此類推。（此處相互參照物件的存在是個明顯"
 "的問題；目前，解決方案是「就不要那樣做」。）"
 
-#: ../../c-api/intro.rst:576
+#: ../../c-api/intro.rst:678
 msgid ""
 "Reference counts are always manipulated explicitly.  The normal way is to "
 "use the macro :c:func:`Py_INCREF` to take a new reference to an object (i.e. "
 "increment its reference count by one), and :c:func:`Py_DECREF` to release "
-"that reference (i.e. decrement the reference count by one).  The :c:func:"
-"`Py_DECREF` macro is considerably more complex than the incref one, since it "
-"must check whether the reference count becomes zero and then cause the "
-"object's deallocator to be called.  The deallocator is a function pointer "
-"contained in the object's type structure.  The type-specific deallocator "
-"takes care of releasing references for other objects contained in the object "
-"if this is a compound object type, such as a list, as well as performing any "
-"additional finalization that's needed.  There's no chance that the reference "
-"count can overflow; at least as many bits are used to hold the reference "
-"count as there are distinct memory locations in virtual memory (assuming "
-"``sizeof(Py_ssize_t) >= sizeof(void*)``). Thus, the reference count "
-"increment is a simple operation."
+"that reference (i.e. decrement the reference count by one).  "
+"The :c:func:`Py_DECREF` macro is considerably more complex than the incref "
+"one, since it must check whether the reference count becomes zero and then "
+"cause the object's deallocator to be called.  The deallocator is a function "
+"pointer contained in the object's type structure.  The type-specific "
+"deallocator takes care of releasing references for other objects contained "
+"in the object if this is a compound object type, such as a list, as well as "
+"performing any additional finalization that's needed.  There's no chance "
+"that the reference count can overflow; at least as many bits are used to "
+"hold the reference count as there are distinct memory locations in virtual "
+"memory (assuming ``sizeof(Py_ssize_t) >= sizeof(void*)``). Thus, the "
+"reference count increment is a simple operation."
 msgstr ""
 "參照計數總是被明確地操作。正常的方法是使用巨集 :c:func:`Py_INCREF` 來取得對於"
 "物件的參照（即參照計數加一），並使用巨集 :c:func:`Py_DECREF` 來釋放參照（即將"
@@ -892,7 +1026,7 @@ msgstr ""
 "元會被使用（假設 ``sizeof(Py_ssize_t) >= sizeof(void*)``）。因此參照計數增加"
 "是一個簡單的操作。"
 
-#: ../../c-api/intro.rst:592
+#: ../../c-api/intro.rst:694
 msgid ""
 "It is not necessary to hold a :term:`strong reference` (i.e. increment the "
 "reference count) for every local variable that contains a pointer to an "
@@ -918,15 +1052,15 @@ msgstr ""
 "種情況的一個重要情況是在從 Python 呼叫的擴充模組中作為引數傳遞給 C 函式的物"
 "件；呼叫機制保證在呼叫期間保持對每個參數的參照。"
 
-#: ../../c-api/intro.rst:608
+#: ../../c-api/intro.rst:710
 msgid ""
 "However, a common pitfall is to extract an object from a list and hold on to "
 "it for a while without taking a new reference.  Some other operation might "
 "conceivably remove the object from the list, releasing that reference, and "
 "possibly deallocating it. The real danger is that innocent-looking "
 "operations may invoke arbitrary Python code which could do this; there is a "
-"code path which allows control to flow back to the user from a :c:func:"
-"`Py_DECREF`, so almost any operation is potentially dangerous."
+"code path which allows control to flow back to the user from "
+"a :c:func:`Py_DECREF`, so almost any operation is potentially dangerous."
 msgstr ""
 "然而，一個常見的陷阱是從一個 list 中提取一個物件並保留它一段時間而不取得其參"
 "照。某些其他操作可能會從列表中刪除該物件，減少其參照計數並可能取消分配它。真"
@@ -934,7 +1068,7 @@ msgstr ""
 "程式碼路徑允許控制權從 :c:func:`Py_DECREF` 回歸使用者，因此幾乎任何操作都有潛"
 "在危險。"
 
-#: ../../c-api/intro.rst:616
+#: ../../c-api/intro.rst:718
 msgid ""
 "A safe approach is to always use the generic operations (functions  whose "
 "name begins with ``PyObject_``, ``PyNumber_``, ``PySequence_`` or "
@@ -949,11 +1083,11 @@ msgstr ""
 "計數）。這讓呼叫者有責任在處理完結果後呼叫 :c:func:`Py_DECREF`；這就成為第二"
 "本質。"
 
-#: ../../c-api/intro.rst:627
+#: ../../c-api/intro.rst:729
 msgid "Reference Count Details"
 msgstr "參照計數詳細資訊"
 
-#: ../../c-api/intro.rst:629
+#: ../../c-api/intro.rst:731
 msgid ""
 "The reference count behavior of functions in the Python/C API is best  "
 "explained in terms of *ownership of references*.  Ownership pertains to "
@@ -961,24 +1095,24 @@ msgid ""
 "shared).  \"Owning a reference\" means being responsible for calling "
 "Py_DECREF on it when the reference is no longer needed.  Ownership can also "
 "be transferred, meaning that the code that receives ownership of the "
-"reference then becomes responsible for eventually releasing it by calling :c:"
-"func:`Py_DECREF` or :c:func:`Py_XDECREF` when it's no longer needed---or "
-"passing on this responsibility (usually to its caller). When a function "
-"passes ownership of a reference on to its caller, the caller is said to "
-"receive a *new* reference.  When no ownership is transferred, the caller is "
-"said to *borrow* the reference. Nothing needs to be done for a :term:"
-"`borrowed reference`."
+"reference then becomes responsible for eventually releasing it by "
+"calling :c:func:`Py_DECREF` or :c:func:`Py_XDECREF` when it's no longer "
+"needed---or passing on this responsibility (usually to its caller). When a "
+"function passes ownership of a reference on to its caller, the caller is "
+"said to receive a *new* reference.  When no ownership is transferred, the "
+"caller is said to *borrow* the reference. Nothing needs to be done for "
+"a :term:`borrowed reference`."
 msgstr ""
 "Python/C API 中函式的參照計數行為最好用\\ *參照的所有權*\\ 來解釋。所有權附屬"
 "於參照而非物件（物件並非被擁有，它們總是共享的）。「擁有參照」意味著當不再需"
 "要該參照時，負責在其上呼叫 Py_DECREF。所有權也可以轉移，這意味著接收參照所有"
-"權的程式碼最終會負責在不需要參照時透過呼叫 :c:func:`Py_DECREF` 或 :c:func:"
-"`Py_XDECREF` 釋放參照 --- 或者將這個責任再傳遞出去（通常是給它的呼叫者）。當"
-"一個函式將參照的所有權傳遞給它的呼叫者時，呼叫者被稱為接收到一個\\ *新*\\ 參"
-"照。當沒有所有權轉移時，呼叫者被稱為\\ *借用*\\ 參照。如果是\\ :term:`借用參"
-"照 <borrowed reference>`\\ 就不需要做任何事情。"
+"權的程式碼最終會負責在不需要參照時透過呼叫 :c:func:`Py_DECREF` "
+"或 :c:func:`Py_XDECREF` 釋放參照 --- 或者將這個責任再傳遞出去（通常是給它的呼"
+"叫者）。當一個函式將參照的所有權傳遞給它的呼叫者時，呼叫者被稱為接收到一個\\ "
+"*新*\\ 參照。當沒有所有權轉移時，呼叫者被稱為\\ *借用*\\ 參照。如果是"
+"\\ :term:`借用參照 <borrowed reference>`\\ 就不需要做任何事情。"
 
-#: ../../c-api/intro.rst:642
+#: ../../c-api/intro.rst:744
 msgid ""
 "Conversely, when a calling function passes in a reference to an  object, "
 "there are two possibilities: the function *steals* a  reference to the "
@@ -987,7 +1121,7 @@ msgstr ""
 "相反地，當呼叫的函式傳入物件的參照時，有兩種可能性：函式\\ *竊取 (steal)*\\ "
 "物件的參照，或者沒有。"
 
-#: ../../c-api/intro.rst:646
+#: ../../c-api/intro.rst:748
 msgid ""
 "*Stealing a reference* means that when you pass a reference to a function, "
 "that function assumes that it now owns that reference. Since the new owner "
@@ -995,24 +1129,24 @@ msgid ""
 "use that reference after the call."
 msgstr ""
 
-#: ../../c-api/intro.rst:655
+#: ../../c-api/intro.rst:757
 msgid ""
-"Few functions steal references; the two notable exceptions are :c:func:"
-"`PyList_SetItem` and :c:func:`PyTuple_SetItem`, which  steal a reference to "
-"the item (but not to the tuple or list into which the item is put!).  These "
-"functions were designed to steal a reference because of a common idiom for "
-"populating a tuple or list with newly created objects; for example, the code "
-"to create the tuple ``(1, 2, \"three\")`` could look like this (forgetting "
-"about error handling for the moment; a better way to code this is shown "
-"below)::"
+"Few functions steal references; the two notable exceptions "
+"are :c:func:`PyList_SetItem` and :c:func:`PyTuple_SetItem`, which  steal a "
+"reference to the item (but not to the tuple or list into which the item is "
+"put!).  These functions were designed to steal a reference because of a "
+"common idiom for populating a tuple or list with newly created objects; for "
+"example, the code to create the tuple ``(1, 2, \"three\")`` could look like "
+"this (forgetting about error handling for the moment; a better way to code "
+"this is shown below)::"
 msgstr ""
-"很少有函式會竊取參照；兩個值得注意的例外是 :c:func:`PyList_SetItem` 和 :c:"
-"func:`PyTuple_SetItem`，它們竊取了對項目的參照（但不是對項目所在的 tuple 或 "
-"list 的參照！）。因為有著使用新建立的物件來增加 (populate) tuple 或 list 的習"
-"慣，這些函式旨在竊取參照；例如，建立 tuple ``(1, 2, \"three\")`` 的程式碼可以"
-"如下所示（先暫時忘記錯誤處理；更好的編寫方式如下所示）："
+"很少有函式會竊取參照；兩個值得注意的例外是 :c:func:`PyList_SetItem` "
+"和 :c:func:`PyTuple_SetItem`，它們竊取了對項目的參照（但不是對項目所在的 "
+"tuple 或 list 的參照！）。因為有著使用新建立的物件來增加 (populate) tuple 或 "
+"list 的習慣，這些函式旨在竊取參照；例如，建立 tuple ``(1, 2, \"three\")`` 的"
+"程式碼可以如下所示（先暫時忘記錯誤處理；更好的編寫方式如下所示）："
 
-#: ../../c-api/intro.rst:663
+#: ../../c-api/intro.rst:765
 msgid ""
 "PyObject *t;\n"
 "\n"
@@ -1028,51 +1162,52 @@ msgstr ""
 "PyTuple_SetItem(t, 1, PyLong_FromLong(2L));\n"
 "PyTuple_SetItem(t, 2, PyUnicode_FromString(\"three\"));"
 
-#: ../../c-api/intro.rst:670
+#: ../../c-api/intro.rst:772
 msgid ""
 "Here, :c:func:`PyLong_FromLong` returns a new reference which is immediately "
 "stolen by :c:func:`PyTuple_SetItem`.  When you want to keep using an object "
 "although the reference to it will be stolen, use :c:func:`Py_INCREF` to grab "
 "another reference before calling the reference-stealing function."
 msgstr ""
-"這裡 :c:func:`PyLong_FromLong` 會回傳一個新的參照，它立即被 :c:func:"
-"`PyTuple_SetItem` 竊取。如果你想繼續使用一個物件，儘管對它的參照將被竊取，請"
-"在呼叫參照竊取函式之前使用 :c:func:`Py_INCREF` 來取得另一個參照。"
+"這裡 :c:func:`PyLong_FromLong` 會回傳一個新的參照，它立即"
+"被 :c:func:`PyTuple_SetItem` 竊取。如果你想繼續使用一個物件，儘管對它的參照將"
+"被竊取，請在呼叫參照竊取函式之前使用 :c:func:`Py_INCREF` 來取得另一個參照。"
 
-#: ../../c-api/intro.rst:675
+#: ../../c-api/intro.rst:777
 msgid ""
 "Incidentally, :c:func:`PyTuple_SetItem` is the *only* way to set tuple "
 "items; :c:func:`PySequence_SetItem` and :c:func:`PyObject_SetItem` refuse to "
-"do this since tuples are an immutable data type.  You should only use :c:"
-"func:`PyTuple_SetItem` for tuples that you are creating yourself."
+"do this since tuples are an immutable data type.  You should only "
+"use :c:func:`PyTuple_SetItem` for tuples that you are creating yourself."
 msgstr ""
-"附帶地說，:c:func:`PyTuple_SetItem` 是設定 tuple 項目的\\ *唯一*\\ 方法； :c:"
-"func:`PySequence_SetItem` 和 :c:func:`PyObject_SetItem` 拒絕這樣做，因為 "
-"tuple 是一種不可變 (immutable) 的資料型別。你應該只對你自己建立的 tuple 使"
-"用 :c:func:`PyTuple_SetItem`。"
+"附帶地說，:c:func:`PyTuple_SetItem` 是設定 tuple 項目的\\ *唯一*\\ 方"
+"法； :c:func:`PySequence_SetItem` 和 :c:func:`PyObject_SetItem` 拒絕這樣做，"
+"因為 tuple 是一種不可變 (immutable) 的資料型別。你應該只對你自己建立的 tuple "
+"使用 :c:func:`PyTuple_SetItem`。"
 
-#: ../../c-api/intro.rst:680
+#: ../../c-api/intro.rst:782
 msgid ""
-"Equivalent code for populating a list can be written using :c:func:"
-"`PyList_New` and :c:func:`PyList_SetItem`."
+"Equivalent code for populating a list can be written "
+"using :c:func:`PyList_New` and :c:func:`PyList_SetItem`."
 msgstr ""
 "可以使用 :c:func:`PyList_New` 和 :c:func:`PyList_SetItem` 編寫用於填充列表的"
 "等效程式碼。"
 
-#: ../../c-api/intro.rst:683
+#: ../../c-api/intro.rst:785
 msgid ""
 "However, in practice, you will rarely use these ways of creating and "
-"populating a tuple or list.  There's a generic function, :c:func:"
-"`Py_BuildValue`, that can create most common objects from C values, directed "
-"by a :dfn:`format string`. For example, the above two blocks of code could "
-"be replaced by the following (which also takes care of the error checking)::"
+"populating a tuple or list.  There's a generic "
+"function, :c:func:`Py_BuildValue`, that can create most common objects from "
+"C values, directed by a :dfn:`format string`. For example, the above two "
+"blocks of code could be replaced by the following (which also takes care of "
+"the error checking)::"
 msgstr ""
 "但是在實際操作中你很少會使用這些方法來建立和增加 tuple 和 list。有一個通用函"
 "式 :c:func:`Py_BuildValue` 可以從 C 值建立最常見的物件，由 :dfn:`format "
 "string` 引導。例如上面的兩個程式碼可以用以下程式碼替換（它還負責了錯誤檢"
 "查）： ::"
 
-#: ../../c-api/intro.rst:689
+#: ../../c-api/intro.rst:791
 msgid ""
 "PyObject *tuple, *list;\n"
 "\n"
@@ -1084,7 +1219,7 @@ msgstr ""
 "tuple = Py_BuildValue(\"(iis)\", 1, 2, \"three\");\n"
 "list = Py_BuildValue(\"[iis]\", 1, 2, \"three\");"
 
-#: ../../c-api/intro.rst:694
+#: ../../c-api/intro.rst:796
 msgid ""
 "It is much more common to use :c:func:`PyObject_SetItem` and friends with "
 "items whose references you are only borrowing, like arguments that were "
@@ -1099,7 +1234,7 @@ msgstr ""
 "穩健，因為你不取得新的一個參照就可以放棄參照（「讓它被竊取」）。例如，此函式"
 "將 list（實際上是任何可變序列）的所有項目設定於給定項目："
 
-#: ../../c-api/intro.rst:701
+#: ../../c-api/intro.rst:803
 msgid ""
 "int\n"
 "set_all(PyObject *target, PyObject *item)\n"
@@ -1143,7 +1278,7 @@ msgstr ""
 "    return 0;\n"
 "}"
 
-#: ../../c-api/intro.rst:724
+#: ../../c-api/intro.rst:826
 msgid ""
 "The situation is slightly different for function return values.   While "
 "passing a reference to most functions does not change your  ownership "
@@ -1161,7 +1296,7 @@ msgstr ""
 "照的通用函式，如 :c:func:`PyObject_GetItem` 和 :c:func:`PySequence_GetItem`，"
 "總是回傳一個新的參照（呼叫者成為參照的所有者）。"
 
-#: ../../c-api/intro.rst:733
+#: ../../c-api/intro.rst:835
 msgid ""
 "It is important to realize that whether you own a reference returned  by a "
 "function depends on which function you call only --- *the plumage* (the type "
@@ -1177,16 +1312,16 @@ msgstr ""
 "但如果你使用 :c:func:`PySequence_GetItem` 從同一 list 中取得相同的項目（且恰"
 "好使用完全相同的引數），你確實會擁有對回傳物件的參照。"
 
-#: ../../c-api/intro.rst:745
+#: ../../c-api/intro.rst:847
 msgid ""
 "Here is an example of how you could write a function that computes the sum "
 "of the items in a list of integers; once using  :c:func:`PyList_GetItem`, "
 "and once using :c:func:`PySequence_GetItem`. ::"
 msgstr ""
-"以下是一個範例，說明如何編寫函式來計算一個整數 list 中項目的總和；一次使用 :"
-"c:func:`PyList_GetItem`，一次使用 :c:func:`PySequence_GetItem`： ::"
+"以下是一個範例，說明如何編寫函式來計算一個整數 list 中項目的總和；一次使"
+"用 :c:func:`PyList_GetItem`，一次使用 :c:func:`PySequence_GetItem`： ::"
 
-#: ../../c-api/intro.rst:749
+#: ../../c-api/intro.rst:851
 msgid ""
 "long\n"
 "sum_list(PyObject *list)\n"
@@ -1232,7 +1367,7 @@ msgstr ""
 "    return total;\n"
 "}"
 
-#: ../../c-api/intro.rst:775
+#: ../../c-api/intro.rst:877
 msgid ""
 "long\n"
 "sum_sequence(PyObject *sequence)\n"
@@ -1290,41 +1425,59 @@ msgstr ""
 "    return total;\n"
 "}"
 
-#: ../../c-api/intro.rst:809
+#: ../../c-api/intro.rst:911
 msgid "Types"
 msgstr "型別"
 
-#: ../../c-api/intro.rst:811
+#: ../../c-api/intro.rst:913
 msgid ""
 "There are few other data types that play a significant role in  the Python/C "
-"API; most are simple C types such as :c:expr:`int`,  :c:expr:`long`, :c:expr:"
-"`double` and :c:expr:`char*`.  A few structure types  are used to describe "
-"static tables used to list the functions exported  by a module or the data "
-"attributes of a new object type, and another is used to describe the value "
-"of a complex number.  These will  be discussed together with the functions "
-"that use them."
+"API; most are simple C types such "
+"as :c:expr:`int`,  :c:expr:`long`, :c:expr:`double` and :c:expr:`char*`.  A "
+"few structure types  are used to describe static tables used to list the "
+"functions exported  by a module or the data attributes of a new object type, "
+"and another is used to describe the value of a complex number.  These will  "
+"be discussed together with the functions that use them."
 msgstr ""
 "有少數幾個其他的資料型別在 Python/C API 中發揮重要作用；大多數是簡單的 C 型"
 "別，例如 :c:expr:`int`、:c:expr:`long`、:c:expr:`double` 和 :c:expr:`char*`。"
 "一些結構型別被用於描述用於列出模組所匯出的函式或新物件型別的資料屬性的靜態"
 "表，其他則用於描述複數的值。這些將與使用它們的函式一起討論。"
 
-#: ../../c-api/intro.rst:821
+#: ../../c-api/intro.rst:923
+#, fuzzy
 msgid ""
 "A signed integral type such that ``sizeof(Py_ssize_t) == sizeof(size_t)``. "
 "C99 doesn't define such a thing directly (size_t is an unsigned integral "
-"type). See :pep:`353` for details. ``PY_SSIZE_T_MAX`` is the largest "
-"positive value of type :c:type:`Py_ssize_t`."
+"type). See :pep:`353` for details."
 msgstr ""
 "一個帶符號的整數型別，使得 ``sizeof(Py_ssize_t) == sizeof(size_t)``。 C99 沒"
-"有直接定義這樣的東西（size_t 是無符號整數型別）。有關詳細資訊，請參閱 :pep:"
-"`353`。 ``PY_SSIZE_T_MAX`` 是 :c:type:`Py_ssize_t` 型別的最大正值。"
+"有直接定義這樣的東西（size_t 是無符號整數型別）。有關詳細資訊，請參"
+"閱 :pep:`353`。 ``PY_SSIZE_T_MAX`` 是 :c:type:`Py_ssize_t` 型別的最大正值。"
 
-#: ../../c-api/intro.rst:830
+#: ../../c-api/intro.rst:930
+msgid ""
+"A constant of type :c:type:`Py_ssize_t` with value ``-1``, representing an "
+"invalid size."
+msgstr ""
+
+#: ../../c-api/intro.rst:937
+msgid ""
+"The limit values (largest positive one and smallest negative one, "
+"respectively) of type :c:type:`Py_ssize_t`."
+msgstr ""
+
+#: ../../c-api/intro.rst:943
+msgid ""
+"The maximum value of the Windows ``DWORD`` type. Expands to ``0xffffffff`` "
+"on all platforms."
+msgstr ""
+
+#: ../../c-api/intro.rst:950
 msgid "Exceptions"
 msgstr "例外"
 
-#: ../../c-api/intro.rst:832
+#: ../../c-api/intro.rst:952
 msgid ""
 "The Python programmer only needs to deal with exceptions if specific  error "
 "handling is required; unhandled exceptions are automatically  propagated to "
@@ -1336,7 +1489,7 @@ msgstr ""
 "給呼叫者，然後傳遞給呼叫者的呼叫者，依此類推，直到它們到達頂層直譯器，在那裡"
 "它們透過堆疊回溯 (stack trace) 回報給使用者。"
 
-#: ../../c-api/intro.rst:840
+#: ../../c-api/intro.rst:960
 msgid ""
 "For C programmers, however, error checking always has to be explicit.  All "
 "functions in the Python/C API can raise exceptions, unless an explicit claim "
@@ -1358,36 +1511,36 @@ msgstr ""
 "確的錯誤指示器或者有不明確的回傳值，而需要使用 :c:func:`PyErr_Occurred` 明確"
 "測試錯誤。這些例外都會被明確地記錄於文件。"
 
-#: ../../c-api/intro.rst:855
+#: ../../c-api/intro.rst:975
 msgid ""
 "Exception state is maintained in per-thread storage (this is  equivalent to "
 "using global storage in an unthreaded application).  A  thread can be in one "
-"of two states: an exception has occurred, or not. The function :c:func:"
-"`PyErr_Occurred` can be used to check for this: it returns a borrowed "
-"reference to the exception type object when an exception has occurred, and "
-"``NULL`` otherwise.  There are a number of functions to set the exception "
-"state: :c:func:`PyErr_SetString` is the most common (though not the most "
-"general) function to set the exception state, and :c:func:`PyErr_Clear` "
-"clears the exception state."
+"of two states: an exception has occurred, or not. The "
+"function :c:func:`PyErr_Occurred` can be used to check for this: it returns "
+"a borrowed reference to the exception type object when an exception has "
+"occurred, and ``NULL`` otherwise.  There are a number of functions to set "
+"the exception state: :c:func:`PyErr_SetString` is the most common (though "
+"not the most general) function to set the exception state, "
+"and :c:func:`PyErr_Clear` clears the exception state."
 msgstr ""
 "例外的狀態會在個別執行緒的儲存空間 (per-thread storage) 中維護（這相當於在非"
 "執行緒應用程式中使用全域儲存空間）。執行緒可以處於兩種狀態之一：發生例外或未"
 "發生例外。函式 :c:func:`PyErr_Occurred` 可用於檢查這一點：當例外發生時，它回"
-"傳對例外型別物件的借用參照，否則回傳 ``NULL``。設定例外狀態的函式有很多：:c:"
-"func:`PyErr_SetString` 是最常見的（儘管不是最通用的）設定例外狀態的函式，而 :"
-"c:func:`PyErr_Clear` 是用來清除例外狀態。"
+"傳對例外型別物件的借用參照，否則回傳 ``NULL``。設定例外狀態的函式有很"
+"多：:c:func:`PyErr_SetString` 是最常見的（儘管不是最通用的）設定例外狀態的函"
+"式，而 :c:func:`PyErr_Clear` 是用來清除例外狀態。"
 
-#: ../../c-api/intro.rst:865
+#: ../../c-api/intro.rst:985
 msgid ""
 "The full exception state consists of three objects (all of which can  be "
 "``NULL``): the exception type, the corresponding exception  value, and the "
-"traceback.  These have the same meanings as the Python result of ``sys."
-"exc_info()``; however, they are not the same: the Python objects represent "
-"the last exception being handled by a Python  :keyword:`try` ... :keyword:"
-"`except` statement, while the C level exception state only exists while an "
-"exception is being passed on between C functions until it reaches the Python "
-"bytecode interpreter's  main loop, which takes care of transferring it to "
-"``sys.exc_info()`` and friends."
+"traceback.  These have the same meanings as the Python result of "
+"``sys.exc_info()``; however, they are not the same: the Python objects "
+"represent the last exception being handled by a "
+"Python  :keyword:`try` ... :keyword:`except` statement, while the C level "
+"exception state only exists while an exception is being passed on between C "
+"functions until it reaches the Python bytecode interpreter's  main loop, "
+"which takes care of transferring it to ``sys.exc_info()`` and friends."
 msgstr ""
 "完整的例外狀態由三個（都可以為 ``NULL`` 的）物件組成：例外型別、對應的例外值"
 "和回溯。這些與 ``sys.exc_info()`` 的 Python 結果具有相同的含義；但是它們並不"
@@ -1396,18 +1549,18 @@ msgstr ""
 "達 Python 位元組碼直譯器的主迴圈，該迴圈負責將它傳遞給 ``sys.exc_info()`` 和"
 "其系列函式。"
 
-#: ../../c-api/intro.rst:877
+#: ../../c-api/intro.rst:997
 msgid ""
 "Note that starting with Python 1.5, the preferred, thread-safe way to access "
-"the exception state from Python code is to call the function :func:`sys."
-"exc_info`, which returns the per-thread exception state for Python code.  "
-"Also, the semantics of both ways to access the exception state have changed "
-"so that a function which catches an exception will save and restore its "
-"thread's exception state so as to preserve the exception state of its "
-"caller.  This prevents common bugs in exception handling code caused by an "
-"innocent-looking function overwriting the exception being handled; it also "
-"reduces the often unwanted lifetime extension for objects that are "
-"referenced by the stack frames in the traceback."
+"the exception state from Python code is to call the "
+"function :func:`sys.exc_info`, which returns the per-thread exception state "
+"for Python code.  Also, the semantics of both ways to access the exception "
+"state have changed so that a function which catches an exception will save "
+"and restore its thread's exception state so as to preserve the exception "
+"state of its caller.  This prevents common bugs in exception handling code "
+"caused by an innocent-looking function overwriting the exception being "
+"handled; it also reduces the often unwanted lifetime extension for objects "
+"that are referenced by the stack frames in the traceback."
 msgstr ""
 "請注意，從 Python 1.5 開始，從 Python 程式碼存取例外狀態的首選且支援執行緒安"
 "全的方法是呼叫 :func:`sys.exc_info` 函式，它回傳 Python 程式碼的個別執行緒例"
@@ -1416,7 +1569,7 @@ msgstr ""
 "式碼中的常見錯誤，這些錯誤是由看似無辜的函式覆蓋了正在處理的例外而引起的；它"
 "還替回溯中被堆疊框 (stack frame) 參照的物件減少了通常不需要的生命週期延長。"
 
-#: ../../c-api/intro.rst:888
+#: ../../c-api/intro.rst:1008
 msgid ""
 "As a general principle, a function that calls another function to  perform "
 "some task should check whether the called function raised an  exception, and "
@@ -1431,7 +1584,7 @@ msgstr ""
 "並回傳一個錯誤指示符，但它\\ *不應該*\\ 設定另一個例外 --- 這將覆蓋剛剛引發的"
 "例外，並丟失關於錯誤確切原因的重要資訊。"
 
-#: ../../c-api/intro.rst:897
+#: ../../c-api/intro.rst:1017
 msgid ""
 "A simple example of detecting exceptions and passing them on is shown in "
 "the :c:func:`!sum_sequence` example above.  It so happens that this example "
@@ -1443,7 +1596,7 @@ msgstr ""
 "巧這個例子在檢測到錯誤時不需要清理任何擁有的參照。以下範例函式展示了一些錯誤"
 "清理。首先，為了提醒你為什麼喜歡 Python，我們展示了等效的 Python 程式碼： ::"
 
-#: ../../c-api/intro.rst:903
+#: ../../c-api/intro.rst:1023
 msgid ""
 "def incr_item(dict, key):\n"
 "    try:\n"
@@ -1459,11 +1612,11 @@ msgstr ""
 "        item = 0\n"
 "    dict[key] = item + 1"
 
-#: ../../c-api/intro.rst:912
+#: ../../c-api/intro.rst:1032
 msgid "Here is the corresponding C code, in all its glory::"
 msgstr "這是相應的 C 程式碼："
 
-#: ../../c-api/intro.rst:914
+#: ../../c-api/intro.rst:1034
 msgid ""
 "int\n"
 "incr_item(PyObject *dict, PyObject *key)\n"
@@ -1509,30 +1662,31 @@ msgid ""
 "}"
 msgstr ""
 
-#: ../../c-api/intro.rst:964
+#: ../../c-api/intro.rst:1084
 msgid ""
 "This example represents an endorsed use of the ``goto`` statement  in C! It "
-"illustrates the use of :c:func:`PyErr_ExceptionMatches` and :c:func:"
-"`PyErr_Clear` to handle specific exceptions, and the use of :c:func:"
-"`Py_XDECREF` to dispose of owned references that may be ``NULL`` (note the "
-"``'X'`` in the name; :c:func:`Py_DECREF` would crash when confronted with a "
-"``NULL`` reference).  It is important that the variables used to hold owned "
-"references are initialized to ``NULL`` for this to work; likewise, the "
-"proposed return value is initialized to ``-1`` (failure) and only set to "
-"success after the final call made is successful."
+"illustrates the use of :c:func:`PyErr_ExceptionMatches` "
+"and :c:func:`PyErr_Clear` to handle specific exceptions, and the use "
+"of :c:func:`Py_XDECREF` to dispose of owned references that may be ``NULL`` "
+"(note the ``'X'`` in the name; :c:func:`Py_DECREF` would crash when "
+"confronted with a ``NULL`` reference).  It is important that the variables "
+"used to hold owned references are initialized to ``NULL`` for this to work; "
+"likewise, the proposed return value is initialized to ``-1`` (failure) and "
+"only set to success after the final call made is successful."
 msgstr ""
-"這個例子代表了在 C 語言中對使用 ``goto`` 陳述句的認同！它闡述了以 :c:func:"
-"`PyErr_ExceptionMatches` 和 :c:func:`PyErr_Clear` 來處理特定的例外，以及以 :"
-"c:func:`Py_XDECREF` 來配置其所擁有且可能為 ``NULL`` 的參照（注意名稱中的 "
-"``'X'``\\ ；:c:func:`Py_DECREF` 在遇到 ``NULL`` 參照時會崩潰）。重要的是，用"
-"於保存擁有的參照的變數被初始化為 ``NULL`` 以使其能夠順利作用；同樣地，回傳值"
-"被初始化為 ``-1``\\ （失敗），並且僅在最後一次呼叫成功後才設定為成功。"
+"這個例子代表了在 C 語言中對使用 ``goto`` 陳述句的認同！它闡述了"
+"以 :c:func:`PyErr_ExceptionMatches` 和 :c:func:`PyErr_Clear` 來處理特定的例"
+"外，以及以 :c:func:`Py_XDECREF` 來配置其所擁有且可能為 ``NULL`` 的參照（注意"
+"名稱中的 ``'X'``\\ ；:c:func:`Py_DECREF` 在遇到 ``NULL`` 參照時會崩潰）。重要"
+"的是，用於保存擁有的參照的變數被初始化為 ``NULL`` 以使其能夠順利作用；同樣"
+"地，回傳值被初始化為 ``-1``\\ （失敗），並且僅在最後一次呼叫成功後才設定為成"
+"功。"
 
-#: ../../c-api/intro.rst:978
+#: ../../c-api/intro.rst:1098
 msgid "Embedding Python"
 msgstr "嵌入式Python"
 
-#: ../../c-api/intro.rst:980
+#: ../../c-api/intro.rst:1100
 msgid ""
 "The one important task that only embedders (as opposed to extension writers) "
 "of the Python interpreter have to worry about is the initialization, and "
@@ -1542,7 +1696,7 @@ msgstr ""
 "只有 Python 直譯器的嵌入者（而不是擴充編寫者）需要擔心的一項重要任務是 "
 "Python 直譯器的初始化與完成階段。直譯器的大部分功能只能在直譯器初始化後使用。"
 
-#: ../../c-api/intro.rst:993
+#: ../../c-api/intro.rst:1113
 msgid ""
 "The basic initialization function is :c:func:`Py_Initialize`. This "
 "initializes the table of loaded modules, and creates the fundamental "
@@ -1553,19 +1707,20 @@ msgstr ""
 "立基礎模組 :mod:`builtins`、:mod:`__main__` 和 :mod:`sys`。它還會初始化模組搜"
 "索路徑 (``sys.path``)。"
 
-#: ../../c-api/intro.rst:998
+#: ../../c-api/intro.rst:1118
 msgid ""
-":c:func:`Py_Initialize` does not set the \"script argument list\"  (``sys."
-"argv``). If this variable is needed by Python code that will be executed "
-"later, setting :c:member:`PyConfig.argv` and :c:member:`PyConfig.parse_argv` "
-"must be set: see :ref:`Python Initialization Configuration <init-config>`."
+":c:func:`Py_Initialize` does not set the \"script argument list\"  "
+"(``sys.argv``). If this variable is needed by Python code that will be "
+"executed later, setting :c:member:`PyConfig.argv` "
+"and :c:member:`PyConfig.parse_argv` must be set: see :ref:`Python "
+"Initialization Configuration <init-config>`."
 msgstr ""
-":c:func:`Py_Initialize` 不設定「腳本引數列表 (script argument list)」 (``sys."
-"argv``)。如果稍後將要執行的 Python 程式碼需要此變數，則必須設定 :c:member:"
-"`PyConfig.argv` 和 :c:member:`PyConfig.parse_argv`，請見 :ref:`Python 初始化"
-"配置 <init-config>`。"
+":c:func:`Py_Initialize` 不設定「腳本引數列表 (script argument list)」 "
+"(``sys.argv``)。如果稍後將要執行的 Python 程式碼需要此變數，則必須設"
+"定 :c:member:`PyConfig.argv` 和 :c:member:`PyConfig.parse_argv`，請"
+"見 :ref:`Python 初始化配置 <init-config>`。"
 
-#: ../../c-api/intro.rst:1003
+#: ../../c-api/intro.rst:1123
 msgid ""
 "On most systems (in particular, on Unix and Windows, although the details "
 "are slightly different), :c:func:`Py_Initialize` calculates the module "
@@ -1576,73 +1731,72 @@ msgid ""
 "to the parent directory where the executable named :file:`python` is found "
 "on the shell command search path (the environment variable :envvar:`PATH`)."
 msgstr ""
-"在大多數系統上（特別是在 Unix 和 Windows 上，儘管細節略有不同），:c:func:"
-"`Py_Initialize` 會假設Python 函式庫相對於 Python 直譯器可執行檔案的位置固定，"
-"並根據其對標準 Python 直譯器可執行檔案位置的最佳猜測來計算模組搜尋路徑。或者"
-"更詳細地說，它會在 shell 命令搜尋路徑（環境變數 :envvar:`PATH`）中找到名為 :"
-"file:`python` 的可執行檔案，並在其父目錄中查找一個名為 :file:`lib/python{X.Y}"
-"` 的目錄的相對位置。"
+"在大多數系統上（特別是在 Unix 和 Windows 上，儘管細節略有不"
+"同），:c:func:`Py_Initialize` 會假設Python 函式庫相對於 Python 直譯器可執行檔"
+"案的位置固定，並根據其對標準 Python 直譯器可執行檔案位置的最佳猜測來計算模組"
+"搜尋路徑。或者更詳細地說，它會在 shell 命令搜尋路徑（環境變"
+"數 :envvar:`PATH`）中找到名為 :file:`python` 的可執行檔案，並在其父目錄中查找"
+"一個名為 :file:`lib/python{X.Y}` 的目錄的相對位置。"
 
-#: ../../c-api/intro.rst:1012
+#: ../../c-api/intro.rst:1132
 msgid ""
 "For instance, if the Python executable is found in :file:`/usr/local/bin/"
 "python`, it will assume that the libraries are in :file:`/usr/local/lib/"
 "python{X.Y}`.  (In fact, this particular path is also the \"fallback\" "
-"location, used when no executable file named :file:`python` is found along :"
-"envvar:`PATH`.)  The user can override this behavior by setting the "
+"location, used when no executable file named :file:`python` is found "
+"along :envvar:`PATH`.)  The user can override this behavior by setting the "
 "environment variable :envvar:`PYTHONHOME`, or insert additional directories "
 "in front of the standard path by setting :envvar:`PYTHONPATH`."
 msgstr ""
 "例如，如果在 :file:`/usr/local/bin/python` 中找到 Python 可執行檔案，它將假定"
 "函式庫位於 :file:`/usr/local/lib/python{X.Y}` 中。（事實上這個特定的路徑也是"
 "「後備 (fallback)」位置，當在 :envvar:`PATH` 中找不到名為 :file:`python` 的可"
-"執行檔案時使用。）使用者可以透過設定環境變數來覆蓋此行為 :envvar:"
-"`PYTHONHOME`，或者透過設定 :envvar:`PYTHONPATH` 在標準路徑前面插入額外的目"
-"錄。"
+"執行檔案時使用。）使用者可以透過設定環境變數來覆蓋此行"
+"為 :envvar:`PYTHONHOME`，或者透過設定 :envvar:`PYTHONPATH` 在標準路徑前面插入"
+"額外的目錄。"
 
-#: ../../c-api/intro.rst:1026
+#: ../../c-api/intro.rst:1140
+#, fuzzy
 msgid ""
-"The embedding application can steer the search by setting :c:member:"
-"`PyConfig.program_name` *before* calling :c:func:`Py_InitializeFromConfig`. "
-"Note that :envvar:`PYTHONHOME` still overrides this and :envvar:`PYTHONPATH` "
-"is still inserted in front of the standard path.  An application that "
-"requires total control has to provide its own implementation of :c:func:"
-"`Py_GetPath`, :c:func:`Py_GetPrefix`, :c:func:`Py_GetExecPrefix`, and :c:"
-"func:`Py_GetProgramFullPath` (all defined in :file:`Modules/getpath.c`)."
+"The embedding application can steer the search by "
+"setting :c:member:`PyConfig.program_name` *before* "
+"calling :c:func:`Py_InitializeFromConfig`. Note that :envvar:`PYTHONHOME` "
+"still overrides this and :envvar:`PYTHONPATH` is still inserted in front of "
+"the standard path."
 msgstr ""
 "嵌入的應用程式可以透過在呼叫 :c:func:`Py_InitializeFromConfig` *之前*\\ 設"
 "定 :c:member:`PyConfig.program_name` 來引導搜尋。請注意 :envvar:`PYTHONHOME` "
 "仍然覆蓋它並且 :envvar:`PYTHONPATH` 仍然插入在標準路徑的前面。需要完全控制權"
-"的應用程式必須實作自己的 :c:func:`Py_GetPath`、:c:func:`Py_GetPrefix`、:c:"
-"func:`Py_GetExecPrefix` 和 :c:func:`Py_GetProgramFullPath`\\（全部定義在 :"
-"file:`Modules/getpath.c`)。"
+"的應用程式必須實作自己"
+"的 :c:func:`Py_GetPath`、:c:func:`Py_GetPrefix`、:c:func:`Py_GetExecPrefix` "
+"和 :c:func:`Py_GetProgramFullPath`\\（全部定義在 :file:`Modules/getpath.c`)。"
 
-#: ../../c-api/intro.rst:1037
+#: ../../c-api/intro.rst:1148
 msgid ""
 "Sometimes, it is desirable to \"uninitialize\" Python.  For instance,  the "
-"application may want to start over (make another call to :c:func:"
-"`Py_Initialize`) or the application is simply done with its  use of Python "
-"and wants to free memory allocated by Python.  This can be accomplished by "
-"calling :c:func:`Py_FinalizeEx`.  The function :c:func:`Py_IsInitialized` "
-"returns true if Python is currently in the initialized state.  More "
-"information about these functions is given in a later chapter. Notice that :"
-"c:func:`Py_FinalizeEx` does *not* free all memory allocated by the Python "
-"interpreter, e.g. memory allocated by extension modules currently cannot be "
-"released."
+"application may want to start over (make another call "
+"to :c:func:`Py_Initialize`) or the application is simply done with its  use "
+"of Python and wants to free memory allocated by Python.  This can be "
+"accomplished by calling :c:func:`Py_FinalizeEx`.  The "
+"function :c:func:`Py_IsInitialized` returns true if Python is currently in "
+"the initialized state.  More information about these functions is given in a "
+"later chapter. Notice that :c:func:`Py_FinalizeEx` does *not* free all "
+"memory allocated by the Python interpreter, e.g. memory allocated by "
+"extension modules currently cannot be released."
 msgstr ""
 "有時會希望能夠「取消初始化 (uninitialize)」Python。例如，應用程式可能想要重新"
 "開始（再次呼叫 :c:func:`Py_Initialize`）或者應用程式簡單地完成了對 Python 的"
 "使用並想要釋放 Python 分配的記憶體。這可以透過呼叫 :c:func:`Py_FinalizeEx` 來"
 "完成。如果 Python 目前處於初始化狀態，函式 :c:func:`Py_IsInitialized` 會回傳 "
-"true。有關這些功能的更多資訊將在後面的章節中給出。請注意 :c:func:"
-"`Py_FinalizeEx` *不會*\\ 釋放由 Python 直譯器分配的所有記憶體，例如目前無法釋"
-"放被擴充模組所分配的記憶體。"
+"true。有關這些功能的更多資訊將在後面的章節中給出。請注"
+"意 :c:func:`Py_FinalizeEx` *不會*\\ 釋放由 Python 直譯器分配的所有記憶體，例"
+"如目前無法釋放被擴充模組所分配的記憶體。"
 
-#: ../../c-api/intro.rst:1051
+#: ../../c-api/intro.rst:1162
 msgid "Debugging Builds"
 msgstr "除錯建置"
 
-#: ../../c-api/intro.rst:1053
+#: ../../c-api/intro.rst:1164
 msgid ""
 "Python can be built with several macros to enable extra checks of the "
 "interpreter and extension modules.  These checks tend to add a large amount "
@@ -1651,51 +1805,59 @@ msgstr ""
 "Python 可以在建置時使用多個巨集來啟用對直譯器和擴充模組的額外檢查，這些檢查往"
 "往會在執行環境 (runtime) 增加大量開銷 (overhead)，因此預設情況下不啟用它們。"
 
-#: ../../c-api/intro.rst:1057
+#: ../../c-api/intro.rst:1168
 msgid ""
-"A full list of the various types of debugging builds is in the file :file:"
-"`Misc/SpecialBuilds.txt` in the Python source distribution. Builds are "
-"available that support tracing of reference counts, debugging the memory "
-"allocator, or low-level profiling of the main interpreter loop.  Only the "
-"most frequently used builds will be described in the remainder of this "
+"A full list of the various types of debugging builds is in the "
+"file :file:`Misc/SpecialBuilds.txt` in the Python source distribution. "
+"Builds are available that support tracing of reference counts, debugging the "
+"memory allocator, or low-level profiling of the main interpreter loop.  Only "
+"the most frequently used builds will be described in the remainder of this "
 "section."
 msgstr ""
 "Python 原始碼發佈版本中的 :file:`Misc/SpecialBuilds.txt` 檔案有一份包含多種除"
 "錯構置的完整列表，為支援追蹤參照計數、為記憶體分配器除錯或對主直譯器迴圈進行"
 "低階分析的建置。本節的其餘部分將僅描述最常用的建置。"
 
-#: ../../c-api/intro.rst:1065
+#: ../../c-api/intro.rst:1176
 msgid ""
 "Compiling the interpreter with the :c:macro:`!Py_DEBUG` macro defined "
 "produces what is generally meant by :ref:`a debug build of Python <debug-"
-"build>`. :c:macro:`!Py_DEBUG` is enabled in the Unix build by adding :option:"
-"`--with-pydebug` to the :file:`./configure` command. It is also implied by "
-"the presence of the not-Python-specific :c:macro:`!_DEBUG` macro.  When :c:"
-"macro:`!Py_DEBUG` is enabled in the Unix build, compiler optimization is "
-"disabled."
+"build>`."
 msgstr ""
-"使用定義的 :c:macro:`!Py_DEBUG` 巨集編譯直譯器會生成 :ref:`Python 的除錯建置 "
-"<debug-build>`。 :c:macro:`!Py_DEBUG` 在 Unix 建置中要透過在 :file:`./"
-"configure` 命令中加入 :option:`--with-pydebug` 來啟用。非 Python 限定的 :c:"
-"macro:`!_DEBUG` 巨集的存在也暗示了這一點。當 :c:macro:`!Py_DEBUG` 在 Unix 建"
-"置中啟用時，編譯器最佳化會被禁用。"
 
-#: ../../c-api/intro.rst:1073
+#: ../../c-api/intro.rst:1179
+msgid ""
+"On Unix, :c:macro:`!Py_DEBUG` can be enabled by adding :option:`--with-"
+"pydebug` to the :file:`./configure` command. This will also disable compiler "
+"optimization."
+msgstr ""
+
+#: ../../c-api/intro.rst:1182
+msgid ""
+"On Windows, selecting a debug build (e.g., by passing the :option:`-d` "
+"option to :file:`PCbuild/build.bat`) automatically enables :c:macro:`!"
+"Py_DEBUG`. Additionally, the presence of the not-Python-specific :c:macro:`!"
+"_DEBUG` macro, when defined by the compiler, will also implicitly "
+"enable :c:macro:`!Py_DEBUG`."
+msgstr ""
+
+#: ../../c-api/intro.rst:1187
+#, fuzzy
 msgid ""
 "In addition to the reference count debugging described below, extra checks "
-"are performed, see :ref:`Python Debug Build <debug-build>`."
+"are performed. See :ref:`Python Debug Build <debug-build>` for more details."
 msgstr ""
 "除了下面描述的參照計數除錯之外，還會執行額外的檢查，請參閱 :ref:`Python 除錯"
 "建置 <debug-build>`。"
 
-#: ../../c-api/intro.rst:1076
+#: ../../c-api/intro.rst:1190
 msgid ""
-"Defining ``Py_TRACE_REFS`` enables reference tracing (see the :option:"
-"`configure --with-trace-refs option <--with-trace-refs>`). When defined, a "
-"circular doubly linked list of active objects is maintained by adding two "
-"extra fields to every :c:type:`PyObject`.  Total allocations are tracked as "
-"well.  Upon exit, all existing references are printed.  (In interactive mode "
-"this happens after every statement run by the interpreter.)"
+"Defining ``Py_TRACE_REFS`` enables reference tracing (see "
+"the :option:`configure --with-trace-refs option <--with-trace-refs>`). When "
+"defined, a circular doubly linked list of active objects is maintained by "
+"adding two extra fields to every :c:type:`PyObject`.  Total allocations are "
+"tracked as well.  Upon exit, all existing references are printed.  (In "
+"interactive mode this happens after every statement run by the interpreter.)"
 msgstr ""
 "定義 ``Py_TRACE_REFS`` 來啟用參照追蹤（參見\\ :option:`設定 --with-trace-"
 "refs 選項 <--with-trace-refs>`）。當有定義時，透過向每個 :c:type:`PyObject` "
@@ -1703,19 +1865,19 @@ msgstr ""
 "list)。總配置量也會被追蹤。退出時將印出所有現存的參照。（在互動模式下，這會發"
 "生在直譯器執行的每個陳述式之後。）"
 
-#: ../../c-api/intro.rst:1083
+#: ../../c-api/intro.rst:1197
 msgid ""
 "Please refer to :file:`Misc/SpecialBuilds.txt` in the Python source "
 "distribution for more detailed information."
 msgstr ""
-"有關更多詳細資訊，請參閱 Python 原始碼發布版中的 :file:`Misc/SpecialBuilds."
-"txt`。"
+"有關更多詳細資訊，請參閱 Python 原始碼發布版中的 :file:`Misc/"
+"SpecialBuilds.txt`。"
 
-#: ../../c-api/intro.rst:1090
+#: ../../c-api/intro.rst:1204
 msgid "Recommended third party tools"
 msgstr "建議的第三方工具"
 
-#: ../../c-api/intro.rst:1092
+#: ../../c-api/intro.rst:1206
 msgid ""
 "The following third party tools offer both simpler and more sophisticated "
 "approaches to creating C, C++ and Rust extensions for Python:"
@@ -1723,39 +1885,39 @@ msgstr ""
 "以下第三方工具提供了更簡單且更細緻的方法來為 Python 建立 C、C++ 和 Rust 擴充"
 "模組："
 
-#: ../../c-api/intro.rst:1095
+#: ../../c-api/intro.rst:1209
 msgid "`Cython <https://cython.org/>`_"
 msgstr "`Cython <https://cython.org/>`_"
 
-#: ../../c-api/intro.rst:1096
+#: ../../c-api/intro.rst:1210
 msgid "`cffi <https://cffi.readthedocs.io>`_"
 msgstr "`cffi <https://cffi.readthedocs.io>`_"
 
-#: ../../c-api/intro.rst:1097
+#: ../../c-api/intro.rst:1211
 msgid "`HPy <https://hpyproject.org/>`_"
 msgstr "`HPy <https://hpyproject.org/>`_"
 
-#: ../../c-api/intro.rst:1098
+#: ../../c-api/intro.rst:1212
 msgid "`nanobind <https://github.com/wjakob/nanobind>`_ (C++)"
 msgstr "`nanobind <https://github.com/wjakob/nanobind>`_ (C++)"
 
-#: ../../c-api/intro.rst:1099
+#: ../../c-api/intro.rst:1213
 msgid "`Numba <https://numba.pydata.org/>`_"
 msgstr "`Numba <https://numba.pydata.org/>`_"
 
-#: ../../c-api/intro.rst:1100
+#: ../../c-api/intro.rst:1214
 msgid "`pybind11 <https://pybind11.readthedocs.io/>`_ (C++)"
 msgstr "`pybind11 <https://pybind11.readthedocs.io/>`_ (C++)"
 
-#: ../../c-api/intro.rst:1101
+#: ../../c-api/intro.rst:1215
 msgid "`PyO3 <https://pyo3.rs/>`_ (Rust)"
 msgstr "`PyO3 <https://pyo3.rs/>`_ (Rust)"
 
-#: ../../c-api/intro.rst:1102
+#: ../../c-api/intro.rst:1216
 msgid "`SWIG <https://www.swig.org>`_"
 msgstr "`SWIG <https://www.swig.org>`_"
 
-#: ../../c-api/intro.rst:1104
+#: ../../c-api/intro.rst:1218
 msgid ""
 "Using tools such as these can help avoid writing code that is tightly bound "
 "to a particular version of CPython, avoid reference counting errors, and "
@@ -1766,7 +1928,7 @@ msgid ""
 "sources."
 msgstr ""
 
-#: ../../c-api/intro.rst:1111
+#: ../../c-api/intro.rst:1225
 msgid ""
 "These projects are not supported by the same people who maintain Python, and "
 "issues need to be raised with the projects directly. Remember to check that "
@@ -1774,146 +1936,157 @@ msgid ""
 "outdated."
 msgstr ""
 
-#: ../../c-api/intro.rst:1118
+#: ../../c-api/intro.rst:1232
 msgid ""
-"`Python Packaging User Guide: Binary Extensions <https://packaging.python."
-"org/guides/packaging-binary-extensions/>`_"
+"`Python Packaging User Guide: Binary Extensions <https://"
+"packaging.python.org/guides/packaging-binary-extensions/>`_"
 msgstr ""
 
-#: ../../c-api/intro.rst:1119
+#: ../../c-api/intro.rst:1233
 msgid ""
 "The Python Packaging User Guide not only covers several available tools that "
 "simplify the creation of binary extensions, but also discusses the various "
 "reasons why creating an extension module may be desirable in the first place."
 msgstr ""
 
-#: ../../c-api/intro.rst:533
+#: ../../c-api/intro.rst:635
 msgid "object"
 msgstr "object（物件）"
 
-#: ../../c-api/intro.rst:533
+#: ../../c-api/intro.rst:635
 msgid "type"
 msgstr "type（型別）"
 
-#: ../../c-api/intro.rst:572
+#: ../../c-api/intro.rst:674
 msgid "Py_INCREF (C function)"
 msgstr "Py_INCREF（C 函式）"
 
-#: ../../c-api/intro.rst:572
+#: ../../c-api/intro.rst:674
 msgid "Py_DECREF (C function)"
 msgstr "Py_DECREF（C 函式）"
 
-#: ../../c-api/intro.rst:651
+#: ../../c-api/intro.rst:753
 msgid "PyList_SetItem (C function)"
 msgstr "PyList_SetItem（C 函式）"
 
-#: ../../c-api/intro.rst:651
+#: ../../c-api/intro.rst:753
 msgid "PyTuple_SetItem (C function)"
 msgstr "PyTuple_SetItem（C 函式）"
 
-#: ../../c-api/intro.rst:722
+#: ../../c-api/intro.rst:824
 msgid "set_all()"
 msgstr "set_all()"
 
-#: ../../c-api/intro.rst:741
+#: ../../c-api/intro.rst:843
 msgid "PyList_GetItem (C function)"
 msgstr "PyList_GetItem（C 函式）"
 
-#: ../../c-api/intro.rst:741
+#: ../../c-api/intro.rst:843
 msgid "PySequence_GetItem (C function)"
 msgstr "PySequence_GetItem（C 函式）"
 
-#: ../../c-api/intro.rst:771
+#: ../../c-api/intro.rst:873
 msgid "sum_list()"
 msgstr "sum_list()"
 
-#: ../../c-api/intro.rst:803 ../../c-api/intro.rst:895
+#: ../../c-api/intro.rst:905 ../../c-api/intro.rst:1015
 msgid "sum_sequence()"
 msgstr "sum_sequence()"
 
-#: ../../c-api/intro.rst:838
+#: ../../c-api/intro.rst:958
 msgid "PyErr_Occurred (C function)"
 msgstr "PyErr_Occurred（C 函式）"
 
-#: ../../c-api/intro.rst:851
+#: ../../c-api/intro.rst:971
 msgid "PyErr_SetString (C function)"
 msgstr "PyErr_SetString（C 函式）"
 
-#: ../../c-api/intro.rst:851 ../../c-api/intro.rst:959
+#: ../../c-api/intro.rst:971 ../../c-api/intro.rst:1079
 msgid "PyErr_Clear (C function)"
 msgstr "PyErr_Clear（C 函式）"
 
-#: ../../c-api/intro.rst:875
+#: ../../c-api/intro.rst:995
 msgid "exc_info (in module sys)"
 msgstr "exc_info （sys 模組中）"
 
-#: ../../c-api/intro.rst:910 ../../c-api/intro.rst:957
+#: ../../c-api/intro.rst:1030 ../../c-api/intro.rst:1077
 msgid "incr_item()"
 msgstr "incr_item()"
 
-#: ../../c-api/intro.rst:959
+#: ../../c-api/intro.rst:1079
 msgid "PyErr_ExceptionMatches (C function)"
 msgstr "PyErr_ExceptionMatches（C 函式）"
 
-#: ../../c-api/intro.rst:959
+#: ../../c-api/intro.rst:1079
 msgid "Py_XDECREF (C function)"
 msgstr "Py_XDECREF（C 函式）"
 
-#: ../../c-api/intro.rst:985
+#: ../../c-api/intro.rst:1105
 msgid "Py_Initialize (C function)"
 msgstr "Py_Initialize（C 函式）"
 
-#: ../../c-api/intro.rst:985
+#: ../../c-api/intro.rst:1105
 msgid "module"
 msgstr "module（模組）"
 
-#: ../../c-api/intro.rst:985
+#: ../../c-api/intro.rst:1105
 msgid "builtins"
 msgstr "builtins（內建）"
 
-#: ../../c-api/intro.rst:985
+#: ../../c-api/intro.rst:1105
 msgid "__main__"
 msgstr "__main__"
 
-#: ../../c-api/intro.rst:985
+#: ../../c-api/intro.rst:1105
 msgid "sys"
 msgstr "sys"
 
-#: ../../c-api/intro.rst:985
+#: ../../c-api/intro.rst:1105
 msgid "search"
 msgstr "search（搜尋）"
 
-#: ../../c-api/intro.rst:985
+#: ../../c-api/intro.rst:1105
 msgid "path"
 msgstr "path（路徑）"
 
-#: ../../c-api/intro.rst:985
+#: ../../c-api/intro.rst:1105
 msgid "path (in module sys)"
 msgstr "path（sys 模組中）"
 
-#: ../../c-api/intro.rst:1020
-msgid "Py_GetPath (C function)"
-msgstr "Py_GetPath（C 函式）"
-
-#: ../../c-api/intro.rst:1020
-msgid "Py_GetPrefix (C function)"
-msgstr "Py_GetPrefix（C 函式）"
-
-#: ../../c-api/intro.rst:1020
-msgid "Py_GetExecPrefix (C function)"
-msgstr "Py_GetExecPrefix（C 函式）"
-
-#: ../../c-api/intro.rst:1020
-msgid "Py_GetProgramFullPath (C function)"
-msgstr "Py_GetProgramFullPath（C 函式）"
-
-#: ../../c-api/intro.rst:1035
+#: ../../c-api/intro.rst:1146
 msgid "Py_IsInitialized (C function)"
 msgstr "Py_IsInitialized（C 函式）"
 
 #~ msgid ""
-#~ "This is a :term:`soft deprecated` alias to :c:func:`!memcpy`. Use :c:func:"
-#~ "`!memcpy` directly instead."
+#~ "Compiling the interpreter with the :c:macro:`!Py_DEBUG` macro defined "
+#~ "produces what is generally meant by :ref:`a debug build of Python <debug-"
+#~ "build>`. :c:macro:`!Py_DEBUG` is enabled in the Unix build by "
+#~ "adding :option:`--with-pydebug` to the :file:`./configure` command. It is "
+#~ "also implied by the presence of the not-Python-specific :c:macro:`!"
+#~ "_DEBUG` macro.  When :c:macro:`!Py_DEBUG` is enabled in the Unix build, "
+#~ "compiler optimization is disabled."
+#~ msgstr ""
+#~ "使用定義的 :c:macro:`!Py_DEBUG` 巨集編譯直譯器會生成 :ref:`Python 的除錯建"
+#~ "置 <debug-build>`。 :c:macro:`!Py_DEBUG` 在 Unix 建置中要透過在 :file:`./"
+#~ "configure` 命令中加入 :option:`--with-pydebug` 來啟用。非 Python 限定"
+#~ "的 :c:macro:`!_DEBUG` 巨集的存在也暗示了這一點。當 :c:macro:`!Py_DEBUG` "
+#~ "在 Unix 建置中啟用時，編譯器最佳化會被禁用。"
+
+#~ msgid "Py_GetPath (C function)"
+#~ msgstr "Py_GetPath（C 函式）"
+
+#~ msgid "Py_GetPrefix (C function)"
+#~ msgstr "Py_GetPrefix（C 函式）"
+
+#~ msgid "Py_GetExecPrefix (C function)"
+#~ msgstr "Py_GetExecPrefix（C 函式）"
+
+#~ msgid "Py_GetProgramFullPath (C function)"
+#~ msgstr "Py_GetProgramFullPath（C 函式）"
+
+#~ msgid ""
+#~ "This is a :term:`soft deprecated` alias to :c:func:`!memcpy`. "
+#~ "Use :c:func:`!memcpy` directly instead."
 #~ msgstr ""
 #~ "這是 :c:func:`!memcpy` 的已\\ :term:`軟性棄用 <soft deprecated>`\\ 別名。"
 #~ "請直接使用 :c:func:`!memcpy`。"
